@@ -1,0 +1,4 @@
+{
+  "purpose": "Exceptions to the topic independence guard. Every entry needs a written reason; an entry without one fails the guard. Prefer moving the identifier into governed data or a subject adapter over adding an entry here.",
+  "allow": []
+}

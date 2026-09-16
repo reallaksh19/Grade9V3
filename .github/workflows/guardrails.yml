@@ -52,6 +52,9 @@ jobs:
                 f"declared comparisons and declared limits present.")
           PY
 
+      - name: Engine tests (port regression, subject neutrality, declared comparisons)
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
+
       - name: All JSON parses
         run: |
           python3 - <<'PY'

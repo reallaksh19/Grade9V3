@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0.0",
+  "subject": "Physics",
+  "topic_id": "PHY-M2D-VEC-RELV-G9",
+  "title": "Motion in two dimensions: vector representation and subtraction; relative velocity in a plane",
+  "baseline_digest": "ab19d332a103ed12349381e7bbef9427c309b999cbd6c618009b6b6b9a25d6b4",
+  "practice_control": {
+    "mode": "OWNER_WAIVER",
+    "purpose": "COMPETITION",
+    "authorization_ref": "V3B-Motion-Grade9-Example.md#owner_waiver (enabled: true; instruction: start from prerequisite bridges and simple cases, then offer clearly labelled competitive-foundation transfer; no measured-mastery claim)",
+    "support_plan": "Bridge signed-coordinate subtraction and right-triangle magnitude (CAP-SIGNED-PAIR-BRIDGE, CAP-RIGHT-TRIANGLE-BRIDGE) before independent use; keep UNKNOWN knowledge visible throughout; this run makes no personalised-readiness claim."
+  },
+  "products": [
+    {
+      "core": "CORE1A",
+      "units": [
+        {
+          "id": "U-1A-VEC",
+          "bucket_id": "B-VEC",
+          "title": "Vector representation and subtraction",
+          "blocks": [
+            {
+              "id": "1A-VEC-T1",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-VEC-CONCEPT"
+              ],
+              "source_atom_ids": [
+                "w_x",
+                "w_y"
+              ],
+              "text": "Before any number is subtracted or added, name the frame. Declare which direction along each axis counts as positive -- here, east is positive x and north is positive y -- because a signed component only means something once that choice is fixed.\nA vector w with components (3, 4) m/s is read directly off those axes: 3 m/s east and 4 m/s north. The vector and its magnitude are two different descriptions of the same physical quantity. The magnitude (speed) is obtained by treating the two perpendicular components as the legs of a right triangle: speed = sqrt(3^2 + 4^2) = sqrt(25) = 5 m/s. Squaring removes the sign from each component, so the magnitude is always taken nonnegative -- but the original signed pair (3, 4) is still required afterwards to say which way the vector points. Stating '5 m/s' alone never answers a direction question."
+            },
+            {
+              "id": "1A-VEC-F1",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-VEC-CONCEPT"
+              ],
+              "source_atom_ids": [
+                "w_x",
+                "w_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "w",
+                "unit": "m/s",
+                "x_atom": "w_x",
+                "y_atom": "w_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "Vector w, drawn from the origin with its signed components."
+              }
+            },
+            {
+              "id": "1A-VEC-T2",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "p_x",
+                "p_y",
+                "q_x",
+                "q_y",
+                "pq_x",
+                "pq_y"
+              ],
+              "text": "Subtraction of two vectors is defined as addition of the reversed second vector: P - Q = P + (-Q). Reversing Q keeps its length exactly the same and flips its direction end for end; reversal also flips the sign of every one of its signed components.\nTake P = (6, 0) m/s and Q = (0, 8) m/s in the common east/north frame. Reversing Q gives -Q = (0, -8) m/s. As a free vector, -Q may be translated to the head of P without being rotated. Adding tail-to-head, the resultant is P + (-Q) = (6 + 0, 0 + (-8)) = (6, -8) m/s. This graphical route must agree with the direct component-by-component subtraction, (P_x - Q_x, P_y - Q_y) = (6 - 0, 0 - 8) = (6, -8) m/s -- and it does. Applying the right-triangle bridge, the magnitude is sqrt(6^2 + 8^2) = sqrt(100) = 10 m/s."
+            },
+            {
+              "id": "1A-VEC-E1",
+              "kind": "EQUATION",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "eq_vec_subtract"
+              ],
+              "mathml": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>",
+              "meaning": "Vector subtraction is defined as addition of the reversed second vector.",
+              "symbols": [
+                "P: the first vector in the declared common frame.",
+                "Q: the second vector, expressed in the same frame.",
+                "-Q: Q reversed -- identical magnitude, opposite direction."
+              ],
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Free vectors may be translated (not rotated) for the tail-to-head construction."
+              ]
+            },
+            {
+              "id": "1A-VEC-F2",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "q_x",
+                "q_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "Q",
+                "unit": "m/s",
+                "x_atom": "q_x",
+                "y_atom": "q_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "Q as given. This is the vector that gets reversed in the construction."
+              }
+            },
+            {
+              "id": "1A-VEC-F3",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "pq_x",
+                "pq_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "P-Q",
+                "unit": "m/s",
+                "x_atom": "pq_x",
+                "y_atom": "pq_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "The resultant P-Q, reached by adding P and the reversed -Q tail-to-head; it agrees with the direct component subtraction."
+              }
+            }
+          ]
+        },
+        {
+          "id": "U-1A-RELV",
+          "bucket_id": "B-RELV",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "1A-RELV-T1",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-RELV-DERIVE"
+              ],
+              "source_atom_ids": [
+                "va_x",
+                "va_y",
+                "vb_x",
+                "vb_y",
+                "vab_x",
+                "vab_y"
+              ],
+              "text": "'A relative to B' is built from same-time positions, not memorised as a bare formula. If r_A and r_B are the positions of A and B at the same instant in one common frame, then following the path origin -> B -> A gives r_A = r_B + r_A/B, so r_A/B = r_A - r_B: the position of A measured from B.\nWriting this relation at two instants t1 and t2 and subtracting gives Delta r_A/B = Delta r_A - Delta r_B. Dividing every term by the same nonzero time interval turns each side into an average velocity; for the constant velocities used in this teaching case, v_A/B = v_A - v_B. Both displacement changes must be divided by the same shared interval -- comparing changes measured over different intervals would not describe how one simultaneous separation evolves.\nApply this to A moving at (6, 0) m/s and B moving at (0, 8) m/s in a common east/north frame: v_A/B = (6, 0) - (0, 8) = (6, -8) m/s. By the right-triangle bridge, the magnitude is sqrt(6^2 + 8^2) = sqrt(100) = 10 m/s. The eastward component is positive and the northward component is negative, so the vector points southeast."
+            },
+            {
+              "id": "1A-RELV-E1",
+              "kind": "EQUATION",
+              "obligation_ids": [
+                "OB-RELV-DERIVE"
+              ],
+              "source_atom_ids": [
+                "eq_relv"
+              ],
+              "mathml": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>",
+              "meaning": "For constant velocities, the relative velocity of A with respect to B is the vector difference of their common-frame velocities.",
+              "symbols": [
+                "v_A: velocity of A in the common frame.",
+                "v_B: velocity of B in the same frame, same instant.",
+                "v_A/B: velocity of A relative to B, i.e. A as measured by an observer moving with B."
+              ],
+              "conditions": [
+                "Use the same observation times and a common time interval.",
+                "Express all vectors along parallel, nonrotating Cartesian axes.",
+                "Use a classical (non-relativistic) kinematic model."
+              ]
+            },
+            {
+              "id": "1A-RELV-F1",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-RELV-DERIVE"
+              ],
+              "source_atom_ids": [
+                "vab_x",
+                "vab_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "v_A/B",
+                "unit": "m/s",
+                "x_atom": "vab_x",
+                "y_atom": "vab_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "The resultant relative-velocity vector A relative to B, reconciled with the component calculation above."
+              }
+            },
+            {
+              "id": "1A-RELV-T2",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-RELV-REVERSAL"
+              ],
+              "source_atom_ids": [
+                "vba_x",
+                "vba_y"
+              ],
+              "text": "Swapping the observer reverses the vector: v_B/A = -(v_A/B). Since A relative to B is (6, -8) m/s, B relative to A is (-6, 8) m/s -- every component changes sign. The magnitude is unchanged, because the right-triangle bridge only uses squared components, and squaring erases a sign flip: sqrt((-6)^2 + 8^2) = sqrt(100) = 10 m/s, matching the original 10 m/s. Adding the two relative vectors together gives exactly zero, which is a standing check for this reversal relation on any pair of velocities."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE1B",
+      "units": [
+        {
+          "id": "U-1B-VEC",
+          "bucket_id": "B-VEC",
+          "title": "Vector representation and subtraction",
+          "blocks": [
+            {
+              "id": "1B-VEC-T1",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-VEC-CONCEPT"
+              ],
+              "source_atom_ids": [
+                "w_x",
+                "w_y"
+              ],
+              "text": "Predict first: a vector has components (3, 4) m/s in an east/north frame. Before reading on, decide -- is '5 m/s' the full description of this vector, or is something still missing?\nCheck your prediction: '5 m/s' is only the magnitude, obtained from sqrt(3^2 + 4^2) = 5 m/s by the right-triangle bridge. It cannot by itself say whether the vector points north-east, south-west, or anywhere else -- the squaring step that produced it threw the signs away. A common wrong idea is to treat the magnitude and the vector as interchangeable once a number has been calculated. Diagnostic: two vectors, (3,4) and (4,3) m/s, have the same magnitude (5 m/s in both cases) -- do they point the same way? They do not: comparing the signed components directly shows they are different vectors. The repair is to keep the signed pair (3,4) alongside the magnitude whenever direction is asked for."
+            },
+            {
+              "id": "1B-VEC-F1",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-VEC-CONCEPT"
+              ],
+              "source_atom_ids": [
+                "w_x",
+                "w_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "w",
+                "unit": "m/s",
+                "x_atom": "w_x",
+                "y_atom": "w_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "Model drawing of w: compare it against your own sketch before reading the components off it."
+              }
+            },
+            {
+              "id": "1B-VEC-T2",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "p_x",
+                "p_y",
+                "q_x",
+                "q_y",
+                "pq_x",
+                "pq_y"
+              ],
+              "text": "Reconstruct before checking: P = (6,0) m/s and Q = (0,8) m/s in a common east/north frame. Sketch P - Q graphically on your own, using the reverse-then-add rule, before reading further.\nA frequent shortcut is to draw P and Q from the same origin and simply join their two tips in whichever order looks convenient -- this hides which observer's subtraction order is being used and is easy to reverse by accident. Diagnostic: in your sketch, which endpoint does the subtraction arrow start from -- the tip of P or the tip of Q? The correct construction reverses Q to get -Q = (0,-8) m/s, translates it to the head of P without rotating it, and draws the resultant from the tail of P to the head of the translated -Q: (6,0) + (0,-8) = (6,-8) m/s. Check your reconstruction against this and against the direct component subtraction, (6-0, 0-8) = (6,-8) m/s -- both routes must agree."
+            },
+            {
+              "id": "1B-VEC-E1",
+              "kind": "EQUATION",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "eq_vec_subtract"
+              ],
+              "mathml": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>",
+              "meaning": "Use this to check your reconstructed subtraction: it is addition of the reversed second vector, not a shortcut between two tips drawn from the same origin.",
+              "symbols": [
+                "P: the first vector.",
+                "Q: the second vector, same frame.",
+                "-Q: Q reversed."
+              ],
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Free vectors may be translated (not rotated) for the construction."
+              ]
+            },
+            {
+              "id": "1B-VEC-F2",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-VEC-SUBTRACT"
+              ],
+              "source_atom_ids": [
+                "pq_x",
+                "pq_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "P-Q",
+                "unit": "m/s",
+                "x_atom": "pq_x",
+                "y_atom": "pq_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "Model resultant P-Q: compare its direction with your own reconstructed sketch, not just its length."
+              }
+            }
+          ]
+        },
+        {
+          "id": "U-1B-RELV",
+          "bucket_id": "B-RELV",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "1B-RELV-T1",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-RELV-DERIVE"
+              ],
+              "source_atom_ids": [
+                "va_x",
+                "va_y",
+                "vb_x",
+                "vb_y",
+                "vab_x",
+                "vab_y"
+              ],
+              "text": "Predict and reconstruct: A moves at (6,0) m/s and B moves at (0,8) m/s in a common east/north frame. Which displacement carries you from B to A -- and does that mean you compute v_A - v_B or v_B - v_A for 'A relative to B'? Decide before reading on.\nA common wrong route is to subtract whichever velocity is written first in the question. The repair is to reconstruct the path explicitly: draw origin -> B -> A, giving r_A = r_B + r_A/B, so r_A/B = r_A - r_B -- the same order carries through to velocities, v_A/B = v_A - v_B. Applying this: v_A/B = (6,0) - (0,8) = (6,-8) m/s, magnitude sqrt(36+64) = 10 m/s. Now explain in your own words why reversing the observer -- asking for B relative to A instead -- reverses the sign of every component, before checking the next block."
+            },
+            {
+              "id": "1B-RELV-E1",
+              "kind": "EQUATION",
+              "obligation_ids": [
+                "OB-RELV-DERIVE"
+              ],
+              "source_atom_ids": [
+                "eq_relv"
+              ],
+              "mathml": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>",
+              "meaning": "Check your reconstructed subtraction order against this relation.",
+              "symbols": [
+                "v_A: velocity of A in the common frame.",
+                "v_B: velocity of B, same frame.",
+                "v_A/B: velocity of A relative to B."
+              ],
+              "conditions": [
+                "Same observation times and a common interval.",
+                "Parallel, nonrotating Cartesian axes.",
+                "Classical (non-relativistic) model."
+              ]
+            },
+            {
+              "id": "1B-RELV-F1",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-RELV-DERIVE"
+              ],
+              "source_atom_ids": [
+                "vab_x",
+                "vab_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "v_A/B",
+                "unit": "m/s",
+                "x_atom": "vab_x",
+                "y_atom": "vab_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "Model resultant v_A/B: compare its direction with your own reconstruction."
+              }
+            },
+            {
+              "id": "1B-RELV-T2",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-RELV-REVERSAL"
+              ],
+              "source_atom_ids": [
+                "vba_x",
+                "vba_y"
+              ],
+              "text": "Diagnose this arrow: a classmate reverses the observer and draws B relative to A with the correct length (10 m/s) but pointing northeast instead of northwest. Is the length being correct enough to accept the answer? It is not: v_B/A = -(v_A/B) = -(6,-8) = (-6,8) m/s, which points northwest, not northeast -- a correct magnitude does not certify a correct vector. Name the observer, label both signed components, and inspect the direction before ever taking a magnitude. As a standing check, v_A/B + v_B/A must equal exactly zero for any pair of velocities."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE2A",
+      "units": [
+        {
+          "id": "U-2A-VEC",
+          "bucket_id": "B-VEC",
+          "title": "Vector representation and subtraction: practice",
+          "blocks": [
+            {
+              "id": "2A-VEC-Q1",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-VEC-PRACTICE"
+              ],
+              "source_atom_ids": [
+                "w_x",
+                "w_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-VEC-A1",
+              "original_number": "AUTHOR-VEC-01",
+              "stem": "A cyclist's velocity has components 3 m/s east and 4 m/s north in a common east/north frame. Find the cyclist's speed and describe the direction in words.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocity; common east/north frame."
+              ],
+              "answer": {
+                "summary": "Speed 5 m/s; the velocity points into the north-east quadrant.",
+                "steps": [
+                  "Read the signed components from the declared east/north axes: 3 m/s east, 4 m/s north.",
+                  "Apply the right-triangle bridge: speed = sqrt(3^2+4^2) = sqrt(25) = 5 m/s.",
+                  "Keep the original signed pair (3,4) for the direction statement; the magnitude alone cannot supply it."
+                ],
+                "check": "Both components are positive, so the vector must lie in the north-east quadrant, consistent with the stated direction.",
+                "numeric": {
+                  "value": 5,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "Name the frame and read the two signed components first.",
+                "Apply the right-triangle bridge to the component magnitudes for the speed.",
+                "Direction needs the signed pair, not the magnitude alone."
+              ],
+              "family": "vector_magnitude",
+              "learner_action": "solve",
+              "exposure_role": "WORKED_EXAMPLE"
+            },
+            {
+              "id": "2A-VEC-F1",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-VEC-PRACTICE"
+              ],
+              "source_atom_ids": [
+                "w_x",
+                "w_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "w",
+                "unit": "m/s",
+                "x_atom": "w_x",
+                "y_atom": "w_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "The cyclist's velocity vector, matching the worked answer."
+              },
+              "placement": "ANSWER",
+              "question_id": "2A-VEC-Q1"
+            }
+          ]
+        },
+        {
+          "id": "U-2A-RELV",
+          "bucket_id": "B-RELV",
+          "title": "Relative velocity in a plane: practice",
+          "blocks": [
+            {
+              "id": "2A-RELV-Q1",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-RELV-PRACTICE-1"
+              ],
+              "source_atom_ids": [
+                "va_x",
+                "va_y",
+                "vb_x",
+                "vb_y",
+                "vab_x",
+                "vab_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-RELV-A1",
+              "original_number": "AUTHOR-REL-01",
+              "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocities; common time and parallel nonrotating axes."
+              ],
+              "answer": {
+                "summary": "(6,-8) m/s, southeast; magnitude 10 m/s.",
+                "steps": [
+                  "Subtract B's velocity from A's: (6,0) - (0,8) = (6,-8) m/s.",
+                  "The eastward component is +6 m/s and the northward component is -8 m/s (i.e. 8 m/s south).",
+                  "Right-triangle bridge: magnitude = sqrt(6^2+8^2) = sqrt(100) = 10 m/s."
+                ],
+                "check": "Reversing the observer gives (-6,8) m/s, the same magnitude, opposite direction.",
+                "numeric": {
+                  "value": 10,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "Name the frame; subtract B's components from A's, in that order.",
+                "Keep the signs through the subtraction before taking any magnitude.",
+                "Apply the right-triangle bridge only once the signed components are found."
+              ],
+              "family": "relative_velocity",
+              "learner_action": "solve",
+              "exposure_role": "WORKED_EXAMPLE"
+            },
+            {
+              "id": "2A-RELV-F1",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-RELV-PRACTICE-1"
+              ],
+              "source_atom_ids": [
+                "vab_x",
+                "vab_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "v_A/B",
+                "unit": "m/s",
+                "x_atom": "vab_x",
+                "y_atom": "vab_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "A relative to B, matching the worked answer."
+              },
+              "placement": "ANSWER",
+              "question_id": "2A-RELV-Q1"
+            },
+            {
+              "id": "2A-RELV-Q2",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-RELV-PRACTICE-2"
+              ],
+              "source_atom_ids": [
+                "vm_x",
+                "vm_y",
+                "vn_x",
+                "vn_y",
+                "vmn_x",
+                "vmn_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-RELV-A2",
+              "original_number": "AUTHOR-REL-02",
+              "stem": "In a common east/north frame, M moves at (0,13) m/s and N moves at (5,1) m/s. Find the velocity of M relative to N. State its direction and magnitude.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocities; common time and parallel nonrotating axes."
+              ],
+              "answer": {
+                "summary": "(-5,12) m/s, north-west of the frame's axes; magnitude 13 m/s.",
+                "steps": [
+                  "Subtract N's velocity from M's: (0,13) - (5,1) = (-5,12) m/s.",
+                  "The eastward component is -5 m/s (i.e. 5 m/s west) and the northward component is +12 m/s.",
+                  "Right-triangle bridge: magnitude = sqrt(5^2+12^2) = sqrt(169) = 13 m/s."
+                ],
+                "check": "Reversing the observer gives N relative to M = (5,-12) m/s, the same magnitude.",
+                "numeric": {
+                  "value": 13,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "Same subtraction order as the worked A/B example, with M and N in place of A and B.",
+                "5-12-13 is a right-triangle triple; check the arithmetic against it."
+              ],
+              "family": "relative_velocity",
+              "learner_action": "solve",
+              "exposure_role": "PRACTICE"
+            },
+            {
+              "id": "2A-RELV-F2",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-RELV-PRACTICE-2"
+              ],
+              "source_atom_ids": [
+                "vmn_x",
+                "vmn_y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "v_M/N",
+                "unit": "m/s",
+                "x_atom": "vmn_x",
+                "y_atom": "vmn_y",
+                "frame": "common east/north Cartesian frame; east positive x, north positive y",
+                "x_label": "x component (m/s)",
+                "y_label": "y component (m/s)",
+                "caption": "M relative to N, matching the worked answer."
+              },
+              "placement": "ANSWER",
+              "question_id": "2A-RELV-Q2"
+            },
+            {
+              "id": "2A-RELV-Q3",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-RELV-REVERSAL-PRACTICE"
+              ],
+              "source_atom_ids": [
+                "vba_x",
+                "vba_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-RELV-A3",
+              "original_number": "AUTHOR-REL-03",
+              "stem": "Using the A/B result above (A relative to B is (6,-8) m/s), find the velocity of B relative to A. State how its magnitude and direction compare with A relative to B.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Same frame and instant as AUTHOR-REL-01."
+              ],
+              "answer": {
+                "summary": "(-6,8) m/s; same magnitude (10 m/s), opposite direction to A relative to B.",
+                "steps": [
+                  "Apply v_B/A = -(v_A/B): negate every component of (6,-8), giving (-6,8) m/s.",
+                  "Magnitude is unchanged because the right-triangle bridge squares both components: sqrt((-6)^2+8^2) = 10 m/s."
+                ],
+                "check": "Adding v_A/B and v_B/A gives exactly (0,0) m/s -- a standing check for any reversal.",
+                "numeric": {
+                  "value": 10,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "Reversal negates every signed component; it does not change the magnitude.",
+                "Add your answer to the original vector as a check -- the sum must be zero."
+              ],
+              "family": "relative_velocity_reversal",
+              "learner_action": "solve",
+              "exposure_role": "WORKED_TO_FADED"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE2B",
+      "units": [
+        {
+          "id": "U-2B-VEC",
+          "bucket_id": "B-VEC",
+          "title": "Vector representation and subtraction: transfer",
+          "blocks": [
+            {
+              "id": "2B-VEC-Q1",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-VEC-TRANSFER"
+              ],
+              "source_atom_ids": [
+                "p_x",
+                "p_y",
+                "q_x",
+                "q_y",
+                "pq_x",
+                "pq_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-VEC-B1",
+              "original_number": "AUTHOR-VEC-03",
+              "stem": "In a common east/north frame, P = (6, 0) m/s and Q = (0, 8) m/s. Construct P - Q graphically (reverse Q, then add tail-to-head) and state the resultant's components and magnitude.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant vectors; common east/north frame; free vectors may be translated without rotation."
+              ],
+              "answer": {
+                "summary": "P-Q = (6,-8) m/s; magnitude 10 m/s.",
+                "steps": [
+                  "Reverse Q = (0,8) to get -Q = (0,-8) m/s.",
+                  "Translate -Q to the head of P without rotating it, and add tail-to-head: (6,0)+(0,-8) = (6,-8) m/s.",
+                  "Cross-check against direct component subtraction: (6-0, 0-8) = (6,-8) m/s -- both routes must agree.",
+                  "Right-triangle bridge for the magnitude: sqrt(6^2+8^2) = 10 m/s."
+                ],
+                "check": "The graphical and component routes produced the same (6,-8) m/s.",
+                "numeric": {
+                  "value": 10,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "State which vector is being reversed before drawing anything.",
+                "Translate, do not rotate, the reversed vector.",
+                "Cross-check the graphical resultant against direct component subtraction."
+              ],
+              "family": "vector_magnitude",
+              "learner_action": "reconstruct",
+              "exposure_role": "RECONSTRUCTION_ANCHOR"
+            }
+          ]
+        },
+        {
+          "id": "U-2B-RELV",
+          "bucket_id": "B-RELV",
+          "title": "Relative velocity in a plane: transfer",
+          "blocks": [
+            {
+              "id": "2B-RELV-T-EXT",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-RELV-EXTENSION-BOAT"
+              ],
+              "source_atom_ids": [
+                "vboat_x",
+                "vboat_y",
+                "vcurrent_x",
+                "vcurrent_y",
+                "vresult_x",
+                "vresult_y"
+              ],
+              "text": "Labelled extension, beyond the two-object baseline scope: a swimmer's velocity relative to the water and the water's velocity relative to the ground are both given. Finding the swimmer's velocity relative to the ground needs the same relation used throughout this unit, rearranged: if v_A/C = v_A/B - v_C/B and the current is described as water relative to ground rather than ground relative to water, then v_swimmer/ground = v_swimmer/water + v_water/ground. This is addition, not the subtraction drilled above, and it involves three objects (swimmer, water, ground) instead of two -- decide which relation applies before calculating; do not assume every relative-motion question is a subtraction."
+            },
+            {
+              "id": "2B-RELV-Q1",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-RELV-EXTENSION-BOAT"
+              ],
+              "source_atom_ids": [
+                "vboat_x",
+                "vboat_y",
+                "vcurrent_x",
+                "vcurrent_y",
+                "vresult_x",
+                "vresult_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-RELV-B2",
+              "original_number": "AUTHOR-REL-04",
+              "stem": "A swimmer's velocity relative to the water is (0,3) m/s (straight across). The water's velocity relative to the ground (the current) is (4,0) m/s. Find the swimmer's velocity relative to the ground, and name which relation you used to combine the two given velocities.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocities; common east/north frame; classical (non-relativistic) composition.",
+                "Labelled extension: three-object composition, beyond the two-object baseline scope."
+              ],
+              "answer": {
+                "summary": "(4,3) m/s; magnitude 5 m/s.",
+                "steps": [
+                  "Identify the relation: swimmer relative to ground = swimmer relative to water + water relative to ground (addition, not subtraction, because the current is already given as water-relative-to-ground).",
+                  "Add the components: (0,3) + (4,0) = (4,3) m/s.",
+                  "Right-triangle bridge: magnitude = sqrt(4^2+3^2) = sqrt(25) = 5 m/s."
+                ],
+                "check": "If the current were zero, the result would reduce to the swimmer's own (0,3) m/s, as it should.",
+                "numeric": {
+                  "value": 5,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "First decide: does this situation add or subtract the two given velocities? Justify the choice before calculating.",
+                "Write out which object each velocity is measured relative to before combining them."
+              ],
+              "family": "relative_velocity_composition",
+              "learner_action": "judge_model_choice",
+              "exposure_role": "NEW_TRANSFER"
+            },
+            {
+              "id": "2B-RELV-Q2",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-RELV-TRANSFER-N"
+              ],
+              "source_atom_ids": [
+                "vnm_x",
+                "vnm_y"
+              ],
+              "source_id": "AUTHOR",
+              "source_question_id": "Q-RELV-B3",
+              "original_number": "AUTHOR-REL-05",
+              "stem": "Using the M/N result above (M relative to N is (-5,12) m/s), find the velocity of N relative to M without recomputing from the original velocities of M and N.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Same frame and instant as AUTHOR-REL-02."
+              ],
+              "answer": {
+                "summary": "(5,-12) m/s; same magnitude (13 m/s) as M relative to N.",
+                "steps": [
+                  "Apply the reversal relation directly to the already-known result: v_N/M = -(v_M/N) = -(-5,12) = (5,-12) m/s.",
+                  "No need to return to M and N's original velocities -- the reversal principle applies to any relative-velocity result."
+                ],
+                "check": "Adding v_M/N and v_N/M gives (0,0) m/s.",
+                "numeric": {
+                  "value": 13,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                "The reversal principle proved for A/B applies to any pair -- it does not need to be re-derived from scratch for M and N."
+              ],
+              "family": "relative_velocity_reversal",
+              "learner_action": "apply_principle_to_new_case",
+              "exposure_role": "NEW_TRANSFER"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

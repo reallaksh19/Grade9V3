@@ -1,0 +1,845 @@
+{
+  "objects": {
+    "1A-VEC-T1": {
+      "core": "CORE1A",
+      "content_digest": "575a2c1fd9fdbf16f6d9fdee99c5080a507784d5bd4b9edd171df936daf501fc",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "1A-VEC-F1": {
+      "core": "CORE1A",
+      "content_digest": "5367357cc6284af5187e67e3fa5866e460ae63cb56e41bc34c0c63dcb873b5b5",
+      "artifact": "CORE1A.html",
+      "kind": "FIGURE"
+    },
+    "1A-VEC-T2": {
+      "core": "CORE1A",
+      "content_digest": "b9925fce1eb6f4e83b785fdab75b8b87fd35b07587c20701b08cbba09e3cb9f5",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "1A-VEC-E1": {
+      "core": "CORE1A",
+      "content_digest": "1f2acf8c63de82e751e7cd5e1c9b8737d7751a70efe8958274142144556aeea0",
+      "artifact": "CORE1A.html",
+      "kind": "EQUATION"
+    },
+    "1A-VEC-F2": {
+      "core": "CORE1A",
+      "content_digest": "375a57f3778917d45164dc203da5061636f456c21f057176b78c3b1d1ada13e4",
+      "artifact": "CORE1A.html",
+      "kind": "FIGURE"
+    },
+    "1A-VEC-F3": {
+      "core": "CORE1A",
+      "content_digest": "23a2a2c77f49519c568333aee376c443f9a32662504b6b1c48f59ac3f33f377b",
+      "artifact": "CORE1A.html",
+      "kind": "FIGURE"
+    },
+    "1A-RELV-T1": {
+      "core": "CORE1A",
+      "content_digest": "1135705ba81a6de800bf8f3763ac57dcf7324e3de72bbf394c58881bddbf8f05",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "1A-RELV-E1": {
+      "core": "CORE1A",
+      "content_digest": "a600e95e0b6cc62ce23be4a8fce77b3482253ec2b4c67077d95a253b8cd2b2d0",
+      "artifact": "CORE1A.html",
+      "kind": "EQUATION"
+    },
+    "1A-RELV-F1": {
+      "core": "CORE1A",
+      "content_digest": "9f9c30b323397f5a99f40a991b488190d98534d92656badd8aa4a05f1a69137a",
+      "artifact": "CORE1A.html",
+      "kind": "FIGURE"
+    },
+    "1A-RELV-T2": {
+      "core": "CORE1A",
+      "content_digest": "30d5a8471e42e8d89e783b5a9bdda86d91484ea8d327aa7cb1f6d29707beeffc",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "1B-VEC-T1": {
+      "core": "CORE1B",
+      "content_digest": "d4a42f136e9090d4720db547a14756cd72f4261fefbb13d07be79abfa5a97121",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "1B-VEC-F1": {
+      "core": "CORE1B",
+      "content_digest": "8445eee2e2dcc67a9c8804bf137610a0e5e337ff756fa1e1965d4263c7b5c1e7",
+      "artifact": "CORE1B.html",
+      "kind": "FIGURE"
+    },
+    "1B-VEC-T2": {
+      "core": "CORE1B",
+      "content_digest": "ecdac88edefcd5f00a6ffcad873784da0fb487d48eebdd667dbd8f8612d6aac3",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "1B-VEC-E1": {
+      "core": "CORE1B",
+      "content_digest": "587d8a57a9a247fde82e30c9f1a335ad500e468ec73fc96d6c86bfaa555232a6",
+      "artifact": "CORE1B.html",
+      "kind": "EQUATION"
+    },
+    "1B-VEC-F2": {
+      "core": "CORE1B",
+      "content_digest": "5a4a1a1cc1e9190f1e6341fe014fd8b7a06bbe3d8d05cb9c35596e2556272362",
+      "artifact": "CORE1B.html",
+      "kind": "FIGURE"
+    },
+    "1B-RELV-T1": {
+      "core": "CORE1B",
+      "content_digest": "645d060f2df8da041684d92a7f5962ef0e94a13848810a7a875a18dfa72dcdb8",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "1B-RELV-E1": {
+      "core": "CORE1B",
+      "content_digest": "ccfba53e0977b16a4813ca207b1b9fdc979b8dbf6e17c372fa840e72f2413170",
+      "artifact": "CORE1B.html",
+      "kind": "EQUATION"
+    },
+    "1B-RELV-F1": {
+      "core": "CORE1B",
+      "content_digest": "7f2ca09ae7542cb84afb79e0e601f976cc4e85779a294974733be57a021eba24",
+      "artifact": "CORE1B.html",
+      "kind": "FIGURE"
+    },
+    "1B-RELV-T2": {
+      "core": "CORE1B",
+      "content_digest": "e151e1b712adb0e70b43f919c4ba03f3c9397393f50a8e5773792b38fca2dc54",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "2A-VEC-Q1": {
+      "core": "CORE2A",
+      "content_digest": "560af8fc454c2a3b1c4d7677dad7b74c0bf68063accdc15ad63916676f1f4c0f",
+      "artifact": "CORE2A.html",
+      "kind": "QUESTION"
+    },
+    "2A-VEC-F1": {
+      "core": "CORE2A",
+      "content_digest": "e172c3bd34fccb0dae640ab24b387046551d8ff9b7043ce9cc777f98eec954b4",
+      "artifact": "CORE2A.html",
+      "kind": "FIGURE"
+    },
+    "2A-RELV-Q1": {
+      "core": "CORE2A",
+      "content_digest": "7339f6130c98956f28b5544112d6fdac65be26c5085e0430861bbe56735a82e7",
+      "artifact": "CORE2A.html",
+      "kind": "QUESTION"
+    },
+    "2A-RELV-F1": {
+      "core": "CORE2A",
+      "content_digest": "86daba341bbc2d32bb85e2db1374dc06189493f39665b4287940d4ebe58f0fbe",
+      "artifact": "CORE2A.html",
+      "kind": "FIGURE"
+    },
+    "2A-RELV-Q2": {
+      "core": "CORE2A",
+      "content_digest": "ae9735904da8ac44fd63a3c0fb0cebe4c5bf1929bd4eae6a6a40833475b0c4b0",
+      "artifact": "CORE2A.html",
+      "kind": "QUESTION"
+    },
+    "2A-RELV-F2": {
+      "core": "CORE2A",
+      "content_digest": "b7ccc712ce9969a7d46e4a2e6abc95b8c3e188c9134bfa87239f09243c949680",
+      "artifact": "CORE2A.html",
+      "kind": "FIGURE"
+    },
+    "2A-RELV-Q3": {
+      "core": "CORE2A",
+      "content_digest": "31a667d7691c7c577e0f311bbda663bdc66648a4aa799e71de5dd22fc194ce39",
+      "artifact": "CORE2A.html",
+      "kind": "QUESTION"
+    },
+    "2B-VEC-Q1": {
+      "core": "CORE2B",
+      "content_digest": "c09b7d0d72087717f7611cb787d8d4907c5da3a9f474db890ee592b74c207772",
+      "artifact": "CORE2B.html",
+      "kind": "QUESTION"
+    },
+    "2B-RELV-T-EXT": {
+      "core": "CORE2B",
+      "content_digest": "f0a2ecd6b3dcbf687db9e49d5dcc1e540216a86a7ba87e69f17bcb1a8e1aec97",
+      "artifact": "CORE2B.html",
+      "kind": "TEXT"
+    },
+    "2B-RELV-Q1": {
+      "core": "CORE2B",
+      "content_digest": "0350f49036feb6f3de6741d63ea6dcb78781c4f0bef924e8408cb0a76e817433",
+      "artifact": "CORE2B.html",
+      "kind": "QUESTION"
+    },
+    "2B-RELV-Q2": {
+      "core": "CORE2B",
+      "content_digest": "b546471180ed453270ee4664e65545afe99985a7ae750270c1edf7ec7274f996",
+      "artifact": "CORE2B.html",
+      "kind": "QUESTION"
+    }
+  },
+  "numeric_answers": {
+    "2A-VEC-Q1": {
+      "value": 5.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 3,
+        "vy": 4
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "2A-RELV-Q1": {
+      "value": 10.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 6,
+        "vy": -8
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "2A-RELV-Q2": {
+      "value": 13.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": -5,
+        "vy": 12
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "2A-RELV-Q3": {
+      "value": 10.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": -6,
+        "vy": 8
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "2B-VEC-Q1": {
+      "value": 10.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 6,
+        "vy": -8
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "2B-RELV-Q1": {
+      "value": 5.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 4,
+        "vy": 3
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "2B-RELV-Q2": {
+      "value": 13.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 5,
+        "vy": -12
+      },
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    }
+  },
+  "figures": {
+    "1A-VEC-F1": {
+      "kind": "VECTOR",
+      "components": [
+        3,
+        4
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        302.0
+      ],
+      "endpoint": [
+        241.0,
+        58.0
+      ],
+      "scale": [
+        61.0,
+        61.0
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/3fa11ab0389090bb698432be.svg",
+      "source_atom_ids": [
+        "w_x",
+        "w_y"
+      ]
+    },
+    "1A-VEC-F2": {
+      "kind": "VECTOR",
+      "components": [
+        0,
+        8
+      ],
+      "unit": "m/s",
+      "origin": [
+        140.0,
+        302.0
+      ],
+      "endpoint": [
+        140.0,
+        58.0
+      ],
+      "scale": [
+        30.5,
+        30.5
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 280,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/b10876d10baea3d4d53fea65.svg",
+      "source_atom_ids": [
+        "q_x",
+        "q_y"
+      ]
+    },
+    "1A-VEC-F3": {
+      "kind": "VECTOR",
+      "components": [
+        6,
+        -8
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        58.0
+      ],
+      "endpoint": [
+        241.0,
+        302.0
+      ],
+      "scale": [
+        30.5,
+        30.5
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/4bccaacbd71c4fbb2f805768.svg",
+      "source_atom_ids": [
+        "pq_x",
+        "pq_y"
+      ]
+    },
+    "1A-RELV-F1": {
+      "kind": "VECTOR",
+      "components": [
+        6,
+        -8
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        58.0
+      ],
+      "endpoint": [
+        241.0,
+        302.0
+      ],
+      "scale": [
+        30.5,
+        30.5
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/ce68b2bc4e9b1e7d9d4463a8.svg",
+      "source_atom_ids": [
+        "vab_x",
+        "vab_y"
+      ]
+    },
+    "1B-VEC-F1": {
+      "kind": "VECTOR",
+      "components": [
+        3,
+        4
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        302.0
+      ],
+      "endpoint": [
+        241.0,
+        58.0
+      ],
+      "scale": [
+        61.0,
+        61.0
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/2ff565e79e90641416f20f16.svg",
+      "source_atom_ids": [
+        "w_x",
+        "w_y"
+      ]
+    },
+    "1B-VEC-F2": {
+      "kind": "VECTOR",
+      "components": [
+        6,
+        -8
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        58.0
+      ],
+      "endpoint": [
+        241.0,
+        302.0
+      ],
+      "scale": [
+        30.5,
+        30.5
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/bb5b9dd0a7a1537d6c16bd07.svg",
+      "source_atom_ids": [
+        "pq_x",
+        "pq_y"
+      ]
+    },
+    "1B-RELV-F1": {
+      "kind": "VECTOR",
+      "components": [
+        6,
+        -8
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        58.0
+      ],
+      "endpoint": [
+        241.0,
+        302.0
+      ],
+      "scale": [
+        30.5,
+        30.5
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/ac16c0233e1e76e4ebb673c4.svg",
+      "source_atom_ids": [
+        "vab_x",
+        "vab_y"
+      ]
+    },
+    "2A-VEC-F1": {
+      "kind": "VECTOR",
+      "components": [
+        3,
+        4
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        302.0
+      ],
+      "endpoint": [
+        241.0,
+        58.0
+      ],
+      "scale": [
+        61.0,
+        61.0
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/9a178953c6e17a9d47eed5d0.svg",
+      "source_atom_ids": [
+        "w_x",
+        "w_y"
+      ]
+    },
+    "2A-RELV-F1": {
+      "kind": "VECTOR",
+      "components": [
+        6,
+        -8
+      ],
+      "unit": "m/s",
+      "origin": [
+        58.0,
+        58.0
+      ],
+      "endpoint": [
+        241.0,
+        302.0
+      ],
+      "scale": [
+        30.5,
+        30.5
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 299.0,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/f05452aed8d8c8f20d814bd0.svg",
+      "source_atom_ids": [
+        "vab_x",
+        "vab_y"
+      ]
+    },
+    "2A-RELV-F2": {
+      "kind": "VECTOR",
+      "components": [
+        -5,
+        12
+      ],
+      "unit": "m/s",
+      "origin": [
+        190.83333333333331,
+        302.0
+      ],
+      "endpoint": [
+        89.16666666666667,
+        58.0
+      ],
+      "scale": [
+        20.333333333333332,
+        20.333333333333332
+      ],
+      "frame": "common east/north Cartesian frame; east positive x, north positive y",
+      "quantitative": true,
+      "width": 280,
+      "height": 360.0,
+      "minimum_label_px": 14,
+      "artifact": "figures/3ffc99676ad796731f54c9fa.svg",
+      "source_atom_ids": [
+        "vmn_x",
+        "vmn_y"
+      ]
+    }
+  },
+  "scientific_review_requirements": {},
+  "reuse_candidates": {
+    "objects_compared": 7,
+    "pairs_compared": 21,
+    "candidates": [
+      {
+        "objects": [
+          "2A-VEC-Q1",
+          "2B-VEC-Q1"
+        ],
+        "cores": [
+          "CORE2A",
+          "CORE2B"
+        ],
+        "same_source": false,
+        "same_declared_family": true,
+        "status": "INTENTIONAL_REUSE_REVIEW_REQUIRED"
+      },
+      {
+        "objects": [
+          "2A-RELV-Q1",
+          "2A-RELV-Q2"
+        ],
+        "cores": [
+          "CORE2A",
+          "CORE2A"
+        ],
+        "same_source": false,
+        "same_declared_family": true,
+        "status": "INTENTIONAL_REUSE_REVIEW_REQUIRED"
+      },
+      {
+        "objects": [
+          "2A-RELV-Q3",
+          "2B-RELV-Q2"
+        ],
+        "cores": [
+          "CORE2A",
+          "CORE2B"
+        ],
+        "same_source": false,
+        "same_declared_family": true,
+        "status": "TRANSFER_REVIEW_REQUIRED"
+      }
+    ],
+    "semantic_novelty_validated": false
+  },
+  "schema_version": "1.0.0",
+  "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
+  "subject": "Physics",
+  "products": [
+    "CORE1A",
+    "CORE1B",
+    "CORE2A",
+    "CORE2B"
+  ],
+  "coverage": [
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-VEC-CONCEPT",
+      "object_id": "1A-VEC-T1",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-VEC-CONCEPT",
+      "object_id": "1A-VEC-F1",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1A-VEC-T2",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1A-VEC-E1",
+      "kind": "EQUATION"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1A-VEC-F2",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1A-VEC-F3",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-RELV-DERIVE",
+      "object_id": "1A-RELV-T1",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-RELV-DERIVE",
+      "object_id": "1A-RELV-E1",
+      "kind": "EQUATION"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-RELV-DERIVE",
+      "object_id": "1A-RELV-F1",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-RELV-REVERSAL",
+      "object_id": "1A-RELV-T2",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-VEC-CONCEPT",
+      "object_id": "1B-VEC-T1",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-VEC-CONCEPT",
+      "object_id": "1B-VEC-F1",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1B-VEC-T2",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1B-VEC-E1",
+      "kind": "EQUATION"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-VEC-SUBTRACT",
+      "object_id": "1B-VEC-F2",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-RELV-DERIVE",
+      "object_id": "1B-RELV-T1",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-RELV-DERIVE",
+      "object_id": "1B-RELV-E1",
+      "kind": "EQUATION"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-RELV-DERIVE",
+      "object_id": "1B-RELV-F1",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-RELV-REVERSAL",
+      "object_id": "1B-RELV-T2",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-VEC-PRACTICE",
+      "object_id": "2A-VEC-Q1",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-VEC-PRACTICE",
+      "object_id": "2A-VEC-F1",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-RELV-PRACTICE-1",
+      "object_id": "2A-RELV-Q1",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-RELV-PRACTICE-1",
+      "object_id": "2A-RELV-F1",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-RELV-PRACTICE-2",
+      "object_id": "2A-RELV-Q2",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-RELV-PRACTICE-2",
+      "object_id": "2A-RELV-F2",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-RELV-REVERSAL-PRACTICE",
+      "object_id": "2A-RELV-Q3",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE2B",
+      "obligation_id": "OB-VEC-TRANSFER",
+      "object_id": "2B-VEC-Q1",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE2B",
+      "obligation_id": "OB-RELV-EXTENSION-BOAT",
+      "object_id": "2B-RELV-T-EXT",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE2B",
+      "obligation_id": "OB-RELV-EXTENSION-BOAT",
+      "object_id": "2B-RELV-Q1",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE2B",
+      "obligation_id": "OB-RELV-TRANSFER-N",
+      "object_id": "2B-RELV-Q2",
+      "kind": "QUESTION"
+    }
+  ],
+  "release_authorized": false,
+  "gates": {
+    "Source bytes and declared inventory": "CHECKED; extraction accuracy needs independent review",
+    "Required object and declared-question closure": "CHECKED; embedded prose prompts need academic review",
+    "Published numerical answers": "Supported families: oracle checked; other numeric candidates: transcription only, scientific review required",
+    "Scientific adaptations awaiting review": "0 — draft permitted; learner-ready acceptance held",
+    "Figure data and artifact binding": "CHECKED for vector/graph families; scientific visual review NOT_RUN",
+    "Core purpose and difficult inference depth": "NOT_RUN — independent academic review required",
+    "Reuse and transfer": "All declared question pairs screened; semantic adjudication NOT_RUN",
+    "Learner fit": "OWNER_ROUTED_NOT_KNOWLEDGE_VALIDATED; AUTHORIZATION_REVIEW_PENDING",
+    "Final-medium layout": "NOT_RUN — browser/print inspection required",
+    "Portable inputs and command code": "COPIED; independent agent restart NOT_RUN",
+    "Learner release": "BLOCKED — no automatic owner or reviewer authority"
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "PHY-M2D-VEC-RELV-G9",
+  "baseline_id": "BASE-RELATIVE-MOTION-G9-V3B-1",
+  "selected_cores": [
+    "CORE1A",
+    "CORE1B",
+    "CORE2A",
+    "CORE2B"
+  ],
+  "sources": [
+    {
+      "id": "AUTHOR",
+      "path": "sources/source.json",
+      "sha256": "43aa7a4b1b98f8dd71ecb20823e83a45c64cd4f637061ab3807ddae6d50ed0af"
+    }
+  ],
+  "buckets": [
+    {
+      "id": "B-VEC",
+      "badge": "MEDIUM",
+      "prerequisites": []
+    },
+    {
+      "id": "B-RELV",
+      "badge": "HARD",
+      "prerequisites": [
+        "B-VEC"
+      ]
+    }
+  ],
+  "obligations": [
+    {
+      "id": "OB-VEC-CONCEPT",
+      "bucket_id": "B-VEC",
+      "source_atom_ids": [
+        "w_x",
+        "w_y"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-VEC-SUBTRACT",
+      "bucket_id": "B-VEC",
+      "source_atom_ids": [
+        "p_x",
+        "p_y",
+        "q_x",
+        "q_y",
+        "pq_x",
+        "pq_y",
+        "eq_vec_subtract"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT",
+        "FIGURE",
+        "EQUATION"
+      ]
+    },
+    {
+      "id": "OB-VEC-PRACTICE",
+      "bucket_id": "B-VEC",
+      "source_atom_ids": [
+        "w_x",
+        "w_y"
+      ],
+      "required_cores": [
+        "CORE2A"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-VEC-TRANSFER",
+      "bucket_id": "B-VEC",
+      "source_atom_ids": [
+        "p_x",
+        "p_y",
+        "q_x",
+        "q_y",
+        "pq_x",
+        "pq_y"
+      ],
+      "required_cores": [
+        "CORE2B"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-RELV-DERIVE",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "va_x",
+        "va_y",
+        "vb_x",
+        "vb_y",
+        "vab_x",
+        "vab_y",
+        "eq_relv"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT",
+        "EQUATION",
+        "FIGURE"
+      ]
+    },
+    {
+      "id": "OB-RELV-REVERSAL",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "vba_x",
+        "vba_y"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-RELV-PRACTICE-1",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "va_x",
+        "va_y",
+        "vb_x",
+        "vb_y",
+        "vab_x",
+        "vab_y"
+      ],
+      "required_cores": [
+        "CORE2A"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-RELV-PRACTICE-2",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "vm_x",
+        "vm_y",
+        "vn_x",
+        "vn_y",
+        "vmn_x",
+        "vmn_y"
+      ],
+      "required_cores": [
+        "CORE2A"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-RELV-REVERSAL-PRACTICE",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "vba_x",
+        "vba_y"
+      ],
+      "required_cores": [
+        "CORE2A"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-RELV-TRANSFER-N",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "vnm_x",
+        "vnm_y"
+      ],
+      "required_cores": [
+        "CORE2B"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-RELV-EXTENSION-BOAT",
+      "bucket_id": "B-RELV",
+      "source_atom_ids": [
+        "vboat_x",
+        "vboat_y",
+        "vcurrent_x",
+        "vcurrent_y",
+        "vresult_x",
+        "vresult_y"
+      ],
+      "required_cores": [
+        "CORE2B"
+      ],
+      "required_kinds": [
+        "TEXT",
+        "QUESTION"
+      ]
+    }
+  ],
+  "required_questions": [
+    {
+      "core": "CORE2A",
+      "source_id": "AUTHOR",
+      "question_id": "Q-VEC-A1"
+    },
+    {
+      "core": "CORE2B",
+      "source_id": "AUTHOR",
+      "question_id": "Q-VEC-B1"
+    },
+    {
+      "core": "CORE2A",
+      "source_id": "AUTHOR",
+      "question_id": "Q-RELV-A1"
+    },
+    {
+      "core": "CORE2A",
+      "source_id": "AUTHOR",
+      "question_id": "Q-RELV-A2"
+    },
+    {
+      "core": "CORE2A",
+      "source_id": "AUTHOR",
+      "question_id": "Q-RELV-A3"
+    },
+    {
+      "core": "CORE2B",
+      "source_id": "AUTHOR",
+      "question_id": "Q-RELV-B2"
+    },
+    {
+      "core": "CORE2B",
+      "source_id": "AUTHOR",
+      "question_id": "Q-RELV-B3"
+    }
+  ]
+}
