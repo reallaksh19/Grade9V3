@@ -21,15 +21,15 @@ Subject and topic variation is **governed data**, never a branch in engine code.
 
 | Phase | Deliverable | Exit evidence | R-stage | Status |
 |---|---|---|---|---|
-| **P0** Foundations | Six-Core role specs (subject-neutral); all three subject contracts promoted to six-Core; topic independence guard + CI; this plan | Guard self-test detects a planted violation; three contracts parse and declare six products | R1 tail | **in this PR** |
-| **P1** Subject-neutral core | Port the proven publication host into `Shared/`, splitting the subject-specific parts into adapters: result shapes, comparison rules, units, representation kinds | The existing relative-motion run re-publishes through the refactored path with equivalent basis semantics; guard scans a non-trivial file count | R1 | next |
+| **P0** Foundations | Six-Core role specs (subject-neutral); all three subject contracts promoted to six-Core; topic independence guard + CI; this plan | Guard self-test detects a planted violation; three contracts parse and declare six products | R1 tail | **done** |
+| **P1** Subject-neutral core | Port the proven publication host into `Shared/`, splitting the subject-specific parts into adapters: result shapes, comparison rules, units, representation kinds | The existing relative-motion run re-publishes through the refactored path with equivalent basis semantics; guard scans a non-trivial file count | R1 | **done** (byte-identical, see below) |
 | **P2** Technical gate layer | Subject-neutral 16-point gate schema + validator + mutation falsifiers; Physics gate data; curriculum-scope binding registry | Gate DAG closed and acyclic; every falsifier caught; a scope claim without an exact binding reports `HELD`, not assumed authority | R2 | **done** (registry is partial by intent, see below) |
 | **P3** Executable topic library | Library engine: intake validation, reference resolution, prerequisite closure, slice retrieval, `CANDIDATE → REVIEWED → CURATED` promotion. Publication consumes library packets | A bucket compiles from the library and publishes end-to-end with no hand-maintained lesson side-channel | R2/R3 | **done** (three of four products, see below) |
-| **P4** Front end | Topic library browser; run builder emitting both the run config and the publication input triple; unified portal; deterministic architecture manifest with CI drift check | Static and offline-safe, no build step; manifest check green; builder fixtures validate | R2/R3 | |
-| **P5** Mathematics adapter | Exact-rational verification path, geometric construction and function-plot representations, proof obligations, Math gate data | One end-to-end Mathematics slice passing its own scientific and final-medium review | R5 | owner-gated |
+| **P4** Front end | Topic library browser; run builder emitting both the run config and the publication input triple; unified portal; deterministic architecture manifest with CI drift check | Static and offline-safe, no build step; manifest check green; builder fixtures validate | R2/R3 | **done** |
+| **P5** Mathematics adapter | Exact-rational verification path, geometric construction and function-plot representations, proof obligations, Math gate data | One end-to-end Mathematics slice passing its own scientific and final-medium review | R5 | **machine checks done; review not run** |
 | **P6** Chemistry adapter | Species/charge/phase/condition authority, conservation checks, particle–symbolic–macroscopic representation triplet, Chemistry gate data | One end-to-end Chemistry slice; study depth follows intrinsic badge, not readiness | R6 | owner-gated |
 
-**P5 and P6 do not start until the owner accepts the Physics result.** That stop point is inherited from the V3B pending-activity handover and is not moved by this plan.
+**P5 and P6 do not start until the owner accepts the Physics result.** That stop point is inherited from the V3B pending-activity handover. P5 was authorised by the owner directly; **that authorisation covers building the Mathematics adapter, not acceptance of the Physics content**, which remains machine-verified only, unmerged and unreviewed. P6 is still gated.
 
 ## What P1 must solve
 
@@ -60,7 +60,26 @@ With those, `BUCKET-RELATIVE-MOTION` compiles from the library and publishes end
 **Compilation stops where authoring begins, and says so.** The compiler derives buckets, obligations, atoms, questions and per-core coverage, and carries the library's own authored prose — teaching-path steps with their justifications, misconception repairs, exit tasks with answers — through verbatim. It does not synthesise teaching prose from graph records: that would manufacture exactly the plausible titles concealing missing reasoning the library exists to prevent. What remains is emitted as explicit authoring requirements rather than invented:
 
 - **Core2B is reported unsupported** for this bucket — the library holds no question exposed to it. The compiler omits the product rather than padding it.
-- Connecting narrative and figure scene instances are declared as required authoring.
+- Connecting narrative beyond what the library holds is declared as required authoring.
+
+## What P5 proved, and what it changed
+
+The Mathematics slice (`BUCKET-LINEAR-EQUATION`, solving `3x + 2 = 9` over the rationals) exists to test the P1 seam against a result shape the engine was never built for. It is not decoration: `2.333333333333` is within the Physics tolerance of `7/3` and is not a solution, so an engine that quietly reused the tolerance path would publish a wrong answer with a verification stamp on it. The run compares under `EXACT_RATIONAL_EQUALITY`, and `tests/test_mathematics.py` fails if that ever degrades.
+
+Carrying a second subject forced four changes, each general rather than per-subject:
+
+| Found | Changed | Scope |
+|---|---|---|
+| `EXACT_RATIONAL` results were declared unpublishable, so Mathematics could not publish at all | Added to `PUBLISHABLE_SHAPES`; the engine records the declared comparison in evidence and re-applies it on read-back | Engine |
+| Preconditions like `domain: RATIONAL` had nowhere to travel — the engine enumerated the keys it would pass to a validator | The engine now passes through whatever preconditions a subject declares, and the package schema stops enumerating them too | Engine + schema |
+| A source atom had to be an `int` or `float`, so an exact solution could only be stored rounded — destroying the distinction before anything could check it | `numeric_atom` returns a `Fraction` for an exactly-recorded atom; a decimal written as a string is refused, because that is a rounded value claiming to be exact | Engine |
+| Every run reported `FIGURE_AUTHORING` unconditionally: a representation record could state what a figure must show but could not hold one | Representations carry `scene_instances`; the compiler emits figure blocks from them, bound to the microtopic's obligation, and reports authoring outstanding only for a representation that genuinely holds none | Schema + compiler |
+
+Two smaller defects surfaced through the same slice and were fixed globally: authored fragments were being joined with an unconditional full stop (published `over the rationals..`), and the architecture manifest hashed a file a second tool generated, so the two artifacts could only be regenerated in one undocumented order. `build_manifest.py` now regenerates that file itself.
+
+**Unlike the Physics run, no Mathematics publication is committed.** The Physics publication is frozen as the port oracle and guarded byte-for-byte. Mathematics compiles from its library packages on demand, and the tests do exactly that — a committed copy would be a second drift surface guarding nothing.
+
+Still outstanding in Mathematics, recorded rather than worked around: `POLYNOMIAL_VALUE` and `POLYNOMIAL_FROM_ROOTS` take coefficient *lists*, and the engine binds one datum per variable (`ISS-MATH-LIST-BINDING`); Core2B has no exposed question; and `MIC-MATH-EXACT-SOLUTION` is the only microtopic with a drawn figure.
 
 ## Adapted from the parallel tracks
 

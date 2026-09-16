@@ -4,7 +4,7 @@ from html import escape
 from itertools import combinations
 from urllib.parse import quote
 
-from Shared.contracts import digest
+from Shared.contracts import digest, sentence
 from .drawing import figure
 from .science import equation_mathml, equation_review, numeric_expectation
 
@@ -84,7 +84,7 @@ def _block(ctx, block, files, numeric, figures, reviews):
         files[name] = svg
         figures[block["id"]] = {**evidence, "artifact": name, "source_atom_ids": block["source_atom_ids"]}
         spec = block["scene"]
-        caption = spec["caption"] + ' Frame: ' + spec["frame"] + '. Quantitative diagram.'
+        caption = sentence(spec["caption"]) + ' Frame: ' + sentence(spec["frame"]) + ' Quantitative diagram.'
         if spec['kind'] == 'GRAPH':
             caption += f' Vertical axis minimum: {evidence["y_axis_min"]:g} {spec["y_unit"]}.'
         return f'<figure><img src="{name}" alt="{escape(caption, quote=True)}"><figcaption>{escape(caption)}</figcaption></figure>', ''

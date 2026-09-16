@@ -7,6 +7,8 @@ subject contract; the computation itself is the adapter's `recompute`.
 from __future__ import annotations
 
 import math
+import re
+from fractions import Fraction
 from xml.etree import ElementTree as ET
 
 from Shared.contracts import digest, require, strings, text
@@ -15,13 +17,28 @@ from .adapter import NUMBER, compare_tolerance
 MATH_TAGS = {"math", "mrow", "mi", "mn", "mo", "mfrac", "msqrt", "msup", "msub",
              "msubsup", "mover", "munder", "munderover", "mtable", "mtr", "mtd", "mtext"}
 RESERVED_CASE_KEYS = {"validator_id", "model", "units", "axis_convention"}
+# An integer or a ratio of integers, written exactly. Decimal notation is deliberately
+# excluded: "2.333" as an atom is a rounded value claiming to be exact.
+RATIONAL = re.compile(r"[+-]?\d+(?:/\d+)?")
 
 
 def numeric_atom(ctx, atom_id, unit=None):
+    """A source atom's numeric value, exact where the subject records it exactly.
+
+    A measured quantity is a float; a quantity a subject knows exactly is not, and
+    rounding it here would destroy the distinction before anything downstream could
+    check it. An exact-rational atom is therefore returned as a Fraction. Callers
+    doing arithmetic get exactness for free; callers computing drawing coordinates
+    must convert deliberately, which is the honest place for the approximation.
+    """
     require(atom_id in ctx["atoms"], "NUMERIC_ATOM_UNKNOWN", atom_id)
     atom = ctx["atoms"][atom_id]
     value = atom["value"]
-    require(type(value) in {int, float} and math.isfinite(value), "NUMERIC_ATOM_INVALID", atom_id)
+    if isinstance(value, str):
+        require(bool(RATIONAL.fullmatch(value.strip())), "NUMERIC_ATOM_INVALID", atom_id)
+        value = Fraction(value.strip())
+    else:
+        require(type(value) in {int, float} and math.isfinite(value), "NUMERIC_ATOM_INVALID", atom_id)
     require(isinstance(atom.get("unit"), str) and bool(atom["unit"]), "ATOM_UNIT_REQUIRED", atom_id)
     if unit is not None:
         require(atom["unit"] == unit, "ATOM_UNIT_MISMATCH", atom_id)
@@ -46,10 +63,13 @@ def numeric_expectation(ctx, block):
         # scalar path would compare the wrong thing.
         return unverified_candidate(candidate, "NUMERIC_RESULT_SHAPE_NOT_PUBLISHABLE")
 
+    # Preconditions are whatever the subject's rule declares -- a model and axis
+    # convention for one subject, a domain for another. The engine copies them
+    # through rather than enumerating the keys it happens to know about.
     case = {"validator_id": kind, "units": {}}
-    for key in ("model", "axis_convention"):
-        if key in rule:
-            case[key] = rule[key]
+    for key, value in rule.items():
+        if key not in {"validator_id", "bindings"}:
+            case[key] = value
     for variable, atom_id in rule["bindings"].items():
         require(variable not in RESERVED_CASE_KEYS, "CASE_BINDING_RESERVED")
         require(atom_id in block["source_atom_ids"], "ANSWER_SOURCE_BINDING_MISSING")
@@ -62,6 +82,7 @@ def numeric_expectation(ctx, block):
     compare_candidate(candidate["value"], candidate["unit"], value, result_unit,
                       compare=adapter.comparison_for(spec))
     return {"value": value, "unit": result_unit, "case": case,
+            "comparison": spec["result"]["comparison"],
             "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
             "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"}
 

@@ -70,6 +70,18 @@ def text(value: object, code: str) -> str:
     return value
 
 
+def sentence(value: str) -> str:
+    """End an authored fragment with exactly one terminator.
+
+    Authored fields arrive as fragments in some records and as whole sentences in
+    others, and no amount of schema can force one style without rewriting an author's
+    prose. Composing them by appending unconditionally published "integer ticks..",
+    so joining is done through here instead.
+    """
+    value = value.strip()
+    return value if value.endswith((".", "!", "?", ":")) else value + "."
+
+
 def bound_path(root: Path, relative: str) -> Path:
     require(isinstance(relative, str) and not Path(relative).is_absolute(),
             "ARTIFACT_PATH_MUST_BE_RELATIVE", str(relative))

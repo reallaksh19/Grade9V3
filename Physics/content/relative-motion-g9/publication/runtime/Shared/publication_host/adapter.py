@@ -37,7 +37,7 @@ TOLERANCE = 1e-9
 # Result shapes whose published representation and read-back path exist today.
 # A shape outside this set is a declared-but-unpublishable result: the engine holds
 # it rather than guessing a rendering for it.
-PUBLISHABLE_SHAPES = {"SCALAR_WITH_UNIT"}
+PUBLISHABLE_SHAPES = {"SCALAR_WITH_UNIT", "EXACT_RATIONAL"}
 
 
 def _finite(value: Any) -> float:

@@ -1,6 +1,6 @@
 {
   "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
-  "runtime_digest": "42e5aa2897a24d3980c5082950b0ceab6a4db0f25cafae98b8166e319d488840",
+  "runtime_digest": "e726ac4c63ad1ac3f50262338c05ee337a76b5a39d98595d526f7e1ef5c023ec",
   "files": [
     {
       "path": "CORE1A.html",
@@ -24,7 +24,7 @@
     },
     {
       "path": "evidence.json",
-      "sha256": "ab38fb090916a63b6a9bf43c3aa3ae424783b9b76736617a342c9a09b94b62e7"
+      "sha256": "77c4d25af3cf328848c9664bb24c0008dac6fb25f446d2d5107032c1f4762015"
     },
     {
       "path": "figures/2ff565e79e90641416f20f16.svg",
@@ -80,7 +80,7 @@
     },
     {
       "path": "runtime/Physics/adapter/CoreContracts.json",
-      "sha256": "b3de91418e074ae52570508164d4521ea051b180a0fa13c78447da70f4052e71"
+      "sha256": "5b45a7c4ec93770a874628e8f7ccf2cc534b460f1bc67665d75714135dbf6cfc"
     },
     {
       "path": "runtime/Physics/adapter/__init__.py",
@@ -104,7 +104,35 @@
     },
     {
       "path": "runtime/Shared/contracts.py",
-      "sha256": "89f304422b9eb3cef27f9d69b477a43629e68bfe06c714bf6edab6b4872ecdda"
+      "sha256": "63f9b3729460526a220b70a323d401d7273209829d7359c5e53c897d5faa8e16"
+    },
+    {
+      "path": "runtime/Shared/gates/gate.schema.json",
+      "sha256": "0bac4798085eca933042cbdff73d0235ee8c9dc1c705770e73d7f87a2cbecafe"
+    },
+    {
+      "path": "runtime/Shared/gates/validate.py",
+      "sha256": "d7212459a5c37d11a04e685488b4ab5ee50f5076eebb897445012be92e26efcf"
+    },
+    {
+      "path": "runtime/Shared/library/compile_inputs.py",
+      "sha256": "e1ee62ff76c1aed9b992c19277b2a9851393c505eb6499fa36406426f43c6644"
+    },
+    {
+      "path": "runtime/Shared/library/intake.py",
+      "sha256": "c24db9cf7ee8fb9ddb91abe24eb86520aebabdf4aea4e6bbc62cfeeed5fea0b8"
+    },
+    {
+      "path": "runtime/Shared/library/package.schema.json",
+      "sha256": "5432cafb6446b0aea87f87e2b0201ba7a85ef919bc63b08702daa22c0743b6bf"
+    },
+    {
+      "path": "runtime/Shared/library/promote.py",
+      "sha256": "649834b0ae1e35efe6acdede61eef32259041aeacbf2e699294aa5d19a0bc65b"
+    },
+    {
+      "path": "runtime/Shared/library/resolve.py",
+      "sha256": "fffc4d27ee412f72e034e9e4f94c23a4a7b0aac28bf36de5c505d7909c202c06"
     },
     {
       "path": "runtime/Shared/publication_host/__init__.py",
@@ -112,11 +140,11 @@
     },
     {
       "path": "runtime/Shared/publication_host/adapter.py",
-      "sha256": "8fbfde3f6f5f8395904b3d9599548a344f2cf62f9b4a98ada175bb77e1eaf47e"
+      "sha256": "810f1f513f1c9e3d8ad350969d5b38599704ed64fc69a69042711e5795ad1556"
     },
     {
       "path": "runtime/Shared/publication_host/audit.py",
-      "sha256": "67840fb58a8a1b728e5c1d71486527107409a5e51109fbaeefc83e3032c393da"
+      "sha256": "42db7d91eff9cb001b95b649d427b56cf5a28647e7ce7c929d6ee3941644d73b"
     },
     {
       "path": "runtime/Shared/publication_host/cli.py",
@@ -124,7 +152,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/compose.py",
-      "sha256": "427892177d0a5911775d0376d2ed4abe17c4d1698c74e1ab2251bac12be9fc4c"
+      "sha256": "f4355210772111f0a7b15fc53f40c6b193dd758c2023a267167a64cba982100a"
     },
     {
       "path": "runtime/Shared/publication_host/drawing.py",
@@ -140,7 +168,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/science.py",
-      "sha256": "70460228e0c7f9dea83f5ab5e646133461661269c09dc250104719440f7017e2"
+      "sha256": "202c5cad2428c640fb3da44cf64f57700ab213551042de8e1c740c80ba5f9578"
     },
     {
       "path": "runtime/Shared/publication_host/storage.py",
@@ -175,12 +203,24 @@
       "sha256": "3e7801afd5cf91d68af9732454250cf86a8c78e97052e2c85e210805c565b01a"
     },
     {
+      "path": "runtime/Shared/tools/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/Shared/tools/build_manifest.py",
+      "sha256": "5c22223fe7732dcc8b29ec8da9d69c7b0e88f2b5b5f8ac3252575d60a7c27093"
+    },
+    {
+      "path": "runtime/Shared/tools/build_web_data.py",
+      "sha256": "b5e1e4be6885151c3046775bf8157dae1678127aba183e2e7073c7dbb97be23a"
+    },
+    {
       "path": "runtime/Shared/tools/topic_independence_allowlist.json",
-      "sha256": "7eb32ec44a2c84925633144174ba38cfb6701da32f1dade8ac4ca93f12e073fa"
+      "sha256": "5391b05ff48f572a97a7265484e51aa091fa637b58e89e1d190f88616c3c188b"
     },
     {
       "path": "runtime/Shared/tools/topic_independence_guard.py",
-      "sha256": "d3a6c564895a6ee4ad8401e34f6f46bceaa9bd99e33f8e9a011460e6988eef6e"
+      "sha256": "eb6bf8da22cd8c2cb60c3bc3bfd0b8f11777fa97f52d4d48c0adc45348c1f52b"
     }
   ],
   "release_authorized": false,

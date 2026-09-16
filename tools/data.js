@@ -143,7 +143,7 @@ window.GRADE9V3 = {
           },
           {
             "id": "NUMBER_LINE",
-            "status": "PROPOSED",
+            "status": "IMPLEMENTED",
             "requires": [
               "open versus closed endpoints",
               "declared direction"
@@ -169,10 +169,343 @@ window.GRADE9V3 = {
           "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
         }
       },
-      "gates": [],
-      "buckets": [],
-      "packages": [],
-      "library_available": false
+      "gates": [
+        {
+          "gate_id": "MATH-EQ-CONSTRAINT",
+          "title": "An equation is a constraint, not an instruction to compute",
+          "grade": 9,
+          "chapter": "Linear Equations",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "An equation in one unknown is a statement that is true for some values of the unknown and false for others; solving means finding exactly those values.",
+            "The equals sign asserts that two expressions have the same value; it does not mean 'compute the left side'."
+          ],
+          "misconceptions": [
+            "The equals sign means 'work out the left-hand side and write the result on the right'."
+          ]
+        },
+        {
+          "gate_id": "MATH-EQ-EQUIVALENT-OPERATIONS",
+          "title": "Which operations preserve the solution set",
+          "grade": 9,
+          "chapter": "Linear Equations",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "MATH-EQ-CONSTRAINT"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "Adding the same quantity to both sides, or multiplying both sides by a non-zero quantity, leaves the solution set unchanged.",
+            "Multiplying both sides by zero destroys information: every value then satisfies the result."
+          ],
+          "misconceptions": [
+            "You may divide both sides by any expression, including one containing the unknown."
+          ]
+        },
+        {
+          "gate_id": "MATH-EQ-EXACT-SOLUTION",
+          "title": "An exact solution and its decimal approximation are different objects",
+          "grade": 9,
+          "chapter": "Linear Equations",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "MATH-EQ-EQUIVALENT-OPERATIONS"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "A rational solution is a single exact number; writing it as a fraction is not an unfinished answer.",
+            "A truncated decimal is a different number from the exact rational it approximates, however many digits are kept."
+          ],
+          "misconceptions": [
+            "A fraction should be converted to a decimal to give the real answer."
+          ]
+        }
+      ],
+      "buckets": [
+        {
+          "id": "BUCKET-LINEAR-EQUATION",
+          "title": "Linear equations in one unknown",
+          "topic": "Linear equations",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "STANDARD",
+              "scope_class": "OWNER_EXTENSION",
+              "source_ref": "SRC-MATH-AUTHOR",
+              "locator": "Foundational one-variable solving; no exact board binding established",
+              "mapping_status": "CANDIDATE"
+            }
+          ],
+          "microtopics": [
+            {
+              "id": "MIC-MATH-CONSTRAINT",
+              "title": "An equation constrains an unknown",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners arriving from arithmetic read the equals sign as an instruction to compute, and that reading survives unless it is confronted directly.",
+              "entry_assumptions": [
+                "Can evaluate an arithmetic expression containing a given number."
+              ],
+              "inferential_jump": "Read a*x + b = c as a statement that is true for some values of the unknown and false for others, rather than as an instruction to work out a left-hand side.",
+              "teaching_path": [
+                {
+                  "action": "Declare the domain the unknown ranges over.",
+                  "why_valid": "A solution set has no meaning until the admissible values are fixed.",
+                  "output": "x ranges over the rationals."
+                },
+                {
+                  "action": "Substitute a candidate value and evaluate both sides separately.",
+                  "why_valid": "Membership of the solution set is decided by substitution, which is the definition of a solution.",
+                  "output": "A numerical statement that is simply true or false."
+                },
+                {
+                  "action": "Try a second value that fails, and say why it fails.",
+                  "why_valid": "A constraint is only understood once a non-solution has been seen.",
+                  "output": "Evidence that the equation selects values rather than computing one."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The equals sign means work out the left side and write the answer on the right.",
+                  "diagnostic_prompt": "In 3x + 2 = 9, what would you 'work out' before you know x?",
+                  "repair": "Read the statement aloud as a claim about the unknown, then test one value by substitution before manipulating anything."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Does x = 2 satisfy 3x + 2 = 9? Show how you decided.",
+                "source_ref": "SRC-MATH-AUTHOR",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "No: substituting gives 8, not 9.",
+                  "reasoning": [
+                    "Substitute 2 for x on the left: 3 times 2, plus 2, is 8.",
+                    "Compare with the required right-hand side, 9.",
+                    "8 and 9 differ, so 2 is not in the solution set."
+                  ],
+                  "check": "A value that satisfied the equation would make both sides identical, not merely close.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                }
+              },
+              "prerequisites": [
+                "CAP-MATH-SUBSTITUTE"
+              ]
+            },
+            {
+              "id": "MIC-MATH-EQUIVALENT-OPS",
+              "title": "Operations that preserve the solution set",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The steps are memorable as a procedure, which is exactly why the reversibility condition behind them goes unnoticed until it fails.",
+              "entry_assumptions": [
+                "Can decide by substitution whether a value satisfies an equation."
+              ],
+              "inferential_jump": "See each manipulation as an operation applied to both sides whose reversibility is what guarantees no solution is gained or lost.",
+              "teaching_path": [
+                {
+                  "action": "Subtract b from both sides.",
+                  "why_valid": "Adding the same quantity to both sides can be undone, so the solution set is unchanged.",
+                  "output": "a*x = c - b"
+                },
+                {
+                  "action": "State that a is non-zero, then divide both sides by a.",
+                  "why_valid": "Dividing by a non-zero quantity is reversible; division by zero is undefined, so the condition must be stated rather than assumed.",
+                  "output": "x = (c - b)/a"
+                },
+                {
+                  "action": "Substitute the result into the original statement, not into an intermediate line.",
+                  "why_valid": "Checking against the original catches an error introduced at any step.",
+                  "output": "A verified solution."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Both sides may be divided by any expression, including one containing the unknown.",
+                  "diagnostic_prompt": "From x times x = x, what happens to the solution x = 0 if you divide both sides by x?",
+                  "repair": "Before dividing, state that the divisor is non-zero; where it might be zero, handle that case separately instead of dividing."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Solve 5x - 4 = 11, naming the operation used at each step and why it is reversible.",
+                "source_ref": "SRC-MATH-AUTHOR",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "x = 3.",
+                  "reasoning": [
+                    "Add 4 to both sides; addition of the same quantity is reversible, giving 5x = 15.",
+                    "Divide both sides by 5, which is non-zero and therefore reversible, giving x = 3.",
+                    "Substitute into the original: 5 times 3, minus 4, is 11."
+                  ],
+                  "check": "Each step can be undone, so the solution set never changed.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                }
+              },
+              "prerequisites": [
+                "MIC-MATH-CONSTRAINT"
+              ]
+            },
+            {
+              "id": "MIC-MATH-EXACT-SOLUTION",
+              "title": "An exact solution is not its decimal approximation",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Calculator habits teach that a decimal is the finished answer, so a fraction reads as unfinished work rather than as the exact value.",
+              "entry_assumptions": [
+                "Can isolate the unknown using reversible operations."
+              ],
+              "inferential_jump": "Treat the exact rational and its truncated decimal as two different numbers, and use substitution to show the difference rather than asserting it.",
+              "teaching_path": [
+                {
+                  "action": "Record the solution as a fraction in lowest terms.",
+                  "why_valid": "The division producing it need not terminate as a decimal, so the fraction is the exact value.",
+                  "output": "x = 7/3"
+                },
+                {
+                  "action": "Substitute the exact fraction into the original statement.",
+                  "why_valid": "Exact substitution reproduces the statement with no residue.",
+                  "output": "3 times 7/3, plus 2, is exactly 9."
+                },
+                {
+                  "action": "Substitute a truncated decimal and compare.",
+                  "why_valid": "Seeing the residue is what distinguishes the two objects; being told they differ is not the same as observing it.",
+                  "output": "3 times 2.333333333333, plus 2, is 8.999999999999."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A fraction should be converted to a decimal to give the real answer.",
+                  "diagnostic_prompt": "Substitute 2.333333333333 into 3x + 2 = 9. Do you get 9 exactly?",
+                  "repair": "Substitute both forms into the original statement and compare the two results digit for digit; the exact form is the one that closes."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Solve 3x + 2 = 9 over the rationals, and explain why writing the answer as 2.33 would be a different claim.",
+                "source_ref": "SRC-MATH-AUTHOR",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "x = 7/3, which is not equal to 2.33.",
+                  "reasoning": [
+                    "Subtract 2 from both sides to get 3x = 7.",
+                    "Divide both sides by 3, which is non-zero, giving x = 7/3.",
+                    "Substituting 2.33 gives 8.99, not 9, so 2.33 does not satisfy the equation."
+                  ],
+                  "check": "Substituting 7/3 gives exactly 9, with no residue at any precision.",
+                  "acceptable_alternatives": [
+                    "Any argument showing the truncation leaves a non-zero residue is acceptable."
+                  ],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                }
+              },
+              "prerequisites": [
+                "MIC-MATH-EQUIVALENT-OPS"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-MATH-EXACTNESS",
+              "expression": "x exact satisfies a*x + b = c exactly; a truncation of x does not",
+              "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
+              "conditions": [
+                "The residue may be small, but it is not zero.",
+                "Rounding is a presentation choice made after the mathematics, never during it."
+              ]
+            },
+            {
+              "id": "REL-MATH-LINEAR-SOLUTION",
+              "expression": "a*x + b = c  =>  x = (c - b)/a,  a != 0",
+              "meaning": "Subtracting b and dividing by a non-zero a isolates the unknown using reversible operations, so the solution set is unchanged.",
+              "conditions": [
+                "a is non-zero; if a is zero the statement is either never true or always true.",
+                "Both operations are reversible, which is what preserves the solution set.",
+                "The declared domain is the rationals."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-MATH-LINEAR-01",
+              "stem": "Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.",
+              "origin": "AUTHORED",
+              "answer": "x = 7/3."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-MATH-EXACTNESS",
+              "action": "Report a rational solution exactly and distinguish it from a decimal approximation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-ISOLATE",
+              "action": "Isolate the unknown using operations that preserve the solution set.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-SUBSTITUTE",
+              "action": "Decide whether a given value satisfies an equation by substituting it.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 15,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B",
+              "CORE2A"
+            ],
+            "atoms": 6,
+            "questions": 1,
+            "obligations": 4,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
+              }
+            ]
+          }
+        }
+      ],
+      "packages": [
+        {
+          "package_id": "LIB-MATH-LINEAR-EQUATIONS",
+          "status": "CANDIDATE",
+          "admitted": true
+        }
+      ],
+      "library_available": true
     },
     "Physics": {
       "contract": {
@@ -762,19 +1095,29 @@ window.GRADE9V3 = {
                 "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-REL-VECTOR",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-VECTOR-COMPONENT",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
-                "detail": "blocks carry library-held teaching text; connecting narrative, worked examples and figure scenes still require authoring"
+                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
               },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1B",
-                "detail": "blocks carry library-held teaching text; connecting narrative, worked examples and figure scenes still require authoring"
-              },
-              {
-                "kind": "FIGURE_AUTHORING",
-                "core": "CORE2A",
-                "detail": "the library describes representation requirements but holds no figure scene instances; scenes must be authored"
+                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
               }
             ]
           }

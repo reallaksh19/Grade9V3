@@ -55,25 +55,56 @@ jobs:
                 f"declared comparisons and declared limits present.")
           PY
 
+      # Every subject present is checked. Naming one here would let a second subject
+      # be added with an invalid registry or a hollow library and still go green.
       - name: Gate registries validate against their subject contract
         run: |
-          python3 Shared/gates/validate.py \
-            --registry Physics/gates/motion-vectors.v1.json \
-            --bindings Physics/gates/curriculum-bindings.v1.json \
-            --subject-root Physics
+          python3 - <<'PY'
+          import subprocess, sys
+          from pathlib import Path
+
+          checked = 0
+          for contract in sorted(Path(".").glob("*/adapter/CoreContracts.json")):
+              subject = contract.parent.parent
+              bindings = subject / "gates/curriculum-bindings.v1.json"
+              for registry in sorted((subject / "gates").glob("*.v1.json")):
+                  if registry == bindings:
+                      continue
+                  print(f"--- {registry}")
+                  subprocess.run([sys.executable, "Shared/gates/validate.py",
+                                  "--registry", str(registry), "--bindings", str(bindings),
+                                  "--subject-root", str(subject)], check=True)
+                  checked += 1
+          if not checked:
+              sys.exit("no gate registries found")
+          print(f"{checked} gate registry/registries validated")
+          PY
 
       - name: Library intake, reference resolution and promotion monotonicity
         run: |
-          python3 Shared/library/intake.py Physics/library/*.json
-          python3 Shared/library/resolve.py Physics/library/*.json
-          python3 Shared/library/promote.py Physics/library/*.json
+          python3 - <<'PY'
+          import subprocess, sys
+          from pathlib import Path
 
-      - name: Architecture manifest has not drifted
-        run: python3 Shared/tools/build_manifest.py --check
+          checked = 0
+          for contract in sorted(Path(".").glob("*/adapter/CoreContracts.json")):
+              packages = sorted((contract.parent.parent / "library").glob("*.json"))
+              if not packages:
+                  print(f"{contract.parent.parent}: no library packages yet")
+                  continue
+              for tool in ("intake", "resolve", "promote"):
+                  subprocess.run([sys.executable, f"Shared/library/{tool}.py",
+                                  *map(str, packages)], check=True)
+              checked += 1
+          if not checked:
+              sys.exit("no subject libraries found")
+          print(f"{checked} subject library/libraries checked")
+          PY
 
-      - name: Generated web data is current
+      # build_manifest regenerates tools/data.js first, so this covers both artifacts.
+      - name: Generated artifacts have not drifted
         run: |
-          python3 Shared/tools/build_web_data.py
+          python3 Shared/tools/build_manifest.py --check
           git diff --exit-code -- tools/data.js
 
       - name: Tests (engine port, gate falsifiers, library, compilation, tooling)

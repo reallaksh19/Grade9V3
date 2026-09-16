@@ -16,13 +16,30 @@
     "dimensions",
     "physical_interpretation"
   ],
+  "required_symbol_fields": [
+    "symbol",
+    "meaning",
+    "unit",
+    "dimension"
+  ],
+  "required_symbol_fields_reason": "A Physics symbol is meaningless without its unit and dimensions; dimensional consistency is a check the subject can actually run.",
   "validator_catalogue": [
     {
       "id": "SPEED_FROM_COMPONENTS",
       "status": "IMPLEMENTED",
-      "inputs": ["vx", "vy"],
-      "input_units": {"vx": "m/s", "vy": "m/s"},
-      "result": {"shape": "SCALAR_WITH_UNIT", "unit": "m/s", "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"},
+      "inputs": [
+        "vx",
+        "vy"
+      ],
+      "input_units": {
+        "vx": "m/s",
+        "vy": "m/s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
       "requires": [],
       "proves": "The stated magnitude follows from the two declared perpendicular components.",
       "does_not_prove": "That the components themselves were derived correctly, or that the frame was chosen correctly."
@@ -30,50 +47,149 @@
     {
       "id": "CONSTANT_ACCELERATION_VELOCITY",
       "status": "IMPLEMENTED",
-      "inputs": ["u", "a", "t"],
-      "input_units": {"u": "m/s", "a": "m/s^2", "t": "s"},
-      "result": {"shape": "SCALAR_WITH_UNIT", "unit": "m/s", "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"},
-      "requires": ["model = CONSTANT_ACCELERATION", "axis_convention declared", "t >= 0"],
+      "inputs": [
+        "u",
+        "a",
+        "t"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "a": "m/s^2",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = CONSTANT_ACCELERATION",
+        "axis_convention declared",
+        "t >= 0"
+      ],
       "proves": "The final velocity follows from the declared initial velocity, acceleration and elapsed time.",
       "does_not_prove": "That constant acceleration is the right model for the situation."
     },
     {
       "id": "CONSTANT_ACCELERATION_INITIAL_VELOCITY",
       "status": "IMPLEMENTED",
-      "inputs": ["v", "a", "t"],
-      "input_units": {"v": "m/s", "a": "m/s^2", "t": "s"},
-      "result": {"shape": "SCALAR_WITH_UNIT", "unit": "m/s", "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"},
-      "requires": ["model = CONSTANT_ACCELERATION", "axis_convention declared", "t >= 0"],
+      "inputs": [
+        "v",
+        "a",
+        "t"
+      ],
+      "input_units": {
+        "v": "m/s",
+        "a": "m/s^2",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = CONSTANT_ACCELERATION",
+        "axis_convention declared",
+        "t >= 0"
+      ],
       "proves": "The initial velocity follows by inversion of the constant-acceleration relation.",
       "does_not_prove": "That constant acceleration is the right model for the situation."
     },
     {
       "id": "CONSTANT_ACCELERATION_EVENT_TIME",
       "status": "IMPLEMENTED",
-      "inputs": ["u", "v", "a"],
-      "input_units": {"u": "m/s", "v": "m/s", "a": "m/s^2"},
-      "result": {"shape": "SCALAR_WITH_UNIT", "unit": "s", "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"},
-      "requires": ["model = CONSTANT_ACCELERATION", "axis_convention declared", "a != 0", "result >= 0"],
+      "inputs": [
+        "u",
+        "v",
+        "a"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "v": "m/s",
+        "a": "m/s^2"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = CONSTANT_ACCELERATION",
+        "axis_convention declared",
+        "a != 0",
+        "result >= 0"
+      ],
       "proves": "The elapsed time to reach the stated velocity under the declared acceleration.",
       "does_not_prove": "That the event occurs within the physical situation's validity window."
     },
     {
       "id": "APEX_STATE",
       "status": "IMPLEMENTED",
-      "inputs": ["ux", "uy", "g"],
-      "input_units": {"ux": "m/s", "uy": "m/s", "g": "m/s^2"},
-      "result": {"shape": "STRUCTURED_STATE", "fields": ["time_s", "velocity_m_s", "acceleration_m_s2"], "comparison": "FIELDWISE_TOLERANCE_1E-9"},
-      "requires": ["model = NO_DRAG_CONSTANT_G_UPWARD_POSITIVE", "g > 0", "uy > 0"],
+      "inputs": [
+        "ux",
+        "uy",
+        "g"
+      ],
+      "input_units": {
+        "ux": "m/s",
+        "uy": "m/s",
+        "g": "m/s^2"
+      },
+      "result": {
+        "shape": "STRUCTURED_STATE",
+        "fields": [
+          "time_s",
+          "velocity_m_s",
+          "acceleration_m_s2"
+        ],
+        "comparison": "FIELDWISE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = NO_DRAG_CONSTANT_G_UPWARD_POSITIVE",
+        "g > 0",
+        "uy > 0"
+      ],
       "proves": "The apex time and state under a no-drag constant-g model.",
       "does_not_prove": "That drag is negligible in the described situation."
     }
   ],
   "representation_kinds": [
-    {"id": "VECTOR", "status": "IMPLEMENTED", "requires": ["frame", "axis labels", "unit", "symbol", "equal coordinate scale"]},
-    {"id": "GRAPH", "status": "IMPLEMENTED", "requires": ["strictly increasing x domain", "axis units", "explicit labelled y minimum when not zero"], "limits": ["piecewise-linear interpolation only; must not imply a curved model"]},
-    {"id": "FREE_BODY_DIAGRAM", "status": "PROPOSED"},
-    {"id": "RAY_DIAGRAM", "status": "PROPOSED"},
-    {"id": "CIRCUIT_SCHEMATIC", "status": "PROPOSED"}
+    {
+      "id": "VECTOR",
+      "status": "IMPLEMENTED",
+      "requires": [
+        "frame",
+        "axis labels",
+        "unit",
+        "symbol",
+        "equal coordinate scale"
+      ]
+    },
+    {
+      "id": "GRAPH",
+      "status": "IMPLEMENTED",
+      "requires": [
+        "strictly increasing x domain",
+        "axis units",
+        "explicit labelled y minimum when not zero"
+      ],
+      "limits": [
+        "piecewise-linear interpolation only; must not imply a curved model"
+      ]
+    },
+    {
+      "id": "FREE_BODY_DIAGRAM",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "RAY_DIAGRAM",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "CIRCUIT_SCHEMATIC",
+      "status": "PROPOSED"
+    }
   ],
   "risks": [
     "velocity versus acceleration",
@@ -82,9 +198,20 @@
     "model applicability"
   ],
   "curriculum": {
-    "boards": ["CBSE"],
-    "grades": [9, 10, 11],
-    "tiers": ["NOT_IN_JEE", "JEE_MAINS", "JEE_ADVANCED", "BOTH"],
+    "boards": [
+      "CBSE"
+    ],
+    "grades": [
+      9,
+      10,
+      11
+    ],
+    "tiers": [
+      "NOT_IN_JEE",
+      "JEE_MAINS",
+      "JEE_ADVANCED",
+      "BOTH"
+    ],
     "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
     "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
   },

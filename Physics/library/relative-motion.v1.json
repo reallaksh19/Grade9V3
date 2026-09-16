@@ -689,7 +689,8 @@
         "Two unrelated arrows with no subtraction construction.",
         "Correct magnitude with the wrong observer order."
       ],
-      "rendered_asset_refs": []
+      "rendered_asset_refs": [],
+      "scene_instances": []
     }
   ],
   "question_families": [

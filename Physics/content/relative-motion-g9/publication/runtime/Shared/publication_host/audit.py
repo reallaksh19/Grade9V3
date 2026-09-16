@@ -6,6 +6,7 @@ from pathlib import Path
 from Shared.contracts import digest, file_digest, load, require, verify_file
 from .compose import compose, owner_board, report_for
 from .inputs import read_inputs
+from .adapter import COMPARISONS, compare_tolerance
 from .science import compare_candidate
 from .storage import runtime_manifest
 
@@ -74,7 +75,20 @@ def verify_publication(root: Path, expected_basis: str, adapter):
     require(set(all_numbers) == set(evidence["numeric_answers"]), "PUBLISHED_NUMBER_CLOSURE")
     for key, expected in evidence["numeric_answers"].items():
         actual = all_numbers[key]
-        compare_candidate(actual["value"], actual["unit"], expected["value"], expected["unit"])
+        # Two kinds of record live here. A verified answer names the comparison its
+        # subject declared, and read-back must repeat that one: re-checking an exact
+        # rational within a tolerance would accept a value the publish step rejected.
+        # An answer held for scientific review names none, because no evaluator stood
+        # behind it; there the only claim being checked is that the page still shows
+        # the number the evidence recorded, which is the numeric comparison.
+        name = expected.get("comparison")
+        if name is None:
+            require(expected["status"] == "SCIENTIFIC_REVIEW_REQUIRED",
+                    "PUBLISHED_COMPARISON_MISSING", key)
+        else:
+            require(name in COMPARISONS, "PUBLISHED_COMPARISON_UNSUPPORTED", f"{key}: {name}")
+        compare_candidate(actual["value"], actual["unit"], expected["value"], expected["unit"],
+                          compare=COMPARISONS.get(name, compare_tolerance))
     for row in manifest["files"]:
         verify_file(root, row)
     for row in runtime:

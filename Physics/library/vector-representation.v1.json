@@ -613,7 +613,8 @@
         "An arrow drawn without labelled axes.",
         "Correct magnitude paired with an unlabelled or ambiguous direction."
       ],
-      "rendered_asset_refs": []
+      "rendered_asset_refs": [],
+      "scene_instances": []
     },
     {
       "id": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
@@ -655,7 +656,8 @@
         "Two unrelated arrows with no subtraction construction.",
         "Correct magnitude with the wrong observer/subtraction order."
       ],
-      "rendered_asset_refs": []
+      "rendered_asset_refs": [],
+      "scene_instances": []
     }
   ],
   "question_families": [

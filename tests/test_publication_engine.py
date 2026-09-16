@@ -18,6 +18,7 @@ from Shared.contracts import ContractError  # noqa: E402
 from Shared.publication_host.adapter import (  # noqa: E402
     COMPARISONS, Adapter, compare_exact_rational, compare_tolerance,
 )
+from Shared.publication_host.audit import verify_publication  # noqa: E402
 from Shared.publication_host.compose import owner_board  # noqa: E402
 from Shared.publication_host.host import publish  # noqa: E402
 from Shared.publication_host.inputs import read_inputs  # noqa: E402
@@ -48,6 +49,15 @@ class PortRegression(unittest.TestCase):
             self.assertEqual(result["numeric_answers_compared"], 7)
             self.assertEqual(result["unverified_numeric_transcriptions_checked"], 0)
             self.assertFalse(result["release_authorized"])
+
+    def test_the_committed_publication_still_verifies_against_its_own_runtime(self):
+        # A publication carries a snapshot of the engine that produced it. Checking only
+        # the composed HTML let that snapshot drift silently for two phases, so the
+        # committed run is now re-verified end to end -- runtime digests, evidence and
+        # read-back comparisons included.
+        result = verify_publication(RUN / "publication", EXPECTED_BASIS, load_physics())
+        self.assertEqual(result["status"], "PASS")
+        self.assertEqual(result["numeric_answers_compared"], 7)
 
     def test_composed_products_match_the_committed_publication_byte_for_byte(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -116,14 +126,22 @@ class UnpublishableResultShapes(unittest.TestCase):
         return {"id": "B", "source_id": "S", "source_question_id": "q", "source_atom_ids": ["a"],
                 "answer": {"numeric": {"value": 1, "unit": "u"}}}
 
-    def test_exact_rational_result_is_held_for_review_rather_than_published(self):
-        adapter = fake_adapter("Mathematics", [{"id": "X", "status": "IMPLEMENTED",
-                                                "result": {"shape": "EXACT_RATIONAL",
-                                                           "comparison": "EXACT_RATIONAL_EQUALITY"}}])
+    def test_a_shape_with_no_rendering_is_held_for_review_rather_than_published(self):
+        # Element-count maps have no published representation yet. Coercing one into
+        # the scalar path would compare the wrong thing, so it is held instead.
+        adapter = fake_adapter("Chemistry", [{"id": "X", "status": "IMPLEMENTED",
+                                              "result": {"shape": "ELEMENT_COUNT_MAP",
+                                                         "comparison": "EXACT_INTEGER_MAP_EQUALITY"}}])
         outcome = numeric_expectation(self._context(adapter), self._block())
         self.assertEqual(outcome["status"], "SCIENTIFIC_REVIEW_REQUIRED")
         self.assertEqual(outcome["code"], "NUMERIC_RESULT_SHAPE_NOT_PUBLISHABLE")
         self.assertEqual(outcome["oracle"], "NONE")
+
+    def test_exact_rationals_became_publishable_when_a_second_subject_needed_them(self):
+        adapter = fake_adapter("Mathematics", [{"id": "X", "status": "IMPLEMENTED",
+                                                "result": {"shape": "EXACT_RATIONAL", "unit": "dimensionless",
+                                                           "comparison": "EXACT_RATIONAL_EQUALITY"}}])
+        self.assertTrue(adapter.publishable(adapter.validator("X")))
 
     def test_unimplemented_family_is_held_for_review(self):
         adapter = fake_adapter("Chemistry", [{"id": "X", "status": "PROPOSED",
