@@ -16,39 +16,113 @@
     "representation_level",
     "model_not_mechanism"
   ],
+  "required_symbol_fields": [
+    "symbol",
+    "meaning",
+    "species_role"
+  ],
+  "required_symbol_fields_reason": "A Chemistry symbol needs its role in the species accounting, since the same letter may name an element, a species or an amount.",
   "validator_catalogue": [
     {
       "id": "PARTICLE_ATOM_COUNT",
       "status": "IMPLEMENTED",
-      "inputs": ["species", "species_authority_ref", "amounts"],
-      "result": {"shape": "ELEMENT_COUNT_MAP", "comparison": "EXACT_INTEGER_MAP_EQUALITY"},
-      "requires": ["governed species composition with an authority reference", "non-negative integer amounts"],
+      "inputs": [
+        "species",
+        "species_authority_ref",
+        "amounts"
+      ],
+      "result": {
+        "shape": "ELEMENT_COUNT_MAP",
+        "comparison": "EXACT_INTEGER_MAP_EQUALITY"
+      },
+      "requires": [
+        "governed species composition with an authority reference",
+        "non-negative integer amounts"
+      ],
       "proves": "The element totals follow exactly from the declared species compositions and amounts.",
       "does_not_prove": "That the declared species are the species actually present, or that the amounts are physically achievable."
     },
     {
       "id": "CONSERVATION_LEDGER",
       "status": "IMPLEMENTED",
-      "inputs": ["species", "species_authority_ref", "reactant_coefficients", "product_coefficients"],
-      "result": {"shape": "CONSERVATION_LEDGER", "fields": ["reactant_atoms", "product_atoms", "balanced"], "comparison": "EXACT_INTEGER_MAP_EQUALITY"},
-      "requires": ["governed species composition", "positive integer coefficients on both sides"],
+      "inputs": [
+        "species",
+        "species_authority_ref",
+        "reactant_coefficients",
+        "product_coefficients"
+      ],
+      "result": {
+        "shape": "CONSERVATION_LEDGER",
+        "fields": [
+          "reactant_atoms",
+          "product_atoms",
+          "balanced"
+        ],
+        "comparison": "EXACT_INTEGER_MAP_EQUALITY"
+      },
+      "requires": [
+        "governed species composition",
+        "positive integer coefficients on both sides"
+      ],
       "proves": "Whether atom counts balance across the declared equation.",
       "does_not_prove": "That the reaction occurs, that charge or phase are correct, or that the equation represents a real mechanism."
     },
     {
       "id": "REACTION_EXTENT_COUNTS",
       "status": "IMPLEMENTED",
-      "inputs": ["species", "species_authority_ref", "reactant_coefficients", "product_coefficients", "available_reactants"],
-      "result": {"shape": "EXTENT_MAP", "fields": ["products", "leftover_reactants"], "comparison": "EXACT_INTEGER_MAP_EQUALITY"},
-      "requires": ["balanced equation", "model = COMPLETE_REACTION_INTEGER_PARTICLE_ACCOUNTING", "reactant inventory matching the equation's reactants"],
+      "inputs": [
+        "species",
+        "species_authority_ref",
+        "reactant_coefficients",
+        "product_coefficients",
+        "available_reactants"
+      ],
+      "result": {
+        "shape": "EXTENT_MAP",
+        "fields": [
+          "products",
+          "leftover_reactants"
+        ],
+        "comparison": "EXACT_INTEGER_MAP_EQUALITY"
+      },
+      "requires": [
+        "balanced equation",
+        "model = COMPLETE_REACTION_INTEGER_PARTICLE_ACCOUNTING",
+        "reactant inventory matching the equation's reactants"
+      ],
       "proves": "Limiting-reactant accounting under a complete-reaction integer particle model.",
       "does_not_prove": "Equilibrium behaviour, rate, yield, or that the reaction goes to completion in reality."
     }
   ],
   "representation_kinds": [
-    {"id": "PARTICLE_DIAGRAM", "status": "PROPOSED", "requires": ["declared representation level", "particle identity and count", "no implied mechanism"]},
-    {"id": "SYMBOLIC_EQUATION", "status": "PROPOSED", "requires": ["subscripts versus coefficients distinguished", "charges", "phase labels", "reaction arrow semantics"]},
-    {"id": "ENERGY_PROFILE", "status": "PROPOSED", "requires": ["declared reference state", "axis meaning", "no mechanistic claim from a schematic"]}
+    {
+      "id": "PARTICLE_DIAGRAM",
+      "status": "PROPOSED",
+      "requires": [
+        "declared representation level",
+        "particle identity and count",
+        "no implied mechanism"
+      ]
+    },
+    {
+      "id": "SYMBOLIC_EQUATION",
+      "status": "PROPOSED",
+      "requires": [
+        "subscripts versus coefficients distinguished",
+        "charges",
+        "phase labels",
+        "reaction arrow semantics"
+      ]
+    },
+    {
+      "id": "ENERGY_PROFILE",
+      "status": "PROPOSED",
+      "requires": [
+        "declared reference state",
+        "axis meaning",
+        "no mechanistic claim from a schematic"
+      ]
+    }
   ],
   "risks": [
     "coefficient versus subscript",
@@ -57,9 +131,20 @@
     "stoichiometry versus mechanism"
   ],
   "curriculum": {
-    "boards": ["CBSE"],
-    "grades": [9, 10, 11],
-    "tiers": ["NOT_IN_JEE", "JEE_MAINS", "JEE_ADVANCED", "BOTH"],
+    "boards": [
+      "CBSE"
+    ],
+    "grades": [
+      9,
+      10,
+      11
+    ],
+    "tiers": [
+      "NOT_IN_JEE",
+      "JEE_MAINS",
+      "JEE_ADVANCED",
+      "BOTH"
+    ],
     "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
     "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
   },

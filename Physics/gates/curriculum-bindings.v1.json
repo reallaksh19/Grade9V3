@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHYSICS-CURRICULUM-BINDINGS-V1",
+  "subject": "Physics",
+  "selector_semantics": "EXACT_BOARD_GRADE_CHAPTER_AND_GATE_SET",
+  "rule": "A gate may claim scope_class PRESCRIBED only when an exact binding below matches its board, grade, chapter and the full gate set declared for that chapter. A loose reference, a syllabus link or a file that merely exists is not authority. Missing binding fails closed as HELD_INSUFFICIENT_AUTHORITY.",
+  "adapted_from": "physics-curriculum-scope-bindings.v1.json in reallaksh19/Common PR #350, which reached the same fail-closed posture and likewise carries an empty binding set for this material.",
+  "bindings": [],
+  "empty_set_is_deliberate": "No exact CBSE binding has been established for quantitative two-dimensional vector and relative-velocity work at grade 9. Every gate in motion-vectors.v1.json is therefore declared OWNER_EXTENSION rather than PRESCRIBED. Fabricating a binding to make the registry look complete is the specific failure this registry exists to prevent."
+}

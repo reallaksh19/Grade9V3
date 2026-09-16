@@ -16,39 +16,98 @@
     "equivalence_and_reversibility",
     "excluded_values"
   ],
+  "required_symbol_fields": [
+    "symbol",
+    "meaning",
+    "domain"
+  ],
+  "required_symbol_fields_reason": "A Mathematics symbol needs its domain, not a unit; the admissible set is what makes a statement true or false.",
   "validator_catalogue": [
     {
       "id": "POLYNOMIAL_FROM_ROOTS",
       "status": "IMPLEMENTED",
-      "inputs": ["roots", "leading_coefficient"],
-      "result": {"shape": "EXACT_RATIONAL_COEFFICIENT_LIST", "ordering": "DESCENDING_DEGREE", "comparison": "EXACT_RATIONAL_EQUALITY"},
-      "requires": ["domain = RATIONAL", "leading_coefficient != 0", "at least one root"],
+      "inputs": [
+        "roots",
+        "leading_coefficient"
+      ],
+      "result": {
+        "shape": "EXACT_RATIONAL_COEFFICIENT_LIST",
+        "ordering": "DESCENDING_DEGREE",
+        "comparison": "EXACT_RATIONAL_EQUALITY"
+      },
+      "requires": [
+        "domain = RATIONAL",
+        "leading_coefficient != 0",
+        "at least one root"
+      ],
       "proves": "The expanded coefficients follow exactly from the declared roots and leading coefficient.",
       "does_not_prove": "That those roots are the roots of the problem's actual polynomial, or that the factorisation was legitimate over the stated domain."
     },
     {
       "id": "POLYNOMIAL_VALUE",
       "status": "IMPLEMENTED",
-      "inputs": ["coefficients_descending", "x"],
-      "result": {"shape": "EXACT_RATIONAL", "comparison": "EXACT_RATIONAL_EQUALITY"},
-      "requires": ["domain = RATIONAL", "non-empty coefficients"],
+      "inputs": [
+        "coefficients_descending",
+        "x"
+      ],
+      "result": {
+        "shape": "EXACT_RATIONAL",
+        "comparison": "EXACT_RATIONAL_EQUALITY"
+      },
+      "requires": [
+        "domain = RATIONAL",
+        "non-empty coefficients"
+      ],
       "proves": "The evaluated value follows exactly from the declared coefficients at the declared point.",
       "does_not_prove": "That the point lies in the problem's admissible domain."
     },
     {
       "id": "LINEAR_EQUATION",
       "status": "IMPLEMENTED",
-      "inputs": ["a", "b", "c"],
-      "result": {"shape": "EXACT_RATIONAL", "comparison": "EXACT_RATIONAL_EQUALITY"},
-      "requires": ["domain = RATIONAL", "a != 0 (otherwise the solution is not unique)"],
+      "inputs": [
+        "a",
+        "b",
+        "c"
+      ],
+      "result": {
+        "shape": "EXACT_RATIONAL",
+        "comparison": "EXACT_RATIONAL_EQUALITY"
+      },
+      "requires": [
+        "domain = RATIONAL",
+        "a != 0 (otherwise the solution is not unique)"
+      ],
       "proves": "The unique solution of a*x + b = c over the rationals.",
       "does_not_prove": "That the modelling step producing that equation was correct, or that solutions were not lost earlier by a non-equivalent transformation."
     }
   ],
   "representation_kinds": [
-    {"id": "GEOMETRIC_CONSTRUCTION", "status": "PROPOSED", "requires": ["declared given/construct/prove split", "congruence and parallelism marks", "labelled points"]},
-    {"id": "FUNCTION_PLOT", "status": "PROPOSED", "requires": ["domain and range", "excluded values marked", "asymptotes and discontinuities visible"]},
-    {"id": "NUMBER_LINE", "status": "PROPOSED", "requires": ["open versus closed endpoints", "declared direction"]}
+    {
+      "id": "GEOMETRIC_CONSTRUCTION",
+      "status": "PROPOSED",
+      "requires": [
+        "declared given/construct/prove split",
+        "congruence and parallelism marks",
+        "labelled points"
+      ]
+    },
+    {
+      "id": "FUNCTION_PLOT",
+      "status": "PROPOSED",
+      "requires": [
+        "domain and range",
+        "excluded values marked",
+        "asymptotes and discontinuities visible"
+      ]
+    },
+    {
+      "id": "NUMBER_LINE",
+      "status": "PROPOSED",
+      "requires": [
+        "open versus closed endpoints",
+        "declared direction"
+      ]
+    }
   ],
   "risks": [
     "lost solutions when cancelling",
@@ -57,9 +116,20 @@
     "unjustified generalization"
   ],
   "curriculum": {
-    "boards": ["CBSE"],
-    "grades": [9, 10, 11],
-    "tiers": ["NOT_IN_JEE", "JEE_MAINS", "JEE_ADVANCED", "BOTH"],
+    "boards": [
+      "CBSE"
+    ],
+    "grades": [
+      9,
+      10,
+      11
+    ],
+    "tiers": [
+      "NOT_IN_JEE",
+      "JEE_MAINS",
+      "JEE_ADVANCED",
+      "BOTH"
+    ],
     "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
     "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
   },
