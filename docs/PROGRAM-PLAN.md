@@ -23,8 +23,8 @@ Subject and topic variation is **governed data**, never a branch in engine code.
 |---|---|---|---|---|
 | **P0** Foundations | Six-Core role specs (subject-neutral); all three subject contracts promoted to six-Core; topic independence guard + CI; this plan | Guard self-test detects a planted violation; three contracts parse and declare six products | R1 tail | **in this PR** |
 | **P1** Subject-neutral core | Port the proven publication host into `Shared/`, splitting the subject-specific parts into adapters: result shapes, comparison rules, units, representation kinds | The existing relative-motion run re-publishes through the refactored path with equivalent basis semantics; guard scans a non-trivial file count | R1 | next |
-| **P2** Technical gate layer | Subject-neutral 16-point gate schema + validator + mutation falsifiers; Physics gate data for grades 9–11; curriculum-scope binding registry | Gate DAG closed and acyclic; every falsifier caught; a scope claim without an exact binding reports `HELD`, not assumed authority | R2 | |
-| **P3** Executable topic library | Library engine: intake validation, ID/version assignment, reference resolution, prerequisite closure, slice retrieval, `CANDIDATE → REVIEWED → CURATED` promotion. Publication consumes library packets | An unseen subtopic builds end-to-end from the library with no hand-maintained lesson side-channel | R2/R3 | |
+| **P2** Technical gate layer | Subject-neutral 16-point gate schema + validator + mutation falsifiers; Physics gate data; curriculum-scope binding registry | Gate DAG closed and acyclic; every falsifier caught; a scope claim without an exact binding reports `HELD`, not assumed authority | R2 | **done** (registry is partial by intent, see below) |
+| **P3** Executable topic library | Library engine: intake validation, reference resolution, prerequisite closure, slice retrieval, `CANDIDATE → REVIEWED → CURATED` promotion. Publication consumes library packets | A bucket compiles from the library and publishes end-to-end with no hand-maintained lesson side-channel | R2/R3 | **done** (three of four products, see below) |
 | **P4** Front end | Topic library browser; run builder emitting both the run config and the publication input triple; unified portal; deterministic architecture manifest with CI drift check | Static and offline-safe, no build step; manifest check green; builder fixtures validate | R2/R3 | |
 | **P5** Mathematics adapter | Exact-rational verification path, geometric construction and function-plot representations, proof obligations, Math gate data | One end-to-end Mathematics slice passing its own scientific and final-medium review | R5 | owner-gated |
 | **P6** Chemistry adapter | Species/charge/phase/condition authority, conservation checks, particle–symbolic–macroscopic representation triplet, Chemistry gate data | One end-to-end Chemistry slice; study depth follows intrinsic badge, not readiness | R6 | owner-gated |
@@ -42,6 +42,25 @@ Porting the publication host is not a file move. The three subjects return funda
 | Chemistry | Element-count map, conservation ledger, extent map | Exact integer map equality |
 
 The current engine hardcodes scalar-with-unit comparison and carries a Physics units table (`RESULT_UNITS`) inside shared code. P1 moves result shape, comparison rule and units into `validator_catalogue` in each subject adapter — already declared in P0 — so the shared engine compares what the adapter tells it to compare.
+
+## What P2 and P3 actually established
+
+**The gate registry is deliberately partial.** Six Physics gates cover the buckets this repository has authored, every one declared `OWNER_EXTENSION` against an empty binding set — because no exact CBSE binding for quantitative two-dimensional relative velocity at grade 9 has been established. The full grades 9–11 registry across three subjects is bulk authoring, and the V3B core system guide warns that building a large registry before proving its consumer risks another schema-only success. The machinery is proven against real content first.
+
+**The library was not executable, and making it so required schema work.** Three things a publication needs had no home in the package schema, so they lived in a build script beside the lesson:
+
+| Missing | Added | Why it mattered |
+|---|---|---|
+| Quantitative values | `data` collection of typed datum records | The numbers a lesson uses had no governed origin or provenance |
+| Renderable equation form | `relation.mathml` | A product could not display a relation without re-authoring it |
+| Machine-checkable answers | `question.verification` and `answer.numeric` | "magnitude 10 m/s" sat in prose; the oracle could not reach it |
+
+With those, `BUCKET-RELATIVE-MOTION` compiles from the library and publishes end-to-end, its one numeric answer checked against the real Physics evaluator.
+
+**Compilation stops where authoring begins, and says so.** The compiler derives buckets, obligations, atoms, questions and per-core coverage, and carries the library's own authored prose — teaching-path steps with their justifications, misconception repairs, exit tasks with answers — through verbatim. It does not synthesise teaching prose from graph records: that would manufacture exactly the plausible titles concealing missing reasoning the library exists to prevent. What remains is emitted as explicit authoring requirements rather than invented:
+
+- **Core2B is reported unsupported** for this bucket — the library holds no question exposed to it. The compiler omits the product rather than padding it.
+- Connecting narrative and figure scene instances are declared as required authoring.
 
 ## Adapted from the parallel tracks
 

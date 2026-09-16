@@ -178,7 +178,7 @@ def main() -> int:
     parser.add_argument("--registry", type=Path, required=True)
     parser.add_argument("--bindings", type=Path)
     parser.add_argument("--subject-root", type=Path, required=True,
-                        help="subject directory providing the adapter, e.g. Physics")
+                        help="directory of the subject whose adapter should validate this registry")
     args = parser.parse_args()
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
     module = __import__(f"{args.subject_root.name}.adapter", fromlist=["load"])

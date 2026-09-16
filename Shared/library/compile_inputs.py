@@ -1,0 +1,316 @@
+"""Compile publication inputs for one bucket from the library.
+
+This is what makes the library executable rather than stored: the baseline, the
+source inventory and the plan skeleton are *derived* from library records, so the
+numbers, questions and obligations a product publishes have a governed origin
+instead of living in a build script beside the lesson.
+
+What is derived and what is not, stated plainly:
+
+  derived   buckets and their prerequisite edges; obligations from microtopics and
+            the teaching routes that claim them; source atoms from the data
+            collection; source questions with their answers and any declared
+            verification; unit structure and per-core coverage; the teaching text
+            the library already holds -- teaching-path steps, misconception repairs
+            and exit tasks are authored prose and are carried through verbatim.
+
+  not derived  connecting learner prose beyond what the library holds, figure scene
+            instances, and any product the library has no content for. These are
+            reported as authoring requirements rather than invented. Generating
+            teaching prose from graph records would produce exactly the plausible
+            titles concealing missing reasoning that the library exists to prevent.
+
+The compiler never fabricates to fill a gap. A bucket that cannot support a product
+is reported unsupported, not padded.
+"""
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from Shared.contracts import digest, load, require
+from Shared.library.resolve import build_index, load_packages, slice_for_bucket
+
+COMPOSABLE = ("CORE1A", "CORE1B", "CORE2A", "CORE2B")
+BADGE = {"EASY": "EASY", "MEDIUM": "MEDIUM", "HARD": "HARD"}
+
+
+def _routes_by_core(records: dict) -> dict[str, set[str]]:
+    """Which microtopics each core is claimed to teach, from the library's teaching routes."""
+    claimed: dict[str, set[str]] = {core: set() for core in COMPOSABLE}
+    for record in records.values():
+        if record["_collection"] != "teaching_routes":
+            continue
+        for core in record.get("cores", []):
+            if core in claimed:
+                claimed[core].update(record.get("microtopic_refs", []))
+    return claimed
+
+
+def _atoms_for(records: dict, microtopic_ids: set[str]) -> list[dict]:
+    """Data records reachable from this bucket's microtopics, via their relations."""
+    relations = set()
+    for mid in microtopic_ids:
+        relations.update(records[mid].get("relation_refs", []))
+    chosen = []
+    for record in records.values():
+        if record["_collection"] != "data":
+            continue
+        relation = record.get("relation_ref")
+        if relation is None or relation in relations:
+            chosen.append(record)
+    return sorted(chosen, key=lambda r: r["id"])
+
+
+def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
+                   subject: str, practice_control: dict) -> dict:
+    chosen = slice_for_bucket(records, bucket_id)
+    microtopics = [records[m] for m in chosen["microtopic_order"]]
+    require(microtopics, "LIBRARY_BUCKET_HAS_NO_MICROTOPICS", bucket_id)
+    microtopic_ids = {m["id"] for m in microtopics}
+    claimed = _routes_by_core(records)
+    requirements: list[dict] = []
+
+    # --- source inventory -------------------------------------------------
+    atoms, equations = [], {}
+    for record in _atoms_for(records, microtopic_ids):
+        if record["kind"] == "EQUATION":
+            equations[record["relation_ref"]] = record["id"]
+            atoms.append({"id": record["id"], "value": record["value"], "kind": "EQUATION",
+                          "locator": f'{record["meaning"]} -- {record["locator"]}'})
+        else:
+            require(record.get("unit"), "LIBRARY_DATUM_WITHOUT_UNIT", record["id"])
+            atoms.append({"id": record["id"], "value": record["value"], "unit": record["unit"],
+                          "kind": "DATUM", "locator": f'{record["meaning"]} -- {record["locator"]}'})
+
+    questions, question_records = [], []
+    for record in records.values():
+        if record["_collection"] != "questions":
+            continue
+        if record.get("primary_capability_ref") not in {c["id"] for c in
+                                                        chosen["records"].get("capabilities", [])}:
+            continue
+        row = {"id": record["id"], "original_number": record["original_identifier"],
+               "stem": record["stem"], "conditions": record.get("conditions", [])}
+        if record.get("verification"):
+            row["verification"] = record["verification"]
+            for atom_id in record["verification"]["bindings"].values():
+                require(any(a["id"] == atom_id for a in atoms), "QUESTION_BINDS_UNKNOWN_DATUM",
+                        f'{record["id"]} -> {atom_id}')
+        questions.append(row)
+        question_records.append(record)
+
+    source = {"id": "LIBRARY", "origin": "AUTHOR_CREATED",
+              "citation": f"Compiled from the {subject} library for bucket {bucket_id}. "
+                          "Records are author-created candidates; no source measurement or "
+                          "official question provenance is claimed.",
+              "atoms": atoms, "questions": questions}
+
+    # --- which products the library can actually support -------------------
+    supported, unsupported = [], {}
+    for core in COMPOSABLE:
+        covered = claimed[core] & microtopic_ids
+        if core in ("CORE2A", "CORE2B"):
+            exposed = [q for q in question_records
+                       if any(e.get("core") == core for e in q.get("exposure", []))]
+            if exposed:
+                supported.append(core)
+            else:
+                unsupported[core] = "the library holds no question exposed to this product for this bucket"
+        elif covered:
+            supported.append(core)
+        else:
+            unsupported[core] = "no teaching route claims this product for this bucket's microtopics"
+    require(supported, "LIBRARY_SUPPORTS_NO_PRODUCT", bucket_id)
+    for core, reason in unsupported.items():
+        requirements.append({"kind": "PRODUCT_UNSUPPORTED", "core": core, "detail": reason})
+
+    # --- baseline ----------------------------------------------------------
+    bucket = records[bucket_id]
+
+    # A prerequisite bucket is carried into the baseline as a declared node even though
+    # this publication holds no content for it. Dropping the edge would silently erase a
+    # real dependency; keeping it says "required, and published elsewhere".
+    def bucket_nodes(start: str) -> list[str]:
+        ordered, pending = [], [start]
+        while pending:
+            current = pending.pop()
+            if current in ordered:
+                continue
+            ordered.append(current)
+            pending += [p for p in records[current].get("prerequisite_refs", [])
+                        if p in records and records[p]["_collection"] == "buckets"]
+        return ordered
+
+    node_ids = bucket_nodes(bucket_id)
+    bucket_prerequisites = [p for p in bucket.get("prerequisite_refs", [])
+                            if p in records and records[p]["_collection"] == "buckets"]
+    obligations = []
+    for microtopic in microtopics:
+        cores = sorted(core for core in supported
+                       if microtopic["id"] in claimed[core] or core in ("CORE2A", "CORE2B"))
+        relation_atoms = [a["id"] for a in atoms
+                          if records[a["id"]].get("relation_ref") in microtopic.get("relation_refs", [])
+                          or records[a["id"]].get("relation_ref") is None]
+        if not cores or not relation_atoms:
+            requirements.append({"kind": "MICROTOPIC_UNBOUND", "microtopic": microtopic["id"],
+                                 "detail": "no supported product or no data bound to its relations"})
+            continue
+        study = [c for c in cores if c in ("CORE1A", "CORE1B")]
+        if study:
+            obligations.append({"id": f'OB-{microtopic["id"]}', "bucket_id": bucket_id,
+                                "source_atom_ids": sorted(set(relation_atoms)),
+                                "required_cores": study, "required_kinds": ["TEXT"]})
+    practice = [c for c in supported if c in ("CORE2A", "CORE2B")]
+    practice_obligation = f"OB-{bucket_id}-PRACTICE"
+    if practice and questions:
+        obligations.append({"id": practice_obligation, "bucket_id": bucket_id,
+                            "source_atom_ids": sorted({a["id"] for a in atoms}),
+                            "required_cores": practice, "required_kinds": ["QUESTION"]})
+    require(obligations, "LIBRARY_PRODUCED_NO_OBLIGATIONS", bucket_id)
+
+    accounted = {a for o in obligations for a in o["source_atom_ids"]}
+    unaccounted = {a["id"] for a in atoms} - accounted
+    atoms[:] = [a for a in atoms if a["id"] in accounted]
+    source["atoms"] = atoms
+    for atom_id in sorted(unaccounted):
+        requirements.append({"kind": "DATUM_UNUSED", "datum": atom_id,
+                             "detail": "no obligation binds this value; it was omitted rather than forced in"})
+
+    baseline = {"schema_version": "1.0.0", "topic_id": topic_id,
+                "baseline_id": f"BASE-{bucket_id}",
+                "selected_cores": supported,
+                "sources": [{"id": "LIBRARY", "path": "sources/source.json", "sha256": ""}],
+                "buckets": [{"id": node, "badge": BADGE[records[node]["intrinsic_badge"]],
+                             "prerequisites": [p for p in records[node].get("prerequisite_refs", [])
+                                               if p in node_ids]}
+                            for node in node_ids],
+                "obligations": obligations,
+                "required_questions": [{"core": core, "source_id": "LIBRARY", "question_id": q["id"]}
+                                       for core in practice for q in questions
+                                       if any(e.get("core") == core for e in
+                                              next(r for r in question_records if r["id"] == q["id"])
+                                              .get("exposure", []))]}
+
+    # --- plan skeleton, carrying the prose the library actually holds -------
+    plan = {"schema_version": "1.0.0", "subject": subject, "topic_id": topic_id, "title": title,
+            "baseline_digest": "", "practice_control": practice_control, "products": []}
+    for core in supported:
+        blocks, unit_id = [], f"U-{core}-{bucket_id}"
+        if core in ("CORE1A", "CORE1B"):
+            for microtopic in microtopics:
+                obligation = f'OB-{microtopic["id"]}'
+                if not any(o["id"] == obligation and core in o["required_cores"] for o in obligations):
+                    continue
+                bound = next(o["source_atom_ids"] for o in obligations if o["id"] == obligation)
+                blocks.append({"id": f'{core}-{microtopic["id"]}-T', "kind": "TEXT",
+                               "obligation_ids": [obligation], "source_atom_ids": bound,
+                               "text": _teaching_text(microtopic, core)})
+            requirements.append({"kind": "PROSE_AUTHORING", "core": core,
+                                 "detail": "blocks carry library-held teaching text; connecting narrative, "
+                                           "worked examples and figure scenes still require authoring"})
+        else:
+            for record in question_records:
+                if not any(e.get("core") == core for e in record.get("exposure", [])):
+                    continue
+                blocks.append(_question_block(core, record, practice_obligation, atoms))
+            requirements.append({"kind": "FIGURE_AUTHORING", "core": core,
+                                 "detail": "the library describes representation requirements but holds no "
+                                           "figure scene instances; scenes must be authored"})
+        if blocks:
+            plan["products"].append({"core": core, "units": [
+                {"id": unit_id, "bucket_id": bucket_id, "title": bucket["title"], "blocks": blocks}]})
+
+    plan["products"] = [p for p in plan["products"] if p["units"][0]["blocks"]]
+    baseline["selected_cores"] = [p["core"] for p in plan["products"]]
+    return {"baseline": baseline, "source": source, "plan": plan,
+            "authoring_requirements": requirements,
+            "derived_from": {"bucket": bucket_id, "microtopics": [m["id"] for m in microtopics],
+                             "packages": sorted({records[m]["_package"] for m in microtopic_ids})}}
+
+
+def _teaching_text(microtopic: dict, core: str) -> str:
+    """Carry the library's own authored prose; do not synthesise teaching."""
+    lines = [microtopic["title"] + ".", "", microtopic["inferential_jump"]]
+    if core == "CORE1B":
+        for item in microtopic.get("misconceptions", []):
+            lines += ["", f'Predict first: {item["diagnostic_prompt"]}',
+                      f'A common wrong idea is that {item["wrong_idea"]} {item["repair"]}']
+    for step in microtopic.get("teaching_path", []):
+        lines.append(f'{step["action"]} {step["why_valid"]}'
+                     + (f' This gives {step["output"]}.' if step.get("output") else ""))
+    exit_task = microtopic.get("exit_task") or {}
+    if exit_task.get("prompt"):
+        answer = exit_task.get("answer", {})
+        lines += ["", f'Check yourself: {exit_task["prompt"]}', f'Answer: {answer.get("summary", "")}']
+        lines += [f'- {step}' for step in answer.get("reasoning", [])]
+        if answer.get("check"):
+            lines.append(f'Verify: {answer["check"]}')
+    return "\n".join(lines)
+
+
+def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dict]) -> dict:
+    answer = record["answer"]
+    exposure = next(e for e in record["exposure"] if e.get("core") == core)
+    role = {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE"}.get(exposure.get("role"), "PRACTICE")
+    block = {"id": f'{core}-{record["id"]}', "kind": "QUESTION",
+             "obligation_ids": [obligation_id],
+             "source_atom_ids": sorted({a["id"] for a in atoms}),
+             "source_id": "LIBRARY", "source_question_id": record["id"],
+             "original_number": record["original_identifier"], "stem": record["stem"],
+             "subparts": [], "options": [], "conditions": record.get("conditions", []),
+             "answer": {"summary": answer["summary"], "steps": answer["reasoning"],
+                        "check": answer["check"],
+                        **({"numeric": answer["numeric"]} if answer.get("numeric") else {})},
+             "hints": [], "family": record["family_ref"],
+             "learner_action": "solve", "exposure_role": role}
+    return block
+
+
+def write(compiled: dict, out: Path) -> dict:
+    """Write inputs, sealing the source digest and baseline digest the host will check."""
+    source_path = out / "sources/source.json"
+    source_path.parent.mkdir(parents=True, exist_ok=True)
+    source_path.write_text(json.dumps(compiled["source"], indent=2, ensure_ascii=False) + "\n",
+                           encoding="utf-8")
+    import hashlib
+    compiled["baseline"]["sources"][0]["sha256"] = hashlib.sha256(source_path.read_bytes()).hexdigest()
+    (out / "baseline.json").write_text(
+        json.dumps(compiled["baseline"], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    compiled["plan"]["baseline_digest"] = digest(compiled["baseline"])
+    (out / "plan.json").write_text(
+        json.dumps(compiled["plan"], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (out / "authoring_requirements.json").write_text(
+        json.dumps(compiled["authoring_requirements"], indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8")
+    return {"out": str(out), "selected_cores": compiled["baseline"]["selected_cores"],
+            "atoms": len(compiled["source"]["atoms"]),
+            "questions": len(compiled["source"]["questions"]),
+            "obligations": len(compiled["baseline"]["obligations"]),
+            "authoring_requirements": len(compiled["authoring_requirements"])}
+
+
+def main() -> int:
+    import argparse
+    parser = argparse.ArgumentParser(description="Compile publication inputs for one bucket from the library")
+    parser.add_argument("packages", nargs="+", type=Path)
+    parser.add_argument("--bucket", required=True)
+    parser.add_argument("--subject", required=True)
+    parser.add_argument("--topic-id", required=True)
+    parser.add_argument("--title", required=True)
+    parser.add_argument("--out", type=Path, required=True)
+    args = parser.parse_args()
+    records = build_index(load_packages(args.packages))
+    compiled = compile_bucket(records, args.bucket, topic_id=args.topic_id, title=args.title,
+                              subject=args.subject,
+                              practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"})
+    print(json.dumps(write(compiled, args.out), indent=2, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -16,6 +16,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install schema validator
+        run: pip install --quiet jsonschema
+
       # Proves the guard detects a planted violation. Without this a guard that
       # scanned nothing would pass vacuously.
       - name: Topic independence guard — self-test
@@ -52,7 +55,20 @@ jobs:
                 f"declared comparisons and declared limits present.")
           PY
 
-      - name: Engine tests (port regression, subject neutrality, declared comparisons)
+      - name: Gate registries validate against their subject contract
+        run: |
+          python3 Shared/gates/validate.py \
+            --registry Physics/gates/motion-vectors.v1.json \
+            --bindings Physics/gates/curriculum-bindings.v1.json \
+            --subject-root Physics
+
+      - name: Library intake, reference resolution and promotion monotonicity
+        run: |
+          python3 Shared/library/intake.py Physics/library/*.json
+          python3 Shared/library/resolve.py Physics/library/*.json
+          python3 Shared/library/promote.py Physics/library/*.json
+
+      - name: Tests (engine port, gate falsifiers, library, compilation)
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
 
       - name: All JSON parses
