@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0.0",
+  "subjects": [
+    "adapter",
+    "adapter",
+    "adapter"
+  ],
+  "component_count": 38,
+  "relation_count": 39,
+  "components_by_role": {
+    "CONTRACT": 7,
+    "ENGINE": 10,
+    "GATES": 2,
+    "LIBRARY": 5,
+    "TEST": 4,
+    "TOOLING": 5,
+    "WEB": 5
+  },
+  "digest": "sha256:66199b97450ed0c1a696e022c63b059cd18b32e51d725d050feaee03a35caade",
+  "components": [
+    {
+      "path": "Shared/gates/gate.schema.json",
+      "role": "GATES",
+      "role_description": "Technical gate schema and validator",
+      "bytes": 9037,
+      "sha256": "0bac4798085eca933042cbdff73d0235ee8c9dc1c705770e73d7f87a2cbecafe"
+    },
+    {
+      "path": "Shared/gates/validate.py",
+      "role": "GATES",
+      "role_description": "Technical gate schema and validator",
+      "bytes": 9530,
+      "sha256": "d7212459a5c37d11a04e685488b4ab5ee50f5076eebb897445012be92e26efcf"
+    },
+    {
+      "path": "Shared/library/compile_inputs.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 17250,
+      "sha256": "4e28ca74ca85c5bb85eb9d45d5dd74ae3ef4dacf20f16ab258af6934b8767dcf"
+    },
+    {
+      "path": "Shared/library/intake.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 5404,
+      "sha256": "c24db9cf7ee8fb9ddb91abe24eb86520aebabdf4aea4e6bbc62cfeeed5fea0b8"
+    },
+    {
+      "path": "Shared/library/package.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 46741,
+      "sha256": "71ce7a8d35e262f66bc49963799337af80fc13883b63cfeccca174139376dcce"
+    },
+    {
+      "path": "Shared/library/promote.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 4894,
+      "sha256": "649834b0ae1e35efe6acdede61eef32259041aeacbf2e699294aa5d19a0bc65b"
+    },
+    {
+      "path": "Shared/library/resolve.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 7241,
+      "sha256": "fffc4d27ee412f72e034e9e4f94c23a4a7b0aac28bf36de5c505d7909c202c06"
+    },
+    {
+      "path": "Shared/publication_host/__init__.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 85,
+      "sha256": "7a570d99a08e7e0f8907f41350007c30d188de867d2a237b175c2f2c8a552798"
+    },
+    {
+      "path": "Shared/publication_host/adapter.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 5845,
+      "sha256": "8fbfde3f6f5f8395904b3d9599548a344f2cf62f9b4a98ada175bb77e1eaf47e"
+    },
+    {
+      "path": "Shared/publication_host/audit.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 5246,
+      "sha256": "67840fb58a8a1b728e5c1d71486527107409a5e51109fbaeefc83e3032c393da"
+    },
+    {
+      "path": "Shared/publication_host/cli.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 1467,
+      "sha256": "7b23f2206ad6dc7cbd7f657dcc4f20586a2525fb8f2af3970d98a17f0483d472"
+    },
+    {
+      "path": "Shared/publication_host/compose.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 10952,
+      "sha256": "427892177d0a5911775d0376d2ed4abe17c4d1698c74e1ab2251bac12be9fc4c"
+    },
+    {
+      "path": "Shared/publication_host/drawing.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 4047,
+      "sha256": "ecef46d3df3b3ee9354c2d5f32f8e3b9f63764eee6882afcbc5df608313c0268"
+    },
+    {
+      "path": "Shared/publication_host/host.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 2419,
+      "sha256": "537c7337f4d2654fbd3dff220a265c000eeb2b9a44193df0186732e3dc31032d"
+    },
+    {
+      "path": "Shared/publication_host/inputs.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 10534,
+      "sha256": "5c1f0512267b92766323ee17cc83f9efd937940b33c41092e0a47298b6e5a2c0"
+    },
+    {
+      "path": "Shared/publication_host/science.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 5539,
+      "sha256": "70460228e0c7f9dea83f5ab5e646133461661269c09dc250104719440f7017e2"
+    },
+    {
+      "path": "Shared/publication_host/storage.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 1774,
+      "sha256": "3b7625a4a7cc06b6d3e7bcb07e09dd254cc4a45d3471c415255299c2bfe948b0"
+    },
+    {
+      "path": "Shared/roles/CORE1.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 2025,
+      "sha256": "ba7dafa4b018a6eb601fc476f4c4bf8f129916ae7f927cbb0152cf5936432496"
+    },
+    {
+      "path": "Shared/roles/CORE1A.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 2604,
+      "sha256": "124d977b553d3926736b8b47be4097a10744a12458ea74a5b709002016091345"
+    },
+    {
+      "path": "Shared/roles/CORE1B.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 2283,
+      "sha256": "323ba8ed6d883f99d4d36e7a1601699cf90fcb8deb67e5e0f1197007735a2cdb"
+    },
+    {
+      "path": "Shared/roles/CORE2.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 1915,
+      "sha256": "f69adfa2a79f45ff23f78ce4387b7121fcc92e6828aebc5d276fcffdf9fc8582"
+    },
+    {
+      "path": "Shared/roles/CORE2A.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 2394,
+      "sha256": "b11d2c2abff9992f6a91d35bef39a272e468cff323ab3dd8d4dad616a6c0ebc3"
+    },
+    {
+      "path": "Shared/roles/CORE2B.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 2496,
+      "sha256": "0fd0c7899c8ccb183053a5140eae974185cdaa64979c16057740402466857940"
+    },
+    {
+      "path": "Shared/roles/README.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 3502,
+      "sha256": "3e7801afd5cf91d68af9732454250cf86a8c78e97052e2c85e210805c565b01a"
+    },
+    {
+      "path": "Shared/tools/__init__.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Shared/tools/build_manifest.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6414,
+      "sha256": "7841748b0fc1abf7fd0991916b635f730edc07a8fd32b262d08306b8ce6fc401"
+    },
+    {
+      "path": "Shared/tools/build_web_data.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7311,
+      "sha256": "40dc524f07c38426a6f14c7ccdc3a681f06f8cc0d73153443e862f5c157442c3"
+    },
+    {
+      "path": "Shared/tools/topic_independence_allowlist.json",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 591,
+      "sha256": "5391b05ff48f572a97a7265484e51aa091fa637b58e89e1d190f88616c3c188b"
+    },
+    {
+      "path": "Shared/tools/topic_independence_guard.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8730,
+      "sha256": "eb6bf8da22cd8c2cb60c3bc3bfd0b8f11777fa97f52d4d48c0adc45348c1f52b"
+    },
+    {
+      "path": "tests/test_gates.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7289,
+      "sha256": "eb1e041ea47b12c9f951e7af0165f45533f1612ef9a3f2160fbe8b0e5c6a5157"
+    },
+    {
+      "path": "tests/test_library.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9013,
+      "sha256": "6003858dfa7d3bcecaf3d9320d4bd74d56f3670d0407a7c6db81eb29afaedc42"
+    },
+    {
+      "path": "tests/test_publication_engine.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7225,
+      "sha256": "2ae7e57bc016f7fce3cc9dedac6927ffe34216a5e20873deab711fd4df5c307d"
+    },
+    {
+      "path": "tests/test_tools.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5309,
+      "sha256": "f641a48071ffd6b548403054243f57201babfedbeff1960cd212601c46244983"
+    },
+    {
+      "path": "tools/app.css",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 3206,
+      "sha256": "2baa5c0b70ccfb51db90cdf0158e8433070f1e5b6c2777d665c879cb040c1c1c"
+    },
+    {
+      "path": "tools/data.js",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 47777,
+      "sha256": "11be2e6b36f2f5a7fe6e2bf6a8d1e1365443808c18242cbd2be9cb3b057d15e2"
+    },
+    {
+      "path": "tools/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 3068,
+      "sha256": "2a6e27e15b449425810d04bcc3b7f31991263438f5af24e7cecf705f15f8d02d"
+    },
+    {
+      "path": "tools/library/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 10707,
+      "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
+    },
+    {
+      "path": "tools/run-builder/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 7041,
+      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
+    }
+  ],
+  "relations": [
+    {
+      "from": "Shared/gates/validate.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/compile_inputs.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/compile_inputs.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/intake.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/resolve.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/adapter.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/cli.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/compose.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/drawing.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/host.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/inputs.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/science.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/science.py",
+      "to": "adapter",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/storage.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_gates.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_gates.py",
+      "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.promote",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.adapter",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.compose",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    }
+  ]
+}

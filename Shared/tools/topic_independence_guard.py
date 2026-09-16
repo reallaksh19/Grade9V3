@@ -62,14 +62,25 @@ class Violation:
         return f"{rel}:{self.line}: {self.reason}: {shown!r}"
 
 
+def _allowlist_document() -> dict:
+    return json.loads(ALLOWLIST.read_text(encoding="utf-8")) if ALLOWLIST.is_file() else {}
+
+
 def load_allowlist() -> list[dict]:
-    if not ALLOWLIST.is_file():
-        return []
-    entries = json.loads(ALLOWLIST.read_text(encoding="utf-8")).get("allow", [])
+    entries = _allowlist_document().get("allow", [])
     for entry in entries:
         if not str(entry.get("reason", "")).strip():
             raise SystemExit(f"allowlist entry without a reason: {entry}")
     return entries
+
+
+def excluded_paths() -> set[str]:
+    """Whole files outside the guard's remit -- generated data, not engine code."""
+    entries = _allowlist_document().get("exclude_paths", [])
+    for entry in entries:
+        if not str(entry.get("reason", "")).strip():
+            raise SystemExit(f"exclusion without a reason: {entry}")
+    return {entry["path"] for entry in entries}
 
 
 def allowed(entries: list[dict], path: Path, literal: str) -> bool:
@@ -123,9 +134,12 @@ def scan_javascript(path: Path, entries: list[dict]) -> list[Violation]:
 
 def scan(roots: list[Path]) -> tuple[list[Violation], int]:
     entries, found, scanned = load_allowlist(), [], 0
+    skip = excluded_paths()
     for root in roots:
         for path in sorted(root.rglob("*")):
             if not path.is_file() or "__pycache__" in path.parts or path.resolve() == SELF:
+                continue
+            if path.is_relative_to(REPO_ROOT) and str(path.relative_to(REPO_ROOT)) in skip:
                 continue
             if path.suffix in PY_SUFFIXES:
                 found += scan_python(path, entries)

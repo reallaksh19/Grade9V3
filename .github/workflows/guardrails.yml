@@ -24,8 +24,8 @@ jobs:
       - name: Topic independence guard — self-test
         run: python3 Shared/tools/topic_independence_guard.py --selftest
 
-      - name: Topic independence guard — scan Shared/
-        run: python3 Shared/tools/topic_independence_guard.py
+      - name: Topic independence guard — scan engine and tooling
+        run: python3 Shared/tools/topic_independence_guard.py --root Shared --root tools
 
       - name: Subject contracts parse and declare all six learner products
         run: |
@@ -68,7 +68,15 @@ jobs:
           python3 Shared/library/resolve.py Physics/library/*.json
           python3 Shared/library/promote.py Physics/library/*.json
 
-      - name: Tests (engine port, gate falsifiers, library, compilation)
+      - name: Architecture manifest has not drifted
+        run: python3 Shared/tools/build_manifest.py --check
+
+      - name: Generated web data is current
+        run: |
+          python3 Shared/tools/build_web_data.py
+          git diff --exit-code -- tools/data.js
+
+      - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
 
       - name: All JSON parses
