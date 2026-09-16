@@ -1,0 +1,86 @@
+{
+  "schema_version": "2.0.0",
+  "subject": "Mathematics",
+  "contract_version": "2.0.0",
+  "learner_products": {
+    "CORE1": "EXISTING_BASIC_NOTES",
+    "CORE2": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
+    "CORE1A": "DECLARATIVE_STUDY",
+    "CORE1B": "CONCEPTUAL_SELF_TUTOR",
+    "CORE2A": "SOLUTION_APPRENTICESHIP",
+    "CORE2B": "APPLICATION_AND_TRANSFER_TUTOR"
+  },
+  "equation_semantic_fields": [
+    "domain",
+    "hypotheses",
+    "equivalence_and_reversibility",
+    "excluded_values"
+  ],
+  "validator_catalogue": [
+    {
+      "id": "POLYNOMIAL_FROM_ROOTS",
+      "status": "IMPLEMENTED",
+      "inputs": ["roots", "leading_coefficient"],
+      "result": {"shape": "EXACT_RATIONAL_COEFFICIENT_LIST", "ordering": "DESCENDING_DEGREE", "comparison": "EXACT_RATIONAL_EQUALITY"},
+      "requires": ["domain = RATIONAL", "leading_coefficient != 0", "at least one root"],
+      "proves": "The expanded coefficients follow exactly from the declared roots and leading coefficient.",
+      "does_not_prove": "That those roots are the roots of the problem's actual polynomial, or that the factorisation was legitimate over the stated domain."
+    },
+    {
+      "id": "POLYNOMIAL_VALUE",
+      "status": "IMPLEMENTED",
+      "inputs": ["coefficients_descending", "x"],
+      "result": {"shape": "EXACT_RATIONAL", "comparison": "EXACT_RATIONAL_EQUALITY"},
+      "requires": ["domain = RATIONAL", "non-empty coefficients"],
+      "proves": "The evaluated value follows exactly from the declared coefficients at the declared point.",
+      "does_not_prove": "That the point lies in the problem's admissible domain."
+    },
+    {
+      "id": "LINEAR_EQUATION",
+      "status": "IMPLEMENTED",
+      "inputs": ["a", "b", "c"],
+      "result": {"shape": "EXACT_RATIONAL", "comparison": "EXACT_RATIONAL_EQUALITY"},
+      "requires": ["domain = RATIONAL", "a != 0 (otherwise the solution is not unique)"],
+      "proves": "The unique solution of a*x + b = c over the rationals.",
+      "does_not_prove": "That the modelling step producing that equation was correct, or that solutions were not lost earlier by a non-equivalent transformation."
+    }
+  ],
+  "representation_kinds": [
+    {"id": "GEOMETRIC_CONSTRUCTION", "status": "PROPOSED", "requires": ["declared given/construct/prove split", "congruence and parallelism marks", "labelled points"]},
+    {"id": "FUNCTION_PLOT", "status": "PROPOSED", "requires": ["domain and range", "excluded values marked", "asymptotes and discontinuities visible"]},
+    {"id": "NUMBER_LINE", "status": "PROPOSED", "requires": ["open versus closed endpoints", "declared direction"]}
+  ],
+  "risks": [
+    "lost solutions when cancelling",
+    "domain expansion",
+    "non-equivalent transformations",
+    "unjustified generalization"
+  ],
+  "curriculum": {
+    "boards": ["CBSE"],
+    "grades": [9, 10, 11],
+    "tiers": ["NOT_IN_JEE", "JEE_MAINS", "JEE_ADVANCED", "BOTH"],
+    "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
+    "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
+  },
+  "source_truth": "ORIGINAL_EVIDENCE_WITH_EXACT_PROVENANCE",
+  "renderer_authority": "COMPOSITION_ONLY",
+  "new_generated_family_policy": "EXPLICIT_VALIDATOR_AND_SUBJECT_REVIEW_REQUIRED",
+  "release_authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+  "subject_specific_notes": {
+    "exactness": "Mathematics checks are exact rational arithmetic, not floating-point tolerance. A tolerance-based comparison would silently accept a wrong exact answer and must not be applied to this subject's results.",
+    "symbolic_equality": "Symbolic equality alone is insufficient evidence of a valid transformation; reversibility and domain preservation are separate obligations recorded in equation_semantic_fields.",
+    "proof_obligations": "Proof-shaped work has no numeric oracle. It remains a review draft until subject review, and must not be presented as machine-verified because an incidental numeric field checked out."
+  },
+  "provenance": {
+    "ported_from": "reallaksh19/Common, Grade 9/V3B/Mathematics/CoreContracts.json at contract_version 1.0.0",
+    "subject_basis": "5748e196231f5f20cfbe650201aa7fb5b17f2d08",
+    "port_head": "f9bd41b14174b718e534fef1a6cc5bf59bff5ce6",
+    "changes_on_port": [
+      "Promoted to six learner products. The source contract declared only CORE1/CORE2/CORE1A/CORE2A; CORE1B and CORE2B are new obligations for this subject.",
+      "Expanded validator_ids into a validator_catalogue recording exact-rational result shapes, which the Physics-shaped scalar-with-unit comparison cannot represent.",
+      "Recorded exactness, symbolic-equality and proof-obligation notes that constrain how the shared engine may verify this subject."
+    ],
+    "parallel_track_reference": "reallaksh19/Common PR #395 carries independent Mathematics work (engineering gates, discovery vocabulary, subtopic intelligence library). It is a reference for adaptation, not a source to copy; nothing from it has been imported here."
+  }
+}
