@@ -132,6 +132,26 @@ def scan_javascript(path: Path, entries: list[dict]) -> list[Violation]:
     return found
 
 
+def default_roots(repo: Path = REPO_ROOT) -> list[Path]:
+    """Everything that must be subject-neutral, derived rather than listed.
+
+    A subject directory declares a contract, and its own code is supposed to name its
+    subject. Tests name subjects deliberately too, which is why they live outside the
+    engine. Everything else -- the engine, the library, the gates, the tooling, the
+    browsable surfaces -- is engine territory. Deriving the list means a new top-level
+    component is guarded the day it appears, rather than when somebody remembers to
+    add a --root flag to a workflow file.
+    """
+    exempt = {p.parent.parent.name for p in repo.glob("*/adapter/CoreContracts.json")} | {"tests"}
+    guarded = []
+    for entry in sorted(repo.iterdir()):
+        if not entry.is_dir() or entry.name.startswith(".") or entry.name in exempt:
+            continue
+        if any(f.suffix in PY_SUFFIXES | JS_SUFFIXES for f in entry.rglob("*")):
+            guarded.append(entry)
+    return guarded
+
+
 def scan(roots: list[Path]) -> tuple[list[Violation], int]:
     entries, found, scanned = load_allowlist(), [], 0
     skip = excluded_paths()
@@ -178,13 +198,14 @@ def selftest() -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Topic independence guard for subject-neutral engine code")
     parser.add_argument("--root", action="append", default=None,
-                        help="directory to scan, relative to the repository root (default: Shared)")
+                        help="directory to scan, relative to the repository root "
+                             "(default: every directory that must be subject-neutral)")
     parser.add_argument("--selftest", action="store_true", help="verify the guard detects a planted violation")
     args = parser.parse_args()
     if args.selftest:
         return selftest()
 
-    roots = [REPO_ROOT / r for r in (args.root or ["Shared"])]
+    roots = [REPO_ROOT / r for r in args.root] if args.root else default_roots()
     missing = [r for r in roots if not r.is_dir()]
     if missing:
         print("no such root: " + ", ".join(str(r) for r in missing))

@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 40,
-  "relation_count": 51,
+  "component_count": 41,
+  "relation_count": 56,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 5,
     "TEST": 5,
-    "TOOLING": 6,
+    "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:01410dcba179c0ceae57c5395d2ae076385f855e2e2d872ba71cb0094b2561a4",
+  "digest": "sha256:0e71b63705eec548a9e5d8f09e638db685c97d48c1c7320931e502ec2962945b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -208,6 +208,13 @@
       "sha256": "b5e1e4be6885151c3046775bf8157dae1678127aba183e2e7073c7dbb97be23a"
     },
     {
+      "path": "Shared/tools/check_subjects.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5260,
+      "sha256": "00d79c449695422a16b6ace19270e18e9cea517cac837aa7c8d9f5dcddeaa577"
+    },
+    {
       "path": "Shared/tools/republish.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -225,8 +232,8 @@
       "path": "Shared/tools/topic_independence_guard.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8730,
-      "sha256": "eb6bf8da22cd8c2cb60c3bc3bfd0b8f11777fa97f52d4d48c0adc45348c1f52b"
+      "bytes": 9828,
+      "sha256": "66be76054d03adfbb44b4d0ba4f334b652f8d125dcead6348d6c46c71d9f3db5"
     },
     {
       "path": "tests/test_gates.py",
@@ -260,8 +267,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5309,
-      "sha256": "f641a48071ffd6b548403054243f57201babfedbeff1960cd212601c46244983"
+      "bytes": 8527,
+      "sha256": "5e4086f210cd09af138e852bc6ab18a49c2172a0086aef0019748d90fcc65f83"
     },
     {
       "path": "tools/app.css",
@@ -417,6 +424,31 @@
     },
     {
       "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.promote",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
       "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },

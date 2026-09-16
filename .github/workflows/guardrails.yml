@@ -25,81 +25,12 @@ jobs:
         run: python3 Shared/tools/topic_independence_guard.py --selftest
 
       - name: Topic independence guard — scan engine and tooling
-        run: python3 Shared/tools/topic_independence_guard.py --root Shared --root tools
+        run: python3 Shared/tools/topic_independence_guard.py
 
-      - name: Subject contracts parse and declare all six learner products
-        run: |
-          python3 - <<'PY'
-          import json, sys
-          from pathlib import Path
-
-          required = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
-          failures = []
-          contracts = sorted(Path(".").glob("*/adapter/CoreContracts.json"))
-          if not contracts:
-              sys.exit("no subject contracts found")
-          for path in contracts:
-              data = json.loads(path.read_text(encoding="utf-8"))
-              products = set(data.get("learner_products", {}))
-              if products != required:
-                  failures.append(f"{path}: learner_products {sorted(products)} != {sorted(required)}")
-              for entry in data.get("validator_catalogue", []):
-                  if "result" not in entry or "comparison" not in entry.get("result", {}):
-                      failures.append(f"{path}: validator {entry.get('id')} declares no result comparison")
-                  if not str(entry.get("does_not_prove", "")).strip():
-                      failures.append(f"{path}: validator {entry.get('id')} declares no does_not_prove limit")
-          if failures:
-              print("\n".join(failures))
-              sys.exit(1)
-          print(f"{len(contracts)} subject contract(s) checked: six learner products, "
-                f"declared comparisons and declared limits present.")
-          PY
-
-      # Every subject present is checked. Naming one here would let a second subject
-      # be added with an invalid registry or a hollow library and still go green.
-      - name: Gate registries validate against their subject contract
-        run: |
-          python3 - <<'PY'
-          import subprocess, sys
-          from pathlib import Path
-
-          checked = 0
-          for contract in sorted(Path(".").glob("*/adapter/CoreContracts.json")):
-              subject = contract.parent.parent
-              bindings = subject / "gates/curriculum-bindings.v1.json"
-              for registry in sorted((subject / "gates").glob("*.v1.json")):
-                  if registry == bindings:
-                      continue
-                  print(f"--- {registry}")
-                  subprocess.run([sys.executable, "Shared/gates/validate.py",
-                                  "--registry", str(registry), "--bindings", str(bindings),
-                                  "--subject-root", str(subject)], check=True)
-                  checked += 1
-          if not checked:
-              sys.exit("no gate registries found")
-          print(f"{checked} gate registry/registries validated")
-          PY
-
-      - name: Library intake, reference resolution and promotion monotonicity
-        run: |
-          python3 - <<'PY'
-          import subprocess, sys
-          from pathlib import Path
-
-          checked = 0
-          for contract in sorted(Path(".").glob("*/adapter/CoreContracts.json")):
-              packages = sorted((contract.parent.parent / "library").glob("*.json"))
-              if not packages:
-                  print(f"{contract.parent.parent}: no library packages yet")
-                  continue
-              for tool in ("intake", "resolve", "promote"):
-                  subprocess.run([sys.executable, f"Shared/library/{tool}.py",
-                                  *map(str, packages)], check=True)
-              checked += 1
-          if not checked:
-              sys.exit("no subject libraries found")
-          print(f"{checked} subject library/libraries checked")
-          PY
+      # One tested module, not a workflow heredoc: subject discovery is protected by
+      # the suite, so CI cannot quietly go back to checking a single named subject.
+      - name: Every subject's contract, gate registries and library
+        run: python3 Shared/tools/check_subjects.py
 
       # build_manifest regenerates tools/data.js first, so this covers both artifacts.
       - name: Generated artifacts have not drifted

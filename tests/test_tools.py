@@ -1,6 +1,7 @@
 """Tooling: the manifest is deterministic and detects drift, the guard's exclusion
 mechanism requires a reason, and generated web data tells the truth about compilation."""
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -9,7 +10,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import build_manifest, build_web_data  # noqa: E402
+from Shared.tools import (  # noqa: E402
+    build_manifest, build_web_data, check_subjects, topic_independence_guard,
+)
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
 )
@@ -115,3 +118,64 @@ class WebData(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SubjectCoverage(unittest.TestCase):
+    """CI once checked one named subject. These hold the discovery honest."""
+
+    def test_every_subject_directory_is_discovered(self):
+        found = {p.name for p in check_subjects.subjects()}
+        declared = {p.parent.parent.name for p in REPO.glob("*/adapter/CoreContracts.json")}
+        self.assertEqual(found, declared)
+        self.assertGreater(len(found), 1, "a single-subject sweep proves nothing about neutrality")
+
+    def test_the_sweep_passes_on_the_committed_tree(self):
+        report = check_subjects.run()
+        self.assertTrue(report["passed"], report)
+        self.assertEqual(report["subjects_checked"], len(check_subjects.subjects()))
+
+    def test_a_subject_declaring_a_contract_but_no_adapter_is_named_not_skipped(self):
+        # A subject can be planned before it is built. That state is reported rather
+        # than crashing the sweep or silently counting as checked.
+        states = {r["subject"]: r["state"] for r in check_subjects.run()["subjects"]}
+        self.assertIn("IMPLEMENTED", states.values())
+        for subject in check_subjects.subjects():
+            expected = "IMPLEMENTED" if (subject / "adapter/validator.py").is_file() else "CONTRACT_ONLY"
+            self.assertEqual(states[subject.name], expected)
+
+    def test_a_hollow_library_in_any_subject_is_caught(self):
+        # The falsifier the old CI could not have run: break a subject that is not the
+        # one a workflow file happened to name, and the sweep must still fail.
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for subject in check_subjects.subjects():
+                shutil.copytree(subject, root / subject.name)
+            target = sorted(root.glob("*/library/*.json"))[-1]
+            package = json.loads(target.read_text(encoding="utf-8"))
+            package["microtopics"][0]["inferential_jump"] = ""
+            target.write_text(json.dumps(package), encoding="utf-8")
+            report = check_subjects.run(root)
+            self.assertFalse(report["passed"])
+            self.assertTrue(any("INFERENCE" in f for r in report["subjects"] for f in r["findings"]),
+                            report)
+
+
+class GuardRoots(unittest.TestCase):
+    """The guard scans what must be neutral, without being told where to look."""
+
+    def test_roots_are_derived_and_exclude_subjects_and_tests(self):
+        names = {p.name for p in topic_independence_guard.default_roots()}
+        subjects = {p.name for p in check_subjects.subjects()}
+        self.assertFalse(names & subjects, "a subject directory is allowed to name its subject")
+        self.assertNotIn("tests", names)
+        self.assertIn("Shared", names)
+
+    def test_a_new_neutral_directory_is_guarded_without_a_flag(self):
+        scratch = REPO / "_guard_root_probe"
+        scratch.mkdir()
+        try:
+            (scratch / "probe.py").write_text("# temporary\n", encoding="utf-8")
+            self.assertIn("_guard_root_probe",
+                          {p.name for p in topic_independence_guard.default_roots()})
+        finally:
+            shutil.rmtree(scratch)
