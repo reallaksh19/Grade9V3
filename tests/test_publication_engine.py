@@ -3,6 +3,7 @@
 These live outside Shared/ because they legitimately name subjects, which the topic
 independence guard forbids inside the engine.
 """
+import ast
 import json
 import shutil
 import sys
@@ -18,11 +19,14 @@ from Shared.contracts import ContractError  # noqa: E402
 from Shared.publication_host.adapter import (  # noqa: E402
     COMPARISONS, Adapter, compare_exact_rational, compare_tolerance,
 )
-from Shared.publication_host.audit import verify_publication  # noqa: E402
 from Shared.publication_host.compose import owner_board  # noqa: E402
 from Shared.publication_host.host import publish  # noqa: E402
 from Shared.publication_host.inputs import read_inputs  # noqa: E402
 from Shared.publication_host.science import numeric_expectation  # noqa: E402
+from Shared.publication_host.storage import runtime_files  # noqa: E402
+from Shared.tools.republish import (  # noqa: E402
+    committed_publications, regenerate, verify,
+)
 
 RUN = REPO / "Physics/content/relative-motion-g9"
 EXPECTED_BASIS = "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546"
@@ -50,15 +54,6 @@ class PortRegression(unittest.TestCase):
             self.assertEqual(result["unverified_numeric_transcriptions_checked"], 0)
             self.assertFalse(result["release_authorized"])
 
-    def test_the_committed_publication_still_verifies_against_its_own_runtime(self):
-        # A publication carries a snapshot of the engine that produced it. Checking only
-        # the composed HTML let that snapshot drift silently for two phases, so the
-        # committed run is now re-verified end to end -- runtime digests, evidence and
-        # read-back comparisons included.
-        result = verify_publication(RUN / "publication", EXPECTED_BASIS, load_physics())
-        self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["numeric_answers_compared"], 7)
-
     def test_composed_products_match_the_committed_publication_byte_for_byte(self):
         with tempfile.TemporaryDirectory() as temp:
             out = Path(temp) / "publication"
@@ -70,6 +65,75 @@ class PortRegression(unittest.TestCase):
             committed = sorted(p.name for p in (RUN / "publication/figures").iterdir())
             # Figure filenames are content digests, so equal names mean equal bytes.
             self.assertEqual(produced, committed)
+
+
+class CommittedPublications(unittest.TestCase):
+    """Every committed run re-verifies, whichever subject owns it.
+
+    A publication carries a snapshot of the engine that produced it. Checking only the
+    composed HTML of one named run let that snapshot drift for two phases, so the runs
+    are discovered here rather than listed.
+    """
+
+    def test_at_least_one_run_is_committed_so_this_sweep_is_not_vacuous(self):
+        self.assertTrue(committed_publications(), "nothing committed; the sweep proves nothing")
+
+    def test_every_committed_run_verifies_against_its_own_runtime(self):
+        for publication in committed_publications():
+            with self.subTest(publication=str(publication.relative_to(REPO))):
+                self.assertEqual(verify(publication)["status"], "PASS")
+
+    def _isolated_copy(self, temp):
+        """A committed run copied out of the tree, so regeneration can be tested safely."""
+        run = Path(temp) / "Physics/content/relative-motion-g9"
+        shutil.copytree(RUN, run)
+        return run / "publication", Path(temp)
+
+    def test_regeneration_refuses_to_change_what_a_learner_reads(self):
+        # A refresh moves the runtime snapshot and evidence, which is routine. Moving
+        # the composed pages is a change to the product, and must be asked for.
+        with tempfile.TemporaryDirectory() as temp:
+            publication, root = self._isolated_copy(temp)
+            page = publication / "CORE1A.html"
+            page.write_bytes(page.read_bytes().replace(b"</main>", b"<p>edited</p></main>"))
+            with self.assertRaises(ContractError) as caught:
+                regenerate(publication, repo=root)
+            self.assertEqual(caught.exception.code, "PUBLISHED_OUTPUT_WOULD_CHANGE")
+            self.assertIn("CORE1A.html", caught.exception.detail)
+            self.assertIn(b"edited", page.read_bytes(), "the refusal left the run untouched")
+
+    def test_regeneration_reports_the_change_when_it_is_asked_for(self):
+        with tempfile.TemporaryDirectory() as temp:
+            publication, root = self._isolated_copy(temp)
+            page = publication / "CORE1A.html"
+            page.write_bytes(page.read_bytes().replace(b"</main>", b"<p>edited</p></main>"))
+            report = regenerate(publication, accept_output_change=True, repo=root)
+            self.assertEqual(report["learner_visible_changes"], ["CORE1A.html"])
+            self.assertNotIn(b"edited", page.read_bytes(), "the run was rebuilt")
+
+    def test_the_runtime_snapshot_covers_everything_the_engine_imports(self):
+        # The snapshot lists the engine explicitly rather than sweeping Shared/, which
+        # keeps tooling edits from invalidating published work. That is only safe while
+        # the list still covers what the engine actually imports, so this checks it.
+        snapshot = set(runtime_files(load_physics()))
+        pending, seen = ["Shared.contracts", "Shared.publication_host"], set()
+        while pending:
+            module = pending.pop()
+            if module in seen:
+                continue
+            seen.add(module)
+            base = REPO / Path(module.replace(".", "/"))
+            sources = sorted(base.rglob("*.py")) if base.is_dir() else [base.with_suffix(".py")]
+            for source in sources:
+                relative = source.relative_to(REPO).as_posix()
+                self.assertIn(relative, snapshot,
+                              f"{relative} is imported by the engine but absent from the snapshot")
+                for node in ast.walk(ast.parse(source.read_text(encoding="utf-8"))):
+                    if isinstance(node, ast.ImportFrom) and node.module and \
+                            node.module.startswith("Shared"):
+                        pending.append(node.module)
+                    elif isinstance(node, ast.ImportFrom) and node.level and node.module:
+                        pending.append("Shared.publication_host." + node.module)
 
 
 class SubjectNeutrality(unittest.TestCase):

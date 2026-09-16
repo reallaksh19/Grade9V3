@@ -51,13 +51,14 @@ python3 Shared/tools/topic_independence_guard.py       # engine carries no subje
 python3 Shared/tools/build_manifest.py                 # regenerates the manifest and tools/data.js
 ```
 
-A committed publication pins a snapshot of the engine that produced it, and the suite re-verifies that snapshot. So **after changing anything under `Shared/` or `Physics/adapter/`, republish the committed run** — the composed pages should come back byte-identical, and if they do not, that is a real change to learner-facing output and needs saying out loud:
+A committed publication pins a snapshot of the engine that produced it, and the suite re-verifies every committed run. So after changing the engine or a subject adapter, refresh them:
 
 ```sh
-R=Physics/content/relative-motion-g9
-python3 Physics/run.py publish --plan $R/inputs/plan.json --baseline $R/inputs/baseline.json \
-  --source-root $R/inputs --out /tmp/regen && rm -rf $R/publication && cp -r /tmp/regen $R/publication
+python3 Shared/tools/republish.py            # verify every committed run against its snapshot
+python3 Shared/tools/republish.py --write    # refresh them
 ```
+
+`--write` refuses if the composed pages or figures would change, because that is a change to what a learner reads rather than a routine refresh. Pass `--accept-output-change` when you mean it, and say so in the commit message.
 
 `tools/index.html` opens over `file://` with no build step.
 

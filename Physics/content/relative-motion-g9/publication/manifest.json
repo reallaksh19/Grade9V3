@@ -1,6 +1,6 @@
 {
   "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
-  "runtime_digest": "e726ac4c63ad1ac3f50262338c05ee337a76b5a39d98595d526f7e1ef5c023ec",
+  "runtime_digest": "3a4f7125beee8c13744b56b473bbdebcfc93a3b4cf6e87d6817a1ff1844ad8aa",
   "files": [
     {
       "path": "CORE1A.html",
@@ -107,34 +107,6 @@
       "sha256": "63f9b3729460526a220b70a323d401d7273209829d7359c5e53c897d5faa8e16"
     },
     {
-      "path": "runtime/Shared/gates/gate.schema.json",
-      "sha256": "0bac4798085eca933042cbdff73d0235ee8c9dc1c705770e73d7f87a2cbecafe"
-    },
-    {
-      "path": "runtime/Shared/gates/validate.py",
-      "sha256": "d7212459a5c37d11a04e685488b4ab5ee50f5076eebb897445012be92e26efcf"
-    },
-    {
-      "path": "runtime/Shared/library/compile_inputs.py",
-      "sha256": "e1ee62ff76c1aed9b992c19277b2a9851393c505eb6499fa36406426f43c6644"
-    },
-    {
-      "path": "runtime/Shared/library/intake.py",
-      "sha256": "c24db9cf7ee8fb9ddb91abe24eb86520aebabdf4aea4e6bbc62cfeeed5fea0b8"
-    },
-    {
-      "path": "runtime/Shared/library/package.schema.json",
-      "sha256": "5432cafb6446b0aea87f87e2b0201ba7a85ef919bc63b08702daa22c0743b6bf"
-    },
-    {
-      "path": "runtime/Shared/library/promote.py",
-      "sha256": "649834b0ae1e35efe6acdede61eef32259041aeacbf2e699294aa5d19a0bc65b"
-    },
-    {
-      "path": "runtime/Shared/library/resolve.py",
-      "sha256": "fffc4d27ee412f72e034e9e4f94c23a4a7b0aac28bf36de5c505d7909c202c06"
-    },
-    {
       "path": "runtime/Shared/publication_host/__init__.py",
       "sha256": "7a570d99a08e7e0f8907f41350007c30d188de867d2a237b175c2f2c8a552798"
     },
@@ -172,55 +144,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/storage.py",
-      "sha256": "3b7625a4a7cc06b6d3e7bcb07e09dd254cc4a45d3471c415255299c2bfe948b0"
-    },
-    {
-      "path": "runtime/Shared/roles/CORE1.md",
-      "sha256": "ba7dafa4b018a6eb601fc476f4c4bf8f129916ae7f927cbb0152cf5936432496"
-    },
-    {
-      "path": "runtime/Shared/roles/CORE1A.md",
-      "sha256": "124d977b553d3926736b8b47be4097a10744a12458ea74a5b709002016091345"
-    },
-    {
-      "path": "runtime/Shared/roles/CORE1B.md",
-      "sha256": "323ba8ed6d883f99d4d36e7a1601699cf90fcb8deb67e5e0f1197007735a2cdb"
-    },
-    {
-      "path": "runtime/Shared/roles/CORE2.md",
-      "sha256": "f69adfa2a79f45ff23f78ce4387b7121fcc92e6828aebc5d276fcffdf9fc8582"
-    },
-    {
-      "path": "runtime/Shared/roles/CORE2A.md",
-      "sha256": "b11d2c2abff9992f6a91d35bef39a272e468cff323ab3dd8d4dad616a6c0ebc3"
-    },
-    {
-      "path": "runtime/Shared/roles/CORE2B.md",
-      "sha256": "0fd0c7899c8ccb183053a5140eae974185cdaa64979c16057740402466857940"
-    },
-    {
-      "path": "runtime/Shared/roles/README.md",
-      "sha256": "3e7801afd5cf91d68af9732454250cf86a8c78e97052e2c85e210805c565b01a"
-    },
-    {
-      "path": "runtime/Shared/tools/__init__.py",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    {
-      "path": "runtime/Shared/tools/build_manifest.py",
-      "sha256": "5c22223fe7732dcc8b29ec8da9d69c7b0e88f2b5b5f8ac3252575d60a7c27093"
-    },
-    {
-      "path": "runtime/Shared/tools/build_web_data.py",
-      "sha256": "b5e1e4be6885151c3046775bf8157dae1678127aba183e2e7073c7dbb97be23a"
-    },
-    {
-      "path": "runtime/Shared/tools/topic_independence_allowlist.json",
-      "sha256": "5391b05ff48f572a97a7265484e51aa091fa637b58e89e1d190f88616c3c188b"
-    },
-    {
-      "path": "runtime/Shared/tools/topic_independence_guard.py",
-      "sha256": "eb6bf8da22cd8c2cb60c3bc3bfd0b8f11777fa97f52d4d48c0adc45348c1f52b"
+      "sha256": "deef788f71fd04c9dcfa9ad0b555a2bd7ef1f78743bfa65311a8fa3ed47be179"
     }
   ],
   "release_authorized": false,

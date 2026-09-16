@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 39,
-  "relation_count": 47,
+  "component_count": 40,
+  "relation_count": 51,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 5,
     "TEST": 5,
-    "TOOLING": 5,
+    "TOOLING": 6,
     "WEB": 5
   },
-  "digest": "sha256:43c30d12baf5fb59017e16c67aaa9db3ad0e7925c0aefb5a7b922fc4a5d4e140",
+  "digest": "sha256:01410dcba179c0ceae57c5395d2ae076385f855e2e2d872ba71cb0094b2561a4",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -134,8 +134,8 @@
       "path": "Shared/publication_host/storage.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 1774,
-      "sha256": "3b7625a4a7cc06b6d3e7bcb07e09dd254cc4a45d3471c415255299c2bfe948b0"
+      "bytes": 2375,
+      "sha256": "deef788f71fd04c9dcfa9ad0b555a2bd7ef1f78743bfa65311a8fa3ed47be179"
     },
     {
       "path": "Shared/roles/CORE1.md",
@@ -208,6 +208,13 @@
       "sha256": "b5e1e4be6885151c3046775bf8157dae1678127aba183e2e7073c7dbb97be23a"
     },
     {
+      "path": "Shared/tools/republish.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4776,
+      "sha256": "fa2010628a474dee893dc9ffd8f72d3b650cc4b6b3f99062a96481b99b5f2d03"
+    },
+    {
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -246,8 +253,8 @@
       "path": "tests/test_publication_engine.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8518,
-      "sha256": "fc107c96e3563ed034e0c3aa396d6bc1639754daf284bb74ccdcde1aa2d1cf52"
+      "bytes": 11989,
+      "sha256": "45c37954a6a95d11e2dbff9021a97cc221396e2d3be402239ebe903ebb116f7a"
     },
     {
       "path": "tests/test_tools.py",
@@ -414,6 +421,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/republish.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/republish.py",
+      "to": "Shared.publication_host.audit",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/republish.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_gates.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -490,11 +512,6 @@
     },
     {
       "from": "tests/test_publication_engine.py",
-      "to": "Shared.publication_host.audit",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_publication_engine.py",
       "to": "Shared.publication_host.compose",
       "kind": "IMPORTS"
     },
@@ -511,6 +528,16 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.storage",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.tools.republish",
       "kind": "IMPORTS"
     },
     {

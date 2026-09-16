@@ -17,6 +17,15 @@ def repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
+# The shared half of a publication's runtime: this engine and the contract helpers it
+# imports. Deliberately not all of Shared/ -- the library compiler, the gate validator
+# and the repository tooling live there too, and publish and verify import none of
+# them. Sweeping the whole tree made every tooling edit invalidate every committed
+# publication, so the staleness signal cried wolf and was ignored for two phases. A
+# test walks the engine's imports and fails if this set ever stops covering them.
+ENGINE_SOURCES = ("__init__.py", "contracts.py", "publication_host")
+
+
 def runtime_files(adapter):
     """Every file the publish and verify commands depend on, for portable rebuild.
 
@@ -25,8 +34,10 @@ def runtime_files(adapter):
     subject path is named here.
     """
     root = repo_root()
-    files = list((root / "Shared").rglob('*.py'))
-    files += list((root / "Shared").rglob('*.json')) + list((root / "Shared").rglob('*.md'))
+    files = []
+    for entry in ENGINE_SOURCES:
+        source = root / "Shared" / entry
+        files += sorted(source.rglob('*.py')) if source.is_dir() else [source]
     files += list(adapter.runtime_files())
     return {str(p.relative_to(root)): p for p in sorted(set(files))
             if p.is_file() and '__pycache__' not in p.parts}
