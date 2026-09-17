@@ -76,6 +76,14 @@ read; and the representation demand this subtopic already has, taken from
 Candidate sources are `Physics/candidates/<slug>.v1.json` with their gaps beside them in
 `<slug>.v1.gaps.json`. Committed sources are `Physics/library/<slug>.v1.json`.
 
+**Units 0 and 1 already have prose matrices from a parallel track**, on branch
+`physics-pedagogical-matrix_2`:
+`docs/PEDAGOGICAL-SCHEMA-MATRIX-PHYSICS-SUBTOPIC-1.md` (relative motion) and
+`-SUBTOPIC-2.md` (vector foundation). If your unit is 1, **read that document first and
+convert it** — it is a strict Phase A extraction with divergences already classified, and
+re-deriving it would be waste. Those documents are prose; your deliverable is the
+schema-conformant record, which is a different artifact and the only one a gate can read.
+
 ### The one thing that differs between unit 1 and units 2–13
 
 `matrix_conformance.py` reads whether a rung exists from **`<Subject>/library/` only**.
@@ -95,7 +103,12 @@ not hold them.
   | `MIC-VECTOR-VS-SCALAR` | magnitude, vector and signed component as different descriptions |
   | `MIC-SIGNED-COMPONENT` | the axis choice is free and declared; after that every component is signed |
   | `MIC-GRAPHICAL-SUBTRACTION` | `P − Q` as `P + (−Q)`: reverse without rescaling, then tail-to-head |
-  | `MIC-FRAME-QUALIFICATION-BOUNDARY` | when the simple subtraction needs frame qualification (non-assessment) |
+
+  **Three, not four.** `Physics/library/vector-representation.v1.json` physically holds a
+  fourth record, `MIC-FRAME-QUALIFICATION-BOUNDARY`, whose `bucket_id` is
+  `BUCKET-RELATIVE-MOTION`. **The file a record sits in does not decide what owns it;
+  `microtopic.bucket_id` does.** Referencing it from unit 1's ladder would put a relative
+  motion rung on the vector foundation ladder.
 
   Unit 1 is the highest-value unit for one measured reason. `MIC-VECTOR-VS-SCALAR`
   explains a vector using seven terms — frame, axes, perpendicular, component, magnitude,
@@ -500,6 +513,7 @@ finding the owner is waiting for. Do not resolve it, and do not add a third.
 | representation demand, measured | `docs/MEASURE-PHYSICS-DEPICTION-CENSUS.md` |
 | what the candidates are and are not | `Physics/candidates/README.md` |
 | the parallel offload on the same packets | `docs/OFFLOAD-B1-CANDIDATE-GAPS.md` |
+| prose matrices for units 0 and 1, from another track | branch `physics-pedagogical-matrix_2` |
 | why the axis differs per layer | the benchmark's "How to read it", decision 1 |
 | what a percentage may and may not do | `docs/ROADMAP-LEARNER-READY.md` §R5 |
 
