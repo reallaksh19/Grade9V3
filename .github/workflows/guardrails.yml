@@ -48,6 +48,9 @@ jobs:
       - name: Matrices reference the library without restating it
         run: python3 Shared/tools/matrix_conformance.py --enforce
 
+      - name: Requests resolve to a plan, or refuse with a reason
+        run: python3 Shared/tools/resolve_request.py --enforce
+
       # A library may not invent a way of depicting its subject, and a figure bound to
       # mathematics must say which part of the picture is which symbol. Runs inside the
       # subject sweep below; this step is the standalone report, which names the record

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/request.schema.json",
+  "title": "Build request",
+  "description": "What a person actually asks for: these cores, for this subtopic, for this learner, with these purposes. It is the production input the repository never had -- every gate below it could refuse bad content, and nothing could say which rung to start at or whether transfer is even wanted. It is not a library record and reaches no learner.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "subject", "bucket_id", "cores", "learner"],
+  "properties": {
+    "request_id": {"type": "string", "minLength": 1},
+    "subject": {"type": "string", "minLength": 1},
+    "bucket_id": {"type": "string", "minLength": 1},
+    "label": {"type": "string", "minLength": 1,
+              "description": "What a person calls this request."},
+    "cores": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"enum": ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]},
+      "description": "Which products are wanted. Asking for a product is not the same as the system agreeing to produce it: a purpose may withhold one, and an absent rung blocks one."
+    },
+    "learner": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Where the entry rung comes from. Exactly one of three, because a percentage typed into a field is a decision and this makes saying so unavoidable.",
+      "oneOf": [
+        {"required": ["profile_ref"], "not": {"anyOf": [{"required": ["owner_entry"]}, {"required": ["owner_estimate"]}]}},
+        {"required": ["owner_entry"], "not": {"anyOf": [{"required": ["profile_ref"]}, {"required": ["owner_estimate"]}]}},
+        {"required": ["owner_estimate"], "not": {"anyOf": [{"required": ["profile_ref"]}, {"required": ["owner_entry"]}]}}
+      ],
+      "properties": {
+        "profile_ref": {
+          "type": "string", "minLength": 1,
+          "description": "A profile in Learners/profiles. The entry rung is selected from its per-capability map, never from its knowledge_percentage."
+        },
+        "owner_entry": {
+          "type": "object", "additionalProperties": false,
+          "required": ["rung", "by", "instruction"],
+          "description": "An owner naming the entry rung outright. The shortest honest path when no diagnostic exists.",
+          "properties": {
+            "rung": {"type": "string", "minLength": 1},
+            "by": {"type": "string", "minLength": 1},
+            "instruction": {"type": "string", "minLength": 1}
+          }
+        },
+        "owner_estimate": {
+          "type": "object", "additionalProperties": false,
+          "required": ["knowledge_percentage", "by", "instruction"],
+          "description": "The percentage a person types, recorded as what it is. It selects an entry rung and may never be read as evidence that a prerequisite is held.",
+          "properties": {
+            "knowledge_percentage": {"type": "integer", "minimum": 0, "maximum": 100},
+            "by": {"type": "string", "minLength": 1},
+            "instruction": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "practice": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What each practice run is for. A purpose carries its own support level, so the practice cores need no knowledge number at all -- these are separate questions and were previously one.",
+      "properties": {
+        "CORE2A": {"$ref": "#/$defs/practiceIntent"},
+        "CORE2B": {"$ref": "#/$defs/practiceIntent"}
+      }
+    }
+  },
+  "$defs": {
+    "practiceIntent": {
+      "type": "object", "additionalProperties": false, "required": ["purpose"],
+      "properties": {
+        "purpose": {"type": "string", "minLength": 1,
+                    "description": "An id from Shared/vocabularies/purpose.json."},
+        "note": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

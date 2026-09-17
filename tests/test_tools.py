@@ -14,8 +14,8 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, check_subjects,
-    capability_collisions, learner_evidence, matrix_conformance, spec_conformance,
-    spec_delivery, topic_independence_guard,
+    capability_collisions, learner_evidence, matrix_conformance, resolve_request,
+    spec_conformance, spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -928,3 +928,200 @@ class AuthorBrief(unittest.TestCase):
     def test_a_rung_with_a_record_binds_to_it_rather_than_restating_it(self):
         text = author_brief.brief("Physics", self.BUCKET, "R3", "CORE1A")
         self.assertIn("Bind to MIC-SAME-TIME", text)
+
+
+class ResolveRequest(unittest.TestCase):
+    """A request is the production input every gate below it assumed and none provided.
+
+    Two rules carry into this layer. A knowledge input selects the ENTRY rung and never
+    changes what a rung teaches; and a percentage is a decision, so it cannot be typed
+    into a request without saying so.
+    """
+
+    REQUEST = REPO / "Requests/relative-motion-g9.request.json"
+
+    def request(self):
+        return json.loads(self.REQUEST.read_text(encoding="utf-8"))
+
+    def points(self, mutate=None):
+        request = self.request()
+        if mutate:
+            mutate(request)
+        return [f["point"] for f in resolve_request.plan(request)["findings"]]
+
+    def rows(self):
+        board = resolve_request.ladder("Physics", "BUCKET-RELATIVE-MOTION")
+        return sorted(board["rungs"], key=lambda r: r.get("ladder_position", 0))
+
+    def core(self, report, name):
+        return next(c for c in report["cores"] if c["core"] == name)
+
+    def test_the_committed_request_resolves(self):
+        report = resolve_request.audit()
+        self.assertGreater(report["requests"], 0, "no request, so this asserts nothing")
+        self.assertEqual(report["findings"], 0,
+                         [f for r in report["plans"] for f in r["findings"]])
+
+    def test_a_bare_percentage_cannot_be_typed_into_a_request(self):
+        # The A4 rule made structural. knowledge_percentage is stored and never computed
+        # from, so the only way to supply one here is inside an owner_estimate that says
+        # on its face that it is a decision.
+        import jsonschema
+        schema = json.loads((REPO / "Shared/library/request.schema.json")
+                            .read_text(encoding="utf-8"))
+        request = self.request()
+        request["learner"] = {"knowledge_percentage": 20}
+        self.assertTrue(list(jsonschema.Draft202012Validator(schema)
+                             .iter_errors(request)))
+
+    def test_two_sources_of_placement_at_once_are_refused(self):
+        import jsonschema
+        schema = json.loads((REPO / "Shared/library/request.schema.json")
+                            .read_text(encoding="utf-8"))
+        request = self.request()
+        request["learner"]["owner_entry"] = {"rung": "R3", "by": "o", "instruction": "i"}
+        self.assertTrue(list(jsonschema.Draft202012Validator(schema)
+                             .iter_errors(request)))
+
+    def test_a_practice_core_without_a_purpose_is_refused(self):
+        # The question that was never asked. There is no default that would not be a guess.
+        self.assertEqual(self.points(lambda r: r["practice"].pop("CORE2A")),
+                         ["PRACTICE_CORE_WITHOUT_A_PURPOSE"])
+
+    def test_transfer_requested_under_a_purpose_that_withholds_it(self):
+        self.assertEqual(
+            self.points(lambda r: r["practice"]["CORE2B"].update(purpose="STARTER")),
+            ["TRANSFER_REQUESTED_UNDER_A_PURPOSE_THAT_WITHHOLDS_IT"])
+
+    def test_a_purpose_the_vocabulary_does_not_declare(self):
+        self.assertEqual(
+            self.points(lambda r: r["practice"]["CORE2A"].update(purpose="REVISION_ISH")),
+            ["PURPOSE_UNKNOWN"])
+
+    def test_a_purpose_for_a_product_nobody_asked_for(self):
+        self.assertEqual(self.points(lambda r: r["cores"].remove("CORE2B")),
+                         ["PURPOSE_FOR_A_CORE_NOT_REQUESTED"])
+
+    def test_an_owner_may_name_the_entry_rung_but_not_invent_one(self):
+        def name(rung):
+            return lambda r: r.__setitem__(
+                "learner", {"owner_entry": {"rung": rung, "by": "owner",
+                                            "instruction": "placement decision"}})
+        self.assertEqual(self.points(name("R4")), [])
+        self.assertEqual(self.points(name("R2")), ["ENTRY_RUNG_NOT_ON_THE_LADDER"])
+
+    def test_a_position_between_rungs_is_a_hole_rather_than_a_depth(self):
+        self.assertEqual(
+            self.points(lambda r: r["learner"]["owner_estimate"].update(
+                knowledge_percentage=45)),
+            ["ENTRY_POSITION_BETWEEN_RUNGS"])
+
+    def test_a_dangling_profile_is_refused(self):
+        self.assertEqual(
+            self.points(lambda r: r.__setitem__("learner",
+                                                {"profile_ref": "PROFILE-NOT-REAL"})),
+            ["PROFILE_REF_DANGLING"])
+
+    def test_a_synthetic_profile_is_never_routed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Learners/profiles").mkdir(parents=True)
+            (root / "Physics/matrices").mkdir(parents=True)
+            shutil.copy(REPO / "Physics/matrices/relative-motion.rungs.json",
+                        root / "Physics/matrices/relative-motion.rungs.json")
+            (root / "Learners/profiles/synthetic.json").write_text(json.dumps({
+                "profile_id": "PROFILE-SYNTHETIC", "provenance": "SYNTHETIC_TEST",
+                "held": {}, "measured_fit_claim": False}), encoding="utf-8")
+            request = self.request()
+            request["learner"] = {"profile_ref": "PROFILE-SYNTHETIC"}
+            points = [f["point"] for f in
+                      resolve_request.plan(request, root)["findings"]]
+        self.assertEqual(points, ["SYNTHETIC_PROFILE_ROUTED"])
+
+    def test_nobody_can_be_placed_on_a_ladder_whose_lower_rungs_have_no_records(self):
+        # The most useful refusal here, and it is measured rather than hypothetical: R1 is
+        # ABSENT, so it declares no capability, so no observation of this learner can say
+        # whether they are past it. That is a fact about the library, not about them.
+        caps, mics = author_brief.capability_chain("Physics")
+        entry = resolve_request.entry_from_profile(
+            self.rows(), {"held": {"CAP-SAME-TIME": "DEMONSTRATED"}}, caps, mics)
+        self.assertEqual(entry["why"], "UNDECIDABLE")
+        self.assertEqual(entry["at"], "R1")
+
+    def test_placement_reads_the_capability_map_and_never_an_aggregate(self):
+        caps, mics = author_brief.capability_chain("Physics")
+        rows = [r for r in self.rows() if r["rung"] != "R1"]
+        held = {"CAP-SAME-TIME": "DEMONSTRATED", "CAP-RELATIVE-V": "UNCERTAIN"}
+        entry = resolve_request.entry_from_profile(rows, {"held": held}, caps, mics)
+        self.assertEqual(entry["rung"], "R4")
+        self.assertEqual(entry["capability"], "CAP-RELATIVE-V")
+
+    def test_a_learner_past_every_rung_is_said_so_rather_than_placed_at_the_top(self):
+        caps, mics = author_brief.capability_chain("Physics")
+        rows = [r for r in self.rows() if r["rung"] != "R1"]
+        held = {row: "DEMONSTRATED" for row in
+                ("CAP-SAME-TIME", "CAP-RELATIVE-V", "CAP-VECTOR-CHECK")}
+        self.assertEqual(
+            resolve_request.entry_from_profile(rows, {"held": held}, caps, mics)["why"],
+            "ABOVE_THE_LADDER")
+
+    def test_selection_not_dilution(self):
+        # The invariant the whole layer exists to protect. A higher entry teaches FEWER
+        # rungs, never shallower ones: the segment is a suffix and each rung's task is
+        # identical in both plans.
+        def at(position):
+            request = self.request()
+            request["learner"]["owner_estimate"]["knowledge_percentage"] = position
+            return resolve_request.plan(request)
+        low, high = at(20), at(70)
+        self.assertEqual(low["segment"], ["R1", "R3", "R4", "R5"])
+        self.assertEqual(high["segment"], ["R4", "R5"])
+        self.assertEqual(high["segment"], low["segment"][-len(high["segment"]):])
+        tasks = {s["rung"]: s["task"] for s in self.core(low, "CORE1A")["segment"]}
+        for step in self.core(high, "CORE1A")["segment"]:
+            with self.subTest(rung=step["rung"]):
+                self.assertEqual(step["task"], tasks[step["rung"]])
+
+    def test_purpose_decides_support_with_no_percentage_involved(self):
+        # Support and placement were the same number doing two jobs. Changing only the
+        # purpose changes the support and leaves the teaching segment untouched.
+        def with_purpose(purpose):
+            request = self.request()
+            request["practice"]["CORE2A"]["purpose"] = purpose
+            return resolve_request.plan(request)
+        starter, revision = with_purpose("STARTER"), with_purpose("REVISION")
+        self.assertEqual(self.core(starter, "CORE2A")["support"], "high")
+        self.assertEqual(self.core(revision, "CORE2A")["support"], "low")
+        self.assertEqual(starter["segment"], revision["segment"])
+
+    def test_an_absent_rung_in_the_segment_is_rung_work_before_product_work(self):
+        report = resolve_request.plan(self.request())
+        first = self.core(report, "CORE1A")["segment"][0]
+        self.assertEqual((first["rung"], first["state"], first["task"]),
+                         ("R1", "ABSENT", "AUTHOR_THE_RUNG"))
+
+    def test_one_request_compiles_every_brief_the_plan_calls_for(self):
+        text = resolve_request.briefs(self.request())
+        report = resolve_request.plan(self.request())
+        for core in report["cores"]:
+            for step in core.get("segment", []):
+                with self.subTest(core=core["core"], rung=step["rung"]):
+                    self.assertIn(
+                        f'# Authoring brief -- {core["core"]}, Relative motion, '
+                        f'rung {step["rung"]}', text)
+        self.assertIn("## Purpose PRACTICE -- support medium", text)
+        self.assertIn("## Transfer -- 4 changed demands", text)
+
+    def test_a_refused_request_yields_the_refusal_rather_than_briefs(self):
+        request = self.request()
+        request["practice"].pop("CORE2A")
+        text = resolve_request.briefs(request)
+        self.assertIn("PRACTICE_CORE_WITHOUT_A_PURPOSE", text)
+        self.assertNotIn("# Authoring brief", text)
+
+    def test_a_withheld_transfer_product_says_why_rather_than_failing_quietly(self):
+        request = self.request()
+        request["practice"]["CORE2B"]["purpose"] = "STARTER"
+        core = self.core(resolve_request.plan(request), "CORE2B")
+        self.assertEqual(core["state"], "WITHHELD")
+        self.assertIn("coverage gap wearing a transfer label", core["reason"])

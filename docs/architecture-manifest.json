@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 57,
-  "relation_count": 95,
+  "component_count": 59,
+  "relation_count": 98,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 13,
+    "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 14,
+    "TOOLING": 15,
     "WEB": 5
   },
-  "digest": "sha256:4407b0102e51062ec2c3f4ee9118d57ea9648f74bd381dc00c9c5a544a32ebf5",
+  "digest": "sha256:2004fef05063469a4c0a33c4c826e9b58f0289155a0e440130bb8adac3de3a28",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -108,6 +108,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 4894,
       "sha256": "649834b0ae1e35efe6acdede61eef32259041aeacbf2e699294aa5d19a0bc65b"
+    },
+    {
+      "path": "Shared/library/request.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 4025,
+      "sha256": "f90f9f91c6df1f974f4be00344aef921ae1a6f993728211d504fe8a0d86feb74"
     },
     {
       "path": "Shared/library/resolve.py",
@@ -313,6 +320,13 @@
       "sha256": "fa2010628a474dee893dc9ffd8f72d3b650cc4b6b3f99062a96481b99b5f2d03"
     },
     {
+      "path": "Shared/tools/resolve_request.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 16851,
+      "sha256": "4f67077aefd11115e366dad2090db7110989e700f188416a0fcd546e10077bab"
+    },
+    {
       "path": "Shared/tools/spec_conformance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -379,8 +393,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 49575,
-      "sha256": "45f2962ff4e94ce2973d6a5f6b59503d3b7ade4651a1500054145041447deb1f"
+      "bytes": 59822,
+      "sha256": "65ab2c23f6d19b7c7c8f19815228bb42371ef13451aea87359ef22c7f8772181"
     },
     {
       "path": "tools/app.css",
@@ -687,6 +701,21 @@
     {
       "from": "Shared/tools/republish.py",
       "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools.author_brief",
       "kind": "IMPORTS"
     },
     {

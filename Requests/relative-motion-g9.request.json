@@ -1,0 +1,18 @@
+{
+  "request_id": "REQ-PHY-RELATIVE-MOTION-G9",
+  "label": "Create Core1A, 1B, 2A and 2B for Motion in 2D > relative motion",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-RELATIVE-MOTION",
+  "cores": ["CORE1A", "CORE1B", "CORE2A", "CORE2B"],
+  "learner": {
+    "owner_estimate": {
+      "knowledge_percentage": 20,
+      "by": "owner",
+      "instruction": "No diagnostic has been run for this learner. Twenty is a placement decision, recorded as one, and may not be read as evidence that any prerequisite is held."
+    }
+  },
+  "practice": {
+    "CORE2A": {"purpose": "PRACTICE", "note": "Build fluency inside the relative-velocity family."},
+    "CORE2B": {"purpose": "COMPETITION", "note": "Mixed and unlabelled, the JEE reading of transfer."}
+  }
+}

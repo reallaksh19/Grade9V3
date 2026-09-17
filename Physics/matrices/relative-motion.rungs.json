@@ -122,6 +122,10 @@
       {
         "level": "low",
         "handed_over": "The situation only."
+      },
+      {
+        "level": "minimum",
+        "handed_over": "The situation only, unlabelled -- not identified as belonging to this family."
       }
     ]
   },
