@@ -57,6 +57,10 @@ ELICITING = "CORE1B"
 # answers. Named once here so the pairing cannot be written two ways in two places.
 REVEAL_PLACEMENT = "ELICITED_REVEAL"
 REVEAL_SUFFIX = "-REVEAL"
+# What an obligation is an obligation *of*. A concept is taught by one
+# microtopic; a bucket-level slot -- orientation, custody, practice -- is a place
+# in the product. Only the first is coverage in the sense the A/B rule means.
+CONCEPT, BUCKET = "CONCEPT", "BUCKET"
 PRACTICE = ("CORE2A", "CORE2B")
 BADGE = {"EASY": "EASY", "MEDIUM": "MEDIUM", "HARD": "HARD"}
 
@@ -135,6 +139,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
     # --- which products the library can actually support -------------------
     supported, unsupported = [], {}
     relation_ids = {r for m in microtopics for r in m.get("relation_refs", [])}
+    relations = {rid: records[rid] for rid in relation_ids if rid in records}
     for core in COMPOSABLE:
         covered = claimed[core] & microtopic_ids
         if core == "CORE1":
@@ -197,22 +202,22 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
         study = [c for c in cores if c in ROUTED]
         if study:
             obligations.append({"id": f'OB-{microtopic["id"]}', "bucket_id": bucket_id,
-                                "source_atom_ids": sorted(set(relation_atoms)),
+                                "scope": CONCEPT, "source_atom_ids": sorted(set(relation_atoms)),
                                 "required_cores": study, "required_kinds": ["TEXT"]})
     orientation_obligation = f"OB-{bucket_id}-ORIENTATION"
     if "CORE1" in supported:
-        obligations.append({"id": orientation_obligation, "bucket_id": bucket_id,
+        obligations.append({"id": orientation_obligation, "bucket_id": bucket_id, "scope": BUCKET,
                             "source_atom_ids": sorted({a["id"] for a in atoms}),
                             "required_cores": ["CORE1"], "required_kinds": ["EQUATION", "TEXT"]})
     custody_obligation = f"OB-{bucket_id}-CUSTODY"
     if "CORE2" in supported:
-        obligations.append({"id": custody_obligation, "bucket_id": bucket_id,
+        obligations.append({"id": custody_obligation, "bucket_id": bucket_id, "scope": BUCKET,
                             "source_atom_ids": sorted({a["id"] for a in atoms}),
                             "required_cores": ["CORE2"], "required_kinds": ["QUESTION"]})
     practice = [c for c in supported if c in PRACTICE]
     practice_obligation = f"OB-{bucket_id}-PRACTICE"
     if practice and questions:
-        obligations.append({"id": practice_obligation, "bucket_id": bucket_id,
+        obligations.append({"id": practice_obligation, "bucket_id": bucket_id, "scope": BUCKET,
                             "source_atom_ids": sorted({a["id"] for a in atoms}),
                             "required_cores": practice, "required_kinds": ["QUESTION"]})
     require(obligations, "LIBRARY_PRODUCED_NO_OBLIGATIONS", bucket_id)
@@ -281,7 +286,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 else:
                     blocks.append({"id": f'{core}-{microtopic["id"]}-T', "kind": "TEXT",
                                    "obligation_ids": [obligation], "source_atom_ids": bound,
-                                   "text": _teaching_text(microtopic, core)})
+                                   "text": _teaching_text(microtopic, core, relations)})
                     if core == ELICITING:
                         # Compiling the declarative text here is what made this product
                         # read as the declarative one. It stays only while a microtopic
@@ -295,9 +300,17 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 # figure after every text block put the one that explains a transition
                 # after the whole argument had been read in prose.
                 blocks += [b for b in figures if b["obligation_ids"] == [obligation]]
+            # Completed worked examples, which Core1A's required content names and which
+            # reached no page: the mechanism already existed -- a question whose exposure
+            # names this product -- and nothing emitted it. A worked example is a
+            # question with its reasoning fully visible, not a second kind of record.
+            for record in question_records:
+                if not any(e.get("core") == core for e in record.get("exposure", [])):
+                    continue
+                blocks.append(_question_block(core, record, practice_obligation, atoms))
             requirements.append({"kind": "PROSE_AUTHORING", "core": core,
                                  "detail": "blocks carry library-held teaching text; connecting narrative "
-                                           "and worked examples still require authoring"})
+                                           "still requires authoring"})
         else:
             for record in question_records:
                 if not any(e.get("core") == core for e in record.get("exposure", [])):
@@ -395,18 +408,40 @@ def _closure_lines(attempt: dict) -> list[str]:
     return lines
 
 
-def _teaching_text(microtopic: dict, core: str) -> str:
+def _teaching_text(microtopic: dict, core: str, relations: dict | None = None) -> str:
     """Carry the library's own authored prose; do not synthesise teaching."""
+    relations = relations or {}
     lines = [sentence(microtopic["title"]), "", microtopic["inferential_jump"]]
-    if core == "CORE1B":
-        for item in microtopic.get("misconceptions", []):
-            # The lead-in was "A common wrong idea is that", which grammatically wants a
-            # clause and was handed a sentence: "is that The equals sign means...". The
-            # wrong idea and its repair were also run together on one line, which is two
-            # sentences pretending to be one.
-            lines += ["", f'Predict first: {sentence(item["diagnostic_prompt"])}']
+
+    # What the learner is assumed to be able to do already. Core1A's required content
+    # names it first, and the product carried it nowhere: a learner who cannot do this
+    # was reading the wrong page and had no way to find out.
+    assumed = microtopic.get("entry_assumptions") or []
+    if assumed:
+        # "Before this you should be able to: Can evaluate..." -- the lead-in has to fit
+        # how the field is actually authored, and entry_assumptions[] are written as
+        # statements of a capability rather than as verb phrases.
+        lines += ["", "What this assumes you can already do:"]
+        lines += [f"- {sentence(item)}" for item in assumed]
+
+    for item in microtopic.get("misconceptions", []):
+        # Both products carry the wrong path; they frame it differently, which is the
+        # whole A/B distinction. Core1A reveals it as part of a completed construction,
+        # Core1B poses it as a prediction before anything is revealed.
+        #
+        # It was emitted for CORE1B only -- and once Core1B compiled from elicitation
+        # instead, that branch survived solely as the fallback, so the misconception
+        # reached neither product. Core1A's own spec says what that costs: "A
+        # misconception the learner never hears is a misconception they keep."
+        lines.append("")
+        if core == ELICITING:
+            lines.append(f'Predict first: {sentence(item["diagnostic_prompt"])}')
             lines += join("A common wrong idea", item["wrong_idea"])
-            lines += join("Instead", item["repair"])
+        else:
+            lines += join("A common wrong idea", item["wrong_idea"])
+            lines += join("Tell them apart", item["diagnostic_prompt"])
+        lines += join("Instead", item["repair"])
+
     for step in microtopic.get("teaching_path", []):
         stated = f'{sentence(step["action"])} {sentence(step["why_valid"])}'
         lines += join(f"{stated} This gives", step["output"]) if step.get("output") else [stated]
@@ -417,6 +452,15 @@ def _teaching_text(microtopic: dict, core: str) -> str:
         lines += [f'- {step}' for step in answer.get("reasoning", [])]
         if answer.get("check"):
             lines.append(f'Verify: {answer["check"]}')
+
+    # Checks the learner can run alone, which the relations already declare and which no
+    # product carried. Drawn from the bound relations rather than restated per
+    # microtopic, so a check cannot say something the mathematics does not.
+    checks = [check for ref in microtopic.get("relation_refs", [])
+              for check in (relations.get(ref) or {}).get("checks", [])]
+    if checks:
+        lines += ["", "Checks you can run on your own answer:"]
+        lines += [f"- {sentence(check)}" for check in dict.fromkeys(checks)]
     return "\n".join(lines)
 
 
@@ -435,8 +479,8 @@ def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict]
     if quantities:
         lines = ["The quantities this bucket works with."]
         lines += [f'{records[a["id"]]["symbol"]}: {records[a["id"]]["meaning"]} '
-                  f'({records[a["id"]]["unit"]})' for a in quantities
-                  if records[a["id"]].get("symbol")]
+                  f'({records[a["id"]]["value"]} {records[a["id"]]["unit"]})'
+                  for a in quantities if records[a["id"]].get("symbol")]
         blocks.append({"id": "CORE1-QUANTITIES", "kind": "TEXT", "obligation_ids": [obligation],
                        "source_atom_ids": bound, "text": "\n".join(lines)})
     for relation_id in sorted(relation_ids):
@@ -497,6 +541,12 @@ def _figure_blocks(core: str, representations: list[dict], obligations: list[dic
             blocks.append({"id": f'{core}-{instance["id"]}', "kind": "FIGURE",
                            "obligation_ids": [obligation],
                            "source_atom_ids": sorted(instance["datum_refs"]),
+                           # What in the picture is which symbol, and the same thing in
+                           # words. Held on the representation since R1 and rendered
+                           # nowhere, which made the figure the decoration the role
+                           # specifications name -- correctly drawn, bound to nothing a
+                           # learner could follow back into the mathematics.
+                           "correspondence": deepcopy(representation.get("correspondence") or []),
                            # One instance can appear in several products. Each block owns
                            # its own copy, so a caller editing one plan block cannot reach
                            # into another product or back into the library record.
@@ -514,13 +564,24 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
     block = {"id": f'{core}-{record["id"]}', "kind": "QUESTION",
              "obligation_ids": [obligation_id],
              "source_atom_ids": sorted({a["id"] for a in atoms}),
+             # source_id is the engine's key into the source inventory, not the
+             # question's provenance. R1.5 read the constant "LIBRARY" here as the
+             # compiler discarding source identity; it is not, and overwriting it broke
+             # the inventory lookup. The identity Core2 requires preserved travels
+             # beside it instead, as its own field.
              "source_id": "LIBRARY", "source_question_id": record["id"],
+             "source_refs": list(record.get("source_refs") or []),
+             "origin": record.get("origin"),
              "original_number": record["original_identifier"], "stem": record["stem"],
              "subparts": [], "options": [], "conditions": record.get("conditions", []),
+             "figure_refs": list(record.get("figure_refs") or []),
              "answer": {"summary": answer["summary"], "steps": answer["reasoning"],
                         "check": answer["check"],
+                        **({"difficult_move": answer["difficult_move"]}
+                           if answer.get("difficult_move") is not None else {}),
                         **({"numeric": answer["numeric"]} if answer.get("numeric") else {})},
-             "hints": [], "family": record["family_ref"],
+             "hints": [dict(hint) for hint in record.get("hints") or []],
+             "family": record["family_ref"],
              "learner_action": "solve", "exposure_role": role}
     return block
 

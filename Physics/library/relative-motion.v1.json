@@ -1022,7 +1022,8 @@
         "numeric": {
           "value": 10,
           "unit": "m/s"
-        }
+        },
+        "difficult_move": 0
       },
       "primary_capability_ref": "CAP-RELATIVE-V",
       "secondary_capability_refs": [
@@ -1032,6 +1033,11 @@
       "family_ref": "FAM-RELATIVE-V",
       "adaptation": null,
       "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        },
         {
           "core": "CORE2A",
           "role": "PLANNED_WORKED_ANCHOR",
@@ -1044,7 +1050,17 @@
           "vx": "DAT-VAB-X",
           "vy": "DAT-VAB-Y"
         }
-      }
+      },
+      "hints": [
+        {
+          "text": "Relative to B means measured from B. Which of the two velocities is the one being subtracted?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Subtract axis by axis before doing anything with lengths, and keep both signs; the magnitude is something you compute from the answer, not the answer itself.",
+          "reveals": "METHOD"
+        }
+      ]
     }
   ],
   "teaching_routes": [

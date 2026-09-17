@@ -543,12 +543,12 @@ window.GRADE9V3 = {
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
-                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
               },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1B",
-                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
               }
             ]
           }
@@ -1203,12 +1203,12 @@ window.GRADE9V3 = {
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
-                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
               },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1B",
-                "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
               }
             ]
           }

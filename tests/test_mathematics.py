@@ -224,7 +224,10 @@ class EndToEnd(unittest.TestCase):
         result, out = self._publish()
         self.assertEqual(result["status"], "PASS")
         self.assertEqual(result["products"], ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A"])
-        self.assertEqual(result["numeric_answers_compared"], 2)
+        # Rose from two when Core1A began carrying the worked example its spec
+        # requires: the same answer is now checked once per product that states
+        # it, which is the point of counting rather than a regression.
+        self.assertEqual(result["numeric_answers_compared"], 3)
         self.assertEqual(result["scientific_reviews_pending"], 0)
         self.assertFalse(result["release_authorized"], "machine checks never authorise release")
         evidence = json.loads((out / "evidence.json").read_text(encoding="utf-8"))

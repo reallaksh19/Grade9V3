@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 50,
-  "relation_count": 85,
+  "relation_count": 88,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:c51c157f9a2442e286cc0c688965872e396cfc053e82e4b78093044eef8ea363",
+  "digest": "sha256:c2fb64e85de43144740a270b9f8a6d50b753812f0aabe89bd6da41953f0fdda1",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 32495,
-      "sha256": "9b592e27be06249c2fb42e58ddecf40d3a6603c5c416b12b1816a00f55a57d3c"
+      "bytes": 36551,
+      "sha256": "552042c19c64cbc3e38fc3d2e8deb162a0fe024867526416675681aa67490464"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -57,8 +57,8 @@
       "path": "Shared/library/differentiation.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 5181,
-      "sha256": "d5477dd1957c765e6e10b5c5627beb08f3d2a0b1e13873c09d90b6f449c7277b"
+      "bytes": 6165,
+      "sha256": "8a66e6f338996f7c4b849d380776f2dc620b4b6dff091e7c6b5a1d49d6a89f42"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -134,8 +134,8 @@
       "path": "Shared/publication_host/compose.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 11523,
-      "sha256": "56efe3e008ddf8b849fded18d1dd77083318c89b8783038ad86cc23d07b8c39b"
+      "bytes": 12193,
+      "sha256": "5cf50fd9debabcdb812c07197295a03266de25c2cab88638b5bb2ab0fa854f65"
     },
     {
       "path": "Shared/publication_host/drawing.py",
@@ -155,8 +155,8 @@
       "path": "Shared/publication_host/inputs.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 12165,
-      "sha256": "21af3f5f32aaf5e35d0d52c460c50c092f5ef7089445588d5256bd80be90e49f"
+      "bytes": 13565,
+      "sha256": "c07b69e7a4f8b820faea07e4fec0f0515b7cc28592bb2dba9f26bcc6e2d68ec8"
     },
     {
       "path": "Shared/publication_host/science.py",
@@ -176,36 +176,36 @@
       "path": "Shared/roles/CORE1.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3855,
-      "sha256": "5d85e0543ec750dd032f9b3e4d54e348ad836c849b4485f3dfd071e87ed1f66e"
+      "bytes": 3853,
+      "sha256": "23a2c29d1d83792b1d71e008df6672c63875581e0816a521affbafb903edddfa"
     },
     {
       "path": "Shared/roles/CORE1A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 4960,
-      "sha256": "991dfcfdb3743fa828fb649dd17790ee0abeff81cd88bcd48aab734777d3b009"
+      "bytes": 4969,
+      "sha256": "91251d96eb5c01258ab524f52f2daa6d7d841e7bca37042fbb4371c4dfd7bda8"
     },
     {
       "path": "Shared/roles/CORE1B.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 4667,
-      "sha256": "45538933f7989a9b7d6ab3d3f99c49cd7207558af64fd94e2786f2f141583f5f"
+      "bytes": 4699,
+      "sha256": "1b34e20227f1d397eda989f9456b73398061dd12f31afc4f033ab28b2e24461b"
     },
     {
       "path": "Shared/roles/CORE2.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3665,
-      "sha256": "3605e73fdb378f7b71589c0c2326643a7c1acb6e927f9a47bdbe04a5764c6d6f"
+      "bytes": 3674,
+      "sha256": "315e83224fdc56c1ea07fe677a0e39f0f29a67e0a7bcf5542cb0d3e60c2b480b"
     },
     {
       "path": "Shared/roles/CORE2A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3726,
-      "sha256": "e3406ec04670c2b488da583df4c568232f77c9ddd43f2ae8c2d65c20763990fe"
+      "bytes": 3760,
+      "sha256": "bc4f52d085bf8b85bb7f67a7e6183f4f14431694aa19a30b14210105bfb69bc6"
     },
     {
       "path": "Shared/roles/CORE2B.md",
@@ -253,8 +253,8 @@
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8599,
-      "sha256": "f20bcb617987921673aac7ecac982371c5ab9424a78868b31b73271199144620"
+      "bytes": 9116,
+      "sha256": "6aa15b296cd139ab32c2511433f342d491a79d4873ce27ad36d67f8871d2c27e"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -267,15 +267,15 @@
       "path": "Shared/tools/spec_conformance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10241,
-      "sha256": "5d39bd5797227c855aafdf8170bf5d4cc8b99e7c2af863619d35513cd61a5c4f"
+      "bytes": 11088,
+      "sha256": "259304b41df86016cde0ea1f399fdd9652d137ea5b98913927dcb2de678ebecd"
     },
     {
       "path": "Shared/tools/spec_delivery.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 7707,
-      "sha256": "93166dc265a15d958e164f60a268d69db2e1e1c85fd095bad9a0c423ef938bc7"
+      "bytes": 9698,
+      "sha256": "80c6611233711872761a0858999fae72c043c323cce2ac1d0d82ac8a99ff9df2"
     },
     {
       "path": "Shared/tools/topic_independence_allowlist.json",
@@ -309,15 +309,15 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 66173,
-      "sha256": "6deeb81e49f1d91342b73b5df04e630b42e4a57f7ac7efc477b9d26dd8bbacf8"
+      "bytes": 66909,
+      "sha256": "33d3e7cd49d76c98f0d3860e122f3b95398fc5a94c2b0315404f1fd51c022c15"
     },
     {
       "path": "tests/test_mathematics.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14048,
-      "sha256": "b02728e1bd7f3b9a8116eb3d0e77541f377b2684b0b7083a4e611d54cee5ee57"
+      "bytes": 14278,
+      "sha256": "d639ae8ccdbf720e3e442664d960ee742bb682a42b38c1328aa0ef96e8625c5b"
     },
     {
       "path": "tests/test_publication_engine.py",
@@ -330,8 +330,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 27915,
-      "sha256": "1c2ac04c95bc174ed2e5319721300691fcd810ccea4a9c58e2b48adf2f7969b3"
+      "bytes": 31558,
+      "sha256": "5513470d0e3e92226ab5ef0ea636cbce82ac6889d0c2e2d3ec43278a92a58fbb"
     },
     {
       "path": "tools/app.css",
@@ -344,8 +344,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 70558,
-      "sha256": "74f275e9d7506bb4e7a57de852a01426621b08f339488e9d7345ac03f22b4676"
+      "bytes": 70482,
+      "sha256": "9e3a744fdf48140ff27df9657d7e21b9b346d84ea9b96c097a7581c707360653"
     },
     {
       "path": "tools/index.html",
@@ -403,6 +403,11 @@
     {
       "from": "Shared/library/differentiation.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/differentiation.py",
+      "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
     {
@@ -591,6 +596,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.tools.spec_delivery",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/republish.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -773,6 +783,11 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
     {

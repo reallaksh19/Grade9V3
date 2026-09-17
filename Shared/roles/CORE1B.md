@@ -48,15 +48,15 @@ microtopic.elicitation                          every concept Core1A constructs,
 microtopic.elicitation.predict.prompt           pose the decision before revealing anything
 microtopic.elicitation.predict.defensible_answer  a defensible answer the learner can commit to
 microtopic.elicitation.attempt.produces         state what they should produce
-microtopic.elicitation.attempt.closure          a model response, a rubric, or explicit criteria
+microtopic.elicitation.attempt.closure [derived] carried as the content it names rather than as the enum value
 microtopic.elicitation.attempt.model_response   closure as one string, where one is right
 microtopic.elicitation.attempt.rubric[]         closure as a rubric, where several answers are valid
 microtopic.elicitation.attempt.accepted[]       representative accepted answers
 microtopic.elicitation.attempt.rejected[]       representative rejected answers
 microtopic.elicitation.reconstruct.route[]      the correct construction, reached the learner's way
 microtopic.elicitation.reconstruct.route[].ask  not the way an expert would summarise it
-microtopic.elicitation.reconstruct.route[].why_this_ask  why this question rather than another here
-microtopic.elicitation.reconstruct.differs_from_teaching_path  the A/B claim, in a form a reviewer can check
+microtopic.elicitation.reconstruct.route[].why_this_ask  [author] why this question rather than another here
+microtopic.elicitation.reconstruct.differs_from_teaching_path  [author] the A/B claim, in a form a reviewer can check
 microtopic.elicitation.boundary_test.prompt     a limiting case, reversal or edge condition
 microtopic.elicitation.boundary_test.answer     every prompt closes without a tutor
 microtopic.elicitation.boundary_test.confirms   confirms understanding rather than recall

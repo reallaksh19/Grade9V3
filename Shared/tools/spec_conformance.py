@@ -43,6 +43,12 @@ SPECS = "Shared/roles"
 SCHEMA = "Shared/library/package.schema.json"
 BLOCK = re.compile(r"^```requires$(.*?)^```$", re.MULTILINE | re.DOTALL)
 LINKED = re.compile(r"\]\((CORE[0-9A-Z]*\.md)\)")
+# Marks a requirement held for a reviewer rather than carried to a learner.
+AUTHOR_ONLY = "[author]"
+# Marks a requirement the learner does receive, in a form the value-presence check
+# cannot recognise -- typeset, translated or rendered as its content rather than its
+# name. The phrase says into what, so the claim can be disputed rather than assumed.
+DERIVED = "[derived]"
 SEGMENT = re.compile(r"^([a-z][a-z0-9_]*)(\[\])?$")
 PACKAGE_ROOT = "package"
 
@@ -61,7 +67,13 @@ def requirements(spec: Path) -> list[dict] | None:
         if not line.strip():
             continue
         path, _, phrase = line.strip().partition(" ")
-        rows.append({"path": path, "phrase": phrase.strip(),
+        phrase = phrase.strip()
+        # A requirement the learner never sees, held so a reviewer can check a claim:
+        # why_this_ask printed to a learner defeats the ask it explains. Marked in the
+        # block rather than inferred, so it is a claim someone can dispute.
+        marker = next((m for m in (AUTHOR_ONLY, DERIVED) if phrase.startswith(m)), "")
+        rows.append({"path": path, "phrase": phrase[len(marker):].strip(),
+                     "author_only": marker == AUTHOR_ONLY, "derived": marker == DERIVED,
                      "line": found.group(1)[:0].count("\n") + offset + 1})
     return rows
 

@@ -43,6 +43,13 @@ jobs:
       - name: Representations are backed by their subject's contract
         run: python3 Shared/library/depiction.py --enforce
 
+      # Every path a role spec requires must survive compilation. Enforcing: the
+      # compiler now drops nothing the library holds. The paths nobody has authored yet
+      # are reported as a named backlog and do not fail this step, because a backlog
+      # that fails the build gets the build switched off rather than the backlog closed.
+      - name: Requirements survive compilation
+        run: python3 Shared/tools/spec_delivery.py --enforce --summary
+
       # One tested module, not a workflow heredoc: subject discovery is protected by
       # the suite, so CI cannot quietly go back to checking a single named subject.
       - name: Every subject's contract, gate registries and library

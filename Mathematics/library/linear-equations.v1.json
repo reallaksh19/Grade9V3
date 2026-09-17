@@ -847,7 +847,8 @@
         "numeric": {
           "value": "7/3",
           "unit": "dimensionless"
-        }
+        },
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-MATH-ISOLATE",
       "secondary_capability_refs": [
@@ -858,9 +859,28 @@
       "adaptation": null,
       "exposure": [
         {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        },
+        {
           "core": "CORE2A",
           "role": "PLANNED_WORKED_ANCHOR",
           "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The equation is a claim about x, not an instruction. What single operation on both sides would leave x with nothing added to it?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Take 2 off both sides first, then deal with the 3 that multiplies x. Say, for each step, why it can be undone.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "x = 7/3. Writing it as 2.33 would be a different claim: substituting 2.33 gives 8.99, not 9.",
+          "reveals": "ANSWER"
         }
       ]
     }

@@ -60,7 +60,7 @@ microtopic.misconceptions[].repair       and the repair that fixes it
 relation.checks[]                        checks the learner can run alone
 microtopic.exit_task.answer.check        one the learner runs on their own result
 microtopic.intrinsic_badge               depth follows the subtopic's intrinsic badge
-microtopic.research_contribution         HARD and MEDIUM require research-informed enrichment
+microtopic.research_contribution         [author] HARD and MEDIUM require research-informed enrichment
 representation.scene_instances[]         the same idea carried across picture, words and symbols
 representation.scene_instances[].microtopic_ref  a figure not bound to the working is decoration
 representation.correspondence[]          the correspondence made explicit in both directions

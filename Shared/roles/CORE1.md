@@ -47,7 +47,7 @@ bucket.curriculum_mappings[].mapping_status  a candidate rather than an establis
 bucket.status                            it then carries Core1A's review status
 datum.meaning                            the named objects and quantities of the bucket
 datum.unit                               units -- whatever the subject adapter specifies
-relation.expression                      the governing relations in their canonical form
+relation.expression [derived] typeset as relation.mathml, which is the same expression
 relation.meaning                         each with its meaning in words
 relation.conditions[]                    the conditions under which it applies
 microtopic.intrinsic_badge               which transitions are intrinsically hard

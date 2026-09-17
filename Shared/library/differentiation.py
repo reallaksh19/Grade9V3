@@ -33,6 +33,7 @@ appears in this file.
 from __future__ import annotations
 
 from Shared.contracts import normalise
+from Shared.library.compile_inputs import CONCEPT
 
 # From the shared role invariants' A/B table: the A product reveals a completed
 # construction, the B product elicits the decision first.
@@ -45,13 +46,25 @@ def _blocks(plan: dict, core: str) -> list[dict]:
             for unit in product.get("units", []) for block in unit.get("blocks", [])]
 
 
-def _obligations(blocks: list[dict]) -> set[str]:
-    return {oid for block in blocks for oid in block.get("obligation_ids", [])}
+def _obligations(blocks: list[dict], concepts: set[str] | None = None) -> set[str]:
+    """The obligations these blocks cover, optionally only the ones that are concepts.
+
+    A bucket-level obligation -- orientation, custody, practice -- is a slot in the
+    product rather than something taught, and counting one as coverage made a worked
+    example in the declarative product read as a concept the eliciting product had
+    silently dropped. Which is which comes from the compiler that built them, not from
+    the shape of an id: matching a prefix here would put a governed identifier into
+    shared code, which is the thing the topic-independence guard exists to refuse.
+    """
+    found = {oid for block in blocks for oid in block.get("obligation_ids", [])}
+    return found if concepts is None else found & concepts
 
 
-def findings(plan: dict) -> list[dict]:
+def findings(plan: dict, obligations: list[dict] | None = None) -> list[dict]:
     """Every way a compiled plan's B product fails to demand work its A product does not."""
     found: list[dict] = []
+    concepts = None if obligations is None else {
+        o["id"] for o in obligations if o.get("scope") == CONCEPT}
 
     def fail(point: str, core: str, subject_id: str, detail: str):
         found.append({"point": point, "core": core, "block": subject_id, "detail": detail})
@@ -64,7 +77,7 @@ def findings(plan: dict) -> list[dict]:
         # The coverage obligation. A B product that quietly teaches less than its A
         # product has solved the authoring problem by dropping the hard concepts, which
         # is the one resolution the spec names and refuses.
-        missing = _obligations(a_blocks) - _obligations(b_blocks)
+        missing = _obligations(a_blocks, concepts) - _obligations(b_blocks, concepts)
         for oid in sorted(missing):
             fail("COVERAGE_BELOW_A", b_core, oid,
                  f"{a_core} constructs this and {b_core} does not elicit it, which is the "
@@ -90,7 +103,7 @@ def findings(plan: dict) -> list[dict]:
                      "already contains what its reveal says, so nothing is being asked")
             elicited |= set(prompt.get("obligation_ids", []))
 
-        for oid in sorted(_obligations(b_blocks) - elicited):
+        for oid in sorted(_obligations(b_blocks, concepts) - elicited):
             fail("OBLIGATION_WITHOUT_ELICITATION", b_core, oid,
                  f"is covered by {b_core} with no prompt a learner must answer before a "
                  "reveal, so this product asks for no commitment here")
@@ -98,6 +111,6 @@ def findings(plan: dict) -> list[dict]:
     return found
 
 
-def audit(plan: dict) -> dict:
-    found = findings(plan)
+def audit(plan: dict, obligations: list[dict] | None = None) -> dict:
+    found = findings(plan, obligations)
     return {"findings": found, "differentiated": not found}

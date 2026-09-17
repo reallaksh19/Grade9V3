@@ -50,6 +50,6 @@ question.hints[]                         hints, where useful; no required count
 question.figure_refs[]                   a figure where the representation carries meaning
 question.family_ref                      declared family, so reuse is auditable
 question.exposure[].core                 declared exposure role, so reuse is auditable
-question.exposure[].role                 and what that exposure is for
+question.exposure[].role [derived] mapped to the block's exposure_role, which is the learner-facing name
 representation.scene_instances[].question_ref  bound to the working rather than placed beside it
 ```

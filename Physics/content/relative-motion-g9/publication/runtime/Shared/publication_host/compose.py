@@ -94,7 +94,17 @@ def _block(ctx, block, files, numeric, figures, reviews):
         caption = sentence(spec["caption"]) + ' Frame: ' + sentence(spec["frame"]) + ' Quantitative diagram.'
         if spec['kind'] == 'GRAPH':
             caption += f' Vertical axis minimum: {evidence["y_axis_min"]:g} {spec["y_unit"]}.'
-        return f'<figure><img src="{name}" alt="{escape(caption, quote=True)}"><figcaption>{escape(caption)}</figcaption></figure>', ''
+        bridge = ''.join(
+            f'<li><b>{escape(row["element"])}</b> is <code>{escape(row["symbol"])}</code>'
+            f' &mdash; {escape(row["in_words"])}</li>'
+            for row in block.get("correspondence") or [])
+        if bridge:
+            # Both directions, which is what the role specifications ask for and what a
+            # caption alone cannot give: the picture's part, the symbol it stands for,
+            # and the same thing said in words.
+            bridge = f'<p>Reading this figure:</p><ul class="bridge">{bridge}</ul>'
+        return (f'<figure><img src="{name}" alt="{escape(caption, quote=True)}">'
+                f'<figcaption>{escape(caption)}</figcaption>{bridge}</figure>'), ''
     expected = numeric_expectation(ctx, block)
     if expected is not None:
         numeric[block["id"]] = expected
@@ -123,7 +133,8 @@ def _question(ctx, block, numeric_assessment):
     answer = block["answer"]
     reveal = f'<article class="answer" id="answer-{qid}" data-answer-id="{qid}">'
     reveal += f'<h3>Question {escape(block["original_number"])}</h3>'
-    for level, hint in enumerate(block.get("hints", []), 1):
+    for level, hint in enumerate([h if isinstance(h, str) else h["text"]
+                                  for h in block.get("hints", [])], 1):
         reveal += f'<details><summary>Hint {level}</summary><p>{escape(hint)}</p></details>'
     if block.get('guidance'):
         reveal += '<p>Guidance:</p>' + _list(block['guidance'])

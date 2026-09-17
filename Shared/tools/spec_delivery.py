@@ -17,6 +17,12 @@ Neither reaches a page.
 Three outcomes per requirement, because three different things go wrong and collapsing
 them would hide which:
 
+Only NOT_DELIVERED fails the gate. A compiler that drops content somebody wrote is a
+defect and always will be; content nobody has written yet is a backlog, and a backlog
+that fails the build gets the build switched off rather than the backlog closed. The
+unwritten paths are counted and named on every run, so the second is visible without
+being fatal.
+
   UNAUTHORED      the library holds nothing at this path. Content work.
   NOT_DELIVERED   the library holds it and no compiled product carries it. Compiler work,
                   and the more dangerous of the two: the content exists, so every
@@ -57,10 +63,28 @@ from Shared.tools.spec_conformance import (  # noqa: E402
 DECIDABLE_LENGTH = 12
 
 
+def _leaves(value: object) -> list[str]:
+    """Every scalar inside a value, however deeply nested.
+
+    A required path may name a container -- `question.hints[]`, `microtopic.elicitation`
+    -- and stopping at one returned nothing, so a full container read as UNAUTHORED. The
+    first measurement counted seven such paths as unwritten while the content sat inside
+    them, which overstated the backlog and would have sent someone to author what was
+    already there.
+    """
+    if isinstance(value, (str, int, float)):
+        return [str(value)]
+    if isinstance(value, dict):
+        return [leaf for item in value.values() for leaf in _leaves(item)]
+    if isinstance(value, list):
+        return [leaf for item in value for leaf in _leaves(item)]
+    return []
+
+
 def values_at(record: object, segments: list) -> list[str]:
     """Every leaf value a path reaches in one record, flattening the arrays it crosses."""
     if not segments:
-        return [str(record)] if isinstance(record, (str, int, float)) else []
+        return _leaves(record)
     name, is_array = segments[0].group(1), bool(segments[0].group(2))
     if not isinstance(record, dict) or name not in record:
         return []
@@ -107,12 +131,13 @@ def compiled_products(subject: Path, records: dict) -> tuple[dict[str, str], lis
 def audit_subject(subject: Path, schema: dict) -> dict:
     packages = [load(p) for p in sorted((subject / "library").glob("*.json"))]
     if not packages:
-        return {"subject": subject.name, "state": "NO_LIBRARY", "rows": [], "findings": []}
+        return {"subject": subject.name, "state": "NO_LIBRARY", "rows": [],
+                "findings": [], "unwritten": []}
     records = build_index(packages)
     roots = record_types(schema)
     blobs, refused = compiled_products(subject, records)
 
-    rows, findings = [], list(refused)
+    rows, findings, unwritten = [], list(refused), []
     for spec in role_specs():
         role = spec.stem
         if role not in blobs:
@@ -123,6 +148,16 @@ def audit_subject(subject: Path, schema: dict) -> dict:
             longest = max(held, key=len, default="")
             if not held:
                 state = "UNAUTHORED"
+            elif row.get("derived"):
+                # Delivered, in a form this check cannot see. Authorship is still
+                # required -- what is waived is only the value-presence half.
+                state = "DERIVED"
+            elif row.get("author_only"):
+                # Held for a reviewer, so it must be authored and must *not* be carried
+                # to a learner. Only the first half is checked: what would make the
+                # second half checkable is a list of places it may not appear, which is
+                # a longer claim than the one the block makes.
+                state = "AUTHOR_ONLY"
             elif len(longest) < DECIDABLE_LENGTH:
                 state = "UNDECIDABLE"
             elif any(value in blobs[role] for value in held):
@@ -131,9 +166,12 @@ def audit_subject(subject: Path, schema: dict) -> dict:
                 state = "NOT_DELIVERED"
             rows.append({"role": role, "path": row["path"], "state": state,
                          "phrase": row["phrase"], "held": len(held)})
-            if state in ("UNAUTHORED", "NOT_DELIVERED"):
+            if state == "NOT_DELIVERED":
                 findings.append(f'{role}: {row["path"]}: {state}: {row["phrase"]}')
-    return {"subject": subject.name, "state": "CHECKED", "rows": rows, "findings": findings}
+            elif state == "UNAUTHORED":
+                unwritten.append(f'{role}: {row["path"]}: {row["phrase"]}')
+    return {"subject": subject.name, "state": "CHECKED", "rows": rows,
+            "findings": findings, "unwritten": unwritten}
 
 
 def audit(repo: Path = REPO) -> dict:
@@ -145,7 +183,8 @@ def audit(repo: Path = REPO) -> dict:
         for row in subject["rows"]:
             counted[row["state"]] = counted.get(row["state"], 0) + 1
     return {"subjects": rows, "by_state": counted,
-            "undelivered": sum(len(s["findings"]) for s in rows),
+            "dropped_by_the_compiler": sum(len(s["findings"]) for s in rows),
+            "not_yet_written": sum(len(s.get("unwritten", ())) for s in rows),
             "passed": not any(s["findings"] for s in rows)}
 
 

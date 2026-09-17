@@ -31,6 +31,7 @@ from Shared.library.intake import check as intake_check  # noqa: E402
 from Shared.library.promote import audit as promotion_audit  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket  # noqa: E402
 from Shared.library.depiction import audit as depiction_audit  # noqa: E402
+from Shared.tools.spec_delivery import audit_subject as delivery_audit  # noqa: E402
 from Shared.library.resolve import build_index, validate_library  # noqa: E402
 
 LEARNER_PRODUCTS = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
@@ -129,6 +130,11 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
     # is asked to do in order, and only the plan says that. Every bucket is compiled --
     # a bucket that is never compiled is a bucket whose products nobody has looked at.
     findings += _differentiation_findings(subject, packages)
+
+    # A requirement must reach the learner, not merely have a schema home. Only content
+    # the compiler drops fails here; what nobody has authored yet is a backlog the tool
+    # names on every run rather than a reason to fail a build.
+    findings += delivery_audit(subject, load(REPO / "Shared/library/package.schema.json"))["findings"]
     return len(packages), findings
 
 
@@ -145,7 +151,8 @@ def _differentiation_findings(subject: Path, packages: list[dict]) -> list[str]:
             found.append(f"{bucket_id}: does not compile: {error.code} {error.detail}".strip())
             continue
         found += [f'{bucket_id}: {f["point"]}: {f["core"]}: {f["block"]}: {f["detail"]}'
-                  for f in differentiation_findings(compiled["plan"])]
+                  for f in differentiation_findings(compiled["plan"],
+                                                    compiled["baseline"]["obligations"])]
     return found
 
 

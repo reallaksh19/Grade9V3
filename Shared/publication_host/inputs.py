@@ -12,6 +12,9 @@ KINDS = {"TEXT", "EQUATION", "QUESTION", "FIGURE"}
 # block silently treated as TEACHING, which is how a reveal would have been published
 # open.
 PLACEMENTS = {"TEACHING", "ANSWER", "ELICITED_REVEAL"}
+# How far a hint goes. Declared rather than inferred, so a hint that hands over
+# the answer before the last rung is refusable rather than arguable.
+REVEALS = {"CONCEPT", "METHOD", "ANSWER"}
 
 
 def read_inputs(plan: dict, baseline: dict, source_root: Path, adapter) -> dict:
@@ -171,7 +174,25 @@ def _question(ctx, block):
     require(len(answer.get("subparts", [])) == len(original.get("subparts", [])), "SUBPART_ANSWER_MISSING")
     for part in answer.get("subparts", []):
         text(part, "SUBPART_ANSWER_EMPTY")
-    strings(block.get("hints", []), "HINT_BODY_EMPTY", allow_empty=True)
+    hints = block.get("hints", [])
+    require(isinstance(hints, list), "HINT_BODY_EMPTY")
+    for position, hint in enumerate(hints):
+        # A bare string is a hint whose reach is undeclared. Accepted because the frozen
+        # port inputs predate the field, and they are the regression oracle: rewriting
+        # them would change the basis digest recorded before the port and destroy the
+        # thing they exist to prove. Everything the library compiles carries the declared
+        # shape, and intake refuses anything else, so the undeclared form cannot spread.
+        if isinstance(hint, str):
+            text(hint, "HINT_BODY_EMPTY")
+            continue
+        require(isinstance(hint, dict), "HINT_BODY_EMPTY", str(position))
+        text(hint.get("text"), "HINT_BODY_EMPTY")
+        require(hint.get("reveals") in REVEALS, "HINT_REVEAL_UNDECLARED", str(hint.get("reveals")))
+        # A hint that gives the answer leaves every hint after it with nothing to offer.
+        # Checked here as well as at intake, because a plan can reach the engine without
+        # having come through a library at all.
+        require(hint["reveals"] != "ANSWER" or position == len(hints) - 1,
+                "HINT_REVEALS_ANSWER_TOO_EARLY", f"{position + 1} of {len(hints)}")
     if "guidance" in block:
         strings(block["guidance"], "GUIDANCE_BODY_EMPTY")
     # A complete explanation/check is the minimum support. Hints and guides

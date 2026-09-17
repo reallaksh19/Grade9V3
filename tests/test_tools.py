@@ -502,26 +502,86 @@ class SpecDelivery(unittest.TestCase):
         self.assertIn("DELIVERED", states)
         self.assertGreater(states.count("DELIVERED"), 10, states)
 
-    def test_core1a_does_not_deliver_the_misconception_it_requires(self):
-        # The sharpest of the findings, and the one its own spec states in words: "A
-        # misconception the learner never hears is a misconception they keep."
-        # _teaching_text emits misconceptions only for Core1B. Asserted as the defect it
-        # is; R1.6 inverts this.
-        rows = {(r["role"], r["path"]): r["state"]
-                for r in self.rows_for("Mathematics") if "path" in r}
-        for field in ("wrong_idea", "diagnostic_prompt", "repair"):
-            with self.subTest(field=field):
-                self.assertEqual(rows[("CORE1A", f"microtopic.misconceptions[].{field}")],
-                                 "NOT_DELIVERED")
+    def test_core1a_delivers_the_misconception_it_requires(self):
+        """The sharpest finding R1.5 made, now closed.
 
-    def test_hints_are_unauthored_everywhere_and_the_compiler_hardcodes_empty(self):
-        # Both halves, because fixing either alone changes nothing: authoring hints into
-        # a compiler that emits [] delivers nothing, and carrying [] delivers nothing.
+        _teaching_text emitted misconceptions for CORE1B only -- and once Core1B
+        compiled from elicitation instead, that branch survived solely as a fallback, so
+        the wrong path reached neither product. Core1A's own spec says what that costs:
+        "A misconception the learner never hears is a misconception they keep."
+
+        Asserted for both subjects, because the defect was in shared code and fixing it
+        for the subject a test happens to name would leave the other broken.
+        """
+        for subject in ("Mathematics", "Physics"):
+            rows = {(r["role"], r["path"]): r["state"]
+                    for r in self.rows_for(subject) if "path" in r}
+            for field in ("wrong_idea", "diagnostic_prompt", "repair"):
+                with self.subTest(subject=subject, field=field):
+                    self.assertEqual(rows[("CORE1A", f"microtopic.misconceptions[].{field}")],
+                                     "DELIVERED")
+
+    def test_core1a_delivers_what_it_assumes_and_what_can_be_checked(self):
+        # The other two Core1A gaps R1.5 found. entry_assumptions is named first in its
+        # required content and reached nowhere: a learner who could not do it was on the
+        # wrong page with no way to find out.
+        for subject in ("Mathematics", "Physics"):
+            rows = {(r["role"], r["path"]): r["state"]
+                    for r in self.rows_for(subject) if "path" in r}
+            for path in ("microtopic.entry_assumptions[]", "relation.checks[]"):
+                with self.subTest(subject=subject, path=path):
+                    self.assertEqual(rows[("CORE1A", path)], "DELIVERED")
+
+    def test_the_two_products_frame_the_wrong_path_differently(self):
+        # Both carry it; that is the coverage rule. They must not carry it identically,
+        # which is the A/B rule -- Core1A reveals it inside a completed construction,
+        # Core1B poses it as a prediction before anything is revealed.
+        from Shared.library.compile_inputs import (  # noqa: PLC0415
+            build_index, compile_bucket, load_packages)
+        records = build_index(load_packages(sorted((REPO / "Physics/library").glob("*.json"))))
+        compiled = compile_bucket(records, "BUCKET-RELATIVE-MOTION", topic_id="t", title="t",
+                                  subject="Physics",
+                                  practice_control={"mode": "DESIGN_PREVIEW",
+                                                    "purpose": "PRACTICE"})
+        texts = {p["core"]: "\n".join(b.get("text", "") for b in p["units"][0]["blocks"])
+                 for p in compiled["plan"]["products"]}
+        self.assertIn("Tell them apart:", texts["CORE1A"])
+        self.assertNotIn("Predict first:", texts["CORE1A"])
+        self.assertIn("A common wrong idea", texts["CORE1B"])
+
+    def test_hints_are_authored_and_carried(self):
+        # Both halves had to move together: authoring hints into a compiler that emits []
+        # delivers nothing, and carrying [] delivers nothing. R1.5 asserted the defect
+        # in both places; this asserts the fix in both.
         rows = {(r["role"], r["path"]): r["state"]
                 for r in self.rows_for("Mathematics") if "path" in r}
-        self.assertEqual(rows[("CORE2", "question.hints[]")], "UNAUTHORED")
+        self.assertEqual(rows[("CORE2", "question.hints[]")], "DELIVERED")
         source = (REPO / "Shared/library/compile_inputs.py").read_text(encoding="utf-8")
-        self.assertIn('"hints": []', source)
+        self.assertNotIn('"hints": []', source)
+
+    def test_the_compiler_drops_nothing_the_library_holds(self):
+        # The enforcement line. A compiler that drops authored content is a defect; a
+        # path nobody has written yet is a backlog, counted and named on every run.
+        report = spec_delivery.audit()
+        self.assertEqual(report["dropped_by_the_compiler"], 0,
+                         [f for s in report["subjects"] for f in s["findings"]])
+        self.assertTrue(report["passed"])
+
+    def test_the_unwritten_backlog_is_named_rather_than_only_counted(self):
+        report = spec_delivery.audit()
+        self.assertGreater(report["not_yet_written"], 0, "nothing is owed, so this is vacuous")
+        for subject in report["subjects"]:
+            for row in subject.get("unwritten", ()):
+                with self.subTest(row=row):
+                    self.assertGreaterEqual(len(row.split(": ")), 3, row)
+
+    def test_a_container_path_counts_what_is_inside_it(self):
+        # The first measurement read a full container as UNAUTHORED, because the walker
+        # stopped at it and returned nothing. Seven paths were counted as unwritten with
+        # the content sitting inside them.
+        record = {"hints": [{"text": "a hint long enough to be found", "reveals": "METHOD"}]}
+        self.assertIn("a hint long enough to be found",
+                      spec_delivery.values_at(record, self.segments("hints[]")))
 
     def test_a_role_that_compiles_nothing_here_is_said_once_not_per_requirement(self):
         # Core2B compiles no product for this bucket. Repeating that for each of its

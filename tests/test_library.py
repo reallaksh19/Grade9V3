@@ -167,7 +167,10 @@ class Compilation(unittest.TestCase):
         self.assertEqual(result["status"], "PASS")
         # Two now, not one: Core2 holds the question in custody with its answer, so the
         # same verified result is checked again in the product that preserves it.
-        self.assertEqual(result["numeric_answers_compared"], 2)
+        # Rose from two when Core1A began carrying the worked example its spec
+        # requires: the same answer is now checked once per product that states
+        # it, which is the point of counting rather than a regression.
+        self.assertEqual(result["numeric_answers_compared"], 3)
         self.assertIn("CORE1", result["products"])
         self.assertIn("CORE2", result["products"])
         self.assertFalse(result["release_authorized"])
@@ -649,7 +652,7 @@ class FiguresSitWithWhatTheyExplain(unittest.TestCase):
                     continue
                 with self.subTest(core=product["core"], block=block["id"]):
                     self.assertFalse(foreign & {block["id"].split("-", 1)[1]}, block["id"])
-        self.assertTrue(differentiation.audit(compiled["plan"])["differentiated"])
+        self.assertTrue(differentiation.audit(compiled["plan"], compiled["baseline"]["obligations"])["differentiated"])
 
     def test_a_figure_whose_core_is_not_taught_still_reaches_the_practice_slot(self):
         # The fallback is legitimate for the case it was written for, and removing it
@@ -813,6 +816,10 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
     def b_unit(self, plan, core="CORE1B"):
         return next(p for p in plan["products"] if p["core"] == core)["units"][0]
 
+    def plan_and_obligations(self):
+        compiled = self.compiled()
+        return compiled["plan"], compiled["baseline"]["obligations"]
+
     def declarative_shape(self):
         """Core1B as it was: one block per microtopic, carrying the declarative text.
 
@@ -821,17 +828,18 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         that this shape is still refused, and it would quietly stop being asserted if it
         were only ever read off whatever the compiler currently emits.
         """
-        plan = self.compiled()["plan"]
+        compiled = self.compiled()
+        plan = compiled["plan"]
         unit = self.b_unit(plan)
         unit["blocks"] = [{**block, "id": block["id"] + "-FLAT", "text": "Declarative prose.",
                            "placement": "TEACHING", "reveals_block_id": None}
                           for block in self.b_unit(plan, "CORE1A")["blocks"]]
         for block in unit["blocks"]:
             block.pop("reveals_block_id")
-        return plan
+        return plan, compiled["baseline"]["obligations"]
 
     def test_the_shape_core1b_used_to_have_is_refused(self):
-        report = differentiation.audit(self.declarative_shape())
+        report = differentiation.audit(*self.declarative_shape())
         self.assertFalse(report["differentiated"],
                          "the product this check exists to catch would have passed it")
         self.assertEqual({f["point"] for f in report["findings"]},
@@ -839,7 +847,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
                          "every microtopic covered, no commitment asked of the learner")
 
     def test_core1b_as_it_now_compiles_is_differentiated(self):
-        report = differentiation.audit(self.compiled()["plan"])
+        report = differentiation.audit(*self.plan_and_obligations())
         self.assertTrue(report["differentiated"], report["findings"])
 
     def test_every_microtopic_asks_before_it_reveals(self):
@@ -865,7 +873,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         unit["blocks"].append({**unit["blocks"][0], "id": "B-REVEAL", "placement": "ELICITED_REVEAL",
                                "reveals_block_id": "B-PROMPT-THAT-DOES-NOT-EXIST"})
         self.assertIn("REVEAL_WITHOUT_PROMPT",
-                      {f["point"] for f in differentiation.findings(plan)})
+                      {f["point"] for f in differentiation.findings(plan, self.compiled()["baseline"]["obligations"])})
 
     def test_a_reveal_placed_before_its_prompt_is_refused(self):
         plan = self.compiled()["plan"]
@@ -874,7 +882,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         unit["blocks"].insert(0, {**prompt, "id": "B-REVEAL", "text": "Because the sides differ.",
                                   "placement": "ELICITED_REVEAL", "reveals_block_id": prompt["id"]})
         self.assertIn("REVEAL_BEFORE_PROMPT",
-                      {f["point"] for f in differentiation.findings(plan)})
+                      {f["point"] for f in differentiation.findings(plan, self.compiled()["baseline"]["obligations"])})
 
     def test_a_prompt_that_already_contains_its_own_answer_is_refused(self):
         # Today's defect in miniature: the prediction and the thing it predicts, in one
@@ -886,7 +894,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         unit["blocks"] = [prompt, {**prompt, "id": "B-REVEAL", "text": "No: the sides differ.",
                                    "placement": "ELICITED_REVEAL", "reveals_block_id": "B-PROMPT"}]
         self.assertIn("PROMPT_ANSWERED_IN_PLACE",
-                      {f["point"] for f in differentiation.findings(plan)})
+                      {f["point"] for f in differentiation.findings(plan, self.compiled()["baseline"]["obligations"])})
 
     def test_dropping_a_concept_from_b_is_refused(self):
         # The one resolution the spec names and forbids: solving the authoring problem
@@ -895,7 +903,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         unit = self.b_unit(plan)
         unit["blocks"] = [b for b in unit["blocks"]
                           if "OB-MIC-MATH-EXACT-SOLUTION" not in b.get("obligation_ids", [])]
-        found = [f for f in differentiation.findings(plan) if f["point"] == "COVERAGE_BELOW_A"]
+        found = [f for f in differentiation.findings(plan, self.compiled()["baseline"]["obligations"]) if f["point"] == "COVERAGE_BELOW_A"]
         self.assertEqual([f["block"] for f in found], ["OB-MIC-MATH-EXACT-SOLUTION"])
 
     def test_repetition_between_a_and_b_is_not_itself_a_finding(self):
@@ -908,7 +916,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         prompt = {**unit["blocks"][0], "id": "B-PROMPT", "text": a_unit["blocks"][0]["text"]}
         unit["blocks"] = [prompt, {**prompt, "id": "B-REVEAL", "text": "A different sentence.",
                                    "placement": "ELICITED_REVEAL", "reveals_block_id": "B-PROMPT"}]
-        points = {f["point"] for f in differentiation.findings(plan)}
+        points = {f["point"] for f in differentiation.findings(plan, self.compiled()["baseline"]["obligations"])}
         self.assertNotIn("PROMPT_ANSWERED_IN_PLACE", points)
         self.assertNotIn("OBLIGATION_WITHOUT_ELICITATION", points)
 
@@ -947,7 +955,7 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         owed = [r for r in compiled["authoring_requirements"]
                 if r["kind"] == "ELICITATION_AUTHORING"]
         self.assertEqual([r["detail"].split()[0] for r in owed], ["MIC-MATH-CONSTRAINT"])
-        report = differentiation.audit(compiled["plan"])
+        report = differentiation.audit(compiled["plan"], compiled["baseline"]["obligations"])
         self.assertFalse(report["differentiated"],
                          "a fallback microtopic must still fail the A/B check, not be excused by it")
 

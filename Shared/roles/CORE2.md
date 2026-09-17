@@ -44,7 +44,7 @@ question.options[]                       options, preserved verbatim
 question.conditions[]                    conditions, preserved verbatim
 question.figure_refs[]                   figures survive; an unadapted original is held
 resource.caption                         and their captions survive
-resource.access_status                   held rather than dropped
+resource.access_status                   [author] held rather than dropped
 question.hints[]                         ladder hints, in their original ordering
 question.answer.summary                  an answer, for every question held
 question.answer.reasoning[]              with whatever working the source provides
