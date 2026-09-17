@@ -1116,28 +1116,7 @@
       "practice_profile_ref": "PROFILE-MATH-PREVIEW"
     }
   ],
-  "practice_profiles": [
-    {
-      "id": "PROFILE-MATH-PREVIEW",
-      "knowledge_percentage": null,
-      "provenance": "UNKNOWN",
-      "capability_scope": [
-        "CAP-MATH-ISOLATE",
-        "CAP-MATH-EXACTNESS"
-      ],
-      "observation_refs": [],
-      "owner_waiver": {
-        "instruction_ref": "docs/PROGRAM-PLAN.md",
-        "instruction": "Design preview only: no personalisation is claimed for this run."
-      },
-      "support_plan": [
-        "Keep the substitution check available at every step.",
-        "State the non-zero divisor condition before dividing."
-      ],
-      "measured_fit_claim": false,
-      "support_posture": "SIMPLEST_FOUNDATION"
-    }
-  ],
+  "practice_profiles": [],
   "evidence": [],
   "known_issues": [
     {

@@ -36,6 +36,12 @@ jobs:
       - name: Role specs resolve against the library schema
         run: python3 Shared/tools/spec_conformance.py --enforce
 
+      # A claim about a learner must be backed by what was seen, or say it is a waiver.
+      # Enforcing from the start: the store landed with its gate, and both committed
+      # profiles are waiver-backed with a null percentage, which is the honest value.
+      - name: Learner claims are backed by evidence or a waiver
+        run: python3 Shared/tools/learner_evidence.py --enforce
+
       # A matrix may reference the library and may not restate or outrank it. Enforcing
       # from the start: it has no backlog, because the schema and the gate landed before
       # any matrix data did.

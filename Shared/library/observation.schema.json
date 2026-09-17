@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/observation.schema.json",
+  "title": "Capability observation",
+  "description": "One thing actually seen. Without this record type provenance DIAGNOSTIC could never be truthful, which is why both committed profiles say UNKNOWN: observation_refs pointed at a record type that did not exist.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation_id",
+    "capability_ref",
+    "method",
+    "observed",
+    "result",
+    "when"
+  ],
+  "properties": {
+    "observation_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier."
+    },
+    "capability_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The one capability this observation is about."
+    },
+    "method": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How it was observed -- which task was set, under what conditions."
+    },
+    "observed": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the learner actually did or produced."
+    },
+    "result": {
+      "enum": [
+        "DEMONSTRATED",
+        "UNCERTAIN",
+        "MISSING"
+      ]
+    },
+    "when": {
+      "type": "string",
+      "minLength": 1,
+      "description": "ISO date."
+    },
+    "independence": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Whether the learner had help, and what kind. Seeing a worked solution is not evidence of independent mastery."
+    }
+  }
+}

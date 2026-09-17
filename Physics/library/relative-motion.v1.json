@@ -1201,28 +1201,7 @@
       "practice_profile_ref": "PROFILE-UNKNOWN-WAIVER"
     }
   ],
-  "practice_profiles": [
-    {
-      "id": "PROFILE-UNKNOWN-WAIVER",
-      "knowledge_percentage": null,
-      "provenance": "UNKNOWN",
-      "capability_scope": [
-        "CAP-RELATIVE-V",
-        "CAP-VECTOR-CHECK"
-      ],
-      "observation_refs": [],
-      "owner_waiver": {
-        "instruction_ref": "../../Physics/StressTests/V3B-Motion-Grade9-Example.md",
-        "instruction": "Demonstration setting: begin simply with prerequisite bridges; no measured-fit claim."
-      },
-      "support_plan": [
-        "Bridge signed coordinates and right-triangle magnitude before independent use.",
-        "Use check questions to discover missing capabilities."
-      ],
-      "measured_fit_claim": false,
-      "support_posture": "SIMPLEST_FOUNDATION"
-    }
-  ],
+  "practice_profiles": [],
   "evidence": [],
   "known_issues": [
     {

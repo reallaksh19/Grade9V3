@@ -49,8 +49,11 @@ def build_index(packages: list[dict]) -> dict:
 
 # References that deliberately leave the library. A gate relation is owned by the
 # engineering registry, so resolving it against library records would report every
-# correctly bound relation as a dangling reference.
-EXTERNAL_REF_KEYS = {"gate_relation_ref"}
+# correctly bound relation as a dangling reference. A learner profile leaves for a
+# different reason: a learner is not a property of a physics package, and the two that
+# lived inside one meant the same learner studying a second bucket needed a duplicate.
+# Both are resolved by their own gate instead.
+EXTERNAL_REF_KEYS = {"gate_relation_ref", "practice_profile_ref"}
 
 
 def references(value, path: str = "") -> list[tuple[str, str]]:

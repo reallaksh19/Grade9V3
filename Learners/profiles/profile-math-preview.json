@@ -1,0 +1,17 @@
+{
+  "profile_id": "PROFILE-MATH-PREVIEW",
+  "label": "Design preview carried over from linear-equations.v1.json",
+  "provenance": "UNKNOWN",
+  "held": {
+    "CAP-MATH-ISOLATE": "UNCERTAIN",
+    "CAP-MATH-EXACTNESS": "UNCERTAIN"
+  },
+  "knowledge_percentage": null,
+  "support_posture": "SIMPLEST_FOUNDATION",
+  "observation_refs": [],
+  "owner_waiver": {
+    "instruction_ref": "docs/PROGRAM-PLAN.md",
+    "instruction": "Design preview only: no personalisation is claimed for this run."
+  },
+  "measured_fit_claim": false
+}

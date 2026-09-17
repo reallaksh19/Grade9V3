@@ -14,8 +14,8 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     build_manifest, build_web_data, capability_audit, check_subjects,
-    capability_collisions, matrix_conformance, spec_conformance, spec_delivery,
-    topic_independence_guard,
+    capability_collisions, learner_evidence, matrix_conformance, spec_conformance,
+    spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -726,3 +726,79 @@ class MatrixConformance(unittest.TestCase):
             with self.subTest(dimension=row["dimension"]):
                 for field in ("changed_demand", "information_not_handed_over", "repair_to"):
                     self.assertTrue(row[field].strip())
+
+
+class LearnerEvidence(unittest.TestCase):
+    """A claim about a learner must be backed by what was seen, or say it is a waiver.
+
+    Profiles left the packages because a learner is not a property of a physics package:
+    the two that lived inside one meant the same learner studying a second bucket needed
+    a duplicate, and capabilities cross subjects so a package-scoped profile can never
+    answer whether a prerequisite is held.
+    """
+
+    def test_no_package_holds_a_profile_any_more(self):
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            with self.subTest(package=path.name):
+                self.assertEqual(
+                    json.loads(path.read_text(encoding="utf-8")).get("practice_profiles"), [])
+
+    def test_the_committed_profiles_pass(self):
+        report = learner_evidence.audit()
+        self.assertEqual(report["profiles"], 2)
+        self.assertEqual(report["findings"], [])
+
+    def test_a_profile_reference_still_resolves_across_the_boundary(self):
+        # practice_profile_ref now leaves the library, like gate_relation_ref. It must
+        # still resolve -- just by its own gate rather than by the library resolver.
+        from Shared.library.resolve import EXTERNAL_REF_KEYS  # noqa: PLC0415
+        self.assertIn("practice_profile_ref", EXTERNAL_REF_KEYS)
+        referenced = learner_evidence.referenced_profiles()
+        self.assertTrue(referenced, "nothing references a profile, so this asserts nothing")
+        self.assertNotIn("PROFILE_REF_DANGLING",
+                         [f["point"] for f in learner_evidence.audit()["findings"]])
+
+    def plant(self, profile):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for name in ("Physics", "Mathematics", "Chemistry", "Shared"):
+                shutil.copytree(REPO / name, root / name)
+            (root / "Learners/profiles").mkdir(parents=True)
+            (root / "Learners/profiles/p.json").write_text(json.dumps(profile), encoding="utf-8")
+            return [f["point"] for f in learner_evidence.audit(root)["findings"]]
+
+    def test_an_estimate_without_a_waiver_is_refused(self):
+        # An estimate is a decision, not a measurement, so it must carry the instruction
+        # it is following instead.
+        self.assertIn("CLAIM_WITHOUT_EVIDENCE_OR_WAIVER", self.plant({
+            "profile_id": "P", "provenance": "OWNER_ESTIMATE", "held": {},
+            "knowledge_percentage": 70, "measured_fit_claim": False}))
+
+    def test_demonstrated_without_an_observation_is_refused(self):
+        self.assertIn("DEMONSTRATED_WITHOUT_AN_OBSERVATION", self.plant({
+            "profile_id": "P", "provenance": "DIAGNOSTIC",
+            "held": {"CAP-SIGNED-PAIR": "DEMONSTRATED"},
+            "observation_refs": [], "measured_fit_claim": False}))
+
+    def test_fit_cannot_be_claimed_without_diagnosis(self):
+        # A successfully generated book is not evidence of fit.
+        self.assertIn("FIT_CLAIMED_WITHOUT_DIAGNOSIS", self.plant({
+            "profile_id": "P", "provenance": "OWNER_ESTIMATE", "held": {},
+            "owner_waiver": {"instruction_ref": "d.md", "instruction": "Proceed simply."},
+            "measured_fit_claim": True}))
+
+    def test_a_capability_no_subject_declares_is_refused(self):
+        self.assertIn("HELD_CAPABILITY_UNKNOWN", self.plant({
+            "profile_id": "P", "provenance": "UNKNOWN", "held": {"CAP-INVENTED": "MISSING"},
+            "owner_waiver": {"instruction_ref": "d.md", "instruction": "No evidence."},
+            "measured_fit_claim": False}))
+
+    def test_the_percentage_is_stored_and_never_selected_from(self):
+        # The rule the role specs state: mastery of a prerequisite may not be read off an
+        # aggregate. Both committed profiles carry null, which is the honest value.
+        source = (REPO / "Shared/library/learner-profile.schema.json").read_text(encoding="utf-8")
+        self.assertIn("never computes from", source)
+        for path in sorted((REPO / "Learners/profiles").glob("*.json")):
+            with self.subTest(profile=path.name):
+                self.assertIsNone(json.loads(path.read_text(encoding="utf-8"))
+                                  ["knowledge_percentage"])
