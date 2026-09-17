@@ -76,9 +76,22 @@ To establish an indisputable, verified oracle pattern before scaling across the 
 
 ---
 
-## 4. Pedagogical Schema Definition
+## 4. Pedagogical Schema Definition & Schema Provenance
 
-Each microtopic is governed by a 13-field cognitive specification contract derived from `Physics/adapter/CoreContracts.json`, `Physics/gates/motion-vectors.v1.json`, and `Shared/roles/CORE*.md`.
+```yaml
+schema_provenance:
+  status: AUTHORING_ANALYSIS_OVERLAY
+  repository_fields: source-extracted
+  pedagogical_fields:
+    - target_aha
+    - controlled_experience
+    - representation_bridge
+  note: >
+    These fields organize repository evidence for pedagogical review.
+    They are not yet normative package-schema fields.
+```
+
+Each microtopic is governed by a 13-field cognitive specification contract organizing evidence from `Physics/adapter/CoreContracts.json`, `Physics/gates/motion-vectors.v1.json`, and `Shared/roles/CORE*.md`.
 
 **Governing Extraction Rule**: If repository evidence supports a field, the source-backed value is recorded. If repository evidence does not support a field, it **must** be marked with its explicit failure-closed gap token (`*_AUTHOR_REQUIRED`). When multiple repository layers declare conflicting or divergent representations, the matrix **must expose both authorities** rather than collapsing them.
 
