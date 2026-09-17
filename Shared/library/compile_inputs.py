@@ -279,6 +279,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             blocks = [_question_block(core, record, custody_obligation, atoms)
                       for record in question_records]
         elif core in ROUTED:
+            conventions_pending = core == "CORE1A" and bool(bucket.get("conventions"))
             for microtopic in microtopics:
                 obligation = f'OB-{microtopic["id"]}'
                 if not any(o["id"] == obligation and core in o["required_cores"] for o in obligations):
@@ -287,9 +288,13 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 if core == ELICITING and microtopic.get("elicitation"):
                     blocks += _elicitation_blocks(microtopic, core, obligation, bound)
                 else:
+                    teaching = _teaching_text(microtopic, core, relations)
+                    if conventions_pending:
+                        teaching = f'{_conventions_text(bucket)}\n\n{teaching}'
+                        conventions_pending = False
                     blocks.append({"id": f'{core}-{microtopic["id"]}-T', "kind": "TEXT",
                                    "obligation_ids": [obligation], "source_atom_ids": bound,
-                                   "text": _teaching_text(microtopic, core, relations)})
+                                   "text": teaching})
                     if core == ELICITING:
                         # Compiling the declarative text here is what made this product
                         # read as the declarative one. It stays only while a microtopic
@@ -411,6 +416,21 @@ def _closure_lines(attempt: dict) -> list[str]:
     return lines
 
 
+def _conventions_text(bucket: dict) -> str:
+    """Carry authored bucket conventions verbatim, without inventing an instance choice.
+
+    The bucket owns the statements; the compiler only adds a neutral heading and list
+    markers. This is deliberately separate from relation/model conditions and from
+    representation constraints, which already have their own governed homes.
+    """
+    conventions = bucket.get("conventions") or []
+    if not conventions:
+        return ""
+    lines = ["Conventions to declare before reading quantities:"]
+    lines += [f'- {sentence(item["statement"])}' for item in conventions]
+    return "\n".join(lines)
+
+
 def _teaching_text(microtopic: dict, core: str, relations: dict | None = None) -> str:
     """Carry the library's own authored prose; do not synthesise teaching."""
     relations = relations or {}
@@ -478,6 +498,11 @@ def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict]
     """
     bound = sorted({a["id"] for a in atoms})
     blocks = []
+    conventions = _conventions_text(bucket)
+    if conventions:
+        blocks.append({"id": "CORE1-CONVENTIONS", "kind": "TEXT",
+                       "obligation_ids": [obligation], "source_atom_ids": bound,
+                       "text": conventions})
     quantities = [a for a in atoms if a["kind"] == "DATUM"]
     if quantities:
         lines = ["The quantities this bucket works with."]
