@@ -1078,6 +1078,12 @@
       "prerequisite_refs": [
         "CAP-SIGNED-PAIR-BRIDGE"
       ],
+      "conventions": [
+        {
+          "id": "CONV-VEC-AXIS-DECLARATION",
+          "statement": "Before any signed component is read, the frame and the positive direction of each axis for that instance are declared. Every signed component used together in that instance is interpreted in that declared component basis."
+        }
+      ],
       "primary_representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
     }
   ],
