@@ -1,0 +1,70 @@
+{
+  "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-VECTOR-REPRESENTATION",
+  "topic": "Motion in two dimensions",
+  "subtopic": "Vector representation and subtraction",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-VECTOR-VS-SCALAR",
+      "ceiling": ["frame", "axes", "perpendicular", "component", "magnitude", "right-triangle", "vector"],
+      "must_contain": [
+        "Two directed arrows with equal lengths but different directions, so equal size cannot identify the directed quantity.",
+        "A contrast between a nonnegative size statement and directional information without assuming the learner already owns component language."
+      ],
+      "controlled_variation": [
+        {"phase": 1, "vary": "the arrow direction while keeping its drawn length fixed", "hold": "the scale and the arrow length", "notice": "the size stays the same while the directed quantity changes"},
+        {"phase": 2, "vary": "the arrow length while keeping its direction fixed", "hold": "the scale and direction", "notice": "direction can stay the same while the size changes"}
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 50,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-SIGNED-COMPONENT",
+      "ceiling": ["axis convention", "coordinate transformation", "component sign", "quadrant", "basis"],
+      "must_contain": [
+        "One physical arrow shown under two declared positive-direction choices.",
+        "The sign change tied to the declared direction choice while the physical arrow itself is unchanged."
+      ],
+      "controlled_variation": [
+        {"phase": 1, "vary": "which horizontal direction is declared positive", "hold": "the same physical arrow and vertical direction", "notice": "the horizontal signed reading flips while the physical arrow does not"},
+        {"phase": 2, "vary": "both declared positive directions together", "hold": "the same physical arrow and scale", "notice": "both signed readings may flip while the arrow length remains unchanged"}
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 80,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-GRAPHICAL-SUBTRACTION",
+      "ceiling": ["negative vector", "vector subtraction", "resultant", "tail-to-head", "free vector"],
+      "must_contain": [
+        "A second arrow reversed without changing its length before it is combined with the first.",
+        "The same subtraction checked once by a geometric construction and once by signed numerical readings."
+      ],
+      "controlled_variation": [
+        {"phase": 1, "vary": "the order of the two operands", "hold": "the same pair of directed arrows", "notice": "the constructed answer reverses direction while keeping the same length"},
+        {"phase": 2, "vary": "the angle between the two arrows", "hold": "their individual lengths and operand order", "notice": "the subtraction result changes continuously even though neither input length changes"}
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Declare a direction convention, preserve directional information, choose the requested vector operation, and reconcile the result between an arrow construction and signed numerical representation.",
+    "difficult_move": "Keeping direction and operand order attached to the physical statement while moving between an arrow picture and signed numbers.",
+    "independent_check": "Translate the result into the other representation; for subtraction, swapping the operands must reverse the result while preserving its length.",
+    "support_ladder": [
+      {"level": "high", "handed_over": "The positive directions, the requested operation, and a partially labelled arrow construction are supplied."},
+      {"level": "medium", "handed_over": "The positive directions and the requested operation are supplied."},
+      {"level": "low", "handed_over": "Only the physical situation and requested quantity are supplied."}
+    ]
+  },
+  "transfer": [
+    {"dimension": "representation_translation", "changed_demand": "The inputs are given only as an arrow diagram and the answer must be reported as signed numerical readings.", "information_not_handed_over": "the signed readings of either input arrow", "repair_to": "R2"},
+    {"dimension": "model_choice", "changed_demand": "A story describes two directed quantities and the learner must decide whether it asks for a sum, a difference, or only a magnitude.", "information_not_handed_over": "which vector operation the wording encodes", "repair_to": "R3"},
+    {"dimension": "novelty", "changed_demand": "The same subtraction is posed after both positive directions are redeclared opposite to the familiar convention.", "information_not_handed_over": "the signs each input takes under the new declaration", "repair_to": "R2"}
+  ]
+}
