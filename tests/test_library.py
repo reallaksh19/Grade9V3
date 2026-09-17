@@ -3,6 +3,7 @@ and a bucket compiles into inputs that actually publish."""
 import collections
 import copy
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -12,7 +13,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Physics.adapter import load as load_physics  # noqa: E402
-from Shared.contracts import ContractError  # noqa: E402
+from Shared.contracts import ContractError, join  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
 from Shared.library import authority, intake, substance  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
@@ -23,6 +24,13 @@ from Shared.library.resolve import (  # noqa: E402
 from Shared.publication_host.host import publish  # noqa: E402
 
 PACKAGES = sorted((REPO / "Physics/library").glob("*.json"))
+BUCKET_MATH = "BUCKET-LINEAR-EQUATION"
+MATH_PACKAGES = sorted((REPO / "Mathematics/library").glob("*.json"))
+
+
+def math_records():
+    """The Mathematics slice, which is the one with a compiled figure to place."""
+    return build_index([json.loads(p.read_text(encoding="utf-8")) for p in MATH_PACKAGES])
 
 
 def packages():
@@ -499,3 +507,46 @@ class ExitAnswersHaveCustody(unittest.TestCase):
         case.update({name: data[datum] for name, datum in spec["bindings"].items()})
         self.assertEqual(str(math_recompute(case)), "7/3")
         self.assertIn("7/3", row["exit_task"]["answer"]["summary"])
+
+
+class ComposedProseReadsAsProse(unittest.TestCase):
+    """A sentence embedded inside another sentence reached the learner's page.
+
+    "This gives For x = 2: 3(2) + 2 = 8" and "A common wrong idea is that The equals
+    sign means..." both shipped. Lead-ins ending in a colon never had the defect --
+    a capital after a colon is correct -- so only the two word-final joins changed.
+    """
+
+    def compiled_text(self, core):
+        compiled = compile_bucket(math_records(), BUCKET_MATH, topic_id="T", title="T",
+                                  subject="Mathematics",
+                                  practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"})
+        product = next(p for p in compiled["plan"]["products"] if p["core"] == core)
+        return "\n".join(b.get("text", "") for b in product["units"][0]["blocks"])
+
+    def test_a_fragment_stays_inside_its_lead_in(self):
+        self.assertEqual(join("This gives", "a*x = c - b"), ["This gives a*x = c - b."])
+
+    def test_a_sentence_takes_its_own_line_and_keeps_its_capital(self):
+        self.assertEqual(join("This gives", "For x = 2: 3(2) + 2 = 8, and the right side is 9."),
+                         ["This gives:", "For x = 2: 3(2) + 2 = 8, and the right side is 9."])
+
+    def test_no_composed_line_embeds_a_sentence_mid_sentence(self):
+        # The general assertion, not the two strings that were found: nothing may put a
+        # capitalised word straight after a lead-in word.
+        for core in ("CORE1", "CORE1A", "CORE1B"):
+            with self.subTest(core=core):
+                for line in self.compiled_text(core).splitlines():
+                    self.assertIsNone(re.search(r"\b(?:gives|that|is|means)\s+[A-Z][a-z]", line),
+                                      f"{core}: {line}")
+
+    def test_a_colon_lead_in_keeps_its_capital_on_the_same_line(self):
+        text = self.compiled_text("CORE1B")
+        self.assertRegex(text, r"Predict first: [A-Z0-9]")
+
+    def test_the_wrong_idea_and_its_repair_are_separate_and_both_labelled(self):
+        # They were run together on one line, two sentences pretending to be one.
+        text = self.compiled_text("CORE1B")
+        self.assertIn("A common wrong idea:", text)
+        self.assertIn("Instead:", text)
+

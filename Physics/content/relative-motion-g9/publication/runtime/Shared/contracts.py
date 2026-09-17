@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
+import unicodedata
 from pathlib import Path
+
+WORD = re.compile(r"[a-z0-9]+")
+PROSE_MIN_WORDS = 6
+SENTENCE_END = (".", "!", "?")
 
 
 class ContractError(ValueError):
@@ -80,6 +86,44 @@ def sentence(value: str) -> str:
     """
     value = value.strip()
     return value if value.endswith((".", "!", "?", ":")) else value + "."
+
+
+def normalise(text: str) -> str:
+    """Lowercase content words only, for comparing two pieces of authored text."""
+    return " ".join(WORD.findall(unicodedata.normalize("NFKC", str(text)).lower()))
+
+
+def is_prose(text: str) -> bool:
+    """Whether a value is a written sentence rather than a label.
+
+    Classification values repeat across records legitimately and in quantity -- every
+    packet in a corpus may be tagged "JEE Advanced" or "Grade 9-10" -- so treating any
+    value containing a space as prose drowned the real findings. A sentence is either
+    long enough to be one, or punctuated as one: that second clause is what keeps
+    "Governing relation." in scope, which is the phrase the substance gate exists to
+    catch.
+    """
+    stripped = str(text).strip()
+    return len(normalise(stripped).split()) >= PROSE_MIN_WORDS or stripped.endswith(SENTENCE_END)
+
+
+def join(lead: str, fragment: str) -> list[str]:
+    """Attach an authored field to a lead-in phrase: one line, or two.
+
+    A library field arrives as a fragment in some records and as a whole sentence in
+    others. "a*x = c - b" belongs inside its lead-in; "For x = 2: 3(2) + 2 = 8, and
+    the right side is 9" does not, and embedding it published "This gives For x = 2".
+
+    Lowercasing the embedded capital instead would have to tell a proper noun from a
+    symbol, which nothing here can do. So a sentence is given its own line and the
+    lead-in takes a colon, where a following capital is correct; only a fragment is
+    inlined. Lead-ins that already end in a colon never had the defect and do not
+    come through here.
+    """
+    lead, fragment = lead.rstrip().rstrip(".:"), str(fragment).strip()
+    if is_prose(fragment):
+        return [lead + ":", sentence(fragment)]
+    return [sentence(f"{lead} {fragment}")]
 
 
 def bound_path(root: Path, relative: str) -> Path:

@@ -40,7 +40,7 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from Shared.contracts import digest, load, require, sentence
+from Shared.contracts import digest, join, load, require, sentence
 from Shared.library.resolve import build_index, load_packages, slice_for_bucket
 
 # Core1 and Core2 sit outside the teaching-route mechanism. A route says which product
@@ -297,11 +297,16 @@ def _teaching_text(microtopic: dict, core: str) -> str:
     lines = [sentence(microtopic["title"]), "", microtopic["inferential_jump"]]
     if core == "CORE1B":
         for item in microtopic.get("misconceptions", []):
-            lines += ["", f'Predict first: {item["diagnostic_prompt"]}',
-                      f'A common wrong idea is that {item["wrong_idea"]} {item["repair"]}']
+            # The lead-in was "A common wrong idea is that", which grammatically wants a
+            # clause and was handed a sentence: "is that The equals sign means...". The
+            # wrong idea and its repair were also run together on one line, which is two
+            # sentences pretending to be one.
+            lines += ["", f'Predict first: {sentence(item["diagnostic_prompt"])}']
+            lines += join("A common wrong idea", item["wrong_idea"])
+            lines += join("Instead", item["repair"])
     for step in microtopic.get("teaching_path", []):
-        lines.append(f'{step["action"]} {step["why_valid"]}'
-                     + (f' This gives {sentence(step["output"])}' if step.get("output") else ""))
+        stated = f'{sentence(step["action"])} {sentence(step["why_valid"])}'
+        lines += join(f"{stated} This gives", step["output"]) if step.get("output") else [stated]
     exit_task = microtopic.get("exit_task") or {}
     if exit_task.get("prompt"):
         answer = exit_task.get("answer", {})

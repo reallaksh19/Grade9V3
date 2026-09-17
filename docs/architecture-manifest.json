@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 46,
-  "relation_count": 68,
+  "relation_count": 69,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 8,
     "WEB": 5
   },
-  "digest": "sha256:33cbe05c6e4fd700a346ab1dcdccd0a79c6821dba9b27194dc0eb60ab052c036",
+  "digest": "sha256:32e615520524a7746a65fea1fd3acec85af848edb6bb729ace0e67f5b956daaf",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 25637,
-      "sha256": "eeb6e42d866362e83562810063155876a9a5149acefeadedeb110b8b8fabbc5a"
+      "bytes": 26011,
+      "sha256": "bca77c9a4e08a16482adf98b7693bab2015e269ba16ff47534889f6477ef8a5c"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -85,8 +85,8 @@
       "path": "Shared/library/substance.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 10503,
-      "sha256": "81cc4f068bfc6835d4579183d320e896a8de4da4c4f8c2d803166f5aef4c1053"
+      "bytes": 9704,
+      "sha256": "9a136303d2dc31ae2f8f1d6891b28cd35de8a9387328c0290e76f034a8e3b229"
     },
     {
       "path": "Shared/publication_host/__init__.py",
@@ -281,8 +281,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 26434,
-      "sha256": "09f0f145695d5263168495ccbdb2a90cbeccbcbc0ac02ad9a63f35373083795f"
+      "bytes": 29019,
+      "sha256": "840bc5d373f3cc40d1d9284d612b816d8fba4dcc3113e21b23ea1a6ec2b6659c"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -399,6 +399,11 @@
     },
     {
       "from": "Shared/library/resolve.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/substance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
     },

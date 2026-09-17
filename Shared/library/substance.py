@@ -31,9 +31,10 @@ grade or a topic, which is what lets the same gate stand in front of every subje
 from __future__ import annotations
 
 import re
-import unicodedata
 from collections import defaultdict
 from typing import Iterable, Iterator, Mapping
+
+from Shared.contracts import PROSE_MIN_WORDS, SENTENCE_END, is_prose, normalise as _normalise
 
 # Keys whose values are identifiers, enumerations or provenance boilerplate rather
 # than authored teaching. Repetition across records is expected and correct there:
@@ -55,28 +56,7 @@ STRUCTURAL_KEYS = {
 # added to the schema later is discriminative until someone argues it here.
 SHARED_CONSTRAINT_KEYS = {"conditions", "accessibility", "rights_status", "edition"}
 TITLE_KEYS = ("title", "name", "learner_title")
-WORD = re.compile(r"[a-z0-9]+")
 SELF_NAMING_MAX_WORDS = 3
-PROSE_MIN_WORDS = 6
-SENTENCE_END = (".", "?", "!")
-
-
-def _normalise(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text)
-    return " ".join(WORD.findall(text.lower()))
-
-
-def is_prose(text: str) -> bool:
-    """Whether a value is a written sentence rather than a label.
-
-    Classification values repeat across records legitimately and in quantity -- every
-    packet in a corpus may be tagged "JEE Advanced" or "Grade 9-10" -- so treating any
-    value containing a space as prose drowned the real findings. A sentence is either
-    long enough to be one, or punctuated as one: that second clause is what keeps
-    "Governing relation." in scope, which is the phrase this gate exists to catch.
-    """
-    stripped = text.strip()
-    return len(_normalise(stripped).split()) >= PROSE_MIN_WORDS or stripped.endswith(SENTENCE_END)
 
 
 def prose_fields(record: object, path: str = "") -> Iterator[tuple[str, str]]:
