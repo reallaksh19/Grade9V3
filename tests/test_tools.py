@@ -14,7 +14,7 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     build_manifest, build_web_data, capability_audit, check_subjects,
-    spec_conformance, spec_delivery, topic_independence_guard,
+    capability_collisions, spec_conformance, spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -589,3 +589,62 @@ class SpecDelivery(unittest.TestCase):
         rows = self.rows_for("Mathematics")
         core2b = [r for r in rows if r["role"] == "CORE2B"]
         self.assertEqual(core2b, [{"role": "CORE2B", "state": "NOT_COMPILED_HERE"}])
+
+
+class CapabilityCollisions(unittest.TestCase):
+    """One skill must have one id, and a prerequisite must not carry an untaught rung.
+
+    Both findings land on the same two capabilities -- the ones delegated to another
+    subject -- which is one root cause with two symptoms.
+    """
+
+    def test_the_committed_tree_reports_exactly_the_known_two(self):
+        report = capability_collisions.audit()
+        self.assertEqual(report["capabilities"], 12)
+        forked = {f["capability"] for f in report["findings"]
+                  if f["point"] == "CAPABILITY_NAMESPACE_FORKED"}
+        untaught = {f["capability"] for f in report["findings"]
+                    if f["point"] == "DISCRIMINATION_TAUGHT_BY_NOTHING"}
+        self.assertEqual(forked, {"CAP-SIGNED-PAIR", "CAP-RIGHT-TRIANGLE"})
+        self.assertEqual(untaught, forked, "the same two, which is the point")
+
+    def test_a_fork_quotes_both_criteria_because_that_is_the_merge_evidence(self):
+        # A merge proposal without both texts is not reviewable, and this gate must not
+        # merge: collapsing two ids rewrites every prerequisite graph naming either.
+        for finding in capability_collisions.audit()["findings"]:
+            if finding["point"] != "CAPABILITY_NAMESPACE_FORKED":
+                continue
+            with self.subTest(stem=finding["capability"]):
+                self.assertEqual(len(finding["success_criteria"]), 2)
+                for text in finding["success_criteria"].values():
+                    self.assertTrue(text.strip())
+                self.assertIn("criteria_agree", finding)
+
+    def test_it_reports_rather_than_resolves(self):
+        source = (REPO / "Shared/tools/capability_collisions.py").read_text(encoding="utf-8")
+        self.assertNotIn("def merge", source)
+        self.assertIn("never resolves them", source)
+
+    def test_the_same_id_in_two_packages_is_caught(self):
+        declared = {"CAP-X": [{"id": "CAP-X", "_package": "A", "success_criterion": "Do a thing."},
+                              {"id": "CAP-X", "_package": "B", "success_criterion": "Do a thing."}]}
+        points = [f["point"] for f in capability_collisions.findings(declared, taught=set())]
+        self.assertIn("CAPABILITY_DECLARED_TWICE", points)
+
+    def test_a_discrimination_a_microtopic_teaches_is_not_a_finding(self):
+        # The guard against the version of this gate I threw away. Matching on "and"
+        # fired on 9 of 12 capabilities, 6 wrongly -- "reverse, translate, add
+        # tail-to-head, and reconcile" is one composite procedure, not a rider.
+        declared = {"CAP-Y": [{"id": "CAP-Y", "_package": "A",
+                               "success_criterion": "State a magnitude as nonnegative and a "
+                                                    "component as signed, without confusing them."}]}
+        self.assertEqual(capability_collisions.findings(declared, taught={"CAP-Y"}), [])
+        self.assertEqual([f["point"] for f in
+                          capability_collisions.findings(declared, taught=set())],
+                         ["DISCRIMINATION_TAUGHT_BY_NOTHING"])
+
+    def test_a_composite_procedure_is_not_mistaken_for_a_rider(self):
+        declared = {"CAP-Z": [{"id": "CAP-Z", "_package": "A",
+                               "success_criterion": "Reverse the vector, translate it without "
+                                                    "rotating, and add tail-to-head."}]}
+        self.assertEqual(capability_collisions.findings(declared, taught=set()), [])
