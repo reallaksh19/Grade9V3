@@ -11,11 +11,18 @@ rung whose ceiling forbids what it teaches cannot be written at all: you cannot 
 "distance is not displacement" without the word displacement. That is a contradiction in
 the file rather than a judgement about teaching, so it is enforced.
 
-The second finding is not enforced, deliberately. A rung whose learner-facing text uses a
-word its ceiling correctly forbids is a content defect, and the repair belongs to whoever
-authored the rung -- five exist today and are reported by name. Failing the build on them
-would put the fix in the wrong hands, which is the same reason capability_collisions.py
-reports a namespace fork and refuses to merge one.
+The other two findings are not enforced, deliberately. A text that uses a word its ceiling
+correctly forbids is a content defect, and the repair is somebody's teaching rewritten --
+it belongs to that rung's author, the same reason capability_collisions.py reports a
+namespace fork and refuses to merge one.
+
+The one that matters most is CEILING_WORD_IN_THE_AUTHORED_EXPLANATION, because the matrix
+row is advice to an author and the RECORD is what a learner reads. Nothing compared the
+ceiling to the explanation it governs until the entry rung of relative motion was
+authored and the question came up. Seven exist, and four of them are the exact terms the
+relative-motion benchmark has named since it was written as its measured failure --
+MIC-VECTOR-VS-SCALAR explaining a vector with words its entry assumptions never declare.
+Named in prose for weeks; mechanical now.
 
 Which text the ceiling binds on follows from what the fields are, not from convenience:
 
@@ -40,6 +47,7 @@ from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
 BLOCKING = "CEILING_FORBIDS_THE_RUNGS_OWN_OUTPUT"
 REPORTED = "CEILING_WORD_USED_IN_THE_RUNGS_OWN_TEXT"
+AUTHORED = "CEILING_WORD_IN_THE_AUTHORED_EXPLANATION"
 
 
 def says(word: str, text: str) -> bool:
@@ -47,6 +55,19 @@ def says(word: str, text: str) -> bool:
     a jump saying "a pair of signed components" hides a ceiling forbidding "component"."""
     return bool(re.search(r"\b" + re.escape(word.lower()) + r"(?:e?s)?\b",
                           (text or "").lower()))
+
+
+def explanation(mic: dict) -> str:
+    """The text a learner actually reads. The matrix row is advice to an author; this is
+    the thing the ceiling exists to constrain, and until now nothing compared the two."""
+    parts = [mic.get("inferential_jump")]
+    for step in mic.get("teaching_path", []):
+        parts += [step.get("action"), step.get("why_valid"), step.get("output")]
+    exit_task = mic.get("exit_task") or {}
+    answer = exit_task.get("answer") or {}
+    parts += [exit_task.get("prompt"), answer.get("summary"), answer.get("check")]
+    parts += answer.get("reasoning") or []
+    return " ".join(p for p in parts if p)
 
 
 def learner_text(row: dict) -> str:
@@ -67,7 +88,7 @@ def findings(board: dict, caps: dict, mics: dict) -> list[dict]:
         # A SOURCE rung carries no `aha` -- the record owns it -- so the rung's own output
         # is read from the microtopic's jump. Reading only the matrix would let a ceiling
         # forbid its own output wherever a record exists, which is most of them.
-        state = rung_state(row, caps, mics)
+        state, ref = rung_state(row, caps, mics), row.get("microtopic_ref")
         own = row.get("aha") or state.get("jump", "")
         learner = learner_text(row)
         for word in ceiling:
@@ -78,8 +99,12 @@ def findings(board: dict, caps: dict, mics: dict) -> list[dict]:
                                         "words from above"})
             elif says(word, learner):
                 found.append({"point": REPORTED, "where": f'{row["rung"]}.{word}',
-                              "detail": "the text a learner sees uses a word this rung's "
-                                        "ceiling forbids"})
+                              "detail": "the matrix's learner-facing text uses a word "
+                                        "this rung's ceiling forbids"})
+            elif ref in mics and says(word, explanation(mics[ref])):
+                found.append({"point": AUTHORED, "where": f'{row["rung"]}.{word}',
+                              "detail": f"{ref}, the record a learner actually reads, "
+                                        f"uses a word this rung's ceiling forbids"})
     return found
 
 
@@ -95,11 +120,13 @@ def audit(repo: Path = REPO) -> dict:
                      "ceiling_words": sum(len(r.get("ceiling") or [])
                                           for r in board.get("rungs", [])),
                      "findings": found})
-    blocking = [f for r in rows for f in r["findings"] if f["point"] == BLOCKING]
-    reported = [f for r in rows for f in r["findings"] if f["point"] == REPORTED]
+    def count(point):
+        return len([f for r in rows for f in r["findings"] if f["point"] == point])
+    blocking = count(BLOCKING)
     return {"matrices": len(rows), "boards": rows,
             "ceiling_words": sum(r["ceiling_words"] for r in rows),
-            "blocking": len(blocking), "reported": len(reported),
+            "blocking": blocking, "reported": count(REPORTED),
+            "in_the_explanation": count(AUTHORED),
             "passed": not blocking}
 
 

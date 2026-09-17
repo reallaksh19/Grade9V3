@@ -9,11 +9,8 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "\"Where is it?\" has no answer until you say measured from what. Position is a relation, not a property of the object.",
-      "learner_owns": [
-        "Can say where a thing is by pointing or counting paces."
-      ],
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-MEASURED-FROM",
       "ceiling": [
         "frame",
         "axis",
@@ -26,12 +23,6 @@
         "Two situations carrying the same number that are not the same situation.",
         "The direction said in words before any symbol or drawing appears."
       ],
-      "misconception": {
-        "wrong_idea": "Position is a property the object carries with it.",
-        "diagnostic_prompt": "Two people give different answers for where the same chair is. Can both be right?",
-        "repair": "Say what you measured from, then give the number; the number alone is not the answer."
-      },
-      "closure": "Given two descriptions with identical numbers, say whether they describe the same thing, and why.",
       "controlled_variation": [
         {
           "phase": 1,

@@ -16,7 +16,7 @@
     "TOOLING": 16,
     "WEB": 5
   },
-  "digest": "sha256:a9d700014673a949d8958df4782a6726f96bfa72ced1c608675331bdc0a4c834",
+  "digest": "sha256:b8e0d8c33d984a219d4604183ce1f8dcf86ad1c58e5b8bb094ecb72bbb61b35a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -295,8 +295,8 @@
       "path": "Shared/tools/ceiling_audit.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5509,
-      "sha256": "24df96b44d65f1ee80ddf13a6ee3ad25f0366079cbc1612399512b6762b61748"
+      "bytes": 7053,
+      "sha256": "a447807242166dd89c279b50dbaf9d08727fb719483abf856d6ce767edb38b4c"
     },
     {
       "path": "Shared/tools/check_subjects.py",
@@ -379,8 +379,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 76043,
-      "sha256": "d7942470204ecde05bc6c53bd4e8b6b9e79221d58c5ccdbaeca05c5c0dff7522"
+      "bytes": 76391,
+      "sha256": "febfa200f869f50587e27a0ce511a948fff811d8380467e1264dff4b6bf5b7de"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -400,8 +400,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 64225,
-      "sha256": "ddb69f3ba71cd4d42be104fc6638558f76724b7af267562658b96d5202ea2e38"
+      "bytes": 71942,
+      "sha256": "8169c31e7e148277d4233acd0f32150241abcc11dfe8860f53661f8c1211032d"
     },
     {
       "path": "tools/app.css",
@@ -414,8 +414,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 70482,
-      "sha256": "9e3a744fdf48140ff27df9657d7e21b9b346d84ea9b96c097a7581c707360653"
+      "bytes": 74733,
+      "sha256": "54caecfee1910fbcbc6da2df641a58200f23a9362f47a0e4339953971a15cd58"
     },
     {
       "path": "tools/index.html",

@@ -851,6 +851,62 @@ window.GRADE9V3 = {
           ],
           "microtopics": [
             {
+              "id": "MIC-MEASURED-FROM",
+              "title": "A number alone does not say where something is",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The idea is reachable by pacing a room, but it is routinely skipped as obvious and then assumed by every rung above it.",
+              "entry_assumptions": [
+                "Can say where a thing is by pointing or counting paces."
+              ],
+              "inferential_jump": "\"Where is it?\" has no answer until you say measured from what. Position is a relation, not a property of the object.",
+              "teaching_path": [
+                {
+                  "action": "Count paces from the door to the chair: four. Now count from the window to the same chair: four again.",
+                  "why_valid": "Both counts are honest measurements of the same chair, made without moving it, so neither can be dismissed as a mistake.",
+                  "output": "door -> chair: 4 paces.  window -> chair: 4 paces."
+                },
+                {
+                  "action": "Say each answer in full, out loud: four paces from the door, walking toward the window; four paces from the window, walking toward the door.",
+                  "why_valid": "Adding what each count started from is the only change made, and the two answers stop matching -- so the bare four was hiding the difference rather than describing it.",
+                  "output": "\"4 paces from the door, toward the window\"  and  \"4 paces from the window, toward the door\""
+                },
+                {
+                  "action": "Hand someone the number four on its own and ask them to put the chair back where it was.",
+                  "why_valid": "They cannot do it, and what they ask for is exactly what was left out: what the four was counted from.",
+                  "output": "\"Four from where?\" -- the question the listener has to ask back."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Position is a property the object carries with it.",
+                  "diagnostic_prompt": "Two people give different answers for where the same chair is. Can both be right?",
+                  "repair": "Say what you measured from, then give the number; the number alone is not the answer."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two people are asked where the same chair is. Both answer \"four paces\". Say whether they have described the same place, and what each would have to add before anyone could tell.",
+                "source_ref": "SRC-AUTHOR",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Not yet decidable: both answers are incomplete in the same way, and each needs what it was counted from.",
+                  "reasoning": [
+                    "Four is a count, and a count on its own does not name a place.",
+                    "If both counted from the door they agree; if one counted from the door and one from the window they do not, and the two answers given cannot tell those cases apart.",
+                    "What is missing from each is the thing it was counted from, together with which way the paces went."
+                  ],
+                  "check": "Ask someone else to put the chair back using only what was said. If they cannot, the description is still incomplete.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer asserts no computed value. It decides whether two descriptions are distinguishable, and the learner's own check is whether a second person can act on what was said."
+                }
+              },
+              "prerequisites": []
+            },
+            {
               "id": "MIC-SAME-TIME",
               "title": "Position measured from the other object",
               "badge": "HARD",
@@ -1133,6 +1189,12 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-MEASURED-FROM",
+              "action": "State what a place was measured from before giving its number.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-RELATIVE-V",
               "action": "Obtain relative velocity from same-time positions over one common interval.",
               "provider": null,
@@ -1181,7 +1243,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 47,
+          "record_count": 49,
           "compile_preview": {
             "compilable": true,
             "supported_products": [

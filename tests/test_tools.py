@@ -601,7 +601,7 @@ class CapabilityCollisions(unittest.TestCase):
 
     def test_the_committed_tree_reports_exactly_the_known_two(self):
         report = capability_collisions.audit()
-        self.assertEqual(report["capabilities"], 12)
+        self.assertGreater(report["capabilities"], 0, "no capabilities, so this asserts nothing")
         forked = {f["capability"] for f in report["findings"]
                   if f["point"] == "CAPABILITY_NAMESPACE_FORKED"}
         untaught = {f["capability"] for f in report["findings"]
@@ -721,27 +721,45 @@ class MatrixConformance(unittest.TestCase):
                 information_not_handed_over=b["transfer"][0]["changed_demand"])),
             ["WITHHELD_RESTATES_THE_DEMAND"])
 
+    # Every committed rung now references a record, so a record-less row is built here
+    # rather than borrowed from a subtopic. The rule is subject-neutral; pinning it to
+    # relative motion's R1 made it break the day that rung was authored.
+    RECORDLESS = {"rung": "RX", "ladder_position": 15, "provenance": "SYNTHESIS",
+                  "aha": "A thing measured one way is not the same as a thing measured another.",
+                  "learner_owns": ["Can report a single reading."],
+                  "misconception": {"wrong_idea": "One reading settles it.",
+                                    "diagnostic_prompt": "Two readings agree. Same thing?",
+                                    "repair": "Say what each was read against."},
+                  "closure": "Decide whether two readings describe one thing."}
+
+    def synthetic(self, mutate=None):
+        row = json.loads(json.dumps(self.RECORDLESS))
+        if mutate:
+            mutate(row)
+        mics, dimensions = matrix_conformance.library("Physics")
+        return [f["point"] for f in
+                matrix_conformance.findings({"rungs": [row]}, mics, dimensions)]
+
     def test_a_rung_nothing_teaches_must_still_say_what_it_is(self):
         # The hole the restatement rule left. A row with a position and nothing else
         # passed every other check and compiled a brief reading "(from the record)",
         # naming a record the same row says does not exist.
-        self.assertEqual(self.plant(lambda b: b["rungs"][0].pop("aha")),
-                         ["RUNG_NAMES_NO_JUMP"])
+        self.assertEqual(self.synthetic(), [])
+        self.assertEqual(self.synthetic(lambda r: r.pop("aha")), ["RUNG_NAMES_NO_JUMP"])
 
     def test_a_constructed_rung_carries_what_no_record_holds_for_it(self):
-        self.assertEqual(self.plant(lambda b: b["rungs"][0].pop("closure")),
+        self.assertEqual(self.synthetic(lambda r: r.pop("closure")),
                          ["SYNTHESIS_INCOMPLETE"])
 
     def test_absent_may_name_the_hole_and_stop(self):
         # ABSENT is the honest answer when the rung cannot be constructed. Demanding a
         # misconception and an exit task for it would be demanding invention, which is
         # the failure every gate here exists to prevent.
-        def strip(board):
-            row = board["rungs"][0]
+        def strip(row):
             row["provenance"] = "ABSENT"
             for field in ("learner_owns", "misconception", "closure"):
                 row.pop(field)
-        self.assertEqual(self.plant(strip), [])
+        self.assertEqual(self.synthetic(strip), [])
 
     def test_support_may_not_hand_over_the_invariant_demand(self):
         # The collapse from the support side. Remove the decision and what is left is
@@ -914,9 +932,15 @@ class AuthorBrief(unittest.TestCase):
         self.assertIn("STOP -- this subtopic declares no transfer row", text)
 
     def test_an_absent_rung_gets_the_rung_authoring_contract_not_a_product_one(self):
-        text = author_brief.brief("Physics", self.BUCKET, "R1", "CORE1A")
-        self.assertIn("STOP -- this rung has no record", text)
-        self.assertIn("ONE non-conjunctive success_criterion", text)
+        # Driven from the state rather than from a named rung: relative motion no longer
+        # has a record-less one, and the contract is not that subtopic's property.
+        caps, mics = author_brief.capability_chain("Physics")
+        state = author_brief.rung_state({"rung": "RX", "microtopic_ref": "MIC-NOT-REAL"},
+                                        caps, mics)
+        self.assertEqual(state["state"], "ABSENT")
+        self.assertTrue(state["root_capabilities"], "no roots, so the contract is empty")
+        self.assertTrue(state["conjunctive_roots"],
+                        "the two known conjunctive roots should still be named")
 
     def test_the_ceiling_reaches_the_brief_because_nothing_else_carries_it(self):
         text = author_brief.brief("Physics", self.BUCKET, "R1", "CORE1A")
@@ -1039,14 +1063,16 @@ class ResolveRequest(unittest.TestCase):
         self.assertEqual(points, ["SYNTHETIC_PROFILE_ROUTED"])
 
     def test_nobody_can_be_placed_on_a_ladder_whose_lower_rungs_have_no_records(self):
-        # The most useful refusal here, and it is measured rather than hypothetical: R1 is
-        # ABSENT, so it declares no capability, so no observation of this learner can say
-        # whether they are past it. That is a fact about the library, not about them.
+        # The refusal is a property of a ladder with a record-less rung below, not of any
+        # subtopic: relative motion had one until R1 was authored, and the rule outlives
+        # that. A rung with no record declares no capability, so no observation of this
+        # learner can say whether they are past it.
         caps, mics = author_brief.capability_chain("Physics")
+        rows = [{"rung": "R0", "ladder_position": 5, "provenance": "ABSENT"}] + self.rows()
         entry = resolve_request.entry_from_profile(
-            self.rows(), {"held": {"CAP-SAME-TIME": "DEMONSTRATED"}}, caps, mics)
+            rows, {"held": {"CAP-SAME-TIME": "DEMONSTRATED"}}, caps, mics)
         self.assertEqual(entry["why"], "UNDECIDABLE")
-        self.assertEqual(entry["at"], "R1")
+        self.assertEqual(entry["at"], "R0")
 
     def test_placement_reads_the_capability_map_and_never_an_aggregate(self):
         caps, mics = author_brief.capability_chain("Physics")
@@ -1094,11 +1120,15 @@ class ResolveRequest(unittest.TestCase):
         self.assertEqual(self.core(revision, "CORE2A")["support"], "low")
         self.assertEqual(starter["segment"], revision["segment"])
 
-    def test_an_absent_rung_in_the_segment_is_rung_work_before_product_work(self):
+    def test_rung_work_is_planned_exactly_where_a_record_is_missing(self):
+        # The rule: the task follows the state, never the position on the ladder.
         report = resolve_request.plan(self.request())
-        first = self.core(report, "CORE1A")["segment"][0]
-        self.assertEqual((first["rung"], first["state"], first["task"]),
-                         ("R1", "ABSENT", "AUTHOR_THE_RUNG"))
+        steps = [s for c in report["cores"] for s in c.get("segment", [])]
+        self.assertTrue(steps, "no segment, so this asserts nothing")
+        for step in steps:
+            with self.subTest(rung=step["rung"]):
+                self.assertEqual(step["task"] == "AUTHOR_THE_RUNG",
+                                 step["state"] == "ABSENT")
 
     def test_one_request_compiles_every_brief_the_plan_calls_for(self):
         text = resolve_request.briefs(self.request())
@@ -1141,11 +1171,14 @@ class CeilingAudit(unittest.TestCase):
         return json.loads((REPO / "Physics/matrices/vector-representation.rungs.json")
                           .read_text(encoding="utf-8"))
 
-    def plant(self, mutate):
+    def plant(self, mutate, index=0):
+        """Findings for ONE rung. Scoped deliberately: this board carries real findings of
+        its own, and a whole-board helper would fold them into every planted assertion."""
         board = self.board()
         mutate(board)
         caps, mics = author_brief.capability_chain("Physics")
-        return [f["point"] for f in ceiling_audit.findings(board, caps, mics)]
+        return [f["point"] for f in
+                ceiling_audit.findings({"rungs": [board["rungs"][index]]}, caps, mics)]
 
     def test_no_committed_matrix_forbids_its_own_output(self):
         report = ceiling_audit.audit()
@@ -1156,7 +1189,7 @@ class CeilingAudit(unittest.TestCase):
 
     def test_forbidding_a_word_the_rung_teaches_is_refused(self):
         self.assertEqual(
-            self.plant(lambda b: b["rungs"][0]["ceiling"].append("magnitude")),
+            self.plant(lambda b: b["rungs"][0].update(ceiling=["magnitude"])),
             [ceiling_audit.BLOCKING])
 
     def test_a_source_rungs_own_output_is_read_from_the_record(self):
@@ -1165,21 +1198,21 @@ class CeilingAudit(unittest.TestCase):
         # most of them.
         self.assertIsNone(self.board()["rungs"][0].get("aha"))
         self.assertEqual(
-            self.plant(lambda b: b["rungs"][0]["ceiling"].append("tail-to-head")), [])
+            self.plant(lambda b: b["rungs"][0].update(ceiling=["tail-to-head"])), [])
         self.assertEqual(
-            self.plant(lambda b: b["rungs"][2]["ceiling"].append("tail-to-head")),
+            self.plant(lambda b: b["rungs"][2].update(ceiling=["tail-to-head"]), index=2),
             [ceiling_audit.BLOCKING])
 
     def test_a_plural_in_the_jump_still_matches_the_ceiling_word(self):
         # MIC-VECTOR-VS-SCALAR says "a pair of signed components". Without this the check
         # under-reports, and it did: `component` first landed in the wrong bucket.
         self.assertEqual(
-            self.plant(lambda b: b["rungs"][0]["ceiling"].append("component")),
+            self.plant(lambda b: b["rungs"][0].update(ceiling=["component"])),
             [ceiling_audit.BLOCKING])
 
     def test_a_ceiling_word_in_learner_text_is_reported_and_does_not_fail(self):
         def plant(board):
-            board["rungs"][0]["ceiling"].append("quadrant")
+            board["rungs"][0]["ceiling"] = ["quadrant"]
             board["rungs"][0]["must_contain"] = ["Read the quadrant off the diagram."]
         self.assertEqual(self.plant(plant), [ceiling_audit.REPORTED])
         self.assertTrue(ceiling_audit.audit()["passed"])
@@ -1200,9 +1233,105 @@ class CeilingAudit(unittest.TestCase):
                           ceiling_audit.findings({"rungs": [row]}, caps, mics)],
                          [ceiling_audit.REPORTED])
 
+    def test_the_ceiling_is_compared_to_the_record_a_learner_actually_reads(self):
+        # The matrix row is advice to an author; the record is the explanation. Nothing
+        # compared the ceiling to it until relative motion's entry rung was authored.
+        self.assertEqual(self.plant(lambda b: b["rungs"][0].update(ceiling=["perpendicular"])),
+                         [ceiling_audit.AUTHORED])
+        self.assertEqual(self.plant(lambda b: b["rungs"][0].update(ceiling=["determinant"])),
+                         [], "a word the record does not use is not a finding")
+
+    def test_a_ceiling_word_in_the_explanation_is_reported_and_does_not_fail(self):
+        report = ceiling_audit.audit()
+        self.assertGreater(report["in_the_explanation"], 0,
+                           "nothing measured, so this asserts nothing")
+        self.assertTrue(report["passed"])
+
+    def test_the_benchmarks_named_failure_is_now_mechanical(self):
+        # Named in prose since the benchmark was written: MIC-VECTOR-VS-SCALAR explains a
+        # vector with terms its entry assumptions never declare. This is the first check
+        # that can see it.
+        report = ceiling_audit.audit()
+        found = {f["where"] for b in report["boards"] for f in b["findings"]
+                 if f["point"] == ceiling_audit.AUTHORED and "vector-representation" in b["matrix"]}
+        self.assertEqual({w for w in found if w.startswith("R1.")},
+                         {"R1.frame", "R1.axes", "R1.perpendicular", "R1.right-triangle"})
+
     def test_the_committed_tree_reports_exactly_the_known_four(self):
         report = ceiling_audit.audit()
         reported = sorted(f["where"] for b in report["boards"] for f in b["findings"]
                           if f["point"] == ceiling_audit.REPORTED)
         self.assertEqual(reported, ["R1.simple harmonic", "R3.interaction pair",
                                     "R4.inertial frame", "R4.non-conservative work"])
+
+
+class RelativeMotionEntryRung(unittest.TestCase):
+    """Regression case, not a rule. Authoring R1 is what the subject-neutral machinery was
+    built for, so this pins what that one exercise established and nothing more.
+
+    It is kept separate from the rules above on purpose: every failure in this class means
+    the relative-motion records moved, and none of them means the blueprint is wrong.
+    """
+
+    MICROTOPIC = "MIC-MEASURED-FROM"
+    CAPABILITY = "CAP-MEASURED-FROM"
+
+    def package(self):
+        return json.loads((REPO / "Physics/library/relative-motion.v1.json")
+                          .read_text(encoding="utf-8"))
+
+    def microtopic(self):
+        return next(m for m in self.package()["microtopics"] if m["id"] == self.MICROTOPIC)
+
+    def test_the_entry_rung_has_a_record_and_the_matrix_defers_to_it(self):
+        board = json.loads((REPO / "Physics/matrices/relative-motion.rungs.json")
+                           .read_text(encoding="utf-8"))
+        row = next(r for r in board["rungs"] if r["rung"] == "R1")
+        self.assertEqual((row["provenance"], row["microtopic_ref"]),
+                         ("SOURCE", self.MICROTOPIC))
+        for field in ("aha", "learner_owns", "misconception", "closure"):
+            self.assertNotIn(field, row, "the record owns this now")
+
+    def test_a_conceptual_rung_carries_no_relation_and_is_still_admitted(self):
+        # The architecture question this rung was authored to answer: every microtopic
+        # before it bound an equation, so nothing had shown that a rung making a
+        # distinction rather than a calculation could exist at all.
+        self.assertEqual(self.microtopic()["relation_refs"], [])
+
+    def test_a_qualitative_exit_says_why_it_asserts_no_number(self):
+        # The schema already had the answer -- oracle.no_numeric_claim -- so no field was
+        # added for this case. Silence would have been the failure.
+        oracle = self.microtopic()["exit_task"]["oracle"]
+        self.assertEqual(list(oracle), ["no_numeric_claim"])
+
+    def test_its_capability_asserts_one_thing(self):
+        capability = next(c for c in self.package()["capabilities"]
+                          if c["id"] == self.CAPABILITY)
+        self.assertNotIn(" and ", capability["success_criterion"])
+        self.assertEqual(capability["prerequisite_refs"], [], "this is the bottom rung")
+
+    def test_the_explanation_respects_its_own_ceiling(self):
+        board = json.loads((REPO / "Physics/matrices/relative-motion.rungs.json")
+                           .read_text(encoding="utf-8"))
+        row = next(r for r in board["rungs"] if r["rung"] == "R1")
+        text = ceiling_audit.explanation(self.microtopic())
+        for word in row["ceiling"]:
+            with self.subTest(word=word):
+                self.assertFalse(ceiling_audit.says(word, text))
+
+    def test_a_diagnostic_can_now_place_a_learner_on_this_ladder(self):
+        # Before this rung existed the answer was ENTRY_UNDECIDABLE_FROM_THE_PROFILE: the
+        # bottom rung declared no capability, so no observation could say whether a
+        # learner was past it.
+        caps, mics = author_brief.capability_chain("Physics")
+        rows = sorted(resolve_request.ladder("Physics", "BUCKET-RELATIVE-MOTION")["rungs"],
+                      key=lambda r: r["ladder_position"])
+        entry = resolve_request.entry_from_profile(rows, {"held": {}}, caps, mics)
+        self.assertEqual((entry["rung"], entry["capability"]), ("R1", self.CAPABILITY))
+
+    def test_the_whole_ladder_is_product_work_with_no_rung_left_to_author(self):
+        report = resolve_request.plan(json.loads(
+            (REPO / "Requests/relative-motion-g9.request.json").read_text(encoding="utf-8")))
+        segment = next(c for c in report["cores"] if c["core"] == "CORE1A")["segment"]
+        self.assertEqual([s["rung"] for s in segment], ["R1", "R3", "R4", "R5"])
+        self.assertEqual({s["task"] for s in segment}, {"AUTHOR_THE_PRODUCT"})

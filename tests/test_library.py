@@ -103,7 +103,11 @@ class Resolution(unittest.TestCase):
         # The relative-motion bucket depends on vector-representation work in the other package.
         self.assertIn("MIC-GRAPHICAL-SUBTRACTION", pulled)
         self.assertIn("BUCKET-VECTOR-REPRESENTATION", pulled)
-        self.assertEqual(chosen["microtopic_order"][0], "MIC-SAME-TIME")
+        # The rule, not the instance: the slice opens on a microtopic this bucket owns,
+        # never on one pulled in from the package it depends on. Naming the microtopic
+        # here broke the moment an earlier rung was authored below it.
+        owners = {r["id"]: r["bucket_id"] for r in chosen["records"]["microtopics"]}
+        self.assertEqual(owners[chosen["microtopic_order"][0]], "BUCKET-RELATIVE-MOTION")
 
 
 class Promotion(unittest.TestCase):
