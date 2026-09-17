@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 48,
-  "relation_count": 76,
+  "component_count": 49,
+  "relation_count": 79,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 9,
+    "LIBRARY": 10,
     "TEST": 6,
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:3d7a789c2493e22ecbbe1be390d30612d5d86bc254ba579cbf8d732722e8e15b",
+  "digest": "sha256:733ac581f82aab0ae29e4bfb0f48ac74990e4351749336b45bdf9b532eb86675",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -45,6 +45,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 31984,
       "sha256": "3de15eea059525c5bbc8fb783b83ab636449d2dc4646cfbbd0f5370fd53a936d"
+    },
+    {
+      "path": "Shared/library/depiction.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 6864,
+      "sha256": "c402c34790ffca3c45685eaa1c1f20e7cabc0e76ddd40c17d00763d8a75e8bb4"
     },
     {
       "path": "Shared/library/differentiation.py",
@@ -246,8 +253,8 @@
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8047,
-      "sha256": "f66862a4b17a85b1c3ebf7c74bab307734875e7bd0094601096f2bdb272e486e"
+      "bytes": 8599,
+      "sha256": "f20bcb617987921673aac7ecac982371c5ab9424a78868b31b73271199144620"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -295,8 +302,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 55708,
-      "sha256": "b71297f5c5ac5fb2bc57f81d0677cad0b2e9f6a07f8c672a0dc77db9b5483313"
+      "bytes": 62236,
+      "sha256": "786bef667fc34c82a52152e7bc4ad657dfa4fb26deb877e6d30924a8991164a6"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -330,8 +337,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 70717,
-      "sha256": "d85c902e2cdcd1e54bb198843846dbb0d7c2d1a2a8b221c9d192d667d6998241"
+      "bytes": 71352,
+      "sha256": "34368f015cade54da3cc8ef5e5ba58304a7f5b6e0768532b886a298ed9ef8f91"
     },
     {
       "path": "tools/index.html",
@@ -373,6 +380,16 @@
     },
     {
       "from": "Shared/library/compile_inputs.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/depiction.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/depiction.py",
       "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
@@ -534,6 +551,11 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.depiction",
       "kind": "IMPORTS"
     },
     {

@@ -15,7 +15,7 @@ sys.path.insert(0, str(REPO))
 from Physics.adapter import load as load_physics  # noqa: E402
 from Shared.contracts import ContractError, is_prose, join  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
-from Shared.library import authority, differentiation, intake, substance  # noqa: E402
+from Shared.library import authority, depiction, differentiation, intake, substance  # noqa: E402
 from Shared.library import resolve as resolve_module  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 from Shared.library.promote import audit, promote  # noqa: E402
@@ -1009,3 +1009,108 @@ class NestedIdsAreAddressableAndUnambiguous(unittest.TestCase):
                     self.assertEqual(raised.exception.code, "LIBRARY_UNRESOLVED_REFERENCE")
                     return
         self.fail("no elicitation ask points at a teaching step, so this asserts nothing")
+
+
+class DepictionIsBackedByTheContract(unittest.TestCase):
+    """A library may not invent a way of depicting its subject.
+
+    The same authority order as relations, one layer over. Three Physics
+    representations declared kind VECTOR_SUBTRACTION, which that contract had never
+    heard of, and nothing said so because a kind is only looked up when a scene instance
+    renders -- and those three hold none.
+    """
+
+    def subject(self, name):
+        return REPO / name
+
+    def test_every_committed_representation_is_backed(self):
+        for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):
+            report = depiction.audit(path.parent.parent)
+            with self.subTest(subject=report["subject"]):
+                self.assertEqual(report["findings"], [])
+
+    def test_a_kind_the_contract_does_not_declare_is_refused(self):
+        records = {"REP-X": {"_collection": "representations", "kind": "INVENTED_KIND",
+                             "required_elements": [], "relation_refs": []}}
+        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        self.assertEqual([f["point"] for f in found], ["REPRESENTATION_KIND_UNDECLARED"])
+
+    def test_a_drawn_figure_for_an_unbuilt_kind_is_refused(self):
+        # Saying so here is cheaper than saying so at the end of a publish run, which is
+        # where FIGURE_FAMILY_UNSUPPORTED catches it today -- after the figure is drawn.
+        records = {"REP-X": {"_collection": "representations", "kind": "RAY_DIAGRAM",
+                             "required_elements": [], "relation_refs": [],
+                             "scene_instances": [{"id": "SI-1"}]}}
+        found = depiction.findings(records, {"RAY_DIAGRAM": "PROPOSED"})
+        self.assertEqual([f["point"] for f in found], ["SCENE_FOR_UNBUILT_KIND"])
+
+    def test_naming_an_unbuilt_kind_without_drawing_one_is_honest(self):
+        records = {"REP-X": {"_collection": "representations", "kind": "RAY_DIAGRAM",
+                             "required_elements": [], "relation_refs": []}}
+        self.assertEqual(depiction.findings(records, {"RAY_DIAGRAM": "PROPOSED"}), [])
+
+    def test_a_bridge_to_a_part_that_is_not_drawn_is_refused(self):
+        # Core1A: "a figure that sits beside the working without being bound to it is
+        # decoration". A bridge from an element the figure never contains is that.
+        records = {
+            "REL-1": {"_collection": "relations", "symbols": [{"symbol": "v_A"}]},
+            "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                      "required_elements": ["Labelled arrow"], "relation_refs": ["REL-1"],
+                      "correspondence": [{"element": "A part nobody draws", "symbol": "v_A",
+                                          "in_words": "the speed of A"}]}}
+        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        self.assertEqual([f["point"] for f in found], ["CORRESPONDENCE_ELEMENT_UNKNOWN"])
+
+    def test_a_bridge_to_a_symbol_the_mathematics_does_not_use_is_refused(self):
+        records = {
+            "REL-1": {"_collection": "relations", "symbols": [{"symbol": "v_A"}]},
+            "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                      "required_elements": ["Labelled arrow"], "relation_refs": ["REL-1"],
+                      "correspondence": [{"element": "Labelled arrow", "symbol": "q",
+                                          "in_words": "something else entirely"}]}}
+        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        self.assertEqual([f["point"] for f in found], ["CORRESPONDENCE_SYMBOL_UNKNOWN"])
+
+    def test_a_bridge_naming_both_correctly_passes(self):
+        records = {
+            "REL-1": {"_collection": "relations", "symbols": [{"symbol": "v_A"}]},
+            "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                      "required_elements": ["Labelled arrow"], "relation_refs": ["REL-1"],
+                      "correspondence": [{"element": "Labelled arrow", "symbol": "v_A",
+                                          "in_words": "how fast A goes and which way"}]}}
+        self.assertEqual(depiction.findings(records, {"VECTOR": "IMPLEMENTED"}), [])
+
+    def test_a_figure_bound_to_mathematics_with_no_bridge_at_all_is_refused(self):
+        records = {
+            "REL-1": {"_collection": "relations", "symbols": [{"symbol": "v_A"}]},
+            "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                      "required_elements": ["Labelled arrow"], "relation_refs": ["REL-1"]}}
+        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        self.assertEqual([f["point"] for f in found], ["CORRESPONDENCE_ABSENT"])
+
+    def test_a_figure_bound_to_no_relation_is_not_asked_for_a_bridge(self):
+        # The rule bites where there is mathematics to bridge to. Demanding a bridge from
+        # a figure with no bound relation would be demanding one be invented, which is
+        # the failure mode every gate here is written to avoid.
+        records = {"REP-X": {"_collection": "representations", "kind": "VECTOR",
+                             "required_elements": ["Labelled arrow"], "relation_refs": []}}
+        self.assertEqual(depiction.findings(records, {"VECTOR": "IMPLEMENTED"}), [])
+
+    def test_every_committed_bridge_names_a_drawn_part_and_a_used_symbol(self):
+        # The corpus-level assertion. Both halves are checkable; what stays a reviewer's
+        # job is whether the words on the third leg are true, which is how I shipped a
+        # row naming the second vector as a component readout before catching it.
+        bridges = 0
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            records = build_index([json.loads(path.read_text(encoding="utf-8"))])
+            for record in records.values():
+                if record.get("_collection") != "representations":
+                    continue
+                for bridge in record.get("correspondence", []):
+                    bridges += 1
+                    with self.subTest(figure=record["id"], symbol=bridge["symbol"]):
+                        self.assertIn(bridge["element"], record["required_elements"])
+                        self.assertIn(bridge["symbol"],
+                                      depiction.relation_symbols(records, record))
+                        self.assertTrue(bridge["in_words"].strip())
+        self.assertGreater(bridges, 0, "nothing is bridged, so this asserts nothing")

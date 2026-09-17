@@ -882,7 +882,24 @@
         "Correct magnitude with the wrong observer order."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": []
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Labelled v_A, v_B and -v_B",
+          "symbol": "v_A",
+          "in_words": "how fast A goes over the ground, and which way"
+        },
+        {
+          "element": "Labelled v_A, v_B and -v_B",
+          "symbol": "v_B",
+          "in_words": "the same for B, drawn to the same scale so the two can be compared by eye"
+        },
+        {
+          "element": "Resultant labelled v_A/B, with tail/head and scale",
+          "symbol": "v_A/B",
+          "in_words": "what B sees A doing: the arrow you land on after reversing B's and following A's"
+        }
+      ]
     }
   ],
   "question_families": [

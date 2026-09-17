@@ -30,6 +30,7 @@ from Shared.tools.capability_audit import audit_subject as capability_findings  
 from Shared.library.intake import check as intake_check  # noqa: E402
 from Shared.library.promote import audit as promotion_audit  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket  # noqa: E402
+from Shared.library.depiction import audit as depiction_audit  # noqa: E402
 from Shared.library.resolve import build_index, validate_library  # noqa: E402
 
 LEARNER_PRODUCTS = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
@@ -104,6 +105,13 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
             if named and named not in catalogue:
                 findings.append(f'{path.name}: {row["id"]}: exit oracle names validator '
                                 f'{named}, which this subject does not declare')
+
+    # The same authority order, one layer over: the contract says which kinds this
+    # subject depicts by, and a library representation may teach through one rather than
+    # invent one. Checked here because a kind is otherwise only looked up when a scene
+    # instance renders, which is the last possible moment and after the figure is drawn.
+    findings += [f'{f["point"]}: {f["record"]}: {f["detail"]}'
+                 for f in depiction_audit(subject)["findings"]]
 
     # Subject truth is the gate's. A library copy that disagrees with its owner is
     # two authorities for one claim, so it is checked here rather than at publish time.

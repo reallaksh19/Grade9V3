@@ -740,6 +740,18 @@
             ]
           }
         }
+      ],
+      "correspondence": [
+        {
+          "element": "Marked solution with its exact label",
+          "symbol": "x",
+          "in_words": "the one point on the line where substituting gives 9 and nothing is left over"
+        },
+        {
+          "element": "Bracketing integer ticks",
+          "symbol": "x~",
+          "in_words": "the whole numbers either side, which the truncated decimal sits between without landing on the marked point"
+        }
       ]
     }
   ],

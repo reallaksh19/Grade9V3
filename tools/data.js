@@ -641,6 +641,21 @@ window.GRADE9V3 = {
             ]
           },
           {
+            "id": "VECTOR_SUBTRACTION",
+            "status": "PROPOSED",
+            "requires": [
+              "frame",
+              "both source vectors labelled",
+              "the reversed vector labelled",
+              "tail-to-head placement without rotation",
+              "resultant labelled with tail and head",
+              "one length scale for every vector drawn"
+            ],
+            "limits": [
+              "a construction, not a component readout; VECTOR draws one vector against axes, and using it here would hide the reversal that the construction exists to show"
+            ]
+          },
+          {
             "id": "GRAPH",
             "status": "IMPLEMENTED",
             "requires": [

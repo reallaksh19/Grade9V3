@@ -628,7 +628,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_SUBTRACTION",
+      "kind": "VECTOR",
       "purpose": "Show a single vector's signed components against declared axes and its nonnegative magnitude.",
       "required_elements": [
         "Named common frame/axes",
@@ -656,7 +656,14 @@
         "Correct magnitude paired with an unlabelled or ambiguous direction."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": []
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Labelled vector with tail at the origin and arrowhead at the endpoint",
+          "symbol": "P",
+          "in_words": "the arrow itself, whose length is the magnitude and whose slant is the direction"
+        }
+      ]
     },
     {
       "id": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
@@ -699,7 +706,24 @@
         "Correct magnitude with the wrong observer/subtraction order."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": []
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Labelled P, Q and -Q",
+          "symbol": "P",
+          "in_words": "the vector being subtracted from, drawn from the frame's origin"
+        },
+        {
+          "element": "Labelled P, Q and -Q",
+          "symbol": "Q",
+          "in_words": "the vector being taken away, before it is turned around"
+        },
+        {
+          "element": "Labelled P, Q and -Q",
+          "symbol": "-Q",
+          "in_words": "the same arrow pointing the other way, the same length as before"
+        }
+      ]
     }
   ],
   "question_families": [
