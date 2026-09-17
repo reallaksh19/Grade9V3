@@ -219,6 +219,13 @@ resolves that disagreement against the library every time. Never in the other di
 the word presuppose the thing this rung teaches? "Frame" at a rung teaching that position
 is relative does — you cannot use it to explain what it is. "Metre" does not.
 
+**A ceiling excludes words from ABOVE the rung, never the rung's own output.** A rung whose
+ceiling forbids what it teaches cannot be written: you cannot repair "distance is not
+displacement" without the word displacement. `ceiling_audit.py --enforce` refuses it, and
+it reads a `SOURCE` rung's output from the microtopic's `inferential_jump` rather than from
+the matrix. Measured across the fourteen committed matrices: 275 ceiling words, of which
+55 are words a higher rung's jump uses — the intended kind.
+
 **Hold must be true throughout its phase.** `PHASE_HOLDS_NOTHING` catches an empty hold; no
 gate catches a false one. A phase whose invariant breaks halfway is two phases.
 

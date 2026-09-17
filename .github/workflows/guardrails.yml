@@ -51,6 +51,9 @@ jobs:
       - name: Requests resolve to a plan, or refuse with a reason
         run: python3 Shared/tools/resolve_request.py --enforce
 
+      - name: No ceiling forbids the word its own rung teaches
+        run: python3 Shared/tools/ceiling_audit.py --enforce
+
       # A library may not invent a way of depicting its subject, and a figure bound to
       # mathematics must say which part of the picture is which symbol. Runs inside the
       # subject sweep below; this step is the standalone report, which names the record

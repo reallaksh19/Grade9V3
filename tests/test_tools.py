@@ -13,9 +13,9 @@ sys.path.insert(0, str(REPO))
 
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
-    author_brief, build_manifest, build_web_data, capability_audit, check_subjects,
-    capability_collisions, learner_evidence, matrix_conformance, resolve_request,
-    spec_conformance, spec_delivery, topic_independence_guard,
+    author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
+    check_subjects, capability_collisions, learner_evidence, matrix_conformance,
+    resolve_request, spec_conformance, spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -1125,3 +1125,84 @@ class ResolveRequest(unittest.TestCase):
         core = self.core(resolve_request.plan(request), "CORE2B")
         self.assertEqual(core["state"], "WITHHELD")
         self.assertIn("coverage gap wearing a transfer label", core["reason"])
+
+
+class CeilingAudit(unittest.TestCase):
+    """A ceiling excludes words from ABOVE a rung, never the rung's own output.
+
+    A rung whose ceiling forbids what it teaches cannot be written: you cannot repair
+    "distance is not displacement" without the word displacement. That is a contradiction
+    in the file, so it is enforced. A rung whose text uses a word its ceiling correctly
+    forbids is a content defect whose repair belongs to that rung's author, so it is
+    reported and never fails the build.
+    """
+
+    def board(self):
+        return json.loads((REPO / "Physics/matrices/vector-representation.rungs.json")
+                          .read_text(encoding="utf-8"))
+
+    def plant(self, mutate):
+        board = self.board()
+        mutate(board)
+        caps, mics = author_brief.capability_chain("Physics")
+        return [f["point"] for f in ceiling_audit.findings(board, caps, mics)]
+
+    def test_no_committed_matrix_forbids_its_own_output(self):
+        report = ceiling_audit.audit()
+        self.assertGreater(report["ceiling_words"], 0, "no ceilings, so this asserts nothing")
+        self.assertEqual(report["blocking"], 0,
+                         [f for b in report["boards"] for f in b["findings"]
+                          if f["point"] == ceiling_audit.BLOCKING])
+
+    def test_forbidding_a_word_the_rung_teaches_is_refused(self):
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][0]["ceiling"].append("magnitude")),
+            [ceiling_audit.BLOCKING])
+
+    def test_a_source_rungs_own_output_is_read_from_the_record(self):
+        # These rungs carry no `aha` -- the microtopic owns it. Reading only the matrix
+        # would let a ceiling forbid its own output wherever a record exists, which is
+        # most of them.
+        self.assertIsNone(self.board()["rungs"][0].get("aha"))
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][0]["ceiling"].append("tail-to-head")), [])
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][2]["ceiling"].append("tail-to-head")),
+            [ceiling_audit.BLOCKING])
+
+    def test_a_plural_in_the_jump_still_matches_the_ceiling_word(self):
+        # MIC-VECTOR-VS-SCALAR says "a pair of signed components". Without this the check
+        # under-reports, and it did: `component` first landed in the wrong bucket.
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][0]["ceiling"].append("component")),
+            [ceiling_audit.BLOCKING])
+
+    def test_a_ceiling_word_in_learner_text_is_reported_and_does_not_fail(self):
+        def plant(board):
+            board["rungs"][0]["ceiling"].append("quadrant")
+            board["rungs"][0]["must_contain"] = ["Read the quadrant off the diagram."]
+        self.assertEqual(self.plant(plant), [ceiling_audit.REPORTED])
+        self.assertTrue(ceiling_audit.audit()["passed"])
+
+    def test_author_facing_text_does_not_trip_the_reported_finding(self):
+        # `wrong_idea` names the wrong path to the author. Binding the ceiling to it would
+        # forbid an author from writing down the misconception the rung exists to kill.
+        caps, mics = author_brief.capability_chain("Physics")
+        row = {"rung": "R1", "ladder_position": 10, "provenance": "SYNTHESIS",
+               "aha": "A thing is not another thing.", "ceiling": ["quadrant"],
+               "misconception": {"wrong_idea": "Every reading names a quadrant.",
+                                 "diagnostic_prompt": "Which one did you read?",
+                                 "repair": "Say what you measured from."},
+               "closure": "Say which of two readings is which."}
+        self.assertEqual(ceiling_audit.findings({"rungs": [row]}, caps, mics), [])
+        row["closure"] = "Name the quadrant."
+        self.assertEqual([f["point"] for f in
+                          ceiling_audit.findings({"rungs": [row]}, caps, mics)],
+                         [ceiling_audit.REPORTED])
+
+    def test_the_committed_tree_reports_exactly_the_known_four(self):
+        report = ceiling_audit.audit()
+        reported = sorted(f["where"] for b in report["boards"] for f in b["findings"]
+                          if f["point"] == ceiling_audit.REPORTED)
+        self.assertEqual(reported, ["R1.simple harmonic", "R3.interaction pair",
+                                    "R4.inertial frame", "R4.non-conservative work"])

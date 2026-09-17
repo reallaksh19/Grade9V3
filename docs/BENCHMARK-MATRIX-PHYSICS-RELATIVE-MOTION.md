@@ -79,6 +79,22 @@ most important gap at the low rungs.
 terms — frame, axes, perpendicular, component, magnitude, right-triangle, vector — that
 its `entry_assumptions` never declare. Every gate in the repository passes it.
 
+**Corrected, after the offloaded matrices inherited the error.** Undeclared on entry and
+*belongs on the ceiling* are different tests, and putting the seven under this heading
+conflated them. A rung's own output is undeclared by construction — that is what teaching
+is. Only the **borrowed** terms are ceiling words:
+
+| | |
+|---|---|
+| frame · axes · perpendicular · right-triangle | borrowed and never declared — **ceiling** |
+| component · magnitude · vector | what this microtopic builds — **its output** |
+
+A ceiling that forbids a rung's own output makes the rung unwritable: the repair for
+"a magnitude is not a component" cannot be written without either word.
+`ceiling_audit.py` enforces the distinction. The unit-1 matrix copied all seven from this
+table and three had to be removed, so the error here propagated exactly once before a
+gate caught it.
+
 ---
 
 ## Part 2 — Core1A and Core1B: same rung, different agency

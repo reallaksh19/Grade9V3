@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 59,
-  "relation_count": 98,
+  "component_count": 60,
+  "relation_count": 100,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 15,
+    "TOOLING": 16,
     "WEB": 5
   },
-  "digest": "sha256:2004fef05063469a4c0a33c4c826e9b58f0289155a0e440130bb8adac3de3a28",
+  "digest": "sha256:f00d56d358b3c3efb88f34ea76c2371089ee963f8cd7a52fb03b99b1de9b76d0",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -292,6 +292,13 @@
       "sha256": "445bdd8ed4cb253598336012c23fc013e59fde531ce97563f5f5155b136e2116"
     },
     {
+      "path": "Shared/tools/ceiling_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5509,
+      "sha256": "24df96b44d65f1ee80ddf13a6ee3ad25f0366079cbc1612399512b6762b61748"
+    },
+    {
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -393,8 +400,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 59822,
-      "sha256": "65ab2c23f6d19b7c7c8f19815228bb42371ef13451aea87359ef22c7f8772181"
+      "bytes": 64225,
+      "sha256": "ddb69f3ba71cd4d42be104fc6638558f76724b7af267562658b96d5202ea2e38"
     },
     {
       "path": "tools/app.css",
@@ -621,6 +628,16 @@
     {
       "from": "Shared/tools/capability_collisions.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/ceiling_audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/ceiling_audit.py",
+      "to": "Shared.tools.author_brief",
       "kind": "IMPORTS"
     },
     {

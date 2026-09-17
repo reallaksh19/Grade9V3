@@ -11,9 +11,19 @@
       "ladder_position": 20,
       "provenance": "SYNTHESIS",
       "aha": "A vector is not fixed by size alone: direction is part of the quantity, and a unit vector can carry direction independently of magnitude.",
-      "learner_owns": ["Can compare ordinary scalar sizes and recognise an arrow as having an orientation."],
-      "ceiling": ["unit vector", "component", "basis", "direction cosine", "normal vector"],
-      "must_contain": ["Two equal-length arrows pointing in different directions.", "A direction-only arrow normalised to the same unit length from different starting magnitudes."],
+      "learner_owns": [
+        "Can compare ordinary scalar sizes and recognise an arrow as having an orientation."
+      ],
+      "ceiling": [
+        "component",
+        "basis",
+        "direction cosine",
+        "normal vector"
+      ],
+      "must_contain": [
+        "Two equal-length arrows pointing in different directions.",
+        "A direction-only arrow normalised to the same unit length from different starting magnitudes."
+      ],
       "misconception": {
         "wrong_idea": "Two directed quantities with the same magnitude are the same vector.",
         "diagnostic_prompt": "Two arrows are both 5 units long, one east and one north. Are they the same directed quantity?",
@@ -21,8 +31,18 @@
       },
       "closure": "Given two arrows with equal size, distinguish whether they represent the same vector and identify the directional information that decides.",
       "controlled_variation": [
-        {"phase": 1, "vary": "the arrow direction", "hold": "its length and scale", "notice": "equal magnitude does not make two directed quantities equal"},
-        {"phase": 2, "vary": "the original arrow length before normalising", "hold": "its direction", "notice": "the unit-direction arrow is unchanged by the original magnitude"}
+        {
+          "phase": 1,
+          "vary": "the arrow direction",
+          "hold": "its length and scale",
+          "notice": "equal magnitude does not make two directed quantities equal"
+        },
+        {
+          "phase": 2,
+          "vary": "the original arrow length before normalising",
+          "hold": "its direction",
+          "notice": "the unit-direction arrow is unchanged by the original magnitude"
+        }
       ]
     },
     {
@@ -30,9 +50,19 @@
       "ladder_position": 45,
       "provenance": "SYNTHESIS",
       "aha": "Vector addition combines directed quantities geometrically or component by component; input magnitudes cannot simply be added unless the directions make that valid.",
-      "learner_owns": ["A vector is not fixed by size alone: direction is part of the quantity, and a unit vector can carry direction independently of magnitude."],
-      "ceiling": ["parallelogram law", "resultant formula", "direction cosine", "cross product"],
-      "must_contain": ["A tail-to-head construction and the same addition resolved along declared axes.", "Two equal input magnitudes at different included angles."],
+      "learner_owns": [
+        "A vector is not fixed by size alone: direction is part of the quantity, and a unit vector can carry direction independently of magnitude."
+      ],
+      "ceiling": [
+        "parallelogram law",
+        "resultant formula",
+        "direction cosine",
+        "cross product"
+      ],
+      "must_contain": [
+        "A tail-to-head construction and the same addition resolved along declared axes.",
+        "Two equal input magnitudes at different included angles."
+      ],
       "misconception": {
         "wrong_idea": "The magnitude of A + B is always |A| + |B|.",
         "diagnostic_prompt": "Two 5-unit vectors point in opposite directions. Is the magnitude of their sum 10?",
@@ -40,8 +70,18 @@
       },
       "closure": "For two vectors at a stated angle, construct or compute their sum and explain why the result's magnitude is or is not the sum of the input magnitudes.",
       "controlled_variation": [
-        {"phase": 1, "vary": "the angle between two fixed-length vectors", "hold": "both input magnitudes", "notice": "the resultant length changes from large to small even though the inputs do not"},
-        {"phase": 2, "vary": "the order in which the two vectors are placed tail-to-head", "hold": "the same two vectors", "notice": "the final resultant is unchanged, exposing commutativity of addition"}
+        {
+          "phase": 1,
+          "vary": "the angle between two fixed-length vectors",
+          "hold": "both input magnitudes",
+          "notice": "the resultant length changes from large to small even though the inputs do not"
+        },
+        {
+          "phase": 2,
+          "vary": "the order in which the two vectors are placed tail-to-head",
+          "hold": "the same two vectors",
+          "notice": "the final resultant is unchanged, exposing commutativity of addition"
+        }
       ]
     },
     {
@@ -49,9 +89,18 @@
       "ladder_position": 65,
       "provenance": "SYNTHESIS",
       "aha": "Vector subtraction is addition of the reversed second vector, so operand order matters even though ordinary vector addition is commutative.",
-      "learner_owns": ["Vector addition combines directed quantities geometrically or component by component; input magnitudes cannot simply be added unless the directions make that valid."],
-      "ceiling": ["negative vector", "subtrahend", "vector difference", "operand order"],
-      "must_contain": ["A second arrow reversed without rescaling before addition.", "The same pair evaluated in both subtraction orders."],
+      "learner_owns": [
+        "Vector addition combines directed quantities geometrically or component by component; input magnitudes cannot simply be added unless the directions make that valid."
+      ],
+      "ceiling": [
+        "negative vector",
+        "subtrahend",
+        "vector difference"
+      ],
+      "must_contain": [
+        "A second arrow reversed without rescaling before addition.",
+        "The same pair evaluated in both subtraction orders."
+      ],
       "misconception": {
         "wrong_idea": "Vector subtraction is commutative in the same way as vector addition.",
         "diagnostic_prompt": "If A - B points east, must B - A point east too?",
@@ -59,7 +108,12 @@
       },
       "closure": "Given two vectors, construct A - B and B - A and show the relation between the two answers.",
       "controlled_variation": [
-        {"phase": 1, "vary": "which operand is subtracted from which", "hold": "the same two input vectors", "notice": "the difference arrow reverses while its magnitude stays the same"}
+        {
+          "phase": 1,
+          "vary": "which operand is subtracted from which",
+          "hold": "the same two input vectors",
+          "notice": "the difference arrow reverses while its magnitude stays the same"
+        }
       ]
     },
     {
@@ -67,9 +121,19 @@
       "ladder_position": 85,
       "provenance": "SYNTHESIS",
       "aha": "A cross product produces an axial direction perpendicular to the input plane; reversing operand order keeps its magnitude but flips that out-of-plane direction.",
-      "learner_owns": ["Vector subtraction is addition of the reversed second vector, so operand order matters even though ordinary vector addition is commutative."],
-      "ceiling": ["cross product", "axial vector", "right-hand rule", "normal", "determinant"],
-      "must_contain": ["A clearly drawn plane containing both polar input vectors and a separate out-of-plane axial result.", "Both operand orders displayed for the same input pair."],
+      "learner_owns": [
+        "Vector subtraction is addition of the reversed second vector, so operand order matters even though ordinary vector addition is commutative."
+      ],
+      "ceiling": [
+        "axial vector",
+        "right-hand rule",
+        "normal",
+        "determinant"
+      ],
+      "must_contain": [
+        "A clearly drawn plane containing both polar input vectors and a separate out-of-plane axial result.",
+        "Both operand orders displayed for the same input pair."
+      ],
       "misconception": {
         "wrong_idea": "A cross product is commutative, so swapping A and B leaves the out-of-plane result unchanged.",
         "diagnostic_prompt": "For perpendicular A and B, compare A × B with B × A. Do their out-of-plane arrows point the same way?",
@@ -77,8 +141,18 @@
       },
       "closure": "Given two nonparallel vectors and an oriented plane, state the cross-product direction for both operand orders and identify the sign reversal.",
       "controlled_variation": [
-        {"phase": 1, "vary": "the operand order", "hold": "the same two input vectors and the same oriented plane", "notice": "the axial arrow flips from one side of the plane to the other while its magnitude stays unchanged"},
-        {"phase": 2, "vary": "the angle between the vectors from perpendicular toward parallel", "hold": "their magnitudes and operand order", "notice": "the axial arrow shortens to zero as the input directions become parallel"}
+        {
+          "phase": 1,
+          "vary": "the operand order",
+          "hold": "the same two input vectors and the same oriented plane",
+          "notice": "the axial arrow flips from one side of the plane to the other while its magnitude stays unchanged"
+        },
+        {
+          "phase": 2,
+          "vary": "the angle between the vectors from perpendicular toward parallel",
+          "hold": "their magnitudes and operand order",
+          "notice": "the axial arrow shortens to zero as the input directions become parallel"
+        }
       ]
     }
   ],
@@ -87,14 +161,38 @@
     "difficult_move": "Deciding which directional operation the wording encodes and preserving its orientation while translating between components, in-plane arrows, and an out-of-plane axial result.",
     "independent_check": "Use an alternate representation: component and arrow results must agree; reversing subtraction operands negates the result, and reversing cross-product operands flips the axial direction.",
     "support_ladder": [
-      {"level": "high", "handed_over": "The requested operation, axis directions, and a partially constructed diagram are supplied."},
-      {"level": "medium", "handed_over": "The requested operation and axis directions are supplied."},
-      {"level": "low", "handed_over": "Only the physical or geometric description and requested quantity are supplied."}
+      {
+        "level": "high",
+        "handed_over": "The requested operation, axis directions, and a partially constructed diagram are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The requested operation and axis directions are supplied."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical or geometric description and requested quantity are supplied."
+      }
     ]
   },
   "transfer": [
-    {"dimension": "model_choice", "changed_demand": "A new situation presents two directed quantities and the learner must decide whether the task requires addition, subtraction, or an out-of-plane cross product.", "information_not_handed_over": "which operation the physical wording encodes", "repair_to": "R3"},
-    {"dimension": "representation_translation", "changed_demand": "Two vectors are given only by a scaled arrow diagram and the result must be expressed in signed components.", "information_not_handed_over": "the component values of the input arrows", "repair_to": "R2"},
-    {"dimension": "novelty", "changed_demand": "The cross-product inputs lie in an unfamiliar tilted plane rather than the page plane, so the axial result must still be oriented perpendicular to that plane.", "information_not_handed_over": "which side of the tilted plane corresponds to the ordered axial direction", "repair_to": "R4"}
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A new situation presents two directed quantities and the learner must decide whether the task requires addition, subtraction, or an out-of-plane cross product.",
+      "information_not_handed_over": "which operation the physical wording encodes",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Two vectors are given only by a scaled arrow diagram and the result must be expressed in signed components.",
+      "information_not_handed_over": "the component values of the input arrows",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "The cross-product inputs lie in an unfamiliar tilted plane rather than the page plane, so the axial result must still be oriented perpendicular to that plane.",
+      "information_not_handed_over": "which side of the tilted plane corresponds to the ordered axial direction",
+      "repair_to": "R4"
+    }
   ]
 }

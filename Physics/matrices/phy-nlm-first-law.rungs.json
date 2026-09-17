@@ -11,9 +11,19 @@
       "ladder_position": 20,
       "provenance": "SYNTHESIS",
       "aha": "Zero net force does not mean zero motion: it means the velocity does not change, so rest and constant-velocity motion are both possible.",
-      "learner_owns": ["Can describe whether an object's speed or direction is changing."],
-      "ceiling": ["inertia", "equilibrium", "resultant force", "balanced forces"],
-      "must_contain": ["A case that keeps moving after the push has ended.", "A case at rest with no change in motion, treated by the same rule."],
+      "learner_owns": [
+        "Can describe whether an object's speed or direction is changing."
+      ],
+      "ceiling": [
+        "inertia",
+        "equilibrium",
+        "resultant force",
+        "balanced forces"
+      ],
+      "must_contain": [
+        "A case that keeps moving after the push has ended.",
+        "A case at rest with no change in motion, treated by the same rule."
+      ],
       "misconception": {
         "wrong_idea": "A force must keep acting in the direction of motion or the object must stop.",
         "diagnostic_prompt": "A low-friction cart is pushed and then released. After the hand loses contact, what horizontal force is required merely to keep it moving steadily?",
@@ -21,8 +31,18 @@
       },
       "closure": "Given a motion description, state whether zero net force is compatible with it and justify the decision from whether velocity changes.",
       "controlled_variation": [
-        {"phase": 1, "vary": "whether a brief push is still in contact", "hold": "the cart's direction and an approximately frictionless surface after release", "notice": "the cart can continue moving after the applied push becomes zero"},
-        {"phase": 2, "vary": "the initial velocity from zero to nonzero", "hold": "zero net horizontal force", "notice": "both rest and steady motion fit the same zero-change condition"}
+        {
+          "phase": 1,
+          "vary": "whether a brief push is still in contact",
+          "hold": "the cart's direction and an approximately frictionless surface after release",
+          "notice": "the cart can continue moving after the applied push becomes zero"
+        },
+        {
+          "phase": 2,
+          "vary": "the initial velocity from zero to nonzero",
+          "hold": "zero net horizontal force",
+          "notice": "both rest and steady motion fit the same zero-change condition"
+        }
       ]
     },
     {
@@ -30,9 +50,19 @@
       "ladder_position": 45,
       "provenance": "SYNTHESIS",
       "aha": "Several forces can act on one body while their vector sum is zero; the motion responds to the sum, not to the mere presence of forces.",
-      "learner_owns": ["Zero net force does not mean zero motion: it means the velocity does not change, so rest and constant-velocity motion are both possible."],
-      "ceiling": ["equilibrium equation", "free-body diagram", "action-reaction pair", "normal-force formula"],
-      "must_contain": ["At least two nonzero force arrows whose vector sum is zero.", "A comparison between 'no force' and 'zero net force'."],
+      "learner_owns": [
+        "Zero net force does not mean zero motion: it means the velocity does not change, so rest and constant-velocity motion are both possible."
+      ],
+      "ceiling": [
+        "equilibrium equation",
+        "free-body diagram",
+        "action-reaction pair",
+        "normal-force formula"
+      ],
+      "must_contain": [
+        "At least two nonzero force arrows whose vector sum is zero.",
+        "A comparison between 'no force' and 'zero net force'."
+      ],
       "misconception": {
         "wrong_idea": "If the net force is zero, no forces are acting.",
         "diagnostic_prompt": "A book rests on a table. Are there no forces on the book, or can nonzero forces add to zero?",
@@ -40,7 +70,12 @@
       },
       "closure": "For a stationary or steadily moving object, identify a nonzero force pair that can sum to zero and show their directions.",
       "controlled_variation": [
-        {"phase": 1, "vary": "the magnitudes of two opposite collinear forces together", "hold": "their equality and opposite directions", "notice": "the individual arrows can grow while the net arrow remains zero"}
+        {
+          "phase": 1,
+          "vary": "the magnitudes of two opposite collinear forces together",
+          "hold": "their equality and opposite directions",
+          "notice": "the individual arrows can grow while the net arrow remains zero"
+        }
       ]
     },
     {
@@ -48,9 +83,19 @@
       "ladder_position": 70,
       "provenance": "SYNTHESIS",
       "aha": "A free-body diagram contains forces acting on the chosen body only; an action-reaction partner acts on the other body and belongs on its diagram.",
-      "learner_owns": ["Several forces can act on one body while their vector sum is zero; the motion responds to the sum, not to the mere presence of forces."],
-      "ceiling": ["Newton's third law", "interaction pair", "system boundary", "reaction force"],
-      "must_contain": ["The same interaction shown on two separate body diagrams.", "A rule that every arrow on one diagram must name an external agent acting on that chosen body."],
+      "learner_owns": [
+        "Several forces can act on one body while their vector sum is zero; the motion responds to the sum, not to the mere presence of forces."
+      ],
+      "ceiling": [
+        "Newton's third law",
+        "interaction pair",
+        "system boundary",
+        "reaction force"
+      ],
+      "must_contain": [
+        "The same interaction shown on two separate body diagrams.",
+        "A rule that every arrow on one diagram must name an external agent acting on that chosen body."
+      ],
       "misconception": {
         "wrong_idea": "Equal and opposite interaction forces cancel each other on one body's free-body diagram.",
         "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
@@ -58,8 +103,18 @@
       },
       "closure": "Given two interacting bodies, draw or describe separate force inventories and place an action-reaction pair on different bodies.",
       "controlled_variation": [
-        {"phase": 1, "vary": "which interacting body is isolated", "hold": "the same horse-cart interaction", "notice": "the equal-and-opposite partner arrow moves to the other body's diagram rather than cancelling on one diagram"},
-        {"phase": 2, "vary": "an additional external horizontal force on one body", "hold": "the interaction pair between the two bodies", "notice": "the two bodies can have different net forces even though the interaction pair remains equal and opposite"}
+        {
+          "phase": 1,
+          "vary": "which interacting body is isolated",
+          "hold": "the same horse-cart interaction",
+          "notice": "the equal-and-opposite partner arrow moves to the other body's diagram rather than cancelling on one diagram"
+        },
+        {
+          "phase": 2,
+          "vary": "an additional external horizontal force on one body",
+          "hold": "the interaction pair between the two bodies",
+          "notice": "the two bodies can have different net forces even though the interaction pair remains equal and opposite"
+        }
       ]
     },
     {
@@ -67,9 +122,18 @@
       "ladder_position": 90,
       "provenance": "SYNTHESIS",
       "aha": "Newton's force law needs a declared frame: in an accelerating frame an added pseudo-force is required to recover the same observed acceleration.",
-      "learner_owns": ["A free-body diagram contains forces acting on the chosen body only; an action-reaction partner acts on the other body and belongs on its diagram."],
-      "ceiling": ["inertial frame", "non-inertial frame", "pseudo-force", "fictitious force"],
-      "must_contain": ["Two observers describing the same object, one in a non-accelerating frame and one in an accelerating frame.", "An explicit declaration of the chosen frame before the force sum is written."],
+      "learner_owns": [
+        "A free-body diagram contains forces acting on the chosen body only; an action-reaction partner acts on the other body and belongs on its diagram."
+      ],
+      "ceiling": [
+        "inertial frame",
+        "non-inertial frame",
+        "fictitious force"
+      ],
+      "must_contain": [
+        "Two observers describing the same object, one in a non-accelerating frame and one in an accelerating frame.",
+        "An explicit declaration of the chosen frame before the force sum is written."
+      ],
       "misconception": {
         "wrong_idea": "The same ordinary-force diagram can be used unchanged in any accelerating observer's frame.",
         "diagnostic_prompt": "A mass appears to accelerate backward inside a bus that starts forward. Can the bus-frame observer use only the same real-force inventory as the roadside observer?",
@@ -77,8 +141,18 @@
       },
       "closure": "Given a simple accelerating-frame situation, state which frame is being used and whether a pseudo-force must be included.",
       "controlled_variation": [
-        {"phase": 1, "vary": "the observer from roadside to steadily moving bus", "hold": "the physical interactions and the bus's zero acceleration", "notice": "no extra force is needed when the frames differ only by constant velocity"},
-        {"phase": 2, "vary": "the bus from steady speed to forward acceleration", "hold": "the same object and physical interactions", "notice": "the bus-frame account now needs an added backward pseudo-force"}
+        {
+          "phase": 1,
+          "vary": "the observer from roadside to steadily moving bus",
+          "hold": "the physical interactions and the bus's zero acceleration",
+          "notice": "no extra force is needed when the frames differ only by constant velocity"
+        },
+        {
+          "phase": 2,
+          "vary": "the bus from steady speed to forward acceleration",
+          "hold": "the same object and physical interactions",
+          "notice": "the bus-frame account now needs an added backward pseudo-force"
+        }
       ]
     }
   ],
@@ -87,14 +161,38 @@
     "difficult_move": "Choosing the body boundary correctly so interaction partners are not accidentally cancelled on the same free-body diagram.",
     "independent_check": "Every force arrow must name an external agent acting on the chosen body, and the direction of the vector sum must agree with the stated acceleration.",
     "support_ladder": [
-      {"level": "high", "handed_over": "The target body, coordinate directions, and a list of candidate interactions are supplied."},
-      {"level": "medium", "handed_over": "The target body and coordinate directions are supplied."},
-      {"level": "low", "handed_over": "Only the physical situation and requested acceleration or force are supplied."}
+      {
+        "level": "high",
+        "handed_over": "The target body, coordinate directions, and a list of candidate interactions are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The target body and coordinate directions are supplied."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical situation and requested acceleration or force are supplied."
+      }
     ]
   },
   "transfer": [
-    {"dimension": "model_choice", "changed_demand": "The problem is described from inside an accelerating vehicle and the learner must choose an inertial-frame analysis or add a pseudo-force.", "information_not_handed_over": "whether the chosen observer frame is inertial", "repair_to": "R4"},
-    {"dimension": "representation_translation", "changed_demand": "A contact-and-motion sketch must be converted into separate free-body diagrams before any equations are written.", "information_not_handed_over": "which interactions act on each chosen body", "repair_to": "R3"},
-    {"dimension": "reasoning_steps", "changed_demand": "Two connected bodies must be analysed with one free-body diagram per body and the shared interaction linked across the equations.", "information_not_handed_over": "which equal-and-opposite forces belong to different equations", "repair_to": "R3"}
+    {
+      "dimension": "model_choice",
+      "changed_demand": "The problem is described from inside an accelerating vehicle and the learner must choose an inertial-frame analysis or add a pseudo-force.",
+      "information_not_handed_over": "whether the chosen observer frame is inertial",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A contact-and-motion sketch must be converted into separate free-body diagrams before any equations are written.",
+      "information_not_handed_over": "which interactions act on each chosen body",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Two connected bodies must be analysed with one free-body diagram per body and the shared interaction linked across the equations.",
+      "information_not_handed_over": "which equal-and-opposite forces belong to different equations",
+      "repair_to": "R3"
+    }
   ]
 }
