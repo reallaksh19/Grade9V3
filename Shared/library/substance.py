@@ -194,8 +194,8 @@ def step_findings(records: Mapping[str, Mapping]) -> list[dict]:
         for index, step in enumerate(record.get("teaching_path", []) or []):
             if not isinstance(step, Mapping) or step.get("role") != "TRANSFORM":
                 continue
-            output = str(step.get("output", ""))
-            if not DEMONSTRATION.search(output):
+            output = str(step.get("output", "")).strip()
+            if output and not DEMONSTRATION.search(output):
                 found.append({"point": "NAMED_WITHOUT_DEMONSTRATING", "record": record_id,
                               "field": f"teaching_path[{index}].output",
                               "detail": f'{step.get("id")} transforms the state but its output, '

@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 43,
-  "relation_count": 60,
+  "component_count": 45,
+  "relation_count": 64,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 7,
-    "TEST": 5,
+    "LIBRARY": 8,
+    "TEST": 6,
     "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:e7e197663611f0927c24a7e7166bfbfa356439237a8c0a0ace07dc9eeef6114e",
+  "digest": "sha256:8e9877d2ae0719a75996ff90274b408ed2922921d3253f5ba769f6ba72b108f2",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -45,6 +45,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 20872,
       "sha256": "e1ee62ff76c1aed9b992c19277b2a9851393c505eb6499fa36406426f43c6644"
+    },
+    {
+      "path": "Shared/library/import_sil.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 11239,
+      "sha256": "293b5856a6a80f2bb5c4881e64163863ca92f464a0b37e4774236b1302186605"
     },
     {
       "path": "Shared/library/intake.py",
@@ -78,8 +85,8 @@
       "path": "Shared/library/substance.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 10484,
-      "sha256": "567e71340d0bd57374abd9d834b8a5353a079fecf9cfc2595dcdce010cc9293d"
+      "bytes": 10503,
+      "sha256": "81cc4f068bfc6835d4579183d320e896a8de4da4c4f8c2d803166f5aef4c1053"
     },
     {
       "path": "Shared/publication_host/__init__.py",
@@ -257,6 +264,13 @@
       "sha256": "eb1e041ea47b12c9f951e7af0165f45533f1612ef9a3f2160fbe8b0e5c6a5157"
     },
     {
+      "path": "tests/test_import_sil.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9382,
+      "sha256": "7f95cc11cf8dd538f13155515153197ae0728e15c3ca7226b5a54a9171cb99f6"
+    },
+    {
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -339,6 +353,16 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/import_sil.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/import_sil.py",
+      "to": "Shared.library.substance",
       "kind": "IMPORTS"
     },
     {
@@ -504,6 +528,16 @@
     {
       "from": "tests/test_gates.py",
       "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_import_sil.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_import_sil.py",
+      "to": "Shared.library.intake",
       "kind": "IMPORTS"
     },
     {
