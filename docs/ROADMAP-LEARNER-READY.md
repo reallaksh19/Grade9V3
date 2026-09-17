@@ -145,7 +145,9 @@ Using `elicitation`: the compiler emits Core1B as *prompt → space for the atte
 
 **Exit evidence:** the A/B rule is testable and tested — Core1B's learner action differs from Core1A's on every microtopic; a Core1B that is Core1A with prompts prepended is refused.
 
-### R3 — The pictorial engine
+### R3 — The pictorial engine — **partly done; the list was wrong**
+
+`VECTOR_SUBTRACTION` built, not `FREE_BODY_DIAGRAM`. Physics holds no force content (`force`, `newton`, `friction`, `normal`: zero hits), so the roadmap's first renderer could only have been proven against a hand-authored fixture, which R3's own rule forbids. Physics `FIGURE_AUTHORING` is 0 and Core1 carries each bucket's declared canonical figure. `depiction.py --next` now ranks unbuilt kinds by what is waiting on them; today that is nothing for every kind in every subject, so the next renderer is chosen by what R4.0 imports rather than by this list.
 
 The eight renderers, in the order the existing and admissible buckets need them:
 

@@ -98,3 +98,23 @@ Two markers were needed because the `requires` block could not say what it meant
 R3.1 closed every `FIGURE_AUTHORING`, so **no proposed renderer has any content waiting on it.** Which renderer is worth building next is decided by what R4.0 imports, not by the roadmap's list order — and one built now could only be proven against a hand-authored fixture, which the figure layer refuses.
 
 The ranking is counted from the records rather than from bucket slices. The first version used slices and swallowed the ones that would not resolve, so a kind could read "nothing waiting" because the library would not resolve rather than because nothing needed it. Those are opposite answers and a ranking cannot be read if they look the same; buckets that will not slice are now named instead of dropped.
+
+### R3.2 — Core1 carries the map
+
+Core1 emitted no figure at all. It now carries the one the bucket declares, bound to its orientation rather than to a microtopic: there the figure is the map of the bucket, not the illustration of one transition in it.
+
+`bucket.primary_representation_ref` is declared, never inferred. Choosing the first representation, or the one with the most instances, would make the map of a bucket depend on authoring order. A bucket with a drawable figure and no declared primary is a finding; one with nothing drawable is not asked to name one, because demanding a figure from a bucket that has none would be demanding one be invented.
+
+Three findings guard it: undeclared, unknown, and named-but-undrawable.
+
+### Where the batch ended
+
+| Step | State |
+|---|---|
+| R1.5 | done — 94 measured, then corrected down by the container-walk fix |
+| R3.1 | done — `VECTOR_SUBTRACTION` renders; Physics `FIGURE_AUTHORING` 3 → 0 |
+| R1.6 | done — `NOT_DELIVERED` 36 → 0, enforced |
+| R3.3 | done — nothing is waiting on any unbuilt renderer |
+| R3.2 | done — Core1 carries its canonical figure |
+| R4.0 | next — and it now decides which renderer follows |
+| R3.4 | blocked on R4.0 |

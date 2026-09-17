@@ -266,10 +266,13 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             "baseline_digest": "", "practice_control": practice_control, "products": []}
     for core in supported:
         blocks, unit_id = [], f"U-{core}-{bucket_id}"
-        figures = _figure_blocks(core, representations, obligations, atoms, practice_obligation)
+        # Where a figure goes when the microtopic it names does not claim this product:
+        # with the questions in a practice product, with the map in the compact notes.
+        figures = _figure_blocks(core, representations, obligations, atoms,
+                                 orientation_obligation if core == "CORE1" else practice_obligation)
         if core == "CORE1":
             blocks = _orientation_blocks(records, relation_ids, atoms, microtopics,
-                                         orientation_obligation, equations)
+                                         orientation_obligation, equations, bucket)
         elif core == "CORE2":
             # Custody covers every question the bucket holds, not only those a practice
             # product exposes: a question omitted here is a question with no record.
@@ -466,7 +469,7 @@ def _teaching_text(microtopic: dict, core: str, relations: dict | None = None) -
 
 def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict],
                         microtopics: list[dict], obligation: str,
-                        equations: dict[str, str]) -> list[dict]:
+                        equations: dict[str, str], bucket: dict) -> list[dict]:
     """Core1: what the objects are, what the relations say, and where the work is.
 
     Every part is carried from a record that already holds it. The relation text comes
@@ -494,6 +497,21 @@ def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict]
                        "symbols": [f'{s["symbol"]}: {s["meaning"]}'
                                    for s in relation.get("symbols", [])],
                        "conditions": list(relation.get("conditions", []))})
+    primary = bucket.get("primary_representation_ref")
+    if primary and primary in records:
+        # One figure, declared by the bucket. Core1 is the map, and a map with no picture
+        # was the product asking a learner to hold the bucket's geometry in their head
+        # before any of it had been taught.
+        record = records[primary]
+        for instance in record.get("scene_instances", []):
+            if "CORE1" not in instance.get("cores", []):
+                continue
+            blocks.append({"id": f'CORE1-{instance["id"]}', "kind": "FIGURE",
+                           "obligation_ids": [obligation],
+                           "source_atom_ids": sorted(instance["datum_refs"]),
+                           "correspondence": deepcopy(record.get("correspondence") or []),
+                           "scene": deepcopy(instance["scene"])})
+            break
     hard = [m for m in microtopics if m.get("intrinsic_badge") in ("MEDIUM", "HARD")]
     if hard:
         lines = ["Where the hard work is."]
@@ -505,7 +523,7 @@ def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict]
 
 
 def _figure_blocks(core: str, representations: list[dict], obligations: list[dict],
-                   atoms: list[dict], practice_obligation: str) -> list[dict]:
+                   atoms: list[dict], fallback: str) -> list[dict]:
     """Compile the scene instances the library holds for this product.
 
     A figure is bound to the obligation of the microtopic it carries, so it counts as
@@ -530,7 +548,7 @@ def _figure_blocks(core: str, representations: list[dict], obligations: list[dic
                 # coverage asymmetry two products later -- a figure the declarative
                 # product carried and the eliciting one did not.
                 continue
-            obligation = wanted if core in by_id[wanted]["required_cores"] else practice_obligation
+            obligation = wanted if core in by_id[wanted]["required_cores"] else fallback
             require(obligation in by_id, "FIGURE_OBLIGATION_MISSING",
                     f'{instance["id"]} -> {wanted}')
             missing = [d for d in instance["datum_refs"] if d not in known]

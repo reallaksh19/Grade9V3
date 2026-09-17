@@ -68,7 +68,25 @@ def findings(records: dict, kinds: dict[str, str]) -> list[dict]:
     def fail(point: str, record: str, detail: str):
         found.append({"point": point, "record": record, "detail": detail})
 
+    drawable = {rid for rid, r in records.items()
+                if r.get("_collection") == "representations" and r.get("scene_instances")}
     for rid, record in sorted(records.items()):
+        if record.get("_collection") == "buckets" and drawable:
+            # Core1 is the map of the bucket, and a map with no picture asks a learner to
+            # hold its geometry in their head before any of it is taught. Which figure is
+            # the map is the bucket's to say: choosing the first representation, or the
+            # one with the most instances, would make it depend on authoring order.
+            primary = record.get("primary_representation_ref")
+            if not primary:
+                fail("BUCKET_PRIMARY_REPRESENTATION_UNDECLARED", rid,
+                     "has drawable representations and names none of them as the figure that "
+                     "orients it, so its compact notes carry no picture and nothing says why")
+            elif primary not in records:
+                fail("BUCKET_PRIMARY_REPRESENTATION_UNKNOWN", rid,
+                     f"names {primary} as its orienting figure, which this library does not hold")
+            elif primary not in drawable:
+                fail("BUCKET_PRIMARY_REPRESENTATION_UNDRAWABLE", rid,
+                     f"names {primary} as its orienting figure, and it holds no scene instance")
         if record.get("_collection") != "representations":
             continue
         kind = record.get("kind")

@@ -16,7 +16,7 @@
     "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:e6b77168faa06d8496af7179fd44453f431c29dac5983ac22f2f4f01049c70a8",
+  "digest": "sha256:f905aab6892e431fc1dc8594a8e71e078f8ed2510bd9a953a7ddf6856d1ae723",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,15 +43,15 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 36551,
-      "sha256": "552042c19c64cbc3e38fc3d2e8deb162a0fe024867526416675681aa67490464"
+      "bytes": 37686,
+      "sha256": "46ca8ca79b076a6ea56e316ceacc3e633db4b9e54eac5f3310ba3fa50690a566"
     },
     {
       "path": "Shared/library/depiction.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 10471,
-      "sha256": "8f610bb2780f9fbd8ebbf8d3a150aa99e4a7fc7645c3e4ea360b720e642424f0"
+      "bytes": 11795,
+      "sha256": "f0bc43f78cbbfb8a8f27661b2de7cc4653e3e240f11df499d4c546815649ceaf"
     },
     {
       "path": "Shared/library/differentiation.py",
@@ -78,8 +78,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 69112,
-      "sha256": "0704455439f68ac40730298a4757a5381bab0225db21d2468cab2d8f7a2f35f7"
+      "bytes": 69596,
+      "sha256": "790c8afdbc9dbe5c8bf1f23c2b568d2e7c396e73a276a25b3b3572f60a079d5e"
     },
     {
       "path": "Shared/library/promote.py",
@@ -176,8 +176,8 @@
       "path": "Shared/roles/CORE1.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3853,
-      "sha256": "23a2c29d1d83792b1d71e008df6672c63875581e0816a521affbafb903edddfa"
+      "bytes": 3950,
+      "sha256": "e1c6a284c1b4b4b8ce766e66a7d535702846c991fbd2fc98dfd55b449cf6c665"
     },
     {
       "path": "Shared/roles/CORE1A.md",
@@ -309,15 +309,15 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 69583,
-      "sha256": "2dbdb27154a8ac26fb916b241a50636d8adc0598b832be75890f21e54e24385f"
+      "bytes": 72328,
+      "sha256": "8bd91dd2451cb89671f2e3ab610afaeb8565298f5dfb9b12e9f6eae15b4276e4"
     },
     {
       "path": "tests/test_mathematics.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14278,
-      "sha256": "d639ae8ccdbf720e3e442664d960ee742bb682a42b38c1328aa0ef96e8625c5b"
+      "bytes": 14849,
+      "sha256": "157c679b1920bfaab60806171a2edd1651ab16f33b2cc359152cc2d8f2988dcb"
     },
     {
       "path": "tests/test_publication_engine.py",

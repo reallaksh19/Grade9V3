@@ -215,7 +215,10 @@ class Compilation(unittest.TestCase):
         orientation = next(p for p in plan["products"] if p["core"] == "CORE1")
         blocks = orientation["units"][0]["blocks"]
         kinds = {b["kind"] for b in blocks}
-        self.assertEqual(kinds, {"TEXT", "EQUATION"})
+        # FIGURE joined these when Core1 gained the bucket's canonical figure. The map
+        # of a bucket without a picture asked a learner to hold its geometry in their
+        # head before any of it had been taught.
+        self.assertEqual(kinds, {"TEXT", "EQUATION", "FIGURE"})
         quantities = next(b for b in blocks if b["id"] == "CORE1-QUANTITIES")["text"]
         self.assertIn("v_A/B,x", quantities, "the bucket's own symbols, with their meanings")
         demand = next(b for b in blocks if b["id"] == "CORE1-DEMAND")["text"]
@@ -1180,6 +1183,45 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
                                       depiction.relation_symbols(records, record))
                         self.assertTrue(bridge["in_words"].strip())
         self.assertGreater(bridges, 0, "nothing is bridged, so this asserts nothing")
+
+
+    def test_every_bucket_with_a_drawable_figure_names_the_one_that_orients_it(self):
+        for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):
+            report = depiction.audit(path.parent.parent)
+            with self.subTest(subject=report["subject"]):
+                self.assertEqual([f for f in report["findings"]
+                                  if f["point"].startswith("BUCKET_PRIMARY")], [])
+
+    def test_a_bucket_that_names_none_is_a_finding_not_a_silent_omission(self):
+        records = {"B": {"_collection": "buckets"},
+                   "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                             "required_elements": [], "relation_refs": [],
+                             "scene_instances": [{"id": "SI-1"}]}}
+        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        self.assertEqual([f["point"] for f in found],
+                         ["BUCKET_PRIMARY_REPRESENTATION_UNDECLARED"])
+
+    def test_a_bucket_with_nothing_drawable_is_not_asked_to_name_one(self):
+        # The rule bites where a figure exists to be the map. Demanding one from a bucket
+        # that has no drawable representation would be demanding one be invented.
+        records = {"B": {"_collection": "buckets"},
+                   "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                             "required_elements": [], "relation_refs": []}}
+        self.assertEqual([f["point"] for f in depiction.findings(records, {"VECTOR": "IMPLEMENTED"})],
+                         [])
+
+    def test_naming_a_figure_that_cannot_be_drawn_is_refused(self):
+        for primary, point in (("REP-MISSING", "BUCKET_PRIMARY_REPRESENTATION_UNKNOWN"),
+                               ("REP-BARE", "BUCKET_PRIMARY_REPRESENTATION_UNDRAWABLE")):
+            records = {"B": {"_collection": "buckets", "primary_representation_ref": primary},
+                       "REP-BARE": {"_collection": "representations", "kind": "VECTOR",
+                                    "required_elements": [], "relation_refs": []},
+                       "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                                 "required_elements": [], "relation_refs": [],
+                                 "scene_instances": [{"id": "SI-1"}]}}
+            with self.subTest(primary=primary):
+                self.assertIn(point, [f["point"] for f in
+                                      depiction.findings(records, {"VECTOR": "IMPLEMENTED"})])
 
     def test_no_unbuilt_kind_has_anything_waiting_on_it_today(self):
         """The result, and it is a finding rather than a formality.

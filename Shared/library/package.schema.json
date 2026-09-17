@@ -804,6 +804,11 @@
           "required": [
             "covers"
           ]
+        },
+        "primary_representation_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The one figure that orients the whole bucket, for the compact notes. Declared rather than inferred: picking the first representation, or the one with the most instances, would make the map of a bucket depend on authoring order. A bucket with representations and no declared primary is a finding, because the omission is then visible instead of silent."
         }
       },
       "required": [

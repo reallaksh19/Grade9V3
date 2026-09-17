@@ -40,6 +40,7 @@ bucket.conventions[]                     the conventions needed to read the obje
 bucket.conventions[].statement           declared axes, sign conventions, reference states
 datum.value                              the worked anchor values, if the bucket has one
 datum.symbol                             stated compactly
+bucket.primary_representation_ref        [derived] carried as the figure it names, not as the id
 bucket.scope.covers                      what this bucket covers
 bucket.scope.excluded[]                  what is deliberately excluded
 bucket.scope.extension_refs[]            what is carried as labelled extension

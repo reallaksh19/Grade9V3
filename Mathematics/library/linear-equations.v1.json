@@ -77,7 +77,8 @@
           "mapping_status": "CANDIDATE"
         }
       ],
-      "prerequisite_refs": []
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-MATH-NUMBER-LINE"
     }
   ],
   "capabilities": [
@@ -712,6 +713,7 @@
         {
           "id": "FIG-MATH-EXACT-VS-TRUNCATED",
           "cores": [
+            "CORE1",
             "CORE1A",
             "CORE1B"
           ],

@@ -886,6 +886,7 @@
         {
           "id": "SI-REL-VELOCITY-CONSTRUCTION",
           "cores": [
+            "CORE1",
             "CORE1A",
             "CORE1B"
           ],
@@ -1308,7 +1309,8 @@
       "prerequisite_refs": [
         "CAP-SIGNED-PAIR",
         "BUCKET-VECTOR-REPRESENTATION"
-      ]
+      ],
+      "primary_representation_ref": "REP-REL-VECTOR"
     }
   ],
   "data": [

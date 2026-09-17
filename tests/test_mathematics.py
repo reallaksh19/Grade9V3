@@ -181,9 +181,18 @@ class LibraryHeldFigures(unittest.TestCase):
         blocks = [b for p in compiled["plan"]["products"] for u in p["units"]
                   for b in u["blocks"] if b["kind"] == "FIGURE"]
         self.assertEqual({b["id"] for b in blocks},
-                         {"CORE1A-FIG-MATH-EXACT-VS-TRUNCATED", "CORE1B-FIG-MATH-EXACT-VS-TRUNCATED"})
+                         {"CORE1-FIG-MATH-EXACT-VS-TRUNCATED",
+                          "CORE1A-FIG-MATH-EXACT-VS-TRUNCATED",
+                          "CORE1B-FIG-MATH-EXACT-VS-TRUNCATED"})
+        # The teaching products bind it to the microtopic it explains. Core1 binds the
+        # same instance to the bucket's orientation instead: there it is the map of the
+        # bucket rather than the illustration of one transition in it.
         for block in blocks:
-            self.assertEqual(block["obligation_ids"], ["OB-MIC-MATH-EXACT-SOLUTION"])
+            with self.subTest(block=block["id"]):
+                self.assertEqual(block["obligation_ids"],
+                                 ["OB-BUCKET-LINEAR-EQUATION-ORIENTATION"]
+                                 if block["id"].startswith("CORE1-")
+                                 else ["OB-MIC-MATH-EXACT-SOLUTION"])
 
     def test_a_representation_with_no_instance_reports_authoring_still_outstanding(self):
         data = records()
