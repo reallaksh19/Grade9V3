@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-FLUID-BERNOULLI-EQUATION-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Fluid Statics & Dynamics, Archimedes & Bernoulli. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-FLUID-BERNOULLI-EQUATION",
+          "packet_digest": "be47d09cf73e235d4117445e396dda27db8a6390901741c27a662fd4f44bac8c",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Fluid Statics & Dynamics, Archimedes & Bernoulli",
+      "topic": "Mechanical Properties of Fluids",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-FLUID-BERNOULLI-EQUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-FLUID-BERNOULLI-EQUATION",
+          "packet_digest": "be47d09cf73e235d4117445e396dda27db8a6390901741c27a662fd4f44bac8c",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Fluid Statics & Dynamics, Archimedes & Bernoulli",
+      "bucket_id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Incompressible & Non-Viscous Fluid Invariant**: Bernoulli's equation $P + \\frac{1}{2}\\rho v^2 + \\rho g h = \\text{const}$ strictly applies **along a streamline** for an ideal fluid (incompressible, non-viscous, irrotational, steady flow).",
+        "**Archimedes Principle Buoyant Force Invariant**: Buoyant force equals the weight of the *displaced* fluid volume: $F_b = \\rho_{\\text{fluid}} V_{\\text{submerged}} g$. It acts through the center of buoyancy (centroid of displaced volume)."
+      ],
+      "inferential_jump": "Hydrostatic pressure variation with depth: $P = P_0 + \\rho g h$. Pascal's principle: pressure applied to enclosed fluid is transmitted undiminished.",
+      "teaching_path": [
+        {
+          "id": "ATOM-FLU-03",
+          "role": "VERIFY",
+          "action": "Bernoulli's conservation of energy per unit volume along a streamline: $P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g y_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g y_2$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-FLU-04",
+          "role": "TRANSFORM",
+          "action": "Torricelli efflux analysis: (1) Apply continuity between tank surface and small orifice, (2) Neglect surface descent speed ($v_1 \\approx 0$), (3) Equate surface pressure to orifice pressure ($P_0$), (4) Deduce $v = \\sqrt{2gh}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-FLU-05",
+          "role": "DECLARE",
+          "action": "Venturi meter pressure differential analysis: $\\Delta P = \\frac{1}{2}\\rho (v_2^2 - v_1^2) = \\rho_{\\text{manometer}} g \\Delta h$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming that water rushing fast out of a nozzle has high internal static pressure.",
+          "diagnostic_prompt": "",
+          "repair": "By Bernoulli's principle, an increase in fluid velocity along a horizontal streamline occurs alongside a *drop* in static pressure."
+        },
+        {
+          "wrong_idea": "Claiming a 1 kg lead sphere and a 1 kg aluminum sphere experience the same buoyant force in water.",
+          "diagnostic_prompt": "",
+          "repair": "Buoyant force depends strictly on *displaced fluid volume*, not object mass. Since lead is denser, its volume is smaller, so it experiences less buoyant force than aluminum."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-FLUID-BERNOULLI-EQUATION",
+      "packet_digest": "be47d09cf73e235d4117445e396dda27db8a6390901741c27a662fd4f44bac8c",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

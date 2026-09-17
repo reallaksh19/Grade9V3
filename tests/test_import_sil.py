@@ -8,6 +8,7 @@ claim that intake will not admit the result is checked against intake rather tha
 asserted.
 """
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -18,6 +19,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Shared.library import import_sil  # noqa: E402
+from Shared.tools import check_subjects  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 
 SOURCE = {"pr": "395", "head": "242878b04787905087060318c14b89b14238f195"}
@@ -198,3 +200,63 @@ class CatalogueSurvey(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CommittedCandidatesCarryNoAuthority(unittest.TestCase):
+    """The twelve imported packets are source. Nothing may read them as subject truth.
+
+    The C5 contract says so in each record -- packet_authority NONE -- and the one way
+    that claim gets lost is a file being moved into library/, where everything trusts
+    what it finds.
+    """
+
+    CANDIDATES = sorted((REPO / "Physics/candidates").glob("*.v1.json"))
+
+    def test_all_twelve_admissible_packets_are_committed(self):
+        self.assertEqual(len(self.CANDIDATES), 12)
+        for path in self.CANDIDATES:
+            with self.subTest(candidate=path.name):
+                self.assertTrue(path.with_suffix("").with_suffix(".gaps.json").exists()
+                                or (path.parent / path.name.replace(".v1.json", ".v1.gaps.json")
+                                    ).exists(), "an import with no named gaps is an import that lied")
+
+    def test_each_pins_its_source_and_claims_nothing(self):
+        for path in self.CANDIDATES:
+            imported = json.loads(path.read_text(encoding="utf-8"))["extensions"]["sil_import"]
+            with self.subTest(candidate=path.name):
+                self.assertEqual(imported["packet_authority"], "NONE")
+                self.assertEqual(imported["import_mode"], "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY")
+                self.assertEqual(len(imported["packet_digest"]), 64)
+                self.assertEqual(imported["source_head"], "efd5d47df8da")
+
+    def test_no_candidate_sits_in_a_library(self):
+        for path in sorted(REPO.glob("*/library/*.json")):
+            if path.name == "package.schema.json":
+                continue
+            imported = (json.loads(path.read_text(encoding="utf-8")).get("extensions")
+                        or {}).get("sil_import") or {}
+            with self.subTest(package=path.name):
+                self.assertNotEqual(imported.get("packet_authority"), "NONE")
+
+    def test_moving_one_into_a_library_is_refused(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Subject"
+            shutil.copytree(REPO / "Physics", root)
+            shutil.copy(self.CANDIDATES[0], root / "library" / "smuggled.json")
+            _, findings = check_subjects.check_library(root)
+        self.assertTrue(any("CANDIDATE_IN_LIBRARY" in f for f in findings), findings)
+
+    def test_what_they_carry_is_a_skeleton_and_that_is_recorded(self):
+        # The result that re-scoped R3.4: one microtopic per packet and nothing else, so
+        # an import brings no data a renderer could draw. Asserted so that if a later
+        # import does carry more, the README saying otherwise fails with it.
+        carried = {"relations": 0, "representations": 0, "data": 0, "questions": 0}
+        microtopics = 0
+        for path in self.CANDIDATES:
+            package = json.loads(path.read_text(encoding="utf-8"))
+            microtopics += len(package.get("microtopics", []))
+            for key in carried:
+                carried[key] += len(package.get(key, []))
+        self.assertEqual(microtopics, 12)
+        self.assertEqual(carried, {"relations": 0, "representations": 0,
+                                   "data": 0, "questions": 0})

@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-WORK-ENERGY-POWER-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Work, Energy, Power & Mechanical Energy Conservation. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-WORK-ENERGY-POWER",
+          "packet_digest": "aa3218b8122bd1f9828ed89caad91b09775007aeb11d78c9bbb6511a3e31a74a",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Work, Energy, Power & Mechanical Energy Conservation",
+      "topic": "Work and Energy",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-WORK-ENERGY-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-WORK-ENERGY-POWER",
+          "packet_digest": "aa3218b8122bd1f9828ed89caad91b09775007aeb11d78c9bbb6511a3e31a74a",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Work, Energy, Power & Mechanical Energy Conservation",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Work-Energy Theorem Generality Invariant**: The net work done on a particle by *all* acting forces (conservative, non-conservative, and external) strictly equals the change in kinetic energy: $W_{\\text{net}} = W_{\\text{c}} + W_{\\text{nc}} + W_{\\text{ext}} = \\Delta K = \\frac{1}{2}m v_f^2 - \\frac{1}{2}m v_i^2$. This holds in any inertial frame regardless of force nature.",
+        "**Mechanical Energy Conservation Condition Invariant**: Mechanical energy $E_{\\text{mech}} = K + U$ is conserved ($\\Delta E_{\\text{mech}} = 0$) **if and only if** the net work done by all non-conservative and non-potential forces vanishes: $W_{\\text{nc}} + W_{\\text{ext}} = 0$. Stating $K_i + U_i = K_f + U_f$ in the presence of unmodeled friction or inelastic deformation is a fatal physical error.",
+        "**Potential Energy Definition Invariant**: Potential energy is defined exclusively for conservative forces via the line integral: $\\Delta U = - W_{\\text{c}} = -\\int_{\\vec{r}_i}^{\\vec{r}_f} \\vec{F}_{\\text{c}} \\cdot d\\vec{r}$. Potential energy cannot be assigned to dissipative or non-conservative interactions (e.g. kinetic friction)."
+      ],
+      "inferential_jump": "Work as a scalar path integral of force along displacement: $W = \\int \\vec{F} \\cdot d\\vec{r} = \\int (F_x dx + F_y dy + F_z dz)$. For constant force, $W = \\vec{F} \\cdot \\vec{d} = F d \\cos\\theta$.",
+      "teaching_path": [
+        {
+          "id": "ATOM-WEP-03",
+          "role": "VERIFY",
+          "action": "Conservation of Mechanical Energy condition: $W_{\\text{nc}} = 0 \\implies \\Delta (K + U) = 0$. In general: $K_i + U_i + W_{\\text{nc}} + W_{\\text{ext}} = K_f + U_f$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-WEP-04",
+          "role": "TRANSFORM",
+          "action": "Energy accounting workflow: (1) Define isolated system boundary, (2) Identify conservative forces and associate potential energy functions ($mgh, \\frac{1}{2}kx^2$), (3) Calculate line work of non-conservative forces along actual path, (4) Formulate work-energy equation.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-WEP-05",
+          "role": "DECLARE",
+          "action": "Discrimination between instantaneous power $P = \\vec{F} \\cdot \\vec{v}$ and average power $P_{\\text{avg}} = \\frac{\\Delta W}{\\Delta t}$ in variable velocity systems.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Writing $mgh = \\frac{1}{2}mv^2$ for a block sliding down a rough ramp with friction coefficient $\\mu > 0$.",
+          "diagnostic_prompt": "",
+          "repair": "Kinetic friction is non-conservative ($W_f = -\\mu mg \\cos\\theta \\cdot d \\neq 0$). The correct statement is $K_i + U_i + W_f = K_f + U_f \\implies mgh - \\mu mg \\cos\\theta \\cdot d = \\frac{1}{2}mv^2$."
+        },
+        {
+          "wrong_idea": "Assuming normal force work $W_N = 0$ in an accelerating elevator or on a movable wedge.",
+          "diagnostic_prompt": "",
+          "repair": "$W = \\int \\vec{F} \\cdot d\\vec{r}_{\\text{point of contact}}$. If the contact surface itself moves along the normal vector (e.g. a rising elevator floor), $W_N = N \\Delta y > 0$."
+        },
+        {
+          "wrong_idea": "Calculating work done by tension in circular motion as $T \\times 2\\pi r$.",
+          "diagnostic_prompt": "",
+          "repair": "At every instant, tension is perpendicular to instantaneous velocity ($\\vec{T} \\cdot \\vec{v} = 0 \\implies \\vec{T} \\cdot d\\vec{r} = 0$). Therefore, work done by pure centripetal force is strictly zero."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-WORK-ENERGY-POWER",
+      "packet_digest": "aa3218b8122bd1f9828ed89caad91b09775007aeb11d78c9bbb6511a3e31a74a",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

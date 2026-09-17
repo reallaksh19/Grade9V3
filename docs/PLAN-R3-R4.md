@@ -116,5 +116,26 @@ Three findings guard it: undeclared, unknown, and named-but-undrawable.
 | R1.6 | done — `NOT_DELIVERED` 36 → 0, enforced |
 | R3.3 | done — nothing is waiting on any unbuilt renderer |
 | R3.2 | done — Core1 carries its canonical figure |
-| R4.0 | next — and it now decides which renderer follows |
-| R3.4 | blocked on R4.0 |
+| R4.0 | done — twelve candidates in, and they unblock nothing |
+| R3.4 | still blocked, on authoring rather than on the import |
+
+### R4.0 — the import lands, and the plan's premise was wrong
+
+Twelve admissible packets imported under C5: `DIGEST_PINNED_CANDIDATE_SOURCE_ONLY`, `packet_authority: NONE`, each pinning its packet digest. The survey reproduces the committed intake report exactly — 43 packets, 12 admissible, 31 rejected.
+
+**What they carry, measured:**
+
+| | |
+|---|---:|
+| microtopics | 12 |
+| relations | 0 |
+| representations | 0 |
+| data | 0 |
+| questions | 0 |
+| capabilities | 0 |
+
+One microtopic per packet and nothing else, with 204 named gaps.
+
+So **R4.0 does not unblock R3.4**, which is what this plan said it would. A free-body diagram needs forces as data atoms bound to a relation, and no packet carries either in a form the importer can take — by design, since filling those in mechanically is the manufactured teaching the importer exists to refuse. What unblocks the renderer is authoring a force bucket with `PHY-NLM-FIRST-LAW` as candidate input: content work sized like R2.2's elicitation authoring, not an import step.
+
+The candidates sit in `Physics/candidates/`, never in a library. `CANDIDATE_IN_LIBRARY` refuses a file carrying `packet_authority: NONE` inside `library/`, checked at the boundary rather than trusted to a directory name — because the one way that claim gets lost is a file being moved to where everything trusts what it finds.

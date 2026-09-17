@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-GRAV-UNIVERSAL-LAW-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Gravitation, Free Fall & Planetary Orbits. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-GRAV-UNIVERSAL-LAW",
+          "packet_digest": "a40114991da6f7da2304a29a256a637390f64c2267b7511fd4ed541a15607234",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Gravitation, Free Fall & Planetary Orbits",
+      "topic": "Gravitation",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-GRAV-UNIVERSAL-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-GRAV-UNIVERSAL-LAW",
+          "packet_digest": "a40114991da6f7da2304a29a256a637390f64c2267b7511fd4ed541a15607234",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Gravitation, Free Fall & Planetary Orbits",
+      "bucket_id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Point Mass & Spherically Symmetric Body Constraint**: Newton's Law $F = \\frac{G m_1 m_2}{r^2}$ applies strictly between point masses or spherically symmetric mass distributions (Newton's Shell Theorem).",
+        "**Areal Velocity & Angular Momentum Conservation**: Kepler's Second Law ($\\frac{dA}{dt} = \\frac{L}{2m} = \\text{const}$) holds for any central force because torque about the sun is identically zero ($\\vec{\\tau} = \\vec{r} \\times \\vec{F} = 0$)."
+      ],
+      "inferential_jump": "Universal Gravitation Law: $F = \\frac{G M m}{r^2}$ with $G \\approx 6.674 \\times 10^{-11}\\text{ N}\\cdot\\text{m}^2/\\text{kg}^2$.",
+      "teaching_path": [
+        {
+          "id": "ATOM-GRAV-03",
+          "role": "VERIFY",
+          "action": "Gravitational potential energy of two-mass system: $U(r) = -\\frac{G M m}{r}$ (reference zero at $r \\to \\infty$).",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-GRAV-04",
+          "role": "TRANSFORM",
+          "action": "Orbital mechanics derivations:\n  - Orbital speed: $v_o = \\sqrt{\\frac{GM}{r}}$.\n  - Escape speed from surface: $v_e = \\sqrt{\\frac{2GM}{R}} = \\sqrt{2gR} = \\sqrt{2}v_o$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-GRAV-05",
+          "role": "DECLARE",
+          "action": "Kepler's Third Law application: $T^2 = \\left(\\frac{4\\pi^2}{GM}\\right) a^3$ for elliptical/circular orbits.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Explaining astronaut weightlessness on the ISS as absence of gravity ($g = 0$).",
+          "diagnostic_prompt": "",
+          "repair": "At 400 km altitude, $g \\approx 8.7\\text{ m/s}^2$ (about 89% of surface gravity). Astronauts experience apparent weightlessness because they and the station are in continuous free fall together."
+        },
+        {
+          "wrong_idea": "Assuming a 10 kg bowling ball accelerates twice as fast as a 5 kg ball in free fall.",
+          "diagnostic_prompt": "",
+          "repair": "Inertial mass equals gravitational mass ($m_i a = \\frac{GM m_g}{r^2} \\implies a = \\frac{GM}{r^2}$). Acceleration is completely independent of the falling object's mass."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-GRAV-UNIVERSAL-LAW",
+      "packet_digest": "a40114991da6f7da2304a29a256a637390f64c2267b7511fd4ed541a15607234",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

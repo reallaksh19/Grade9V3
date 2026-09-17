@@ -107,6 +107,18 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
                 findings.append(f'{path.name}: {row["id"]}: exit oracle names validator '
                                 f'{named}, which this subject does not declare')
 
+    # A candidate is source, not subject truth. The C5 contract it was imported under
+    # says so in the record itself -- packet_authority NONE -- and the one way that claim
+    # gets lost is a candidate being moved into library/ and read by everything that
+    # trusts what it finds there. Checked at the boundary rather than trusted to a
+    # directory name.
+    for package, path in zip(packages, paths):
+        imported = (package.get("extensions") or {}).get("sil_import") or {}
+        if imported.get("packet_authority") == "NONE":
+            findings.append(f'{path.name}: CANDIDATE_IN_LIBRARY: imported from '
+                            f'{imported.get("packet_id")} as {imported.get("import_mode")} '
+                            "and carries no authority, so it may not sit in library/")
+
     # The same authority order, one layer over: the contract says which kinds this
     # subject depicts by, and a library representation may teach through one rather than
     # invent one. Checked here because a kind is otherwise only looked up when a scene

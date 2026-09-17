@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-ELEC-CURRENT-OHM-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Current Electricity, Ohm's Law & Circuit Analysis. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-ELEC-CURRENT-OHM",
+          "packet_digest": "3a8e45a1dd5cadc1c4b5101548f0a470d154dccfca54e3b1fa50e7c1de9bbded",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Current Electricity, Ohm's Law & Circuit Analysis",
+      "topic": "Electricity",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-ELEC-CURRENT-OHM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-ELEC-CURRENT-OHM",
+          "packet_digest": "3a8e45a1dd5cadc1c4b5101548f0a470d154dccfca54e3b1fa50e7c1de9bbded",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Current Electricity, Ohm's Law & Circuit Analysis",
+      "bucket_id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Ohmic Material Precondition**: Ohm's Law ($V = IR$) holds strictly at constant temperature for materials with linear $I\\text{-}V$ characteristics. For semiconductor diodes or incandescent filaments, resistance is non-linear and dynamic ($r_d = \\frac{dV}{dI}$).",
+        "**Charge & Energy Conservation Invariant**: Kirchhoff's Current Law ($\\sum I = 0$ at a junction) represents local charge conservation. Kirchhoff's Voltage Law ($\\sum \\Delta V = 0$ around a closed loop) represents electrostatic energy conservation ($\\oint \\vec{E} \\cdot d\\vec{l} = 0$)."
+      ],
+      "inferential_jump": "Electric current as drift of charge carriers: $I = n e A v_d$; current density $\\vec{J} = \\sigma \\vec{E}$.",
+      "teaching_path": [
+        {
+          "id": "ATOM-ELEC-03",
+          "role": "VERIFY",
+          "action": "Series and parallel combinations:\n  - Series: $R_{\\text{eq}} = R_1 + R_2 + \\dots$ (same current).\n  - Parallel: $\\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\dots$ (same potential difference).",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-ELEC-04",
+          "role": "TRANSFORM",
+          "action": "Joule heating and electrical power calculations: $P = V I = I^2 R = \\frac{V^2}{R}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-ELEC-05",
+          "role": "DECLARE",
+          "action": "Loop analysis via Kirchhoff's rules with declared sign conventions across batteries and resistors.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Thinking current leaving a resistor is less than the current entering it.",
+          "diagnostic_prompt": "",
+          "repair": "Current is rate of flow of charge. Charge is strictly conserved; the current entering and leaving any resistor in series is identical. What is dropped is electrical potential energy ($V$), not charge."
+        },
+        {
+          "wrong_idea": "Assuming electrons race from the switch to the lightbulb at the speed of light.",
+          "diagnostic_prompt": "",
+          "repair": "The drift speed $v_d$ of conduction electrons in copper is typically $\\sim 10^{-4}\\text{ m/s}$ (sub-millimeter per second). The electromagnetic wave that drives them propagates near $c$."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-ELEC-CURRENT-OHM",
+      "packet_digest": "3a8e45a1dd5cadc1c4b5101548f0a470d154dccfca54e3b1fa50e7c1de9bbded",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

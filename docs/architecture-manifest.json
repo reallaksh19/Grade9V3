@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 50,
-  "relation_count": 88,
+  "relation_count": 89,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:f905aab6892e431fc1dc8594a8e71e078f8ed2510bd9a953a7ddf6856d1ae723",
+  "digest": "sha256:24f01b1fabacb8c1415edf679dcf5e89855dbd7b73c245af622175663a2b39ca",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -253,8 +253,8 @@
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9116,
-      "sha256": "6aa15b296cd139ab32c2511433f342d491a79d4873ce27ad36d67f8871d2c27e"
+      "bytes": 9923,
+      "sha256": "025435ddacf64d250b6eb701e1d8ea5295f4e99c05f3c87dff3daf886ab00586"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -302,8 +302,8 @@
       "path": "tests/test_import_sil.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 10679,
-      "sha256": "868ed3bacfe52f8fd58a3a936076ecb2a8bc7bcdc2de253f7519466c60b13f0f"
+      "bytes": 13978,
+      "sha256": "2c9f3987e74913b14937f2a743b1a3fb73788e464d4ee9177bc19f80a3afc26c"
     },
     {
       "path": "tests/test_library.py",
@@ -658,6 +658,11 @@
     {
       "from": "tests/test_import_sil.py",
       "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_import_sil.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
