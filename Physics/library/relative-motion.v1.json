@@ -1310,6 +1310,16 @@
         "CAP-SIGNED-PAIR",
         "BUCKET-VECTOR-REPRESENTATION"
       ],
+      "conventions": [
+        {
+          "id": "CONV-REL-COMMON-FRAME-DECLARATION",
+          "statement": "Before relative position or relative velocity components are read, one common frame and the positive direction of each axis for that instance are declared. All source quantities compared in that instance are interpreted in that same declared component basis."
+        },
+        {
+          "id": "CONV-REL-OBSERVER-ORDER",
+          "statement": "The notation A/B means \"A relative to B\": B is the reference or observer, and the ordered relative quantity is formed from A minus B. Reversing the order names the opposite relative vector."
+        }
+      ],
       "primary_representation_ref": "REP-REL-VECTOR"
     }
   ],
