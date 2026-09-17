@@ -13,7 +13,7 @@ sys.path.insert(0, str(REPO))
 
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
-    build_manifest, build_web_data, capability_audit, check_subjects,
+    author_brief, build_manifest, build_web_data, capability_audit, check_subjects,
     capability_collisions, learner_evidence, matrix_conformance, spec_conformance,
     spec_delivery, topic_independence_guard,
 )
@@ -743,6 +743,19 @@ class MatrixConformance(unittest.TestCase):
                 row.pop(field)
         self.assertEqual(self.plant(strip), [])
 
+    def test_support_may_not_hand_over_the_invariant_demand(self):
+        # The collapse from the support side. Remove the decision and what is left is
+        # transcription wearing a practice label.
+        self.assertEqual(
+            self.plant(lambda b: b["family"]["support_ladder"][0].update(
+                handed_over=b["family"]["invariant_demand"])),
+            ["SUPPORT_HANDS_OVER_THE_DEMAND"])
+
+    def test_one_row_per_support_level(self):
+        self.assertEqual(
+            self.plant(lambda b: b["family"]["support_ladder"][1].update(level="high")),
+            ["SUPPORT_LEVEL_REUSED"])
+
     def test_every_transfer_row_carries_all_four_parts(self):
         for row in self.board()["transfer"]:
             with self.subTest(dimension=row["dimension"]):
@@ -824,3 +837,94 @@ class LearnerEvidence(unittest.TestCase):
             with self.subTest(profile=path.name):
                 self.assertIsNone(json.loads(path.read_text(encoding="utf-8"))
                                   ["knowledge_percentage"])
+
+
+class AuthorBrief(unittest.TestCase):
+    """The brief is compiled, never written. What it says is what the matrix and the
+    library say, and where neither says anything it says AUTHOR_REQUIRED rather than
+    describing some other subtopic.
+    """
+
+    BUCKET = "BUCKET-RELATIVE-MOTION"
+
+    def board(self):
+        return author_brief.matrix("Physics", self.BUCKET)
+
+    def routing(self, knowledge, core):
+        return "\n".join(author_brief.resolve(self.board(), knowledge, core)[1])
+
+    def test_the_support_levels_are_the_purpose_vocabularys(self):
+        # One spelling of four things. The thresholds are engine policy; the names are not
+        # the engine's to coin.
+        vocabulary = json.loads((REPO / "Shared/vocabularies/purpose.json")
+                                .read_text(encoding="utf-8"))
+        declared = {purpose["support"] for purpose in vocabulary["purposes"]}
+        self.assertTrue({level for _, level in author_brief.SUPPORT} <= declared)
+
+    def test_a_teaching_core_resolves_a_percentage_to_a_rung(self):
+        rung, lines = author_brief.resolve(self.board(), 20, "CORE1A")
+        self.assertEqual(rung, "R1")
+        self.assertIn("ladder position, not a learner estimate", "\n".join(lines))
+
+    def test_a_percentage_between_rungs_is_a_hole_rather_than_a_depth(self):
+        rung, lines = author_brief.resolve(self.board(), 45, "CORE1A")
+        self.assertIsNone(rung)
+        self.assertIn("STOP -- no rung sits at this position", "\n".join(lines))
+
+    def test_a_practice_core_reads_the_same_number_as_routing(self):
+        text = self.routing(80, "CORE2B")
+        self.assertIn("routing input", text)
+        self.assertIn("support level : low", text)
+
+    def test_what_a_support_level_hands_over_comes_from_the_matrix(self):
+        # It used to be a constant in the engine reading "observer named, axes declared" --
+        # true of relative motion and meaningless for thermodynamics.
+        ladder = {row["level"]: row["handed_over"]
+                  for row in self.board()["family"]["support_ladder"]}
+        self.assertIn(ladder["low"], self.routing(80, "CORE2A"))
+
+    def test_a_family_with_no_ladder_row_says_so_rather_than_guessing(self):
+        board = self.board()
+        board["family"]["support_ladder"] = []
+        self.assertIn("AUTHOR_REQUIRED",
+                      "\n".join(author_brief.resolve(board, 80, "CORE2A")[1]))
+
+    def test_the_practice_brief_carries_the_family(self):
+        text = "\n".join(author_brief.practice(self.board(), "CORE2A"))
+        self.assertIn(self.board()["family"]["difficult_move"], text)
+
+    def test_only_the_transfer_product_reads_the_transfer_rows(self):
+        board = self.board()
+        dimension = board["transfer"][0]["dimension"]
+        self.assertNotIn(dimension, "\n".join(author_brief.practice(board, "CORE2A")))
+        self.assertIn(dimension, "\n".join(author_brief.practice(board, "CORE2B")))
+
+    def test_every_transfer_row_reaches_the_brief_with_what_it_withholds(self):
+        board = self.board()
+        text = "\n".join(author_brief.practice(board, "CORE2B"))
+        for row in board["transfer"]:
+            with self.subTest(dimension=row["dimension"]):
+                self.assertIn(row["information_not_handed_over"], text)
+                self.assertIn(row["repair_to"], text)
+
+    def test_core2b_without_a_transfer_row_refuses_rather_than_repeating_the_family(self):
+        board = self.board()
+        board["transfer"] = []
+        text = "\n".join(author_brief.practice(board, "CORE2B"))
+        self.assertIn("STOP -- this subtopic declares no transfer row", text)
+
+    def test_an_absent_rung_gets_the_rung_authoring_contract_not_a_product_one(self):
+        text = author_brief.brief("Physics", self.BUCKET, "R1", "CORE1A")
+        self.assertIn("STOP -- this rung has no record", text)
+        self.assertIn("ONE non-conjunctive success_criterion", text)
+
+    def test_the_ceiling_reaches_the_brief_because_nothing_else_carries_it(self):
+        text = author_brief.brief("Physics", self.BUCKET, "R1", "CORE1A")
+        row = next(r for r in self.board()["rungs"] if r["rung"] == "R1")
+        for word in row["ceiling"]:
+            with self.subTest(word=word):
+                self.assertIn(word, text)
+
+    def test_a_rung_with_a_record_binds_to_it_rather_than_restating_it(self):
+        text = author_brief.brief("Physics", self.BUCKET, "R3", "CORE1A")
+        self.assertIn("Bind to MIC-SAME-TIME", text)

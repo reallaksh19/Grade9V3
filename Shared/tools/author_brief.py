@@ -93,9 +93,11 @@ def gates() -> list[str]:
 # it is a routing input, which is the one place a learner estimate is admissible.
 TEACHING = ("CORE1", "CORE1A", "CORE1B")
 PRACTICE = ("CORE2A", "CORE2B")
-SUPPORT = [(0, "high", "observer named, axes declared, order stated"),
-           (40, "medium", "observer named, axes declared"),
-           (70, "low", "the situation only")]
+# Thresholds only. What a level hands over is a property of the subtopic, not of the
+# engine -- "observer named, axes declared" is true of relative motion and meaningless for
+# thermodynamics -- so it is read from the matrix's family.support_ladder. The level names
+# are the purpose vocabulary's, so the repository keeps one spelling of four things.
+SUPPORT = [(0, "high"), (40, "medium"), (70, "low")]
 
 
 def resolve(board: dict, knowledge: int, core: str) -> tuple[str | None, list[str]]:
@@ -109,16 +111,24 @@ def resolve(board: dict, knowledge: int, core: str) -> tuple[str | None, list[st
     positions = ", ".join(f'{r["rung"]}={r.get("ladder_position")}' for r in rungs)
 
     if core in PRACTICE:
-        level, handed = next((lvl, h) for floor, lvl, h in reversed(SUPPORT)
-                             if knowledge >= floor)
-        return None, [
+        level = next(lvl for floor, lvl in reversed(SUPPORT) if knowledge >= floor)
+        ladder = {row["level"]: row["handed_over"]
+                  for row in (board.get("family") or {}).get("support_ladder", [])}
+        lines = [
             f"## {knowledge}% read as a routing input", "",
             f"{core} is one of the two products permitted to consult capability evidence",
             "or an owner waiver, so this number is legal here -- for routing and support",
             "only. It may not be used to infer that a prerequisite is mastered.", "",
-            f"  support level : {level}",
-            f"  handed over   : {handed}", "",
-            "All support levels are the same product. Removing help does not create",
+            f"  support level : {level}"]
+        if level in ladder:
+            lines += [f"  handed over   : {ladder[level]}"]
+        else:
+            # Fails closed rather than describing some other subtopic's support.
+            lines += [f"  handed over   : AUTHOR_REQUIRED -- this family declares no",
+                      f"                  support_ladder row for {level}, and what support",
+                      f"                  hands over cannot be guessed from the engine."]
+        return None, lines + [
+            "", "All support levels are the same product. Removing help does not create",
             "transfer: the decision structure is unchanged. Changing it is Core2B.", ""]
 
     exact = [r for r in rungs if r.get("ladder_position") == knowledge]
@@ -140,6 +150,54 @@ def resolve(board: dict, knowledge: int, core: str) -> tuple[str | None, list[st
         "written. Add it to the matrix first, with its own aha, ceiling and closure.", ""]
 
 
+def practice(board: dict, core: str) -> list[str]:
+    """The family, and for the transfer product the rows that change its demand.
+
+    Core2A and Core2B are two questions asked of one family: A varies instances while
+    preserving the decision structure, B varies the decision structure while preserving
+    mathematics already taught. Both read the family; only B reads transfer, and a Core2B
+    brief with no transfer row says so rather than offering the family twice.
+    """
+    family = board.get("family") or {}
+    if not family:
+        return ["## STOP -- this subtopic declares no question family", "",
+                "A practice product with no invariant demand has nothing to vary and no",
+                "check to hold an answer to. Write family{invariant_demand,",
+                "difficult_move, independent_check} into the matrix first.", ""]
+    out = ["## The family -- what every instance demands", "",
+           f'  invariant demand  : {family["invariant_demand"]}',
+           f'  difficult move    : {family["difficult_move"]}',
+           f'  independent check : {family["independent_check"]}', ""]
+    if core == "CORE2A":
+        return out + [
+            "Vary the numbers, the objects or the cover story; leave the demand above",
+            "untouched. Changing it is the other product.", ""]
+
+    rows = board.get("transfer") or []
+    if not rows:
+        return out + [
+            "## STOP -- this subtopic declares no transfer row", "",
+            "Core2B cannot be built from the family alone: same-family practice with less",
+            "help is Core2A with a label. Write transfer rows into the matrix first, each",
+            "naming a changed demand and what is not handed over.", ""]
+    out += [f"## Transfer -- {len(rows)} changed demands, one product each", ""]
+    for row in rows:
+        out += [f'  dimension  {row["dimension"]}',
+                f'  demand     {row["changed_demand"]}',
+                f'  NOT given  {row["information_not_handed_over"]}',
+                f'  repairs to {row["repair_to"]}', ""]
+    return out + [
+        "A hint disclosing a row's NOT-given line turns that task back into Core2A.",
+        "That is the one mechanical test of a transfer claim.", ""]
+
+
+def required_content(core: str) -> list[str]:
+    spec = REPO / f"Shared/roles/{core}.md"
+    paths = [r for r in (requirements(spec) or []) if not r.get("author_only")]
+    return ([f"## {core} required content -- {len(paths)} binding paths", ""]
+            + [f'  {r["path"]:52} {r["phrase"]}' for r in paths] + [""])
+
+
 def brief(subject: str, bucket_id: str, rung: str, core: str) -> str:
     board = matrix(subject, bucket_id)
     row = next((r for r in board["rungs"] if r["rung"] == rung), None)
@@ -147,9 +205,6 @@ def brief(subject: str, bucket_id: str, rung: str, core: str) -> str:
         raise SystemExit(f'{rung} is not a rung of {bucket_id} in {board["_path"]}')
     caps, mics = capability_chain(subject)
     state = rung_state(row, caps, mics)
-    spec = REPO / f"Shared/roles/{core}.md"
-    paths = [r for r in (requirements(spec) or []) if not r.get("author_only")]
-
     out = [f'# Authoring brief -- {core}, {board["subtopic"]}, rung {rung}',
            "",
            f'Compiled from {board["_path"]} ({board["_digest"]}) and the library. Do not',
@@ -202,8 +257,7 @@ def brief(subject: str, bucket_id: str, rung: str, core: str) -> str:
     if row.get("closure"):
         out += ["## Closure", "", f'  {row["closure"]}', ""]
 
-    out += [f'## {core} required content -- {len(paths)} binding paths', ""]
-    out += [f'  {r["path"]:52} {r["phrase"]}' for r in paths] + [""]
+    out += required_content(core)
     out += ["## Prohibited", "",
             "  - diluting an existing rung to serve a lower ladder position",
             "  - using a term the ceiling forbids",
@@ -231,8 +285,16 @@ def main() -> int:
         board = matrix(args.subject, args.bucket)
         rung, preface = resolve(board, args.knowledge, args.core)
         if rung is None:
-            print(f'# Authoring brief -- {args.core}, {board["subtopic"]}\n')
-            print("\n".join(preface))
+            out = [f'# Authoring brief -- {args.core}, {board["subtopic"]}', ""] + preface
+            if args.core in PRACTICE:
+                out += practice(board, args.core) + required_content(args.core)
+                out += ["## Prohibited", "",
+                        "  - disclosing a transfer row's NOT-given line in any hint",
+                        "  - presenting a low-support instance of the family as transfer",
+                        "  - reading the percentage as evidence that a prerequisite is held",
+                        ""]
+                out += ["## Green before done", ""] + [f'  {g}' for g in gates()] + [""]
+            print("\n".join(out))
             return 0
     print("\n".join(preface + [brief(args.subject, args.bucket, rung, args.core)]))
     return 0

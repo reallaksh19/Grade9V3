@@ -109,7 +109,21 @@
   "family": {
     "invariant_demand": "Identify the observer, subtract in that order, keep both signs, and take a magnitude only if the question asked for one.",
     "difficult_move": "Deciding the subtraction order from the words \"A relative to B\", which is a reading decision rather than arithmetic.",
-    "independent_check": "Add the answer to the observer's velocity; it must return A's."
+    "independent_check": "Add the answer to the observer's velocity; it must return A's.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The observer is named, the axes are declared, and the subtraction order is stated."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The observer is named and the axes are declared."
+      },
+      {
+        "level": "low",
+        "handed_over": "The situation only."
+      }
+    ]
   },
   "transfer": [
     {

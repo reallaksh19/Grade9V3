@@ -127,6 +127,21 @@ def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
             fail("WITHHELD_RESTATES_THE_DEMAND", row["dimension"],
                  "what is withheld must be narrower than the demand, or the row says "
                  "nothing a hint could violate")
+
+    family = board.get("family") or {}
+    demand = normalise(family.get("invariant_demand", ""))
+    levels = set()
+    for row in family.get("support_ladder", []):
+        level = row["level"]
+        if level in levels:
+            fail("SUPPORT_LEVEL_REUSED", level, "two rows describe the same level")
+        levels.add(level)
+        if demand and normalise(row["handed_over"]) == demand:
+            # Support removes work. Handing over the invariant demand removes the
+            # decision, and what is left is transcription wearing a practice label.
+            fail("SUPPORT_HANDS_OVER_THE_DEMAND", level,
+                 "the invariant demand handed over as support is the Core2A/Core2B "
+                 "collapse, from the support side")
     return found
 
 
