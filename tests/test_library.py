@@ -13,7 +13,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Physics.adapter import load as load_physics  # noqa: E402
-from Shared.contracts import ContractError, join  # noqa: E402
+from Shared.contracts import ContractError, is_prose, join  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
 from Shared.library import authority, differentiation, intake, substance  # noqa: E402
 from Shared.library import resolve as resolve_module  # noqa: E402
@@ -533,17 +533,34 @@ class ComposedProseReadsAsProse(unittest.TestCase):
                          ["This gives:", "For x = 2: 3(2) + 2 = 8, and the right side is 9."])
 
     def test_no_composed_line_embeds_a_sentence_mid_sentence(self):
-        # The general assertion, not the two strings that were found: nothing may put a
-        # capitalised word straight after a lead-in word.
+        # This began as a list of lead-in words -- gives, that, is, means -- and that was
+        # the wrong shape for the assertion. It passed a line reading "That shows
+        # Treating membership of the solution set as..." written months later by code
+        # using a different lead-in, which is the same defect wearing a word the list did
+        # not have. The rule is restated without any word list: a capital may begin a
+        # line, or follow a colon or a terminator. Anywhere else, if what follows it runs
+        # to the end of the line and is long enough to be a sentence, a sentence has been
+        # embedded in a sentence.
+        # A list marker starts a line as much as the margin does, and a closing bracket
+        # ends a parenthetical rather than a sentence, so both are stripped or allowed
+        # before the rule applies. Neither is an exception to the rule: they are what
+        # "begins a line" and "follows a terminator" mean in composed text.
+        marker = re.compile(r"^(?:[-*\u2022]|\d+\.)\s+")
         for core in ("CORE1", "CORE1A", "CORE1B"):
-            with self.subTest(core=core):
-                for line in self.compiled_text(core).splitlines():
-                    self.assertIsNone(re.search(r"\b(?:gives|that|is|means)\s+[A-Z][a-z]", line),
-                                      f"{core}: {line}")
+            for line in self.compiled_text(core).splitlines():
+                stripped = marker.sub("", line.strip())
+                for found in re.finditer(r"(\S)\s+([A-Z][a-z].*)$", stripped):
+                    if found.group(1) in ":.!?)":
+                        continue
+                    with self.subTest(core=core, line=stripped[:70]):
+                        self.assertFalse(is_prose(found.group(2)), stripped)
 
     def test_a_colon_lead_in_keeps_its_capital_on_the_same_line(self):
-        text = self.compiled_text("CORE1B")
-        self.assertRegex(text, r"Predict first: [A-Z0-9]")
+        # This named "Predict first:", which R2 removed when Core1B stopped compiling
+        # from the declarative text. The property is unchanged and is asserted on the
+        # lead-in that carries it now: a capital after a colon is correct English and
+        # must not be split onto its own line by the fix for the opposite defect.
+        self.assertRegex(self.compiled_text("CORE1B"), r"Our answer: [A-Z0-9]")
 
     def test_the_wrong_idea_and_its_repair_are_separate_and_both_labelled(self):
         # They were run together on one line, two sentences pretending to be one.
@@ -738,13 +755,51 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
     def b_unit(self, plan, core="CORE1B"):
         return next(p for p in plan["products"] if p["core"] == core)["units"][0]
 
-    def test_todays_core1b_is_refused(self):
-        report = differentiation.audit(self.compiled()["plan"])
+    def declarative_shape(self):
+        """Core1B as it was: one block per microtopic, carrying the declarative text.
+
+        This was the live product when the check was written, and the check refused it.
+        R2 replaced it, so it is kept here as a fixture -- the assertion that matters is
+        that this shape is still refused, and it would quietly stop being asserted if it
+        were only ever read off whatever the compiler currently emits.
+        """
+        plan = self.compiled()["plan"]
+        unit = self.b_unit(plan)
+        unit["blocks"] = [{**block, "id": block["id"] + "-FLAT", "text": "Declarative prose.",
+                           "placement": "TEACHING", "reveals_block_id": None}
+                          for block in self.b_unit(plan, "CORE1A")["blocks"]]
+        for block in unit["blocks"]:
+            block.pop("reveals_block_id")
+        return plan
+
+    def test_the_shape_core1b_used_to_have_is_refused(self):
+        report = differentiation.audit(self.declarative_shape())
         self.assertFalse(report["differentiated"],
                          "the product this check exists to catch would have passed it")
-        points = {f["point"] for f in report["findings"]}
-        self.assertEqual(points, {"OBLIGATION_WITHOUT_ELICITATION"},
-                         "every microtopic is covered with no commitment asked of the learner")
+        self.assertEqual({f["point"] for f in report["findings"]},
+                         {"OBLIGATION_WITHOUT_ELICITATION"},
+                         "every microtopic covered, no commitment asked of the learner")
+
+    def test_core1b_as_it_now_compiles_is_differentiated(self):
+        report = differentiation.audit(self.compiled()["plan"])
+        self.assertTrue(report["differentiated"], report["findings"])
+
+    def test_every_microtopic_asks_before_it_reveals(self):
+        # Not "a reveal exists somewhere": one per microtopic, each naming a prompt that
+        # carries the same obligation, so a single elicited concept cannot stand in for
+        # the bucket.
+        unit = self.b_unit(self.compiled()["plan"])
+        blocks = {b["id"]: b for b in unit["blocks"]}
+        reveals = [b for b in unit["blocks"] if b.get("placement") == "ELICITED_REVEAL"]
+        self.assertTrue(reveals)
+        elicited = set()
+        for reveal in reveals:
+            prompt = blocks[reveal["reveals_block_id"]]
+            self.assertEqual(prompt["obligation_ids"], reveal["obligation_ids"])
+            elicited |= set(prompt["obligation_ids"])
+        covered = {oid for b in unit["blocks"] for oid in b["obligation_ids"]
+                   if oid.startswith("OB-MIC-")}
+        self.assertEqual(covered, elicited & covered)
 
     def test_a_reveal_naming_no_prompt_is_refused(self):
         plan = self.compiled()["plan"]
@@ -809,6 +864,34 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         self.assertEqual(sorted(route["items"]["required"]), ["ask", "why_this_ask"])
         self.assertNotIn("move", route["items"]["properties"])
 
+
+    def test_core1a_is_untouched_by_the_elicited_product(self):
+        # The A/B comparison is only meaningful while one side holds still. Asserted
+        # structurally here; asserted byte-for-byte against the previous commit's
+        # compiler when R2 landed.
+        unit = self.b_unit(self.compiled()["plan"], "CORE1A")
+        self.assertTrue(unit["blocks"])
+        for block in unit["blocks"]:
+            with self.subTest(block=block["id"]):
+                self.assertNotEqual(block.get("placement"), "ELICITED_REVEAL")
+                self.assertNotIn("reveals_block_id", block)
+                self.assertNotIn("Our answer:", block.get("text", ""))
+
+    def test_a_microtopic_with_no_elicitation_falls_back_and_says_so(self):
+        # Silence is the failure mode here: falling back to the declarative text without
+        # recording it would publish Core1A under Core1B's name and report success.
+        data = math_records()
+        bare = dict(data["MIC-MATH-CONSTRAINT"])
+        bare.pop("elicitation", None)
+        data["MIC-MATH-CONSTRAINT"] = bare
+        compiled = compile_bucket(data, BUCKET_MATH, topic_id="T", title="T", subject="Mathematics",
+                                  practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"})
+        owed = [r for r in compiled["authoring_requirements"]
+                if r["kind"] == "ELICITATION_AUTHORING"]
+        self.assertEqual([r["detail"].split()[0] for r in owed], ["MIC-MATH-CONSTRAINT"])
+        report = differentiation.audit(compiled["plan"])
+        self.assertFalse(report["differentiated"],
+                         "a fallback microtopic must still fail the A/B check, not be excused by it")
 
 class ElicitationClaimsAreChecked(unittest.TestCase):
     """The A/B claim is checked where it is made, not only where it is rendered."""

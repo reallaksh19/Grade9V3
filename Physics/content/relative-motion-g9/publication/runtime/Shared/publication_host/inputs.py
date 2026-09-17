@@ -5,6 +5,13 @@ from pathlib import Path
 from Shared.contracts import digest, load, require, strings, text, unique, validate_dag, verify_file
 
 KINDS = {"TEXT", "EQUATION", "QUESTION", "FIGURE"}
+# Where a block sits in the product a learner reads. TEACHING is read straight through;
+# ANSWER is collected into the answer section and names the question it answers;
+# ELICITED_REVEAL is rendered closed beside the prompt it answers, for a product whose
+# role is to ask before it tells. Enumerated so that a typo is a refusal rather than a
+# block silently treated as TEACHING, which is how a reveal would have been published
+# open.
+PLACEMENTS = {"TEACHING", "ANSWER", "ELICITED_REVEAL"}
 
 
 def read_inputs(plan: dict, baseline: dict, source_root: Path, adapter) -> dict:
@@ -127,12 +134,26 @@ def _unit(ctx, core, unit):
             strings(b.get("symbols"), "EQUATION_SYMBOLS_REQUIRED")
         elif b["kind"] == "QUESTION":
             _question(ctx, b)
+        require(b.get("placement", "TEACHING") in PLACEMENTS, "CONTENT_PLACEMENT_UNSUPPORTED",
+                str(b.get("placement")))
         if b.get("placement", "TEACHING") == "ANSWER":
             text(b.get("question_id"), "ANSWER_FIGURE_QUESTION_REQUIRED")
-    for b in unit["blocks"]:
+        if b.get("placement") == "ELICITED_REVEAL":
+            text(b.get("reveals_block_id"), "REVEAL_PROMPT_REQUIRED")
+    order = {b["id"]: position for position, b in enumerate(unit["blocks"])}
+    for position, b in enumerate(unit["blocks"]):
         if b.get("placement") == "ANSWER":
             target = next((q for q in unit["blocks"] if q["id"] == b["question_id"]), None)
             require(target is not None and target["kind"] == "QUESTION", "ANSWER_QUESTION_UNKNOWN")
+        if b.get("placement") == "ELICITED_REVEAL":
+            # A reveal is rendered closed, which is only honest if the prompt it answers
+            # has already been read. A reveal placed first would still be closed and
+            # would still have given the answer to a question not yet asked.
+            prompt = b["reveals_block_id"]
+            require(prompt in order, "REVEAL_PROMPT_UNKNOWN", prompt)
+            require(order[prompt] < position, "REVEAL_PRECEDES_PROMPT", prompt)
+            require(unit["blocks"][order[prompt]].get("placement", "TEACHING") == "TEACHING",
+                    "REVEAL_PROMPT_NOT_READABLE", prompt)
 
 
 def _question(ctx, block):

@@ -1,6 +1,6 @@
 {
   "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
-  "runtime_digest": "52c93e551110021022533169130779dd33fb49670dbbb8fb4a448781a0f19855",
+  "runtime_digest": "96028af1139ad6b8bd89f3b7e4d0db2ef085191ad8d5fb43706fc69719be4ad9",
   "files": [
     {
       "path": "CORE1A.html",
@@ -124,7 +124,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/compose.py",
-      "sha256": "f4355210772111f0a7b15fc53f40c6b193dd758c2023a267167a64cba982100a"
+      "sha256": "56efe3e008ddf8b849fded18d1dd77083318c89b8783038ad86cc23d07b8c39b"
     },
     {
       "path": "runtime/Shared/publication_host/drawing.py",
@@ -136,7 +136,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/inputs.py",
-      "sha256": "faac89ed8fbdb6115ce0049e170bc5438d4e8c385b3008ba1f031b5d3c1fe478"
+      "sha256": "21af3f5f32aaf5e35d0d52c460c50c092f5ef7089445588d5256bd80be90e49f"
     },
     {
       "path": "runtime/Shared/publication_host/science.py",

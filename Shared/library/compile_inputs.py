@@ -49,6 +49,14 @@ from Shared.library.resolve import build_index, load_packages, slice_for_bucket
 # question custody. Both are determined by what the bucket holds, not by a route.
 COMPOSABLE = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 ROUTED = ("CORE1A", "CORE1B")
+# Of the routed pair, the one whose role is to elicit the decision before revealing it.
+# The other reveals a completed construction, which is why its composition is untouched
+# by everything below: the A/B comparison is only meaningful while one side holds still.
+ELICITING = "CORE1B"
+# A block the engine renders closed, and the suffix that pairs it with the prompt it
+# answers. Named once here so the pairing cannot be written two ways in two places.
+REVEAL_PLACEMENT = "ELICITED_REVEAL"
+REVEAL_SUFFIX = "-REVEAL"
 PRACTICE = ("CORE2A", "CORE2B")
 BADGE = {"EASY": "EASY", "MEDIUM": "MEDIUM", "HARD": "HARD"}
 
@@ -268,9 +276,21 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 if not any(o["id"] == obligation and core in o["required_cores"] for o in obligations):
                     continue
                 bound = next(o["source_atom_ids"] for o in obligations if o["id"] == obligation)
-                blocks.append({"id": f'{core}-{microtopic["id"]}-T', "kind": "TEXT",
-                               "obligation_ids": [obligation], "source_atom_ids": bound,
-                               "text": _teaching_text(microtopic, core)})
+                if core == ELICITING and microtopic.get("elicitation"):
+                    blocks += _elicitation_blocks(microtopic, core, obligation, bound)
+                else:
+                    blocks.append({"id": f'{core}-{microtopic["id"]}-T', "kind": "TEXT",
+                                   "obligation_ids": [obligation], "source_atom_ids": bound,
+                                   "text": _teaching_text(microtopic, core)})
+                    if core == ELICITING:
+                        # Compiling the declarative text here is what made this product
+                        # read as the declarative one. It stays only while a microtopic
+                        # has no elicitation, and it is recorded as work owed rather
+                        # than passed off as the product the role asks for.
+                        requirements.append(
+                            {"kind": "ELICITATION_AUTHORING", "core": core,
+                             "detail": f'{microtopic["id"]} has no elicitation, so this product '
+                                       "falls back to the declarative construction for it"})
                 # A figure belongs with the microtopic it was bound to. Appending every
                 # figure after every text block put the one that explains a transition
                 # after the whole argument had been read in prose.
@@ -297,6 +317,82 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             "authoring_requirements": requirements,
             "derived_from": {"bucket": bucket_id, "microtopics": [m["id"] for m in microtopics],
                              "packages": sorted({records[m]["_package"] for m in microtopic_ids})}}
+
+
+def _elicitation_blocks(microtopic: dict, core: str, obligation: str,
+                        atoms: list[str]) -> list[dict]:
+    """The self-tutor cycle as blocks, in the order the role specifies.
+
+    Every reveal names the prompt it answers and is emitted after it, so a reader meets
+    the question before the answer exists on the page at all. The engine renders an
+    ELICITED_REVEAL closed; the ordering here is what makes that honest rather than
+    cosmetic, because a reveal that preceded its prompt would still be closed and would
+    still be wrong.
+
+    Diagnose and repair come from misconceptions[], which already holds them for the
+    declarative product. They are placed inside the reveal because a learner who has not
+    yet committed to an answer has nothing to diagnose.
+    """
+    elicitation = microtopic["elicitation"]
+    base = {"kind": "TEXT", "obligation_ids": [obligation], "source_atom_ids": atoms}
+    stem = f'{core}-{microtopic["id"]}'
+    predict, attempt = elicitation["predict"], elicitation["attempt"]
+    reconstruct, boundary = elicitation["reconstruct"], elicitation["boundary_test"]
+
+    ask = [sentence(microtopic["title"]), "", sentence(predict["prompt"]), "",
+           *join("Then produce", attempt["produces"])]
+
+    reveal = [f'Our answer: {sentence(predict["defensible_answer"])}', "",
+              "Getting there:"]
+    reveal += [f'  {position}. {sentence(step["ask"])}'
+               for position, step in enumerate(reconstruct["route"], 1)]
+    for item in microtopic.get("misconceptions", []):
+        # All three parts, in the role's order. The diagnostic prompt is the question
+        # that separates the wrong idea from the right one, and dropping it leaves a
+        # wrong idea named and untested, which is a warning rather than a diagnosis.
+        reveal += ["", *join("A common wrong idea", item["wrong_idea"]),
+                   *join("Tell them apart", item["diagnostic_prompt"]),
+                   *join("Instead", item["repair"])]
+    reveal += ["", *_closure_lines(attempt)]
+
+    def revealing(prompt: dict, lines: list[str]) -> list[dict]:
+        """A prompt and the reveal that answers it, in that order and never apart.
+
+        The reveal's id is the prompt's id plus a suffix, so the pair cannot be built
+        with the wrong reveals_block_id and a reveal cannot be emitted without the block
+        it names existing beside it.
+        """
+        return [prompt, {**base, "id": prompt["id"] + REVEAL_SUFFIX, "placement": REVEAL_PLACEMENT,
+                         "reveals_block_id": prompt["id"], "text": "\n".join(lines)}]
+
+    return [
+        *revealing({**base, "id": f"{stem}-ASK", "text": "\n".join(ask)}, reveal),
+        *revealing({**base, "id": f"{stem}-BOUNDARY", "text": sentence(boundary["prompt"])},
+                   [sentence(boundary["answer"]), "",
+                    *join("What this settles", boundary["confirms"])]),
+    ]
+
+
+def _closure_lines(attempt: dict) -> list[str]:
+    """How the attempt closes, in whichever of the three forms it declared.
+
+    The role admits no fourth form and no silence, so there is no else branch: a closure
+    value with nothing behind it is refused at intake rather than rendered as a heading
+    with no content under it.
+    """
+    if attempt["closure"] == "MODEL_RESPONSE":
+        return join("A full answer reads", attempt["model_response"])
+    lines = ["Judge your answer against these:"]
+    for row in attempt["rubric"]:
+        # Through join(), not an f-string: evidence_of is an authored field and arrives
+        # as a fragment in some records and a sentence in others, which is the whole
+        # reason join() exists.
+        lines.append(f'  - {sentence(row["criterion"])}')
+        lines += [f"    {line}" for line in join("It shows", row["evidence_of"])]
+    for label, key in (("Accepted", "accepted"), ("Not accepted", "rejected")):
+        for value in attempt.get(key, []):
+            lines += ["", *join(label, value)]
+    return lines
 
 
 def _teaching_text(microtopic: dict, core: str) -> str:

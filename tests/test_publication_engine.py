@@ -218,3 +218,121 @@ class UnpublishableResultShapes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ElicitedRevealIsClosedAndOrdered(unittest.TestCase):
+    """A learner must not be able to read the answer on the way past the question.
+
+    Asserted against the rendered HTML rather than the plan. The plan can say a block is
+    a reveal and the renderer can still print it inline, which is the failure this exists
+    to catch -- and the one the composed blocks alone cannot show.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        from Shared.library.compile_inputs import (  # noqa: PLC0415
+            build_index, compile_bucket, load_packages, write)
+        import importlib  # noqa: PLC0415
+        records = build_index(load_packages(sorted((REPO / "Mathematics/library").glob("*.json"))))
+        cls.compiled = compile_bucket(records, "BUCKET-LINEAR-EQUATION",
+                                      topic_id="linear-equation-g9", title="Linear equations",
+                                      subject="Mathematics",
+                                      practice_control={"mode": "DESIGN_PREVIEW",
+                                                        "purpose": "PRACTICE"})
+        cls._temp = tempfile.TemporaryDirectory()
+        root = Path(cls._temp.name)
+        write(cls.compiled, root / "inputs")
+        publish(root / "inputs/plan.json", root / "inputs/baseline.json", root / "inputs",
+                root / "publication", importlib.import_module("Mathematics.adapter").load())
+        cls.html = (root / "publication/CORE1B.html").read_text(encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._temp.cleanup()
+
+    def outside_the_reveals(self):
+        import re  # noqa: PLC0415
+        return re.sub(r'<details class="reveal">.*?</details>', "", self.html, flags=re.S)
+
+    def test_every_reveal_is_rendered_closed(self):
+        self.assertEqual(self.html.count('<details class="reveal">'), 6)
+        self.assertNotIn("<details open", self.html)
+
+    def test_the_answer_is_not_readable_without_opening_it(self):
+        outside = self.outside_the_reveals()
+        for hidden in ("Our answer:", "Getting there:", "A common wrong idea",
+                       "It claims something"):
+            with self.subTest(hidden=hidden):
+                self.assertNotIn(hidden, outside)
+
+    def test_the_question_is_readable_without_opening_anything(self):
+        # The other half, and the one a too-eager fix would break: a product that hid the
+        # prompt as well would pass the test above and teach nobody.
+        self.assertIn("does this line ask you to do something", self.outside_the_reveals())
+
+    def test_the_reveal_is_open_able_rather_than_locked(self):
+        # The role wants attempt-first ordering and also says the answer stays accessible
+        # rather than locked. <details> is both; a server-side omission would be neither.
+        self.assertIn("<summary>Check your answer</summary>", self.html)
+        self.assertIn("Our answer:", self.html)
+
+
+class RevealPlacementIsValidated(unittest.TestCase):
+    """The engine refuses a reveal that could not have been read after its prompt."""
+
+    def plan_with(self, mutate):
+        import importlib  # noqa: PLC0415
+        from Shared.library.compile_inputs import (  # noqa: PLC0415
+            build_index, compile_bucket, load_packages, write)
+        records = build_index(load_packages(sorted((REPO / "Mathematics/library").glob("*.json"))))
+        compiled = compile_bucket(records, "BUCKET-LINEAR-EQUATION", topic_id="t", title="t",
+                                  subject="Mathematics",
+                                  practice_control={"mode": "DESIGN_PREVIEW",
+                                                    "purpose": "PRACTICE"})
+        unit = next(p for p in compiled["plan"]["products"]
+                    if p["core"] == "CORE1B")["units"][0]
+        mutate(unit)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            write(compiled, root / "inputs")
+            with self.assertRaises(ContractError) as raised:
+                read_inputs(json.loads((root / "inputs/plan.json").read_text(encoding="utf-8")),
+                            json.loads((root / "inputs/baseline.json").read_text(encoding="utf-8")),
+                            root / "inputs",
+                            importlib.import_module("Mathematics.adapter").load())
+        return raised.exception.code
+
+    def test_a_reveal_before_its_prompt_is_refused(self):
+        def move_first(unit):
+            reveal = next(b for b in unit["blocks"] if b.get("placement") == "ELICITED_REVEAL")
+            unit["blocks"].remove(reveal)
+            unit["blocks"].insert(0, reveal)
+        self.assertEqual(self.plan_with(move_first), "REVEAL_PRECEDES_PROMPT")
+
+    def test_a_reveal_naming_a_block_that_is_not_there_is_refused(self):
+        def repoint(unit):
+            reveal = next(b for b in unit["blocks"] if b.get("placement") == "ELICITED_REVEAL")
+            reveal["reveals_block_id"] = "NO-SUCH-BLOCK"
+        self.assertEqual(self.plan_with(repoint), "REVEAL_PROMPT_UNKNOWN")
+
+    def test_a_reveal_whose_prompt_is_itself_hidden_is_refused(self):
+        # A prompt inside another reveal has not been read either, so the ordering
+        # guarantee would be satisfied on paper and broken on the page.
+        def hide_prompt(unit):
+            # The *second* prompt is hidden behind the first one, so it still follows
+            # what it names and only the readability rule is broken. Pointing it at its
+            # own reveal instead would make a cycle and prove the ordering check fires,
+            # which is a different assertion.
+            reveals = [b for b in unit["blocks"] if b.get("placement") == "ELICITED_REVEAL"]
+            first, second = reveals[0], reveals[1]
+            prompt = next(b for b in unit["blocks"] if b["id"] == second["reveals_block_id"])
+            prompt["placement"] = "ELICITED_REVEAL"
+            prompt["reveals_block_id"] = first["reveals_block_id"]
+        self.assertEqual(self.plan_with(hide_prompt), "REVEAL_PROMPT_NOT_READABLE")
+
+    def test_an_unknown_placement_is_refused_rather_than_treated_as_teaching(self):
+        # The defect this prevents is silent: a typo that fell through to the default
+        # would publish a reveal open and report success.
+        def typo(unit):
+            unit["blocks"][0]["placement"] = "ELICITED_REVEL"
+        self.assertEqual(self.plan_with(typo), "CONTENT_PLACEMENT_UNSUPPORTED")

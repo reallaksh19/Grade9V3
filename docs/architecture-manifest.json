@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 48,
-  "relation_count": 72,
+  "relation_count": 74,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:a7045fb7e048dbae5e49b1023dd52b88dcb24e2eb3c84d2ff8cb841a7ea2dffd",
+  "digest": "sha256:6e3366c96d1511f899a05a54e34bf0cd4f5e88dcefd9b512fc1f0943bdf048fb",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 26571,
-      "sha256": "9b97e38903fe9b460a6cf4adaa8a3c5f723f013b7cb0a967229525c2b8b99983"
+      "bytes": 31984,
+      "sha256": "3de15eea059525c5bbc8fb783b83ab636449d2dc4646cfbbd0f5370fd53a936d"
     },
     {
       "path": "Shared/library/differentiation.py",
@@ -127,8 +127,8 @@
       "path": "Shared/publication_host/compose.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 10981,
-      "sha256": "f4355210772111f0a7b15fc53f40c6b193dd758c2023a267167a64cba982100a"
+      "bytes": 11523,
+      "sha256": "56efe3e008ddf8b849fded18d1dd77083318c89b8783038ad86cc23d07b8c39b"
     },
     {
       "path": "Shared/publication_host/drawing.py",
@@ -148,8 +148,8 @@
       "path": "Shared/publication_host/inputs.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 10669,
-      "sha256": "faac89ed8fbdb6115ce0049e170bc5438d4e8c385b3008ba1f031b5d3c1fe478"
+      "bytes": 12165,
+      "sha256": "21af3f5f32aaf5e35d0d52c460c50c092f5ef7089445588d5256bd80be90e49f"
     },
     {
       "path": "Shared/publication_host/science.py",
@@ -295,8 +295,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 50605,
-      "sha256": "5503bdc3511ad7de052ba148749d6cacf27006b3c2c5a29f47476c8629afc14a"
+      "bytes": 55708,
+      "sha256": "b71297f5c5ac5fb2bc57f81d0677cad0b2e9f6a07f8c672a0dc77db9b5483313"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -309,8 +309,8 @@
       "path": "tests/test_publication_engine.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11989,
-      "sha256": "45c37954a6a95d11e2dbff9021a97cc221396e2d3be402239ebe903ebb116f7a"
+      "bytes": 18454,
+      "sha256": "f53750d2f963698b9c3718aa42c60a11ae9753fa52e4ff1d483ecbfd94d275ff"
     },
     {
       "path": "tests/test_tools.py",
@@ -330,8 +330,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 70717,
-      "sha256": "d85c902e2cdcd1e54bb198843846dbb0d7c2d1a2a8b221c9d192d667d6998241"
+      "bytes": 71461,
+      "sha256": "9ac905c4fc928d620c8935ef9a6539ec4d0daa67fb07d0be15af339665f2fc6f"
     },
     {
       "path": "tools/index.html",
@@ -659,6 +659,16 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
     {

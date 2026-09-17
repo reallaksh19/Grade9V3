@@ -1206,6 +1206,21 @@ window.GRADE9V3 = {
                 "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"
               },
               {
+                "kind": "ELICITATION_AUTHORING",
+                "core": "CORE1B",
+                "detail": "MIC-SAME-TIME has no elicitation, so this product falls back to the declarative construction for it"
+              },
+              {
+                "kind": "ELICITATION_AUTHORING",
+                "core": "CORE1B",
+                "detail": "MIC-COMMON-INTERVAL has no elicitation, so this product falls back to the declarative construction for it"
+              },
+              {
+                "kind": "ELICITATION_AUTHORING",
+                "core": "CORE1B",
+                "detail": "MIC-GEOMETRIC-CHECK has no elicitation, so this product falls back to the declarative construction for it"
+              },
+              {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1B",
                 "detail": "blocks carry library-held teaching text; connecting narrative and worked examples still require authoring"

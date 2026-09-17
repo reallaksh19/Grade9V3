@@ -52,6 +52,13 @@ def compose(ctx):
                                             artifact=core + '.html', kind=block["kind"])
                 if block.get("placement") == "ANSWER":
                     answers.append(wrapped)
+                elif block.get("placement") == "ELICITED_REVEAL":
+                    # Closed, and open-able. The role wants attempt-first ordering and
+                    # also says the answer stays accessible rather than locked, which is
+                    # exactly what <details> is: a self-study learner can open it, and
+                    # cannot read it by accident on the way past.
+                    body += ('<details class="reveal"><summary>Check your answer</summary>'
+                             + wrapped + '</details>')
                 else:
                     body += wrapped
                 if answer:
