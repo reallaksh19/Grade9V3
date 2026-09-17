@@ -1,0 +1,285 @@
+{
+  "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+  "topic": "Light - Reflection and Refraction",
+  "subtopic": "Reflection and spherical mirrors",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate, and Core1A/Core1B may not consult one.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 10,
+      "provenance": "SYNTHESIS",
+      "aha": "Angles in specular reflection are measured from the surface normal, and the reflected ray leaves with the same angle to that normal as the incident ray.",
+      "learner_owns": [
+        "Can trace a directed straight path and identify where it meets a surface."
+      ],
+      "ceiling": [
+        "focus",
+        "focal length",
+        "mirror formula",
+        "magnification"
+      ],
+      "must_contain": [
+        "The surface normal drawn at the point of incidence.",
+        "Both incident and reflected rays labeled before angles are compared."
+      ],
+      "misconception": {
+        "wrong_idea": "The angle of incidence is measured from the mirror surface.",
+        "diagnostic_prompt": "A ray makes 20 degrees with the mirror surface. Is its angle of incidence 20 degrees?",
+        "repair": "Draw the normal first; incidence and reflection angles are defined from that line, not from the surface."
+      },
+      "closure": "Given an incident ray and mirror surface, draw the normal and construct the reflected ray with equal normal-referenced angles.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the incident-ray direction",
+          "hold": "the same plane mirror and point of incidence",
+          "notice": "the reflected ray changes so the two normal-referenced angles remain equal"
+        },
+        {
+          "phase": 2,
+          "vary": "the drawing orientation of the mirror",
+          "hold": "the physical incident and reflected geometry",
+          "notice": "rotating the page does not change the normal-based law"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 25,
+      "provenance": "SYNTHESIS",
+      "aha": "An image location is determined by where reflected rays actually meet or where their backward extensions appear to meet; virtual describes ray geometry, not whether a camera can record it.",
+      "learner_owns": [
+        "R1: reflection direction is fixed by equal angles measured from the normal."
+      ],
+      "ceiling": [
+        "principal ray",
+        "focus",
+        "mirror formula",
+        "magnification"
+      ],
+      "must_contain": [
+        "At least two reflected rays from one object point.",
+        "Solid rays for physical light paths and clearly distinguished backward extensions."
+      ],
+      "misconception": {
+        "wrong_idea": "A virtual image is not a usable image and therefore cannot be photographed.",
+        "diagnostic_prompt": "A camera points at a plane mirror and records your reflection. Does that make the mirror image real?",
+        "repair": "Separate image geometry from recording: the mirror sends diverging rays that a camera lens can collect and refocus."
+      },
+      "closure": "From a two-ray construction, classify an image as real or virtual from ray-intersection geometry and explain why either can be viewed.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "observer or camera position within the reflected ray bundle",
+          "hold": "the same object and plane mirror",
+          "notice": "the virtual image location stays fixed even though different reflected rays reach the observer"
+        },
+        {
+          "phase": 2,
+          "vary": "whether rays actually converge or only backward extensions converge",
+          "hold": "the same rule for locating an image point",
+          "notice": "real versus virtual is decided by ray geometry, not by visibility"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 40,
+      "provenance": "SYNTHESIS",
+      "aha": "The Cartesian sign convention turns a mirror diagram into signed distances and heights; the signs come from declared directions, not from memorized object/image labels.",
+      "learner_owns": [
+        "R2: image nature is determined by actual versus backward-extended ray intersection."
+      ],
+      "ceiling": [
+        "mirror formula",
+        "magnification",
+        "principal rays"
+      ],
+      "must_contain": [
+        "The pole, principal axis, and incident-light direction declared before distances receive signs.",
+        "One horizontal and one vertical sign decision shown explicitly."
+      ],
+      "misconception": {
+        "wrong_idea": "Object distance is always negative and image distance is always positive.",
+        "diagnostic_prompt": "Move the same object-and-mirror sketch so incident light travels the opposite page direction. Should the sign rule follow the page or the declared incident-light direction?",
+        "repair": "Apply the coordinate convention from the pole every time; signs follow measurement direction and height orientation."
+      },
+      "closure": "Assign signs to u, v, f, and image height on a stated mirror diagram without using a memorized object/image sign table.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "whether a point lies with or against the incident-light direction",
+          "hold": "the pole and declared incident-light direction",
+          "notice": "distance sign follows direction from the pole"
+        },
+        {
+          "phase": 2,
+          "vary": "whether a point lies above or below the principal axis",
+          "hold": "the same axis and vertical-positive convention",
+          "notice": "height sign is independent of longitudinal distance sign"
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 55,
+      "provenance": "SYNTHESIS",
+      "aha": "Principal rays are construction shortcuts tied to spherical-mirror geometry, and a consistent pair of rays locates the image without requiring every ray to be drawn.",
+      "learner_owns": [
+        "R3: signed optical coordinates are assigned from a declared pole, axis, and incident-light direction."
+      ],
+      "ceiling": [
+        "mirror formula",
+        "magnification",
+        "paraxial"
+      ],
+      "must_contain": [
+        "Parallel-to-axis, through-focus, and through-center ray rules stated as paired before/after directions.",
+        "Two-ray intersections for multiple object positions."
+      ],
+      "misconception": {
+        "wrong_idea": "A principal ray diagram is a decorative sketch, so the ray rules can be mixed without affecting image location.",
+        "diagnostic_prompt": "If two correctly constructed principal rays predict different image points, what must be wrong?",
+        "repair": "Each principal ray is constrained by the same mirror geometry; use any valid pair and require a common intersection or common backward intersection."
+      },
+      "closure": "Construct an image with two principal rays and use a third principal ray as a consistency check.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which valid pair of principal rays is used",
+          "hold": "the same object point and mirror geometry",
+          "notice": "every valid pair locates the same image point"
+        },
+        {
+          "phase": 2,
+          "vary": "object position relative to focus and center of curvature",
+          "hold": "the same mirror and principal-ray rules",
+          "notice": "image position, orientation, and real/virtual character change systematically"
+        }
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 70,
+      "provenance": "SYNTHESIS",
+      "aha": "The spherical-mirror equation relates signed object distance, image distance, and focal length under the paraxial approximation; it is an algebraic model of the same geometry as the ray construction.",
+      "learner_owns": [
+        "R4: a consistent principal-ray pair locates one image point for a stated spherical mirror."
+      ],
+      "ceiling": [
+        "magnification",
+        "virtual object",
+        "aberration"
+      ],
+      "must_contain": [
+        "Signed u, v, and f inserted only after the diagram establishes the coordinate directions.",
+        "A ray-diagram estimate compared with the equation result."
+      ],
+      "misconception": {
+        "wrong_idea": "The mirror formula is exact for any ray striking any part of a spherical mirror.",
+        "diagnostic_prompt": "Two rays strike far from the principal axis at large angles. Is the paraxial mirror formula guaranteed to predict their exact intersection?",
+        "repair": "State the paraxial condition before using the formula and treat large-angle disagreement as a model-limit issue, not an algebra error."
+      },
+      "closure": "Given u and f with a declared sign convention, solve for v, classify the image, and state the paraxial condition behind the calculation.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "object distance within the paraxial regime",
+          "hold": "mirror focal length and sign convention",
+          "notice": "the equation's predicted image location tracks the ray construction"
+        },
+        {
+          "phase": 2,
+          "vary": "ray height and angle away from the principal axis",
+          "hold": "the same spherical mirror and object",
+          "notice": "the simple formula becomes an approximation whose geometric agreement can degrade"
+        }
+      ]
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 85,
+      "provenance": "SYNTHESIS",
+      "aha": "Magnification links image size and orientation to signed image/object distances; its sign carries orientation information rather than being an expendable algebraic detail.",
+      "learner_owns": [
+        "R5: the mirror equation gives a signed image distance under a declared convention and paraxial model."
+      ],
+      "ceiling": [
+        "multi-element optics",
+        "lens formula",
+        "optical power"
+      ],
+      "must_contain": [
+        "Both ratios m = h_i/h_o and m = -v/u connected for the same image.",
+        "One case with negative magnification and one with positive magnification."
+      ],
+      "misconception": {
+        "wrong_idea": "Magnification is only the positive size ratio, so its sign can be discarded.",
+        "diagnostic_prompt": "Two images are equally large, one erect and one inverted. Can one unsigned magnification value distinguish them?",
+        "repair": "Keep the sign: magnitude tells relative size while sign records erect versus inverted orientation under the convention."
+      },
+      "closure": "Use signed u and v to compute magnification, then predict image orientation and relative size before checking against a ray diagram.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "object position for one concave mirror",
+          "hold": "mirror and object height",
+          "notice": "magnification magnitude and sign change as image position and orientation change"
+        },
+        {
+          "phase": 2,
+          "vary": "how much of the mirror aperture is uncovered",
+          "hold": "object position and the remaining mirror curvature",
+          "notice": "image brightness changes while the whole geometric image and magnification remain"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Translate the mirror geometry into a reflected-ray construction and signed optical quantities, determine image position and nature, and cross-check size and orientation with magnification.",
+    "difficult_move": "Keeping the geometric ray picture and the Cartesian sign convention consistent before substituting into formulas.",
+    "independent_check": "A valid ray construction, the signed mirror equation, and the magnification sign must predict compatible image location and orientation.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The normal or principal rays are started, the pole/axis are labeled, and the incident-light direction for signs is declared."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The mirror, object, pole, and principal axis are labeled, but the learner chooses rays and signs."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical mirror setup and requested image quantity are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Use a wide-aperture spherical mirror with rays far from the principal axis and decide whether the paraxial mirror model is adequate.",
+      "information_not_handed_over": "whether the small-angle/paraxial condition is satisfied",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Convert between a ray diagram and signed u, v, f, and magnification values without changing the physical prediction.",
+      "information_not_handed_over": "the sign assignments implied by the incident-light and height directions",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "Predict what happens to the image when half of a concave mirror is covered.",
+      "information_not_handed_over": "that each object point sends usable rays to many parts of the mirror so aperture affects brightness rather than image completeness",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A camera photographs a plane-mirror image; trace the mirror's virtual image as the object presented to the camera lens.",
+      "information_not_handed_over": "the intermediate virtual-image location defined by backward extensions of reflected rays",
+      "repair_to": "R2"
+    }
+  ]
+}
