@@ -278,12 +278,22 @@ The README's rule is *"turning B into A with the nouns changed … fails this ru
 
 **The falsifier that matters most:** take the current Core1B, the Core1A-plus-eight-lines one, and require the check to reject it. A gate that would have passed today's product proves nothing.
 
-### R2 exit evidence
+### R2 exit evidence — met
 
-- Core1B compiles from `elicitation`, not from `_teaching_text`
-- Today's Core1B shape is refused by the A/B check
-- A self-study reader cannot see a reveal without opening it — asserted against the rendered HTML, not the plan
-- Core1A's composed bytes are unchanged
+- Core1B compiles from `elicitation`, not from `_teaching_text` ✓
+- Today's Core1B shape is refused by the A/B check ✓ — asserted before the product was touched, and kept afterwards as a constructed fixture rather than read off whatever the compiler currently emits
+- A self-study reader cannot see a reveal without opening it ✓ — six `<details>`, none open, and `Our answer:` / `Getting there:` / `A common wrong idea` appear nowhere outside one. The *question* is still readable without opening anything, asserted separately, because a too-eager fix would hide that too
+- Core1A's composed bytes are unchanged ✓ — byte-identical against the previous commit's compiler, not merely inspected
+
+Three results beyond the exit list:
+
+**The cycle is writable at grade-9 level**, for six microtopics across two subjects, and the useful part was not the prompts. It was the *rejected* examples: the strongest one written here is "safe when the multiplier is a number, unsafe when it is a letter", which sorts every example correctly and names the wrong property. A rubric that only rejects wrong answers has never been tested against the plausible near-miss.
+
+**R1 gave `reconstruct` a home with the wrong shape.** `[{move}]` is a list of statements, which is what `teaching_path` already is — Core1B compiled from it would have been Core1A under a new key, and the A/B gate would have had nothing structural to catch. Corrected to `route: [{ask, why_this_ask}]` in R2.b. This is the limit of R1 stated exactly: it proves every requirement has *somewhere* to live, and says nothing about whether that somewhere is the right shape.
+
+**I reintroduced the R0.1 defect three commits after fixing it.** A rubric line composed as an f-string published "That shows Treating membership of…". The R0.1 falsifier missed it because it was a list of lead-in words and this one said "shows". The assertion is restated without a word list.
+
+**Physics needed the same authoring, and the gate is what said so.** Turning on the check over every bucket immediately found three Physics microtopics whose Core1B was still the old shape — not in R2's plan, and the honest choice was to author them rather than defer enforcement. The committed Physics publication is unchanged (`learner_visible_changes: []`): it is built from hand-authored inputs and predates library compilation.
 
 ---
 

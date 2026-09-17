@@ -137,7 +137,9 @@ Adjudicated: 28 were the spec's name for something the schema already holds (pat
 
 **Then enforce** in CI. **Exit evidence:** the check passes; every field a role spec names has a schema home; a planted spec requirement with no field fails.
 
-### R2 — Core1B becomes a self-tutor
+### R2 — Core1B becomes a self-tutor — **DONE**
+
+Core1B compiles from `microtopic.elicitation` and no longer from the declarative text. Six microtopics authored across Mathematics and Physics; the A/B check refuses the shape the product used to have, and runs over every bucket in the subject sweep. Reveals render inside `<details>`, proven against the rendered HTML. Core1A is byte-identical.
 
 Using `elicitation`: the compiler emits Core1B as *prompt → space for the attempt → reveal gated behind it → reconstruction help → misconception repair*, in that order, with the teaching path as the reveal rather than the opening. The engine renders the gate as a disclosure the learner opens, so a self-study reader cannot read straight through.
 

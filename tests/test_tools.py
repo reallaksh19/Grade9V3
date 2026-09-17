@@ -404,3 +404,49 @@ class SpecConformance(unittest.TestCase):
         self.assertEqual(report["without_a_home"], 0,
                          [f for r in report["roles"] for f in r["findings"]])
         self.assertTrue(report["passed"])
+
+
+class SweepRunsTheDifferentiationCheck(unittest.TestCase):
+    """The A/B rule is enforced over every bucket, not only the one a test names.
+
+    It is checked on the compiled plan rather than on the records, because the rule is
+    about what a learner is asked to do and in what order, and only the plan says that.
+    """
+
+    def test_every_subject_passes_today(self):
+        report = check_subjects.run()
+        for row in report["subjects"]:
+            with self.subTest(subject=row["subject"]):
+                self.assertEqual([f for f in row["findings"] if "ELICITATION" in f
+                                  or "OBLIGATION_WITHOUT" in f], [])
+
+    def test_every_compilable_bucket_is_actually_checked(self):
+        # The failure this prevents is a check that passes because it ran on nothing.
+        # Both implemented subjects must contribute at least one bucket.
+        for subject in check_subjects.subjects():
+            packages = [json.loads(p.read_text(encoding="utf-8"))
+                        for p in sorted((subject / "library").glob("*.json"))]
+            if not packages:
+                continue
+            buckets = [b["id"] for package in packages for b in package.get("buckets", [])]
+            with self.subTest(subject=subject.name):
+                self.assertTrue(buckets)
+                self.assertEqual(check_subjects._differentiation_findings(subject, packages), [])
+
+    def test_removing_an_elicitation_makes_the_sweep_fail(self):
+        # Planted against a copied tree, because the assertion is that the sweep reports
+        # it -- not that some function does when called directly.
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for name in ("Shared", "Physics", "Mathematics", "Chemistry"):
+                shutil.copytree(REPO / name, root / name)
+            target = next(root.glob("Mathematics/library/*.json"))
+            package = json.loads(target.read_text(encoding="utf-8"))
+            for row in package["microtopics"]:
+                row.pop("elicitation", None)
+            target.write_text(json.dumps(package, indent=2, ensure_ascii=False), encoding="utf-8")
+            report = check_subjects.run(root)
+        self.assertFalse(report["passed"])
+        found = [f for row in report["subjects"] for f in row["findings"]
+                 if "OBLIGATION_WITHOUT_ELICITATION" in f]
+        self.assertEqual(len(found), 3, found)

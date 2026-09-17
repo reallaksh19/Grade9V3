@@ -25,10 +25,12 @@ if __package__ in (None, ""):
 from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.gates.validate import curriculum_report, validate as validate_gates  # noqa: E402
 from Shared.library.authority import audit as authority_audit  # noqa: E402
+from Shared.library.differentiation import findings as differentiation_findings  # noqa: E402
 from Shared.tools.capability_audit import audit_subject as capability_findings  # noqa: E402
 from Shared.library.intake import check as intake_check  # noqa: E402
 from Shared.library.promote import audit as promotion_audit  # noqa: E402
-from Shared.library.resolve import validate_library  # noqa: E402
+from Shared.library.compile_inputs import compile_bucket  # noqa: E402
+from Shared.library.resolve import build_index, validate_library  # noqa: E402
 
 LEARNER_PRODUCTS = {"CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"}
 BINDINGS = "gates/curriculum-bindings.v1.json"
@@ -113,7 +115,30 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
             stage(packages)
         except ContractError as error:
             findings.append(f"{stage.__name__}: {error.code} {error.detail}".strip())
+
+    # An A product and its B product must demand different learner work. Checked on the
+    # compiled plan rather than on the records, because the rule is about what a learner
+    # is asked to do in order, and only the plan says that. Every bucket is compiled --
+    # a bucket that is never compiled is a bucket whose products nobody has looked at.
+    findings += _differentiation_findings(subject, packages)
     return len(packages), findings
+
+
+def _differentiation_findings(subject: Path, packages: list[dict]) -> list[str]:
+    records = build_index(packages)
+    found = []
+    for bucket_id in sorted(rid for rid, r in records.items() if r["_collection"] == "buckets"):
+        try:
+            compiled = compile_bucket(records, bucket_id, topic_id=bucket_id.lower(),
+                                      title=records[bucket_id]["title"], subject=subject.name,
+                                      practice_control={"mode": "DESIGN_PREVIEW",
+                                                        "purpose": "PRACTICE"})
+        except ContractError as error:
+            found.append(f"{bucket_id}: does not compile: {error.code} {error.detail}".strip())
+            continue
+        found += [f'{bucket_id}: {f["point"]}: {f["core"]}: {f["block"]}: {f["detail"]}'
+                  for f in differentiation_findings(compiled["plan"])]
+    return found
 
 
 def run(repo: Path = REPO) -> dict:

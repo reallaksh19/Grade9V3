@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 48,
-  "relation_count": 74,
+  "relation_count": 76,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:6e3366c96d1511f899a05a54e34bf0cd4f5e88dcefd9b512fc1f0943bdf048fb",
+  "digest": "sha256:3d7a789c2493e22ecbbe1be390d30612d5d86bc254ba579cbf8d732722e8e15b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -246,8 +246,8 @@
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 6535,
-      "sha256": "8ea9ff51953da0cb90df5c8bad865a5fd5ff10b37518e0c5e7d45d07717e6479"
+      "bytes": 8047,
+      "sha256": "f66862a4b17a85b1c3ebf7c74bab307734875e7bd0094601096f2bdb272e486e"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -316,8 +316,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 21281,
-      "sha256": "753127b45ff31aa111b1155aa382b525e8935ebfc35ba32cfd4c1321623cf5fd"
+      "bytes": 23729,
+      "sha256": "df828175c56e9e4e116960d20add548808a7b9ce5aba1a9e89f8e1ee363f6552"
     },
     {
       "path": "tools/app.css",
@@ -330,8 +330,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 71461,
-      "sha256": "9ac905c4fc928d620c8935ef9a6539ec4d0daa67fb07d0be15af339665f2fc6f"
+      "bytes": 70717,
+      "sha256": "d85c902e2cdcd1e54bb198843846dbb0d7c2d1a2a8b221c9d192d667d6998241"
     },
     {
       "path": "tools/index.html",
@@ -529,6 +529,16 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.library.authority",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.differentiation",
       "kind": "IMPORTS"
     },
     {

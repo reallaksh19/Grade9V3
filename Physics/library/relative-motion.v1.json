@@ -342,7 +342,61 @@
       "prerequisite_refs": [
         "CAP-SIGNED-PAIR"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A is at (7,2) m and B at (3,5) m, both measured from the same origin. Before subtracting anything, predict which way you would walk to get from B to A -- east or west, north or south?",
+          "defensible_answer": "East and south. A is further east than B and lower on the north axis, so the walk is east and south whatever the arithmetic turns out to be."
+        },
+        "attempt": {
+          "produces": "A sketch of origin, B and A with an arrow from B to A, and the two signs you expect the answer's components to have.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The arrow is drawn from B to A, and the tail is the object the question measures from.",
+              "evidence_of": "Reading 'A relative to B' as a displacement with a starting point rather than as an instruction to subtract."
+            },
+            {
+              "criterion": "The predicted signs are read off the sketch before any subtraction is performed.",
+              "evidence_of": "Having a check the arithmetic can be measured against rather than being the only answer."
+            }
+          ],
+          "accepted": [
+            "Arrow from B to A, pointing right and down; components predicted positive east and negative north, because A is to the right of B and below it."
+          ],
+          "rejected": [
+            "Arrow from A to B, with the note that the order can be fixed at the end by changing the signs. The signs would indeed come out reversed, and the learner has no way to notice that they were."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Put your finger on the origin, then on B, then on A. Which two of those three moves does the question actually ask about?",
+              "why_this_ask": "It separates the two positions that were given from the one displacement that was asked for, which is the confusion the whole microtopic addresses.",
+              "from_step_ref": "RP-1"
+            },
+            {
+              "ask": "Write the trip origin to B, then B to A, as one journey. What is the whole journey equal to?",
+              "why_this_ask": "The addition comes out of a journey the learner has just traced with a finger, rather than as a vector identity to accept."
+            },
+            {
+              "ask": "You now have r_A = r_B + r_A/B and you want r_A/B on its own. What do you do to both sides?",
+              "why_this_ask": "The subtraction is the last move rather than the first, which is the reversal this product exists to produce.",
+              "from_step_ref": "RP-2"
+            },
+            {
+              "ask": "Do the signs of your answer match the direction you predicted before you started?",
+              "why_this_ask": "It closes the loop on the prediction, which is what makes the prediction worth having made."
+            }
+          ],
+          "differs_from_teaching_path": "The expert writes the path equation and then subtracts. Here the learner traces the journey first and meets the equation as a way of writing down what their finger already did."
+        },
+        "boundary_test": {
+          "prompt": "Now give B relative to A for the same two positions. What has changed, and what has not?",
+          "answer": "(-4,3) m: 4 m west and 3 m north. Every component has reversed sign; the length of the arrow is unchanged.",
+          "confirms": "That the order in 'A relative to B' is carried by the whole vector and not by which number was written first."
+        }
+      }
     },
     {
       "id": "MIC-COMMON-INTERVAL",
@@ -439,7 +493,62 @@
       "prerequisite_refs": [
         "MIC-SAME-TIME"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A walks east at 3 m/s and B walks north at 4 m/s. Predict the speed of A as seen by B, and say whether you can get it by subtracting 3 from 4.",
+          "defensible_answer": "5 m/s, and no. The two motions are at right angles, so nothing cancels; subtracting the speeds throws away the directions that decide the answer."
+        },
+        "attempt": {
+          "produces": "The relative velocity as a pair of signed components, and then its magnitude, with a note on which of the two the question asked for.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Components are subtracted axis by axis before any magnitude is taken.",
+              "evidence_of": "Treating velocity as a pair of numbers that must both survive the subtraction."
+            },
+            {
+              "criterion": "The answer says whether it is a velocity or a speed, and does not offer a magnitude where a direction was asked for.",
+              "evidence_of": "Knowing that a magnitude is something computed from the answer, not the answer."
+            }
+          ],
+          "accepted": [
+            "v_A/B = (3,0) - (0,4) = (3,-4) m/s; its magnitude is 5 m/s. A appears to B to move east and south."
+          ],
+          "rejected": [
+            "4 - 3 = 1 m/s. The arithmetic is right and the two directions were dropped before it was done, which is what made the answer wrong rather than the subtraction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write down where A is relative to B at the start of the second, and again at the end of it.",
+              "why_this_ask": "Relative velocity is a change in relative position, and nothing else shows that as directly as two of them side by side.",
+              "from_step_ref": "RV-1"
+            },
+            {
+              "ask": "Subtract the first from the second. Whose displacements appear in what you are left with?",
+              "why_this_ask": "The grouping falls out of the subtraction the learner has just done rather than being presented as a distribution rule.",
+              "from_step_ref": "RV-2"
+            },
+            {
+              "ask": "You have a change in separation over one second. What do you divide by, and why is it the same number for both objects?",
+              "why_this_ask": "The shared interval is the step learners skip, and asking why it is shared is the only way to make it visible.",
+              "from_step_ref": "RV-3"
+            },
+            {
+              "ask": "Go back to A east at 3 and B north at 4. What do your components say now, and is it 1?",
+              "why_this_ask": "It brings the prediction back at the point where the learner can settle it themselves."
+            }
+          ],
+          "differs_from_teaching_path": "The expert states the relation at two instants and derives forward. Here the learner starts from a prediction they have reason to doubt, and the two instants arrive as the way to settle it."
+        },
+        "boundary_test": {
+          "prompt": "A and B both walk east, A at 5 m/s and B at 5 m/s. What is v_A/B, and what does B see?",
+          "answer": "(0,0) m/s. B sees A holding still, at a fixed distance, even though both are moving quickly over the ground.",
+          "confirms": "That relative velocity is about the separation changing, not about either object being still. A learner who reads 'zero velocity' as 'not moving' is caught here."
+        }
+      }
     },
     {
       "id": "MIC-GEOMETRIC-CHECK",
@@ -527,7 +636,62 @@
         "MIC-COMMON-INTERVAL",
         "MIC-GRAPHICAL-SUBTRACTION"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "You have worked out that v_A/B points southeast at 5 m/s. Predict, without calculating, what v_B/A is -- both its direction and its size.",
+          "defensible_answer": "Northwest, at 5 m/s. Swapping the observer reverses the arrow and leaves its length alone."
+        },
+        "attempt": {
+          "produces": "The two arrows drawn on one sketch, with the observer named beside each and their lengths compared.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each arrow is labelled with who is observing, not only with a magnitude.",
+              "evidence_of": "Treating the observer as part of the answer rather than as context for it."
+            },
+            {
+              "criterion": "The two lengths are stated as equal, and the two directions as opposite, rather than one being recalculated.",
+              "evidence_of": "Reading reversal as a property of the vector instead of a second problem."
+            }
+          ],
+          "accepted": [
+            "Two arrows from one point, one southeast labelled 'A as seen by B' and one northwest labelled 'B as seen by A', drawn the same length."
+          ],
+          "rejected": [
+            "One arrow of length 5 with the note that direction depends on the question. The length is right and the answer has no observer in it, which is the whole thing that was asked."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Draw v_A and v_B from the same point. Which of the two do you have to turn around before adding?",
+              "why_this_ask": "Subtraction is reversal plus addition, and the learner has to choose which arrow reverses before any rule can help them.",
+              "from_step_ref": "GC-1"
+            },
+            {
+              "ask": "Slide the reversed arrow so its tail sits on the head of the other. What does the arrow from the first tail to the last head represent?",
+              "why_this_ask": "The construction produces the answer physically, so the resultant is something the learner made rather than a formula's output.",
+              "from_step_ref": "GC-2"
+            },
+            {
+              "ask": "Now reverse the observer: reverse which arrow you turned around, and redraw. What changed about the result?",
+              "why_this_ask": "Doing the construction twice is what shows reversal to be exact, where being told it is exact is not the same.",
+              "from_step_ref": "GC-3"
+            },
+            {
+              "ask": "If someone gives you only the number 5 m/s, what can you not answer?",
+              "why_this_ask": "It names what a magnitude alone leaves out, which is the misconception this microtopic is built around."
+            }
+          ],
+          "differs_from_teaching_path": "The expert reverses, adds and then verifies the observer swap as a final check. Here the learner performs the construction twice, once for each observer, and the verification is the second construction rather than a statement about it."
+        },
+        "boundary_test": {
+          "prompt": "Two cars approach each other head-on, each at 20 m/s along the same line. What is the magnitude of one car's velocity relative to the other, and does reversing the observer change it?",
+          "answer": "40 m/s. Reversing the observer points the arrow the other way along the line and leaves the 40 unchanged.",
+          "confirms": "That reversal leaves magnitude alone even when the magnitude is not either car's speed -- a learner checking only the number has no way to tell the two observers apart here."
+        }
+      }
     }
   ],
   "relations": [
