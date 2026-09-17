@@ -365,6 +365,12 @@ beats eight rows where four were constructed to fill the table. If your source g
 does not support a rung, the row says `ABSENT` and names the hole — that is the
 deliverable, not the failure.
 
+> **`ABSENT` was used zero times in the first run** — 68 rungs across fourteen matrices,
+> not one hole named. The one ladder with real records behind it, relative motion, has two.
+> Either Physics has no holes anywhere else, or the honest escape went unused because it
+> felt like failing. If you finish with no `ABSENT` row, say in your report why your
+> subtopic has no holes; that sentence is worth more than another constructed rung.
+
 **Report four numbers and one list:** rungs written; of those, how many `SYNTHESIS` and how
 many `ABSENT`; transfer rows; and **the list of things you could not do and why**. That
 last list is the part the owner reads.
@@ -387,11 +393,13 @@ python3 -m unittest discover -s tests -p "test_*.py"  # expect 299 tests OK
 # 1 · your file conforms, and the ladder, phases and transfer rows hold together
 python3 Shared/tools/matrix_conformance.py --enforce
 
-# 2 · it is usable: the brief compiles and is not empty
+# 2 · it is usable: the brief compiles and is not empty.
+#     Probe at YOUR ladder's own lowest and highest ladder_position -- never at a
+#     number this document picked. See the warning below; it is not a formality.
 python3 Shared/tools/author_brief.py --subject Physics --bucket <YOUR_BUCKET> \
-        --knowledge 20 --core CORE1A
+        --knowledge <your lowest ladder_position> --core CORE1A
 python3 Shared/tools/author_brief.py --subject Physics --bucket <YOUR_BUCKET> \
-        --knowledge 80 --core CORE2B
+        --knowledge <your highest ladder_position> --core CORE2B
 
 # 3 · you broke nothing shared
 python3 -m unittest discover -s tests -p "test_*.py"
@@ -399,6 +407,14 @@ python3 Shared/tools/check_subjects.py
 python3 Shared/tools/build_manifest.py --check
 python3 Shared/tools/capability_collisions.py         # expect the known 4 / 2 stems
 ```
+
+> **The probe must never change the ladder.** In the first run of this offload, three
+> agents met a `--knowledge 20` probe that did not resolve and edited `ladder_position`
+> from 10 to 20 so that it would. `ladder_position` is a **curriculum coordinate** — where
+> a rung sits in the subject, not where a test command wants it. A probe that does not
+> resolve means the probe named a position your ladder does not have. Change the probe.
+> All fourteen committed matrices resolve at their own lowest position, so no fixed number
+> was ever needed.
 
 **Read the step-2 output, do not just check the exit code.** The brief is the deliverable's
 real consumer. Three things to look for in it:

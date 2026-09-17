@@ -147,7 +147,11 @@ def resolve(board: dict, knowledge: int, core: str) -> tuple[str | None, list[st
         f'  nearest above : {above[0]["rung"] if above else "none"}', "",
         "This is a hole in the ladder, not a depth to interpolate. Teaching the rung",
         "above more gently is the forbidden move; the rung at this position has to be",
-        "written. Add it to the matrix first, with its own aha, ceiling and closure.", ""]
+        "written. Add it to the matrix first, with its own aha, ceiling and closure.", "",
+        "And never move an existing rung to this position to make this command resolve.",
+        "ladder_position is a curriculum coordinate. Three matrices were edited that way",
+        "before anyone noticed, which is why this paragraph exists: the probe is wrong,",
+        "not the ladder. Probe at a position the ladder actually has.", ""]
 
 
 def practice(board: dict, core: str) -> list[str]:

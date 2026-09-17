@@ -8,7 +8,7 @@
   "rungs": [
     {
       "rung": "R1",
-      "ladder_position": 20,
+      "ladder_position": 10,
       "provenance": "SYNTHESIS",
       "aha": "Magnetic field B is an axial vector: its direction is tied to an oriented rotation convention, and dot/cross marks encode out-of-page and into-page directions rather than particle paths.",
       "learner_owns": [

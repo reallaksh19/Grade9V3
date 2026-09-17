@@ -8,7 +8,7 @@
   "rungs": [
     {
       "rung": "R1",
-      "ladder_position": 20,
+      "ladder_position": 10,
       "provenance": "SYNTHESIS",
       "aha": "Angles in specular reflection are measured from the surface normal, and the reflected ray leaves with the same angle to that normal as the incident ray.",
       "learner_owns": [
