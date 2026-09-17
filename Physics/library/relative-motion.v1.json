@@ -563,8 +563,6 @@
         "Both positions are taken at the same instant.",
         "Axes are parallel and non-rotating.",
         "Positions at different instants do not define this quantity.",
-        "Use the same observation times and a common time interval.",
-        "Express all vectors along parallel, nonrotating Cartesian axes.",
         "Use a classical kinematic model; do not apply relativistic velocity addition."
       ],
       "derivation": [
@@ -626,10 +624,7 @@
         "Same observation times and one common interval.",
         "Parallel, non-rotating Cartesian axes.",
         "Classical speeds; relativistic velocity addition does not apply.",
-        "A finite-interval average is not automatically an instantaneous velocity when motion varies.",
-        "Use the same observation times and a common time interval.",
-        "Express all vectors along parallel, nonrotating Cartesian axes.",
-        "Use a classical kinematic model; do not apply relativistic velocity addition."
+        "A finite-interval average is not automatically an instantaneous velocity when motion varies."
       ],
       "derivation": [
         {

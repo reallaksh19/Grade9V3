@@ -156,7 +156,11 @@ class Compilation(unittest.TestCase):
             result = publish(inputs / "plan.json", inputs / "baseline.json", inputs,
                              Path(temp) / "publication", load_physics())
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["numeric_answers_compared"], 1)
+        # Two now, not one: Core2 holds the question in custody with its answer, so the
+        # same verified result is checked again in the product that preserves it.
+        self.assertEqual(result["numeric_answers_compared"], 2)
+        self.assertIn("CORE1", result["products"])
+        self.assertIn("CORE2", result["products"])
         self.assertFalse(result["release_authorized"])
 
     def test_a_product_the_library_cannot_support_is_reported_not_padded(self):
@@ -171,10 +175,39 @@ class Compilation(unittest.TestCase):
         self.assertIn("PROSE_AUTHORING", kinds)
 
     def test_teaching_text_comes_from_the_library_not_from_a_template(self):
+        # Core1A is the product that teaches. Core1 maps the bucket and Core2 holds its
+        # questions, so neither carries a teaching path and neither is what this checks.
         plan = self.compile()["plan"]
-        text = plan["products"][0]["units"][0]["blocks"][0]["text"]
+        study = next(p for p in plan["products"] if p["core"] == "CORE1A")
+        text = study["units"][0]["blocks"][0]["text"]
         self.assertIn("r_A/B = r_A - r_B", text)
         self.assertIn("Vector displacements add along consecutive paths", text)
+
+    def test_core1_maps_the_bucket_from_records_that_already_hold_it(self):
+        plan = self.compile()["plan"]
+        orientation = next(p for p in plan["products"] if p["core"] == "CORE1")
+        blocks = orientation["units"][0]["blocks"]
+        kinds = {b["kind"] for b in blocks}
+        self.assertEqual(kinds, {"TEXT", "EQUATION"})
+        quantities = next(b for b in blocks if b["id"] == "CORE1-QUANTITIES")["text"]
+        self.assertIn("v_A/B,x", quantities, "the bucket's own symbols, with their meanings")
+        demand = next(b for b in blocks if b["id"] == "CORE1-DEMAND")["text"]
+        badges = {m["intrinsic_badge"] for m in packages()[0]["microtopics"]}
+        self.assertTrue(badges & set(("EASY", "MEDIUM", "HARD")))
+        for badge in badges:
+            self.assertIn(badge, demand, "each demanding transition is named with its badge")
+        self.assertIn("memorized formula", demand, "and with the reason it is demanding")
+        equation = next(b for b in blocks if b["kind"] == "EQUATION")
+        self.assertTrue(equation["conditions"], "a relation without its conditions is not a map")
+
+    def test_core2_takes_custody_of_every_question_the_bucket_holds(self):
+        compiled = self.compile()
+        custody = next(p for p in compiled["plan"]["products"] if p["core"] == "CORE2")
+        held = {b["source_question_id"] for b in custody["units"][0]["blocks"]}
+        self.assertEqual(held, {q["id"] for q in compiled["source"]["questions"]})
+        for block in custody["units"][0]["blocks"]:
+            self.assertEqual(block["exposure_role"], "SOURCE_CUSTODY",
+                             "custody is not a teaching decision about how a question is used")
 
     def test_a_question_binding_an_unknown_datum_is_rejected(self):
         data = packages()

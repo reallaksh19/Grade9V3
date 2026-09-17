@@ -442,8 +442,6 @@
       "conditions": [
         "a is non-zero; if a = 0 the statement is either never true or always true.",
         "Both operations are reversible, which is why the solution set is preserved.",
-        "a is non-zero; if a is zero the statement is either never true or always true.",
-        "Both operations are reversible, which is what preserves the solution set.",
         "The declared domain is the rationals."
       ],
       "derivation": [

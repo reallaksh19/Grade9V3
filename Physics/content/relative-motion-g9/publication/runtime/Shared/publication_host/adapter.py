@@ -124,6 +124,18 @@ class Adapter:
     def learner_products(self) -> set[str]:
         return set(self.contract.get("learner_products", {}))
 
+    @property
+    def compiled_products(self) -> set[str]:
+        """The products this subject's contract says are compiled here.
+
+        The engine used to hold its own list of four. That was a second place for the
+        product model to live, and it disagreed with the contract as soon as the
+        contract gained two more -- so the list is read from the contract instead.
+        """
+        declared = self.contract.get("learner_products", {})
+        return {name for name, row in declared.items()
+                if isinstance(row, dict) and row.get("production") == "COMPILED"}
+
     def validator(self, validator_id: str) -> dict | None:
         for entry in self.contract.get("validator_catalogue", []):
             if entry.get("id") == validator_id:

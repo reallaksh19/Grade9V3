@@ -6,14 +6,12 @@ window.GRADE9V3 = {
       "contract": {
         "learner_products": {
           "CORE1": {
-            "role": "EXISTING_BASIC_NOTES",
-            "production": "NOT_COMPILED",
-            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+            "role": "COMPACT_ORIENTATION_NOTES",
+            "production": "COMPILED"
           },
           "CORE2": {
-            "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-            "production": "NOT_COMPILED",
-            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+            "role": "SOURCE_QUESTION_CUSTODY",
+            "production": "COMPILED"
           },
           "CORE1A": {
             "role": "DECLARATIVE_STUDY",
@@ -113,14 +111,12 @@ window.GRADE9V3 = {
       "contract": {
         "learner_products": {
           "CORE1": {
-            "role": "EXISTING_BASIC_NOTES",
-            "production": "NOT_COMPILED",
-            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+            "role": "COMPACT_ORIENTATION_NOTES",
+            "production": "COMPILED"
           },
           "CORE2": {
-            "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-            "production": "NOT_COMPILED",
-            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+            "role": "SOURCE_QUESTION_CUSTODY",
+            "production": "COMPILED"
           },
           "CORE1A": {
             "role": "DECLARATIVE_STUDY",
@@ -493,8 +489,6 @@ window.GRADE9V3 = {
               "conditions": [
                 "a is non-zero; if a = 0 the statement is either never true or always true.",
                 "Both operations are reversible, which is why the solution set is preserved.",
-                "a is non-zero; if a is zero the statement is either never true or always true.",
-                "Both operations are reversible, which is what preserves the solution set.",
                 "The declared domain is the rationals."
               ]
             }
@@ -531,13 +525,15 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
+              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 6,
             "questions": 1,
-            "obligations": 4,
+            "obligations": 6,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -571,14 +567,12 @@ window.GRADE9V3 = {
       "contract": {
         "learner_products": {
           "CORE1": {
-            "role": "EXISTING_BASIC_NOTES",
-            "production": "NOT_COMPILED",
-            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+            "role": "COMPACT_ORIENTATION_NOTES",
+            "production": "COMPILED"
           },
           "CORE2": {
-            "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-            "production": "NOT_COMPILED",
-            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+            "role": "SOURCE_QUESTION_CUSTODY",
+            "production": "COMPILED"
           },
           "CORE1A": {
             "role": "DECLARATIVE_STUDY",
@@ -1083,8 +1077,6 @@ window.GRADE9V3 = {
                 "Both positions are taken at the same instant.",
                 "Axes are parallel and non-rotating.",
                 "Positions at different instants do not define this quantity.",
-                "Use the same observation times and a common time interval.",
-                "Express all vectors along parallel, nonrotating Cartesian axes.",
                 "Use a classical kinematic model; do not apply relativistic velocity addition."
               ]
             },
@@ -1096,10 +1088,7 @@ window.GRADE9V3 = {
                 "Same observation times and one common interval.",
                 "Parallel, non-rotating Cartesian axes.",
                 "Classical speeds; relativistic velocity addition does not apply.",
-                "A finite-interval average is not automatically an instantaneous velocity when motion varies.",
-                "Use the same observation times and a common time interval.",
-                "Express all vectors along parallel, nonrotating Cartesian axes.",
-                "Use a classical kinematic model; do not apply relativistic velocity addition."
+                "A finite-interval average is not automatically an instantaneous velocity when motion varies."
               ]
             },
             {
@@ -1181,13 +1170,15 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
+              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 17,
             "questions": 1,
-            "obligations": 4,
+            "obligations": 6,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -1491,9 +1482,65 @@ window.GRADE9V3 = {
           ],
           "record_count": 17,
           "compile_preview": {
-            "compilable": false,
-            "code": "LIBRARY_SUPPORTS_NO_PRODUCT",
-            "detail": "BUCKET-VECTOR-REPRESENTATION"
+            "compilable": true,
+            "supported_products": [
+              "CORE1"
+            ],
+            "atoms": 17,
+            "questions": 0,
+            "obligations": 1,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1A",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1B",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-VECTOR-VS-SCALAR",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-SIGNED-COMPONENT",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-GRAPHICAL-SUBTRACTION",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-VECTOR-COMPONENT",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              }
+            ]
           }
         }
       ],

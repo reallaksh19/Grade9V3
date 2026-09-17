@@ -4,14 +4,12 @@
   "contract_version": "2.0.0",
   "learner_products": {
     "CORE1": {
-      "role": "EXISTING_BASIC_NOTES",
-      "production": "NOT_COMPILED",
-      "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+      "role": "COMPACT_ORIENTATION_NOTES",
+      "production": "COMPILED"
     },
     "CORE2": {
-      "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-      "production": "NOT_COMPILED",
-      "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+      "role": "SOURCE_QUESTION_CUSTODY",
+      "production": "COMPILED"
     },
     "CORE1A": {
       "role": "DECLARATIVE_STUDY",

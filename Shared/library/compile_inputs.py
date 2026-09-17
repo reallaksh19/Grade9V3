@@ -43,7 +43,13 @@ if __package__ in (None, ""):
 from Shared.contracts import digest, load, require, sentence
 from Shared.library.resolve import build_index, load_packages, slice_for_bucket
 
-COMPOSABLE = ("CORE1A", "CORE1B", "CORE2A", "CORE2B")
+# Core1 and Core2 sit outside the teaching-route mechanism. A route says which product
+# teaches a microtopic; these two do not teach it. Core1 is the bucket's map -- its
+# objects, its governing relations and where the hard work is -- and Core2 is its
+# question custody. Both are determined by what the bucket holds, not by a route.
+COMPOSABLE = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
+ROUTED = ("CORE1A", "CORE1B")
+PRACTICE = ("CORE2A", "CORE2B")
 BADGE = {"EASY": "EASY", "MEDIUM": "MEDIUM", "HARD": "HARD"}
 
 
@@ -120,9 +126,21 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
 
     # --- which products the library can actually support -------------------
     supported, unsupported = [], {}
+    relation_ids = {r for m in microtopics for r in m.get("relation_refs", [])}
     for core in COMPOSABLE:
         covered = claimed[core] & microtopic_ids
-        if core in ("CORE2A", "CORE2B"):
+        if core == "CORE1":
+            if relation_ids:
+                supported.append(core)
+            else:
+                unsupported[core] = ("the bucket declares no governing relation, so there is "
+                                     "nothing for a map of it to orient a learner to")
+        elif core == "CORE2":
+            if question_records:
+                supported.append(core)
+            else:
+                unsupported[core] = "the library holds no question for this bucket to take custody of"
+        elif core in PRACTICE:
             exposed = [q for q in question_records
                        if any(e.get("core") == core for e in q.get("exposure", []))]
             if exposed:
@@ -168,12 +186,22 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             requirements.append({"kind": "MICROTOPIC_UNBOUND", "microtopic": microtopic["id"],
                                  "detail": "no supported product or no data bound to its relations"})
             continue
-        study = [c for c in cores if c in ("CORE1A", "CORE1B")]
+        study = [c for c in cores if c in ROUTED]
         if study:
             obligations.append({"id": f'OB-{microtopic["id"]}', "bucket_id": bucket_id,
                                 "source_atom_ids": sorted(set(relation_atoms)),
                                 "required_cores": study, "required_kinds": ["TEXT"]})
-    practice = [c for c in supported if c in ("CORE2A", "CORE2B")]
+    orientation_obligation = f"OB-{bucket_id}-ORIENTATION"
+    if "CORE1" in supported:
+        obligations.append({"id": orientation_obligation, "bucket_id": bucket_id,
+                            "source_atom_ids": sorted({a["id"] for a in atoms}),
+                            "required_cores": ["CORE1"], "required_kinds": ["EQUATION", "TEXT"]})
+    custody_obligation = f"OB-{bucket_id}-CUSTODY"
+    if "CORE2" in supported:
+        obligations.append({"id": custody_obligation, "bucket_id": bucket_id,
+                            "source_atom_ids": sorted({a["id"] for a in atoms}),
+                            "required_cores": ["CORE2"], "required_kinds": ["QUESTION"]})
+    practice = [c for c in supported if c in PRACTICE]
     practice_obligation = f"OB-{bucket_id}-PRACTICE"
     if practice and questions:
         obligations.append({"id": practice_obligation, "bucket_id": bucket_id,
@@ -225,7 +253,15 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             "baseline_digest": "", "practice_control": practice_control, "products": []}
     for core in supported:
         blocks, unit_id = [], f"U-{core}-{bucket_id}"
-        if core in ("CORE1A", "CORE1B"):
+        if core == "CORE1":
+            blocks = _orientation_blocks(records, relation_ids, atoms, microtopics,
+                                         orientation_obligation, equations)
+        elif core == "CORE2":
+            # Custody covers every question the bucket holds, not only those a practice
+            # product exposes: a question omitted here is a question with no record.
+            blocks = [_question_block(core, record, custody_obligation, atoms)
+                      for record in question_records]
+        elif core in ROUTED:
             for microtopic in microtopics:
                 obligation = f'OB-{microtopic["id"]}'
                 if not any(o["id"] == obligation and core in o["required_cores"] for o in obligations):
@@ -248,6 +284,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 {"id": unit_id, "bucket_id": bucket_id, "title": bucket["title"], "blocks": blocks}]})
 
     plan["products"] = [p for p in plan["products"] if p["units"][0]["blocks"]]
+    plan["products"].sort(key=lambda p: COMPOSABLE.index(p["core"]))
     baseline["selected_cores"] = [p["core"] for p in plan["products"]]
     return {"baseline": baseline, "source": source, "plan": plan,
             "authoring_requirements": requirements,
@@ -273,6 +310,46 @@ def _teaching_text(microtopic: dict, core: str) -> str:
         if answer.get("check"):
             lines.append(f'Verify: {answer["check"]}')
     return "\n".join(lines)
+
+
+def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict],
+                        microtopics: list[dict], obligation: str,
+                        equations: dict[str, str]) -> list[dict]:
+    """Core1: what the objects are, what the relations say, and where the work is.
+
+    Every part is carried from a record that already holds it. The relation text comes
+    from the relation, which is itself a bound copy of the gate that owns it, so a map
+    of the bucket cannot state the mathematics differently from the engineering.
+    """
+    bound = sorted({a["id"] for a in atoms})
+    blocks = []
+    quantities = [a for a in atoms if a["kind"] == "DATUM"]
+    if quantities:
+        lines = ["The quantities this bucket works with."]
+        lines += [f'{records[a["id"]]["symbol"]}: {records[a["id"]]["meaning"]} '
+                  f'({records[a["id"]]["unit"]})' for a in quantities
+                  if records[a["id"]].get("symbol")]
+        blocks.append({"id": "CORE1-QUANTITIES", "kind": "TEXT", "obligation_ids": [obligation],
+                       "source_atom_ids": bound, "text": "\n".join(lines)})
+    for relation_id in sorted(relation_ids):
+        relation = records[relation_id]
+        equation_atom = equations.get(relation_id)
+        if not relation.get("mathml") or equation_atom is None:
+            continue
+        blocks.append({"id": f"CORE1-{relation_id}", "kind": "EQUATION",
+                       "obligation_ids": [obligation], "source_atom_ids": [equation_atom],
+                       "mathml": relation["mathml"], "meaning": relation["meaning"],
+                       "symbols": [f'{s["symbol"]}: {s["meaning"]}'
+                                   for s in relation.get("symbols", [])],
+                       "conditions": list(relation.get("conditions", []))})
+    hard = [m for m in microtopics if m.get("intrinsic_badge") in ("MEDIUM", "HARD")]
+    if hard:
+        lines = ["Where the hard work is."]
+        lines += [f'{sentence(m["title"])} ({m["intrinsic_badge"]}) {m["badge_reason"]}'
+                  for m in hard]
+        blocks.append({"id": "CORE1-DEMAND", "kind": "TEXT", "obligation_ids": [obligation],
+                       "source_atom_ids": bound, "text": "\n".join(lines)})
+    return blocks
 
 
 def _figure_blocks(core: str, representations: list[dict], obligations: list[dict],
@@ -314,8 +391,11 @@ def _figure_blocks(core: str, representations: list[dict], obligations: list[dic
 
 def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dict]) -> dict:
     answer = record["answer"]
-    exposure = next(e for e in record["exposure"] if e.get("core") == core)
-    role = {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE"}.get(exposure.get("role"), "PRACTICE")
+    # Core2 holds every question in its original form, so it has no exposure entry: it
+    # is custody of the source, not a decision about how a question is used in teaching.
+    exposure = next((e for e in record.get("exposure", []) if e.get("core") == core), None)
+    role = ("SOURCE_CUSTODY" if exposure is None else
+            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE"}.get(exposure.get("role"), "PRACTICE"))
     block = {"id": f'{core}-{record["id"]}', "kind": "QUESTION",
              "obligation_ids": [obligation_id],
              "source_atom_ids": sorted({a["id"] for a in atoms}),

@@ -1,6 +1,6 @@
 {
   "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
-  "runtime_digest": "d979c9f4b15efd5167ac55b0a505076491663c98259057326cf111c9e28e1dcc",
+  "runtime_digest": "3a35e5e444ec7ad7adb20b09343106a8829e5adfd71d14bb19e10399e123382e",
   "files": [
     {
       "path": "CORE1A.html",
@@ -80,7 +80,7 @@
     },
     {
       "path": "runtime/Physics/adapter/CoreContracts.json",
-      "sha256": "889dd5b2bae2d0d2a13b67630c8428c9fcd8a24e4b9201244c65987233d41f3c"
+      "sha256": "686399489428e173049f9279e4e056d66772ef1425b7fd3a2c38c81b55fe003e"
     },
     {
       "path": "runtime/Physics/adapter/__init__.py",
@@ -112,7 +112,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/adapter.py",
-      "sha256": "810f1f513f1c9e3d8ad350969d5b38599704ed64fc69a69042711e5795ad1556"
+      "sha256": "e6209f78a92445bcdebe1d828abc70f60a20487458a3dd2a6cea3f9460cba446"
     },
     {
       "path": "runtime/Shared/publication_host/audit.py",
@@ -136,7 +136,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/inputs.py",
-      "sha256": "5c1f0512267b92766323ee17cc83f9efd937940b33c41092e0a47298b6e5a2c0"
+      "sha256": "faac89ed8fbdb6115ce0049e170bc5438d4e8c385b3008ba1f031b5d3c1fe478"
     },
     {
       "path": "runtime/Shared/publication_host/science.py",

@@ -223,8 +223,8 @@ class EndToEnd(unittest.TestCase):
     def test_the_bucket_publishes_and_its_exact_answer_is_verified(self):
         result, out = self._publish()
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["products"], ["CORE1A", "CORE1B", "CORE2A"])
-        self.assertEqual(result["numeric_answers_compared"], 1)
+        self.assertEqual(result["products"], ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A"])
+        self.assertEqual(result["numeric_answers_compared"], 2)
         self.assertEqual(result["scientific_reviews_pending"], 0)
         self.assertFalse(result["release_authorized"], "machine checks never authorise release")
         evidence = json.loads((out / "evidence.json").read_text(encoding="utf-8"))

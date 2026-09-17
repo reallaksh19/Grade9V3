@@ -16,7 +16,7 @@
     "TOOLING": 8,
     "WEB": 5
   },
-  "digest": "sha256:9ddbf2148b24eea66adf9a6519d6a2e3e4d94ee7151634a43dcf87e9f8946ece",
+  "digest": "sha256:33cbe05c6e4fd700a346ab1dcdccd0a79c6821dba9b27194dc0eb60ab052c036",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 20872,
-      "sha256": "e1ee62ff76c1aed9b992c19277b2a9851393c505eb6499fa36406426f43c6644"
+      "bytes": 25637,
+      "sha256": "eeb6e42d866362e83562810063155876a9a5149acefeadedeb110b8b8fabbc5a"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -99,8 +99,8 @@
       "path": "Shared/publication_host/adapter.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 5863,
-      "sha256": "810f1f513f1c9e3d8ad350969d5b38599704ed64fc69a69042711e5795ad1556"
+      "bytes": 6456,
+      "sha256": "e6209f78a92445bcdebe1d828abc70f60a20487458a3dd2a6cea3f9460cba446"
     },
     {
       "path": "Shared/publication_host/audit.py",
@@ -141,8 +141,8 @@
       "path": "Shared/publication_host/inputs.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 10534,
-      "sha256": "5c1f0512267b92766323ee17cc83f9efd937940b33c41092e0a47298b6e5a2c0"
+      "bytes": 10669,
+      "sha256": "faac89ed8fbdb6115ce0049e170bc5438d4e8c385b3008ba1f031b5d3c1fe478"
     },
     {
       "path": "Shared/publication_host/science.py",
@@ -281,15 +281,15 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 24217,
-      "sha256": "0a72daf5da2324b8956f64a6221c7946f7e5582eb7314565f5c6cb0a6e384e0c"
+      "bytes": 26434,
+      "sha256": "09f0f145695d5263168495ccbdb2a90cbeccbcbc0ac02ad9a63f35373083795f"
     },
     {
       "path": "tests/test_mathematics.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14030,
-      "sha256": "f8b187fbeece237210d70d73b3ab374270c18e43ebbb85a500d81e5498ad79a8"
+      "bytes": 14048,
+      "sha256": "b02728e1bd7f3b9a8116eb3d0e77541f377b2684b0b7083a4e611d54cee5ee57"
     },
     {
       "path": "tests/test_publication_engine.py",
@@ -302,8 +302,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 15383,
-      "sha256": "5050dd1797b8bb9ec605d8dd1c8caed63a23b479f480c436e9f501c12c983ebd"
+      "bytes": 15550,
+      "sha256": "06bc560a785c617e3000d60938b981400e9fcc24dd21473fea5b233273756ecc"
     },
     {
       "path": "tools/app.css",
@@ -316,8 +316,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 71200,
-      "sha256": "4de2c77303f1d0f5b341aeb17c64cf2dc6de19ac14d525e2fa3bcc4ed6a99c2b"
+      "bytes": 70717,
+      "sha256": "d85c902e2cdcd1e54bb198843846dbb0d7c2d1a2a8b221c9d192d667d6998241"
     },
     {
       "path": "tools/index.html",

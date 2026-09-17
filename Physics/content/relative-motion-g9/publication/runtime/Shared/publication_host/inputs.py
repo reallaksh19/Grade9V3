@@ -4,9 +4,6 @@ from pathlib import Path
 
 from Shared.contracts import digest, load, require, strings, text, unique, validate_dag, verify_file
 
-# The four products this host composes. Role names are subject-neutral by design;
-# Core1 and Core2 are preservation products and are not composed here.
-CORES = {"CORE1A", "CORE1B", "CORE2A", "CORE2B"}
 KINDS = {"TEXT", "EQUATION", "QUESTION", "FIGURE"}
 
 
@@ -14,7 +11,8 @@ def read_inputs(plan: dict, baseline: dict, source_root: Path, adapter) -> dict:
     require(plan.get("schema_version") == baseline.get("schema_version") == "1.0.0",
             "PUBLICATION_SCHEMA_UNSUPPORTED")
     require(plan.get("subject") == adapter.subject, "WRONG_SUBJECT_KIT")
-    require(CORES <= adapter.learner_products, "SUBJECT_CONTRACT_MISSING_COMPOSED_PRODUCTS")
+    compiled = adapter.compiled_products
+    require(bool(compiled), "SUBJECT_CONTRACT_COMPILES_NO_PRODUCT")
     require(plan.get("baseline_digest") == digest(baseline), "STALE_BASELINE")
     require(plan.get("topic_id") == baseline.get("topic_id"), "TOPIC_BINDING_MISMATCH")
     text(plan.get("title"), "TOPIC_TITLE_REQUIRED")
@@ -30,7 +28,7 @@ def read_inputs(plan: dict, baseline: dict, source_root: Path, adapter) -> dict:
         require(row["bucket_id"] in buckets, "OBLIGATION_BUCKET_UNKNOWN")
         require(set(strings(row["source_atom_ids"], "OBLIGATION_ATOMS_REQUIRED")) <= atoms.keys(),
                 "OBLIGATION_SOURCE_UNKNOWN")
-        require(set(strings(row["required_cores"], "OBLIGATION_CORES_REQUIRED")) <= CORES,
+        require(set(strings(row["required_cores"], "OBLIGATION_CORES_REQUIRED")) <= compiled,
                 "CORE_UNSUPPORTED")
         require(set(strings(row["required_kinds"], "OBLIGATION_KINDS_REQUIRED")) <= KINDS,
                 "CONTENT_KIND_UNSUPPORTED")
@@ -76,7 +74,8 @@ def _read_sources(baseline, root):
 
 def _validate_products(ctx):
     products = unique(ctx["plan"]["products"], "core", "PRODUCT_CORE_COLLISION")
-    require(bool(products) and set(products) <= CORES, "CORE_UNSUPPORTED")
+    require(bool(products) and set(products) <= ctx["adapter"].compiled_products,
+            "CORE_UNSUPPORTED")
     require(set(products) == set(strings(ctx["baseline"].get("selected_cores"), "BASELINE_CORES_REQUIRED")),
             "REQUESTED_CORE_MISSING_OR_ADDED")
     ctx["learner_fit"] = _learner_fit(ctx["plan"], products)
@@ -158,8 +157,12 @@ def _question(ctx, block):
     # supplement it according to task purpose; their count is not a quality proxy.
     text(block.get("family"), "EXAMPLE_FAMILY_REQUIRED")
     text(block.get("learner_action"), "LEARNER_ACTION_REQUIRED")
+    # SOURCE_CUSTODY is not a teaching decision like the others. It marks a question
+    # held in its original form because the bucket holds it, which is what makes
+    # assessment demand enter the system as evidence rather than as an assumption.
     require(block.get("exposure_role") in {"NEW_TRANSFER", "PRACTICE", "RECONSTRUCTION_ANCHOR",
-            "WORKED_TO_FADED", "SPACED_RETRIEVAL", "WORKED_EXAMPLE"}, "EXPOSURE_ROLE_REQUIRED")
+            "WORKED_TO_FADED", "SPACED_RETRIEVAL", "WORKED_EXAMPLE", "SOURCE_CUSTODY"},
+            "EXPOSURE_ROLE_REQUIRED")
 
 
 def _learner_fit(plan, products):

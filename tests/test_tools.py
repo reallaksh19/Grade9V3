@@ -250,10 +250,11 @@ class CapabilityClaims(unittest.TestCase):
             shutil.copytree(REPO / "Mathematics", root / "Mathematics")
             target = root / "Mathematics/adapter/CoreContracts.json"
             contract = json.loads(target.read_text(encoding="utf-8"))
-            contract["learner_products"]["CORE1"]["production"] = "COMPILED"
+            contract["learner_products"]["CORE_NO_SUCH_PRODUCT"] = {
+                "role": "INVENTED", "production": "COMPILED"}
             target.write_text(json.dumps(contract), encoding="utf-8")
             found = capability_audit.audit_subject(root / "Mathematics")["findings"]
-            self.assertIn(("CLAIMED_WITHOUT_CODE", "CORE1"),
+            self.assertIn(("CLAIMED_WITHOUT_CODE", "CORE_NO_SUCH_PRODUCT"),
                           [(f["point"], f["capability"]) for f in found])
 
     def test_declining_to_say_why_a_product_is_not_compiled_is_caught(self):
@@ -262,10 +263,11 @@ class CapabilityClaims(unittest.TestCase):
             shutil.copytree(REPO / "Mathematics", root / "Mathematics")
             target = root / "Mathematics/adapter/CoreContracts.json"
             contract = json.loads(target.read_text(encoding="utf-8"))
-            contract["learner_products"]["CORE1"]["reason"] = "   "
+            contract["learner_products"]["CORE_NO_SUCH_PRODUCT"] = {
+                "role": "PLANNED", "production": "NOT_COMPILED", "reason": "   "}
             target.write_text(json.dumps(contract), encoding="utf-8")
             found = capability_audit.audit_subject(root / "Mathematics")["findings"]
-            self.assertIn(("PRODUCT_NOT_COMPILED_WITHOUT_REASON", "CORE1"),
+            self.assertIn(("PRODUCT_NOT_COMPILED_WITHOUT_REASON", "CORE_NO_SUCH_PRODUCT"),
                           [(f["point"], f["capability"]) for f in found])
 
     def test_planting_a_false_claim_is_caught(self):
