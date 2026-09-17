@@ -190,13 +190,20 @@ All optional at the schema level. A Core2A question has no `transfer`; a questio
 
 `spec_conformance.py --enforce` joins `check_subjects.py` and CI, once R1.3 closes what R1.2 found.
 
-### R1 exit evidence
+### R1 exit evidence — met
 
-- Every field named in every `requires:` block resolves in the schema
-- A planted requirement with no schema home fails the check
-- A planted `reveals: ANSWER` hint in a non-final position is a finding
-- A `difficult_move` index out of range is a finding
-- The committed packages still admit — the new fields are optional and nothing existing is disturbed
+- Every field named in every `requires:` block resolves in the schema — **100 requirements, 0 without a home**
+- A planted requirement with no schema home fails the check ✓
+- A planted `reveals: ANSWER` hint in a non-final position is a finding ✓ — and the same hint in the last position is allowed, asserted separately, because the rule is about position
+- A `difficult_move` index out of range is a finding ✓
+- The committed packages still admit ✓ — asserted, not assumed
+- `spec_conformance.py --enforce` runs in CI as its own step
+
+Two results beyond the exit list:
+
+**The gate found its own bug on first real use.** Adding `scene_instance.question_ref` needed an `anyOf` saying exactly one of the two bindings is present. That broke the resolver: a node carrying both `properties` and a combinator lost its own properties, so the checker reported a field it had itself just been shown. This is the argument for building the measurement before the fields rather than after — a checker written against fields that already exist is only ever exercised on the shapes those fields happen to have.
+
+**Four gate checks were added that R1 did not plan for**, because several of the 13 new fields carry a claim the schema can hold but not check. `HINT_LADDER`, `SOLUTION_BREAKDOWN`, `TRANSFER` and `ELICITATION` each exist because a field that can lie is worse than no field: everything downstream trusts it.
 
 ---
 

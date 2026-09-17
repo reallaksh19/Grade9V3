@@ -27,6 +27,15 @@ jobs:
       - name: Topic independence guard — scan engine and tooling
         run: python3 Shared/tools/topic_independence_guard.py
 
+      # A role spec may not require content the schema has nowhere to keep. Enforcing:
+      # the 68 findings this first reported are closed, 28 by correcting the spec's path
+      # and 40 by adding the field. It is its own step rather than part of the subject
+      # sweep because the specs and the schema are shared -- running it per subject would
+      # report one shared finding three times and attribute it to a subject that has no
+      # say in it.
+      - name: Role specs resolve against the library schema
+        run: python3 Shared/tools/spec_conformance.py --enforce
+
       # One tested module, not a workflow heredoc: subject discovery is protected by
       # the suite, so CI cannot quietly go back to checking a single named subject.
       - name: Every subject's contract, gate registries and library

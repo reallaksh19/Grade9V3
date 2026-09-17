@@ -118,7 +118,11 @@ Cheap, global, and inherited by every phase after, so first. Two of the three we
 
 ~~`republish.py --write` reports the change and it is accepted explicitly.~~ **Retracted: nothing to accept.** There is no committed Mathematics publication — that bucket compiles to inputs on demand. Neither fix changed a published byte; they change what the Mathematics compiler will produce the first time the bucket is published.
 
-### R1 — Close the specs against the schema
+### R1 — Close the specs against the schema — **DONE**
+
+Measured before fixing: 100 requirements across the six specs, **68 with no home**. The prediction in §2 named about seven, because it was drawn from reviewing *rendered products* and so found only what the compiler visibly could not emit. Core1 contributed nine findings, none predicted: it renders without complaint, emitting what it has and saying nothing about what the spec asked for and it never received. **A product that silently omits a required element is indistinguishable, on the page, from one that has it.**
+
+Adjudicated: 28 were the spec's name for something the schema already holds (paths corrected), 40 were real (13 fields added, all optional). Three paths were withdrawn as over-translations, including a `kind` enum that would have put subject vocabulary in the engine. `spec_conformance.py --enforce` is in CI.
 
 **Build** the conformance check, measuring only. **Then** add the fields it finds missing:
 
