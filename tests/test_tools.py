@@ -11,8 +11,10 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
+from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
-    build_manifest, build_web_data, check_subjects, topic_independence_guard,
+    build_manifest, build_web_data, capability_audit, check_subjects,
+    topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -202,3 +204,74 @@ class GuardRoots(unittest.TestCase):
                           {p.name for p in topic_independence_guard.default_roots()})
         finally:
             shutil.rmtree(scratch)
+
+
+class CapabilityClaims(unittest.TestCase):
+    """A contract may not claim a capability the repository cannot perform.
+
+    Built before anything was fixed, and it earned that order immediately: an ad-hoc
+    survey had counted the unimplemented representation kinds as unbacked claims, when
+    every one of them is correctly marked PROPOSED. The gate found three real false
+    claims and six that have nowhere to be stated, not eleven of everything.
+    """
+
+    def _contract(self, subject="Physics"):
+        return json.loads((REPO / subject / "adapter/CoreContracts.json")
+                          .read_text(encoding="utf-8"))
+
+    def test_a_status_that_says_proposed_is_not_a_false_claim(self):
+        # The honest mechanism already exists for validators and representation kinds.
+        report = capability_audit.audit()
+        flagged = {f["capability"] for s in report["subjects"] for f in s["findings"]}
+        for subject in ("Physics", "Mathematics", "Chemistry"):
+            for kind in self._contract(subject)["representation_kinds"]:
+                if kind["status"] != "IMPLEMENTED":
+                    self.assertNotIn(kind["id"], flagged,
+                                     "a capability declared as proposed is honest")
+
+    def test_an_implemented_claim_with_no_module_behind_it_is_caught(self):
+        report = capability_audit.audit()
+        unbacked = {f["capability"] for s in report["subjects"] for f in s["findings"]
+                    if f["point"] == "CLAIMED_WITHOUT_CODE"}
+        self.assertTrue(unbacked, "the audit finds nothing, so it is proving nothing")
+
+    def test_a_product_with_no_compiler_path_is_reported_for_every_subject(self):
+        report = capability_audit.audit()
+        for row in report["subjects"]:
+            products = {f["capability"] for f in row["findings"]
+                        if f["point"] == "PRODUCT_WITHOUT_PRODUCER"}
+            declared = set(self._contract(row["subject"])["learner_products"])
+            self.assertEqual(products, declared - set(compile_inputs.COMPOSABLE),
+                             row["subject"])
+
+    def test_planting_a_false_claim_is_caught(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for subject in sorted(REPO.glob("*/adapter/CoreContracts.json")):
+                shutil.copytree(subject.parent.parent, root / subject.parent.parent.name)
+            target = root / "Mathematics/adapter/CoreContracts.json"
+            contract = json.loads(target.read_text(encoding="utf-8"))
+            contract["validator_catalogue"].append(
+                {"id": "NO_SUCH_FAMILY", "status": "IMPLEMENTED", "inputs": [],
+                 "input_units": {}, "requires": [], "proves": "x", "does_not_prove": "y",
+                 "result": {"shape": "EXACT_RATIONAL", "unit": "dimensionless",
+                            "comparison": "EXACT_RATIONAL_EQUALITY"}})
+            target.write_text(json.dumps(contract), encoding="utf-8")
+            found = capability_audit.audit_subject(root / "Mathematics")["findings"]
+            self.assertIn(("CLAIMED_WITHOUT_CODE", "NO_SUCH_FAMILY"),
+                          [(f["point"], f["capability"]) for f in found])
+
+    def test_code_that_outruns_its_contract_is_reported_too(self):
+        # The opposite drift: a renderer exists while the contract still calls it proposed.
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            shutil.copytree(REPO / "Mathematics", root / "Mathematics")
+            target = root / "Mathematics/adapter/CoreContracts.json"
+            contract = json.loads(target.read_text(encoding="utf-8"))
+            for kind in contract["representation_kinds"]:
+                if kind["id"] == "NUMBER_LINE":
+                    kind["status"] = "PROPOSED"
+            target.write_text(json.dumps(contract), encoding="utf-8")
+            found = capability_audit.audit_subject(root / "Mathematics")["findings"]
+            self.assertIn(("BUILT_BUT_NOT_CLAIMED", "NUMBER_LINE"),
+                          [(f["point"], f["capability"]) for f in found])

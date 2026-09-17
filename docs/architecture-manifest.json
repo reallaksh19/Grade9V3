@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 45,
-  "relation_count": 64,
+  "component_count": 46,
+  "relation_count": 67,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 8,
     "TEST": 6,
-    "TOOLING": 7,
+    "TOOLING": 8,
     "WEB": 5
   },
-  "digest": "sha256:bcd66358a414c4972b27fed2dc847d7024a8c44ae6615fcf0f8866c235cde0e3",
+  "digest": "sha256:a4e8d9575c5727f4b307ba4ea0b15b55b41a44f85c9bd989565e82624abc5c69",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -229,6 +229,13 @@
       "sha256": "81982a37d6e7d4959338444ccb7c01a60d61d2e906065ea3ab28db50721ec0fe"
     },
     {
+      "path": "Shared/tools/capability_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4854,
+      "sha256": "d1eeabf5cb5d84056984b60d5ce246659495b269ed95a876d34bb59ac39dd938"
+    },
+    {
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -295,8 +302,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9670,
-      "sha256": "bfd9aa68b32b346f3cee7b720a8dcbb430afeeacc70ad0843c3b03773b918774"
+      "bytes": 13880,
+      "sha256": "e5db77570e0b989167386305349e30c1aa00d8b640f565996ee2ee65a2a951cd"
     },
     {
       "path": "tools/app.css",
@@ -476,6 +483,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/capability_audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/capability_audit.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -638,6 +655,11 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.tools.republish",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
