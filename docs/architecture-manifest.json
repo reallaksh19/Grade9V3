@@ -16,7 +16,7 @@
     "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:8e9877d2ae0719a75996ff90274b408ed2922921d3253f5ba769f6ba72b108f2",
+  "digest": "sha256:bcd66358a414c4972b27fed2dc847d7024a8c44ae6615fcf0f8866c235cde0e3",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -50,8 +50,8 @@
       "path": "Shared/library/import_sil.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 11239,
-      "sha256": "293b5856a6a80f2bb5c4881e64163863ca92f464a0b37e4774236b1302186605"
+      "bytes": 12396,
+      "sha256": "64fad607b37d11fc911bf70e744715d3aeeffa4b4c8ba6654434bd34ab5b6fcf"
     },
     {
       "path": "Shared/library/intake.py",
@@ -267,8 +267,8 @@
       "path": "tests/test_import_sil.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9382,
-      "sha256": "7f95cc11cf8dd538f13155515153197ae0728e15c3ca7226b5a54a9171cb99f6"
+      "bytes": 10679,
+      "sha256": "868ed3bacfe52f8fd58a3a936076ecb2a8bc7bcdc2de253f7519466c60b13f0f"
     },
     {
       "path": "tests/test_library.py",

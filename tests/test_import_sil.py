@@ -171,5 +171,30 @@ class TheImportIsPinnedAndHonest(unittest.TestCase):
                     f'importer emitted a bad shape rather than an absence: {finding["detail"]}')
 
 
+class CatalogueSurvey(unittest.TestCase):
+    """The survey says which packets a catalogue can contribute, and why the rest cannot."""
+
+    def test_it_separates_the_authored_from_the_templated(self):
+        report = import_sil.survey(CLEAN + TEMPLATED)
+        self.assertEqual(report["packets"], 4)
+        self.assertEqual(report["admissible"], ["A", "B"])
+        self.assertEqual(sorted(report["rejected"]), ["C", "D"])
+
+    def test_each_rejection_names_what_was_found_and_how_often(self):
+        report = import_sil.survey(CLEAN + TEMPLATED)
+        for packet, points in report["rejected"].items():
+            self.assertTrue(points, packet)
+            self.assertTrue(all(isinstance(n, int) and n > 0 for n in points.values()))
+
+    def test_the_committed_report_matches_the_summary_it_states(self):
+        # The report is generated, so its own numbers must agree with its own tables.
+        text = (REPO / "docs/SIL-INTAKE-REPORT.md").read_text(encoding="utf-8")
+        for line in text.splitlines():
+            if line.startswith("| ") and "PR #" in line:
+                cells = [c.strip() for c in line.strip("|").split("|")]
+                packets, admissible, rejected = (int(c) for c in cells[2:5])
+                self.assertEqual(packets, admissible + rejected, line)
+
+
 if __name__ == "__main__":
     unittest.main()

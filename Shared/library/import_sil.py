@@ -149,10 +149,28 @@ def convert(packet: dict, *, subject: str, source: dict) -> tuple[dict, list[dic
     return package, gaps
 
 
+def survey(packets: list[dict]) -> dict:
+    """Which packets a catalogue could contribute, and why the rest could not.
+
+    Useful in both directions. Here it says what is worth importing; upstream it says
+    which packets need authoring, named one by one rather than as a proportion.
+    """
+    admitted, found = admissible(packets)
+    by_packet: dict[str, dict[str, int]] = {}
+    for finding in found:
+        by_packet.setdefault(finding["record"], {})
+        by_packet[finding["record"]][finding["point"]] = \
+            by_packet[finding["record"]].get(finding["point"], 0) + 1
+    return {"packets": len(packets), "admissible": sorted(admitted),
+            "rejected": {k: dict(sorted(v.items())) for k, v in sorted(by_packet.items())}}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("catalog", type=Path)
-    parser.add_argument("--packet", required=True, help="the source packet's gate id")
+    parser.add_argument("--packet", help="the source packet's gate id")
+    parser.add_argument("--survey", action="store_true",
+                        help="report the whole catalogue instead of importing one packet")
     parser.add_argument("--subject", required=True)
     parser.add_argument("--source-pr", required=True)
     parser.add_argument("--source-head", required=True)
@@ -160,6 +178,11 @@ def main() -> int:
     args = parser.parse_args()
 
     packets = load_catalog(args.catalog)
+    if args.survey:
+        print(json.dumps({"source_pr": args.source_pr, "source_head": args.source_head,
+                          **survey(packets)}, indent=2))
+        return 0
+    require(args.packet is not None, "SIL_PACKET_REQUIRED", "pass --packet or --survey")
     admitted, found = admissible(packets)
     chosen = next((p for p in packets if p["gate_id"] == args.packet), None)
     require(chosen is not None, "SIL_PACKET_UNKNOWN", args.packet)
