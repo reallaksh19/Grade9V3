@@ -10,6 +10,12 @@ Intake therefore checks structure *and* substance. The six-point checklist is
 adapted from the subtopic-intelligence intake gate in reallaksh19/Common PR #395;
 the checks are re-implemented here against this repository's richer package schema.
 
+A seventh point was added after running the first six against that track's own
+packets: all of them passed while saying, on record after record, exactly the same
+thing. Presence checks cannot see that, because "Governing relation." is a non-empty
+inferential jump. Discriminability is a property of the corpus, not of a record, and
+lives in substance.py.
+
 Nothing here grants scientific or pedagogical acceptance. Intake admits a package
 as a CANDIDATE; promotion beyond that requires review evidence (see promote.py).
 """
@@ -23,6 +29,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from Shared.contracts import load, require
+from Shared.library.substance import findings as substance_findings
 
 SCHEMA = Path(__file__).resolve().parent / "package.schema.json"
 LIFECYCLE = ("CANDIDATE", "REVIEWED", "CURATED")
@@ -37,6 +44,23 @@ def schema_errors(package: dict) -> list[str]:
     validator = Draft202012Validator(schema)
     return [f"{list(e.path)}: {e.message}"
             for e in sorted(validator.iter_errors(package), key=lambda e: list(e.path))]
+
+
+def corpus(package: dict) -> dict[str, dict]:
+    """Every identified record in a package, tagged with the collection it came from.
+
+    Substance checks compare peers, so the collection has to travel with the record:
+    a microtopic restating a step of the relation it teaches is not the defect being
+    looked for, and two microtopics restating each other is.
+    """
+    records = {}
+    for collection, rows in package.items():
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if isinstance(row, dict) and isinstance(row.get("id"), str):
+                records[row["id"]] = {**row, "_collection": collection}
+    return records
 
 
 def check(package: dict) -> dict:
@@ -95,6 +119,10 @@ def check(package: dict) -> dict:
         # 6. Honest provenance: authored substance says so.
         if not row.get("source_refs"):
             fail("PROVENANCE", f"{mid}: no source references, not even an authored-draft marker")
+
+    # 7. Records that discriminate: peers must not say the same thing.
+    for finding in substance_findings(corpus(package)):
+        fail(finding["point"], f'{finding["record"]}.{finding["field"]}: {finding["detail"]}')
 
     status = package.get("status")
     if status not in LIFECYCLE:

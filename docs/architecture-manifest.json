@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 41,
-  "relation_count": 56,
+  "component_count": 42,
+  "relation_count": 58,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 5,
+    "LIBRARY": 6,
     "TEST": 5,
     "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:80f1c5e563e81000a58c46e1286277f71e5002ab2e31c583e9fc5bdb3ee013d6",
+  "digest": "sha256:5bc42c2713ee67fcbae69f57ac6cd06e3b30be21ab1d67a1251dfe0bef9c44e4",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 5404,
-      "sha256": "c24db9cf7ee8fb9ddb91abe24eb86520aebabdf4aea4e6bbc62cfeeed5fea0b8"
+      "bytes": 6736,
+      "sha256": "8adddb305ba167eb5e659ffe0ce4d85c4f8e08efa74d6e63b20b560a2eb5fb68"
     },
     {
       "path": "Shared/library/package.schema.json",
@@ -66,6 +66,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 7241,
       "sha256": "fffc4d27ee412f72e034e9e4f94c23a4a7b0aac28bf36de5c505d7909c202c06"
+    },
+    {
+      "path": "Shared/library/substance.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 8875,
+      "sha256": "a8ebc55f0b1bdf96467bba67dce3721bd6981009c47191a8c94ed38458a2fc55"
     },
     {
       "path": "Shared/publication_host/__init__.py",
@@ -246,8 +253,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9013,
-      "sha256": "6003858dfa7d3bcecaf3d9320d4bd74d56f3670d0407a7c6db81eb29afaedc42"
+      "bytes": 14237,
+      "sha256": "21b5c648625e53f7b97cf4796fece58998920c7c85c227f79b67e7798a7c5c20"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -325,6 +332,11 @@
     {
       "from": "Shared/library/intake.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/intake.py",
+      "to": "Shared.library.substance",
       "kind": "IMPORTS"
     },
     {
@@ -480,6 +492,11 @@
     {
       "from": "tests/test_library.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {

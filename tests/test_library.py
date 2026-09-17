@@ -13,6 +13,7 @@ sys.path.insert(0, str(REPO))
 from Physics.adapter import load as load_physics  # noqa: E402
 from Shared.contracts import ContractError  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
+from Shared.library import intake, substance  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 from Shared.library.promote import audit, promote  # noqa: E402
 from Shared.library.resolve import (  # noqa: E402
@@ -188,3 +189,93 @@ class Compilation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SubstanceGate(unittest.TestCase):
+    """Records must discriminate. Fixtures are the real defects from the parallel tracks.
+
+    The strings below are quoted verbatim from the subtopic-intelligence packets in
+    reallaksh19/Common PR #402 and #403, where they appear on 31 and 52 packets
+    respectively while passing that track's own six-point intake gate. They are data
+    here, not instructions, and they are what this gate was built to reject.
+    """
+
+    def _corpus(self, *records):
+        return {r["id"]: {"_collection": "microtopics", **r} for r in records}
+
+    def test_the_committed_libraries_are_clean(self):
+        # A gate that fires on authored content gets switched off, so this comes first.
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            with self.subTest(package=path.name):
+                package = json.loads(path.read_text(encoding="utf-8"))
+                self.assertEqual(substance.findings(intake.corpus(package)), [])
+
+    def test_the_same_sentence_on_two_records_is_caught(self):
+        shared = "Ignoring boundary constraints or applying naive scalar intuition."
+        found = substance.findings(self._corpus(
+            {"id": "MIC-A", "title": "First", "misconceptions": [{"wrong_idea": shared}]},
+            {"id": "MIC-B", "title": "Second", "misconceptions": [{"wrong_idea": shared}]}))
+        self.assertEqual({f["point"] for f in found}, {"DUPLICATED"})
+        self.assertEqual({f["record"] for f in found}, {"MIC-A", "MIC-B"})
+
+    def test_every_site_is_reported_not_only_the_first(self):
+        # An earlier version attributed a shared string to one record, so text repeated
+        # across 31 packets reported 4 of 43 as defective and passed the other 27.
+        shared = "Apply rigorous vector decomposition and conservation boundaries."
+        records = self._corpus(*[{"id": f"MIC-{n}", "title": f"Topic {n}",
+                                  "inferential_jump": shared} for n in range(8)])
+        found = substance.findings(records)
+        self.assertEqual({f["record"] for f in found}, set(records))
+
+    def test_a_template_with_the_title_substituted_in_is_caught(self):
+        found = substance.findings(self._corpus(
+            {"id": "MIC-A", "title": "Projectile motion",
+             "inferential_jump": "Standard problem scaffold for Projectile motion. "
+                                 "Given system parameters, evaluate the response."},
+            {"id": "MIC-B", "title": "Rotational dynamics",
+             "inferential_jump": "Standard problem scaffold for Rotational dynamics. "
+                                 "Given system parameters, evaluate the response."}))
+        self.assertEqual({f["point"] for f in found}, {"TEMPLATED"})
+        self.assertEqual({f["record"] for f in found}, {"MIC-A", "MIC-B"})
+
+    def test_a_phrase_that_only_names_its_own_type_is_caught(self):
+        found = substance.findings({
+            "REL-A": {"_collection": "relations", "kind": "RELATION",
+                      "statement": "Governing relation."},
+            "INV-B": {"_collection": "relations", "kind": "INVARIANT",
+                      "statement": "System invariant."}})
+        self.assertEqual({f["point"] for f in found}, {"SELF_NAMING"})
+        self.assertEqual({f["record"] for f in found}, {"REL-A", "INV-B"})
+
+    def test_a_package_carrying_a_planted_duplicate_is_refused_by_intake(self):
+        path = sorted(REPO.glob("*/library/*.v1.json"))[0]
+        package = json.loads(path.read_text(encoding="utf-8"))
+        first, second = package["microtopics"][0], package["microtopics"][1]
+        second["inferential_jump"] = first["inferential_jump"]
+        report = intake.check(package)
+        self.assertFalse(report["admitted"])
+        self.assertIn("DUPLICATED", {f["point"] for f in report["findings"]})
+
+
+class SubstanceGateRestraint(unittest.TestCase):
+    """Repetition that is correct must not be reported, or the gate gets ignored."""
+
+    def test_classification_labels_may_repeat(self):
+        records = {f"MIC-{n}": {"_collection": "microtopics", "title": f"Topic {n}",
+                                "grade_level": "Grade 9-10", "exam_families": ["JEE Advanced"]}
+                   for n in range(5)}
+        self.assertEqual(substance.findings(records), [])
+
+    def test_shared_validity_conditions_may_repeat(self):
+        # Two relations in the same frame really do have the same hypotheses.
+        condition = "Use the same observer and state the sign convention before solving."
+        records = {f"REL-{n}": {"_collection": "relations", "conditions": [condition]}
+                   for n in range(3)}
+        self.assertEqual(substance.findings(records), [])
+
+    def test_a_microtopic_may_restate_a_step_of_the_relation_it_teaches(self):
+        step = "Subtract the same quantity from both sides, which is reversible."
+        found = substance.findings({
+            "MIC-A": {"_collection": "microtopics", "teaching_path": [{"action": step}]},
+            "REL-A": {"_collection": "relations", "derivation": [step]}})
+        self.assertEqual(found, [], "duplication is only compared between peers")
