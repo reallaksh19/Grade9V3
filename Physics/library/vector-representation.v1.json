@@ -259,6 +259,15 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "SPEED_FROM_COMPONENTS",
+            "bindings": {
+              "vx": "DAT-W-X",
+              "vy": "DAT-W-Y"
+            }
+          }
         }
       },
       "research_contribution": "CBSE Advanced motivates graphical vector operations; the component/magnitude distinction drill is author-created and needs scientific/pedagogical review.",
@@ -343,6 +352,9 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-VEC-EXIT-DATA"
         }
       },
       "research_contribution": "Author-created axis-convention drill; independent scientific/pedagogical review pending.",
@@ -441,6 +453,15 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "SPEED_FROM_COMPONENTS",
+            "bindings": {
+              "vx": "DAT-PQ-X",
+              "vy": "DAT-PQ-Y"
+            }
+          }
         }
       },
       "research_contribution": "NCERT motivates the graphical construction; PhET is a candidate exploration route, not executed evidence. The reverse-then-add teaching sequence itself is author-created pending scientific/pedagogical review. These exact component values (6,0) and (0,8) recur with physical meaning as A and B's velocities in MIC-COMMON-INTERVAL/MIC-GEOMETRIC-CHECK (BUCKET-RELATIVE-MOTION): this is a deliberate shared anchor rehearsing the same arithmetic before it carries physical meaning, not accidental duplication.",
@@ -522,6 +543,9 @@
           ],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "This microtopic states where the relation stops applying; its exit answer names two boundary conditions and asserts no computed value."
         }
       },
       "research_contribution": "Implements the run's configured stress extension (stress.one_extension: 'a separate research-oriented model-boundary bucket on when simple relative-velocity subtraction needs frame qualifications'). Deliberately does not teach rotating-frame or relativistic mathematics; names the boundary only, per TOPIC_WORKFLOW.md's Research-depth Gravity precedent (a conceptual bridge may be authored while derivation-level release stays blocked).",
@@ -744,6 +768,15 @@
       "classification": "SCIENTIFIC_REVIEW_REQUIRED",
       "description": "Author-created teaching is not independently reviewed.",
       "next_action": "Reconcile each scientific claim with precise sources and conduct independent scientific/pedagogical review, as for LIB-PHY-RELATIVE-MOTION-SEED."
+    },
+    {
+      "id": "ISS-VEC-EXIT-DATA",
+      "affected_refs": [
+        "MIC-SIGNED-COMPONENT"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The signed-component exit task uses a re-declared axis convention whose component values are not declared as data records, so the magnitude validator cannot be bound to its answer.",
+      "next_action": "Declare the re-declared-convention components as data and bind the magnitude validator to them."
     }
   ],
   "extensions": {

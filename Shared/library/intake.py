@@ -127,6 +127,19 @@ def check(package: dict) -> dict:
     for finding in substance_findings(records) + substance_step_findings(records):
         fail(finding["point"], f'{finding["record"]}.{finding["field"]}: {finding["detail"]}')
 
+    # 8. Exit answers stand behind themselves: an oracle, or a named reason there is none.
+    issue_ids = {i.get("id") for i in package.get("known_issues", [])}
+    datum_ids = {d.get("id") for d in package.get("data", [])}
+    for row in microtopics:
+        oracle = (row.get("exit_task") or {}).get("oracle") or {}
+        if "held_by" in oracle and oracle["held_by"] not in issue_ids:
+            fail("EXIT_ORACLE", f'{row.get("id")}: held by {oracle["held_by"]}, which this '
+                                "package does not declare as a known issue")
+        for variable, datum in (oracle.get("verification", {}).get("bindings") or {}).items():
+            if datum not in datum_ids:
+                fail("EXIT_ORACLE", f'{row.get("id")}: binds {variable} to {datum}, '
+                                    "which is not a declared datum")
+
     status = package.get("status")
     if status not in LIFECYCLE:
         fail("LIFECYCLE", f"status {status!r} is not one of {LIFECYCLE}")

@@ -891,12 +891,57 @@
             },
             "answer": {
               "$ref": "#/$defs/answer"
+            },
+            "oracle": {
+              "description": "How this exit answer is stood behind. Exactly one of: `verification`, naming a subject validator and binding its inputs to declared data; `held_by`, naming the known issue that explains why no oracle exists yet; or `no_numeric_claim`, saying why the answer asserts no computed value. Silence is not an option, because the exit answer is what a learner measures themselves against.",
+              "type": "object",
+              "minProperties": 1,
+              "maxProperties": 1,
+              "properties": {
+                "verification": {
+                  "type": "object",
+                  "required": [
+                    "validator_id",
+                    "bindings"
+                  ],
+                  "properties": {
+                    "validator_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "bindings": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  }
+                },
+                "held_by": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "no_numeric_claim": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false
             }
           },
           "required": [
             "prompt",
             "source_ref",
-            "answer"
+            "answer",
+            "oracle"
           ]
         },
         "research_contribution": {

@@ -1,5 +1,6 @@
 """Library layer: intake refuses hollow records, references resolve, maturity is monotone,
 and a bucket compiles into inputs that actually publish."""
+import collections
 import copy
 import json
 import sys
@@ -407,3 +408,61 @@ class StepsMustDemonstrate(unittest.TestCase):
             for step in steps:
                 self.assertIn(step.get("role"), {"DECLARE", "TRANSFORM", "VERIFY"},
                               f'{path.name}:{step["id"]}')
+
+
+class ExitAnswersHaveCustody(unittest.TestCase):
+    """The answer a learner measures themselves against must stand behind itself.
+
+    Every question carried a validator binding; no exit task did. Eight exit answers
+    asserted computed results -- "x = 3", "P-Q = (6,-8) m/s, magnitude 10 m/s" -- with
+    nothing behind them, so the self-check answer had less custody than the practice
+    answer, which is the wrong way round.
+    """
+
+    def _package(self):
+        return json.loads(sorted(REPO.glob("Mathematics/library/*.v1.json"))[0]
+                          .read_text(encoding="utf-8"))
+
+    def test_every_committed_exit_task_declares_its_custody(self):
+        seen = collections.Counter()
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            package = json.loads(path.read_text(encoding="utf-8"))
+            for row in package["microtopics"]:
+                oracle = (row.get("exit_task") or {}).get("oracle")
+                self.assertIsNotNone(oracle, f'{path.name}:{row["id"]}')
+                self.assertEqual(len(oracle), 1, f'{path.name}:{row["id"]}')
+                seen[next(iter(oracle))] += 1
+        self.assertTrue(seen["verification"], "no exit answer is machine-checked at all")
+
+    def test_an_exit_task_with_no_oracle_declared_is_refused(self):
+        package = self._package()
+        package["microtopics"][0]["exit_task"].pop("oracle")
+        self.assertFalse(check(package)["admitted"])
+
+    def test_holding_against_an_issue_the_package_never_declares_is_refused(self):
+        package = self._package()
+        package["microtopics"][0]["exit_task"]["oracle"] = {"held_by": "ISS-DOES-NOT-EXIST"}
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertIn("EXIT_ORACLE", {f["point"] for f in report["findings"]})
+
+    def test_binding_an_oracle_to_a_datum_that_does_not_exist_is_refused(self):
+        package = self._package()
+        package["microtopics"][0]["exit_task"]["oracle"] = {
+            "verification": {"validator_id": "LINEAR_EQUATION",
+                             "bindings": {"a": "DAT-NOT-DECLARED"}}}
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertIn("EXIT_ORACLE", {f["point"] for f in report["findings"]})
+
+    def test_the_verified_exit_answers_recompute_to_what_they_claim(self):
+        # The point of the binding: the oracle actually returns the stated answer.
+        from Mathematics.adapter.validator import recompute as math_recompute
+        package = self._package()
+        data = {d["id"]: d["value"] for d in package["data"]}
+        row = next(m for m in package["microtopics"] if m["id"] == "MIC-MATH-EXACT-SOLUTION")
+        spec = row["exit_task"]["oracle"]["verification"]
+        case = {k: v for k, v in spec.items() if k != "bindings"}
+        case.update({name: data[datum] for name, datum in spec["bindings"].items()})
+        self.assertEqual(str(math_recompute(case)), "7/3")
+        self.assertIn("7/3", row["exit_task"]["answer"]["summary"])

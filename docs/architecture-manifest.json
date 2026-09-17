@@ -16,7 +16,7 @@
     "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:aa58978b30383a8f9749bded026772ad4a0eef1b30676c7e161621cf7ca7059d",
+  "digest": "sha256:e7e197663611f0927c24a7e7166bfbfa356439237a8c0a0ace07dc9eeef6114e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -50,15 +50,15 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 6844,
-      "sha256": "17bf840ff4fe2ebcb9a00ce72704a3855b8cbde0381b7cf1b84f531ee9d7becb"
+      "bytes": 7694,
+      "sha256": "30414d95d037a600ea89a653fd9a087d92ec138b9dd92ccf3cc5a325a9a85cd3"
     },
     {
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 50247,
-      "sha256": "1538fae58d1389e6bde0c97991c169b12ba14afce103a4947000fb47051bc14b"
+      "bytes": 52017,
+      "sha256": "4a060d88ea73bc4c8de2e2146219a10815ac613cc39570ef6c9b289abfee0b2f"
     },
     {
       "path": "Shared/library/promote.py",
@@ -225,8 +225,8 @@
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5692,
-      "sha256": "bdeb0803f7bc4ebc75776629554178f2a2c560deac621b664cdc433cc479e99f"
+      "bytes": 6281,
+      "sha256": "6931b1ae1590613b23c79f0a89480e2418f3945d1aa20187907075bdd181afc8"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -260,8 +260,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 21149,
-      "sha256": "c62307742ba5d498591f558cfcab715aac59cc90d2af2ad7ee9fe5939b3aaf6a"
+      "bytes": 24217,
+      "sha256": "0a72daf5da2324b8956f64a6221c7946f7e5582eb7314565f5c6cb0a6e384e0c"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -295,8 +295,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 65511,
-      "sha256": "e3e2901da6c89c247f2893614f14c2895951e7af974ff45ee866ace13826d641"
+      "bytes": 67585,
+      "sha256": "df3b06bb0ae79f95dd443f16a8c95874882b4f9dd3b23640e0d66a7c1df7b88a"
     },
     {
       "path": "tools/index.html",

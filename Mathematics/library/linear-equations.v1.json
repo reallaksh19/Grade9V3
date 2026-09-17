@@ -210,6 +210,9 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-MATH-LIST-BINDING"
         }
       },
       "research_contribution": "Author-created substitution-first framing; independent mathematical and pedagogical review pending.",
@@ -293,6 +296,9 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-MATH-EXIT-DATA"
         }
       },
       "research_contribution": "Author-created reversibility framing; independent review pending.",
@@ -378,6 +384,17 @@
           ],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "LINEAR_EQUATION",
+            "domain": "RATIONAL",
+            "bindings": {
+              "a": "DAT-MATH-A",
+              "b": "DAT-MATH-B",
+              "c": "DAT-MATH-C"
+            }
+          }
         }
       },
       "research_contribution": "Author-created exactness contrast; this is the microtopic the repository's exact-rational comparison exists to support.",
@@ -977,6 +994,15 @@
       "classification": "CAPABILITY_LIMIT",
       "description": "POLYNOMIAL_VALUE and POLYNOMIAL_FROM_ROOTS take a list of coefficients, but the engine binds one datum per variable, so those families cannot yet be bound from the library.",
       "next_action": "Extend the binding model to allow a variable to bind an ordered list of data before authoring polynomial buckets."
+    },
+    {
+      "id": "ISS-MATH-EXIT-DATA",
+      "affected_refs": [
+        "MIC-MATH-EQUIVALENT-OPS"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The exit task poses a case whose coefficients are not declared as data records, so no validator can be bound to its answer. The answer is author-checked only, while the worked question's answer is machine-checked.",
+      "next_action": "Declare the exit case's values as data records and bind the exit oracle to them, as the worked question already does."
     }
   ],
   "extensions": {

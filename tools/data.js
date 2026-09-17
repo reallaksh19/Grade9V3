@@ -299,6 +299,9 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISS-MATH-LIST-BINDING"
                 }
               },
               "prerequisites": [
@@ -354,6 +357,9 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISS-MATH-EXIT-DATA"
                 }
               },
               "prerequisites": [
@@ -411,6 +417,17 @@ window.GRADE9V3 = {
                   ],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "LINEAR_EQUATION",
+                    "domain": "RATIONAL",
+                    "bindings": {
+                      "a": "DAT-MATH-A",
+                      "b": "DAT-MATH-B",
+                      "c": "DAT-MATH-C"
+                    }
+                  }
                 }
               },
               "prerequisites": [
@@ -807,6 +824,9 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISS-REL-EXIT-DATA"
                 }
               },
               "prerequisites": [
@@ -867,6 +887,9 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task asks why one shared interval is required. Its answer is a justification of the derivation, not a value computed from data."
                 }
               },
               "prerequisites": [
@@ -921,6 +944,9 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer is a direction and a statement that magnitude is unchanged. No subject validator returns a compass direction, so there is no value here for an oracle to compare."
                 }
               },
               "prerequisites": [
@@ -978,6 +1004,9 @@ window.GRADE9V3 = {
                   ],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This microtopic states where the relation stops applying; its exit answer names two boundary conditions and asserts no computed value."
                 }
               },
               "prerequisites": [
@@ -1213,6 +1242,15 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "SPEED_FROM_COMPONENTS",
+                    "bindings": {
+                      "vx": "DAT-W-X",
+                      "vy": "DAT-W-Y"
+                    }
+                  }
                 }
               },
               "prerequisites": [
@@ -1267,6 +1305,9 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "held_by": "ISS-VEC-EXIT-DATA"
                 }
               },
               "prerequisites": [
@@ -1332,6 +1373,15 @@ window.GRADE9V3 = {
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "SPEED_FROM_COMPONENTS",
+                    "bindings": {
+                      "vx": "DAT-PQ-X",
+                      "vy": "DAT-PQ-Y"
+                    }
+                  }
                 }
               },
               "prerequisites": [

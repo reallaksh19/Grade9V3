@@ -92,6 +92,16 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
     for package, path in zip(packages, paths):
         report = intake_check(package)
         findings += [f"{path.name}: {f['point']}: {f['detail']}" for f in report["findings"]]
+    catalogue = {entry["id"] for entry in
+                 load(subject / "adapter/CoreContracts.json").get("validator_catalogue", [])}
+    for package, path in zip(packages, paths):
+        for row in package.get("microtopics", []):
+            named = ((row.get("exit_task") or {}).get("oracle") or {}) \
+                .get("verification", {}).get("validator_id")
+            if named and named not in catalogue:
+                findings.append(f'{path.name}: {row["id"]}: exit oracle names validator '
+                                f'{named}, which this subject does not declare')
+
     # Subject truth is the gate's. A library copy that disagrees with its owner is
     # two authorities for one claim, so it is checked here rather than at publish time.
     for row in authority_audit(subject)["packages"]:

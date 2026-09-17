@@ -333,6 +333,9 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-REL-EXIT-DATA"
         }
       },
       "research_contribution": "CBSE Advanced motivates observer dependence; the same-time vector-path derivation is author-created and needs scientific review.",
@@ -427,6 +430,9 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task asks why one shared interval is required. Its answer is a justification of the derivation, not a value computed from data."
         }
       },
       "research_contribution": "The library externalizes a commonly skipped derivation; source-level independent reconciliation remains pending, not claimed complete by this record.",
@@ -511,6 +517,9 @@
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer is a direction and a statement that magnitude is unchanged. No subject validator returns a compass direction, so there is no value here for an oracle to compare."
         }
       },
       "research_contribution": "Graphical vector operations are source-supported; PhET is a candidate exploration route, not executed evidence. The reverse-then-add construction (GC-1/GC-2) reuses MIC-GRAPHICAL-SUBTRACTION (BUCKET-VECTOR-REPRESENTATION, V3B-Vector-Representation-Library-Seed.json) rather than re-deriving vector subtraction here; this is the added prerequisite edge below.",
@@ -1022,6 +1031,15 @@
       "classification": "CAPABILITY_LIMIT",
       "description": "Representation specification only; no final-size rendered asset or learner book.",
       "next_action": "Produce, bind and inspect actual diagrams/pages during the stress run."
+    },
+    {
+      "id": "ISS-REL-EXIT-DATA",
+      "affected_refs": [
+        "MIC-SAME-TIME"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The exit task states relative positions, but no position data records are declared and no position validator exists for this subject, so its answer has no oracle.",
+      "next_action": "Declare position data and add a position validator to the subject contract, or record that the answer stays author-checked."
     }
   ],
   "extensions": {
