@@ -16,7 +16,7 @@
     "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:f85dafb3299a8a7e0d425ee140dd9e706fff7720ad1f5d1e73a517129a7b3a42",
+  "digest": "sha256:29ca3e1e0212e808b0ce9cde45f1d26b6279ba0ae160bbc3e85b38205d4420de",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -295,8 +295,8 @@
       "path": "tests/test_convention_delivery.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3246,
-      "sha256": "042be5dc4e4aca48bd9e4695eb8b5143df9b442e39ac8f8477a9123fdb0e4985"
+      "bytes": 3544,
+      "sha256": "3c9f1e51a5d85c453cf0997e8a02693e56e13cc44636797b98d4a739e8408571"
     },
     {
       "path": "tests/test_gates.py",
