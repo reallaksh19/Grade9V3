@@ -15,7 +15,7 @@ sys.path.insert(0, str(REPO))
 from Physics.adapter import load as load_physics  # noqa: E402
 from Shared.contracts import ContractError, join  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
-from Shared.library import authority, intake, substance  # noqa: E402
+from Shared.library import authority, differentiation, intake, substance  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 from Shared.library.promote import audit, promote  # noqa: E402
 from Shared.library.resolve import (  # noqa: E402
@@ -705,3 +705,83 @@ class FieldsAddedMustCarryWhatTheyPromise(unittest.TestCase):
         self.assertFalse(report["admitted"])
         self.assertTrue(any(f["point"] == "ELICITATION" for f in report["findings"]),
                         report["findings"])
+
+
+class BMustDemandWorkADoesNot(unittest.TestCase):
+    """The A/B rule, made mechanical -- and proven against the product that fails it.
+
+    The check that matters is the last one: today's Core1B, the Core1A-plus-eight-lines
+    one, must be refused. A gate that would have passed the product it was built to
+    catch proves nothing, so that assertion is written before the product is fixed and
+    is expected to be inverted by R2 -- at which point this class keeps the old shape
+    as a constructed fixture rather than as the live output.
+    """
+
+    def compiled(self):
+        return compile_bucket(math_records(), BUCKET_MATH, topic_id="T", title="T",
+                              subject="Mathematics",
+                              practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"})
+
+    def b_unit(self, plan, core="CORE1B"):
+        return next(p for p in plan["products"] if p["core"] == core)["units"][0]
+
+    def test_todays_core1b_is_refused(self):
+        report = differentiation.audit(self.compiled()["plan"])
+        self.assertFalse(report["differentiated"],
+                         "the product this check exists to catch would have passed it")
+        points = {f["point"] for f in report["findings"]}
+        self.assertEqual(points, {"OBLIGATION_WITHOUT_ELICITATION"},
+                         "every microtopic is covered with no commitment asked of the learner")
+
+    def test_a_reveal_naming_no_prompt_is_refused(self):
+        plan = self.compiled()["plan"]
+        unit = self.b_unit(plan)
+        unit["blocks"].append({**unit["blocks"][0], "id": "B-REVEAL", "placement": "ELICITED_REVEAL",
+                               "reveals_block_id": "B-PROMPT-THAT-DOES-NOT-EXIST"})
+        self.assertIn("REVEAL_WITHOUT_PROMPT",
+                      {f["point"] for f in differentiation.findings(plan)})
+
+    def test_a_reveal_placed_before_its_prompt_is_refused(self):
+        plan = self.compiled()["plan"]
+        unit = self.b_unit(plan)
+        prompt = unit["blocks"][-1]
+        unit["blocks"].insert(0, {**prompt, "id": "B-REVEAL", "text": "Because the sides differ.",
+                                  "placement": "ELICITED_REVEAL", "reveals_block_id": prompt["id"]})
+        self.assertIn("REVEAL_BEFORE_PROMPT",
+                      {f["point"] for f in differentiation.findings(plan)})
+
+    def test_a_prompt_that_already_contains_its_own_answer_is_refused(self):
+        # Today's defect in miniature: the prediction and the thing it predicts, in one
+        # block, so a learner reads the answer while reading the question.
+        plan = self.compiled()["plan"]
+        unit = self.b_unit(plan)
+        prompt = dict(unit["blocks"][0])
+        prompt["id"], prompt["text"] = "B-PROMPT", "Does x = 2 satisfy it? No: the sides differ."
+        unit["blocks"] = [prompt, {**prompt, "id": "B-REVEAL", "text": "No: the sides differ.",
+                                   "placement": "ELICITED_REVEAL", "reveals_block_id": "B-PROMPT"}]
+        self.assertIn("PROMPT_ANSWERED_IN_PLACE",
+                      {f["point"] for f in differentiation.findings(plan)})
+
+    def test_dropping_a_concept_from_b_is_refused(self):
+        # The one resolution the spec names and forbids: solving the authoring problem
+        # by eliciting less than the A product constructs.
+        plan = self.compiled()["plan"]
+        unit = self.b_unit(plan)
+        unit["blocks"] = [b for b in unit["blocks"]
+                          if "OB-MIC-MATH-EXACT-SOLUTION" not in b.get("obligation_ids", [])]
+        found = [f for f in differentiation.findings(plan) if f["point"] == "COVERAGE_BELOW_A"]
+        self.assertEqual([f["block"] for f in found], ["OB-MIC-MATH-EXACT-SOLUTION"])
+
+    def test_repetition_between_a_and_b_is_not_itself_a_finding(self):
+        # The invariants say a shared anchor may recur and that similarity is a review
+        # trigger, not a verdict. A gate that flagged a B product for quoting its own
+        # governing relation would train authors to paraphrase equations.
+        plan = self.compiled()["plan"]
+        a_unit = self.b_unit(plan, "CORE1A")
+        unit = self.b_unit(plan)
+        prompt = {**unit["blocks"][0], "id": "B-PROMPT", "text": a_unit["blocks"][0]["text"]}
+        unit["blocks"] = [prompt, {**prompt, "id": "B-REVEAL", "text": "A different sentence.",
+                                   "placement": "ELICITED_REVEAL", "reveals_block_id": "B-PROMPT"}]
+        points = {f["point"] for f in differentiation.findings(plan)}
+        self.assertNotIn("PROMPT_ANSWERED_IN_PLACE", points)
+        self.assertNotIn("OBLIGATION_WITHOUT_ELICITATION", points)

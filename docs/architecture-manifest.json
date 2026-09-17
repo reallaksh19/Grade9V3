@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 47,
-  "relation_count": 70,
+  "component_count": 48,
+  "relation_count": 71,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 8,
+    "LIBRARY": 9,
     "TEST": 6,
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:1119ccc4e9097c295bc82cd9c7f9fbae36561960c1cc106169ef33e33fa6f75e",
+  "digest": "sha256:7d5f0c941b580b1ca344973660cdd5b6141de1d5c1c74b901df3cb516129d276",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -45,6 +45,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 26571,
       "sha256": "9b97e38903fe9b460a6cf4adaa8a3c5f723f013b7cb0a967229525c2b8b99983"
+    },
+    {
+      "path": "Shared/library/differentiation.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 5181,
+      "sha256": "d5477dd1957c765e6e10b5c5627beb08f3d2a0b1e13873c09d90b6f449c7277b"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -288,8 +295,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 37643,
-      "sha256": "01e1a8ef7d7773bccd79bd0df91525f77c401804d36df4608c69f4ae7a10be32"
+      "bytes": 42308,
+      "sha256": "b1ac6beec8e8e3363631f30c926f33da97f453422d0aa1deccbf85d3123c9dab"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -367,6 +374,11 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/differentiation.py",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
