@@ -74,3 +74,27 @@ Stated as a limit of the tool, not excused: it looks for the authored value in t
 | R3.4 | `FREE_BODY_DIAGRAM` | R4.0 |
 
 R3.3's exit condition is that its report independently names `VECTOR_SUBTRACTION` as highest-value and `FREE_BODY_DIAGRAM` as zero-value until R4.0 lands — reproducing what had to be measured by hand to write this document.
+
+## Measured after R1.5, R3.1, R1.6 and R3.3
+
+### R1.6 — the compiler drops nothing
+
+`NOT_DELIVERED` is 0. 37 paths remain `UNAUTHORED`, named on every run.
+
+The enforcement line is drawn between them deliberately: a compiler that drops content somebody wrote is a defect and always will be, while content nobody has written yet is a backlog — and a backlog that fails the build gets the build switched off rather than the backlog closed.
+
+Two markers were needed because the `requires` block could not say what it meant. `[author]` marks a requirement held for a reviewer and not for a learner; `[derived]` marks one the learner does receive in a form the value-presence check cannot recognise. Inferring either in the tool would have been the tool deciding what the spec meant.
+
+**A correction to R1.5's own numbers.** Its walker stopped at a container, so a full `question.hints[]` read `UNAUTHORED`. Seven paths were counted as unwritten with the content sitting inside them — the backlog was smaller than reported.
+
+### R3.3 — and the answer is "none of them"
+
+| Subject | Unbuilt kinds with a representation waiting |
+|---|---:|
+| Physics | 0 |
+| Mathematics | 0 |
+| Chemistry | 0 |
+
+R3.1 closed every `FIGURE_AUTHORING`, so **no proposed renderer has any content waiting on it.** Which renderer is worth building next is decided by what R4.0 imports, not by the roadmap's list order — and one built now could only be proven against a hand-authored fixture, which the figure layer refuses.
+
+The ranking is counted from the records rather than from bucket slices. The first version used slices and swallowed the ones that would not resolve, so a kind could read "nothing waiting" because the library would not resolve rather than because nothing needed it. Those are opposite answers and a ranking cannot be read if they look the same; buckets that will not slice are now named instead of dropped.

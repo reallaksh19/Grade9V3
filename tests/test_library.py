@@ -1180,3 +1180,46 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
                                       depiction.relation_symbols(records, record))
                         self.assertTrue(bridge["in_words"].strip())
         self.assertGreater(bridges, 0, "nothing is bridged, so this asserts nothing")
+
+    def test_no_unbuilt_kind_has_anything_waiting_on_it_today(self):
+        """The result, and it is a finding rather than a formality.
+
+        R3.1 closed every FIGURE_AUTHORING, so no PROPOSED kind has a representation
+        waiting. Which renderer is worth building next is therefore decided by what the
+        next import brings in, not by the roadmap's list order -- and a renderer built
+        now could only be proven against a hand-authored fixture, which the figure layer
+        refuses.
+        """
+        for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):
+            report = depiction.audit(path.parent.parent)
+            with self.subTest(subject=report["subject"]):
+                self.assertEqual(report["next_renderers"], [])
+
+    def test_the_report_ranks_by_what_is_waiting_not_by_name(self):
+        # Reproduces, on a fixture, the judgement that had to be made by hand to choose
+        # R3.1's renderer: two representations declared VECTOR_SUBTRACTION and held no
+        # scene, and FREE_BODY_DIAGRAM -- first on the roadmap's list -- had nothing.
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Subject"
+            (root / "adapter").mkdir(parents=True)
+            (root / "library").mkdir()
+            (root / "adapter/CoreContracts.json").write_text(json.dumps({
+                "representation_kinds": [{"id": "FREE_BODY_DIAGRAM", "status": "PROPOSED"},
+                                         {"id": "VECTOR_SUBTRACTION", "status": "PROPOSED"}]}),
+                encoding="utf-8")
+            package = json.loads((REPO / "Physics/library/relative-motion.v1.json")
+                                 .read_text(encoding="utf-8"))
+            for record in package["representations"]:
+                record["kind"], record["scene_instances"] = "VECTOR_SUBTRACTION", []
+            (root / "library/p.json").write_text(json.dumps(package), encoding="utf-8")
+            ranked = depiction.priority(root)
+        self.assertEqual(ranked[0]["kind"], "VECTOR_SUBTRACTION")
+        self.assertGreater(ranked[0]["representations_waiting"], 0)
+        self.assertEqual([r["representations_waiting"] for r in ranked
+                          if r["kind"] == "FREE_BODY_DIAGRAM"], [0])
+
+    def test_a_kind_with_a_drawn_scene_is_not_counted_as_waiting(self):
+        # Waiting means a representation that declares the kind and cannot be drawn.
+        # Counting one that already has a scene would rank a finished renderer first.
+        ranked = {r["kind"]: r for r in depiction.priority(REPO / "Mathematics")}
+        self.assertEqual(ranked["NUMBER_LINE"]["representations_waiting"], 0)

@@ -16,7 +16,7 @@
     "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:c2fb64e85de43144740a270b9f8a6d50b753812f0aabe89bd6da41953f0fdda1",
+  "digest": "sha256:e6b77168faa06d8496af7179fd44453f431c29dac5983ac22f2f4f01049c70a8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -50,8 +50,8 @@
       "path": "Shared/library/depiction.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 6864,
-      "sha256": "c402c34790ffca3c45685eaa1c1f20e7cabc0e76ddd40c17d00763d8a75e8bb4"
+      "bytes": 10471,
+      "sha256": "8f610bb2780f9fbd8ebbf8d3a150aa99e4a7fc7645c3e4ea360b720e642424f0"
     },
     {
       "path": "Shared/library/differentiation.py",
@@ -309,8 +309,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 66909,
-      "sha256": "33d3e7cd49d76c98f0d3860e122f3b95398fc5a94c2b0315404f1fd51c022c15"
+      "bytes": 69583,
+      "sha256": "2dbdb27154a8ac26fb916b241a50636d8adc0598b832be75890f21e54e24385f"
     },
     {
       "path": "tests/test_mathematics.py",
