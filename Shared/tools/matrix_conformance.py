@@ -15,9 +15,9 @@ Two rules make that safe, and they are the A4 discipline applied to a new layer.
                         for one claim, and the two will drift.
 
 Everything else checked here is internal consistency the schema cannot express: the
-ladder is ordered and its positions unique, a phase's hold is stated, a transfer row
-names a rung that exists, and a dimension is one the subject already declares rather
-than a fifth spelling of four things.
+ladder is ordered and its positions unique, a rung nothing teaches still says what it is,
+a phase's hold is stated, a transfer row names a rung that exists, and a dimension is one
+the subject already declares rather than a fifth spelling of four things.
 """
 from __future__ import annotations
 
@@ -89,6 +89,26 @@ def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
         if row["provenance"] == "ABSENT" and ref and ref in mics:
             fail("PROVENANCE_DISAGREES_WITH_LIBRARY", rung,
                  f"claims ABSENT while the library holds {ref}")
+
+        # The complement of MATRIX_RESTATES_THE_RECORD, and the hole it left. Where a
+        # record exists it owns these four; where none does, the matrix is the only place
+        # they can be. A row carrying a position and nothing else passed every check above
+        # and compiled a brief reading "Rung R1: (from the record)" -- pointing at a record
+        # the same row says is absent.
+        if ref not in mics and row["provenance"] in ("SYNTHESIS", "ABSENT"):
+            if not str(row.get("aha", "")).strip():
+                fail("RUNG_NAMES_NO_JUMP", rung,
+                     "nothing teaches this rung and the row does not say what it is; a "
+                     "hole in the ladder must be visible, and a bare position is not")
+            if row["provenance"] == "SYNTHESIS":
+                # ABSENT may stop at naming the hole -- saying more would be invention.
+                # SYNTHESIS claims the row was constructed, so it is the only copy there
+                # is and an authoring brief has nowhere else to read these from.
+                missing = [field for field in RECORD_OWNED[1:] if not row.get(field)]
+                if missing:
+                    fail("SYNTHESIS_INCOMPLETE", rung,
+                         f'claims construction but carries no {", ".join(missing)}; mark '
+                         f"it ABSENT rather than inventing the rest")
 
         for phase in row.get("controlled_variation", []):
             if not str(phase.get("hold", "")).strip():

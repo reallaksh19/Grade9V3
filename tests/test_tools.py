@@ -721,6 +721,28 @@ class MatrixConformance(unittest.TestCase):
                 information_not_handed_over=b["transfer"][0]["changed_demand"])),
             ["WITHHELD_RESTATES_THE_DEMAND"])
 
+    def test_a_rung_nothing_teaches_must_still_say_what_it_is(self):
+        # The hole the restatement rule left. A row with a position and nothing else
+        # passed every other check and compiled a brief reading "(from the record)",
+        # naming a record the same row says does not exist.
+        self.assertEqual(self.plant(lambda b: b["rungs"][0].pop("aha")),
+                         ["RUNG_NAMES_NO_JUMP"])
+
+    def test_a_constructed_rung_carries_what_no_record_holds_for_it(self):
+        self.assertEqual(self.plant(lambda b: b["rungs"][0].pop("closure")),
+                         ["SYNTHESIS_INCOMPLETE"])
+
+    def test_absent_may_name_the_hole_and_stop(self):
+        # ABSENT is the honest answer when the rung cannot be constructed. Demanding a
+        # misconception and an exit task for it would be demanding invention, which is
+        # the failure every gate here exists to prevent.
+        def strip(board):
+            row = board["rungs"][0]
+            row["provenance"] = "ABSENT"
+            for field in ("learner_owns", "misconception", "closure"):
+                row.pop(field)
+        self.assertEqual(self.plant(strip), [])
+
     def test_every_transfer_row_carries_all_four_parts(self):
         for row in self.board()["transfer"]:
             with self.subTest(dimension=row["dimension"]):
