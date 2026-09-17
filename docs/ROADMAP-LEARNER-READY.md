@@ -112,9 +112,9 @@ Cheap, global, and inherited by every phase after, so first:
 
 - **Sentence joins.** A `join()` companion to `sentence()` in `Shared/contracts.py`: when the compiler embeds an authored sentence after a lead-in, the embedded sentence's initial capital is lowered unless it opens with a symbol, a numeral or a proper noun the library marks as such. Falsifier: *"This gives For x = 2"* is refused.
 - **Figure placement.** `_figure_blocks` emits each figure immediately after the microtopic block it is bound to, not after all of them. The obligation binding already says which microtopic; the order is the only change.
-- **Label collision on the number line.** The lifted mark's label overlaps the axis mark's label at the sizes rendered; the tier step is too small for two lines of text.
+- ~~Label collision on the number line.~~ **Retracted.** Claimed from a screenshot, then measured against the rendered SVG: no two labels share a row, and nothing extends outside the frame. The figure is correct as drawn. R0 is two items, not three.
 
-**Exit evidence:** the committed Physics run's learner-visible bytes are unchanged (its plan was hand-authored and has no joins); the Mathematics bucket's pages have no mid-sentence capital and every figure follows its microtopic. `republish.py --write` reports the change and it is accepted explicitly.
+**Exit evidence:** the committed Physics run's learner-visible bytes are unchanged (its plan was hand-authored and has no joins); the Mathematics bucket's pages have no sentence embedded mid-sentence and every figure follows its microtopic. `republish.py --write` reports the change and it is accepted explicitly.
 
 ### R1 — Close the specs against the schema
 
