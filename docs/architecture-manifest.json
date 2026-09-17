@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 42,
-  "relation_count": 58,
+  "component_count": 43,
+  "relation_count": 60,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 6,
+    "LIBRARY": 7,
     "TEST": 5,
     "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:5bc42c2713ee67fcbae69f57ac6cd06e3b30be21ab1d67a1251dfe0bef9c44e4",
+  "digest": "sha256:4731ebf14d436775d7cbcc57d83140864931745eeb51acf7d7eb78951744d315",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -31,6 +31,13 @@
       "role_description": "Technical gate schema and validator",
       "bytes": 9530,
       "sha256": "d7212459a5c37d11a04e685488b4ab5ee50f5076eebb897445012be92e26efcf"
+    },
+    {
+      "path": "Shared/library/authority.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 5208,
+      "sha256": "099a75ec8b56e2cde1efb9bc592530f4764074e13e970a654800f743d20c8b55"
     },
     {
       "path": "Shared/library/compile_inputs.py",
@@ -50,8 +57,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 49434,
-      "sha256": "5432cafb6446b0aea87f87e2b0201ba7a85ef919bc63b08702daa22c0743b6bf"
+      "bytes": 49785,
+      "sha256": "a7adc69aed24b56aebcccea1f1f576e831f326b979b8be6a2603b57847e490c0"
     },
     {
       "path": "Shared/library/promote.py",
@@ -64,8 +71,8 @@
       "path": "Shared/library/resolve.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 7241,
-      "sha256": "fffc4d27ee412f72e034e9e4f94c23a4a7b0aac28bf36de5c505d7909c202c06"
+      "bytes": 7568,
+      "sha256": "83a9265a7c9d8203d9ea1d33be4e240cb15cdb470a1ba581cdee27e9ad7041ca"
     },
     {
       "path": "Shared/library/substance.py",
@@ -218,8 +225,8 @@
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5260,
-      "sha256": "00d79c449695422a16b6ace19270e18e9cea517cac837aa7c8d9f5dcddeaa577"
+      "bytes": 5692,
+      "sha256": "bdeb0803f7bc4ebc75776629554178f2a2c560deac621b664cdc433cc479e99f"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -253,8 +260,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14237,
-      "sha256": "21b5c648625e53f7b97cf4796fece58998920c7c85c227f79b67e7798a7c5c20"
+      "bytes": 18471,
+      "sha256": "c18199e546028196d23d10765d72347343a8cd3a07cf0afb79abb57d212a8538"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -288,8 +295,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 64574,
-      "sha256": "e9bb1c4d1c9e2e343af933a7eff21f9a7fb6bee14ad2bb3e5f470c7339d8de13"
+      "bytes": 65494,
+      "sha256": "a47959baaf8b22ee4645449263a60410aab1c2e6be4e3cc9fc425e75902115a9"
     },
     {
       "path": "tools/index.html",
@@ -316,6 +323,11 @@
   "relations": [
     {
       "from": "Shared/gates/validate.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/authority.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
@@ -447,6 +459,11 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.authority",
       "kind": "IMPORTS"
     },
     {

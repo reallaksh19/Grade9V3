@@ -421,11 +421,12 @@ window.GRADE9V3 = {
           "relations": [
             {
               "id": "REL-MATH-EXACTNESS",
-              "expression": "x exact satisfies a*x + b = c exactly; a truncation of x does not",
+              "expression": "x exact  =>  a*x + b = c holds exactly",
               "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
               "conditions": [
-                "The residue may be small, but it is not zero.",
-                "Rounding is a presentation choice made after the mathematics, never during it."
+                "Substituting a truncated decimal does not satisfy the statement exactly.",
+                "Rounding is a presentation choice made after the mathematics, never during it.",
+                "The residue may be small, but it is not zero."
               ]
             },
             {
@@ -433,6 +434,8 @@ window.GRADE9V3 = {
               "expression": "a*x + b = c  =>  x = (c - b)/a,  a != 0",
               "meaning": "Subtracting b and dividing by a non-zero a isolates the unknown using reversible operations, so the solution set is unchanged.",
               "conditions": [
+                "a is non-zero; if a = 0 the statement is either never true or always true.",
+                "Both operations are reversible, which is why the solution set is preserved.",
                 "a is non-zero; if a is zero the statement is either never true or always true.",
                 "Both operations are reversible, which is what preserves the solution set.",
                 "The declared domain is the rationals."
@@ -985,9 +988,12 @@ window.GRADE9V3 = {
           "relations": [
             {
               "id": "REL-RELATIVE-POSITION",
-              "expression": "r_A/B(t) = r_A(t) - r_B(t)",
+              "expression": "r_A/B = r_A - r_B",
               "meaning": "The displacement from B to A is what remains after subtracting the common-origin position of B.",
               "conditions": [
+                "Both positions are taken at the same instant.",
+                "Axes are parallel and non-rotating.",
+                "Positions at different instants do not define this quantity.",
                 "Use the same observation times and a common time interval.",
                 "Express all vectors along parallel, nonrotating Cartesian axes.",
                 "Use a classical kinematic model; do not apply relativistic velocity addition."
@@ -998,6 +1004,10 @@ window.GRADE9V3 = {
               "expression": "v_A/B = v_A - v_B",
               "meaning": "For constant velocities, relative position changes at the difference of their common-frame velocity vectors; the same finite-interval derivation also gives average relative velocity.",
               "conditions": [
+                "Same observation times and one common interval.",
+                "Parallel, non-rotating Cartesian axes.",
+                "Classical speeds; relativistic velocity addition does not apply.",
+                "A finite-interval average is not automatically an instantaneous velocity when motion varies.",
                 "Use the same observation times and a common time interval.",
                 "Express all vectors along parallel, nonrotating Cartesian axes.",
                 "Use a classical kinematic model; do not apply relativistic velocity addition."
@@ -1009,6 +1019,7 @@ window.GRADE9V3 = {
               "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
               "conditions": [
                 "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
                 "Free vectors may be translated without rotation for the graphical construction."
               ]
             }
@@ -1336,6 +1347,7 @@ window.GRADE9V3 = {
               "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
               "conditions": [
                 "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
                 "Free vectors may be translated without rotation for the graphical construction."
               ]
             }

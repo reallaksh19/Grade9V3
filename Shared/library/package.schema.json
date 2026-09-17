@@ -1066,6 +1066,11 @@
           "type": "string",
           "minLength": 1,
           "description": "Restricted presentation MathML for this relation, so a product can render it without re-authoring."
+        },
+        "gate_relation_ref": {
+          "description": "The engineering gate relation this is a bound copy of. Subject truth is owned by the gate registry; the library holds a copy so the compiler can reach it, and that copy is checked against the owner.",
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
@@ -1081,7 +1086,8 @@
         "conditions",
         "derivation",
         "limits",
-        "checks"
+        "checks",
+        "gate_relation_ref"
       ]
     },
     "representation": {

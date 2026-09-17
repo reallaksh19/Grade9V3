@@ -47,6 +47,12 @@ def build_index(packages: list[dict]) -> dict:
     return records
 
 
+# References that deliberately leave the library. A gate relation is owned by the
+# engineering registry, so resolving it against library records would report every
+# correctly bound relation as a dangling reference.
+EXTERNAL_REF_KEYS = {"gate_relation_ref"}
+
+
 def references(value, path: str = "") -> list[tuple[str, str]]:
     """Every internal-looking reference in a record, as (field path, id)."""
     found: list[tuple[str, str]] = []
@@ -55,6 +61,8 @@ def references(value, path: str = "") -> list[tuple[str, str]]:
             if key.startswith("_"):
                 continue
             here = f"{path}.{key}"
+            if key in EXTERNAL_REF_KEYS:
+                continue
             if key.endswith("_ref") or key == "bucket_id":
                 if isinstance(item, str) and INTERNAL_ID.match(item):
                     found.append((here, item))

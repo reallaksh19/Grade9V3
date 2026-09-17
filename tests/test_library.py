@@ -13,7 +13,7 @@ sys.path.insert(0, str(REPO))
 from Physics.adapter import load as load_physics  # noqa: E402
 from Shared.contracts import ContractError  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
-from Shared.library import intake, substance  # noqa: E402
+from Shared.library import authority, intake, substance  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 from Shared.library.promote import audit, promote  # noqa: E402
 from Shared.library.resolve import (  # noqa: E402
@@ -279,3 +279,81 @@ class SubstanceGateRestraint(unittest.TestCase):
             "MIC-A": {"_collection": "microtopics", "teaching_path": [{"action": step}]},
             "REL-A": {"_collection": "relations", "derivation": [step]}})
         self.assertEqual(found, [], "duplication is only compared between peers")
+
+
+class GateAuthorityOverSubjectTruth(unittest.TestCase):
+    """The gate owns the mathematics. The library carries a bound copy, not a rival one.
+
+    Both layers had authored REL-RELATIVE-POSITION independently, under that one id,
+    with different expressions and different validity conditions -- the gate requiring
+    both positions at the same instant, the library a common time interval. A
+    publication compiled from the library was governed by conditions no gate had
+    authorised. These hold that closed.
+    """
+
+    def _subject(self, name):
+        return REPO / name
+
+    def _package(self, subject):
+        return json.loads(sorted((subject / "library").glob("*.v1.json"))[0].read_text(encoding="utf-8"))
+
+    def test_every_committed_package_agrees_with_the_gates(self):
+        for subject in sorted(REPO.glob("*/adapter/CoreContracts.json")):
+            root = subject.parent.parent
+            if not (root / "gates").is_dir():
+                continue
+            with self.subTest(subject=root.name):
+                self.assertTrue(authority.audit(root)["passed"], authority.audit(root))
+
+    def test_a_relation_stating_subject_truth_with_no_gate_is_caught(self):
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0].pop("gate_relation_ref")
+        package["relations"][0]["expression"] = "q = something no gate declares"
+        found = authority.findings(package, authority.gate_relations(subject))
+        self.assertIn("GATE_RELATION_BINDING_ABSENT", {f["point"] for f in found})
+
+    def test_redeclaring_a_gate_expression_without_binding_is_caught(self):
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0].pop("gate_relation_ref")
+        found = authority.findings(package, authority.gate_relations(subject))
+        self.assertIn("SUBJECT_TRUTH_REDECLARED", {f["point"] for f in found})
+
+    def test_a_copy_that_rewrites_the_gate_expression_is_caught(self):
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0]["expression"] = "r_A/B(t) = r_A(t) - r_B(t)"
+        found = authority.findings(package, authority.gate_relations(subject))
+        self.assertIn("RELATION_EXPRESSION_DIVERGED", {f["point"] for f in found})
+
+    def test_dropping_a_validity_condition_the_gate_requires_is_caught(self):
+        # The dangerous direction: a publication used outside the circumstances
+        # engineering authorised it for.
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0]["conditions"] = package["relations"][0]["conditions"][1:]
+        found = authority.findings(package, authority.gate_relations(subject))
+        self.assertIn("VALIDITY_CONDITION_DROPPED", {f["point"] for f in found})
+
+    def test_narrowing_further_than_the_gate_is_allowed(self):
+        # Teaching a relation in fewer circumstances than it holds is a teaching
+        # decision. Widening would be a claim about the subject, and is what is barred.
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0]["conditions"] = package["relations"][0]["conditions"] + [
+            "Only whole-number component values appear at this level."]
+        self.assertEqual(authority.findings(package, authority.gate_relations(subject)), [])
+
+    def test_binding_to_a_gate_relation_that_does_not_exist_is_caught(self):
+        subject = self._subject("Physics")
+        package = self._package(subject)
+        package["relations"][0]["gate_relation_ref"] = "REL-NO-SUCH-THING"
+        found = authority.findings(package, authority.gate_relations(subject))
+        self.assertIn("GATE_RELATION_UNKNOWN", {f["point"] for f in found})
+
+    def test_a_gate_reference_is_not_treated_as_a_dangling_library_reference(self):
+        # It deliberately points outside the library; resolving it internally would
+        # report every correctly bound relation as unresolved.
+        packages = [json.loads(p.read_text(encoding="utf-8")) for p in PACKAGES]
+        self.assertEqual(unresolved(build_index(packages)), [])

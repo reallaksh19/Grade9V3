@@ -414,6 +414,8 @@
         }
       ],
       "conditions": [
+        "a is non-zero; if a = 0 the statement is either never true or always true.",
+        "Both operations are reversible, which is why the solution set is preserved.",
         "a is non-zero; if a is zero the statement is either never true or always true.",
         "Both operations are reversible, which is what preserves the solution set.",
         "The declared domain is the rationals."
@@ -441,7 +443,8 @@
       "checks": [
         "Substituting the result into the original statement reproduces it exactly.",
         "If c equals b then x is zero."
-      ]
+      ],
+      "gate_relation_ref": "REL-EQ-LINEAR-SOLUTION"
     },
     {
       "id": "REL-MATH-EXACTNESS",
@@ -452,7 +455,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "expression": "x exact satisfies a*x + b = c exactly; a truncation of x does not",
+      "expression": "x exact  =>  a*x + b = c holds exactly",
       "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
       "symbols": [
         {
@@ -467,8 +470,9 @@
         }
       ],
       "conditions": [
-        "The residue may be small, but it is not zero.",
-        "Rounding is a presentation choice made after the mathematics, never during it."
+        "Substituting a truncated decimal does not satisfy the statement exactly.",
+        "Rounding is a presentation choice made after the mathematics, never during it.",
+        "The residue may be small, but it is not zero."
       ],
       "derivation": [
         {
@@ -491,7 +495,8 @@
       ],
       "checks": [
         "A solution whose denominator has a prime factor other than 2 or 5 has no terminating decimal form."
-      ]
+      ],
+      "gate_relation_ref": "REL-EQ-EXACT-VERIFICATION"
     }
   ],
   "representations": [

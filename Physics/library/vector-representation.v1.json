@@ -548,6 +548,7 @@
       ],
       "conditions": [
         "P and Q are expressed along the same declared axes.",
+        "Reversal preserves magnitude and negates every component.",
         "Free vectors may be translated without rotation for the graphical construction."
       ],
       "derivation": [
@@ -573,7 +574,8 @@
         "P - P = 0 for any vector P.",
         "Reversing the order negates the result: Q - P = -(P - Q)."
       ],
-      "mathml": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>"
+      "mathml": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>",
+      "gate_relation_ref": "REL-VEC-SUBTRACTION"
     }
   ],
   "representations": [

@@ -24,6 +24,7 @@ if __package__ in (None, ""):
 
 from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.gates.validate import curriculum_report, validate as validate_gates  # noqa: E402
+from Shared.library.authority import audit as authority_audit  # noqa: E402
 from Shared.library.intake import check as intake_check  # noqa: E402
 from Shared.library.promote import audit as promotion_audit  # noqa: E402
 from Shared.library.resolve import validate_library  # noqa: E402
@@ -91,6 +92,11 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
     for package, path in zip(packages, paths):
         report = intake_check(package)
         findings += [f"{path.name}: {f['point']}: {f['detail']}" for f in report["findings"]]
+    # Subject truth is the gate's. A library copy that disagrees with its owner is
+    # two authorities for one claim, so it is checked here rather than at publish time.
+    for row in authority_audit(subject)["packages"]:
+        findings += [f"{row['package']}: {f['point']}: {f['record']}: {f['detail']}"
+                     for f in row["findings"]]
     for stage in (validate_library, promotion_audit):
         try:
             stage(packages)

@@ -522,7 +522,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "expression": "r_A/B(t) = r_A(t) - r_B(t)",
+      "expression": "r_A/B = r_A - r_B",
       "meaning": "The displacement from B to A is what remains after subtracting the common-origin position of B.",
       "symbols": [
         {
@@ -542,6 +542,9 @@
         }
       ],
       "conditions": [
+        "Both positions are taken at the same instant.",
+        "Axes are parallel and non-rotating.",
+        "Positions at different instants do not define this quantity.",
         "Use the same observation times and a common time interval.",
         "Express all vectors along parallel, nonrotating Cartesian axes.",
         "Use a classical kinematic model; do not apply relativistic velocity addition."
@@ -568,7 +571,8 @@
       "checks": [
         "If A and B occupy the same point, r_A/B is zero.",
         "Reversing A and B reverses the vector."
-      ]
+      ],
+      "gate_relation_ref": "REL-RELATIVE-POSITION"
     },
     {
       "id": "REL-RELATIVE-VELOCITY",
@@ -599,6 +603,10 @@
         }
       ],
       "conditions": [
+        "Same observation times and one common interval.",
+        "Parallel, non-rotating Cartesian axes.",
+        "Classical speeds; relativistic velocity addition does not apply.",
+        "A finite-interval average is not automatically an instantaneous velocity when motion varies.",
         "Use the same observation times and a common time interval.",
         "Express all vectors along parallel, nonrotating Cartesian axes.",
         "Use a classical kinematic model; do not apply relativistic velocity addition."
@@ -644,7 +652,8 @@
         "A stationary observer gives v_A/B = v_A.",
         "Swapping A and B reverses direction."
       ],
-      "mathml": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>"
+      "mathml": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>",
+      "gate_relation_ref": "REL-RELATIVE-VELOCITY"
     }
   ],
   "representations": [
