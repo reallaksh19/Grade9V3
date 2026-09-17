@@ -87,6 +87,59 @@ def gates() -> list[str]:
     return sorted(set(re.findall(r"run: (python3 Shared/[^\n]+)", text)))
 
 
+# The two layers read a percentage differently, and this is where that becomes
+# executable rather than documented. On the teaching side a number can only be a
+# curriculum coordinate, because Core1A/Core1B depth is intrinsic; on the practice side
+# it is a routing input, which is the one place a learner estimate is admissible.
+TEACHING = ("CORE1", "CORE1A", "CORE1B")
+PRACTICE = ("CORE2A", "CORE2B")
+SUPPORT = [(0, "high", "observer named, axes declared, order stated"),
+           (40, "medium", "observer named, axes declared"),
+           (70, "low", "the situation only")]
+
+
+def resolve(board: dict, knowledge: int, core: str) -> tuple[str | None, list[str]]:
+    """Turn a requested percentage into something the named product may legally consume.
+
+    Returns the rung to author and the lines explaining the translation. A percentage is
+    never passed through untranslated: handing one to Core1A is how an existing rung gets
+    taught more gently instead of the missing rung being written.
+    """
+    rungs = sorted(board["rungs"], key=lambda r: r.get("ladder_position", 0))
+    positions = ", ".join(f'{r["rung"]}={r.get("ladder_position")}' for r in rungs)
+
+    if core in PRACTICE:
+        level, handed = next((lvl, h) for floor, lvl, h in reversed(SUPPORT)
+                             if knowledge >= floor)
+        return None, [
+            f"## {knowledge}% read as a routing input", "",
+            f"{core} is one of the two products permitted to consult capability evidence",
+            "or an owner waiver, so this number is legal here -- for routing and support",
+            "only. It may not be used to infer that a prerequisite is mastered.", "",
+            f"  support level : {level}",
+            f"  handed over   : {handed}", "",
+            "All support levels are the same product. Removing help does not create",
+            "transfer: the decision structure is unchanged. Changing it is Core2B.", ""]
+
+    exact = [r for r in rungs if r.get("ladder_position") == knowledge]
+    header = [f"## {knowledge}% read as a ladder position, not a learner estimate", "",
+              f"{core} depth is intrinsic and may not shrink because a learner is",
+              "estimated to know more, so the number cannot be consumed as given. It is",
+              "resolved against this subtopic's ladder instead.", "",
+              f"  ladder : {positions}", ""]
+    if exact:
+        return exact[0]["rung"], header + [f'  resolved : {knowledge}% -> {exact[0]["rung"]}', ""]
+    below = [r for r in rungs if r.get("ladder_position", 0) < knowledge]
+    above = [r for r in rungs if r.get("ladder_position", 0) > knowledge]
+    return None, header + [
+        "## STOP -- no rung sits at this position", "",
+        f'  nearest below : {below[-1]["rung"] if below else "none"}',
+        f'  nearest above : {above[0]["rung"] if above else "none"}', "",
+        "This is a hole in the ladder, not a depth to interpolate. Teaching the rung",
+        "above more gently is the forbidden move; the rung at this position has to be",
+        "written. Add it to the matrix first, with its own aha, ceiling and closure.", ""]
+
+
 def brief(subject: str, bucket_id: str, rung: str, core: str) -> str:
     board = matrix(subject, bucket_id)
     row = next((r for r in board["rungs"] if r["rung"] == rung), None)
@@ -164,10 +217,24 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--subject", required=True)
     parser.add_argument("--bucket", required=True)
-    parser.add_argument("--rung", required=True)
+    parser.add_argument("--rung", help="the rung to author, when it is already known")
+    parser.add_argument("--knowledge", type=int,
+                        help="a requested percentage; translated per layer, never passed "
+                             "through as given")
     parser.add_argument("--core", default="CORE1A")
     args = parser.parse_args()
-    print(brief(args.subject, args.bucket, args.rung, args.core))
+    if (args.rung is None) == (args.knowledge is None):
+        raise SystemExit("give exactly one of --rung or --knowledge")
+
+    rung, preface = args.rung, []
+    if args.knowledge is not None:
+        board = matrix(args.subject, args.bucket)
+        rung, preface = resolve(board, args.knowledge, args.core)
+        if rung is None:
+            print(f'# Authoring brief -- {args.core}, {board["subtopic"]}\n')
+            print("\n".join(preface))
+            return 0
+    print("\n".join(preface + [brief(args.subject, args.bucket, rung, args.core)]))
     return 0
 
 
