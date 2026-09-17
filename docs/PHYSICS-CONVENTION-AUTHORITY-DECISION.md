@@ -12,9 +12,9 @@
 
 Resolve the current `CONVENTION_GAP` without promoting local examples into bucket-wide truth.
 
-The repository schema gives `bucket.conventions[]` one narrow job: hold whatever must be fixed before the bucket's quantities can be read. Core1 and Core1A both require that field, and Core1A requires declared conventions before any dependent quantity is used.
+The package schema gives `bucket.conventions[]` a narrow role: it holds what must be fixed before a bucket's quantities can be read. Core1 and Core1A both require that field, and Core1A requires conventions to be declared before dependent quantities are used.
 
-This analysis therefore separates three different kinds of statement:
+This analysis distinguishes:
 
 ```yaml
 convention_authority:
@@ -28,162 +28,137 @@ convention_authority:
     # Choices an author or learner may make locally and which must not be frozen globally.
 ```
 
-It also separates conventions from model/validity conditions. A statement can be required for a relation to be valid without being a convention.
+A convention is also kept distinct from a model or relation validity condition. Something may have to be true for a relation to apply without being a convention.
 
 ---
 
-## 2. Authority hierarchy used
+## 2. Authority hierarchy
 
 This pass uses only the frozen repository state at the dispatch base.
 
-Highest relevant structural authority:
+Structural authority:
 
 - `Shared/library/package.schema.json`
 - `Shared/roles/CORE1.md`
 - `Shared/roles/CORE1A.md`
 
-Physics semantic authority used for candidate convention wording:
+Physics semantic authority:
 
-- `Physics/gates/motion-vectors.v1.json` (`maturity: ENGINEERING`, author-created, no independent scientific/pedagogical review)
+- `Physics/gates/motion-vectors.v1.json`
 - `Physics/adapter/CoreContracts.json`
 
-Candidate-library evidence used to test whether a statement is global or local:
+Candidate-library evidence used to distinguish bucket-wide truth from local examples:
 
 - `Physics/library/vector-representation.v1.json`
 - `Physics/library/relative-motion.v1.json`
 
-The candidate libraries do not gain higher authority because they contain learner-facing examples.
+The engineering gates remain author-created and not independently scientifically or pedagogically reviewed. This decision does not change that status.
 
 ---
 
 ## 3. Structural finding
 
-`bucket.conventions[]` is optional in the package schema but required by both Core1 and Core1A role contracts.
+`bucket.conventions[]` is optional in the package schema but required by the Core1 and Core1A role contracts.
 
-The schema defines each convention as exactly:
+Each convention has exactly:
 
 ```yaml
 - id:
   statement:
 ```
 
-and describes the collection as the material that must be fixed before bucket quantities can be read.
+The schema describes the collection as what must be fixed before the bucket's quantities can be read.
 
-Therefore the current absence of `bucket.conventions[]` is a real role-contract gap, not merely documentation debt.
-
-However, the field must not be used as a dumping ground for every relation condition, model regime, unit, or representation constraint already housed elsewhere.
+Therefore the missing field is a real role-contract gap. However, it must not become a duplicate home for relation conditions, representation constraints, units, or model assumptions that already have explicit fields elsewhere.
 
 ---
 
-## 4. Vector Foundation — authority analysis
+## 4. `BUCKET-VECTOR-REPRESENTATION`
 
-Target bucket:
+### 4.1 Source-backed authority
 
-`BUCKET-VECTOR-REPRESENTATION`
+The engineering gates establish:
 
-### 4.1 What the engineering gates establish
+- a signed component has meaning only relative to a declared positive axis direction;
+- the positive direction of an axis is a free declaration, not a property of the physical situation;
+- once declared, the axis direction fixes the component sign;
+- one convention is not physically privileged over another;
+- operations on components require a shared declared component basis.
 
-The gates repeatedly establish all of the following:
+The candidate library repeatedly uses east-positive x / north-positive y as a local worked convention, and then deliberately reverses the x convention in `MIC-SIGNED-COMPONENT`. The question-family contract also permits the axis convention to be changed or later chosen by the learner.
 
-1. A signed component has meaning only relative to a declared positive axis direction.
-2. The positive direction of each axis is a free declaration, not a property of the physical situation.
-3. Once an axis direction is declared, it fixes the sign of components measured along that axis.
-4. Vectors compared or combined by the authored relations must be expressed in the same declared frame / axes and compatible units.
-5. The repository explicitly rejects the idea that one axis convention is physically correct while another is wrong.
+Therefore east/north is local instance data, not bucket authority.
 
-### 4.2 What the candidate library establishes
+### 4.2 Final convention recommendation
 
-The library repeatedly uses local examples such as:
-
-- east-positive x / north-positive y,
-- later reversal of x to west-positive,
-- common east/north scenes for subtraction.
-
-The question-family contract explicitly says the axis convention is initially stated and later may be inferred or chosen by the learner. It also permits changing the axis convention within declared assumptions.
-
-Therefore `east-positive x / north-positive y` is an **instance choice**, not a bucket invariant.
-
-### 4.3 Proposed convention set
-
-**DECISION: recommend two bucket conventions for integration.**
+**Decision: recommend one convention item for this bucket.**
 
 ```yaml
 conventions:
   - id: CONV-VEC-AXIS-DECLARATION
     statement: >
       Before any signed component is read, the frame and the positive direction
-      of each axis for that instance are declared. Component signs are read
-      relative to those declared positive directions.
-
-  - id: CONV-VEC-COMMON-COMPONENT-BASIS
-    statement: >
-      Vectors whose components are compared, added, or subtracted within one
-      instance are interpreted in the same declared axes and compatible units.
+      of each axis for that instance are declared. Every signed component used
+      together in that instance is interpreted in that declared component basis.
 ```
 
-### 4.4 Why these are bucket conventions
+This fixes the sign-reading rule and common component basis while preserving the source-backed freedom to choose the actual positive directions locally.
 
-`CONV-VEC-AXIS-DECLARATION` fixes the sign-reading rule while preserving the gate's explicit freedom to choose the positive directions locally.
+### 4.3 Do not promote these local choices
 
-`CONV-VEC-COMMON-COMPONENT-BASIS` fixes the common interpretive basis required before a component comparison or subtraction is meaningful. It does not choose a compass orientation.
-
-### 4.5 Statements that must NOT be promoted into the bucket conventions
-
-Do not add any of the following as global conventions:
+Do **not** add any of the following as bucket conventions:
 
 - `+x = east`
 - `+y = north`
 - "forward is positive"
-- a fixed compass direction for either axis
-- one axis convention is preferred or physically correct
+- one fixed compass orientation
+- any claim that one axis convention is physically correct
 
-These contradict or over-constrain `PHY-VEC-AXIS-CONVENTION`, which explicitly treats positive direction as a free declaration.
+These would contradict the gate `PHY-VEC-AXIS-CONVENTION`.
 
-### 4.6 Statements that stay outside `bucket.conventions[]`
+### 4.4 Keep these outside `bucket.conventions[]`
 
-Keep these in their current semantic homes:
+Retain the following in their current semantic homes:
 
-- axes perpendicular for the magnitude relation → relation condition
-- axes parallel / non-rotating for subtraction construction → relation / gate validity condition
-- classical / non-relativistic regime → model validity / package extension
-- equal coordinate scale → representation requirement
-- exact unit such as `m/s` → symbol/datum/representation unit fields
-- zero vector has no assigned direction → representation / relation boundary condition
+- perpendicular axes for the magnitude relation → relation condition;
+- parallel / non-rotating axes for the subtraction construction → relation or gate validity condition;
+- classical / non-relativistic regime → model validity / package extension;
+- equal coordinate scale → representation requirement;
+- `m/s` and other units → symbol, datum, validator, and representation unit fields;
+- zero-vector direction boundary → representation / relation boundary condition.
 
-Reason: these are not arbitrary interpretive conventions that must be declared before every quantity is read. They are model, relation, representation, or unit constraints with existing homes.
+These are not free declarations whose values are chosen per instance.
 
 ---
 
-## 5. Relative Motion — authority analysis
+## 5. `BUCKET-RELATIVE-MOTION`
 
-Target bucket:
+### 5.1 Source-backed authority
 
-`BUCKET-RELATIVE-MOTION`
+The gates and candidate library consistently establish:
 
-### 5.1 What the engineering gates and library establish
+- source positions and velocities are interpreted in one named common frame;
+- positive axis directions must be declared before signed components are interpreted;
+- the ordered notation `A/B` means the quantity of A relative to B;
+- B is the reference / observer in `A/B`, so the ordered quantity is formed from A minus B;
+- reversing the order names the opposite relative vector.
 
-The repository consistently establishes:
+They also establish several validity conditions: same-time positions, a shared interval for the finite-interval derivation, parallel non-rotating axes, and classical-speed assumptions.
 
-1. Source positions / velocities are expressed in a named common frame.
-2. Signed components require declared axis directions exactly as in the vector-foundation prerequisite.
-3. `A/B` means the quantity of A relative to B; B is the reference / observer and the subtraction order is A minus B.
-4. Swapping the order changes the relative vector's direction / sign.
-5. Same-instant positions, one common interval, parallel non-rotating axes, and classical-speed assumptions are validity conditions for the specific relations.
+Those validity conditions are not conventions.
 
-Local examples frequently use east/north axes, but the gates do not make east/north globally mandatory.
+### 5.2 Final convention recommendation
 
-### 5.2 Proposed convention set
-
-**DECISION: recommend two bucket conventions for integration.**
+**Decision: recommend two convention items for this bucket.**
 
 ```yaml
 conventions:
   - id: CONV-REL-COMMON-FRAME-DECLARATION
     statement: >
-      Before relative position or relative velocity components are read, the
-      common frame and the positive direction of each axis for that instance
-      are declared; all compared source quantities use that same declared
-      component basis.
+      Before relative position or relative velocity components are read, one
+      common frame and the positive direction of each axis for that instance are
+      declared. All source quantities compared in that instance are interpreted
+      in that same declared component basis.
 
   - id: CONV-REL-OBSERVER-ORDER
     statement: >
@@ -192,64 +167,58 @@ conventions:
       order names the opposite relative vector.
 ```
 
-### 5.3 Why observer order is a convention
+### 5.3 Why observer order belongs here
 
-`A/B` is notation whose interpretation must be fixed before the learner can read `r_A/B` or `v_A/B` correctly. The underlying subtraction relation is scientific content; the slash notation and which object is named as reference are an interpretive convention layered on top of that relation.
+The subtraction relation is scientific content. The slash notation and which object the notation identifies as reference are interpretive rules required before `r_A/B` or `v_A/B` can be read correctly.
 
-The convention therefore states the notation/order rule but does not replace the relation definitions or their derivations.
+The convention therefore fixes notation/order semantics without replacing the relation definitions or their derivations.
 
-### 5.4 Statements that must NOT be promoted into the bucket conventions
+### 5.4 Do not promote these local choices
 
-Do not add:
+Do **not** add:
 
 - `+x = east`
 - `+y = north`
 - a fixed compass orientation
 - "B is always the observer" without the `A/B` qualifier
-- "subtract the second thing written in the prose question" as a rule
+- "subtract the second thing written in the prose question"
 
-The observer/reference is determined by the ordered notation / quantity being asked for, not by prose position.
+The reference object follows the ordered quantity, not prose position.
 
-### 5.5 Statements that stay outside `bucket.conventions[]`
+### 5.5 Keep these as validity/model conditions
 
-Keep these as relation/model conditions:
+Do not move these into `bucket.conventions[]`:
 
-- positions must be evaluated at the same instant
-- relative-velocity derivation uses one shared non-zero interval
-- axes must be parallel and non-rotating for the simple model
-- finite-interval average is not automatically instantaneous velocity
-- classical / non-relativistic model
-- rotating-frame cases require additional treatment
+- positions must be evaluated at the same instant;
+- the finite-interval derivation uses one shared non-zero interval;
+- axes must be parallel and non-rotating for the simple relative-motion model;
+- a finite-interval average is not automatically instantaneous velocity;
+- the model is classical / non-relativistic;
+- rotating frames require additional treatment.
 
-These statements govern whether a relation is valid. They are not arbitrary declarations whose value can be chosen locally.
+These determine when the relation is valid, not how an arbitrary sign/reference choice is declared.
 
 ---
 
 ## 6. Cross-bucket relationship
 
-`BUCKET-RELATIVE-MOTION` depends on `BUCKET-VECTOR-REPRESENTATION`, but the current package schema has no convention-reference mechanism.
+`BUCKET-RELATIVE-MOTION` depends on `BUCKET-VECTOR-REPRESENTATION`, but the current package schema has no convention-reference or inheritance field.
 
-Therefore the Relative Motion bucket cannot rely on an implicit inheritance that the library cannot represent.
+Therefore Relative Motion cannot rely on invisible inheritance for a role-required declaration. The recommended Relative Motion convention repeats the minimal frame/axis declaration obligation explicitly.
 
-The recommended integration duplicates the minimal axis/frame declaration obligation in the Relative Motion bucket while keeping the semantics consistent with the vector-foundation convention.
+This is deliberate duplication of a learner-facing declaration requirement, not duplication of the underlying scientific relations.
 
-This is intentional duplication of a role-required declaration, not duplication of scientific relations.
-
-A future schema may support convention references or inherited bucket contracts, but introducing that mechanism is outside this task.
+A future convention-reference mechanism may remove that duplication, but introducing such a schema feature is outside this task.
 
 ---
 
 ## 7. Unit decision
 
-**DECISION: do not create a bucket convention that globally fixes `m/s`.**
+**Decision: do not create a bucket convention fixing `m/s`.**
 
-Rationale:
+Units already have structured homes in symbol records, data atoms, validators, and representation scenes. Adding `m/s` again under bucket conventions would create redundant authority and drift risk.
 
-- units already have explicit structured homes in Physics symbol records, data atoms, validators, and representation scenes;
-- the convention schema is for what must be fixed before quantities can be read, not for duplicating every unit declaration;
-- the authored examples currently use `m/s`, but promoting that example pattern into a separate convention adds redundant authority and creates drift risk.
-
-The existing Core1 requirement that units be visible remains satisfied by the existing unit-bearing fields when Core1 is compiled.
+Core1's unit requirement remains satisfied through those unit-bearing fields.
 
 ---
 
@@ -259,45 +228,36 @@ Both candidate packages carry:
 
 `physics:model_regime: CLASSICAL_PARALLEL_NONROTATING_AXES`
 
-**DECISION: do not copy this string into `bucket.conventions[]`.**
+**Decision: do not copy this into `bucket.conventions[]`.**
 
-Its components are already expressed as relation/gate validity conditions. Treating model regime as a convention would blur two categories:
-
-- a convention is something declared so a quantity can be interpreted;
-- a validity condition is something that must be true for a relation/model to apply.
-
-The distinction should remain explicit.
+A convention is declared so a quantity can be interpreted. A model/validity condition must be true for a relation to apply. The repository should keep those concepts distinct.
 
 ---
 
-## 9. Proposed integration patch shape
+## 9. Integration patch shape
 
-No production patch is made in this analysis branch.
+No production mutation is made on this analysis branch.
 
-If approved, the authority integration patch should add only `conventions` arrays to the two bucket objects, using the exact candidate wording below unless review changes it.
+If approved, the integration patch should add only the following `conventions` arrays to the two bucket records.
 
-### `BUCKET-VECTOR-REPRESENTATION`
+### Vector Foundation
 
 ```json
 "conventions": [
   {
     "id": "CONV-VEC-AXIS-DECLARATION",
-    "statement": "Before any signed component is read, the frame and the positive direction of each axis for that instance are declared. Component signs are read relative to those declared positive directions."
-  },
-  {
-    "id": "CONV-VEC-COMMON-COMPONENT-BASIS",
-    "statement": "Vectors whose components are compared, added, or subtracted within one instance are interpreted in the same declared axes and compatible units."
+    "statement": "Before any signed component is read, the frame and the positive direction of each axis for that instance are declared. Every signed component used together in that instance is interpreted in that declared component basis."
   }
 ]
 ```
 
-### `BUCKET-RELATIVE-MOTION`
+### Relative Motion
 
 ```json
 "conventions": [
   {
     "id": "CONV-REL-COMMON-FRAME-DECLARATION",
-    "statement": "Before relative position or relative velocity components are read, the common frame and the positive direction of each axis for that instance are declared; all compared source quantities use that same declared component basis."
+    "statement": "Before relative position or relative velocity components are read, one common frame and the positive direction of each axis for that instance are declared. All source quantities compared in that instance are interpreted in that same declared component basis."
   },
   {
     "id": "CONV-REL-OBSERVER-ORDER",
@@ -306,26 +266,28 @@ If approved, the authority integration patch should add only `conventions` array
 ]
 ```
 
+No other library field should change in the convention integration patch.
+
 ---
 
 ## 10. Falsifiers before integration
 
 Reject or revise this decision if any of the following is shown from repository evidence:
 
-1. A bucket convention fixes east/north globally despite the axis gate declaring positive direction a free choice.
-2. A convention duplicates a relation condition such as same-time, common-interval, or non-rotating-axis validity merely to fill the field.
-3. The observer-order wording conflicts with any existing `r_A/B` or `v_A/B` relation meaning.
-4. A convention makes a local scene's coordinate choice normative for every instance.
-5. The integration changes any relation, representation, capability, data atom, microtopic, elicitation, question family, curriculum mapping, or provider-review status.
-6. Adding the conventions is described as independent scientific review or curriculum acceptance.
-7. Core1/Core1A are called globally complete solely because `CONVENTION_GAP` is resolved; other known gaps must remain independently visible.
+1. A proposed convention fixes east/north globally despite the axis gate declaring positive direction a free choice.
+2. A convention duplicates same-time, common-interval, non-rotating-axis, or other model validity conditions merely to fill the field.
+3. The observer-order wording conflicts with an existing `r_A/B` or `v_A/B` meaning.
+4. A local representation scene is treated as global bucket authority.
+5. The integration changes a relation, representation, capability, datum, microtopic, elicitation, question family, curriculum mapping, or provider-review status.
+6. Adding conventions is described as independent scientific review or curriculum acceptance.
+7. Core1/Core1A are called globally complete solely because `CONVENTION_GAP` is resolved; every other known gap must remain independently visible.
 
 ---
 
-## 11. Authority status of this decision
+## 11. Decision status
 
 ```yaml
-decision_status: READY_FOR_REVIEW
+decision_status: READY_FOR_INTEGRATION_REVIEW
 source_basis:
   structural:
     - Shared/library/package.schema.json
