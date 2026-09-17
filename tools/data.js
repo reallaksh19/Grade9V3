@@ -5,31 +5,51 @@ window.GRADE9V3 = {
     "Chemistry": {
       "contract": {
         "learner_products": {
-          "CORE1": "EXISTING_BASIC_NOTES",
-          "CORE2": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-          "CORE1A": "DECLARATIVE_STUDY",
-          "CORE1B": "CONCEPTUAL_SELF_TUTOR",
-          "CORE2A": "SOLUTION_APPRENTICESHIP",
-          "CORE2B": "APPLICATION_AND_TRANSFER_TUTOR"
+          "CORE1": {
+            "role": "EXISTING_BASIC_NOTES",
+            "production": "NOT_COMPILED",
+            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+          },
+          "CORE2": {
+            "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
+            "production": "NOT_COMPILED",
+            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+          },
+          "CORE1A": {
+            "role": "DECLARATIVE_STUDY",
+            "production": "COMPILED"
+          },
+          "CORE1B": {
+            "role": "CONCEPTUAL_SELF_TUTOR",
+            "production": "COMPILED"
+          },
+          "CORE2A": {
+            "role": "SOLUTION_APPRENTICESHIP",
+            "production": "COMPILED"
+          },
+          "CORE2B": {
+            "role": "APPLICATION_AND_TRANSFER_TUTOR",
+            "production": "COMPILED"
+          }
         },
         "validator_catalogue": [
           {
             "id": "PARTICLE_ATOM_COUNT",
-            "status": "IMPLEMENTED",
+            "status": "PROPOSED",
             "shape": "ELEMENT_COUNT_MAP",
             "comparison": "EXACT_INTEGER_MAP_EQUALITY",
             "does_not_prove": "That the declared species are the species actually present, or that the amounts are physically achievable."
           },
           {
             "id": "CONSERVATION_LEDGER",
-            "status": "IMPLEMENTED",
+            "status": "PROPOSED",
             "shape": "CONSERVATION_LEDGER",
             "comparison": "EXACT_INTEGER_MAP_EQUALITY",
             "does_not_prove": "That the reaction occurs, that charge or phase are correct, or that the equation represents a real mechanism."
           },
           {
             "id": "REACTION_EXTENT_COUNTS",
-            "status": "IMPLEMENTED",
+            "status": "PROPOSED",
             "shape": "EXTENT_MAP",
             "comparison": "EXACT_INTEGER_MAP_EQUALITY",
             "does_not_prove": "Equilibrium behaviour, rate, yield, or that the reaction goes to completion in reality."
@@ -92,12 +112,32 @@ window.GRADE9V3 = {
     "Mathematics": {
       "contract": {
         "learner_products": {
-          "CORE1": "EXISTING_BASIC_NOTES",
-          "CORE2": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-          "CORE1A": "DECLARATIVE_STUDY",
-          "CORE1B": "CONCEPTUAL_SELF_TUTOR",
-          "CORE2A": "SOLUTION_APPRENTICESHIP",
-          "CORE2B": "APPLICATION_AND_TRANSFER_TUTOR"
+          "CORE1": {
+            "role": "EXISTING_BASIC_NOTES",
+            "production": "NOT_COMPILED",
+            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+          },
+          "CORE2": {
+            "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
+            "production": "NOT_COMPILED",
+            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+          },
+          "CORE1A": {
+            "role": "DECLARATIVE_STUDY",
+            "production": "COMPILED"
+          },
+          "CORE1B": {
+            "role": "CONCEPTUAL_SELF_TUTOR",
+            "production": "COMPILED"
+          },
+          "CORE2A": {
+            "role": "SOLUTION_APPRENTICESHIP",
+            "production": "COMPILED"
+          },
+          "CORE2B": {
+            "role": "APPLICATION_AND_TRANSFER_TUTOR",
+            "production": "COMPILED"
+          }
         },
         "validator_catalogue": [
           {
@@ -530,12 +570,32 @@ window.GRADE9V3 = {
     "Physics": {
       "contract": {
         "learner_products": {
-          "CORE1": "EXISTING_BASIC_NOTES",
-          "CORE2": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
-          "CORE1A": "DECLARATIVE_STUDY",
-          "CORE1B": "CONCEPTUAL_SELF_TUTOR",
-          "CORE2A": "SOLUTION_APPRENTICESHIP",
-          "CORE2B": "APPLICATION_AND_TRANSFER_TUTOR"
+          "CORE1": {
+            "role": "EXISTING_BASIC_NOTES",
+            "production": "NOT_COMPILED",
+            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+          },
+          "CORE2": {
+            "role": "EXISTING_FROZEN_QUESTIONS_AND_HINTS",
+            "production": "NOT_COMPILED",
+            "reason": "The role specification for this product describes content this engine could compile, and the library already holds its inputs. The contract's own role name calls it existing, a leftover from the lineage where it arrived frozen from V2. Which of those two readings is right is an open owner decision; until it is taken, nothing in this repository produces it."
+          },
+          "CORE1A": {
+            "role": "DECLARATIVE_STUDY",
+            "production": "COMPILED"
+          },
+          "CORE1B": {
+            "role": "CONCEPTUAL_SELF_TUTOR",
+            "production": "COMPILED"
+          },
+          "CORE2A": {
+            "role": "SOLUTION_APPRENTICESHIP",
+            "production": "COMPILED"
+          },
+          "CORE2B": {
+            "role": "APPLICATION_AND_TRANSFER_TUTOR",
+            "production": "COMPILED"
+          }
         },
         "validator_catalogue": [
           {

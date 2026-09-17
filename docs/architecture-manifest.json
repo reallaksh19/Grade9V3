@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 46,
-  "relation_count": 67,
+  "relation_count": 68,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 8,
     "WEB": 5
   },
-  "digest": "sha256:a4e8d9575c5727f4b307ba4ea0b15b55b41a44f85c9bd989565e82624abc5c69",
+  "digest": "sha256:9ddbf2148b24eea66adf9a6519d6a2e3e4d94ee7151634a43dcf87e9f8946ece",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -232,15 +232,15 @@
       "path": "Shared/tools/capability_audit.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 4854,
-      "sha256": "d1eeabf5cb5d84056984b60d5ce246659495b269ed95a876d34bb59ac39dd938"
+      "bytes": 5699,
+      "sha256": "69d194c94e48a1740b2cf8eda7587130d1af6f8002910a7e1a63a1bd735237f6"
     },
     {
       "path": "Shared/tools/check_subjects.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 6281,
-      "sha256": "6931b1ae1590613b23c79f0a89480e2418f3945d1aa20187907075bdd181afc8"
+      "bytes": 6535,
+      "sha256": "8ea9ff51953da0cb90df5c8bad865a5fd5ff10b37518e0c5e7d45d07717e6479"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -302,8 +302,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13880,
-      "sha256": "e5db77570e0b989167386305349e30c1aa00d8b640f565996ee2ee65a2a951cd"
+      "bytes": 15383,
+      "sha256": "5050dd1797b8bb9ec605d8dd1c8caed63a23b479f480c436e9f501c12c983ebd"
     },
     {
       "path": "tools/app.css",
@@ -316,8 +316,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 67585,
-      "sha256": "df3b06bb0ae79f95dd443f16a8c95874882b4f9dd3b23640e0d66a7c1df7b88a"
+      "bytes": 71200,
+      "sha256": "4de2c77303f1d0f5b341aeb17c64cf2dc6de19ac14d525e2fa3bcc4ed6a99c2b"
     },
     {
       "path": "tools/index.html",
@@ -520,6 +520,11 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.tools.capability_audit",
       "kind": "IMPORTS"
     },
     {

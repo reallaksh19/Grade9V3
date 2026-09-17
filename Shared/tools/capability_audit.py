@@ -55,13 +55,26 @@ def audit_subject(subject_root: Path) -> dict:
     def fail(point: str, capability: str, detail: str):
         findings.append({"point": point, "capability": capability, "detail": detail})
 
-    # Learner products. There is no status field to hold a "declared but not produced
-    # here" claim, so every product without a producer is reported; deciding which of
-    # them should gain one is not this tool's call.
-    for product in sorted(contract.get("learner_products", {})):
-        if product not in COMPOSABLE:
-            fail("PRODUCT_WITHOUT_PRODUCER", product,
-                 "declared as a learner product, but no compiler path can build it")
+    # A product says whether this repository compiles it. Claiming COMPILED with no
+    # compiler path is the same defect as a validator marked IMPLEMENTED with no code;
+    # saying NOT_COMPILED is honest, and must carry the reason rather than a bare word.
+    for product, declared in sorted(contract.get("learner_products", {}).items()):
+        if not isinstance(declared, dict):
+            fail("PRODUCT_STATUS_ABSENT", product,
+                 "declares no production status, so whether anything builds it cannot be said")
+            continue
+        compiled, buildable = declared.get("production") == "COMPILED", product in COMPOSABLE
+        if compiled and not buildable:
+            fail("CLAIMED_WITHOUT_CODE", product,
+                 "claims to be compiled here, but no compiler path can build it")
+        elif not compiled and buildable:
+            fail("BUILT_BUT_NOT_CLAIMED", product,
+                 f'the compiler builds it while the contract calls it '
+                 f'{declared.get("production")}')
+        elif not compiled and not str(declared.get("reason", "")).strip():
+            fail("PRODUCT_NOT_COMPILED_WITHOUT_REASON", product,
+                 "is not compiled here and says nothing about why, which is the silence "
+                 "this field exists to prevent")
 
     for kind, registered, label in (
             ("validator_catalogue", _module_names(subject, "validator", "VALIDATORS"), "validator"),

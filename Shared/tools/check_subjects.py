@@ -25,6 +25,7 @@ if __package__ in (None, ""):
 from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.gates.validate import curriculum_report, validate as validate_gates  # noqa: E402
 from Shared.library.authority import audit as authority_audit  # noqa: E402
+from Shared.tools.capability_audit import audit_subject as capability_findings  # noqa: E402
 from Shared.library.intake import check as intake_check  # noqa: E402
 from Shared.library.promote import audit as promotion_audit  # noqa: E402
 from Shared.library.resolve import validate_library  # noqa: E402
@@ -120,6 +121,8 @@ def run(repo: Path = REPO) -> dict:
     rows = []
     for subject in found:
         contract_findings = check_contract(subject)
+        contract_findings += [f'{f["point"]}: {f["capability"]}: {f["detail"]}'
+                              for f in capability_findings(subject)["findings"]]
         gate_count, gate_findings = check_gates(subject)
         package_count, library_findings = check_library(subject)
         rows.append({"subject": subject.name,

@@ -229,20 +229,44 @@ class CapabilityClaims(unittest.TestCase):
                     self.assertNotIn(kind["id"], flagged,
                                      "a capability declared as proposed is honest")
 
-    def test_an_implemented_claim_with_no_module_behind_it_is_caught(self):
+    def test_no_contract_in_the_tree_claims_what_nothing_backs(self):
         report = capability_audit.audit()
-        unbacked = {f["capability"] for s in report["subjects"] for f in s["findings"]
-                    if f["point"] == "CLAIMED_WITHOUT_CODE"}
-        self.assertTrue(unbacked, "the audit finds nothing, so it is proving nothing")
+        self.assertTrue(report["passed"], report)
+        self.assertEqual(report["claims_unbacked"], 0)
 
-    def test_a_product_with_no_compiler_path_is_reported_for_every_subject(self):
-        report = capability_audit.audit()
-        for row in report["subjects"]:
-            products = {f["capability"] for f in row["findings"]
-                        if f["point"] == "PRODUCT_WITHOUT_PRODUCER"}
-            declared = set(self._contract(row["subject"])["learner_products"])
-            self.assertEqual(products, declared - set(compile_inputs.COMPOSABLE),
-                             row["subject"])
+    def test_a_product_not_compiled_here_is_honest_rather_than_a_finding(self):
+        # Saying so is the point of the field. What must not pass is saying nothing.
+        for subject in sorted(REPO.glob("*/adapter/CoreContracts.json")):
+            contract = json.loads(subject.read_text(encoding="utf-8"))
+            for product, declared in contract["learner_products"].items():
+                compiled = declared["production"] == "COMPILED"
+                self.assertEqual(compiled, product in compile_inputs.COMPOSABLE, product)
+                if not compiled:
+                    self.assertTrue(declared.get("reason", "").strip(), product)
+
+    def test_claiming_a_product_is_compiled_when_nothing_builds_it_is_caught(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            shutil.copytree(REPO / "Mathematics", root / "Mathematics")
+            target = root / "Mathematics/adapter/CoreContracts.json"
+            contract = json.loads(target.read_text(encoding="utf-8"))
+            contract["learner_products"]["CORE1"]["production"] = "COMPILED"
+            target.write_text(json.dumps(contract), encoding="utf-8")
+            found = capability_audit.audit_subject(root / "Mathematics")["findings"]
+            self.assertIn(("CLAIMED_WITHOUT_CODE", "CORE1"),
+                          [(f["point"], f["capability"]) for f in found])
+
+    def test_declining_to_say_why_a_product_is_not_compiled_is_caught(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            shutil.copytree(REPO / "Mathematics", root / "Mathematics")
+            target = root / "Mathematics/adapter/CoreContracts.json"
+            contract = json.loads(target.read_text(encoding="utf-8"))
+            contract["learner_products"]["CORE1"]["reason"] = "   "
+            target.write_text(json.dumps(contract), encoding="utf-8")
+            found = capability_audit.audit_subject(root / "Mathematics")["findings"]
+            self.assertIn(("PRODUCT_NOT_COMPILED_WITHOUT_REASON", "CORE1"),
+                          [(f["point"], f["capability"]) for f in found])
 
     def test_planting_a_false_claim_is_caught(self):
         with tempfile.TemporaryDirectory() as temp:
