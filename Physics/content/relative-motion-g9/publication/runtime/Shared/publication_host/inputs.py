@@ -15,6 +15,10 @@ PLACEMENTS = {"TEACHING", "ANSWER", "ELICITED_REVEAL"}
 # How far a hint goes. Declared rather than inferred, so a hint that hands over
 # the answer before the last rung is refusable rather than arguable.
 REVEALS = {"CONCEPT", "METHOD", "ANSWER"}
+# Read from the shared vocabulary, not copied. The inline set was the second place this
+# enum lived, and a fifth value added to one would not have reached the other.
+PURPOSES = {p["id"] for p in
+            load(Path(__file__).resolve().parents[2] / "Shared/vocabularies/purpose.json")["purposes"]}
 
 
 def read_inputs(plan: dict, baseline: dict, source_root: Path, adapter) -> dict:
@@ -211,8 +215,8 @@ def _learner_fit(plan, products):
     if not set(products) & {"CORE2A", "CORE2B"}:
         return "NOT_APPLICABLE_STUDY_ONLY"
     control = plan.get("practice_control", {})
-    require(control.get("purpose") in {"STARTER", "PRACTICE", "REVISION", "COMPETITION"},
-            "PRACTICE_PURPOSE_REQUIRED")
+    require(control.get("purpose") in PURPOSES, "PRACTICE_PURPOSE_REQUIRED",
+            str(control.get("purpose")))
     if control.get("mode") == "DESIGN_PREVIEW":
         return "BLOCKED_NO_PERSONALIZATION"
     if control.get("mode") == "OWNER_WAIVER":

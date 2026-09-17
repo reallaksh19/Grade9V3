@@ -92,6 +92,31 @@ def _atoms_for(records: dict, microtopic_ids: set[str]) -> list[dict]:
     return sorted(chosen, key=lambda r: r["id"])
 
 
+VOCABULARY = Path(__file__).resolve().parents[2] / "Shared/vocabularies/purpose.json"
+
+
+def _purpose(control: dict) -> dict:
+    """What this run is for, read from the shared vocabulary.
+
+    The enum was validated in the engine, written free-form on a profile, and consulted
+    by nothing. One declaration now, read by both.
+    """
+    declared = {p["id"]: p for p in load(VOCABULARY)["purposes"]}
+    require(control.get("purpose") in declared, "PRACTICE_PURPOSE_UNDECLARED",
+            str(control.get("purpose")))
+    return declared[control["purpose"]]
+
+
+def _routes_transfer(control: dict) -> bool:
+    return bool(_purpose(control).get("routes_transfer"))
+
+
+def _withheld_reason(control: dict) -> str:
+    row = _purpose(control)
+    return (f'purpose {row["id"]} does not route transfer: '
+            f'{row.get("reason_when_withheld", "declared not to route it")}')
+
+
 def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                    subject: str, practice_control: dict) -> dict:
     chosen = slice_for_bucket(records, bucket_id)
@@ -158,6 +183,13 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                        if any(e.get("core") == core for e in q.get("exposure", []))]
             if exposed:
                 supported.append(core)
+            elif core == "CORE2B" and not _routes_transfer(practice_control):
+                # Declared by the purpose, not decided here: a purpose may legitimately
+                # say "do not build this product". Reported as unsupported with the
+                # vocabulary's own reason rather than silently omitted, because a product
+                # withheld on purpose and a product nobody could build must not look
+                # alike.
+                unsupported[core] = _withheld_reason(practice_control)
             else:
                 unsupported[core] = "the library holds no question exposed to this product for this bucket"
         elif covered:

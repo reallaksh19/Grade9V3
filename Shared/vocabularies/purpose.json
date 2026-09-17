@@ -1,0 +1,37 @@
+{
+  "vocabulary_id": "VOCAB-PRACTICE-PURPOSE",
+  "description": "What a practice run is for. Declared once and read by both the compiler and the engine, because the same word was previously validated in one place, written free-form in another, and consulted nowhere.",
+  "owns": "practice_control.purpose",
+  "purposes": [
+    {
+      "id": "STARTER",
+      "intent": "First contact with the family. Maximum support; prerequisite bridges are mandatory.",
+      "support": "high",
+      "routes_transfer": false,
+      "reason_when_withheld": "transfer before the construction is in place is a coverage gap wearing a transfer label, so this purpose does not route the transfer product at all"
+    },
+    {
+      "id": "PRACTICE",
+      "intent": "Build fluency inside a known family.",
+      "support": "medium",
+      "routes_transfer": true
+    },
+    {
+      "id": "REVISION",
+      "intent": "Re-expose across families with reduced support.",
+      "support": "low",
+      "routes_transfer": true
+    },
+    {
+      "id": "COMPETITION",
+      "intent": "Mixed, unlabelled, timed. Minimum support and no mid-task bridging.",
+      "support": "minimum",
+      "routes_transfer": true
+    }
+  ],
+  "support_postures": {
+    "description": "A profile's standing instruction about how much scaffolding to give, which is a different concept from what the run is for. The two shared the field name `purpose` and neither checked the other.",
+    "owns": "profile.support_posture",
+    "values": ["SIMPLEST_FOUNDATION", "BRIDGE_FIRST", "STANDARD", "MINIMAL"]
+  }
+}

@@ -1204,7 +1204,6 @@
   "practice_profiles": [
     {
       "id": "PROFILE-UNKNOWN-WAIVER",
-      "purpose": "SIMPLEST_FOUNDATION",
       "knowledge_percentage": null,
       "provenance": "UNKNOWN",
       "capability_scope": [
@@ -1220,7 +1219,8 @@
         "Bridge signed coordinates and right-triangle magnitude before independent use.",
         "Use check questions to discover missing capabilities."
       ],
-      "measured_fit_claim": false
+      "measured_fit_claim": false,
+      "support_posture": "SIMPLEST_FOUNDATION"
     }
   ],
   "evidence": [],

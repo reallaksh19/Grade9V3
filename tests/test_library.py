@@ -1265,3 +1265,69 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
         # Counting one that already has a scene would rank a finished renderer first.
         ranked = {r["kind"]: r for r in depiction.priority(REPO / "Mathematics")}
         self.assertEqual(ranked["NUMBER_LINE"]["representations_waiting"], 0)
+
+
+class PurposeIsOneVocabularyAndItBranches(unittest.TestCase):
+    """The same word was validated in one place, written free-form in another, read nowhere.
+
+    `practice_control.purpose` was an inline set of four in the engine; `profile.purpose`
+    was a free string whose one committed value, SIMPLEST_FOUNDATION, was in neither
+    vocabulary; and no code path branched on either. Four declared values and zero
+    behaviour is a dead input.
+    """
+
+    VOCAB = json.loads((REPO / "Shared/vocabularies/purpose.json").read_text(encoding="utf-8"))
+
+    def compiled(self, purpose):
+        records = build_index([json.loads(p.read_text(encoding="utf-8"))
+                               for p in sorted((REPO / "Physics/library").glob("*.json"))])
+        return compile_bucket(records, "BUCKET-RELATIVE-MOTION", topic_id="t", title="t",
+                              subject="Physics",
+                              practice_control={"mode": "DESIGN_PREVIEW", "purpose": purpose})
+
+    def test_the_engine_reads_the_vocabulary_rather_than_a_copy(self):
+        source = (REPO / "Shared/publication_host/inputs.py").read_text(encoding="utf-8")
+        self.assertNotIn('"STARTER", "PRACTICE", "REVISION", "COMPETITION"', source,
+                         "the inline set is a second place this enum lives")
+        self.assertIn("vocabularies/purpose.json", source)
+
+    def test_an_undeclared_purpose_is_refused(self):
+        with self.assertRaises(ContractError) as raised:
+            self.compiled("HARDER")
+        self.assertEqual(raised.exception.code, "PRACTICE_PURPOSE_UNDECLARED")
+
+    def test_starter_withholds_transfer_and_says_which_purpose_did_it(self):
+        # The rule that makes purpose more than a label: a purpose may decide that a
+        # product is not built. Transfer before the construction is in place is a
+        # coverage gap wearing a transfer label.
+        owed = [r for r in self.compiled("STARTER")["authoring_requirements"]
+                if r["kind"] == "PRODUCT_UNSUPPORTED" and r.get("core") == "CORE2B"]
+        self.assertEqual(len(owed), 1)
+        self.assertIn("STARTER", owed[0]["detail"])
+        self.assertIn("does not route transfer", owed[0]["detail"])
+
+    def test_a_routing_purpose_gives_a_different_reason_entirely(self):
+        # Withheld on purpose and absent because nothing exists must not look alike.
+        owed = [r for r in self.compiled("COMPETITION")["authoring_requirements"]
+                if r["kind"] == "PRODUCT_UNSUPPORTED" and r.get("core") == "CORE2B"]
+        self.assertEqual(len(owed), 1)
+        self.assertNotIn("does not route transfer", owed[0]["detail"])
+        self.assertIn("no question exposed", owed[0]["detail"])
+
+    def test_every_declared_purpose_says_what_it_controls(self):
+        for row in self.VOCAB["purposes"]:
+            with self.subTest(purpose=row["id"]):
+                self.assertTrue(row.get("intent", "").strip())
+                self.assertIn("support", row)
+                self.assertIn("routes_transfer", row)
+                if not row["routes_transfer"]:
+                    self.assertTrue(row.get("reason_when_withheld", "").strip(),
+                                    "a purpose that withholds a product must say why")
+
+    def test_a_profile_no_longer_shares_the_word_purpose(self):
+        postures = set(self.VOCAB["support_postures"]["values"])
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            for prof in json.loads(path.read_text(encoding="utf-8")).get("practice_profiles", []):
+                with self.subTest(profile=prof["id"]):
+                    self.assertNotIn("purpose", prof)
+                    self.assertIn(prof["support_posture"], postures)

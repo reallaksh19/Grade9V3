@@ -1119,7 +1119,6 @@
   "practice_profiles": [
     {
       "id": "PROFILE-MATH-PREVIEW",
-      "purpose": "SIMPLEST_FOUNDATION",
       "knowledge_percentage": null,
       "provenance": "UNKNOWN",
       "capability_scope": [
@@ -1135,7 +1134,8 @@
         "Keep the substitution check available at every step.",
         "State the non-zero divisor condition before dividing."
       ],
-      "measured_fit_claim": false
+      "measured_fit_claim": false,
+      "support_posture": "SIMPLEST_FOUNDATION"
     }
   ],
   "evidence": [],

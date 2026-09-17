@@ -16,7 +16,7 @@
     "TOOLING": 11,
     "WEB": 5
   },
-  "digest": "sha256:1430a79932948a96b9eff93ff2b0dc97a8d7f61f53c303a5fcfcd64003f249c7",
+  "digest": "sha256:bf655d5d313ea41e7827cf5307f1c417aada86dc269f0c39463f0b5671531417",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 37686,
-      "sha256": "46ca8ca79b076a6ea56e316ceacc3e633db4b9e54eac5f3310ba3fa50690a566"
+      "bytes": 39088,
+      "sha256": "58a4641eec94d643517941794f6e0e9a9a9f53e7e4d769d717976c549ef8c270"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -78,8 +78,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 69596,
-      "sha256": "790c8afdbc9dbe5c8bf1f23c2b568d2e7c396e73a276a25b3b3572f60a079d5e"
+      "bytes": 69947,
+      "sha256": "9f6682c16e25c4363caa0d1944f0753326f97c97255c6c8b611b003221c372b5"
     },
     {
       "path": "Shared/library/promote.py",
@@ -155,8 +155,8 @@
       "path": "Shared/publication_host/inputs.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 13565,
-      "sha256": "c07b69e7a4f8b820faea07e4fec0f0515b7cc28592bb2dba9f26bcc6e2d68ec8"
+      "bytes": 13852,
+      "sha256": "6aa80a86d46be598a8f4855c2b47e5c2fa3fe379cb27163f4ad4fdbdd511c14a"
     },
     {
       "path": "Shared/publication_host/science.py",
@@ -316,8 +316,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 72328,
-      "sha256": "8bd91dd2451cb89671f2e3ab610afaeb8565298f5dfb9b12e9f6eae15b4276e4"
+      "bytes": 76043,
+      "sha256": "d7942470204ecde05bc6c53bd4e8b6b9e79221d58c5ccdbaeca05c5c0dff7522"
     },
     {
       "path": "tests/test_mathematics.py",

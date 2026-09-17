@@ -2271,10 +2271,6 @@
           "type": "string",
           "minLength": 1
         },
-        "purpose": {
-          "type": "string",
-          "minLength": 1
-        },
         "knowledge_percentage": {
           "anyOf": [
             {
@@ -2346,18 +2342,27 @@
         },
         "measured_fit_claim": {
           "const": false
+        },
+        "support_posture": {
+          "enum": [
+            "SIMPLEST_FOUNDATION",
+            "BRIDGE_FIRST",
+            "STANDARD",
+            "MINIMAL"
+          ],
+          "description": "How much scaffolding this profile standing-instructs. Not the same as practice_control.purpose, which is what a run is for; the two shared the name `purpose`, used different vocabularies, and neither checked the other."
         }
       },
       "required": [
-        "id",
-        "purpose",
-        "knowledge_percentage",
-        "provenance",
         "capability_scope",
+        "id",
+        "knowledge_percentage",
+        "measured_fit_claim",
         "observation_refs",
         "owner_waiver",
+        "provenance",
         "support_plan",
-        "measured_fit_claim"
+        "support_posture"
       ]
     },
     "evidence": {
