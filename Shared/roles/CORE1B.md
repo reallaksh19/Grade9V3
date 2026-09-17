@@ -31,3 +31,33 @@ Every prompt closes with a model response, a rubric, or explicit criteria for ju
 - Defer closure to a human ("ask your teacher", "check with your class"). The product must stand alone.
 - Silently reduce coverage relative to Core1A because elicitation is harder to author than exposition.
 - Reveal the answer before the attempt is asked for. Attempt-first ordering is part of the product, though for self-study the answer stays accessible rather than locked.
+
+## What this role requires the library to hold
+
+The prose above is the authority for *meaning*. The block below is the authority for
+*presence*: every path in it must resolve to a field the package schema can hold. It
+cannot check the reverse — that everything the prose requires appears in the block.
+
+Two of the six steps borrow from `misconceptions[]`, which already holds them for
+Core1A. Diagnose and repair are the same claim in both products; duplicating them
+under `elicitation` would create a second place for one truth, which is the defect
+the authority gate exists to close. The other four steps have no home today.
+
+```requires
+microtopic.elicitation                          every concept Core1A constructs, Core1B elicits
+microtopic.elicitation.predict.prompt           pose the decision before revealing anything
+microtopic.elicitation.predict.defensible_answer  a defensible answer the learner can commit to
+microtopic.elicitation.attempt.produces         state what they should produce
+microtopic.elicitation.attempt.closure          a model response, a rubric, or explicit criteria
+microtopic.elicitation.attempt.model_response   closure as one string, where one is right
+microtopic.elicitation.attempt.rubric[]         closure as a rubric, where several answers are valid
+microtopic.elicitation.attempt.accepted[]       representative accepted answers
+microtopic.elicitation.attempt.rejected[]       representative rejected answers
+microtopic.elicitation.reconstruct[]            the correct construction, reached the learner's way
+microtopic.elicitation.reconstruct[].move       not the way an expert would summarise it
+microtopic.elicitation.boundary_test.prompt     a limiting case, reversal or edge condition
+microtopic.elicitation.boundary_test.confirms   confirms understanding rather than recall
+microtopic.misconceptions[].wrong_idea          the plausible wrong answer, named
+microtopic.misconceptions[].diagnostic_prompt   a specific question separating it from the right one
+microtopic.misconceptions[].repair              what to do having got it wrong
+```

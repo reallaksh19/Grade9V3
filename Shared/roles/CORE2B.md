@@ -36,3 +36,23 @@ Same inputs as [Core2A](CORE2A.md) — scoped capability evidence or an explicit
 - Introduce new scientific content under a transfer label. A task requiring a model the learner was never taught is a coverage gap, not a transfer assessment.
 - Depend on a live tutor for closure.
 - Treat low measured similarity as evidence of genuine transfer. Similarity is a screening signal; transfer is a claim about demand, and it is established by review.
+
+## What this role requires the library to hold
+
+The prose above is the authority for *meaning*. The block below is the authority for
+*presence*: every path in it must resolve to a field the package schema can hold. It
+cannot check the reverse — that everything the prose requires appears in the block.
+
+```requires
+question.transfer.dimension              state which dimension of demand changes
+question.transfer.statement              an explicit statement of the changed demand
+question.transfer.builds_on[]            exposure lineage: what the learner has already seen
+question.hints[]                         graduated help that supports without collapsing the demand
+question.hints[].reveals                 help that hands over the model choice defeats the task
+question.answer.summary                  full answer
+question.rubric[]                        and rubric
+question.rubric[].criterion              what a good justification contains
+question.rubric[].evidence_of            not only the final result
+question.repair_ref                      a repair route pointing back to the Core1A/Core1B construction
+question.provenance.class                a task requiring an untaught model is a coverage gap
+```

@@ -25,3 +25,30 @@ Where no frozen Core1 exists, Core1 may be condensed from the reviewed Core1A co
 - Replace teaching. A compact note that asserts a difficult inference without construction is an orientation failure, not a brief lesson.
 - Assert curriculum authority it does not have. If the bucket's board/grade mapping is a candidate rather than an established binding, the note says so.
 - Accumulate. Core1 grows by the subtopic's genuine conceptual surface, not by absorbing material that belongs in Core1A.
+
+## What this role requires the library to hold
+
+The prose above is the authority for *meaning*. The block below is the authority for
+*presence*: every path in it must resolve to a field the package schema can hold, so
+that a requirement stated here can never quietly lose its home. It does not, and
+cannot, check the reverse — that everything the prose requires appears in the block.
+That stays a reviewer's duty.
+
+```requires
+bucket.title                             a short, correct orientation to the bucket
+bucket.conventions[]                     the conventions needed to read the objects
+bucket.conventions[].statement           declared axes, sign conventions, reference states
+bucket.anchor_values[]                   the worked anchor values, if the bucket has one
+bucket.scope.covers                      what this bucket covers
+bucket.scope.excluded[]                  what is deliberately excluded
+bucket.scope.extension_refs[]            what is carried as labelled extension
+bucket.curriculum_binding.status         a candidate rather than an established binding, said so
+bucket.review_status                     it then carries Core1A's review status
+datum.meaning                            the named objects and quantities of the bucket
+datum.unit                               units -- whatever the subject adapter specifies
+relation.expression                      the governing relations in their canonical form
+relation.meaning                         each with its meaning in words
+relation.conditions[]                    the conditions under which it applies
+microtopic.intrinsic_badge               which transitions are intrinsically hard
+microtopic.why_hard                      so the learner knows where Core1A/Core1B spend effort
+```

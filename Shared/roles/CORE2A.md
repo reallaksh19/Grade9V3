@@ -32,3 +32,24 @@ An owner asking for the simplest questions stays effective even when an estimate
 - Claim measured fit, calibration or mastery from a percentage, a routing decision or a successfully generated book.
 - Hide the solution behind a reveal that the self-study learner cannot open.
 - Present a same-family variant as new transfer. That belongs to [Core2B](CORE2B.md), and only when the demand genuinely changes.
+
+## What this role requires the library to hold
+
+The prose above is the authority for *meaning*. The block below is the authority for
+*presence*: every path in it must resolve to a field the package schema can hold. It
+cannot check the reverse — that everything the prose requires appears in the block.
+
+```requires
+question.source_id                       exact source identity preserved and visible
+question.original_number                 including the original question number
+question.provenance.class                including provenance class
+question.answer.reasoning[]              the sequence of decisions, not a summary
+question.answer.difficult_move           the first difficult move made explicit rather than glossed
+question.answer.check                    a check the learner can run on their own result
+question.hints[]                         hints, where useful; no required count
+question.figure_ref                      a figure where the representation carries meaning
+question.family                          declared family, so reuse is auditable
+question.exposure[].core                 declared exposure role, so reuse is auditable
+question.exposure[].role                 and what that exposure is for
+representation.scene_instances[].question_ref  bound to the working rather than placed beside it
+```

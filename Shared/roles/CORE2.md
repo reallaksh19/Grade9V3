@@ -28,3 +28,30 @@ An author-created review corpus may legitimately exist and may feed Core2A/Core2
 ## Downstream consequence
 
 Core2A and Core2B depend on Core2's custody for any claim about assessment demand, exposure or transfer boundaries. While Core2 is held, those products may still be built from authored candidates, but their acceptance inherits the hold: practice can be produced, and it can be honest, but it cannot claim to reflect the real assessment surface of the bucket.
+
+## What this role requires the library to hold
+
+The prose above is the authority for *meaning*. The block below is the authority for
+*presence*: every path in it must resolve to a field the package schema can hold. It
+cannot check the reverse — that everything the prose requires appears in the block.
+
+```requires
+question.source_id                       source identifier, preserved verbatim
+question.original_number                 original question number, preserved verbatim
+question.stem                            stem, preserved verbatim
+question.subparts[]                      subparts, preserved verbatim
+question.options[]                       options, preserved verbatim
+question.conditions[]                    conditions, preserved verbatim
+question.figures[]                       figures survive; an unadapted original is held
+question.figures[].caption               and their captions survive
+question.figures[].custody_state         held rather than dropped
+question.hints[]                         ladder hints, in their original ordering
+question.answer.summary                  an answer, for every question held
+question.answer.working[]                with whatever working the source provides
+question.answer.rubric[]                 or rubric the source provides
+question.provenance.class                supplied original, adapted, or authored
+question.provenance.parent_id            adapted, with parent identity
+question.provenance.changed_fields[]     and the exact changed fields
+bucket.custody.state                     Core2 is HELD and says so plainly
+bucket.custody.closes_when               naming what acquisition would close the hold
+```

@@ -16,7 +16,7 @@
     "TOOLING": 8,
     "WEB": 5
   },
-  "digest": "sha256:60b48e1f048506d65ca1870c6b510518f9001aaba02eb4e979682c4f5b688520",
+  "digest": "sha256:45fdd5ff867bf8909ee26b8d87ef37938909d373c79d4dd210573d7b2b38ecfc",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -162,43 +162,43 @@
       "path": "Shared/roles/CORE1.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 2025,
-      "sha256": "ba7dafa4b018a6eb601fc476f4c4bf8f129916ae7f927cbb0152cf5936432496"
+      "bytes": 3793,
+      "sha256": "222ada163944f8fe6199702a8b80ea7841597ba8e650a9397f20c79165e28491"
     },
     {
       "path": "Shared/roles/CORE1A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 2604,
-      "sha256": "124d977b553d3926736b8b47be4097a10744a12458ea74a5b709002016091345"
+      "bytes": 5099,
+      "sha256": "6e946e4d6d2ecfb5782dfd5f245a282cd52eb606fe61915d47b33016b2418e27"
     },
     {
       "path": "Shared/roles/CORE1B.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 2283,
-      "sha256": "323ba8ed6d883f99d4d36e7a1601699cf90fcb8deb67e5e0f1197007735a2cdb"
+      "bytes": 4374,
+      "sha256": "a614d14aca13f409fa37820dde2a4c7500ecc1eadaecc6779fbe6643c1c3f5ec"
     },
     {
       "path": "Shared/roles/CORE2.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 1915,
-      "sha256": "f69adfa2a79f45ff23f78ce4387b7121fcc92e6828aebc5d276fcffdf9fc8582"
+      "bytes": 3596,
+      "sha256": "ebe5774e58983ee4ee63a1927d6cfe0c1c0e76b134690b808ec8941280f741f4"
     },
     {
       "path": "Shared/roles/CORE2A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 2394,
-      "sha256": "b11d2c2abff9992f6a91d35bef39a272e468cff323ab3dd8d4dad616a6c0ebc3"
+      "bytes": 3726,
+      "sha256": "9f99795d9a59895cda33a261a64731ec4f15e44c6e4035e6025c2c32eb4bb6ca"
     },
     {
       "path": "Shared/roles/CORE2B.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 2496,
-      "sha256": "0fd0c7899c8ccb183053a5140eae974185cdaa64979c16057740402466857940"
+      "bytes": 3719,
+      "sha256": "d89d44ed5244a2074db2ab83df2c233082b6c673dcdd205aad20e19388fcdf3c"
     },
     {
       "path": "Shared/roles/README.md",
