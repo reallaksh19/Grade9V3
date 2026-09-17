@@ -194,14 +194,16 @@
           "action": "Name the frame and the two perpendicular axes before reading any component.",
           "why_valid": "A signed component has no meaning without a declared positive direction.",
           "inputs": [],
-          "output": "Declared frame: e.g. east positive x, north positive y."
+          "output": "Declared frame: e.g. east positive x, north positive y.",
+          "role": "DECLARE"
         },
         {
           "id": "VS-2",
           "action": "Read each component with its sign from the declared axes.",
           "why_valid": "The sign is the axis reading itself, not an adjustment made afterwards.",
           "inputs": [],
-          "output": "w = (3, 4) m/s means 3 m/s east and 4 m/s north."
+          "output": "w = (3, 4) m/s means 3 m/s east and 4 m/s north.",
+          "role": "TRANSFORM"
         },
         {
           "id": "VS-3",
@@ -210,14 +212,16 @@
           "inputs": [
             "CAP-RIGHT-TRIANGLE-BRIDGE"
           ],
-          "output": "speed = sqrt(3^2+4^2) = 5 m/s"
+          "output": "speed = sqrt(3^2+4^2) = 5 m/s",
+          "role": "TRANSFORM"
         },
         {
           "id": "VS-4",
           "action": "State the magnitude as nonnegative and keep the signed components separately for direction.",
           "why_valid": "Squaring erases sign, so recovering direction needs the original signed pair, not the magnitude.",
           "inputs": [],
-          "output": "5 m/s is the speed; (3,4) m/s is still needed to say which way."
+          "output": "5 m/s is the speed; (3,4) m/s is still needed to say which way.",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -287,14 +291,16 @@
           "action": "Declare positive directions for both axes explicitly before reading any component.",
           "why_valid": "A component's sign is only meaningful relative to a stated positive direction.",
           "inputs": [],
-          "output": "e.g. 'east and north positive' stated once for the whole problem."
+          "output": "e.g. 'east and north positive' stated once for the whole problem.",
+          "role": "DECLARE"
         },
         {
           "id": "SC-2",
           "action": "Re-express the same vector under a reversed axis convention.",
           "why_valid": "Reversing a declared positive direction negates every component measured along it, without changing the physical vector.",
           "inputs": [],
-          "output": "w=(3,4) m/s under east/north-positive becomes (-3,4) m/s if x is redeclared west-positive."
+          "output": "w=(3,4) m/s under east/north-positive becomes (-3,4) m/s if x is redeclared west-positive.",
+          "role": "TRANSFORM"
         },
         {
           "id": "SC-3",
@@ -303,7 +309,8 @@
           "inputs": [
             "CAP-RIGHT-TRIANGLE-BRIDGE"
           ],
-          "output": "Both conventions give magnitude 5 m/s."
+          "output": "Both conventions give magnitude 5 m/s.",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -370,28 +377,32 @@
           "action": "Reverse Q.",
           "why_valid": "Negating a vector keeps its length and flips both signed components.",
           "inputs": [],
-          "output": "-Q has the same magnitude as Q and the opposite direction."
+          "output": "-Q has the same magnitude as Q and the opposite direction.",
+          "role": "DECLARE"
         },
         {
           "id": "GS-2",
           "action": "Translate -Q to the head of P without rotating it.",
           "why_valid": "A free vector's meaning depends only on length and direction, not on where it is drawn.",
           "inputs": [],
-          "output": "-Q placed tail-to-head with P."
+          "output": "-Q placed tail-to-head with P.",
+          "role": "TRANSFORM"
         },
         {
           "id": "GS-3",
           "action": "Draw the resultant from the tail of P to the head of the translated -Q.",
           "why_valid": "Tail-to-head addition gives the vector sum, here P + (-Q) = P - Q.",
           "inputs": [],
-          "output": "Resultant vector P-Q."
+          "output": "Resultant vector P-Q.",
+          "role": "TRANSFORM"
         },
         {
           "id": "GS-4",
           "action": "Reconcile the drawn resultant with the signed-component subtraction.",
           "why_valid": "Both the graphical and component routes compute the same operation and must agree.",
           "inputs": [],
-          "output": "Component check: (P-Q)_x = P_x-Q_x, (P-Q)_y = P_y-Q_y."
+          "output": "Component check: (P-Q)_x = P_x-Q_x, (P-Q)_y = P_y-Q_y.",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -463,21 +474,24 @@
           "action": "Restate the two conditions already attached to REL-RELATIVE-VELOCITY: parallel nonrotating axes, classical (non-relativistic) speeds.",
           "why_valid": "Those conditions were declared, not incidental, when the relation was derived.",
           "inputs": [],
-          "output": "The relation is conditional, not universal."
+          "output": "The relation is conditional, not universal.",
+          "role": "DECLARE"
         },
         {
           "id": "FB-2",
           "action": "Name, without deriving, the two regimes where each condition can fail: a rotating reference frame (needs Coriolis/centrifugal terms) and speeds approaching light speed (needs relativistic velocity addition).",
           "why_valid": "Naming the failure regime is a defensible research-boundary claim; deriving the replacement transformation is graduate-level and explicitly out of scope here.",
           "inputs": [],
-          "output": "Two named boundaries, no new formula taught."
+          "output": "Two named boundaries, no new formula taught.",
+          "role": "DECLARE"
         },
         {
           "id": "FB-3",
           "action": "State that this note is excluded from Grade 9 assessment claims and is not required for MIC-GEOMETRIC-CHECK's exit task.",
           "why_valid": "Research-depth material is segregated from exam scope (TOPIC_WORKFLOW.md); a badge cannot be raised to smuggle in graduate prerequisites.",
           "inputs": [],
-          "output": "Explicit non-assessment status."
+          "output": "Explicit non-assessment status.",
+          "role": "DECLARE"
         }
       ],
       "relation_refs": [
@@ -557,14 +571,16 @@
           "action": "Define -Q as the vector with Q's magnitude and the opposite direction.",
           "why_valid": "This is the definition of vector negation.",
           "inputs": [],
-          "output": "-Q"
+          "output": "-Q",
+          "role": "DECLARE"
         },
         {
           "id": "VSub-2",
           "action": "Define P - Q as P + (-Q).",
           "why_valid": "Subtraction is defined as addition of the additive inverse, exactly as for signed numbers.",
           "inputs": [],
-          "output": "P - Q = P + (-Q)"
+          "output": "P - Q = P + (-Q)",
+          "role": "TRANSFORM"
         }
       ],
       "limits": [

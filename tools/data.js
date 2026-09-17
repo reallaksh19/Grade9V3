@@ -269,7 +269,7 @@ window.GRADE9V3 = {
                 {
                   "action": "Substitute a candidate value and evaluate both sides separately.",
                   "why_valid": "Membership of the solution set is decided by substitution, which is the definition of a solution.",
-                  "output": "A numerical statement that is simply true or false."
+                  "output": "For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false."
                 },
                 {
                   "action": "Try a second value that fails, and say why it fails.",

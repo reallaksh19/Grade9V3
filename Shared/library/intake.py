@@ -29,7 +29,9 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from Shared.contracts import load, require
-from Shared.library.substance import findings as substance_findings
+from Shared.library.substance import (
+    findings as substance_findings, step_findings as substance_step_findings,
+)
 
 SCHEMA = Path(__file__).resolve().parent / "package.schema.json"
 LIFECYCLE = ("CANDIDATE", "REVIEWED", "CURATED")
@@ -121,7 +123,8 @@ def check(package: dict) -> dict:
             fail("PROVENANCE", f"{mid}: no source references, not even an authored-draft marker")
 
     # 7. Records that discriminate: peers must not say the same thing.
-    for finding in substance_findings(corpus(package)):
+    records = corpus(package)
+    for finding in substance_findings(records) + substance_step_findings(records):
         fail(finding["point"], f'{finding["record"]}.{finding["field"]}: {finding["detail"]}')
 
     status = package.get("status")

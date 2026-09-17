@@ -159,21 +159,24 @@
           "action": "Declare the domain the unknown ranges over.",
           "why_valid": "A solution set has no meaning until the admissible values are fixed.",
           "inputs": [],
-          "output": "x ranges over the rationals."
+          "output": "x ranges over the rationals.",
+          "role": "DECLARE"
         },
         {
           "id": "MC-2",
           "action": "Substitute a candidate value and evaluate both sides separately.",
           "why_valid": "Membership of the solution set is decided by substitution, which is the definition of a solution.",
           "inputs": [],
-          "output": "A numerical statement that is simply true or false."
+          "output": "For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false.",
+          "role": "TRANSFORM"
         },
         {
           "id": "MC-3",
           "action": "Try a second value that fails, and say why it fails.",
           "why_valid": "A constraint is only understood once a non-solution has been seen.",
           "inputs": [],
-          "output": "Evidence that the equation selects values rather than computing one."
+          "output": "Evidence that the equation selects values rather than computing one.",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -239,21 +242,24 @@
           "action": "Subtract b from both sides.",
           "why_valid": "Adding the same quantity to both sides can be undone, so the solution set is unchanged.",
           "inputs": [],
-          "output": "a*x = c - b"
+          "output": "a*x = c - b",
+          "role": "TRANSFORM"
         },
         {
           "id": "ME-2",
           "action": "State that a is non-zero, then divide both sides by a.",
           "why_valid": "Dividing by a non-zero quantity is reversible; division by zero is undefined, so the condition must be stated rather than assumed.",
           "inputs": [],
-          "output": "x = (c - b)/a"
+          "output": "x = (c - b)/a",
+          "role": "TRANSFORM"
         },
         {
           "id": "ME-3",
           "action": "Substitute the result into the original statement, not into an intermediate line.",
           "why_valid": "Checking against the original catches an error introduced at any step.",
           "inputs": [],
-          "output": "A verified solution."
+          "output": "A verified solution.",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -319,21 +325,24 @@
           "action": "Record the solution as a fraction in lowest terms.",
           "why_valid": "The division producing it need not terminate as a decimal, so the fraction is the exact value.",
           "inputs": [],
-          "output": "x = 7/3"
+          "output": "x = 7/3",
+          "role": "TRANSFORM"
         },
         {
           "id": "MX-2",
           "action": "Substitute the exact fraction into the original statement.",
           "why_valid": "Exact substitution reproduces the statement with no residue.",
           "inputs": [],
-          "output": "3 times 7/3, plus 2, is exactly 9."
+          "output": "3 times 7/3, plus 2, is exactly 9.",
+          "role": "VERIFY"
         },
         {
           "id": "MX-3",
           "action": "Substitute a truncated decimal and compare.",
           "why_valid": "Seeing the residue is what distinguishes the two objects; being told they differ is not the same as observing it.",
           "inputs": [],
-          "output": "3 times 2.333333333333, plus 2, is 8.999999999999."
+          "output": "3 times 2.333333333333, plus 2, is 8.999999999999.",
+          "role": "VERIFY"
         }
       ],
       "relation_refs": [
@@ -426,14 +435,16 @@
           "action": "Subtract b from both sides.",
           "why_valid": "Adding the same quantity to both sides is reversible.",
           "inputs": [],
-          "output": "a*x = c - b"
+          "output": "a*x = c - b",
+          "role": "TRANSFORM"
         },
         {
           "id": "DL-2",
           "action": "Divide both sides by the non-zero a.",
           "why_valid": "Division by a non-zero quantity is reversible.",
           "inputs": [],
-          "output": "x = (c - b)/a"
+          "output": "x = (c - b)/a",
+          "role": "TRANSFORM"
         }
       ],
       "limits": [
@@ -480,14 +491,16 @@
           "action": "Substitute the exact value.",
           "why_valid": "Exact arithmetic over the rationals is closed under these operations.",
           "inputs": [],
-          "output": "The statement holds with no residue."
+          "output": "The statement holds with no residue.",
+          "role": "VERIFY"
         },
         {
           "id": "DX-2",
           "action": "Substitute a truncation and subtract the two sides.",
           "why_valid": "The difference exhibits the residue directly.",
           "inputs": [],
-          "output": "A non-zero difference."
+          "output": "A non-zero difference.",
+          "role": "VERIFY"
         }
       ],
       "limits": [

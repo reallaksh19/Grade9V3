@@ -16,7 +16,7 @@
     "TOOLING": 7,
     "WEB": 5
   },
-  "digest": "sha256:4731ebf14d436775d7cbcc57d83140864931745eeb51acf7d7eb78951744d315",
+  "digest": "sha256:aa58978b30383a8f9749bded026772ad4a0eef1b30676c7e161621cf7ca7059d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -50,15 +50,15 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 6736,
-      "sha256": "8adddb305ba167eb5e659ffe0ce4d85c4f8e08efa74d6e63b20b560a2eb5fb68"
+      "bytes": 6844,
+      "sha256": "17bf840ff4fe2ebcb9a00ce72704a3855b8cbde0381b7cf1b84f531ee9d7becb"
     },
     {
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 49785,
-      "sha256": "a7adc69aed24b56aebcccea1f1f576e831f326b979b8be6a2603b57847e490c0"
+      "bytes": 50247,
+      "sha256": "1538fae58d1389e6bde0c97991c169b12ba14afce103a4947000fb47051bc14b"
     },
     {
       "path": "Shared/library/promote.py",
@@ -78,8 +78,8 @@
       "path": "Shared/library/substance.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 8875,
-      "sha256": "a8ebc55f0b1bdf96467bba67dce3721bd6981009c47191a8c94ed38458a2fc55"
+      "bytes": 10484,
+      "sha256": "567e71340d0bd57374abd9d834b8a5353a079fecf9cfc2595dcdce010cc9293d"
     },
     {
       "path": "Shared/publication_host/__init__.py",
@@ -260,8 +260,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 18471,
-      "sha256": "c18199e546028196d23d10765d72347343a8cd3a07cf0afb79abb57d212a8538"
+      "bytes": 21149,
+      "sha256": "c62307742ba5d498591f558cfcab715aac59cc90d2af2ad7ee9fe5939b3aaf6a"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -295,8 +295,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 65494,
-      "sha256": "a47959baaf8b22ee4645449263a60410aab1c2e6be4e3cc9fc425e75902115a9"
+      "bytes": 65511,
+      "sha256": "e3e2901da6c89c247f2893614f14c2895951e7af974ff45ee866ace13826d641"
     },
     {
       "path": "tools/index.html",

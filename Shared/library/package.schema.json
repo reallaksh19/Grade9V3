@@ -261,10 +261,19 @@
         "output": {
           "type": "string",
           "minLength": 1
+        },
+        "role": {
+          "description": "What the step does to the state. A DECLARE step fixes a convention or a domain and legitimately produces no computation; a TRANSFORM step changes the mathematical state and must show the changed state, not describe it; a VERIFY step checks a result against something already established.",
+          "enum": [
+            "DECLARE",
+            "TRANSFORM",
+            "VERIFY"
+          ]
         }
       },
       "required": [
         "id",
+        "role",
         "action",
         "why_valid",
         "inputs",

@@ -357,3 +357,53 @@ class GateAuthorityOverSubjectTruth(unittest.TestCase):
         # report every correctly bound relation as unresolved.
         packages = [json.loads(p.read_text(encoding="utf-8")) for p in PACKAGES]
         self.assertEqual(unresolved(build_index(packages)), [])
+
+
+class StepsMustDemonstrate(unittest.TestCase):
+    """A step that changes the state must show the changed state, not describe it.
+
+    The distinction needs the step's declared role to be sound. Applied to every step
+    regardless of role it misfired on roughly a quarter of the authored ones, all of
+    them declarations: "x ranges over the rationals." is a correct output for a step
+    whose whole job is to fix the domain.
+    """
+
+    def _step(self, role, output):
+        return {"MIC-A": {"_collection": "microtopics", "teaching_path": [
+            {"id": "S-1", "role": role, "action": "Do something.", "why_valid": "Because.",
+             "inputs": [], "output": output}]}}
+
+    def test_the_committed_packages_have_no_named_only_transforms(self):
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            with self.subTest(package=path.name):
+                package = json.loads(path.read_text(encoding="utf-8"))
+                self.assertEqual(substance.step_findings(intake.corpus(package)), [])
+
+    def test_a_transform_that_describes_its_outcome_is_caught(self):
+        found = substance.step_findings(self._step("TRANSFORM", "A verified solution."))
+        self.assertEqual([f["point"] for f in found], ["NAMED_WITHOUT_DEMONSTRATING"])
+
+    def test_a_transform_that_shows_the_changed_state_passes(self):
+        self.assertEqual(substance.step_findings(self._step("TRANSFORM", "a*x = c - b")), [])
+
+    def test_a_transform_demonstrated_in_words_and_numerals_passes(self):
+        # "3 times 7/3, plus 2, is exactly 9." is a demonstration, written out.
+        found = substance.step_findings(
+            self._step("TRANSFORM", "3 times 7/3, plus 2, is exactly 9."))
+        self.assertEqual(found, [])
+
+    def test_a_declaration_producing_a_convention_is_not_a_transform(self):
+        for output in ("x ranges over the rationals.",
+                       "Declared frame: east positive, north positive."):
+            with self.subTest(output=output):
+                self.assertEqual(substance.step_findings(self._step("DECLARE", output)), [])
+
+    def test_every_committed_step_declares_a_role(self):
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            package = json.loads(path.read_text(encoding="utf-8"))
+            steps = [s for m in package["microtopics"] for s in m.get("teaching_path", [])]
+            steps += [s for r in package.get("relations", []) for s in r.get("derivation", [])]
+            self.assertTrue(steps)
+            for step in steps:
+                self.assertIn(step.get("role"), {"DECLARE", "TRANSFORM", "VERIFY"},
+                              f'{path.name}:{step["id"]}')

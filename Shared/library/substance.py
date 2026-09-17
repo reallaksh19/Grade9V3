@@ -173,3 +173,32 @@ def findings(records: Mapping[str, Mapping]) -> list[dict]:
                                                   f"own title is removed ({listed})")
               if (f["record"], f["field"]) not in already]
     return sorted(found, key=lambda f: (f["record"], f["field"], f["point"]))
+
+
+# A step that changes the mathematical state must show the changed state. Describing
+# the outcome instead -- "A verified solution.", "A numerical statement that is simply
+# true or false." -- names the operation without performing it, which is the defect
+# PR #361 records as MATH_OPERATION_NAMED_BUT_NOT_DEMONSTRATED.
+#
+# The distinction needs the step's own role to be sound. Applied to every step it
+# misfired on roughly a quarter of authored ones, all of them declarations whose
+# output is a convention rather than a computation: "x ranges over the rationals."
+# is a correct output for a step whose whole job is to fix the domain.
+DEMONSTRATION = re.compile(r"[0-9=+\-*/^<>√×]")
+
+
+def step_findings(records: Mapping[str, Mapping]) -> list[dict]:
+    """Steps that claim to transform the state without showing it change."""
+    found = []
+    for record_id, record in records.items():
+        for index, step in enumerate(record.get("teaching_path", []) or []):
+            if not isinstance(step, Mapping) or step.get("role") != "TRANSFORM":
+                continue
+            output = str(step.get("output", ""))
+            if not DEMONSTRATION.search(output):
+                found.append({"point": "NAMED_WITHOUT_DEMONSTRATING", "record": record_id,
+                              "field": f"teaching_path[{index}].output",
+                              "detail": f'{step.get("id")} transforms the state but its output, '
+                                        f'{output.strip()!r}, describes an outcome rather than '
+                                        "showing it"})
+    return found
