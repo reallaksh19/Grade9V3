@@ -110,8 +110,30 @@ Format: one field path per line, path then whitespace then the prose phrase it c
 | `SPEC_FIELD_ABSENT` | a role spec requires a field the schema has no home for |
 | `SPEC_BLOCK_MISSING` | a role spec has no `requires:` block at all |
 | `SPEC_PATH_MALFORMED` | a path that does not resolve syntactically |
+| `SPEC_ROOT_UNKNOWN` | added — a path starting from a record type the schema does not have. A different mistake from a missing field, and collapsing the two would hide a typo inside the backlog |
+| `SPEC_FIELD_NOT_ARRAY` | added — a path marked `[]` whose field is not held as an array. `question.hints[]` satisfied by a string is a home in name only, and the requirement it came from says *"in their original ordering"* |
+| `SPEC_FIELD_UNCHECKED` | added — an object that would accept the field as an extra property but names and constrains nothing. Acceptance is not a home |
 
 Run it. The expected first result, from §2 of the roadmap: Core2 `hints[]`; Core2A `hints[]` and `answer.difficult_move`; Core2B `transfer`, `repair_ref`, `rubric[]`; Core1B the elicitation fields R2 defines. Whatever it actually reports is what gets built — the list above is a prediction, and the measurement replaces it.
+
+#### Measured
+
+**100 requirements across the six specs. 68 have no home. The prediction named about seven of them.**
+
+| Role | Required | No home |
+|---|---|---|
+| Core1 | 16 | 9 |
+| Core2 | 18 | 13 |
+| Core1A | 27 | 15 |
+| Core1B | 16 | 13 |
+| Core2A | 12 | 8 |
+| Core2B | 11 | 10 |
+
+The prediction was drawn from §2 of the roadmap, which reviewed the *products that compile*. It was therefore a list of what the compiler visibly could not emit — and it missed everything the compiler never attempts. Core1 alone contributes nine findings (bucket conventions, anchor values, the scope statement, the curriculum binding's status, the review status it inherits, and why a hard transition is hard) and none was predicted, because Core1 renders without visible complaint: it emits what it has and says nothing about what the spec asked for and it never received.
+
+That is the finding, and it is larger than the backlog: **a product that silently omits a required element looks exactly like a product that has it.** Reviewing rendered output could never have found these. Only the block-against-schema comparison could.
+
+One honest qualification, and it is R1.3's first task, not a claim to make here: **some of the 68 are renames, not gaps.** `question.source_id` and `question.original_number` appear as keys on compiled Core2 blocks, so that content exists under some other name. Every finding gets adjudicated one of two ways before any field is added — the spec's path is corrected because the schema already holds the thing, or the field is added because it does not. The split between the two is itself a result worth recording.
 
 ### R1.3 — Add the fields
 

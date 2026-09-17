@@ -14,7 +14,7 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     build_manifest, build_web_data, capability_audit, check_subjects,
-    topic_independence_guard,
+    spec_conformance, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -301,3 +301,87 @@ class CapabilityClaims(unittest.TestCase):
             found = capability_audit.audit_subject(root / "Mathematics")["findings"]
             self.assertIn(("BUILT_BUT_NOT_CLAIMED", "NUMBER_LINE"),
                           [(f["point"], f["capability"]) for f in found])
+
+
+class SpecConformance(unittest.TestCase):
+    """A role spec may not require content the schema has nowhere to keep.
+
+    The checker's own falsifiers plant each finding rather than asserting against the
+    real backlog, which shrinks as R1.3 closes it. What is asserted about the real
+    tree is that all six specs carry a block and that every path is at least
+    well-formed -- a typo must read as a typo, not as a missing field.
+    """
+
+    def setUp(self):
+        self.schema = json.loads(
+            (REPO / spec_conformance.SCHEMA).read_text(encoding="utf-8"))
+
+    def resolve(self, path):
+        return spec_conformance.resolve(path, self.schema)[0]
+
+    def test_all_six_role_specs_are_found_from_the_index(self):
+        found = [p.name for p in spec_conformance.role_specs()]
+        self.assertEqual(len(found), 6, found)
+        self.assertNotIn("README.md", found, "the invariants document is not a seventh role")
+
+    def test_every_spec_carries_a_block(self):
+        for role in spec_conformance.audit()["roles"]:
+            with self.subTest(role=role["role"]):
+                self.assertNotIn("SPEC_BLOCK_MISSING",
+                                 [f["point"] for f in role["findings"]])
+                self.assertGreater(role["required"], 0)
+
+    def test_a_missing_block_is_a_finding_distinct_from_an_empty_one(self):
+        with tempfile.TemporaryDirectory() as temp:
+            spec = Path(temp) / "CORE1.md"
+            spec.write_text("# no block here\n", encoding="utf-8")
+            report = spec_conformance.audit_spec(spec, self.schema)
+        self.assertEqual([f["point"] for f in report["findings"]], ["SPEC_BLOCK_MISSING"])
+        self.assertEqual(report["required"], 0)
+
+    def test_a_field_with_a_home_resolves(self):
+        # Paths that must keep resolving whatever else changes: if these break, the
+        # checker has stopped walking the schema rather than found a real defect.
+        for path in ("microtopic.id", "relation.expression", "question.stem",
+                     "microtopic.teaching_path[].why_valid",
+                     "representation.scene_instances[].microtopic_ref"):
+            with self.subTest(path=path):
+                self.assertEqual(self.resolve(path), "", path)
+
+    def test_a_planted_requirement_with_no_home_is_a_finding(self):
+        self.assertEqual(self.resolve("microtopic.no_such_field"), "SPEC_FIELD_ABSENT")
+        self.assertEqual(self.resolve("microtopic.teaching_path[].no_such_field"),
+                         "SPEC_FIELD_ABSENT")
+
+    def test_an_unknown_record_type_is_named_as_such(self):
+        # Not SPEC_FIELD_ABSENT: a spec asking about a record that does not exist is a
+        # different mistake from one asking for a field that does not exist.
+        self.assertEqual(self.resolve("microtopics.id"), "SPEC_ROOT_UNKNOWN")
+        self.assertEqual(self.resolve("answer.summary"), "SPEC_ROOT_UNKNOWN",
+                         "a nested definition is not a root; a path says which record it starts from")
+
+    def test_an_ordering_requirement_is_not_satisfied_by_a_scalar(self):
+        # question.stem exists and is a string. Requiring it as an array must fail:
+        # "in their original ordering" cannot be kept in something with no order.
+        self.assertEqual(self.resolve("question.stem[]"), "SPEC_FIELD_NOT_ARRAY")
+
+    def test_a_malformed_path_reads_as_malformed(self):
+        for path in ("", "question..stem", "question.Stem", "question.stem[", "question[].stem"):
+            with self.subTest(path=path):
+                self.assertEqual(self.resolve(path), "SPEC_PATH_MALFORMED", path)
+
+    def test_no_committed_path_is_malformed_or_names_an_unknown_record(self):
+        # The backlog of absent fields is expected and shrinking. A typo is not.
+        for role in spec_conformance.audit()["roles"]:
+            for finding in role["findings"]:
+                with self.subTest(role=role["role"], path=finding["path"]):
+                    self.assertNotIn(finding["point"],
+                                     ("SPEC_PATH_MALFORMED", "SPEC_ROOT_UNKNOWN"))
+
+    def test_every_requirement_carries_the_phrase_it_came_from(self):
+        # A path with no phrase cannot be checked against the prose by a reviewer,
+        # which is the half of this that no gate can do.
+        for spec in spec_conformance.role_specs():
+            for row in spec_conformance.requirements(spec):
+                with self.subTest(spec=spec.name, path=row["path"]):
+                    self.assertTrue(row["phrase"], row["path"])
