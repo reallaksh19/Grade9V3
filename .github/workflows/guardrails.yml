@@ -32,11 +32,10 @@ jobs:
       - name: Every subject's contract, gate registries and library
         run: python3 Shared/tools/check_subjects.py
 
-      # build_manifest regenerates tools/data.js first, so this covers both artifacts.
+      # --check compares the generated data file and the manifest without writing
+      # either, so it covers both artifacts and leaves the checkout untouched.
       - name: Generated artifacts have not drifted
-        run: |
-          python3 Shared/tools/build_manifest.py --check
-          git diff --exit-code -- tools/data.js
+        run: python3 Shared/tools/build_manifest.py --check
 
       - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
         run: python3 -m unittest discover -s tests -p "test_*.py" -v

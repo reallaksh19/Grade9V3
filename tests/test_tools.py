@@ -2,6 +2,7 @@
 mechanism requires a reason, and generated web data tells the truth about compilation."""
 import json
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -26,6 +27,28 @@ class Manifest(unittest.TestCase):
         committed = json.loads((REPO / "docs/architecture-manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(committed["digest"], build_manifest.collect()["digest"],
                          "regenerate with python3 Shared/tools/build_manifest.py")
+
+    def test_collect_does_not_write_to_the_tree(self):
+        # It used to regenerate tools/data.js as a side effect, so merely asking what
+        # the manifest should be overwrote whatever was in the working copy.
+        generated = REPO / "tools/data.js"
+        before = generated.read_bytes()
+        build_manifest.collect()
+        self.assertEqual(generated.read_bytes(), before)
+
+    def test_check_reports_a_stale_generated_file_without_repairing_it(self):
+        generated = REPO / "tools/data.js"
+        before = generated.read_bytes()
+        generated.write_bytes(before + b"// tampered\n")
+        try:
+            result = subprocess.run([sys.executable, "Shared/tools/build_manifest.py", "--check"],
+                                    cwd=REPO, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("tools/data.js", result.stdout)
+            self.assertEqual(generated.read_bytes(), before + b"// tampered\n",
+                             "a read-only check silently rewrote the file")
+        finally:
+            generated.write_bytes(before)
 
     def test_digest_changes_when_a_component_changes(self):
         before = build_manifest.collect()["digest"]
