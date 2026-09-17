@@ -550,3 +550,44 @@ class ComposedProseReadsAsProse(unittest.TestCase):
         self.assertIn("A common wrong idea:", text)
         self.assertIn("Instead:", text)
 
+
+class FiguresSitWithWhatTheyExplain(unittest.TestCase):
+    """A figure appended after every text block explains an argument already read."""
+
+    def compile_with_figure_on(self, microtopic_id):
+        """Move the figure to another microtopic, carrying the relation its data hangs on.
+
+        Re-pointing the figure alone is refused by the authority gate, correctly: a
+        figure bound to a microtopic whose obligation does not carry its data is a
+        figure attached to teaching it does not illustrate.
+        """
+        data = math_records()
+        instance = copy.deepcopy(data["REP-MATH-NUMBER-LINE"]["scene_instances"][0])
+        instance["microtopic_ref"] = microtopic_id
+        data["REP-MATH-NUMBER-LINE"] = {**data["REP-MATH-NUMBER-LINE"],
+                                        "scene_instances": [instance]}
+        target = dict(data[microtopic_id])
+        target["relation_refs"] = sorted({*target.get("relation_refs", []), "REL-MATH-EXACTNESS"})
+        data[microtopic_id] = target
+        return compile_bucket(data, BUCKET_MATH, topic_id="T", title="T", subject="Mathematics",
+                              practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"})
+
+    def test_a_figure_follows_the_microtopic_it_is_bound_to(self):
+        # Bound to the *first* microtopic, so landing last would be the old behaviour
+        # rather than a coincidence of this bucket's ordering.
+        compiled = self.compile_with_figure_on("MIC-MATH-CONSTRAINT")
+        blocks = next(p for p in compiled["plan"]["products"]
+                      if p["core"] == "CORE1A")["units"][0]["blocks"]
+        kinds = [b["kind"] for b in blocks]
+        self.assertEqual(kinds.index("FIGURE"), 1, kinds)
+        self.assertEqual(blocks[0]["obligation_ids"], blocks[1]["obligation_ids"])
+
+    def test_every_figure_sits_next_to_a_block_sharing_its_obligation(self):
+        compiled = self.compile_with_figure_on("MIC-MATH-EQUIVALENT-OPS")
+        for product in compiled["plan"]["products"]:
+            blocks = product["units"][0]["blocks"]
+            for index, block in enumerate(blocks):
+                if block["kind"] != "FIGURE" or index == 0:
+                    continue
+                self.assertEqual(blocks[index - 1]["obligation_ids"], block["obligation_ids"],
+                                 f'{product["core"]} block {index}')

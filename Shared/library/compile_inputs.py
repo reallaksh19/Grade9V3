@@ -253,6 +253,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             "baseline_digest": "", "practice_control": practice_control, "products": []}
     for core in supported:
         blocks, unit_id = [], f"U-{core}-{bucket_id}"
+        figures = _figure_blocks(core, representations, obligations, atoms, practice_obligation)
         if core == "CORE1":
             blocks = _orientation_blocks(records, relation_ids, atoms, microtopics,
                                          orientation_obligation, equations)
@@ -270,6 +271,10 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 blocks.append({"id": f'{core}-{microtopic["id"]}-T', "kind": "TEXT",
                                "obligation_ids": [obligation], "source_atom_ids": bound,
                                "text": _teaching_text(microtopic, core)})
+                # A figure belongs with the microtopic it was bound to. Appending every
+                # figure after every text block put the one that explains a transition
+                # after the whole argument had been read in prose.
+                blocks += [b for b in figures if b["obligation_ids"] == [obligation]]
             requirements.append({"kind": "PROSE_AUTHORING", "core": core,
                                  "detail": "blocks carry library-held teaching text; connecting narrative "
                                            "and worked examples still require authoring"})
@@ -278,7 +283,9 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 if not any(e.get("core") == core for e in record.get("exposure", [])):
                     continue
                 blocks.append(_question_block(core, record, practice_obligation, atoms))
-        blocks += _figure_blocks(core, representations, obligations, atoms, practice_obligation)
+        # Whatever was not placed beside a microtopic -- figures carried by the practice
+        # obligation -- belongs with the questions, which is where they already sat.
+        blocks += [b for b in figures if b not in blocks]
         if blocks:
             plan["products"].append({"core": core, "units": [
                 {"id": unit_id, "bucket_id": bucket_id, "title": bucket["title"], "blocks": blocks}]})

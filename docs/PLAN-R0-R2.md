@@ -32,7 +32,7 @@ Cheap, global, inherited by every phase after. Two items, not the three the road
 |---|---|---|
 | 304 | `f' This gives {sentence(step["output"])}'` | `This gives For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false.` |
 | 301 | `f'A common wrong idea is that {wrong_idea} {repair}'` | `A common wrong idea is that The equals sign means work out the left side…` — and it runs two sentences together on one line |
-| 308 | `f'Answer: {answer.get("summary")}'` | benign today; same shape, so same treatment |
+| 308 | `f'Answer: {answer.get("summary")}'` | ~~benign today; same shape, so same treatment~~ **Not a site.** It ends in a colon, and a capital after a colon is correct English. Left alone, along with `Predict first:`, `Check yourself:` and `Verify:`. Two sites, not three. |
 
 **The rule.** Not lowercasing — that needs proper-noun knowledge nothing has. A field is either a *fragment* that belongs inside the lead-in, or a *sentence* that belongs on its own line. `substance.is_prose` already draws exactly that line (≥6 words, or ends with a terminator) and is already trusted by the substance gate.
 
@@ -70,9 +70,14 @@ Lives in `Shared/contracts.py` beside `sentence()`. `wrong_idea` and `repair` st
 
 ### R0 exit evidence
 
-- Full suite green; `republish.py --write` reports the Mathematics change and the Physics run reports `learner_visible_changes: []`
-- The Mathematics pages contain no sentence embedded mid-sentence and every microtopic figure follows its microtopic
-- `--accept-output-change` is passed deliberately and named in the commit message
+- Full suite green (153 tests); guard, capability audit, subject sweep, publication sweep and manifest green at each of the two commits
+- The compiled Mathematics products contain no capitalised word directly after a lead-in word, asserted generally across Core1/Core1A/Core1B rather than against the two strings that were found
+- Every microtopic figure is the block immediately after the microtopic sharing its obligation; practice-obligation figures still sit with the questions
+- `republish.py --write` reports `learner_visible_changes: []` for the Physics run
+
+**~~`--accept-output-change` is passed deliberately and named in the commit message.~~ Retracted: there was nothing to accept.** The plan assumed a committed Mathematics publication whose pages would move. There is none — `Mathematics/` holds a library and gates, and its bucket is compiled to inputs on demand rather than published into the tree. `committed_publications()` finds exactly one run, the Physics one, and its learner-visible bytes are unchanged because its plan is hand-authored and contains no composed joins. So R0.3 has no work in it: the republish that R0.1 already needed, for the runtime snapshot, is the whole of it.
+
+That the flag was never needed is worth more than the flag being used. It means these two composition fixes changed no published page — the only pages they change are the ones the Mathematics compiler will produce the first time that bucket is published.
 
 ---
 
@@ -243,9 +248,9 @@ Deliberately not planned in detail: R1's measurement will change the field list,
 Each line is one commit, green before it lands.
 
 ```
-R0.1  join() and the three join sites, with falsifiers
+R0.1  join() and the two join sites, with falsifiers (three claimed; one was not a site)
 R0.2  figure placement interleaved with microtopics
-R0.3  republish Mathematics with --accept-output-change, naming what changed
+R0.3  (empty -- no committed Mathematics publication exists to republish; folded into R0.1)
 R1.1  requires: blocks in all six role specs
 R1.2  spec_conformance.py, measuring only; report committed
 R1.3  the fields the measurement found
