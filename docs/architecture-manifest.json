@@ -16,7 +16,7 @@
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:7d5f0c941b580b1ca344973660cdd5b6141de1d5c1c74b901df3cb516129d276",
+  "digest": "sha256:c92614e43fed4ca8fe573e7232dfbaee46a45a60b5a550a31305e51c3c01b06f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -64,15 +64,15 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 10873,
-      "sha256": "41a498220835bc2f55cb25c49da33dc568d155cc20aa030f1fe302fe432d8cb9"
+      "bytes": 12743,
+      "sha256": "170a8fa72f53823b8e7cdc5da0c6fee93a4ae1942e0e5f99eb7130bc0078e0c6"
     },
     {
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 67180,
-      "sha256": "69e64829dc7880f83bb638cc3ad8d21e204e716183c60ac29b2e4ca8fe5d259c"
+      "bytes": 68838,
+      "sha256": "fc69903998117ac7f4987a8a7e0c0c0505c646a00a4063588947f38826176a56"
     },
     {
       "path": "Shared/library/promote.py",
@@ -183,8 +183,8 @@
       "path": "Shared/roles/CORE1B.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 4374,
-      "sha256": "a614d14aca13f409fa37820dde2a4c7500ecc1eadaecc6779fbe6643c1c3f5ec"
+      "bytes": 4667,
+      "sha256": "45538933f7989a9b7d6ab3d3f99c49cd7207558af64fd94e2786f2f141583f5f"
     },
     {
       "path": "Shared/roles/CORE2.md",
@@ -295,8 +295,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 42308,
-      "sha256": "b1ac6beec8e8e3363631f30c926f33da97f453422d0aa1deccbf85d3123c9dab"
+      "bytes": 46973,
+      "sha256": "faa0c4e14330a5c2536bb909b2ee6a10458abc7d129e0db1a29f945ae7cee5a1"
     },
     {
       "path": "tests/test_mathematics.py",

@@ -28,7 +28,7 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from Shared.contracts import load, require
+from Shared.contracts import load, normalise, require
 from Shared.library.substance import (
     findings as substance_findings, step_findings as substance_step_findings,
 )
@@ -63,6 +63,11 @@ def corpus(package: dict) -> dict[str, dict]:
             if isinstance(row, dict) and isinstance(row.get("id"), str):
                 records[row["id"]] = {**row, "_collection": collection}
     return records
+
+
+def _mapping(value: object) -> dict:
+    """A record's sub-object, or an empty one when it is malformed rather than absent."""
+    return value if isinstance(value, dict) else {}
 
 
 def _answers(package: dict):
@@ -186,7 +191,12 @@ def check(package: dict) -> dict:
                                        f"but the breakdown has {len(moves)}")
 
     for row in microtopics:
-        attempt = ((row.get("elicitation") or {}).get("attempt")) or {}
+        # A record of the wrong shape is reported by schema_errors, not by crashing here:
+        # check() promises never to raise on content, and a gate that dies on the first
+        # malformed record hides every finding on the well-formed ones behind it.
+        elicitation = row.get("elicitation")
+        elicitation = elicitation if isinstance(elicitation, dict) else {}
+        attempt = _mapping(elicitation.get("attempt"))
         carried = {"MODEL_RESPONSE": "model_response", "RUBRIC": "rubric", "CRITERIA": "rubric"}
         field = carried.get(attempt.get("closure"))
         if field and not attempt.get(field):
@@ -195,6 +205,24 @@ def check(package: dict) -> dict:
         if attempt.get("rubric") and not attempt.get("rejected"):
             fail("ELICITATION", f'{row.get("id")}: offers a rubric with no rejected example, '
                                 "so it has not been tested against anything")
+
+        # The A/B claim, checked where it is made rather than only where it is rendered.
+        # An author who restates the teaching path as the way it differs from the teaching
+        # path has written the sentence a reviewer reads without making the claim it makes.
+        reconstruct = _mapping(elicitation.get("reconstruct"))
+        claim = normalise(reconstruct.get("differs_from_teaching_path", ""))
+        path_text = normalise(" ".join(f'{s.get("action", "")} {s.get("why_valid", "")} '
+                                       f'{s.get("output", "")}'
+                                       for s in row.get("teaching_path", [])))
+        if claim and claim in path_text:
+            fail("ELICITATION", f'{row.get("id")}: says it differs from the teaching path in '
+                                "words the teaching path already contains")
+        steps = {s.get("id") for s in row.get("teaching_path", [])}
+        for ask in reconstruct.get("route") or []:
+            if isinstance(ask, dict) and ask.get("from_step_ref") and ask["from_step_ref"] not in steps:
+                fail("ELICITATION", f'{row.get("id")}: an ask arrives at '
+                                    f'{ask["from_step_ref"]}, which is not a step of this '
+                                    "microtopic's teaching path")
 
     status = package.get("status")
     if status not in LIFECYCLE:

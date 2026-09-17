@@ -53,9 +53,12 @@ microtopic.elicitation.attempt.model_response   closure as one string, where one
 microtopic.elicitation.attempt.rubric[]         closure as a rubric, where several answers are valid
 microtopic.elicitation.attempt.accepted[]       representative accepted answers
 microtopic.elicitation.attempt.rejected[]       representative rejected answers
-microtopic.elicitation.reconstruct[]            the correct construction, reached the learner's way
-microtopic.elicitation.reconstruct[].move       not the way an expert would summarise it
+microtopic.elicitation.reconstruct.route[]      the correct construction, reached the learner's way
+microtopic.elicitation.reconstruct.route[].ask  not the way an expert would summarise it
+microtopic.elicitation.reconstruct.route[].why_this_ask  why this question rather than another here
+microtopic.elicitation.reconstruct.differs_from_teaching_path  the A/B claim, in a form a reviewer can check
 microtopic.elicitation.boundary_test.prompt     a limiting case, reversal or edge condition
+microtopic.elicitation.boundary_test.answer     every prompt closes without a tutor
 microtopic.elicitation.boundary_test.confirms   confirms understanding rather than recall
 microtopic.misconceptions[].wrong_idea          the plausible wrong answer, named
 microtopic.misconceptions[].diagnostic_prompt   a specific question separating it from the right one

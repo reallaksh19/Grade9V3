@@ -680,8 +680,14 @@ class FieldsAddedMustCarryWhatTheyPromise(unittest.TestCase):
                         "defensible_answer": "No, not when x may be zero."},
             "attempt": {"produces": "A statement of when the operation is reversible.",
                         "closure": "RUBRIC"},
-            "reconstruct": [{"move": "Ask what value of the multiplier would destroy information."}],
+            "reconstruct": {"route": [
+                {"ask": "What value of the multiplier would destroy information?",
+                 "why_this_ask": "It is the one case where the operation is not reversible."}],
+                "differs_from_teaching_path": "The learner meets the failing multiplier before "
+                                              "any rule about it is stated."},
             "boundary_test": {"prompt": "Multiply both sides of x = 1 by (x - 1).",
+                              "answer": "x = 1 still solves it, and x = 1 is now also a root of "
+                                        "the multiplied form for a different reason.",
                               "confirms": "That a new root appears when the multiplier can vanish."}}
         report = check(package)
         self.assertFalse(report["admitted"])
@@ -698,8 +704,14 @@ class FieldsAddedMustCarryWhatTheyPromise(unittest.TestCase):
                         "rubric": [{"criterion": "Names the multiplier's zero as the failure case.",
                                     "evidence_of": "Reading an operation as conditional on its inputs."}],
                         "accepted": ["It fails when x = 0, because then both sides become 0."]},
-            "reconstruct": [{"move": "Ask what value of the multiplier would destroy information."}],
+            "reconstruct": {"route": [
+                {"ask": "What value of the multiplier would destroy information?",
+                 "why_this_ask": "It is the one case where the operation is not reversible."}],
+                "differs_from_teaching_path": "The learner meets the failing multiplier before "
+                                              "any rule about it is stated."},
             "boundary_test": {"prompt": "Multiply both sides of x = 1 by (x - 1).",
+                              "answer": "x = 1 still solves it, and x = 1 is now also a root of "
+                                        "the multiplied form for a different reason.",
                               "confirms": "That a new root appears when the multiplier can vanish."}}
         report = check(package)
         self.assertFalse(report["admitted"])
@@ -785,3 +797,65 @@ class BMustDemandWorkADoesNot(unittest.TestCase):
         points = {f["point"] for f in differentiation.findings(plan)}
         self.assertNotIn("PROMPT_ANSWERED_IN_PLACE", points)
         self.assertNotIn("OBLIGATION_WITHOUT_ELICITATION", points)
+
+    def test_a_route_of_statements_cannot_pass_as_a_route_of_asks(self):
+        # R1 gave `reconstruct` a home and got its shape wrong on the one field where
+        # shape is the whole point: a list of moves is what teaching_path already is,
+        # so Core1B compiled from it would have been Core1A under a new key.
+        schema = json.loads((REPO / "Shared/library/package.schema.json").read_text(encoding="utf-8"))
+        route = (schema["$defs"]["microtopic"]["properties"]["elicitation"]
+                 ["properties"]["reconstruct"]["properties"]["route"])
+        self.assertEqual(sorted(route["items"]["required"]), ["ask", "why_this_ask"])
+        self.assertNotIn("move", route["items"]["properties"])
+
+
+class ElicitationClaimsAreChecked(unittest.TestCase):
+    """The A/B claim is checked where it is made, not only where it is rendered."""
+
+    def package(self):
+        return json.loads(MATH_PACKAGES[0].read_text(encoding="utf-8"))
+
+    def elicitation(self, differs, route=None):
+        return {"predict": {"prompt": "Which side of a*x + b = c may be changed on its own?",
+                            "defensible_answer": "Neither: the claim is about both together."},
+                "attempt": {"produces": "A rule for what may be done to one side alone.",
+                            "closure": "MODEL_RESPONSE",
+                            "model_response": "Nothing, unless it is done to the other side too."},
+                "reconstruct": {"route": route or [
+                    {"ask": "If you add 3 to the left only, is the statement still about the same x?",
+                     "why_this_ask": "It forces the learner to test the claim before naming a rule."}],
+                    "differs_from_teaching_path": differs},
+                "boundary_test": {"prompt": "Multiply both sides of x = 1 by (x - 1).",
+                                  "answer": "x = 1 still solves it, and so now does x = 1 vacuously "
+                                            "for the multiplied form.",
+                                  "confirms": "That an operation which can vanish is not reversible."}}
+
+    def test_a_difference_claim_restating_the_teaching_path_is_refused(self):
+        package = self.package()
+        row = package["microtopics"][0]
+        restated = row["teaching_path"][0]["action"]
+        row["elicitation"] = self.elicitation(restated)
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "ELICITATION" for f in report["findings"]),
+                        report["findings"])
+
+    def test_a_genuine_difference_claim_is_admitted(self):
+        package = self.package()
+        package["microtopics"][0]["elicitation"] = self.elicitation(
+            "The expert declares the domain first; the learner reaches it only after an "
+            "operation has already lost a solution.")
+        self.assertTrue(check(package)["admitted"], check(package)["findings"])
+
+    def test_an_ask_arriving_at_a_step_that_does_not_exist_is_refused(self):
+        package = self.package()
+        row = package["microtopics"][0]
+        row["elicitation"] = self.elicitation(
+            "The learner reaches the rule by testing it, not by being handed it.",
+            route=[{"ask": "What would go wrong if you changed one side alone?",
+                    "why_this_ask": "It is the smallest case where the claim can fail.",
+                    "from_step_ref": "STEP-NOT-IN-THIS-MICROTOPIC"}])
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "ELICITATION" for f in report["findings"]),
+                        report["findings"])

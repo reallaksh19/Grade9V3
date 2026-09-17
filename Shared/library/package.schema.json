@@ -1144,28 +1144,50 @@
               ]
             },
             "reconstruct": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                  "move": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "One move of the construction, in the order a learner reaches it."
-                  },
-                  "from_step_ref": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "The teaching_path step this move corresponds to, where one does. Absent means the learner's route genuinely differs from the expert's, which is the point of holding both."
+              "type": "object",
+              "additionalProperties": false,
+              "description": "The correct construction reached the way a learner would reach it. Held as questions rather than statements: teaching_path is the expert's summary, and a reconstruct route made of statements is that summary under a different key, which is exactly how this product became the declarative one.",
+              "properties": {
+                "route": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "The sequence of asks. Order is meaning: each one is answerable only once the previous has been answered.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "ask": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "A question that moves the learner one decision forward. A sentence with a question mark on it is not an ask; the learner must be able to get it wrong."
+                      },
+                      "why_this_ask": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Why this question rather than another at this point. An author who cannot say this has ordered the route by the expert's convenience."
+                      },
+                      "from_step_ref": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "The teaching_path step this ask arrives at, where one exists. Absent means the learner's route genuinely departs from the expert's, which is why both are held."
+                      }
+                    },
+                    "required": [
+                      "ask",
+                      "why_this_ask"
+                    ]
                   }
                 },
-                "required": [
-                  "move"
-                ]
+                "differs_from_teaching_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "How the learner's route differs from the expert's construction. This is the sentence a reviewer checks the A/B claim against, so it may not restate the teaching path it claims to differ from."
+                }
               },
-              "minItems": 1,
-              "description": "The correct construction reached the way a learner would reach it. Held separately from teaching_path because teaching_path is the expert's summary, and using it here is what makes this product read as the declarative one."
+              "required": [
+                "route",
+                "differs_from_teaching_path"
+              ]
             },
             "boundary_test": {
               "type": "object",
@@ -1180,10 +1202,16 @@
                   "type": "string",
                   "minLength": 1,
                   "description": "What passing it establishes, stated so that a recall question cannot be passed off as a boundary test."
+                },
+                "answer": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "What passing it looks like. The shared closure invariant has no exception for the last prompt in a cycle."
                 }
               },
               "required": [
                 "prompt",
+                "answer",
                 "confirms"
               ]
             }
