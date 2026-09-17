@@ -44,25 +44,23 @@ cannot check the reverse — that everything the prose requires appears in the b
 ```requires
 bucket.conventions[]                     declared before any of it is used
 bucket.conventions[].statement           axes and signs, reference states, domains, species and phase
-microtopic.entry_capability_ref          the entry capability assumed
+microtopic.entry_assumptions[]           the entry capability assumed
 microtopic.inferential_jump              the exact inference being learned
 microtopic.teaching_path[]               constructed concepts, not stated conclusions
 microtopic.teaching_path[].action        the step itself
 microtopic.teaching_path[].why_valid     why each step is valid
-microtopic.teaching_path[].provenance    an author's construction is not source-supported without the binding
+microtopic.teaching_path[].source_ref    an author's construction is not source-supported without the binding
 microtopic.exit_task.prompt              the observable exit criterion
 microtopic.exit_task.answer              no embedded prompt left unclosed
-microtopic.worked_examples[]             completed worked examples
-microtopic.worked_examples[].steps[]     the reasoning shown in full
-microtopic.worked_examples[].steps[].skippable  including the steps a confident author would skip
+question.answer.reasoning[]              completed worked examples, the reasoning shown in full
+question.exposure[].core                 a worked example is a question this product exposes
 microtopic.misconceptions[].wrong_idea   the plausible wrong path, named
 microtopic.misconceptions[].diagnostic_prompt   a diagnostic that would expose it
 microtopic.misconceptions[].repair       and the repair that fixes it
-microtopic.self_checks[]                 checks the learner can run alone
-microtopic.self_checks[].kind            limiting cases, reversals, recomputation, conservation, domain
-microtopic.self_checks[].statement       what the learner actually runs
+relation.checks[]                        checks the learner can run alone
+microtopic.exit_task.answer.check        one the learner runs on their own result
 microtopic.intrinsic_badge               depth follows the subtopic's intrinsic badge
-microtopic.enrichment_refs[]             HARD and MEDIUM require research-informed enrichment
+microtopic.research_contribution         HARD and MEDIUM require research-informed enrichment
 representation.scene_instances[]         the same idea carried across picture, words and symbols
 representation.scene_instances[].microtopic_ref  a figure not bound to the working is decoration
 representation.correspondence[]          the correspondence made explicit in both directions

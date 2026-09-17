@@ -36,22 +36,23 @@ The prose above is the authority for *meaning*. The block below is the authority
 cannot check the reverse — that everything the prose requires appears in the block.
 
 ```requires
-question.source_id                       source identifier, preserved verbatim
-question.original_number                 original question number, preserved verbatim
+question.source_refs[]                   source identifier, preserved verbatim
+question.original_identifier             original question number, preserved verbatim
 question.stem                            stem, preserved verbatim
 question.subparts[]                      subparts, preserved verbatim
 question.options[]                       options, preserved verbatim
 question.conditions[]                    conditions, preserved verbatim
-question.figures[]                       figures survive; an unadapted original is held
-question.figures[].caption               and their captions survive
-question.figures[].custody_state         held rather than dropped
+question.figure_refs[]                   figures survive; an unadapted original is held
+resource.caption                         and their captions survive
+resource.access_status                   held rather than dropped
 question.hints[]                         ladder hints, in their original ordering
 question.answer.summary                  an answer, for every question held
-question.answer.working[]                with whatever working the source provides
+question.answer.reasoning[]              with whatever working the source provides
 question.answer.rubric[]                 or rubric the source provides
-question.provenance.class                supplied original, adapted, or authored
-question.provenance.parent_id            adapted, with parent identity
-question.provenance.changed_fields[]     and the exact changed fields
-bucket.custody.state                     Core2 is HELD and says so plainly
-bucket.custody.closes_when               naming what acquisition would close the hold
+question.origin                          supplied original, adapted, or authored
+question.adaptation.parent_ref           adapted, with parent identity
+question.adaptation.changed_fields[]     and the exact changed fields
+issue.classification                     Core2 is HELD and says so plainly
+issue.affected_refs[]                    which bucket the hold is on
+issue.next_action                        naming what acquisition would close the hold
 ```

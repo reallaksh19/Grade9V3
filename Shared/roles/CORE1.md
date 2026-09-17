@@ -38,17 +38,18 @@ That stays a reviewer's duty.
 bucket.title                             a short, correct orientation to the bucket
 bucket.conventions[]                     the conventions needed to read the objects
 bucket.conventions[].statement           declared axes, sign conventions, reference states
-bucket.anchor_values[]                   the worked anchor values, if the bucket has one
+datum.value                              the worked anchor values, if the bucket has one
+datum.symbol                             stated compactly
 bucket.scope.covers                      what this bucket covers
 bucket.scope.excluded[]                  what is deliberately excluded
 bucket.scope.extension_refs[]            what is carried as labelled extension
-bucket.curriculum_binding.status         a candidate rather than an established binding, said so
-bucket.review_status                     it then carries Core1A's review status
+bucket.curriculum_mappings[].mapping_status  a candidate rather than an established binding, said so
+bucket.status                            it then carries Core1A's review status
 datum.meaning                            the named objects and quantities of the bucket
 datum.unit                               units -- whatever the subject adapter specifies
 relation.expression                      the governing relations in their canonical form
 relation.meaning                         each with its meaning in words
 relation.conditions[]                    the conditions under which it applies
 microtopic.intrinsic_badge               which transitions are intrinsically hard
-microtopic.why_hard                      so the learner knows where Core1A/Core1B spend effort
+microtopic.badge_reason                  so the learner knows where Core1A/Core1B spend effort
 ```

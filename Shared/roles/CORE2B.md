@@ -50,9 +50,9 @@ question.transfer.builds_on[]            exposure lineage: what the learner has 
 question.hints[]                         graduated help that supports without collapsing the demand
 question.hints[].reveals                 help that hands over the model choice defeats the task
 question.answer.summary                  full answer
-question.rubric[]                        and rubric
-question.rubric[].criterion              what a good justification contains
-question.rubric[].evidence_of            not only the final result
+question.answer.rubric[]                 and rubric
+question.answer.rubric[].criterion       what a good justification contains
+question.answer.rubric[].evidence_of     not only the final result
 question.repair_ref                      a repair route pointing back to the Core1A/Core1B construction
-question.provenance.class                a task requiring an untaught model is a coverage gap
+question.origin                          a task requiring an untaught model is a coverage gap
 ```

@@ -135,6 +135,37 @@ That is the finding, and it is larger than the backlog: **a product that silentl
 
 One honest qualification, and it is R1.3's first task, not a claim to make here: **some of the 68 are renames, not gaps.** `question.source_id` and `question.original_number` appear as keys on compiled Core2 blocks, so that content exists under some other name. Every finding gets adjudicated one of two ways before any field is added — the spec's path is corrected because the schema already holds the thing, or the field is added because it does not. The split between the two is itself a result worth recording.
 
+#### Adjudicated: 28 renames, 40 real gaps
+
+Every one of the 68 was decided one of two ways before a field was added. **28 were the spec naming something the schema already holds**, and the spec's path was corrected — the block is a translation of prose and a translation can be wrong. **40 are real**, needing 13 distinct new fields.
+
+The renames, and what they show:
+
+| The spec asked for | The schema calls it |
+|---|---|
+| `question.provenance.class` / `.parent_id` / `.changed_fields[]` | `question.origin`, `question.adaptation.parent_ref`, `.changed_fields[]` |
+| `question.source_id`, `question.original_number` | `question.source_refs[]`, `question.original_identifier` |
+| `question.figures[]`, `question.family`, `question.figure_ref` | `question.figure_refs[]`, `question.family_ref` |
+| `question.answer.working[]` | `question.answer.reasoning[]` |
+| `bucket.review_status`, `bucket.curriculum_binding.status` | `bucket.status`, `bucket.curriculum_mappings[].mapping_status` |
+| `microtopic.why_hard`, `.entry_capability_ref`, `.enrichment_refs[]` | `microtopic.badge_reason`, `.entry_assumptions[]`, `.research_contribution` |
+| `bucket.custody.state` / `.closes_when` | `issue.classification` / `.next_action`, with `affected_refs[]` naming the bucket |
+| `bucket.anchor_values[]` | `datum.value`, `datum.symbol` |
+
+Two of these were substantive rather than cosmetic:
+
+**Core1A's worked examples were not a missing field.** The spec asks for *"completed worked examples, with the reasoning shown in full"*, and I translated that to a new `microtopic.worked_examples[]`. The mechanism already exists and is better: a worked example is a `question` whose `exposure[].core` is `CORE1A`, carrying `answer.reasoning[]`. Adding a parallel array would have created a second place for one kind of content, which is the defect A4 exists to close.
+
+**Core2's custody hold is `known_issues`, not a new bucket field.** *"Core2 is HELD and says so plainly, naming what acquisition would close the hold"* is exactly what `issue.classification` plus `issue.next_action` are for — the repository's standing mechanism for a claim that must say why it is not backed. Only the enum lacks a value for it.
+
+Three paths were **withdrawn** rather than renamed, because measurement showed the translation over-reached:
+
+- `microtopic.self_checks[].kind`, as an enum of limiting case / reversal / recomputation / conservation / domain. The spec's own words are *"as the subject provides"*. An enum here would put subject vocabulary in the engine, which the topic-independence guard exists to prevent.
+- `microtopic.worked_examples[].steps[].skippable`, to mark *"the steps a confident author would skip"*. A boolean the author sets cannot catch the author who skipped the step — they will not set it. It buys nothing a gate can use.
+- `question.rubric[]` as a question-level field. `answer.kind` already has a `RUBRIC` value, so the rubric belongs on `answer`; Core2 and Core2B now point at one field rather than two.
+
+**One divergence the measurement surfaced that neither the roadmap nor the plan predicted.** `question_family.demand_dimensions` already enumerates four dimensions — `model_choice`, `representation_translation`, `reasoning_steps`, `novelty` — and Core2B's prose names four — Model choice, Representation, Context, Reasoning load. They are the same four under different names, written twice by different hands. `question.transfer.dimension` therefore takes the schema's existing key names as its enum rather than inventing a third spelling.
+
 ### R1.3 — Add the fields
 
 ```

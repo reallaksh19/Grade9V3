@@ -16,7 +16,7 @@
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:fabed4eb710e9840eb41dc34f8b5d450a33514fab75a23dab61a287f558cb6dd",
+  "digest": "sha256:2137f80c2e96e6194a335057ba1bed02267f880c0bc34ef9d642332334e3d0d9",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -162,15 +162,15 @@
       "path": "Shared/roles/CORE1.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3793,
-      "sha256": "222ada163944f8fe6199702a8b80ea7841597ba8e650a9397f20c79165e28491"
+      "bytes": 3855,
+      "sha256": "5d85e0543ec750dd032f9b3e4d54e348ad836c849b4485f3dfd071e87ed1f66e"
     },
     {
       "path": "Shared/roles/CORE1A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 5099,
-      "sha256": "6e946e4d6d2ecfb5782dfd5f245a282cd52eb606fe61915d47b33016b2418e27"
+      "bytes": 4960,
+      "sha256": "991dfcfdb3743fa828fb649dd17790ee0abeff81cd88bcd48aab734777d3b009"
     },
     {
       "path": "Shared/roles/CORE1B.md",
@@ -183,22 +183,22 @@
       "path": "Shared/roles/CORE2.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 3596,
-      "sha256": "ebe5774e58983ee4ee63a1927d6cfe0c1c0e76b134690b808ec8941280f741f4"
+      "bytes": 3665,
+      "sha256": "3605e73fdb378f7b71589c0c2326643a7c1acb6e927f9a47bdbe04a5764c6d6f"
     },
     {
       "path": "Shared/roles/CORE2A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
       "bytes": 3726,
-      "sha256": "9f99795d9a59895cda33a261a64731ec4f15e44c6e4035e6025c2c32eb4bb6ca"
+      "sha256": "e3406ec04670c2b488da583df4c568232f77c9ddd43f2ae8c2d65c20763990fe"
     },
     {
       "path": "Shared/roles/CORE2B.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
       "bytes": 3719,
-      "sha256": "d89d44ed5244a2074db2ab83df2c233082b6c673dcdd205aad20e19388fcdf3c"
+      "sha256": "c33060392d4ada753cd7b5c66de4a6484de55004e9f22bca6a2d514963dd0b24"
     },
     {
       "path": "Shared/roles/README.md",

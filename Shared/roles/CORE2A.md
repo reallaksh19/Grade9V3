@@ -40,15 +40,15 @@ The prose above is the authority for *meaning*. The block below is the authority
 cannot check the reverse — that everything the prose requires appears in the block.
 
 ```requires
-question.source_id                       exact source identity preserved and visible
-question.original_number                 including the original question number
-question.provenance.class                including provenance class
+question.source_refs[]                   exact source identity preserved and visible
+question.original_identifier             including the original question number
+question.origin                          including provenance class
 question.answer.reasoning[]              the sequence of decisions, not a summary
 question.answer.difficult_move           the first difficult move made explicit rather than glossed
 question.answer.check                    a check the learner can run on their own result
 question.hints[]                         hints, where useful; no required count
-question.figure_ref                      a figure where the representation carries meaning
-question.family                          declared family, so reuse is auditable
+question.figure_refs[]                   a figure where the representation carries meaning
+question.family_ref                      declared family, so reuse is auditable
 question.exposure[].core                 declared exposure role, so reuse is auditable
 question.exposure[].role                 and what that exposure is for
 representation.scene_instances[].question_ref  bound to the working rather than placed beside it
