@@ -32,6 +32,16 @@ def product(compiled, core):
     return next((row for row in compiled["plan"]["products"] if row["core"] == core), None)
 
 
+def product_text(compiled_product):
+    """Learner-visible text without JSON escaping changing the authored wording."""
+    return "\n".join(
+        block["text"]
+        for unit in compiled_product["units"]
+        for block in unit["blocks"]
+        if isinstance(block.get("text"), str)
+    )
+
+
 class ConventionDelivery(unittest.TestCase):
     def test_every_supported_core1_or_core1a_carries_each_authored_statement(self):
         index = records()
@@ -45,11 +55,11 @@ class ConventionDelivery(unittest.TestCase):
                 compiled_product = product(compiled, core)
                 if compiled_product is None:
                     continue
-                blob = json.dumps(compiled_product, ensure_ascii=False)
+                learner_text = product_text(compiled_product)
                 for convention in bucket["conventions"]:
                     with self.subTest(bucket=bucket["id"], core=core,
                                       convention=convention["id"]):
-                        self.assertIn(convention["statement"], blob)
+                        self.assertIn(convention["statement"], learner_text)
 
     def test_core1_declares_conventions_before_other_orientation_content(self):
         index = records()
