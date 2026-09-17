@@ -656,7 +656,30 @@
         "Correct magnitude paired with an unlabelled or ambiguous direction."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": [],
+      "scene_instances": [
+        {
+          "id": "SI-VECTOR-COMPONENTS",
+          "cores": [
+            "CORE1A"
+          ],
+          "microtopic_ref": "MIC-SIGNED-COMPONENT",
+          "datum_refs": [
+            "DAT-W-X",
+            "DAT-W-Y"
+          ],
+          "scene": {
+            "kind": "VECTOR",
+            "symbol": "w",
+            "unit": "m/s",
+            "x_atom": "DAT-W-X",
+            "y_atom": "DAT-W-Y",
+            "x_label": "east (m/s)",
+            "y_label": "north (m/s)",
+            "frame": "One common east/north frame, equal scale on both axes.",
+            "caption": "w = (3, 4) m/s: the arrow's position is fixed by its two signed components, and its length is a consequence of them rather than a third independent number."
+          }
+        }
+      ],
       "correspondence": [
         {
           "element": "Labelled vector with tail at the origin and arrowhead at the endpoint",
@@ -706,7 +729,46 @@
         "Correct magnitude with the wrong observer/subtraction order."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": [],
+      "scene_instances": [
+        {
+          "id": "SI-VECTOR-SUBTRACTION",
+          "cores": [
+            "CORE1A"
+          ],
+          "microtopic_ref": "MIC-GRAPHICAL-SUBTRACTION",
+          "datum_refs": [
+            "DAT-P-X",
+            "DAT-P-Y",
+            "DAT-Q-X",
+            "DAT-Q-Y",
+            "DAT-PQ-X",
+            "DAT-PQ-Y"
+          ],
+          "scene": {
+            "kind": "VECTOR_SUBTRACTION",
+            "unit": "m/s",
+            "x_label": "east (m/s)",
+            "y_label": "north (m/s)",
+            "frame": "One common east/north frame, at one length scale for every vector drawn.",
+            "caption": "P - Q is built by reversing Q and placing it at the head of P. The resultant (6, -8) m/s is longer than either vector, which a component-subtraction shortcut gives without ever showing why.",
+            "minuend": {
+              "symbol": "P",
+              "x_atom": "DAT-P-X",
+              "y_atom": "DAT-P-Y"
+            },
+            "subtrahend": {
+              "symbol": "Q",
+              "x_atom": "DAT-Q-X",
+              "y_atom": "DAT-Q-Y"
+            },
+            "resultant": {
+              "symbol": "P-Q",
+              "x_atom": "DAT-PQ-X",
+              "y_atom": "DAT-PQ-Y"
+            }
+          }
+        }
+      ],
       "correspondence": [
         {
           "element": "Labelled P, Q and -Q",

@@ -179,9 +179,24 @@ class Compilation(unittest.TestCase):
         self.assertEqual([r["core"] for r in unsupported], ["CORE2B"])
 
     def test_remaining_authoring_is_declared_rather_than_invented(self):
-        kinds = {r["kind"] for r in self.compile()["authoring_requirements"]}
-        self.assertIn("FIGURE_AUTHORING", kinds)
-        self.assertIn("PROSE_AUTHORING", kinds)
+        # This named FIGURE_AUTHORING, which R3.1 closed for this subject. Asserting a
+        # particular backlog item makes closing it a test failure, which is the wrong
+        # incentive. The property is that whatever is still owed is *stated*, with a
+        # core or a reason, rather than quietly produced by the compiler.
+        owed = self.compile()["authoring_requirements"]
+        self.assertTrue(owed)
+        self.assertIn("PROSE_AUTHORING", {r["kind"] for r in owed})
+        for row in owed:
+            with self.subTest(kind=row["kind"]):
+                self.assertTrue(str(row.get("detail", "")).strip(),
+                                f'{row["kind"]} is owed and says nothing about what or why')
+
+    def test_no_figure_authoring_remains_for_this_subject(self):
+        # R3.1's exit evidence, asserted where it can fail rather than only in a commit
+        # message: every representation this bucket reaches holds a scene instance.
+        owed = [r for r in self.compile()["authoring_requirements"]
+                if r["kind"] == "FIGURE_AUTHORING"]
+        self.assertEqual(owed, [])
 
     def test_teaching_text_comes_from_the_library_not_from_a_template(self):
         # Core1A is the product that teaches. Core1 maps the bucket and Core2 holds its
@@ -610,6 +625,49 @@ class FiguresSitWithWhatTheyExplain(unittest.TestCase):
                 self.assertEqual(blocks[index - 1]["obligation_ids"], block["obligation_ids"],
                                  f'{product["core"]} block {index}')
 
+
+    def test_a_figure_for_another_buckets_microtopic_is_not_reassigned_here(self):
+        """Found by the A/B check two products downstream, not by reading this code.
+
+        _figure_blocks fell back to the practice obligation whenever a scene instance's
+        microtopic produced no obligation -- including when the microtopic simply belongs
+        to a different bucket. A figure about one bucket's mathematics then appeared in
+        another bucket's practice section, in the declarative product only, and the
+        differentiation gate reported it as CORE1A covering an obligation CORE1B did not.
+        The function's own docstring already said this case must not be dropped silently.
+        """
+        records = build_index([json.loads(p.read_text(encoding="utf-8"))
+                               for p in sorted((REPO / "Physics/library").glob("*.json"))])
+        compiled = compile_bucket(records, "BUCKET-RELATIVE-MOTION", topic_id="t", title="t",
+                                  subject="Physics",
+                                  practice_control={"mode": "DESIGN_PREVIEW",
+                                                    "purpose": "PRACTICE"})
+        foreign = {"SI-VECTOR-COMPONENTS", "SI-VECTOR-SUBTRACTION"}
+        for product in compiled["plan"]["products"]:
+            for block in product["units"][0]["blocks"]:
+                if block["kind"] != "FIGURE":
+                    continue
+                with self.subTest(core=product["core"], block=block["id"]):
+                    self.assertFalse(foreign & {block["id"].split("-", 1)[1]}, block["id"])
+        self.assertTrue(differentiation.audit(compiled["plan"])["differentiated"])
+
+    def test_a_figure_whose_core_is_not_taught_still_reaches_the_practice_slot(self):
+        # The fallback is legitimate for the case it was written for, and removing it
+        # entirely would have lost practice figures. Only the out-of-bucket case changed.
+        records = build_index([json.loads(p.read_text(encoding="utf-8"))
+                               for p in sorted((REPO / "Mathematics/library").glob("*.json"))])
+        instance = copy.deepcopy(records["REP-MATH-NUMBER-LINE"]["scene_instances"][0])
+        instance["cores"] = ["CORE2A"]
+        records["REP-MATH-NUMBER-LINE"] = {**records["REP-MATH-NUMBER-LINE"],
+                                           "scene_instances": [instance]}
+        compiled = compile_bucket(records, BUCKET_MATH, topic_id="t", title="t",
+                                  subject="Mathematics",
+                                  practice_control={"mode": "DESIGN_PREVIEW",
+                                                    "purpose": "PRACTICE"})
+        practice = next(p for p in compiled["plan"]["products"] if p["core"] == "CORE2A")
+        figures = [b for b in practice["units"][0]["blocks"] if b["kind"] == "FIGURE"]
+        self.assertEqual(len(figures), 1)
+        self.assertEqual(figures[0]["obligation_ids"], ["OB-BUCKET-LINEAR-EQUATION-PRACTICE"])
 
 class FieldsAddedMustCarryWhatTheyPromise(unittest.TestCase):
     """R1 added fields whose whole value is a claim the schema can hold but not check.

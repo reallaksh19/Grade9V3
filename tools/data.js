@@ -642,7 +642,7 @@ window.GRADE9V3 = {
           },
           {
             "id": "VECTOR_SUBTRACTION",
-            "status": "PROPOSED",
+            "status": "IMPLEMENTED",
             "requires": [
               "frame",
               "both source vectors labelled",
@@ -1181,7 +1181,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 33,
+          "record_count": 47,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -1199,21 +1199,6 @@ window.GRADE9V3 = {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
                 "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "FIGURE_AUTHORING",
-                "representation": "REP-REL-VECTOR",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
-              },
-              {
-                "kind": "FIGURE_AUTHORING",
-                "representation": "REP-VECTOR-COMPONENT",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
-              },
-              {
-                "kind": "FIGURE_AUTHORING",
-                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -1495,7 +1480,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 17,
+          "record_count": 25,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -1546,14 +1531,16 @@ window.GRADE9V3 = {
                 "detail": "no supported product or no data bound to its relations"
               },
               {
-                "kind": "FIGURE_AUTHORING",
+                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
+                "core": "CORE1A",
                 "representation": "REP-VECTOR-COMPONENT",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+                "detail": "scene instance SI-VECTOR-COMPONENTS targets a product this bucket does not support; it was not drawn"
               },
               {
-                "kind": "FIGURE_AUTHORING",
+                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
+                "core": "CORE1A",
                 "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
               }
             ]
           }

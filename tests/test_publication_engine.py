@@ -336,3 +336,115 @@ class RevealPlacementIsValidated(unittest.TestCase):
         def typo(unit):
             unit["blocks"][0]["placement"] = "ELICITED_REVEL"
         self.assertEqual(self.plan_with(typo), "CONTENT_PLACEMENT_UNSUPPORTED")
+
+
+class VectorSubtractionIsAConstruction(unittest.TestCase):
+    """P minus Q drawn as a construction, not as a component readout.
+
+    VECTOR draws one vector against axes and would hide the reversal, which is the only
+    thing this figure exists to show. The contract records that distinction under this
+    kind's `limits`; these assert it is real.
+    """
+
+    def scene(self, **overrides):
+        spec = {"kind": "VECTOR_SUBTRACTION", "unit": "m/s",
+                "x_label": "east (m/s)", "y_label": "north (m/s)",
+                "frame": "One common east/north frame.", "caption": "A caption.",
+                "minuend": {"symbol": "P", "x_atom": "P-X", "y_atom": "P-Y"},
+                "subtrahend": {"symbol": "Q", "x_atom": "Q-X", "y_atom": "Q-Y"},
+                "resultant": {"symbol": "P-Q", "x_atom": "R-X", "y_atom": "R-Y"}}
+        spec.update(overrides)
+        return spec
+
+    def draw(self, values, **overrides):
+        from Physics.adapter.scenes import vector_subtraction  # noqa: PLC0415
+        atoms = {k: {"id": k, "value": v, "unit": "m/s", "kind": "DATUM"}
+                 for k, v in values.items()}
+        ctx = {"atoms": atoms}
+        block = {"id": "FIG", "source_atom_ids": list(values), "scene": self.scene(**overrides)}
+        return vector_subtraction(ctx, block)
+
+    SOUND = {"P-X": 6, "P-Y": 0, "Q-X": 0, "Q-Y": 8, "R-X": 6, "R-Y": -8}
+
+    def test_it_draws_all_four_vectors_of_the_construction(self):
+        markup, _ = self.draw(self.SOUND)
+        for role in ("minuend", "subtrahend", "reversed_subtrahend", "resultant"):
+            with self.subTest(role=role):
+                self.assertIn(f'data-vector="{role}"', markup)
+
+    def test_the_reversed_vector_starts_where_the_first_one_ends(self):
+        # Tail-to-head, translated without rotation. If it started at the origin the
+        # picture would be three arrows from a point, which is the misleading
+        # alternative the representation record names.
+        _, evidence = self.draw(self.SOUND)
+        self.assertIn("reversed_from", evidence)
+        self.assertEqual(evidence["minuend"], [6, 0])
+        self.assertEqual(evidence["resultant"], [6, -8])
+
+    def test_a_resultant_that_disagrees_with_its_own_operands_is_refused(self):
+        # The figure reads the answer from declared data and then checks it. One that
+        # computed the answer could never disagree with itself, and so could never catch
+        # a library whose stated answer and stated operands are different claims.
+        with self.assertRaises(ContractError) as raised:
+            self.draw({**self.SOUND, "R-Y": 8})
+        self.assertEqual(raised.exception.code, "VECTOR_SUBTRACTION_RESULTANT_DISAGREES")
+
+    def test_a_zero_subtrahend_is_refused(self):
+        # Nothing to reverse, so the construction demonstrates nothing -- and drawing it
+        # would show a resultant equal to P, teaching that subtraction leaves a vector
+        # alone.
+        with self.assertRaises(ContractError) as raised:
+            self.draw({**self.SOUND, "Q-X": 0, "Q-Y": 0, "R-X": 6, "R-Y": 0})
+        self.assertEqual(raised.exception.code, "VECTOR_SUBTRACTION_NOTHING_TO_REVERSE")
+
+    def test_an_operand_missing_its_symbol_or_atoms_is_refused(self):
+        for overrides in ({"minuend": {"x_atom": "P-X", "y_atom": "P-Y"}},
+                          {"subtrahend": {"symbol": "Q", "y_atom": "Q-Y"}},
+                          {"resultant": "P-Q"}):
+            with self.subTest(overrides=list(overrides)):
+                with self.assertRaises(ContractError) as raised:
+                    self.draw(self.SOUND, **overrides)
+                self.assertEqual(raised.exception.code, "VECTOR_SUBTRACTION_OPERAND_REQUIRED")
+
+    def test_an_undeclared_frame_or_axis_or_unit_is_refused(self):
+        for overrides, code in (({"x_label": ""}, "FIGURE_CONTEXT_REQUIRED"),
+                                ({"y_label": ""}, "FIGURE_CONTEXT_REQUIRED"),
+                                ({"unit": ""}, "VECTOR_SUBTRACTION_UNIT_REQUIRED")):
+            with self.subTest(overrides=list(overrides)):
+                with self.assertRaises(ContractError) as raised:
+                    self.draw(self.SOUND, **overrides)
+                self.assertEqual(raised.exception.code, code)
+
+    def test_it_may_only_draw_values_it_declared_as_its_own_source_atoms(self):
+        from Physics.adapter.scenes import vector_subtraction  # noqa: PLC0415
+        atoms = {k: {"id": k, "value": v, "unit": "m/s", "kind": "DATUM"}
+                 for k, v in self.SOUND.items()}
+        block = {"id": "FIG", "source_atom_ids": ["P-X"], "scene": self.scene()}
+        with self.assertRaises(ContractError) as raised:
+            vector_subtraction({"atoms": atoms}, block)
+        self.assertEqual(raised.exception.code, "FIGURE_SOURCE_BINDING_MISSING")
+
+    def test_the_committed_scene_instance_renders_in_a_publication(self):
+        # Proven by a scene instance compiled from a library record, never by a
+        # hand-authored plan -- which is the rule every renderer here follows.
+        import importlib  # noqa: PLC0415
+        from Shared.library.compile_inputs import (  # noqa: PLC0415
+            build_index, compile_bucket, load_packages, write)
+        records = build_index(load_packages(sorted((REPO / "Physics/library").glob("*.json"))))
+        compiled = compile_bucket(records, "BUCKET-RELATIVE-MOTION",
+                                  topic_id="relative-motion-g9", title="Relative motion",
+                                  subject="Physics",
+                                  practice_control={"mode": "DESIGN_PREVIEW",
+                                                    "purpose": "PRACTICE"})
+        self.assertEqual([r for r in compiled["authoring_requirements"]
+                          if r["kind"] == "FIGURE_AUTHORING"], [])
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            write(compiled, root / "inputs")
+            publish(root / "inputs/plan.json", root / "inputs/baseline.json", root / "inputs",
+                    root / "publication", importlib.import_module("Physics.adapter").load())
+            svgs = sorted((root / "publication/figures").glob("*.svg"))
+            self.assertTrue(svgs)
+            body = "".join(s.read_text(encoding="utf-8") for s in svgs)
+        self.assertIn('data-vector="reversed_subtrahend"', body)
+        self.assertIn(">-v_B<", body)

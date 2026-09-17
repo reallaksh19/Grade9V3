@@ -186,7 +186,7 @@
     },
     {
       "id": "VECTOR_SUBTRACTION",
-      "status": "PROPOSED",
+      "status": "IMPLEMENTED",
       "requires": [
         "frame",
         "both source vectors labelled",

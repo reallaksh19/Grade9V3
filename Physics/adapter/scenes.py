@@ -76,4 +76,89 @@ def graph(ctx, block):
                                  scale=list(scales), y_axis_min=box[2]))
 
 
-SCENES = {"VECTOR": vector, "GRAPH": graph}
+
+
+def _operand(ctx, block, spec, key, unit):
+    """One named vector of the construction, read from declared data rather than computed."""
+    part = spec.get(key)
+    require(isinstance(part, dict), "VECTOR_SUBTRACTION_OPERAND_REQUIRED", key)
+    symbol = text(part.get("symbol"), "VECTOR_SUBTRACTION_OPERAND_REQUIRED")
+    for axis in ("x_atom", "y_atom"):
+        text(part.get(axis), "VECTOR_SUBTRACTION_OPERAND_REQUIRED", )
+    return (symbol,
+            bound_atom(ctx, block, part["x_atom"], unit),
+            bound_atom(ctx, block, part["y_atom"], unit))
+
+
+def vector_subtraction(ctx, block):
+    """P minus Q as a construction: reverse Q, place it at the head of P, read the result.
+
+    Not a component readout. VECTOR draws one vector against axes and would hide the
+    reversal, which is the only thing this figure exists to show -- the contract records
+    that distinction under this kind's `limits`.
+
+    The resultant is read from declared data and then checked against the construction,
+    rather than computed and drawn. A figure that computed it could never disagree with
+    itself, and so could never catch a library whose stated answer and whose stated
+    operands are not the same claim.
+    """
+    spec = block["scene"]
+    _axis_labels(spec)
+    unit = text(spec.get("unit"), "VECTOR_SUBTRACTION_UNIT_REQUIRED")
+    (p_symbol, px, py) = _operand(ctx, block, spec, "minuend", unit)
+    (q_symbol, qx, qy) = _operand(ctx, block, spec, "subtrahend", unit)
+    (r_symbol, rx, ry) = _operand(ctx, block, spec, "resultant", unit)
+
+    # A zero vector has no direction, so there is no arrow to reverse and the
+    # construction has nothing to demonstrate. Drawing it anyway would show a resultant
+    # equal to P and teach that subtraction leaves a vector alone.
+    require((qx, qy) != (0, 0), "VECTOR_SUBTRACTION_NOTHING_TO_REVERSE",
+            f"{q_symbol} is the zero vector")
+    require((rx, ry) == (px - qx, py - qy), "VECTOR_SUBTRACTION_RESULTANT_DISAGREES",
+            f"{r_symbol} is declared ({rx:g}, {ry:g}); {p_symbol} - {q_symbol} "
+            f"is ({px - qx:g}, {py - qy:g})")
+
+    # Every point the construction touches, so one scale covers the reversed vector and
+    # the resultant as well as the two operands. Scaling to the operands alone would
+    # push the tail-to-head step off the frame in exactly the cases that need it most.
+    xs, ys = [px, qx, rx, px + (-qx)], [py, qy, ry, py + (-qy)]
+    box = bounds(xs, ys)
+    point, scales = mapping(box, equal=True)
+    origin = point(0, 0)
+    head_p, head_r = point(px, py), point(rx, ry)
+
+    rows = axes(spec, box, point)
+    rows += [
+        line(origin, point(qx, qy), stroke="#94a3b8", stroke_width="2",
+             marker_end="url(#arrow)", data_vector="subtrahend"),
+        line(origin, head_p, stroke="#135b89", stroke_width="2.5",
+             marker_end="url(#arrow)", data_vector="minuend"),
+        # Tail-to-head, and translated without rotation: the reversed vector starts where
+        # the first one ends and keeps its own direction, which is the whole construction.
+        line(head_p, head_r, stroke="#b45309", stroke_width="2.5",
+             marker_end="url(#arrow)", data_vector="reversed_subtrahend"),
+        line(origin, head_r, stroke="#166534", stroke_width="3",
+             marker_end="url(#arrow)", data_vector="resultant"),
+    ]
+    rows += [
+        label(*_midpoint(origin, point(qx, qy)), q_symbol),
+        label(*_midpoint(origin, head_p), p_symbol),
+        label(*_midpoint(head_p, head_r), f"-{q_symbol}"),
+        label(*_midpoint(origin, head_r), r_symbol),
+    ]
+    rows.append(f'<text x="{WIDTH / 2}" y="30" text-anchor="middle" font-size="16">'
+                f'<tspan font-weight="bold">{escape(r_symbol)}</tspan>'
+                f'<tspan> = {escape(p_symbol)} + (-{escape(q_symbol)}) = '
+                f'({rx:g}, {ry:g}) {escape(unit)}</tspan></text>')
+    return svg(block, rows, dict(kind="VECTOR_SUBTRACTION", unit=unit,
+                                 minuend=[px, py], subtrahend=[qx, qy], resultant=[rx, ry],
+                                 reversed_from=list(head_p), scale=list(scales)))
+
+
+def _midpoint(a, b):
+    """Where a vector's label goes: beside its middle, lifted clear of the line itself."""
+    return (a[0] + b[0]) / 2 + 10, (a[1] + b[1]) / 2 - 6
+
+
+SCENES = {"VECTOR": vector, "VECTOR_SUBTRACTION": vector_subtraction,
+          "GRAPH": graph}

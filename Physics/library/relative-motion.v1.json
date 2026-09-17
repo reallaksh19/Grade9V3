@@ -882,7 +882,47 @@
         "Correct magnitude with the wrong observer order."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": [],
+      "scene_instances": [
+        {
+          "id": "SI-REL-VELOCITY-CONSTRUCTION",
+          "cores": [
+            "CORE1A",
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-GEOMETRIC-CHECK",
+          "datum_refs": [
+            "DAT-VA-X",
+            "DAT-VA-Y",
+            "DAT-VB-X",
+            "DAT-VB-Y",
+            "DAT-VAB-X",
+            "DAT-VAB-Y"
+          ],
+          "scene": {
+            "kind": "VECTOR_SUBTRACTION",
+            "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+            "caption": "v_A points east at 6 m/s and v_B north at 8 m/s. Reversing v_B and placing it at the head of v_A lands on v_A/B = (6, -8) m/s: what B sees A doing is east and south, at a speed neither object has.",
+            "x_label": "east (m/s)",
+            "y_label": "north (m/s)",
+            "unit": "m/s",
+            "minuend": {
+              "symbol": "v_A",
+              "x_atom": "DAT-VA-X",
+              "y_atom": "DAT-VA-Y"
+            },
+            "subtrahend": {
+              "symbol": "v_B",
+              "x_atom": "DAT-VB-X",
+              "y_atom": "DAT-VB-Y"
+            },
+            "resultant": {
+              "symbol": "v_A/B",
+              "x_atom": "DAT-VAB-X",
+              "y_atom": "DAT-VAB-Y"
+            }
+          }
+        }
+      ],
       "correspondence": [
         {
           "element": "Labelled v_A, v_B and -v_B",

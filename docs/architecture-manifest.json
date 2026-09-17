@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 50,
-  "relation_count": 84,
+  "relation_count": 85,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:d113b14def245dca851e82a4855c277d3a2f88a89256a8df0a81eb6206edd6e7",
+  "digest": "sha256:c51c157f9a2442e286cc0c688965872e396cfc053e82e4b78093044eef8ea363",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 31984,
-      "sha256": "3de15eea059525c5bbc8fb783b83ab636449d2dc4646cfbbd0f5370fd53a936d"
+      "bytes": 32495,
+      "sha256": "9b592e27be06249c2fb42e58ddecf40d3a6603c5c416b12b1816a00f55a57d3c"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -309,8 +309,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 62236,
-      "sha256": "786bef667fc34c82a52152e7bc4ad657dfa4fb26deb877e6d30924a8991164a6"
+      "bytes": 66173,
+      "sha256": "6deeb81e49f1d91342b73b5df04e630b42e4a57f7ac7efc477b9d26dd8bbacf8"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -323,8 +323,8 @@
       "path": "tests/test_publication_engine.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 18454,
-      "sha256": "f53750d2f963698b9c3718aa42c60a11ae9753fa52e4ff1d483ecbfd94d275ff"
+      "bytes": 24889,
+      "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
     },
     {
       "path": "tests/test_tools.py",
@@ -344,8 +344,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 71352,
-      "sha256": "34368f015cade54da3cc8ef5e5ba58304a7f5b6e0768532b886a298ed9ef8f91"
+      "bytes": 70558,
+      "sha256": "74f275e9d7506bb4e7a57de852a01426621b08f339488e9d7345ac03f22b4676"
     },
     {
       "path": "tools/index.html",
@@ -718,6 +718,11 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
     {

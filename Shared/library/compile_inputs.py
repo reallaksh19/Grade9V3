@@ -478,8 +478,15 @@ def _figure_blocks(core: str, representations: list[dict], obligations: list[dic
             if core not in instance["cores"]:
                 continue
             wanted = f'OB-{instance["microtopic_ref"]}'
-            obligation = wanted if wanted in by_id and core in by_id[wanted]["required_cores"] \
-                else practice_obligation
+            if wanted not in by_id:
+                # The instance belongs to a microtopic this bucket does not teach, so it
+                # belongs to another bucket's slice. Falling back to the practice
+                # obligation here put a figure about one bucket's mathematics into
+                # another bucket's practice section, and the A/B check found it as a
+                # coverage asymmetry two products later -- a figure the declarative
+                # product carried and the eliciting one did not.
+                continue
+            obligation = wanted if core in by_id[wanted]["required_cores"] else practice_obligation
             require(obligation in by_id, "FIGURE_OBLIGATION_MISSING",
                     f'{instance["id"]} -> {wanted}')
             missing = [d for d in instance["datum_refs"] if d not in known]
