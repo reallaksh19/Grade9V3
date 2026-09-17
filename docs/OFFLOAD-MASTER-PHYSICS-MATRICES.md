@@ -127,9 +127,12 @@ observable action, it is not a rung yet and you do not know what it is.
 
 **Step 2 — order them, and leave the holes visible.**
 Assign `ladder_position` 0–100, strictly ascending. Positions are spacing, not scores: the
-gap between 20 and 55 in unit 0 records that two rungs are missing there, and the ladder
-skips `R2` for the same reason. **A missing rung is a row, not an omission.** Write it as a
-row with `provenance: ABSENT` and an `aha` that names the hole.
+gap between 20 and 55 in unit 0 records that a rung is missing there.
+
+**A missing rung is a row, not an omission.** Write it with `provenance: ABSENT` and an
+`aha` that names the hole. Note that unit 0 does **not** do this — it names `R2` in the
+benchmark's prose and skips it in the file, which is why nothing can see that hole
+mechanically. Do the better thing; the schema's own wording asks for it.
 
 **Step 3 — per rung, write what no record can hold.**
 Every rung, source-backed or not, gets these three. They have no schema home in the
@@ -149,10 +152,20 @@ library, which is exactly why the matrix exists:
 Mark the row `SYNTHESIS`. If you cannot construct all four honestly, mark it `ABSENT` and
 carry only `aha`. That is a legal, tested answer — see §3.
 
-**Step 5 — the question family.**
+**Step 5 — the question family, and what support hands over.**
 `family{invariant_demand, difficult_move, independent_check}`. One family for the subtopic:
 what every instance demands, which single move is actually hard, and the check that
 confirms an answer without re-deriving it.
+
+Then `family.support_ladder[]` — one row per support level (`high`, `medium`, `low`,
+optionally `minimum`), each saying what is **handed over** at that level. The engine holds
+the thresholds and nothing else: what support means is a property of your subtopic, and
+until you write it the brief prints `AUTHOR_REQUIRED` and names the missing row.
+
+Every row is the **same product**. Removing help does not create transfer — the decision
+structure is unchanged across the whole ladder. And no row may hand over the
+`invariant_demand` itself: that removes the decision, and what is left is transcription.
+`SUPPORT_HANDS_OVER_THE_DEMAND` refuses it.
 
 `difficult_move` is where most matrices go wrong. In unit 0 it is *"deciding the
 subtraction order from the words 'A relative to B'"* — a **reading** decision, not
@@ -273,7 +286,12 @@ phases: phase 1 shows the invariance, phase 2 breaks it.
 "family": {
   "invariant_demand": "Identify the observer, subtract in that order, keep both signs, and take a magnitude only if the question asked for one.",
   "difficult_move": "Deciding the subtraction order from the words \"A relative to B\", which is a reading decision rather than arithmetic.",
-  "independent_check": "Add the answer to the observer's velocity; it must return A's."
+  "independent_check": "Add the answer to the observer's velocity; it must return A's.",
+  "support_ladder": [
+    {"level": "high",   "handed_over": "The observer is named, the axes are declared, and the subtraction order is stated."},
+    {"level": "medium", "handed_over": "The observer is named and the axes are declared."},
+    {"level": "low",    "handed_over": "The situation only."}
+  ]
 },
 "transfer": [
   {
@@ -319,6 +337,7 @@ decoration; a wrong field is an instruction to the next author.
 | rungs carrying `controlled_variation` | 4 / 4 | **every rung** |
 | rungs carrying ≥ 2 phases | 1 | **≥ 1** |
 | `family` | complete | complete |
+| `family.support_ladder` rows | 3 | **≥ 2, distinct levels** |
 | `transfer` rows | 4, one per dimension | **≥ 2, distinct dimensions** |
 
 **What counts as success, precisely.** A matrix with three rungs where every row is honest
@@ -343,7 +362,7 @@ earlier one did.
 ```bash
 # 0 · baseline, before you write anything — so you know what was already red
 python3 Shared/tools/matrix_conformance.py            # expect findings 0
-python3 -m unittest discover -s tests -p "test_*.py"  # expect 284 tests OK
+python3 -m unittest discover -s tests -p "test_*.py"  # expect 299 tests OK
 
 # 1 · your file conforms, and the ladder, phases and transfer rows hold together
 python3 Shared/tools/matrix_conformance.py --enforce
@@ -358,7 +377,7 @@ python3 Shared/tools/author_brief.py --subject Physics --bucket <YOUR_BUCKET> \
 python3 -m unittest discover -s tests -p "test_*.py"
 python3 Shared/tools/check_subjects.py
 python3 Shared/tools/build_manifest.py --check
-python3 Shared/tools/capability_collisions.py         # expect exactly the known 2 records
+python3 Shared/tools/capability_collisions.py         # expect the known 4 / 2 stems
 ```
 
 **Read the step-2 output, do not just check the exit code.** The brief is the deliverable's
@@ -369,9 +388,11 @@ real consumer. Three things to look for in it:
 2. No brief prints `## Rung X: (from the record)` for a rung you marked `SYNTHESIS` or
    `ABSENT`. That line means the row names nothing and the gate now refuses it —
    `RUNG_NAMES_NO_JUMP`.
-3. `--core CORE2B` reads the percentage as a **routing input**, not a ladder position. If
-   your transfer rows are empty the brief has nothing to say, and Core2B cannot be built
-   for your subtopic at all.
+3. `--core CORE2B` reads the percentage as a **routing input**, not a ladder position, and
+   prints your family, your support ladder row for that level, and every transfer row with
+   what it withholds. Missing any of them, it prints `AUTHOR_REQUIRED` or `STOP` and names
+   what to write. A `STOP` is a finished, honest brief only if the matching row genuinely
+   cannot be written; otherwise it is your remaining work.
 
 **Findings you should expect to see, and what each means:**
 
@@ -382,11 +403,14 @@ real consumer. Three things to look for in it:
 | `SYNTHESIS_INCOMPLETE` | claimed construction, carried no entry state / misconception / closure — mark it `ABSENT` instead |
 | `MATRIX_RESTATES_THE_RECORD` | copied a jump or misconception a microtopic owns |
 | `PROVENANCE_DISAGREES_WITH_LIBRARY` | claimed `SOURCE`/`AUTHORED` for a record the library does not hold — for units 2–13 this means you claimed a candidate as subject truth |
+| `PROVENANCE_CLAIMS_A_RECORD_WITH_NO_REF` | claimed `SOURCE`/`AUTHORED` and named no microtopic |
 | `LADDER_OUT_OF_ORDER` · `LADDER_POSITION_REUSED` · `RUNG_LABEL_REUSED` | the ladder is not a ladder |
 | `PHASE_HOLDS_NOTHING` | an experience with no invariant cannot show one |
 | `TRANSFER_DIMENSION_UNDECLARED` | a fifth spelling of the four dimensions |
 | `TRANSFER_REPAIRS_TO_NO_RUNG` | `repair_to` names a rung your ladder does not have |
 | `WITHHELD_RESTATES_THE_DEMAND` | withheld information is not narrower than the demand, so no hint could violate it |
+| `SUPPORT_LEVEL_REUSED` | two `support_ladder` rows describe the same level |
+| `SUPPORT_HANDS_OVER_THE_DEMAND` | support hands over the invariant demand; the collapse from the support side |
 
 ---
 
@@ -402,8 +426,11 @@ like.
 
 ### The fourteen falsifiers
 
-Six are enforced by `matrix_conformance.py`. Eight are yours to check by reading, and a
-matrix that cannot fail them is not a benchmark.
+Counted honestly: **three** are enforced by `matrix_conformance.py` (11, 12, and half of
+8 — an *empty* hold is refused, a *false* one is not). Two belong to the product compiler.
+**Nine are yours to check by reading**, and a matrix that cannot fail them is not a
+benchmark. The gates do not make this file correct; they only keep it from being
+structurally impossible.
 
 **Ladder** — by reading:
 1. Rung *N*'s `learner_owns` contains rung *N−1*'s `aha`. Fails → the rungs are unordered, not graded.
@@ -436,11 +463,11 @@ axial quantity first appears is the most important row in your file.
 
 | | |
 |---|---:|
-| tests, before and after | **284**, green |
-| gates green | **10** |
+| tests, before and after | **299**, green |
+| gates green | **11** |
 | `matrix_conformance` findings across all matrices | **0** |
 | matrices committed today | 1 of 14 |
-| `capability_collisions` records, unchanged by you | 2 |
+| `capability_collisions` findings, unchanged by you | **4** over 2 capability stems |
 | files you and your twelve peers share | **0** — verified, the manifest does not move |
 
 ### The two capability forks, and why you must not add a third
@@ -473,7 +500,8 @@ finding the owner is waiting for. Do not resolve it, and do not add a third.
 | representation demand, measured | `docs/MEASURE-PHYSICS-DEPICTION-CENSUS.md` |
 | what the candidates are and are not | `Physics/candidates/README.md` |
 | the parallel offload on the same packets | `docs/OFFLOAD-B1-CANDIDATE-GAPS.md` |
-| why the axis differs per layer | `docs/ROADMAP-LEARNER-READY.md` §R5 |
+| why the axis differs per layer | the benchmark's "How to read it", decision 1 |
+| what a percentage may and may not do | `docs/ROADMAP-LEARNER-READY.md` §R5 |
 
 `docs/OFFLOAD-B1-CANDIDATE-GAPS.md` is a different task on the same twelve packets:
 closing their named gaps *inside* `Physics/candidates/`. If both run at once, the B1 agent
