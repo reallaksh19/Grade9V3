@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 50,
-  "relation_count": 89,
+  "component_count": 51,
+  "relation_count": 91,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 10,
     "TEST": 6,
-    "TOOLING": 10,
+    "TOOLING": 11,
     "WEB": 5
   },
-  "digest": "sha256:24f01b1fabacb8c1415edf679dcf5e89855dbd7b73c245af622175663a2b39ca",
+  "digest": "sha256:23ee3a43e20e57722d9a64c0076b82c5759c1f1eafb8736e9d237a6161694aa1",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -227,6 +227,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Shared/tools/author_brief.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8300,
+      "sha256": "72a58fe12dceefbe4112e6ca4d476549c40c650347b02d6dc840f3dbaff10150"
     },
     {
       "path": "Shared/tools/build_manifest.py",
@@ -508,6 +515,16 @@
     {
       "from": "Shared/publication_host/storage.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/author_brief.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/author_brief.py",
+      "to": "Shared.tools.spec_conformance",
       "kind": "IMPORTS"
     },
     {
