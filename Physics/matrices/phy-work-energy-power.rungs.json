@@ -1,0 +1,120 @@
+{
+  "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+  "topic": "Work and Energy",
+  "subtopic": "Work, energy and power",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "SYNTHESIS",
+      "aha": "Work measures the component of force along the actual displacement: a perpendicular force can be large and still do zero work.",
+      "learner_owns": ["Can identify a force direction and trace an object's displacement path."],
+      "ceiling": ["dot product", "line integral", "cosine factor", "work-energy theorem"],
+      "must_contain": ["A force arrow and a directed path shown at several relative angles.", "A zero-work case where force and displacement are perpendicular."],
+      "misconception": {
+        "wrong_idea": "Any force acting on a moving object does positive work because the object moves.",
+        "diagnostic_prompt": "A mass moves in a circle while a force points toward the centre. Does that inward force do work along the instantaneous tangential displacement?",
+        "repair": "Compare the force direction with the actual displacement direction; only the along-path component contributes to work."
+      },
+      "closure": "Given several force/displacement orientations, classify work as positive, negative, or zero and justify from direction.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "the angle between a fixed-magnitude force and displacement", "hold": "force magnitude and displacement length", "notice": "work changes from positive to zero to negative as the along-path component changes"},
+        {"phase": 2, "vary": "the force magnitude while it remains perpendicular to displacement", "hold": "the path direction and 90-degree angle", "notice": "work remains zero even as the force arrow grows"}
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 40,
+      "provenance": "SYNTHESIS",
+      "aha": "Net work is the change in kinetic energy, so the sign of net work tells whether kinetic energy increases or decreases.",
+      "learner_owns": ["Work measures the component of force along the actual displacement: a perpendicular force can be large and still do zero work."],
+      "ceiling": ["kinetic energy theorem", "potential energy", "conservative force", "mechanical energy"],
+      "must_contain": ["Two motions with the same initial speed but opposite signs of net work.", "A before/after speed comparison tied to the sign of net work rather than to one named force."],
+      "misconception": {
+        "wrong_idea": "Only a positive force magnitude can increase kinetic energy; negative work cannot be represented physically.",
+        "diagnostic_prompt": "A braking force acts opposite the motion. What sign is its work, and what should happen to kinetic energy?",
+        "repair": "Add the work of all acting forces to obtain net work, then match its sign and amount to the kinetic-energy change."
+      },
+      "closure": "Given initial and final speeds or a stated net work, determine the sign of the kinetic-energy change and cross-check the two descriptions.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "the direction of the net force relative to motion", "hold": "the initial speed and displacement length", "notice": "positive, zero, and negative net work correspond to increasing, unchanged, and decreasing kinetic energy"}
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 60,
+      "provenance": "SYNTHESIS",
+      "aha": "Potential energy is an accounting device for conservative interactions: its change replaces the work of that interaction, while dissipative forces must remain explicit work terms.",
+      "learner_owns": ["Net work is the change in kinetic energy, so the sign of net work tells whether kinetic energy increases or decreases."],
+      "ceiling": ["potential function", "conservative field", "line integral", "state function"],
+      "must_contain": ["Two different paths between the same height endpoints for a conservative interaction.", "A contrasting dissipative interaction whose work depends on path length."],
+      "misconception": {
+        "wrong_idea": "Every force can be assigned a potential energy so that its work can be hidden inside U.",
+        "diagnostic_prompt": "Can kinetic friction be represented by a single potential-energy difference that depends only on the start and finish positions?",
+        "repair": "Use potential energy only for conservative interactions whose work is captured by endpoint state change; keep dissipative work explicit."
+      },
+      "closure": "For a set of forces, identify which may be represented by potential-energy changes and which must remain explicit work terms.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "the path between the same two heights", "hold": "the endpoints and gravity", "notice": "the gravitational potential-energy change is the same for both paths"},
+        {"phase": 2, "vary": "the path length between comparable endpoints", "hold": "a kinetic-friction magnitude", "notice": "frictional work changes with path length and cannot be encoded by endpoints alone"}
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 80,
+      "provenance": "SYNTHESIS",
+      "aha": "Mechanical energy K + U is conserved only when non-conservative and unmodelled external work vanish; friction or a moving support changes the energy account.",
+      "learner_owns": ["Potential energy is an accounting device for conservative interactions: its change replaces the work of that interaction, while dissipative forces must remain explicit work terms."],
+      "ceiling": ["energy conservation shortcut", "isolated system", "dissipation", "non-conservative work"],
+      "must_contain": ["A frictionless descent compared with an otherwise identical rough descent.", "An explicit system boundary and every external/non-conservative work term before K + U is compared."],
+      "misconception": {
+        "wrong_idea": "Mechanical energy is always conserved, so one may write Ki + Ui = Kf + Uf even when friction or a moving support does work.",
+        "diagnostic_prompt": "A block slides down a rough ramp. If it starts from the same height as on a smooth ramp, must it reach the bottom with the same kinetic energy?",
+        "repair": "Check for non-conservative and external work first; use K + U conservation only when those net work terms vanish, otherwise include them in the balance."
+      },
+      "closure": "Given an energy-accounting problem, state whether mechanical energy is conserved and write the correct balance including any non-conservative or external work.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "the starting height on a frictionless track", "hold": "the same system boundary and no non-conservative work", "notice": "lost potential energy reappears as kinetic energy and K + U stays constant"},
+        {"phase": 2, "vary": "the surface from frictionless to rough", "hold": "the endpoints and system boundary", "notice": "K + U for the mechanical degrees of freedom decreases by the negative friction work"}
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 95,
+      "provenance": "SYNTHESIS",
+      "aha": "Power is the rate of doing work: average power uses total work over an interval, while instantaneous power depends on force and velocity at that instant.",
+      "learner_owns": ["Mechanical energy K + U is conserved only when non-conservative and unmodelled external work vanish; friction or a moving support changes the energy account."],
+      "ceiling": ["instantaneous power", "average power", "rate", "force-velocity product"],
+      "must_contain": ["Two machines doing the same total work in different times.", "A changing-speed case where the same average power hides different instantaneous rates."],
+      "misconception": {
+        "wrong_idea": "If two processes do the same total work, they necessarily have the same power.",
+        "diagnostic_prompt": "Two motors lift the same load through the same height, one in half the time. Do they do the same work, and do they have the same average power?",
+        "repair": "Separate amount of work from rate: average power divides total work by elapsed time; instantaneous power depends on what is happening at that instant."
+      },
+      "closure": "Given work and timing information, distinguish total work, average power, and when enough information exists to discuss instantaneous power.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "the time taken to perform the same work", "hold": "the load, displacement, and total work", "notice": "average power changes while work does not"},
+        {"phase": 2, "vary": "the speed during different moments of one process", "hold": "the applied force direction and one overall interval", "notice": "the instantaneous power can vary even when one average power describes the interval"}
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Choose the system and actual path, identify work contributions and any legitimate potential-energy terms, decide whether mechanical-energy conservation applies, and use the resulting energy account or power relation without dropping signs.",
+    "difficult_move": "Deciding which interactions belong in potential energy and which must remain explicit work, because that decision determines whether K + U may be treated as conserved.",
+    "independent_check": "All energy terms must share units and signs, the final energy-account residual must close to zero, and any zero-work claim must agree with the force/displacement geometry.",
+    "support_ladder": [
+      {"level": "high", "handed_over": "The system boundary and a classification of the named interactions as conservative or explicit-work terms are supplied."},
+      {"level": "medium", "handed_over": "The system boundary and actual path are supplied."},
+      {"level": "low", "handed_over": "Only the physical situation and requested energy or power quantity are supplied."}
+    ]
+  },
+  "transfer": [
+    {"dimension": "model_choice", "changed_demand": "A rough track replaces a frictionless one and the learner must decide whether simple mechanical-energy conservation still applies.", "information_not_handed_over": "whether non-conservative work vanishes", "repair_to": "R4"},
+    {"dimension": "representation_translation", "changed_demand": "A force-and-path diagram must be translated into signed work contributions before an energy balance can be written.", "information_not_handed_over": "which force components are along the actual displacement", "repair_to": "R1"},
+    {"dimension": "reasoning_steps", "changed_demand": "A moving support does work through its contact force, so the learner must include that external transfer before solving for the final kinetic energy.", "information_not_handed_over": "whether the contact point itself moves along the force direction", "repair_to": "R4"},
+    {"dimension": "novelty", "changed_demand": "Two machines perform the same task with different time profiles and the learner must separate total work from average and instantaneous power.", "information_not_handed_over": "which reported rate is tied to the whole interval rather than a single instant", "repair_to": "R5"}
+  ]
+}

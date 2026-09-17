@@ -1,0 +1,146 @@
+{
+  "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-OSC-SHM-WAVES",
+  "topic": "Oscillations",
+  "subtopic": "Oscillations, simple harmonic motion and waves",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate; teaching depth is intrinsic, while practice percentages only route support.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "SYNTHESIS",
+      "aha": "An oscillation is organized around a stable equilibrium: when displaced, the system has a tendency that points back toward that equilibrium.",
+      "learner_owns": ["Can identify a repeated back-and-forth motion and distinguish position from direction of motion."],
+      "ceiling": ["simple harmonic", "angular frequency", "phase", "sinusoid", "wave"],
+      "must_contain": [
+        "A marked equilibrium position and signed displacements on both sides.",
+        "Examples where a restoring tendency points toward equilibrium and a counterexample where it does not."
+      ],
+      "misconception": {
+        "wrong_idea": "Any motion that repeats is automatically simple harmonic motion.",
+        "diagnostic_prompt": "A ball moves periodically around a circular track. Does repetition alone show a restoring tendency toward one equilibrium position?",
+        "repair": "Separate periodicity from the restoring condition; repetition by itself does not identify simple harmonic motion."
+      },
+      "closure": "Given three repeating motions, identify which one has a stable equilibrium with a restoring tendency and justify the choice.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "which side of equilibrium the object is displaced to", "hold": "the same displacement magnitude and system", "notice": "the restoring tendency reverses direction to keep pointing toward equilibrium"}
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 35,
+      "provenance": "SYNTHESIS",
+      "aha": "Simple harmonic motion requires acceleration proportional to displacement and opposite in direction, so x, v, and a have fixed phase relationships visible on time plots.",
+      "learner_owns": [
+        "An oscillation has a stable equilibrium and a restoring tendency toward it.",
+        "Can read positive and negative values from a Cartesian time graph."
+      ],
+      "ceiling": ["energy exchange", "double frequency", "Doppler", "wave speed", "resonance"],
+      "must_contain": [
+        "Aligned Cartesian plots of x(t), v(t), and a(t) sharing the same time axis.",
+        "A marked instant at maximum displacement, equilibrium crossing, and opposite maximum."
+      ],
+      "misconception": {
+        "wrong_idea": "At maximum displacement in SHM, speed and acceleration are both zero.",
+        "diagnostic_prompt": "At the instant x=+A, which of v and a are zero, and which points toward equilibrium?",
+        "repair": "Use a=-omega^2 x and the turning-point condition: speed is zero at maximum displacement, but acceleration has maximum magnitude toward equilibrium."
+      },
+      "closure": "From a displacement-time graph of SHM, mark where speed is greatest and state the sign of acceleration at a positive displacement.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "time through one cycle", "hold": "amplitude and angular frequency", "notice": "velocity peaks at equilibrium crossings while acceleration opposes displacement"},
+        {"phase": 2, "vary": "amplitude", "hold": "angular frequency and phase origin", "notice": "the plot scales vertically but the timing relationships among x, v, and a do not change"}
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 50,
+      "provenance": "SYNTHESIS",
+      "aha": "For an ideal spring-mass oscillator and a small-angle simple pendulum, period is set by system parameters rather than by oscillation amplitude within the model's validity range.",
+      "learner_owns": [
+        "SHM links acceleration to displacement with fixed phase relationships.",
+        "Can distinguish a model parameter from a changing state variable."
+      ],
+      "ceiling": ["energy frequency", "wave propagation", "Doppler", "damping", "resonance"],
+      "must_contain": [
+        "Side-by-side parameter changes: mass versus spring stiffness, and pendulum length versus bob mass.",
+        "An explicit small-angle boundary for the pendulum comparison."
+      ],
+      "misconception": {
+        "wrong_idea": "A heavier pendulum bob takes longer to complete each swing.",
+        "diagnostic_prompt": "Two pendulums have the same length and small amplitude but different bob masses. Which has the longer ideal period?",
+        "repair": "Use the pendulum period relation within its small-angle condition; bob mass is absent from the controlling parameters."
+      },
+      "closure": "Predict how period changes when spring mass is quadrupled or pendulum length is quadrupled, and name one variable that does not affect the ideal period in each model.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "bob mass", "hold": "pendulum length, gravity, and small angular amplitude", "notice": "ideal small-angle pendulum period does not change with bob mass"},
+        {"phase": 2, "vary": "pendulum amplitude from small to large", "hold": "length, gravity, and bob mass", "notice": "the amplitude-independence claim belongs only to the small-angle regime and breaks outside it"}
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 65,
+      "provenance": "SYNTHESIS",
+      "aha": "In ideal SHM, kinetic and potential energy exchange while total mechanical energy stays constant, and each energy term repeats twice during one displacement cycle.",
+      "learner_owns": [
+        "Ideal SHM has a period set by system parameters within stated validity conditions.",
+        "Can interpret squared quantities and conservation of mechanical energy."
+      ],
+      "ceiling": ["damping", "driving", "resonance", "quality factor", "wave packet"],
+      "must_contain": [
+        "Energy-versus-time plots for kinetic, potential, and total energy aligned with displacement.",
+        "A comparison of one full displacement cycle with the number of kinetic-energy peaks."
+      ],
+      "misconception": {
+        "wrong_idea": "Potential energy is negative whenever displacement is negative.",
+        "diagnostic_prompt": "If spring potential energy is proportional to x^2, does changing x from +A/2 to -A/2 change that energy?",
+        "repair": "Energy depends on the square of displacement, so opposite displacements can carry the same potential energy."
+      },
+      "closure": "Over one full SHM cycle, identify how many times kinetic energy reaches a maximum and explain why total energy does not oscillate.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "time through one displacement cycle", "hold": "amplitude, angular frequency, and total energy", "notice": "kinetic and potential energy trade twice while their sum stays fixed"}
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 80,
+      "provenance": "SYNTHESIS",
+      "aha": "A wave transports a disturbance while the medium's particles oscillate locally; wave speed is set by medium properties and satisfies v=f lambda, so changing source frequency changes wavelength rather than the medium-set speed.",
+      "learner_owns": [
+        "Energy in an ideal oscillator can move between kinetic and potential forms while total remains fixed.",
+        "Can distinguish local motion of matter from the motion of a pattern."
+      ],
+      "ceiling": ["Doppler formula", "standing-wave mode", "dispersion", "group velocity", "impedance"],
+      "must_contain": [
+        "A Cartesian snapshot and a time trace at one fixed point, explicitly distinguished.",
+        "Two source frequencies in the same medium with different wavelengths but the same propagation speed."
+      ],
+      "misconception": {
+        "wrong_idea": "Increasing the frequency of a wave source makes the wave travel faster through the same ideal medium.",
+        "diagnostic_prompt": "A string tension and linear density stay fixed while the source frequency doubles. What happens to wave speed and wavelength?",
+        "repair": "Hold the medium parameters fixed: speed stays fixed, so wavelength adjusts inversely with frequency."
+      },
+      "closure": "Given two frequencies on the same stretched string, predict the wavelength ratio and distinguish particle oscillation direction from wave-propagation direction.",
+      "controlled_variation": [
+        {"phase": 1, "vary": "source frequency", "hold": "the same medium properties and wave type", "notice": "wavelength changes while propagation speed remains fixed"},
+        {"phase": 2, "vary": "observation from a spatial snapshot to a time trace at one point", "hold": "the same travelling wave", "notice": "one graph shows shape across position and the other shows local oscillation through time"}
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Identify whether the question concerns local oscillation or wave propagation, select the controlling invariant, translate among equation and Cartesian plot, and check phase or scaling against the physical model.",
+    "difficult_move": "Keeping oscillator state variables separate from system parameters and, for waves, separating particle motion from propagation of the disturbance.",
+    "independent_check": "Use a limiting or phase check: SHM acceleration must oppose displacement, period formulas must respond only to their parameters, and same-medium wave speed must remain consistent with f lambda.",
+    "support_ladder": [
+      {"level": "high", "handed_over": "The phenomenon is classified as oscillator or wave and the relevant controlling relation is named; the learner interprets the graph/equation and checks it."},
+      {"level": "medium", "handed_over": "The relevant variables are identified and a matching plot or equation is provided."},
+      {"level": "low", "handed_over": "Only the physical description, measured values, and requested quantity are given."}
+    ]
+  },
+  "transfer": [
+    {"dimension": "model_choice", "changed_demand": "A pendulum is released from a large angle: decide whether the small-angle SHM period model is still justified.", "information_not_handed_over": "whether the small-angle approximation remains valid for the stated amplitude", "repair_to": "R3"},
+    {"dimension": "representation_translation", "changed_demand": "Only a displacement-time graph is supplied; infer the qualitative velocity and acceleration graphs without formulas.", "information_not_handed_over": "the phase shifts linking displacement to velocity and acceleration", "repair_to": "R2"},
+    {"dimension": "reasoning_steps", "changed_demand": "A source frequency changes while string tension is also changed; determine the new wavelength after both effects.", "information_not_handed_over": "that the medium change alters wave speed before v=f lambda is used", "repair_to": "R5"},
+    {"dimension": "novelty", "changed_demand": "Energy data are given for an oscillating electric analogue rather than a mass-spring system; identify the twice-per-cycle exchange pattern.", "information_not_handed_over": "which two stored-energy quantities play the roles of the SHM energy pair", "repair_to": "R4"}
+  ]
+}
