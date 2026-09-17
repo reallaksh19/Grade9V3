@@ -106,15 +106,17 @@ That is Phase R1, and everything else depends on it.
 
 Phases are in dependency order. Each has exit evidence that can be checked mechanically, and each leaves the repository strictly better if work stops after it.
 
-### R0 — What a learner sees today is broken in three small ways
+### R0 — What a learner sees today is broken in three small ways — **DONE**
 
-Cheap, global, and inherited by every phase after, so first:
+Cheap, global, and inherited by every phase after, so first. Two of the three were real; both are fixed (`50fc952`, `8981995`).
 
-- **Sentence joins.** A `join()` companion to `sentence()` in `Shared/contracts.py`: when the compiler embeds an authored sentence after a lead-in, the embedded sentence's initial capital is lowered unless it opens with a symbol, a numeral or a proper noun the library marks as such. Falsifier: *"This gives For x = 2"* is refused.
-- **Figure placement.** `_figure_blocks` emits each figure immediately after the microtopic block it is bound to, not after all of them. The obligation binding already says which microtopic; the order is the only change.
+- **Sentence joins.** ~~the embedded sentence's initial capital is lowered unless it opens with a symbol, a numeral or a proper noun the library marks as such.~~ **Superseded before implementation:** telling a proper noun from a symbol needs knowledge nothing here has, and no library marking existed to supply it. `join()` decides instead whether the authored field is a *fragment*, which belongs inside its lead-in, or a *sentence*, which takes its own line under a lead-in turned into a colon — asking `is_prose`, the predicate the substance gate already trusts. Also narrowed on measurement: three sites were claimed, two were real. `Answer:`, `Predict first:`, `Check yourself:` and `Verify:` end in colons, where a following capital is correct English. Falsifier: *"This gives For x = 2"* is refused, and generally, no composed block may put a capitalised word directly after a lead-in word.
+- **Figure placement.** `_figure_blocks` emits each figure immediately after the microtopic block it is bound to, not after all of them. The obligation binding already says which microtopic; the order is the only change. Practice-obligation figures stay with the questions. The falsifier moves the figure onto the *first* microtopic, so landing last fails rather than coincidentally passing.
 - ~~Label collision on the number line.~~ **Retracted.** Claimed from a screenshot, then measured against the rendered SVG: no two labels share a row, and nothing extends outside the frame. The figure is correct as drawn. R0 is two items, not three.
 
-**Exit evidence:** the committed Physics run's learner-visible bytes are unchanged (its plan was hand-authored and has no joins); the Mathematics bucket's pages have no sentence embedded mid-sentence and every figure follows its microtopic. `republish.py --write` reports the change and it is accepted explicitly.
+**Exit evidence, met:** 153 tests, guard, capability audit, subject sweep, publication sweep and manifest green at both commits. The committed Physics run reports `learner_visible_changes: []`. The compiled Mathematics products embed no sentence mid-sentence — asserted generally across Core1/Core1A/Core1B, not against the two strings found — and every microtopic figure is the block immediately after its microtopic.
+
+~~`republish.py --write` reports the change and it is accepted explicitly.~~ **Retracted: nothing to accept.** There is no committed Mathematics publication — that bucket compiles to inputs on demand. Neither fix changed a published byte; they change what the Mathematics compiler will produce the first time the bucket is published.
 
 ### R1 — Close the specs against the schema
 
