@@ -274,7 +274,67 @@
       "prerequisite_refs": [
         "CAP-SIGNED-PAIR-BRIDGE"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Under a local frame with east positive x and north positive y, vectors (3,4) m/s and (4,3) m/s have the same magnitude. Is that magnitude alone enough to say they point the same way? Commit to yes or no and state what you must inspect to decide direction.",
+          "defensible_answer": "No. Equal nonnegative magnitude does not preserve direction information; the signed component pair must be inspected in the declared axes. Here the component assignments differ, so the directions differ even though both magnitudes are 5 m/s."
+        },
+        "attempt": {
+          "produces": "A two-row comparison for (3,4) m/s and (4,3) m/s that records each signed component pair, its nonnegative magnitude through the existing right-triangle bridge, a direction description from the signs/components, and one sentence deciding whether magnitude alone distinguishes direction.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The local east-positive x / north-positive y declaration is used before component signs are interpreted.",
+              "evidence_of": "Treating a signed component as a reading along a declared axis rather than as a free-standing signed number."
+            },
+            {
+              "criterion": "Both vectors are assigned magnitude 5 m/s without replacing their signed component pairs by that scalar.",
+              "evidence_of": "Using the existing right-triangle bridge for magnitude while preserving the separate vector description."
+            },
+            {
+              "criterion": "The response distinguishes the two directions from the different component assignments and rejects equal magnitude as sufficient evidence of equal direction.",
+              "evidence_of": "Performing the fixed magnitude/components/direction inferential jump rather than only calculating a magnitude."
+            }
+          ],
+          "accepted": [
+            "Both have magnitude 5 m/s, but (3,4) has more north component than east while (4,3) has more east component than north in the declared frame, so the equal magnitude does not make their directions the same."
+          ],
+          "rejected": [
+            "Both are 5 m/s, so they are the same vector and point the same way."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Before the signs in a component pair can tell you a direction, what must be declared about the frame and the two axes?",
+              "why_this_ask": "The first conceptual dependency is that a signed component has no directional meaning until its positive axis direction is fixed.",
+              "from_step_ref": "VS-1"
+            },
+            {
+              "ask": "With east positive x and north positive y, what directional information do the signed pairs (3,4) and (4,3) each carry before you replace either pair by a single magnitude?",
+              "why_this_ask": "The learner must make the component-to-direction reading themselves before magnitude can erase the distinction.",
+              "from_step_ref": "VS-2"
+            },
+            {
+              "ask": "Using the existing right-triangle bridge on the perpendicular component magnitudes, what single nonnegative magnitude do you obtain for each pair?",
+              "why_this_ask": "This reaches the same magnitude construction as Core1A while keeping the external Mathematics dependency explicit rather than promoting it.",
+              "from_step_ref": "VS-3"
+            },
+            {
+              "ask": "After the component signs and assignments have been absorbed into that single magnitude, what directional information is no longer recoverable, and what description must you retain if direction still matters?",
+              "why_this_ask": "This forces the learner to identify exactly what the magnitude calculation discards instead of being told to keep the signed pair.",
+              "from_step_ref": "VS-4"
+            }
+          ],
+          "differs_from_teaching_path": "Core1A directly presents the sequence declare axes → read signed components → obtain magnitude → retain the signed pair. Core1B withholds the conclusion that magnitude is insufficient for direction until the learner compares two source-backed equal-magnitude component pairs, reads their directions, and identifies what the magnitude calculation erased."
+        },
+        "boundary_test": {
+          "prompt": "In the same declared axes, compare the source-backed vector (-3,4) m/s with the vector obtained by reversing both of its component signs, (3,-4) m/s. What happens to the magnitude and what happens to the direction?",
+          "answer": "Both have magnitude 5 m/s, but reversing both signed components reverses the vector's direction. The magnitude remains nonnegative and unchanged while the signed pair carries the directional change.",
+          "confirms": "That magnitude is invariant under reversing both components and therefore cannot by itself recover direction."
+        }
+      }
     },
     {
       "id": "MIC-SIGNED-COMPONENT",
@@ -361,7 +421,62 @@
       "prerequisite_refs": [
         "MIC-VECTOR-VS-SCALAR"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "For the source-backed vector w=(3,4) m/s, use the local declaration east positive x and north positive y. Keep the physical vector fixed, but redeclare only the positive x direction as west. Which component must change sign, which component must not, and should the magnitude change?",
+          "defensible_answer": "The x component changes from +3 to -3 because the positive x direction was reversed; the y component stays +4 because its north-positive declaration did not change. The same physical vector is therefore (-3,4) m/s under the new convention, and its magnitude remains 5 m/s."
+        },
+        "attempt": {
+          "produces": "A two-row component table for the same physical vector w under the local east/north-positive declaration and then the west/north-positive declaration, plus one sentence explaining why the signed description changes while the physical vector and its magnitude do not.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both local axis declarations are stated or unambiguously labelled before the component pairs are compared.",
+              "evidence_of": "Basing component sign on a declared convention rather than on an intuitive idea such as 'forward'."
+            },
+            {
+              "criterion": "Only the component measured along the reversed x axis changes sign: (3,4) becomes (-3,4).",
+              "evidence_of": "Reasoning from the changed declaration to the signed description while holding the physical vector fixed."
+            },
+            {
+              "criterion": "The response identifies magnitude 5 m/s as unchanged under the re-declaration.",
+              "evidence_of": "Separating a convention-dependent signed component description from the convention-independent magnitude in this source-backed case."
+            }
+          ],
+          "accepted": [
+            "East/north positive: w=(3,4) m/s. West/north positive: w=(-3,4) m/s. Only x changes sign because only the x declaration was reversed; the arrow and its 5 m/s magnitude are unchanged."
+          ],
+          "rejected": [
+            "West/north positive: w=(3,4) m/s because the object is still moving in the same physical direction, so the components should stay positive."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Before assigning a plus or minus sign to either component, what must you state about the positive direction of each axis?",
+              "why_this_ask": "The target dependency is declaration → sign; starting here prevents the later sign change from looking like an arbitrary algebraic edit.",
+              "from_step_ref": "SC-1"
+            },
+            {
+              "ask": "Keep the arrow for w physically fixed. If only the x-positive direction is reversed from east to west, which number in (3,4) must change sign, which number stays the same, and why?",
+              "why_this_ask": "The learner has to derive the new signed description from the one changed convention instead of being handed the transformed pair.",
+              "from_step_ref": "SC-2"
+            },
+            {
+              "ask": "What property of the vector should remain unchanged after that re-declaration, and how does the existing right-triangle bridge let you check it from (3,4) and (-3,4)?",
+              "why_this_ask": "This makes the magnitude invariant an independent check on the learner's sign reasoning while preserving the existing Mathematics-provider dependency.",
+              "from_step_ref": "SC-3"
+            }
+          ],
+          "differs_from_teaching_path": "Core1A directly states the axis re-declaration and its resulting sign flip. Core1B holds the physical vector fixed and makes the learner reason from the declared positive direction to which component number must change, then use the existing magnitude bridge as a check rather than as the source of the sign decision."
+        },
+        "boundary_test": {
+          "prompt": "Starting from the west/north-positive description (-3,4) m/s for the same physical vector, redeclare x as east-positive again while leaving y north-positive. What component pair must you recover, and what happens to the magnitude?",
+          "answer": "The pair returns to (3,4) m/s and the magnitude remains 5 m/s. Reversing the declaration back reverses the x-component sign back; it does not change the physical vector.",
+          "confirms": "That the sign change is bound to the declared axis convention and is reversible, while the physical vector and its magnitude remain invariant in the source-backed re-declaration."
+        }
+      }
     },
     {
       "id": "MIC-GRAPHICAL-SUBTRACTION",
@@ -469,7 +584,67 @@
         "MIC-VECTOR-VS-SCALAR",
         "MIC-SIGNED-COMPONENT"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "In the source-backed common east/north frame, P=(6,0) m/s and Q=(0,8) m/s. Before drawing the completed P-Q construction, which of P, Q, or neither must be changed before tail-to-head addition, and what property of the changed arrow must be preserved?",
+          "defensible_answer": "Q must be reversed to form -Q because Q is the vector being subtracted. The reversed arrow keeps Q's magnitude and has the opposite direction; P is not reversed."
+        },
+        "attempt": {
+          "produces": "A learner-made graphical construction of P-Q from the given P and Q using exactly one derived arrow, with P, Q, the derived arrow, and the resultant labelled; the placement must support tail-to-head addition, and the learner must record the resultant components and compare them with direct signed-component subtraction.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The learner identifies Q as the subtrahend and derives -Q by reversing Q without changing its length.",
+              "evidence_of": "Using subtraction as addition of the reversed second vector while preserving the operand order."
+            },
+            {
+              "criterion": "The derived -Q is translated to the head of P without rotation before the resultant is drawn.",
+              "evidence_of": "Using free-vector translation correctly rather than treating position on the page as part of the vector."
+            },
+            {
+              "criterion": "The resultant runs from the tail of P to the head of the translated -Q and is reconciled with component subtraction as (6,-8) m/s.",
+              "evidence_of": "Completing the tail-to-head construction and checking it against the existing algebraic route rather than relying on arrow-tip appearance."
+            }
+          ],
+          "accepted": [
+            "Reverse Q=(0,8) to -Q=(0,-8) without changing its length, move -Q to the head of P without rotating it, draw the resultant from P's tail to the translated -Q's head, and check that both the drawing and component subtraction give (6,-8) m/s."
+          ],
+          "rejected": [
+            "Draw P and Q from the same origin and connect their tips in whichever direction looks like subtraction; the order can be fixed after the diagram is drawn."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "To turn P-Q into a tail-to-head addition without changing P, what operation must you perform on Q, and what must remain unchanged about Q when you do it?",
+              "why_this_ask": "The learner must choose the subtrahend and construct its additive reverse; giving -Q in advance would remove the defining decision of the microtopic.",
+              "from_step_ref": "GS-1"
+            },
+            {
+              "ask": "You now have the reversed Q. Where can you move that arrow so it can be added to P tail-to-head, and what must you not change while moving it?",
+              "why_this_ask": "This elicits free-vector translation and explicitly separates translation from rotation instead of presenting the placement as a diagram instruction.",
+              "from_step_ref": "GS-2"
+            },
+            {
+              "ask": "Once P and the translated reversed Q are tail-to-head, which two points must the resultant connect?",
+              "why_this_ask": "The learner must determine the resultant's tail and head, which prevents the arbitrary two-tip shortcut from passing as a correct construction.",
+              "from_step_ref": "GS-3"
+            },
+            {
+              "ask": "Read the resultant's signed components from your construction, then subtract P and Q component by component in the same order. What agreement must the two routes show?",
+              "why_this_ask": "The independent component route is the fixed check that closes the graphical construction and exposes an order or arrow-direction error.",
+              "from_step_ref": "GS-4"
+            }
+          ],
+          "differs_from_teaching_path": "Core1A directly supplies reverse Q → translate -Q → draw the resultant → reconcile components. Core1B withholds both which operand must be altered and where the altered arrow belongs until the learner identifies the subtrahend, preserves its magnitude during reversal, chooses a translation without rotation, and only then uses component subtraction to test the construction."
+        },
+        "boundary_test": {
+          "prompt": "Using the same source-backed vectors P=(6,0) m/s and Q=(0,8) m/s, reverse the operand order and construct or compute Q-P. How must it relate to your P-Q result?",
+          "answer": "Q-P=(-6,8) m/s, which is the negative of P-Q=(6,-8) m/s. The two resultants point in opposite directions and have the same magnitude 10 m/s.",
+          "confirms": "That subtraction order is carried by the resultant vector: reversing the operands negates the result, so an arbitrary tip-joining direction cannot be accepted as P-Q."
+        }
+      }
     },
     {
       "id": "MIC-FRAME-QUALIFICATION-BOUNDARY",
