@@ -16,6 +16,7 @@ from Physics.adapter import load as load_physics  # noqa: E402
 from Shared.contracts import ContractError, join  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket, write  # noqa: E402
 from Shared.library import authority, differentiation, intake, substance  # noqa: E402
+from Shared.library import resolve as resolve_module  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 from Shared.library.promote import audit, promote  # noqa: E402
 from Shared.library.resolve import (  # noqa: E402
@@ -859,3 +860,69 @@ class ElicitationClaimsAreChecked(unittest.TestCase):
         self.assertFalse(report["admitted"])
         self.assertTrue(any(f["point"] == "ELICITATION" for f in report["findings"]),
                         report["findings"])
+
+
+class NestedIdsAreAddressableAndUnambiguous(unittest.TestCase):
+    """A reference may name a teaching step, so a step id must mean exactly one thing.
+
+    Steps had ids and nothing pointed at them, so two records could share one and it
+    cost nothing. `from_step_ref` and `repair_ref` changed that: an unqualified RP-1
+    could mean a relation's derivation or a microtopic's teaching path, and the resolver
+    would have picked one silently.
+    """
+
+    def records(self):
+        return build_index([json.loads(p.read_text(encoding="utf-8"))
+                            for p in sorted(REPO.glob("*/library/*.v1.json"))])
+
+    def test_a_reference_to_a_teaching_step_resolves(self):
+        records = self.records()
+        steps = {s["id"] for r in records.values() if r["_collection"] == "microtopics"
+                 for s in r.get("teaching_path", [])}
+        self.assertTrue(steps)
+        self.assertTrue(steps <= resolve_module.addressable(records))
+
+    def test_a_reference_to_nothing_still_does_not_resolve(self):
+        # Making nested ids addressable must not make everything addressable.
+        records = self.records()
+        self.assertNotIn("STEP-THAT-WAS-NEVER-DECLARED", resolve_module.addressable(records))
+
+    def test_a_step_is_not_indexed_as_a_record(self):
+        # It has no collection and no provenance of its own; indexing it as a record
+        # would put it into every sweep that iterates the library.
+        records = self.records()
+        step = next(s["id"] for r in records.values() if r["_collection"] == "microtopics"
+                    for s in r.get("teaching_path", []))
+        self.assertNotIn(step, records)
+
+    def test_the_committed_library_has_no_ambiguous_id(self):
+        self.assertEqual(resolve_module.id_collisions(self.records()), [])
+
+    def test_a_planted_collision_is_refused(self):
+        # Added rather than renamed: renaming a step that from_step_ref points at breaks
+        # the reference first, and would have proved the wrong check fires.
+        packages = [json.loads(p.read_text(encoding="utf-8"))
+                    for p in sorted(REPO.glob("*/library/*.v1.json"))]
+        microtopic = packages[0]["microtopics"][0]
+        taken = packages[0]["relations"][0]["derivation"][0]["id"]
+        microtopic["teaching_path"].append({**microtopic["teaching_path"][-1], "id": taken})
+        with self.assertRaises(ContractError) as raised:
+            validate_library(packages)
+        self.assertEqual(raised.exception.code, "LIBRARY_NESTED_ID_COLLISION")
+
+    def test_renaming_a_referenced_step_is_caught_as_an_unresolved_reference(self):
+        # The other half of the same guarantee: a step id cannot be changed without the
+        # references to it being found.
+        packages = [json.loads(p.read_text(encoding="utf-8"))
+                    for p in sorted(REPO.glob("*/library/*.v1.json"))]
+        for row in packages[0]["microtopics"]:
+            referenced = {ask.get("from_step_ref") for ask in
+                          ((row.get("elicitation") or {}).get("reconstruct") or {}).get("route", [])}
+            for step in row["teaching_path"]:
+                if step["id"] in referenced:
+                    step["id"] += "-RENAMED"
+                    with self.assertRaises(ContractError) as raised:
+                        validate_library(packages)
+                    self.assertEqual(raised.exception.code, "LIBRARY_UNRESOLVED_REFERENCE")
+                    return
+        self.fail("no elicitation ask points at a teaching step, so this asserts nothing")

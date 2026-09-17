@@ -1104,7 +1104,7 @@
                     "RUBRIC",
                     "CRITERIA"
                   ],
-                  "description": "Which form of closure this attempt uses. The compiler requires the matching field, so a declared closure cannot be empty."
+                  "description": "Which form of closure this attempt uses. Each value demands something the others do not, so that none is a synonym an author can pick to avoid work: MODEL_RESPONSE requires model_response, CRITERIA requires rubric, and RUBRIC requires rubric with accepted and rejected examples -- the spec's 'a rubric plus representative accepted and rejected answers', which is the stronger claim of the three."
                 },
                 "model_response": {
                   "type": "string",

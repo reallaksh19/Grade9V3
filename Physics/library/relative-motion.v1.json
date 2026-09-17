@@ -567,7 +567,7 @@
       ],
       "derivation": [
         {
-          "id": "RP-1",
+          "id": "RP-1-DERIV",
           "action": "Follow the path origin → B → A.",
           "why_valid": "Vector displacements add along consecutive paths.",
           "inputs": [],
@@ -575,7 +575,7 @@
           "role": "TRANSFORM"
         },
         {
-          "id": "RP-2",
+          "id": "RP-2-DERIV",
           "action": "Subtract r_B from both sides.",
           "why_valid": "Apply the same vector operation to both sides.",
           "inputs": [],
@@ -628,7 +628,7 @@
       ],
       "derivation": [
         {
-          "id": "RV-1",
+          "id": "RV-1-DERIV",
           "action": "Write relative position at t1 and t2.",
           "why_valid": "Apply the same relation at both instants.",
           "inputs": [
@@ -638,7 +638,7 @@
           "role": "TRANSFORM"
         },
         {
-          "id": "RV-2",
+          "id": "RV-2-DERIV",
           "action": "Group the displacement changes.",
           "why_valid": "Vector subtraction distributes through the two same-time equations.",
           "inputs": [],
@@ -646,7 +646,7 @@
           "role": "TRANSFORM"
         },
         {
-          "id": "RV-3",
+          "id": "RV-3-DERIV",
           "action": "Divide each term by the same nonzero Delta t.",
           "why_valid": "Each quotient is average velocity over that interval.",
           "inputs": [],
@@ -654,7 +654,7 @@
           "role": "TRANSFORM"
         },
         {
-          "id": "RV-4",
+          "id": "RV-4-DERIV",
           "action": "For this constant-velocity teaching case, use v for each constant average.",
           "why_valid": "No instantaneous calculus limit is needed in this case.",
           "inputs": [],

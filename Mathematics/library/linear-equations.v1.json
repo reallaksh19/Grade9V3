@@ -219,7 +219,57 @@
       "prerequisite_refs": [
         "CAP-MATH-SUBSTITUTE"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before you change anything in 3x + 2 = 9: does this line ask you to do something, or does it claim something? Commit to one, and say what the other reading would mean.",
+          "defensible_answer": "It claims something -- that tripling x and adding 2 lands exactly on 9. Read as an instruction, it would have to hold for every x, and it does not."
+        },
+        "attempt": {
+          "produces": "Two values of x, one you believe satisfies the statement and one you believe does not, each with the arithmetic that decided it.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both values are tested by putting them into the statement, not by rearranging it first.",
+              "evidence_of": "Treating membership of the solution set as something substitution decides."
+            },
+            {
+              "criterion": "The rejected value is rejected because the two sides differ, and by how much is said.",
+              "evidence_of": "Reading the equals sign as a claim that is capable of being false."
+            }
+          ],
+          "accepted": [
+            "x = 7/3 works: 3 times 7/3 is 7, and 7 + 2 is 9. x = 2 fails: 3 times 2 is 6, and 6 + 2 is 8, which is one short of 9."
+          ],
+          "rejected": [
+            "x = 7/3, because that is what you get when you solve it. The value is right and nothing has been tested, so the statement was still read as an instruction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Pick any number you like for x, put it into 3x + 2, and write what you get. Is it 9?",
+              "why_this_ask": "It produces a false statement on purpose. Nothing else shows a learner that this line is capable of being false.",
+              "from_step_ref": "MC-2"
+            },
+            {
+              "ask": "That number failed. Does the failure make the whole line wrong, or does it only rule out that number?",
+              "why_this_ask": "This is the decision the microtopic turns on, and it cannot be asked until a failure has actually been seen."
+            },
+            {
+              "ask": "Which numbers were you allowed to try in the first place -- whole numbers only, or fractions too?",
+              "why_this_ask": "The domain only feels necessary once the learner has been choosing values and the choice has started to matter.",
+              "from_step_ref": "MC-1"
+            }
+          ],
+          "differs_from_teaching_path": "The expert fixes the domain before testing anything. Here the learner tests first and meets the domain last, at the point where deciding what is allowed to be tried has become their own problem."
+        },
+        "boundary_test": {
+          "prompt": "Is 0x + 2 = 9 a statement about an unknown? Which values of x make it true?",
+          "answer": "It is a statement, and no value of x makes it true: the left side is 2 whatever x is. The solution set is empty, which is an answer rather than a failure to solve.",
+          "confirms": "That the line is a claim about x even when x has no effect on it. A learner still reading it as an instruction has nothing here to work out, and stops."
+        }
+      }
     },
     {
       "id": "MIC-MATH-EQUIVALENT-OPS",
@@ -305,7 +355,60 @@
       "prerequisite_refs": [
         "MIC-MATH-CONSTRAINT"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Adding 5 to both sides of an equation loses nothing. Predict whether the same holds for multiplying both sides by 5, and for multiplying both sides by x.",
+          "defensible_answer": "By 5, yes. By x, no: if x could be 0 then multiplying has quietly admitted a value that did not satisfy the original."
+        },
+        "attempt": {
+          "produces": "A rule for which multipliers are safe, and one worked equation where an unsafe one goes wrong.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The rule names a property the multiplier must have, not a list of multipliers that are allowed.",
+              "evidence_of": "Generalising from the failing case rather than memorising it."
+            },
+            {
+              "criterion": "The worked failure shows a solution appearing or disappearing, not merely an incorrect final value.",
+              "evidence_of": "Understanding that what is at risk is the solution set, not the arithmetic."
+            }
+          ],
+          "accepted": [
+            "Safe when the multiplier cannot be zero. In x times x = x the solutions are 0 and 1; dividing both sides by x leaves x = 1, and the solution 0 has gone."
+          ],
+          "rejected": [
+            "Safe when the multiplier is a number and unsafe when it is a letter. It sorts the examples correctly and names the wrong property: what matters is whether the multiplier can be zero, not how it is written."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write down every solution of x times x = x before you do anything to it.",
+              "why_this_ask": "The number of solutions has to be known first, or the loss later is invisible."
+            },
+            {
+              "ask": "Now divide both sides by x and solve what is left. How many solutions has the new line got?",
+              "why_this_ask": "The learner performs the damage themselves, which is not the same as being warned about it in advance.",
+              "from_step_ref": "ME-2"
+            },
+            {
+              "ask": "Which value of x did that division assume you were not using?",
+              "why_this_ask": "It names the hidden assumption inside the learner's own working rather than as a rule handed down before it."
+            },
+            {
+              "ask": "What would you write down before dividing next time, to keep that value in view?",
+              "why_this_ask": "It converts the diagnosis into something the learner carries to the next equation, which a stated rule does not do."
+            }
+          ],
+          "differs_from_teaching_path": "The expert states the non-zero condition as part of performing the division. Here the learner loses a solution first, then works out what would have prevented it."
+        },
+        "boundary_test": {
+          "prompt": "Square both sides of x = 3. What are the solutions now, and what does that tell you about squaring?",
+          "answer": "x = 3 and x = -3. Squaring gained a solution rather than losing one, because it cannot be undone without knowing the sign.",
+          "confirms": "That reversibility is the test, not the shape of the operation. A learner working from 'do the same to both sides' has no way to see why this one fails."
+        }
+      }
     },
     {
       "id": "MIC-MATH-EXACT-SOLUTION",
@@ -401,7 +504,46 @@
       "prerequisite_refs": [
         "MIC-MATH-EQUIVALENT-OPS"
       ],
-      "lineage": []
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A calculator gives 2.3333333 for x in 3x + 2 = 9. Predict whether putting that number back in returns exactly 9, and if not, how far off it lands.",
+          "defensible_answer": "It returns 8.9999999, short of 9 by 0.0000001. Writing more threes shrinks that shortfall and never removes it."
+        },
+        "attempt": {
+          "produces": "The two substitutions written side by side, each with the exact difference between its result and 9.",
+          "closure": "MODEL_RESPONSE",
+          "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it."
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write 7/3 as a decimal and stop wherever you like. What was the last digit you wrote, and what would have come next?",
+              "why_this_ask": "Stopping is the learner's decision here, so the truncation is theirs rather than the calculator's."
+            },
+            {
+              "ask": "Multiply the number you wrote by 3. How far short of 7 did you land?",
+              "why_this_ask": "The residue comes out of the learner's own arithmetic, so it cannot be put down to a quirk of the machine.",
+              "from_step_ref": "MX-3"
+            },
+            {
+              "ask": "Write one more three on the end and multiply again. Did the gap close, or only get smaller?",
+              "why_this_ask": "It separates getting closer from being equal, which is the distinction the whole microtopic rests on."
+            },
+            {
+              "ask": "So when the question says solve over the rationals, which of your two numbers is the answer, and what is the other one called?",
+              "why_this_ask": "It makes the learner name the decimal as an approximation, which is the claim they will have to defend in the exit task.",
+              "from_step_ref": "MX-1"
+            }
+          ],
+          "differs_from_teaching_path": "The expert records the exact fraction first and demonstrates the residue afterwards. Here the learner begins from the decimal they would have written anyway and is brought to find the residue themselves."
+        },
+        "boundary_test": {
+          "prompt": "Solve 4x = 2 and write the answer as a decimal. Does the same objection apply?",
+          "answer": "x = 1/2, which is 0.5 exactly; substituting 0.5 returns 2 with no residue. The objection does not apply, because this division terminates.",
+          "confirms": "That what matters is whether the decimal terminates, not that decimals are untrustworthy. A learner who took the rule to be never use decimals answers this one wrongly."
+        }
+      }
     }
   ],
   "relations": [

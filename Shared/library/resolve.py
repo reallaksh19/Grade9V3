@@ -75,11 +75,44 @@ def references(value, path: str = "") -> list[tuple[str, str]]:
     return found
 
 
+def nested_ids(record: dict) -> set[str]:
+    """Ids declared inside a record: teaching steps, derivation steps, scene instances.
+
+    They are addressable and are addressed -- an exit task names the step it closes, a
+    reconstruct ask names the step it arrives at, a repair route names the construction
+    it sends a learner back to. Indexing them as records instead would be wrong in the
+    other direction: a step is not a record, has no collection and no provenance of its
+    own, and would start appearing in every sweep that iterates the library.
+
+    The rule is structural rather than a list of field names, so a nested id added to the
+    schema later is addressable the day it lands.
+    """
+    found: set[str] = set()
+    if isinstance(record, dict):
+        for key, value in record.items():
+            if key.startswith("_"):
+                continue
+            if key == "id" and isinstance(value, str):
+                found.add(value)
+            else:
+                found |= nested_ids(value)
+    elif isinstance(record, list):
+        for item in record:
+            found |= nested_ids(item)
+    return found
+
+
+def addressable(records: dict) -> set[str]:
+    """Every id a reference in this library may legitimately name."""
+    return set(records) | {nested for record in records.values()
+                           for nested in nested_ids(record)}
+
+
 def unresolved(records: dict) -> list[dict]:
-    missing = []
+    missing, known = [], addressable(records)
     for rid, record in records.items():
         for field, target in references(record):
-            if target not in records:
+            if target not in known:
                 missing.append({"record": rid, "field": field.lstrip("."), "target": target})
     return missing
 
@@ -143,11 +176,33 @@ def slice_for_bucket(records: dict, bucket_id: str) -> dict:
             "record_count": len(wanted)}
 
 
+def id_collisions(records: dict) -> list[str]:
+    """Nested ids that shadow a record id, or each other.
+
+    Making nested ids addressable makes a collision silent: a reference meaning the step
+    would resolve to the record, or to another microtopic's step, and nothing would say
+    so. Cheap to check, and the alternative is a repair route that quietly points
+    somewhere else.
+    """
+    seen: dict[str, str] = {rid: rid for rid in records}
+    clashes = []
+    for rid, record in records.items():
+        for nested in sorted(nested_ids(record)):
+            if nested == rid:
+                continue
+            if nested in seen:
+                clashes.append(f"{nested} declared in {seen[nested]} and again in {rid}")
+            seen[nested] = rid
+    return clashes
+
+
 def validate_library(packages: list[dict]) -> dict:
     records = build_index(packages)
     missing = unresolved(records)
     require(not missing, "LIBRARY_UNRESOLVED_REFERENCE",
             "; ".join(f"{m['record']}.{m['field']} -> {m['target']}" for m in missing[:5]))
+    clashes = id_collisions(records)
+    require(not clashes, "LIBRARY_NESTED_ID_COLLISION", "; ".join(clashes[:5]))
     nodes = [rid for rid, r in records.items()
              if r["_collection"] in {"microtopics", "capabilities", "buckets"}]
     prerequisite_closure(records, nodes)

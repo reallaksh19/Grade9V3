@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 48,
-  "relation_count": 71,
+  "relation_count": 72,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:c92614e43fed4ca8fe573e7232dfbaee46a45a60b5a550a31305e51c3c01b06f",
+  "digest": "sha256:a7045fb7e048dbae5e49b1023dd52b88dcb24e2eb3c84d2ff8cb841a7ea2dffd",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -64,15 +64,15 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 12743,
-      "sha256": "170a8fa72f53823b8e7cdc5da0c6fee93a4ae1942e0e5f99eb7130bc0078e0c6"
+      "bytes": 12946,
+      "sha256": "4aa92363079ba2323f1cee9159ea4b83260dc327dbfa5eeb240d3b487f461054"
     },
     {
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 68838,
-      "sha256": "fc69903998117ac7f4987a8a7e0c0c0505c646a00a4063588947f38826176a56"
+      "bytes": 69112,
+      "sha256": "0704455439f68ac40730298a4757a5381bab0225db21d2468cab2d8f7a2f35f7"
     },
     {
       "path": "Shared/library/promote.py",
@@ -85,8 +85,8 @@
       "path": "Shared/library/resolve.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 7568,
-      "sha256": "83a9265a7c9d8203d9ea1d33be4e240cb15cdb470a1ba581cdee27e9ad7041ca"
+      "bytes": 9879,
+      "sha256": "c41f34162c0d6820f45af4aa73ab632d53e174c2d30ccfd54e7db7964db5ae0b"
     },
     {
       "path": "Shared/library/substance.py",
@@ -295,8 +295,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 46973,
-      "sha256": "faa0c4e14330a5c2536bb909b2ee6a10458abc7d129e0db1a29f945ae7cee5a1"
+      "bytes": 50605,
+      "sha256": "5503bdc3511ad7de052ba148749d6cacf27006b3c2c5a29f47476c8629afc14a"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -594,6 +594,11 @@
     {
       "from": "tests/test_library.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {

@@ -197,14 +197,18 @@ def check(package: dict) -> dict:
         elicitation = row.get("elicitation")
         elicitation = elicitation if isinstance(elicitation, dict) else {}
         attempt = _mapping(elicitation.get("attempt"))
-        carried = {"MODEL_RESPONSE": "model_response", "RUBRIC": "rubric", "CRITERIA": "rubric"}
-        field = carried.get(attempt.get("closure"))
-        if field and not attempt.get(field):
-            fail("ELICITATION", f'{row.get("id")}: closes by {attempt["closure"]} and supplies '
-                                f"no {field}, which is the deferred closure the role forbids")
-        if attempt.get("rubric") and not attempt.get("rejected"):
-            fail("ELICITATION", f'{row.get("id")}: offers a rubric with no rejected example, '
-                                "so it has not been tested against anything")
+        # The three closure values are the spec's three words, and each must demand
+        # something the others do not, or one of them is a synonym an author picks to
+        # avoid work. CRITERIA is criteria alone; RUBRIC is the spec's "rubric plus
+        # representative accepted and rejected answers", which is what makes it the
+        # stronger claim.
+        closure = attempt.get("closure")
+        carried = {"MODEL_RESPONSE": ("model_response",), "CRITERIA": ("rubric",),
+                   "RUBRIC": ("rubric", "accepted", "rejected")}
+        for field in carried.get(closure, ()):
+            if not attempt.get(field):
+                fail("ELICITATION", f'{row.get("id")}: closes by {closure} and supplies no '
+                                    f"{field}, which is the deferred closure the role forbids")
 
         # The A/B claim, checked where it is made rather than only where it is rendered.
         # An author who restates the teaching path as the way it differs from the teaching
