@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 52,
-  "relation_count": 92,
+  "component_count": 54,
+  "relation_count": 93,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 10,
+    "LIBRARY": 11,
     "TEST": 6,
-    "TOOLING": 12,
+    "TOOLING": 13,
     "WEB": 5
   },
-  "digest": "sha256:f16e7ca435da3b36a3309cdb24b5860bf3a20f34ea7c8d03a2f271e6ae6aea69",
+  "digest": "sha256:d3933a735cb1e3393332bf65744698394863a04766f7965d64c501295d4919ce",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -73,6 +73,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 12946,
       "sha256": "4aa92363079ba2323f1cee9159ea4b83260dc327dbfa5eeb240d3b487f461054"
+    },
+    {
+      "path": "Shared/library/matrix.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 8303,
+      "sha256": "2f88057d9b32e4cf14a5d2ce3f5cdeb7746f947a78dd554c526d1fbe593316bd"
     },
     {
       "path": "Shared/library/package.schema.json",
@@ -271,6 +278,13 @@
       "sha256": "025435ddacf64d250b6eb701e1d8ea5295f4e99c05f3c87dff3daf886ab00586"
     },
     {
+      "path": "Shared/tools/matrix_conformance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6716,
+      "sha256": "f1918693abe8637655ac39d15fb8be9ac687c7c18caec93a5d81c752b850735f"
+    },
+    {
       "path": "Shared/tools/republish.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -344,8 +358,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 35098,
-      "sha256": "cf7bee404c3e1e1f1343fa227907e05bafdfdb1749daf790f55e96789016e7db"
+      "bytes": 39046,
+      "sha256": "7dea088e4cf90c673fd01fb99284fb77f1ea1eb380f62fa570cbd776faa872dc"
     },
     {
       "path": "tools/app.css",
@@ -627,6 +641,11 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.tools.spec_delivery",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/matrix_conformance.py",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {

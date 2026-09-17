@@ -14,7 +14,8 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     build_manifest, build_web_data, capability_audit, check_subjects,
-    capability_collisions, spec_conformance, spec_delivery, topic_independence_guard,
+    capability_collisions, matrix_conformance, spec_conformance, spec_delivery,
+    topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -648,3 +649,80 @@ class CapabilityCollisions(unittest.TestCase):
                                "success_criterion": "Reverse the vector, translate it without "
                                                     "rotating, and add tail-to-head."}]}
         self.assertEqual(capability_collisions.findings(declared, taught=set()), [])
+
+
+class MatrixConformance(unittest.TestCase):
+    """A matrix may reference the library. It may not restate it, or outrank it.
+
+    Two rules, both the A4 discipline on a new layer: the library decides whether a rung
+    exists, and where a record exists it owns its jump, misconception and exit task.
+    """
+
+    def board(self):
+        return json.loads((REPO / "Physics/matrices/relative-motion.rungs.json")
+                          .read_text(encoding="utf-8"))
+
+    def plant(self, mutate):
+        board = self.board()
+        mutate(board)
+        mics, dimensions = matrix_conformance.library("Physics")
+        return [f["point"] for f in matrix_conformance.findings(board, mics, dimensions)]
+
+    def test_the_committed_matrix_passes(self):
+        report = matrix_conformance.audit()
+        self.assertGreater(report["matrices"], 0, "no matrix, so this asserts nothing")
+        self.assertEqual(report["findings"], 0,
+                         [f for b in report["boards"] for f in b["findings"]])
+
+    def test_restating_a_record_is_refused(self):
+        # The defect that matters most: a second copy of a jump or a misconception is a
+        # second authority, and the two drift.
+        self.assertEqual(self.plant(lambda b: b["rungs"][1].update(aha="Restated here.")),
+                         ["MATRIX_RESTATES_THE_RECORD"])
+
+    def test_the_library_decides_whether_a_rung_exists(self):
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][0].update(provenance="SOURCE",
+                                                      microtopic_ref="MIC-NOT-REAL")),
+            ["PROVENANCE_DISAGREES_WITH_LIBRARY"])
+
+    def test_an_absent_claim_over_a_real_record_is_also_refused(self):
+        # Both directions, because either disagreement means the matrix is stale.
+        self.assertIn("PROVENANCE_DISAGREES_WITH_LIBRARY",
+                      self.plant(lambda b: b["rungs"][1].update(provenance="ABSENT")))
+
+    def test_the_ladder_must_ascend_and_not_repeat(self):
+        self.assertEqual(self.plant(lambda b: b["rungs"][1].update(ladder_position=5)),
+                         ["LADDER_OUT_OF_ORDER"])
+        self.assertIn("LADDER_POSITION_REUSED",
+                      self.plant(lambda b: b["rungs"][1].update(
+                          ladder_position=b["rungs"][0]["ladder_position"])))
+
+    def test_a_phase_with_no_invariant_is_refused(self):
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][3]["controlled_variation"][0].update(hold="  ")),
+            ["PHASE_HOLDS_NOTHING"])
+
+    def test_a_fifth_spelling_of_the_four_dimensions_is_refused(self):
+        # question_family.demand_dimensions owns the vocabulary. CONTEXT is the prose
+        # name for novelty, and accepting it would make a third spelling.
+        self.assertEqual(self.plant(lambda b: b["transfer"][0].update(dimension="CONTEXT")),
+                         ["TRANSFER_DIMENSION_UNDECLARED"])
+
+    def test_a_repair_route_must_name_a_rung_of_this_ladder(self):
+        self.assertEqual(self.plant(lambda b: b["transfer"][0].update(repair_to="R9")),
+                         ["TRANSFER_REPAIRS_TO_NO_RUNG"])
+
+    def test_withheld_information_must_be_narrower_than_the_demand(self):
+        # If they are the same sentence the row says nothing a hint could violate, so
+        # collapse becomes undetectable -- which is the whole purpose of the field.
+        self.assertEqual(
+            self.plant(lambda b: b["transfer"][0].update(
+                information_not_handed_over=b["transfer"][0]["changed_demand"])),
+            ["WITHHELD_RESTATES_THE_DEMAND"])
+
+    def test_every_transfer_row_carries_all_four_parts(self):
+        for row in self.board()["transfer"]:
+            with self.subTest(dimension=row["dimension"]):
+                for field in ("changed_demand", "information_not_handed_over", "repair_to"):
+                    self.assertTrue(row[field].strip())

@@ -36,6 +36,12 @@ jobs:
       - name: Role specs resolve against the library schema
         run: python3 Shared/tools/spec_conformance.py --enforce
 
+      # A matrix may reference the library and may not restate or outrank it. Enforcing
+      # from the start: it has no backlog, because the schema and the gate landed before
+      # any matrix data did.
+      - name: Matrices reference the library without restating it
+        run: python3 Shared/tools/matrix_conformance.py --enforce
+
       # A library may not invent a way of depicting its subject, and a figure bound to
       # mathematics must say which part of the picture is which symbol. Runs inside the
       # subject sweep below; this step is the standalone report, which names the record
