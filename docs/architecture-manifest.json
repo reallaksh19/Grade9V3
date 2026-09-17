@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 49,
-  "relation_count": 79,
+  "component_count": 50,
+  "relation_count": 84,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 10,
     "TEST": 6,
-    "TOOLING": 9,
+    "TOOLING": 10,
     "WEB": 5
   },
-  "digest": "sha256:733ac581f82aab0ae29e4bfb0f48ac74990e4351749336b45bdf9b532eb86675",
+  "digest": "sha256:d113b14def245dca851e82a4855c277d3a2f88a89256a8df0a81eb6206edd6e7",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -271,6 +271,13 @@
       "sha256": "5d39bd5797227c855aafdf8170bf5d4cc8b99e7c2af863619d35513cd61a5c4f"
     },
     {
+      "path": "Shared/tools/spec_delivery.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7707,
+      "sha256": "93166dc265a15d958e164f60a268d69db2e1e1c85fd095bad9a0c423ef938bc7"
+    },
+    {
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -323,8 +330,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 23729,
-      "sha256": "df828175c56e9e4e116960d20add548808a7b9ce5aba1a9e89f8e1ee363f6552"
+      "bytes": 27915,
+      "sha256": "1c2ac04c95bc174ed2e5319721300691fcd810ccea4a9c58e2b48adf2f7969b3"
     },
     {
       "path": "tools/app.css",
@@ -604,6 +611,26 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.tools.spec_conformance",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_gates.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -741,6 +768,11 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {

@@ -14,7 +14,7 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     build_manifest, build_web_data, capability_audit, check_subjects,
-    spec_conformance, topic_independence_guard,
+    spec_conformance, spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -450,3 +450,82 @@ class SweepRunsTheDifferentiationCheck(unittest.TestCase):
         found = [f for row in report["subjects"] for f in row["findings"]
                  if "OBLIGATION_WITHOUT_ELICITATION" in f]
         self.assertEqual(len(found), 3, found)
+
+
+class SpecDelivery(unittest.TestCase):
+    """A requirement must reach the learner, not merely have somewhere to live.
+
+    R1 proved every `requires` path has a schema home. This is the comparison neither
+    R1 nor anything else made: does a compiled product carry it. Two products do not,
+    and every gate was green over them.
+    """
+
+    def setUp(self):
+        self.schema = json.loads(
+            (REPO / spec_conformance.SCHEMA).read_text(encoding="utf-8"))
+        self.roots = spec_conformance.record_types(self.schema)
+
+    def segments(self, path):
+        return [spec_conformance.SEGMENT.match(s) for s in path.split(".")]
+
+    def test_a_path_walks_the_arrays_it_crosses(self):
+        record = {"teaching_path": [{"why_valid": "first"}, {"why_valid": "second"}]}
+        self.assertEqual(
+            spec_delivery.values_at(record, self.segments("teaching_path[].why_valid")),
+            ["first", "second"])
+
+    def test_a_path_that_is_not_there_yields_nothing_rather_than_raising(self):
+        self.assertEqual(spec_delivery.values_at({}, self.segments("a.b[].c")), [])
+
+    def test_a_short_value_is_undecidable_rather_than_guessed(self):
+        # A false DELIVERED is the one outcome this tool must never produce: an enum or
+        # an id fragment can appear in compiled output by coincidence.
+        rows = self.rows_for("Mathematics")
+        undecidable = [r for r in rows if r.get("state") == "UNDECIDABLE"]
+        self.assertTrue(undecidable)
+        for row in undecidable:
+            with self.subTest(path=row["path"]):
+                held = spec_delivery.authored(self.records("Mathematics"), row["path"], self.roots)
+                self.assertLess(max(len(v) for v in held), spec_delivery.DECIDABLE_LENGTH)
+
+    def records(self, subject):
+        from Shared.library.resolve import build_index  # noqa: PLC0415
+        return build_index([json.loads(p.read_text(encoding="utf-8"))
+                            for p in sorted((REPO / subject / "library").glob("*.json"))])
+
+    def rows_for(self, subject):
+        report = spec_delivery.audit_subject(REPO / subject, self.schema)
+        return report["rows"]
+
+    def test_something_is_delivered_so_the_check_is_not_vacuous(self):
+        states = [r.get("state") for r in self.rows_for("Mathematics")]
+        self.assertIn("DELIVERED", states)
+        self.assertGreater(states.count("DELIVERED"), 10, states)
+
+    def test_core1a_does_not_deliver_the_misconception_it_requires(self):
+        # The sharpest of the findings, and the one its own spec states in words: "A
+        # misconception the learner never hears is a misconception they keep."
+        # _teaching_text emits misconceptions only for Core1B. Asserted as the defect it
+        # is; R1.6 inverts this.
+        rows = {(r["role"], r["path"]): r["state"]
+                for r in self.rows_for("Mathematics") if "path" in r}
+        for field in ("wrong_idea", "diagnostic_prompt", "repair"):
+            with self.subTest(field=field):
+                self.assertEqual(rows[("CORE1A", f"microtopic.misconceptions[].{field}")],
+                                 "NOT_DELIVERED")
+
+    def test_hints_are_unauthored_everywhere_and_the_compiler_hardcodes_empty(self):
+        # Both halves, because fixing either alone changes nothing: authoring hints into
+        # a compiler that emits [] delivers nothing, and carrying [] delivers nothing.
+        rows = {(r["role"], r["path"]): r["state"]
+                for r in self.rows_for("Mathematics") if "path" in r}
+        self.assertEqual(rows[("CORE2", "question.hints[]")], "UNAUTHORED")
+        source = (REPO / "Shared/library/compile_inputs.py").read_text(encoding="utf-8")
+        self.assertIn('"hints": []', source)
+
+    def test_a_role_that_compiles_nothing_here_is_said_once_not_per_requirement(self):
+        # Core2B compiles no product for this bucket. Repeating that for each of its
+        # eleven requirements would bury the findings that are real.
+        rows = self.rows_for("Mathematics")
+        core2b = [r for r in rows if r["role"] == "CORE2B"]
+        self.assertEqual(core2b, [{"role": "CORE2B", "state": "NOT_COMPILED_HERE"}])
