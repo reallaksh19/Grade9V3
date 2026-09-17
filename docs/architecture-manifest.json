@@ -16,7 +16,7 @@
     "TOOLING": 9,
     "WEB": 5
   },
-  "digest": "sha256:2137f80c2e96e6194a335057ba1bed02267f880c0bc34ef9d642332334e3d0d9",
+  "digest": "sha256:1119ccc4e9097c295bc82cd9c7f9fbae36561960c1cc106169ef33e33fa6f75e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -57,15 +57,15 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 7694,
-      "sha256": "30414d95d037a600ea89a653fd9a087d92ec138b9dd92ccf3cc5a325a9a85cd3"
+      "bytes": 10873,
+      "sha256": "41a498220835bc2f55cb25c49da33dc568d155cc20aa030f1fe302fe432d8cb9"
     },
     {
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 52017,
-      "sha256": "4a060d88ea73bc4c8de2e2146219a10815ac613cc39570ef6c9b289abfee0b2f"
+      "bytes": 67180,
+      "sha256": "69e64829dc7880f83bb638cc3ad8d21e204e716183c60ac29b2e4ca8fe5d259c"
     },
     {
       "path": "Shared/library/promote.py",
@@ -253,8 +253,8 @@
       "path": "Shared/tools/spec_conformance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9402,
-      "sha256": "02bcddeda30a928d7cc47fb01bee796dfe99d892f8b51cbef1ca98e273ebd024"
+      "bytes": 10241,
+      "sha256": "5d39bd5797227c855aafdf8170bf5d4cc8b99e7c2af863619d35513cd61a5c4f"
     },
     {
       "path": "Shared/tools/topic_independence_allowlist.json",
@@ -288,8 +288,8 @@
       "path": "tests/test_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 31394,
-      "sha256": "20578afe0e2bb8d388947c301c79a3174b54b49eca13b8b26d3dd8acdf49e613"
+      "bytes": 37643,
+      "sha256": "01e1a8ef7d7773bccd79bd0df91525f77c401804d36df4608c69f4ae7a10be32"
     },
     {
       "path": "tests/test_mathematics.py",
@@ -309,8 +309,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 20121,
-      "sha256": "e3056f09cdafe83347234977d17f9913bcbe3d45cb08da41e9716aab3179c952"
+      "bytes": 21281,
+      "sha256": "753127b45ff31aa111b1155aa382b525e8935ebfc35ba32cfd4c1321623cf5fd"
     },
     {
       "path": "tools/app.css",

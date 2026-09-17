@@ -269,6 +269,11 @@
             "TRANSFORM",
             "VERIFY"
           ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The source this step's claim rests on. Absent means the step is the author's own construction, which is legitimate and is not the same as source-supported."
         }
       },
       "required": [
@@ -346,6 +351,19 @@
               "minLength": 1
             }
           }
+        },
+        "rubric": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rubric_criterion"
+          },
+          "minItems": 1,
+          "description": "What a good justification contains, not only what the final result is. answer.kind already has a RUBRIC value; this is where that value points."
+        },
+        "difficult_move": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Index into reasoning[] of the first move a learner is likely to miss. An index rather than a copy of the text, so it cannot drift from the step it names; out of range is a finding. This is the step the spec says must be made explicit rather than glossed, and naming it is what stops a solution breakdown from being a summary."
         }
       },
       "required": [
@@ -512,6 +530,11 @@
             "minLength": 1
           },
           "minItems": 0
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The text printed with a figure in its source, where this resource is a figure. Its title is what the resource is called; its caption is what the source said about it, and custody of an original figure that drops the caption is not custody."
         }
       },
       "required": [
@@ -723,6 +746,64 @@
             "minLength": 1
           },
           "minItems": 0
+        },
+        "conventions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Stable identifier, so a teaching step can cite the convention it uses."
+              },
+              "statement": {
+                "type": "string",
+                "minLength": 1,
+                "description": "What is fixed, in the words a learner reads."
+              }
+            },
+            "required": [
+              "id",
+              "statement"
+            ]
+          },
+          "minItems": 0,
+          "description": "Whatever must be fixed before the bucket's quantities can be read. The engine does not enumerate the kinds: an axis convention, a sign convention, a reference state and a phase are all one thing here, and which of them exist is the subject's to say."
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "The bucket's own scope statement. The package carries a scope_summary for the whole package; a learner reading one bucket needs that bucket's.",
+          "properties": {
+            "covers": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What this bucket covers."
+            },
+            "excluded": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0,
+              "description": "What is deliberately excluded. An exclusion stated here is a decision; an exclusion nobody wrote down is a gap."
+            },
+            "extension_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0,
+              "description": "What is carried as labelled extension rather than excluded, by extension id."
+            }
+          },
+          "required": [
+            "covers"
+          ]
         }
       },
       "required": [
@@ -980,6 +1061,139 @@
             ]
           },
           "minItems": 0
+        },
+        "elicitation": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "The self-tutor cycle. Four of its six steps live here; diagnose and repair are misconceptions[].wrong_idea, .diagnostic_prompt and .repair, which already hold the same claim for the declarative product. A second home for one truth is the defect the authority gate exists to close.",
+          "properties": {
+            "predict": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Pose the decision before revealing anything.",
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The decision, posed so a learner can commit to an answer."
+                },
+                "defensible_answer": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The answer that commitment is judged against. A prompt with no defensible answer is a musing, not a prediction."
+                }
+              },
+              "required": [
+                "prompt",
+                "defensible_answer"
+              ]
+            },
+            "attempt": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "What the learner produces, and how it closes without a tutor.",
+              "properties": {
+                "produces": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "What the learner should construct, draw, discriminate or explain."
+                },
+                "closure": {
+                  "enum": [
+                    "MODEL_RESPONSE",
+                    "RUBRIC",
+                    "CRITERIA"
+                  ],
+                  "description": "Which form of closure this attempt uses. The compiler requires the matching field, so a declared closure cannot be empty."
+                },
+                "model_response": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Closure as one response, where one is right."
+                },
+                "rubric": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/rubric_criterion"
+                  },
+                  "minItems": 1,
+                  "description": "Closure as a rubric, where several responses are valid."
+                },
+                "accepted": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1,
+                  "description": "Representative responses the rubric accepts."
+                },
+                "rejected": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1,
+                  "description": "Representative responses it rejects. A rubric with no rejected example has not been tested against anything."
+                }
+              },
+              "required": [
+                "produces",
+                "closure"
+              ]
+            },
+            "reconstruct": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "move": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "One move of the construction, in the order a learner reaches it."
+                  },
+                  "from_step_ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The teaching_path step this move corresponds to, where one does. Absent means the learner's route genuinely differs from the expert's, which is the point of holding both."
+                  }
+                },
+                "required": [
+                  "move"
+                ]
+              },
+              "minItems": 1,
+              "description": "The correct construction reached the way a learner would reach it. Held separately from teaching_path because teaching_path is the expert's summary, and using it here is what makes this product read as the declarative one."
+            },
+            "boundary_test": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "A limiting case, reversal or edge condition."
+                },
+                "confirms": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "What passing it establishes, stated so that a recall question cannot be passed off as a boundary test."
+                }
+              },
+              "required": [
+                "prompt",
+                "confirms"
+              ]
+            }
+          },
+          "required": [
+            "predict",
+            "attempt",
+            "reconstruct",
+            "boundary_test"
+          ]
         }
       },
       "required": [
@@ -1258,6 +1472,37 @@
             "$ref": "#/$defs/scene_instance"
           },
           "minItems": 0
+        },
+        "correspondence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "element": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The part of the picture, named as required_elements names it."
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The symbol it stands for, as the governing relation writes it."
+              },
+              "in_words": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The same thing said in words, which is the third leg of the bridge."
+              }
+            },
+            "required": [
+              "element",
+              "symbol",
+              "in_words"
+            ]
+          },
+          "minItems": 0,
+          "description": "The representation bridge. required_elements says what the picture must contain and the relation's symbols say what the algebra means, but nothing bound one to the other, so the correspondence a learner must make was asserted rather than held. Naming all three legs is what makes it explicit in both directions rather than a caption pointing one way."
         }
       },
       "required": [
@@ -1338,14 +1583,30 @@
             "frame",
             "caption"
           ]
+        },
+        "question_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The question this scene is bound to, where it illustrates a question rather than a microtopic. Exactly one of microtopic_ref and question_ref carries the binding; a figure bound to neither is the decoration the role specs refuse."
         }
       },
       "required": [
         "id",
         "cores",
-        "microtopic_ref",
         "datum_refs",
         "scene"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "microtopic_ref"
+          ]
+        },
+        {
+          "required": [
+            "question_ref"
+          ]
+        }
       ]
     },
     "question_family": {
@@ -1715,6 +1976,74 @@
               "additionalProperties": true
             }
           }
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The hint as the learner reads it."
+              },
+              "reveals": {
+                "enum": [
+                  "CONCEPT",
+                  "METHOD",
+                  "ANSWER"
+                ],
+                "description": "How far this hint goes. Declared rather than inferred, so that a hint handing over the answer is detectable: an ANSWER hint before the last position defeats the question it is attached to, and for a transfer task a hint revealing the model choice defeats the task itself."
+              }
+            },
+            "required": [
+              "text",
+              "reveals"
+            ]
+          },
+          "minItems": 0,
+          "description": "The ladder of hints, in order. Order is meaning here -- Core2 preserves the source's ordering, and the other two products depend on a hint not arriving before the one that should precede it -- so this is a list and never a set."
+        },
+        "transfer": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "The changed demand this task assesses, relative to prior exposure. A task with no transfer block is same-family practice, which is honest; a cover story declared as transfer is what the exposure audit exists to dispute.",
+          "properties": {
+            "dimension": {
+              "enum": [
+                "model_choice",
+                "novelty",
+                "reasoning_steps",
+                "representation_translation"
+              ],
+              "description": "Which dimension of demand changes. These are question_family.demand_dimensions' own keys: the family says how much each dimension demands, and this says which one this task moves, in the same words. A cover story is not a dimension, and an enum is what makes that refusable rather than arguable."
+            },
+            "statement": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The changed demand, stated explicitly, so a reviewer can check the transfer claim rather than take the label."
+            },
+            "builds_on": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "description": "Exposure lineage: the question or microtopic ids the learner has already seen that this builds on. A transfer claim with no lineage is a claim about a learner nobody has described."
+            }
+          },
+          "required": [
+            "dimension",
+            "statement",
+            "builds_on"
+          ]
+        },
+        "repair_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The teaching_path step or misconception this task's predictable failure routes back to. A repair route that points at a whole microtopic is a reading assignment; the spec asks for the specific construction that addresses the failure."
         }
       },
       "required": [
@@ -2074,11 +2403,13 @@
         },
         "classification": {
           "enum": [
-            "BLOCKING_DEFECT",
-            "SCIENTIFIC_REVIEW_REQUIRED",
             "ADVISORY",
-            "CAPABILITY_LIMIT"
-          ]
+            "BLOCKING_DEFECT",
+            "CAPABILITY_LIMIT",
+            "SCIENTIFIC_REVIEW_REQUIRED",
+            "SOURCE_CUSTODY_HELD"
+          ],
+          "description": "SOURCE_CUSTODY_HELD is Core2's hold: the bucket has no frozen or authorised question corpus, next_action names what acquisition would close it, and affected_refs names the bucket. It is a classification rather than a bucket field because a hold is a claim that must say why it is not backed, which is what known_issues is for."
         },
         "description": {
           "type": "string",
@@ -2186,6 +2517,26 @@
           "minLength": 1
         }
       }
+    },
+    "rubric_criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "criterion": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the response must show."
+        },
+        "evidence_of": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The understanding that criterion is evidence of, so a rubric line cannot be a restatement of the task."
+        }
+      },
+      "required": [
+        "criterion",
+        "evidence_of"
+      ]
     }
   }
 }

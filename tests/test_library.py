@@ -591,3 +591,117 @@ class FiguresSitWithWhatTheyExplain(unittest.TestCase):
                     continue
                 self.assertEqual(blocks[index - 1]["obligation_ids"], block["obligation_ids"],
                                  f'{product["core"]} block {index}')
+
+
+class FieldsAddedMustCarryWhatTheyPromise(unittest.TestCase):
+    """R1 added fields whose whole value is a claim the schema can hold but not check.
+
+    `reveals` says how far a hint goes, `difficult_move` says which step is the hard
+    one, `closure` says which of three forms closes an attempt. Each is exactly the
+    kind of field that can lie -- and a field that can lie is worse than no field,
+    because a gate downstream will trust it. Every one is planted here, on a package
+    that admits without it.
+    """
+
+    def package(self):
+        return json.loads(MATH_PACKAGES[0].read_text(encoding="utf-8"))
+
+    def question(self, package, index=0):
+        return package["questions"][index]
+
+    def test_the_committed_packages_still_admit_with_none_of_the_new_fields_set(self):
+        # The fields are optional. Adding them must not have invalidated what exists.
+        for path in sorted(REPO.glob("*/library/*.v1.json")):
+            with self.subTest(package=path.name):
+                self.assertTrue(check(json.loads(path.read_text(encoding="utf-8")))["admitted"])
+
+    def test_a_hint_revealing_the_answer_before_the_last_rung_is_refused(self):
+        package = self.package()
+        self.question(package)["hints"] = [
+            {"text": "Which side is the unknown on?", "reveals": "ANSWER"},
+            {"text": "Substitute and compare both sides.", "reveals": "METHOD"}]
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "HINT_LADDER" for f in report["findings"]),
+                        report["findings"])
+
+    def test_the_same_hint_in_the_last_position_is_allowed(self):
+        # The rule is about position, not about revealing the answer at all: a ladder
+        # whose final rung gives the answer is a ladder, not a defect.
+        package = self.package()
+        self.question(package)["hints"] = [
+            {"text": "Substitute and compare both sides.", "reveals": "METHOD"},
+            {"text": "x = 7/3.", "reveals": "ANSWER"}]
+        self.assertTrue(check(package)["admitted"], check(package)["findings"])
+
+    def test_a_difficult_move_index_outside_the_breakdown_is_refused(self):
+        package = self.package()
+        answer = self.question(package)["answer"]
+        answer["difficult_move"] = len(answer["reasoning"])
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "SOLUTION_BREAKDOWN" for f in report["findings"]),
+                        report["findings"])
+
+    def test_an_index_inside_the_breakdown_is_allowed(self):
+        package = self.package()
+        self.question(package)["answer"]["difficult_move"] = 0
+        self.assertTrue(check(package)["admitted"], check(package)["findings"])
+
+    def test_a_transfer_claim_naming_an_undeclared_lineage_is_refused(self):
+        package = self.package()
+        self.question(package)["transfer"] = {
+            "dimension": "model_choice",
+            "statement": "The relation to apply is no longer named in the stem.",
+            "builds_on": ["MIC-NOT-IN-THIS-PACKAGE"]}
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "TRANSFER" for f in report["findings"]),
+                        report["findings"])
+
+    def test_a_repair_route_pointing_nowhere_is_refused(self):
+        package = self.package()
+        self.question(package)["repair_ref"] = "STEP-THAT-DOES-NOT-EXIST"
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "TRANSFER" for f in report["findings"]),
+                        report["findings"])
+
+    def test_a_repair_route_pointing_at_a_real_teaching_step_is_allowed(self):
+        package = self.package()
+        step = package["microtopics"][0]["teaching_path"][0]["id"]
+        self.question(package)["repair_ref"] = step
+        self.assertTrue(check(package)["admitted"], check(package)["findings"])
+
+    def test_a_declared_closure_with_nothing_behind_it_is_refused(self):
+        package = self.package()
+        package["microtopics"][0]["elicitation"] = {
+            "predict": {"prompt": "Does multiplying both sides by x preserve the solution set?",
+                        "defensible_answer": "No, not when x may be zero."},
+            "attempt": {"produces": "A statement of when the operation is reversible.",
+                        "closure": "RUBRIC"},
+            "reconstruct": [{"move": "Ask what value of the multiplier would destroy information."}],
+            "boundary_test": {"prompt": "Multiply both sides of x = 1 by (x - 1).",
+                              "confirms": "That a new root appears when the multiplier can vanish."}}
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "ELICITATION" for f in report["findings"]),
+                        report["findings"])
+
+    def test_a_rubric_with_no_rejected_example_is_refused(self):
+        package = self.package()
+        package["microtopics"][0]["elicitation"] = {
+            "predict": {"prompt": "Does multiplying both sides by x preserve the solution set?",
+                        "defensible_answer": "No, not when x may be zero."},
+            "attempt": {"produces": "A statement of when the operation is reversible.",
+                        "closure": "RUBRIC",
+                        "rubric": [{"criterion": "Names the multiplier's zero as the failure case.",
+                                    "evidence_of": "Reading an operation as conditional on its inputs."}],
+                        "accepted": ["It fails when x = 0, because then both sides become 0."]},
+            "reconstruct": [{"move": "Ask what value of the multiplier would destroy information."}],
+            "boundary_test": {"prompt": "Multiply both sides of x = 1 by (x - 1).",
+                              "confirms": "That a new root appears when the multiplier can vanish."}}
+        report = check(package)
+        self.assertFalse(report["admitted"])
+        self.assertTrue(any(f["point"] == "ELICITATION" for f in report["findings"]),
+                        report["findings"])

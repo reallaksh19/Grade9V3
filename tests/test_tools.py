@@ -385,3 +385,22 @@ class SpecConformance(unittest.TestCase):
             for row in spec_conformance.requirements(spec):
                 with self.subTest(spec=spec.name, path=row["path"]):
                     self.assertTrue(row["phrase"], row["path"])
+
+    def test_a_node_with_both_properties_and_a_combinator_keeps_its_properties(self):
+        # Found by the gate reporting a field it had just been shown. scene_instance
+        # names its fields and then uses anyOf to say that exactly one of two must be
+        # present -- the ordinary way to write that -- and the first resolver dropped
+        # the node's own properties in favour of the branches'.
+        for path in ("representation.scene_instances[].microtopic_ref",
+                     "representation.scene_instances[].question_ref",
+                     "representation.scene_instances[].datum_refs[]"):
+            with self.subTest(path=path):
+                self.assertEqual(self.resolve(path), "", path)
+
+    def test_the_whole_backlog_is_closed(self):
+        # R1's exit condition. This is the assertion that makes --enforce meaningful:
+        # once it holds, a spec requiring something with no home breaks the build.
+        report = spec_conformance.audit()
+        self.assertEqual(report["without_a_home"], 0,
+                         [f for r in report["roles"] for f in r["findings"]])
+        self.assertTrue(report["passed"])

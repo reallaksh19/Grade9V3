@@ -93,12 +93,25 @@ def _deref(node: dict, schema: dict) -> dict:
 
 
 def _branches(node: dict, schema: dict):
-    """Every object shape a node may take, flattening the combinators the schema uses."""
+    """Every object shape a node may take, flattening the combinators the schema uses.
+
+    A node may carry its own `properties` *and* a combinator -- an object that names its
+    fields and then uses `anyOf` to say which of them are required is the ordinary way to
+    write "exactly one of these two". So each branch is merged with the node's own
+    properties rather than replacing them, which is the bug this comment exists for: the
+    first version dropped them, and the gate reported a field it had itself just been
+    shown.
+    """
     node = _deref(node, schema)
+    own = node.get("properties", {})
     for key in ("anyOf", "oneOf"):
         if key in node:
             for option in node[key]:
-                yield from _branches(option, schema)
+                for shape in _branches(option, schema):
+                    yield {**shape, "properties": {**own, **shape.get("properties", {})},
+                           "type": shape.get("type") or node.get("type"),
+                           "additionalProperties": shape.get("additionalProperties",
+                                                             node.get("additionalProperties"))}
             return
     if "allOf" in node:
         merged = {"type": node.get("type"), "properties": {},

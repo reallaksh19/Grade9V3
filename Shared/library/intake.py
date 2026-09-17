@@ -65,6 +65,23 @@ def corpus(package: dict) -> dict[str, dict]:
     return records
 
 
+def _answers(package: dict):
+    """Every answer in a package, with the record that owns it, from both places one lives."""
+    for row in package.get("questions", []):
+        if row.get("answer"):
+            yield row.get("id", "<unidentified>"), row["answer"]
+    for row in package.get("microtopics", []):
+        answer = (row.get("exit_task") or {}).get("answer")
+        if answer:
+            yield f'{row.get("id", "<unidentified>")}.exit_task', answer
+
+
+def _step_ids(package: dict) -> set[str]:
+    """Every teaching step a repair route may legitimately point at."""
+    return {step.get("id") for row in package.get("microtopics", [])
+            for step in row.get("teaching_path", []) if step.get("id")}
+
+
 def check(package: dict) -> dict:
     """Run the six-point intake checklist. Returns a report; never raises on content."""
     findings: list[dict] = []
@@ -139,6 +156,45 @@ def check(package: dict) -> dict:
             if datum not in datum_ids:
                 fail("EXIT_ORACLE", f'{row.get("id")}: binds {variable} to {datum}, '
                                     "which is not a declared datum")
+
+    # 9. The fields R1 added carry what they promise. Each is a structural claim the
+    #    schema can hold but not check: an enum says how far a hint goes, an index says
+    #    which step is hard, a closure names which of three forms closes an attempt. A
+    #    field that can lie is worse than no field, so the claim is checked here.
+    declared = set(records)
+    for row in package.get("questions", []):
+        qid = row.get("id", "<unidentified>")
+        hints = row.get("hints") or []
+        for position, hint in enumerate(hints):
+            if hint.get("reveals") == "ANSWER" and position != len(hints) - 1:
+                fail("HINT_LADDER", f"{qid}: hint {position + 1} of {len(hints)} reveals the "
+                                    "answer, so every hint after it has nothing left to offer")
+        transfer = row.get("transfer") or {}
+        for ref in transfer.get("builds_on") or []:
+            if ref not in declared:
+                fail("TRANSFER", f"{qid}: claims to build on {ref}, which this package "
+                                 "does not declare")
+        if row.get("repair_ref") and row["repair_ref"] not in _step_ids(package) | declared:
+            fail("TRANSFER", f'{qid}: repairs to {row["repair_ref"]}, which is neither a '
+                             "declared record nor a teaching step in this package")
+
+    for owner, answer in _answers(package):
+        moves = answer.get("reasoning") or []
+        index = answer.get("difficult_move")
+        if index is not None and not 0 <= index < len(moves):
+            fail("SOLUTION_BREAKDOWN", f"{owner}: names move {index} as the difficult one, "
+                                       f"but the breakdown has {len(moves)}")
+
+    for row in microtopics:
+        attempt = ((row.get("elicitation") or {}).get("attempt")) or {}
+        carried = {"MODEL_RESPONSE": "model_response", "RUBRIC": "rubric", "CRITERIA": "rubric"}
+        field = carried.get(attempt.get("closure"))
+        if field and not attempt.get(field):
+            fail("ELICITATION", f'{row.get("id")}: closes by {attempt["closure"]} and supplies '
+                                f"no {field}, which is the deferred closure the role forbids")
+        if attempt.get("rubric") and not attempt.get("rejected"):
+            fail("ELICITATION", f'{row.get("id")}: offers a rubric with no rejected example, '
+                                "so it has not been tested against anything")
 
     status = package.get("status")
     if status not in LIFECYCLE:
