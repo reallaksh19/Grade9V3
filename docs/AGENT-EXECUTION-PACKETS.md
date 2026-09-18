@@ -23,8 +23,9 @@ authored.
 
 A six-Core request is not all-or-nothing.
 
-If Core1 is ready while Core2 awaits source inspection and Core1A/Core1B await learner
-routing, the execution packet marks Core1 runnable and keeps the other work orders waiting.
+If Core1 is ready while Core2 awaits a verified source-inspection receipt and Core1A/Core1B
+await learner routing, the execution packet marks Core1 runnable and keeps the other work
+orders waiting.
 An unrelated hold does not freeze every Core.
 
 Each work order carries:
@@ -68,6 +69,7 @@ Every packet pins:
 - the canonical request digest;
 - the matrix digest;
 - a digest of the subject library files;
+- the verified source-receipt digest, when source-backed products are requested;
 - each Core role-spec SHA-256.
 
 `verify()` recompiles the current plan and rejects the packet if any of those inputs or the
