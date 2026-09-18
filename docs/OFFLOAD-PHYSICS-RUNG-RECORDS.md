@@ -1,9 +1,20 @@
 # Master offload prompt — author one subtopic's rung records
 
-**Twelve independent tasks, one bucket each. Each agent creates one new library package and
-edits one matrix file. Nothing else.**
+**Three tracks, four buckets each. Every agent reads this file, then its own track file in
+`docs/offload/`. Each creates four library packages and edits four matrix files.**
 
-Paste this whole document to each agent and add one line: *"Your bucket is N."*
+| track | | author | report | ~lines |
+|---|---|---:|---:|---:|
+| **A** | Mechanics spine — vectors, kinematics, Newton, work & energy | 11 | 6 | 2,200 |
+| **B** | Extended mechanics and matter — rotation, gravitation, fluids, thermodynamics | 14 | 6 | 2,600 |
+| **C** | Fields, waves and light — magnetism, electricity, oscillations, optics | 14 | 10 | 2,600 |
+
+**Size, measured against the one authored rung that exists** (`MIC-MEASURED-FROM`): a rung
+is a capability plus a microtopic, about **150 lines of JSON** — three teaching steps each
+with a justification, four elicitation asks, two rubric criteria, a misconception's three
+parts, an exit task with an oracle. A bucket adds ~130 lines once, for two teaching routes,
+its bucket record and its own resource. Thirty-nine rungs is roughly **7,400 lines of
+authored JSON**, and the worked example took **six intake refusals** before it was admitted.
 
 ---
 
@@ -54,42 +65,24 @@ without an upstream owner is exactly the invention every gate here exists to pre
 
 ## 1 · Your assignment
 
-One bucket. Author its **conceptual** rungs; report its quantitative ones.
-
-| # | bucket_id | no record | conceptual — **yours** | quantitative — report only |
-|---:|---|---:|---|---|
-| 1 | `BUCKET-PHY-ELEC-CURRENT-OHM` | 7 | R1 R4 R5 | R2 R3 R6 R7 |
-| 2 | `BUCKET-PHY-FLUID-BERNOULLI-EQUATION` | 5 | R2 R3 R4 | R1 R5 |
-| 3 | `BUCKET-PHY-GRAV-UNIVERSAL-LAW` | 5 | R1 R4 R5 | R2 R3 |
-| 4 | `BUCKET-PHY-KIN-1D-MOTION` | 4 | R1 R3 | R2 R4 |
-| 5 | `BUCKET-PHY-MAG-FIELD-LORENTZ` | 6 | R1 R2 R3 R4 R6 | R5 |
-| 6 | `BUCKET-PHY-NLM-FIRST-LAW` | 4 | R1 R2 R3 R4 | — |
-| 7 | `BUCKET-PHY-OPTICS-REFLECTION-MIRRORS` | 6 | R1 R2 R3 | R4 R5 R6 |
-| 8 | `BUCKET-PHY-OSC-SHM-WAVES` | 5 | R1 R3 R4 | R2 R5 |
-| 9 | `BUCKET-PHY-ROT-RIGID-BODY` | 5 | R1 R3 R4 R5 | R2 |
-| 10 | `BUCKET-PHY-THERMO-FIRST-SECOND-LAW` | 5 | R1 R3 R4 R5 | R2 |
-| 11 | `BUCKET-PHY-VEC-ADD-SUB` | 4 | R3 | R1 R2 R4 |
-| 12 | `BUCKET-PHY-WORK-ENERGY-POWER` | 5 | R1 R2 R3 R4 | R5 |
-
-**The conceptual/quantitative column is a keyword heuristic, not authority.** It was
-computed from each rung's own text. You decide per rung, and the gate decides whether you
-were right. Moving a rung from one column to the other is a legitimate finding — say so in
-your report.
-
-**Your files:**
+Your track file names your four buckets and their rungs:
 
 ```
-Physics/library/<your-slug>.v1.json      the package you create
-Physics/matrices/<your-slug>.rungs.json  the matrix, edited only where you authored a rung
+docs/offload/physics-rungs-track-a.md
+docs/offload/physics-rungs-track-b.md
+docs/offload/physics-rungs-track-c.md
 ```
 
-Your source material is `Physics/candidates/<your-slug>.v1.json` — candidate input under
-`packet_authority: NONE`. It is not truth and you may not promote it; it is a place to
-look.
+**The conceptual/quantitative split in your track file is a keyword heuristic, not
+authority.** It was computed from each rung's own text. You decide per rung, and the gate
+decides whether you were right. Moving a rung from one column to the other is a legitimate
+finding — say so in your report.
 
----
+Your source material for each bucket is `Physics/candidates/<slug>.v1.json` — candidate
+input under `packet_authority: NONE`. It is not truth and you may not promote it; it is a
+place to look.
 
-## 2 · Four collisions that will break you on the first run
+## 2 · Five collisions that will break you on the first run
 
 Measured by probing the machinery with exactly the package you are about to write. Every
 one of these is invisible until twelve agents hit it at once.
@@ -114,6 +107,14 @@ goes green and you think you are done.
 **4 · A bucket with a drawable representation must name its canonical figure.**
 `BUCKET_PRIMARY_REPRESENTATION_UNDECLARED`. If you author no representation, omit
 `primary_representation_ref` entirely — do not set it to `null`.
+
+**5 · All three tracks will conflict on `docs/architecture-manifest.json`.** It is a
+generated index that counts library packages, so every package any of you adds moves it.
+Matrices do not move it; packages do, which is why the matrix offload had no shared file
+and this one does. Regenerate and commit it — `--check` is in CI and in the suite, so a
+stale one fails your branch. **Never hand-resolve the conflict: take either side and re-run
+`python3 Shared/tools/build_manifest.py`.** It is deterministic, which is what makes that
+safe.
 
 ---
 
@@ -243,8 +244,10 @@ reference your record and nothing downstream can see your work.
 
 ## 6 · What is expected
 
-**Deliverable:** one new package and one edited matrix, committed on `p0-foundations`,
-with §5 green.
+**Deliverable:** four new packages and four edited matrices — one pair per bucket in your
+track — committed on `p0-foundations`, with §5 green after each bucket rather than once at
+the end. A track that lands three clean buckets and reports the fourth is a better outcome
+than four half-finished ones.
 
 | | your minimum |
 |---|---|
@@ -264,8 +267,9 @@ were constructed to fill the table. The gates cannot tell a careful rung from a 
 one — that is what review is for, and inventing teaching to reach a count is the single
 failure this repository exists to prevent.
 
-**Report, never fix, anything outside your two files.** A finding naming another bucket, a
-schema, or a gate goes in your report. Do not touch it.
+**Report, never fix, anything outside your own eight files.** A finding naming another
+track's bucket, a schema, or a gate goes in your report. Do not touch it. The manifest is
+the one exception and it is regenerated, never edited.
 
 ---
 
@@ -278,5 +282,6 @@ schema, or a gate goes in your report. Do not touch it.
 | the worked rung | `MIC-MEASURED-FROM` in `Physics/library/relative-motion.v1.json` |
 | your binding contract | `author_brief.py`, per rung — compiled, never written by hand |
 | what the candidates are and are not | `Physics/candidates/README.md` |
+| your track's assignment | `docs/offload/physics-rungs-track-<a\|b\|c>.md` |
 | the matrix layer you are completing | `docs/OFFLOAD-MASTER-PHYSICS-MATRICES.md` |
 | what the stress test found | `docs/STRESS-PHYSICS.md` |
