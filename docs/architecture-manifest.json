@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 130,
-  "relation_count": 189,
+  "component_count": 131,
+  "relation_count": 190,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 39,
+    "TEST": 40,
     "TOOLING": 39,
     "WEB": 5
   },
-  "digest": "sha256:ba1ab4614d16a0259f5afac3d1ac1db21144f9dad76e6f5329b4f1633e774d36",
+  "digest": "sha256:f00624e262aeb0ecdfc953dd7018f74fea100e87c189e166386956cfed49346b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -717,6 +717,13 @@
       "role_description": "Executable checks",
       "bytes": 6393,
       "sha256": "63c0a564f2bb3e6d7ec013a7636cc69548710a4763b198e12c3e412d09342724"
+    },
+    {
+      "path": "tests/test_empirical_acceptance.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5496,
+      "sha256": "d6983069c9ed24b998c845cc89810117327bb1c778f6c310f2207db5da1e59de"
     },
     {
       "path": "tests/test_execution_packet.py",
@@ -1572,6 +1579,11 @@
     },
     {
       "from": "tests/test_core_issue19_integration.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_empirical_acceptance.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
