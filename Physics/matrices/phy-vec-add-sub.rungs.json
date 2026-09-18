@@ -10,10 +10,6 @@
       "rung": "R1",
       "ladder_position": 20,
       "provenance": "SYNTHESIS",
-      "aha": "A vector is not fixed by size alone: direction is part of the quantity, and a unit vector can carry direction independently of magnitude.",
-      "learner_owns": [
-        "Can compare ordinary scalar sizes and recognise an arrow as having an orientation."
-      ],
       "ceiling": [
         "component",
         "basis",
@@ -24,12 +20,6 @@
         "Two equal-length arrows pointing in different directions.",
         "A direction-only arrow normalised to the same unit length from different starting magnitudes."
       ],
-      "misconception": {
-        "wrong_idea": "Two directed quantities with the same magnitude are the same vector.",
-        "diagnostic_prompt": "Two arrows are both 5 units long, one east and one north. Are they the same directed quantity?",
-        "repair": "State both size and direction; changing either changes the vector. Normalising removes size while preserving direction."
-      },
-      "closure": "Given two arrows with equal size, distinguish whether they represent the same vector and identify the directional information that decides.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -50,10 +40,6 @@
       "rung": "R2",
       "ladder_position": 45,
       "provenance": "SYNTHESIS",
-      "aha": "Vector addition combines directed quantities geometrically or component by component; input magnitudes cannot simply be added unless the directions make that valid.",
-      "learner_owns": [
-        "A vector is not fixed by size alone: direction is part of the quantity, and a unit vector can carry direction independently of magnitude."
-      ],
       "ceiling": [
         "parallelogram law",
         "resultant formula",
@@ -64,12 +50,6 @@
         "A tail-to-head construction and the same addition resolved along declared axes.",
         "Two equal input magnitudes at different included angles."
       ],
-      "misconception": {
-        "wrong_idea": "The magnitude of A + B is always |A| + |B|.",
-        "diagnostic_prompt": "Two 5-unit vectors point in opposite directions. Is the magnitude of their sum 10?",
-        "repair": "Preserve direction while combining; use geometry or signed components, and treat direct magnitude addition as a special collinear case rather than a general rule."
-      },
-      "closure": "For two vectors at a stated angle, construct or compute their sum and explain why the result's magnitude is or is not the sum of the input magnitudes.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -113,10 +93,6 @@
       "rung": "R4",
       "ladder_position": 85,
       "provenance": "SYNTHESIS",
-      "aha": "A cross product produces an axial direction perpendicular to the input plane; reversing operand order keeps its magnitude but flips that out-of-plane direction.",
-      "learner_owns": [
-        "Vector subtraction is addition of the reversed second vector, so operand order matters even though ordinary vector addition is commutative."
-      ],
       "ceiling": [
         "axial vector",
         "right-hand rule",
@@ -127,12 +103,6 @@
         "A clearly drawn plane containing both polar input vectors and a separate out-of-plane axial result.",
         "Both operand orders displayed for the same input pair."
       ],
-      "misconception": {
-        "wrong_idea": "A cross product is commutative, so swapping A and B leaves the out-of-plane result unchanged.",
-        "diagnostic_prompt": "For perpendicular A and B, compare A × B with B × A. Do their out-of-plane arrows point the same way?",
-        "repair": "Keep the input plane fixed, use the ordered pair to choose the perpendicular axial direction, and reverse that direction when the operand order reverses."
-      },
-      "closure": "Given two nonparallel vectors and an oriented plane, state the cross-product direction for both operand orders and identify the sign reversal.",
       "controlled_variation": [
         {
           "phase": 1,
