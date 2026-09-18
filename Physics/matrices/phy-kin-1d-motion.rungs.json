@@ -66,6 +66,26 @@
           "hold": "equal distance on both legs and the faster leg's speed",
           "notice": "the slower leg occupies more of the total time and pulls the average speed toward it"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-AVERAGE-SPEED",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Average speed as total distance over total time needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-AVERAGE-VELOCITY",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Average velocity as displacement over the same interval needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "AVERAGE_RATE",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Two-leg numerical average-rate exits need an implemented validator."
+        }
       ]
     },
     {
@@ -134,6 +154,44 @@
           "vary": "the graph from straight to curved",
           "hold": "the same starting velocity and total duration",
           "notice": "one acceleration value no longer describes every part of the motion"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CONSTANT-ACCELERATION-VELOCITY",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The velocity-time relation under constant acceleration needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The displacement-time relation under constant acceleration needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The no-time constant-acceleration relation needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "CONSTANT_ACCELERATION_VELOCITY",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Velocity-form numerical checks already have a declared Physics validator."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "CONSTANT_ACCELERATION_DISPLACEMENT",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Displacement-form numerical checks need an implemented validator."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "CONSTANT_ACCELERATION_NO_TIME",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "No-time numerical checks need an implemented validator."
         }
       ]
     }
