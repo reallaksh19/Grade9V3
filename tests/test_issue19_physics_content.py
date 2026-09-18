@@ -270,6 +270,37 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
         spec.loader.exec_module(module)
         self.assertTrue(required <= module.VALIDATORS, sorted(required - module.VALIDATORS))
 
+    def test_practice_only_donor_anchors_trace_to_existing_rungs(self):
+        expected = {
+            "Q-PHY-GRAV-2A-01": (
+                "CAP-PHY-GRAV-R1",
+                "MIC-PHY-GRAV-R1",
+                "Physics/matrices/phy-grav-universal-law.rungs.json",
+            ),
+            "Q-PHY-VECOPS-2A-01": (
+                "CAP-VEC-SUB-ORDER",
+                "MIC-PHY-VEC-SUB-ORDER",
+                "Physics/matrices/phy-vec-add-sub.rungs.json",
+            ),
+            "Q-PHY-VECREP-2A-01": (
+                "CAP-VECTOR-VS-SCALAR",
+                "MIC-VECTOR-VS-SCALAR",
+                "Physics/matrices/vector-representation.rungs.json",
+            ),
+        }
+        for question_id, (capability_id, microtopic_id, matrix_path) in expected.items():
+            question = self.records[question_id]
+            self.assertEqual(question["primary_capability_ref"], capability_id)
+            self.assertEqual(question["origin"], "AUTHORED")
+            self.assertEqual(question["status"], "CANDIDATE")
+            microtopic = self.records[microtopic_id]
+            self.assertEqual(microtopic["primary_capability_ref"], capability_id)
+            matrix = load_json(REPO / matrix_path)
+            self.assertTrue(
+                any(row.get("microtopic_ref") == microtopic_id for row in matrix["rungs"]),
+                (question_id, microtopic_id),
+            )
+
     def test_teaching_routes_reference_real_microtopics(self):
         for name in SLICE_PACKAGES:
             package = self.packages[name]
