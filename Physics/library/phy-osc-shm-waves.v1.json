@@ -366,8 +366,101 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-OSC-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Oscillation classification and energy-exchange practice",
+      "capability_refs": [
+        "CAP-OSC-STABLE-EQUILIBRIUM",
+        "CAP-OSC-ENERGY-EXCHANGE"
+      ],
+      "solution_structure": [
+        "Mark one position as the equilibrium and label displacements on opposite sides of it.",
+        "Move the same system first to the left of equilibrium and then to the right, recording the direction of its tendency each time.",
+        "Compare that pattern with a motion that repeats around a circular track but has no single position toward which displacement produces a return tendency."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "No CORE2B item is authored until a changed demand can be repaired by an already-authored rung in this bucket."
+      ],
+      "common_wrong_routes": [
+        "Any motion that repeats is automatically simple harmonic motion."
+      ],
+      "item_refs": [
+        "Q-PHY-OSC-2A-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-OSC-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "original_identifier": "AUTHOR-OSC-2A-01",
+      "stem": "Three motions repeat. For each, decide whether one stable equilibrium organizes the motion and justify the choice by what happens after a displacement to either side.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "A qualifying motion has one equilibrium toward which the system tends to return from either side; repetition without that inward pattern is not enough.",
+        "reasoning": [
+          "Name the candidate equilibrium before judging the motion.",
+          "Check the response after a displacement on one side and then the other side.",
+          "Accept the classification only when the response reverses so that it points toward the same equilibrium from both sides."
+        ],
+        "check": "Swap the side of displacement. A stable equilibrium should make the return tendency swap direction as well; a merely repeating path need not.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-OSC-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: Where would you place one position that the system could be displaced away from?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Separate periodicity from the restoring condition; repetition by itself does not identify simple harmonic motion.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-OSC-CORE1A",
