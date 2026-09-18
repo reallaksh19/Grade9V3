@@ -6,7 +6,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 
-from Shared.contracts import load
+from Shared.contracts import ContractError, load
 
 VIOLATION = "LADDER_PREREQUISITE_ORDER_VIOLATION"
 
@@ -43,6 +43,71 @@ def prerequisite_closure(capability: str, caps: dict) -> list[str]:
 
     visit(capability)
     return ordered
+
+
+def _stable_unique(values) -> list[str]:
+    seen, out = set(), []
+    for value in values:
+        if value in seen:
+            continue
+        seen.add(value)
+        out.append(value)
+    return out
+
+
+def topological_subset(capabilities, caps: dict) -> list[str]:
+    """Known prerequisite closure plus targets, dependencies before dependants.
+
+    The input order is preserved for otherwise-unrelated target capabilities. A cycle in
+    the requested slice is an explicit error here: study routing may not silently flatten
+    a cyclic prerequisite claim.
+    """
+    roots = _stable_unique(capabilities)
+    seen, active, ordered = set(), set(), []
+
+    def visit(node: str) -> None:
+        if node not in caps or node in seen:
+            return
+        if node in active:
+            raise ContractError("CAPABILITY_PREREQUISITE_CYCLE", node)
+        active.add(node)
+        for parent in caps[node].get("prerequisite_refs", []):
+            if parent in caps:
+                visit(parent)
+        active.remove(node)
+        seen.add(node)
+        ordered.append(node)
+
+    for root in roots:
+        visit(root)
+    return ordered
+
+
+def prerequisite_closure_many(capabilities, caps: dict) -> list[str]:
+    """Known transitive prerequisites for several targets, once each."""
+    roots = set(_stable_unique(capabilities))
+    return [cap for cap in topological_subset(capabilities, caps) if cap not in roots]
+
+
+def unknown_prerequisites(capabilities, caps: dict) -> list[str]:
+    """Unknown prerequisite refs reachable from known requested capabilities."""
+    roots = _stable_unique(capabilities)
+    seen, missing = set(), []
+
+    def visit(node: str) -> None:
+        if node in seen or node not in caps:
+            return
+        seen.add(node)
+        for parent in caps[node].get("prerequisite_refs", []):
+            if parent not in caps:
+                if parent not in missing:
+                    missing.append(parent)
+                continue
+            visit(parent)
+
+    for root in roots:
+        visit(root)
+    return missing
 
 
 def ladder_capabilities(board: dict, mics: dict) -> tuple[dict[str, dict], dict[str, dict]]:
