@@ -49,8 +49,42 @@ def library(subject: str) -> tuple[dict, set[str]]:
     return mics, dimensions
 
 
-def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
+def capabilities(subject: str) -> dict:
+    """Every capability record in a subject, keyed by id."""
+    found = {}
+    for path in sorted((REPO / subject / "library").glob("*.json")):
+        package = load(path)
+        for capability in package.get("capabilities", []):
+            found[capability["id"]] = capability
+    return found
+
+
+def prerequisite_closure(capability_id: str, caps: dict) -> set[str]:
+    """Transitive capability prerequisites, stopping safely at unresolved external refs."""
+    found: set[str] = set()
+    visiting: set[str] = set()
+
+    def visit(current: str):
+        if current in visiting:
+            return
+        visiting.add(current)
+        record = caps.get(current) or {}
+        for prerequisite in record.get("prerequisite_refs", []):
+            if prerequisite in found:
+                continue
+            found.add(prerequisite)
+            if prerequisite in caps:
+                visit(prerequisite)
+        visiting.remove(current)
+
+    visit(capability_id)
+    return found
+
+
+
+def findings(board: dict, mics: dict, dimensions: set[str], caps: dict | None = None) -> list[dict]:
     found: list[dict] = []
+    caps = caps or {}
 
     def fail(point: str, where: str, detail: str):
         found.append({"point": point, "where": where, "detail": detail})
@@ -115,6 +149,32 @@ def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
                 fail("PHASE_HOLDS_NOTHING", f'{rung}.phase{phase.get("phase")}',
                      "an experience with no invariant cannot show one")
 
+    # The ladder is a learning order, not only a display order. If a rung teaches
+    # capability C, every prerequisite of C that is also taught on this ladder must be
+    # earlier. Use the transitive closure so A -> B -> C cannot hide C after A merely
+    # because A names only B directly.
+    rung_by_capability = {}
+    for row in board.get("rungs", []):
+        ref = row.get("microtopic_ref")
+        mic = mics.get(ref, {})
+        capability = mic.get("primary_capability_ref")
+        if capability:
+            rung_by_capability[capability] = row
+
+    for capability, row in sorted(rung_by_capability.items(),
+                                  key=lambda item: item[1].get("ladder_position", 0)):
+        position = row.get("ladder_position", 0)
+        for prerequisite in sorted(prerequisite_closure(capability, caps)):
+            prior = rung_by_capability.get(prerequisite)
+            if prior is None:
+                continue
+            prior_position = prior.get("ladder_position", 0)
+            if prior_position >= position:
+                fail("LADDER_PREREQUISITE_ORDER_VIOLATION", row["rung"],
+                     f'{capability} requires {prerequisite} transitively, but '
+                     f'{prior["rung"]} is at {prior_position} and {row["rung"]} is at '
+                     f'{position}; a same-ladder prerequisite must be earlier')
+
     for row in board.get("transfer", []):
         if dimensions and row["dimension"] not in dimensions:
             fail("TRANSFER_DIMENSION_UNDECLARED", row["dimension"],
@@ -163,7 +223,9 @@ def audit(repo: Path = REPO) -> dict:
         structural = ([{"point": "MATRIX_STRUCTURE",
                         "where": "/".join(str(p) for p in e.path), "detail": e.message}
                        for e in validator.iter_errors(board)] if validator else [])
-        found = structural or findings(board, *library(board.get("subject", "")))
+        subject = board.get("subject", "")
+        found = structural or findings(
+            board, *library(subject), capabilities(subject))
         rows.append({"matrix": str(path.relative_to(repo)),
                      "bucket": board.get("bucket_id"),
                      "rungs": len(board.get("rungs") or []), "findings": found,
