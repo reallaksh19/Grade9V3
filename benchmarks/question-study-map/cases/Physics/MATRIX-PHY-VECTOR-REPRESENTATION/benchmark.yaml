@@ -1,0 +1,117 @@
+benchmark_id: "QSM-MATRIX-PHY-VECTOR-REPRESENTATION"
+subject: "Physics"
+matrix_id: "MATRIX-PHY-VECTOR-REPRESENTATION"
+subtopic: "Vector representation and subtraction"
+baseline_commit: "e6f9ccce4a2ecbba8764bfa5cd5e877830afa56d"
+readiness_snapshot: "PILOT_READY"
+measurement_basis: "Frozen canonical records + current readiness report + generic runtime contracts already covered by repository tests; no learner episode fabricated."
+overall_status: PARTIAL
+source_files:
+  - "Physics/matrices/vector-representation.rungs.json"
+  - "Physics/library/vector-representation.v1.json"
+cases:
+  - case: direct_mapping
+    title: "Direct-ready question"
+    input_kind: canonical_question
+    status: PASS
+    expected: "A representative question demand should resolve to one clear primary capability and a usable canonical teaching destination."
+    observed: "Canonical question inventory exists (1 retained question); the representative demand has a canonical capability and teaching location."
+    evidence: "Physics/library/vector-representation.v1.json; Physics/matrices/vector-representation.rungs.json"
+  - case: prerequisite_route
+    title: "Prerequisite route"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Prerequisite order should follow capability prerequisite_refs, including cross-matrix dependencies, never cross-matrix rung-number comparison."
+    observed: "Declared prerequisite edges are explicit and can be ordered without comparing ladder_position across matrices."
+    evidence: "Physics/library/vector-representation.v1.json; docs/SESSION-READINESS-REPORT.md"
+  - case: multi_capability
+    title: "Multi-capability question"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "Primary ownership must remain distinct from meaningful secondary capabilities; transitive prerequisites must not be copied into secondary demand."
+    observed: "No retained question in this package provides a genuine multi-capability case; none was manufactured."
+    evidence: "Physics/library/vector-representation.v1.json"
+  - case: repeated_demand
+    title: "Repeated demand"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "Multiple questions reusing one capability should consolidate teaching rather than duplicate it."
+    observed: "No genuine repeated-primary question pair exists in the retained inventory; none was manufactured."
+    evidence: "Physics/library/vector-representation.v1.json"
+  - case: unknown_learner
+    title: "Unknown learner"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "No learner estimate/evidence must not create invented mastery; the route should remain conservative."
+    observed: "Unknown learner state does not alter canonical truth. For PILOT_READY, the plan may study/check/stop, but no mastery is invented."
+    evidence: "Shared/tools/learner_evidence.py; Shared/tools/study_start.py; Shared/tools/worksheet_study_plan.py"
+  - case: rough_owner_estimate
+    title: "Rough owner estimate"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "A rough percentage may select a starting coordinate but must never create DEMONSTRATED evidence."
+    observed: "The owner-estimate contract selects an existing local rung/starting coordinate and leaves prerequisite checks/evidence distinct from mastery."
+    evidence: "Shared/tools/study_start.py; tests/test_study_start.py"
+  - case: prior_learner_evidence
+    title: "Prior learner evidence"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Direct/diagnostic evidence should override a rough owner estimate when both exist."
+    observed: "The current learner-evidence contract gives direct/diagnostic observations precedence over rough estimates."
+    evidence: "Shared/tools/learner_evidence.py; tests/test_practical_learner_evidence.py"
+  - case: external_bridge
+    title: "External provider bridge"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Declared external-provider prerequisites must stay visible as bridges and must not become fake local teaching or fake mastery."
+    observed: "2 declared Mathematics bridges are visible; readiness does not turn them into local mastery."
+    evidence: "Shared/tools/capability_delivery.py; Shared/tools/session_readiness.py; Physics/library/vector-representation.v1.json"
+  - case: content_gap
+    title: "Content gap"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "A missing canonical teaching location must remain explicit; the system must not fabricate a microtopic or mark the matrix ready."
+    observed: "Every current matrix rung has a canonical microtopic_ref; no artificial missing-content case was created."
+    evidence: "Physics/matrices/vector-representation.rungs.json"
+  - case: incomplete_source
+    title: "Incomplete source"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "A question requiring missing figure/table/source information must remain unresolved rather than guessed."
+    observed: "No genuine figure/table/source-insufficiency case is retained for this matrix benchmark; none was invented."
+    evidence: "Physics/library/vector-representation.v1.json"
+  - case: feedback_diagnosis
+    title: "Feedback diagnosis"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "For a represented capability, a wrong attempt may identify the first supported failure using canonical misconception/diagnostic evidence; ambiguous failure must not be guessed."
+    observed: "Every represented microtopic in this matrix slice contains misconception/diagnostic/repair data; the generic feedback contract also refuses unsupported ambiguous attribution."
+    evidence: "Physics/library/vector-representation.v1.json; Shared/tools/feedback.py; tests/test_feedback.py"
+  - case: repair
+    title: "Repair"
+    input_kind: synthetic_falsifier
+    status: PARTIAL
+    expected: "Repair should target the failed capability/misconception and use existing teaching/reconstruction content rather than restart an unrelated topic."
+    observed: "Canonical teaching and misconceptions exist, but the three matrix teaching microtopics lack Core1B elicitation/reconstruction coverage and the package has no teaching_routes; matrix remains PILOT_READY."
+    evidence: "Physics/library/vector-representation.v1.json; docs/SESSION-READINESS-REPORT.md"
+  - case: fresh_verification
+    title: "Fresh verification"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "After repair, verification should use a fresh same-capability question or exit task rather than the already-solved external question."
+    observed: "Represented microtopics provide exit tasks; the generic feedback contract selects a fresh same-capability question when available or an exit task fallback."
+    evidence: "Physics/library/vector-representation.v1.json; Shared/tools/feedback.py; tests/test_feedback.py"
+  - case: helped_success
+    title: "Help-dependent success"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Correct work after help must remain non-independent evidence and must not be promoted to DEMONSTRATED."
+    observed: "The shared evidence contract treats helped success conservatively and does not create independent DEMONSTRATED evidence."
+    evidence: "Shared/tools/learner_evidence.py; tests/test_practical_learner_evidence.py"
+  - case: independent_success
+    title: "Independent success"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Independent correct verification may draft DEMONSTRATED evidence and a later review date; persistence remains explicit."
+    observed: "Independent correct work may draft DEMONSTRATED evidence; review scheduling is deterministic and learner-state persistence remains explicit."
+    evidence: "Shared/tools/feedback.py; Shared/tools/review_schedule.py; tests/test_feedback.py; tests/test_review_schedule.py"
