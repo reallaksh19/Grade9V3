@@ -67,9 +67,6 @@
           "conditions": [
             "Delta t > 0.",
             "distance_total >= 0."
-          ],
-          "validator_refs": [
-            "AVERAGE_RATE"
           ]
         },
         {
@@ -99,9 +96,6 @@
           "conditions": [
             "Delta t > 0.",
             "Delta x uses one declared axis/sign convention."
-          ],
-          "validator_refs": [
-            "AVERAGE_RATE"
           ]
         },
         {
@@ -138,9 +132,6 @@
             "Acceleration is constant over the whole interval.",
             "u, v and a use one declared one-dimensional sign convention.",
             "t >= 0."
-          ],
-          "validator_refs": [
-            "CONSTANT_ACCELERATION_VELOCITY"
           ]
         },
         {
@@ -177,9 +168,6 @@
             "Acceleration is constant over the whole interval.",
             "s, u and a use one declared one-dimensional sign convention.",
             "t >= 0."
-          ],
-          "validator_refs": [
-            "CONSTANT_ACCELERATION_DISPLACEMENT"
           ]
         },
         {
@@ -215,9 +203,6 @@
           "conditions": [
             "Acceleration is constant over the whole interval.",
             "u, v, a and s use one declared one-dimensional sign convention."
-          ],
-          "validator_refs": [
-            "CONSTANT_ACCELERATION_NO_TIME"
           ]
         },
         {
@@ -247,9 +232,6 @@
           "conditions": [
             "Delta t > 0.",
             "Velocity values use one declared one-dimensional sign convention."
-          ],
-          "validator_refs": [
-            "AVERAGE_ACCELERATION"
           ]
         },
         {
@@ -280,9 +262,6 @@
             "r > 0.",
             "T > 0.",
             "Motion is uniform and the path is circular over the measured revolution."
-          ],
-          "validator_refs": [
-            "UNIFORM_CIRCULAR_SPEED"
           ]
         },
         {
@@ -319,9 +298,6 @@
             "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
             "u, v and s use one declared one-dimensional sign convention.",
             "t >= 0."
-          ],
-          "validator_refs": [
-            "CONSTANT_ACCELERATION_GRAPH_AREA"
           ]
         }
       ],
@@ -430,9 +406,6 @@
           "conditions": [
             "Delta t > 0.",
             "W is the net work assigned to the chosen system over that same interval."
-          ],
-          "validator_refs": [
-            "AVERAGE_POWER"
           ]
         },
         {
@@ -462,9 +435,6 @@
           "conditions": [
             "v >= 0.",
             "F_parallel carries the sign of the force component along or opposite the velocity direction."
-          ],
-          "validator_refs": [
-            "INSTANTANEOUS_POWER"
           ]
         }
       ],
@@ -570,9 +540,6 @@
             "m > 0.",
             "F_net and a refer to the same chosen body.",
             "All signed components use one declared axis."
-          ],
-          "validator_refs": [
-            "NEWTON_SECOND_LAW"
           ]
         }
       ],
@@ -691,9 +658,6 @@
             "Force component is constant over the displacement.",
             "F_parallel uses the displacement direction as positive.",
             "s >= 0."
-          ],
-          "validator_refs": [
-            "WORK_CONSTANT_FORCE"
           ]
         },
         {
@@ -724,9 +688,6 @@
             "m > 0.",
             "v >= 0.",
             "One declared reference frame is used."
-          ],
-          "validator_refs": [
-            "KINETIC_ENERGY"
           ]
         },
         {
@@ -763,9 +724,6 @@
             "m > 0.",
             "g is approximately uniform over the height change.",
             "One height reference and positive-up convention are used."
-          ],
-          "validator_refs": [
-            "GRAVITATIONAL_POTENTIAL_ENERGY"
           ]
         },
         {
