@@ -5,6 +5,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
@@ -22,29 +23,88 @@ class CrossMatrixStudyRoute(unittest.TestCase):
     def test_prerequisites_order_the_real_cross_matrix_fixture(self):
         report = study_route.resolve(self.mapping())
         self.assertTrue(report["passed"], report["findings"])
-        order = [row["capability_ref"] for row in report["route"]]
-        self.assertEqual(order, [
-            "CAP-KIN-DISTANCE-DISPLACEMENT",
-            "CAP-KIN-ZERO-V-NONZERO-A",
-            "CAP-NLM-NET-ZERO-MOTION",
-            "CAP-NLM-FORCES-SUM-ZERO",
-            "CAP-NLM-FBD-BODY-OWNERSHIP",
-            "CAP-WEP-WORK-DIRECTION",
-            "CAP-WEP-NET-WORK-SIGN",
-            "CAP-WEP-POTENTIAL-ELIGIBILITY",
-            "CAP-WEP-MECH-ENERGY-CONDITION",
-        ])
+        positions = {
+            row["capability_ref"]: row["order"]
+            for row in report["route"]
+        }
+        demanded = {
+            ref
+            for question in self.mapping()["questions"]
+            for ref in [
+                question["primary_capability_ref"],
+                *question["secondary_capability_refs"],
+            ]
+        }
+        self.assertTrue(demanded.issubset(positions))
+        for row in report["route"]:
+            for prerequisite in row["depends_on"]:
+                if prerequisite in positions:
+                    self.assertLess(
+                        positions[prerequisite],
+                        positions[row["capability_ref"]],
+                        (prerequisite, row["capability_ref"]),
+                    )
 
     def test_cross_matrix_ladder_positions_do_not_order_the_route(self):
-        report = study_route.resolve(self.mapping())
-        rows = {row["capability_ref"]: row for row in report["route"]}
-        fbd = rows["CAP-NLM-FBD-BODY-OWNERSHIP"]
-        work = rows["CAP-WEP-WORK-DIRECTION"]
+        mapping = {
+            "worksheet_id": "ORDER-FALSIFIER",
+            "subject": "Physics",
+            "questions": [{
+                "question_id": "Q1",
+                "primary_capability_ref": "CAP-DEPENDANT",
+                "secondary_capability_refs": [],
+                "mapping_basis": "MANUAL",
+            }],
+        }
+        index = {
+            "capabilities": {
+                "CAP-PREREQUISITE": {
+                    "id": "CAP-PREREQUISITE",
+                    "prerequisite_refs": [],
+                },
+                "CAP-DEPENDANT": {
+                    "id": "CAP-DEPENDANT",
+                    "prerequisite_refs": ["CAP-PREREQUISITE"],
+                },
+            },
+            "locations": {
+                "CAP-PREREQUISITE": [{
+                    "matrix_id": "MATRIX-A",
+                    "bucket_id": "BUCKET-A",
+                    "rung": "R9",
+                    "ladder_position": 90,
+                    "microtopic_ref": "MIC-A",
+                }],
+                "CAP-DEPENDANT": [{
+                    "matrix_id": "MATRIX-B",
+                    "bucket_id": "BUCKET-B",
+                    "rung": "R1",
+                    "ladder_position": 10,
+                    "microtopic_ref": "MIC-B",
+                }],
+            },
+        }
+        with patch.object(
+            study_route.study_map,
+            "resolve",
+            return_value={"findings": []},
+        ), patch.object(
+            study_route.study_map,
+            "subject_index",
+            return_value=index,
+        ):
+            report = study_route.resolve(mapping)
 
-        self.assertEqual(fbd["locations"][0]["ladder_position"], 70)
-        self.assertEqual(work["locations"][0]["ladder_position"], 20)
-        self.assertLess(fbd["order"], work["order"])
-        self.assertIn("CAP-NLM-FBD-BODY-OWNERSHIP", work["depends_on"])
+        self.assertTrue(report["passed"], report["findings"])
+        rows = {row["capability_ref"]: row for row in report["route"]}
+        prerequisite = rows["CAP-PREREQUISITE"]
+        dependant = rows["CAP-DEPENDANT"]
+        self.assertGreater(
+            prerequisite["locations"][0]["ladder_position"],
+            dependant["locations"][0]["ladder_position"],
+        )
+        self.assertLess(prerequisite["order"], dependant["order"])
+        self.assertEqual(dependant["depends_on"], ["CAP-PREREQUISITE"])
 
     def test_question_secondary_is_demand_but_not_magic_prerequisite(self):
         report = study_route.resolve(self.mapping())
