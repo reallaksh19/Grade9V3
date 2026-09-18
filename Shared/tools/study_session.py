@@ -144,7 +144,7 @@ def _session_status(readiness_rows: list[dict], study_plan: dict) -> str:
         return NOT_READY
     if PILOT_READY in statuses:
         return PILOT_READY
-    if READY_WITH_BRIDGE in statuses or not study_plan.get("ready", True):
+    if READY_WITH_BRIDGE in statuses:
         return READY_WITH_BRIDGE
     return READY
 
