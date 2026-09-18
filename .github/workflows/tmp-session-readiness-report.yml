@@ -1,0 +1,21 @@
+name: temporary session readiness report
+
+on:
+  push:
+    branches:
+      - docs/session-readiness-report
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/session-readiness-report
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Physics readiness
+        run: python3 Shared/tools/session_readiness.py --subject Physics --all --readable
+      - name: Mathematics readiness
+        run: python3 Shared/tools/session_readiness.py --subject Mathematics --all --readable
