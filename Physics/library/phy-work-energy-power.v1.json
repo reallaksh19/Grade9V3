@@ -59,7 +59,8 @@
       "extensions": {
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "grade9_track": "STANDARD",
-        "curriculum_mapping_policy": "VERIFIED"
+        "curriculum_mapping_policy": "VERIFIED",
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
       },
       "title": "Work, energy and power",
       "topic": "Work and Energy",
@@ -2316,6 +2317,7 @@
         "MIC-PHY-WEP-NET-WORK-SIGN",
         "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
         "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+        "MIC-PHY-WEP-POWER-RATES",
         "MIC-PHY-WEP-ENERGY-DERIVATIONS",
         "MIC-PHY-WEP-GRADE9-QUANT"
       ],
@@ -2364,6 +2366,7 @@
         "MIC-PHY-WEP-NET-WORK-SIGN",
         "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
         "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+        "MIC-PHY-WEP-POWER-RATES",
         "MIC-PHY-WEP-ENERGY-DERIVATIONS",
         "MIC-PHY-WEP-GRADE9-QUANT"
       ],
