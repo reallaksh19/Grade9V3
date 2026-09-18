@@ -1,0 +1,21 @@
+{
+  "worksheet_id": "RELATIVE-MOTION-SESSION-DEMO",
+  "subject": "Physics",
+  "source_note": "Synthetic session-runner fixture over canonical Relative Motion capabilities. The worksheet questions remain transient demand.",
+  "questions": [
+    {
+      "question_id": "SCHOOL-REL-Q1",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": ["CAP-VECTOR-CHECK"],
+      "mapping_basis": "MANUAL",
+      "note": "A relative-velocity question where observer order and direction both matter."
+    },
+    {
+      "question_id": "SCHOOL-REL-Q2",
+      "primary_capability_ref": "CAP-SAME-TIME",
+      "secondary_capability_refs": [],
+      "mapping_basis": "MANUAL",
+      "note": "A same-time relative-position question."
+    }
+  ]
+}
