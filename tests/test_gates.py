@@ -17,6 +17,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Physics.adapter import load as load_physics  # noqa: E402
+from Physics.adapter.validator import recompute as physics_recompute  # noqa: E402
 from Shared.contracts import ContractError  # noqa: E402
 from Shared.gates.validate import validate  # noqa: E402
 
@@ -146,6 +147,59 @@ class DeclaredFalsifiersReallyFail(unittest.TestCase):
         data = registry()
         data["maturity"] = "VALIDATED"
         self.assert_blocked(data, "GATE_SCHEMA_VIOLATION")
+
+
+class FoundationalQuantitativeValidators(unittest.TestCase):
+    def case(self, validator_id, units, **values):
+        return {"validator_id": validator_id, "units": units, **values}
+
+    def test_average_rate_keeps_distance_and_displacement_separate(self):
+        result = physics_recompute(self.case(
+            "AVERAGE_RATE", {"distance": "m", "displacement": "m", "dt": "s"},
+            distance=120, displacement=40, dt=20))
+        self.assertEqual(result, {"average_speed_m_s": 6, "average_velocity_m_s": 2})
+
+    def test_gravitation_validators_use_centre_radius(self):
+        force = physics_recompute(self.case(
+            "UNIVERSAL_GRAVITATION",
+            {"G": "N m^2/kg^2", "m1": "kg", "m2": "kg", "r": "m"},
+            G=2, m1=3, m2=4, r=2))
+        field = physics_recompute(self.case(
+            "GRAVITATIONAL_ACCELERATION",
+            {"G": "N m^2/kg^2", "M": "kg", "r": "m"},
+            G=2, M=8, r=2))
+        self.assertEqual(force, 6)
+        self.assertEqual(field, 4)
+
+    def test_hydrostatic_and_first_law_signs_are_explicit(self):
+        pressure = physics_recompute(self.case(
+            "HYDROSTATIC_PRESSURE_DIFFERENCE",
+            {"rho": "kg/m^3", "g": "m/s^2", "delta_h": "m"},
+            rho=1000, g=10, delta_h=2))
+        energy = physics_recompute({
+            **self.case("THERMODYNAMIC_FIRST_LAW", {"Q": "J", "W": "J"}, Q=50, W=20),
+            "work_convention": "WORK_BY_SYSTEM_POSITIVE",
+        })
+        self.assertEqual(pressure, 20000)
+        self.assertEqual(energy, 30)
+
+    def test_wave_and_power_validators_compute_only_the_declared_scalar(self):
+        wave = physics_recompute(self.case(
+            "WAVE_SPEED", {"frequency": "Hz", "wavelength": "m"},
+            frequency=5, wavelength=3))
+        average = physics_recompute(self.case(
+            "AVERAGE_POWER", {"work": "J", "dt": "s"}, work=120, dt=4))
+        instant = physics_recompute(self.case(
+            "INSTANTANEOUS_POWER", {"force_parallel": "N", "speed": "m/s"},
+            force_parallel=-6, speed=2))
+        electric = physics_recompute(self.case(
+            "ELECTRIC_POWER", {"voltage": "V", "current": "A"}, voltage=12, current=2))
+        self.assertEqual((wave, average, instant, electric), (15, 30, -12, 24))
+
+    def test_first_law_refuses_an_undeclared_work_convention(self):
+        with self.assertRaisesRegex(ValueError, "THERMODYNAMIC_WORK_CONVENTION_REQUIRED"):
+            physics_recompute(self.case(
+                "THERMODYNAMIC_FIRST_LAW", {"Q": "J", "W": "J"}, Q=50, W=20))
 
 
 class GatesBindToAuthoredContent(unittest.TestCase):
