@@ -40,6 +40,12 @@ NOT_READY = session_readiness.NOT_READY
 EXECUTE_WITH_FALLBACK = "EXECUTE_WITH_FALLBACK"
 OWNER_DECISION = "OWNER_DECISION"
 
+NONEXECUTABLE_RUNG_POINTS = {
+    "READINESS_MICROTOPIC_MISSING",
+    "READINESS_CAPABILITY_MISSING",
+    "READINESS_TEACHING_PATH_MISSING",
+}
+
 HARD_PLAN_FINDINGS = {
     "WORKSHEET_MAP_STRUCTURE",
     "WORKSHEET_QUESTION_ID_DUPLICATE",
@@ -149,13 +155,28 @@ def _session_status(readiness_rows: list[dict], study_plan: dict) -> str:
     return READY
 
 
-def _rung_state(readiness: dict | None, rung: str | None) -> str | None:
+def _rung_detail(readiness: dict | None, rung: str | None) -> dict | None:
     if readiness is None or not rung:
         return None
     for row in readiness.get("rungs", []):
         if row.get("rung") == rung:
-            return row.get("state")
+            return row
     return None
+
+
+def _rung_state(readiness: dict | None, rung: str | None) -> str | None:
+    detail = _rung_detail(readiness, rung)
+    return detail.get("state") if detail else None
+
+
+def _rung_execution_blockers(readiness: dict | None, rung: str | None) -> list[dict]:
+    if readiness is None or not rung:
+        return []
+    return [
+        row for row in readiness.get("blocking_findings", [])
+        if row.get("where") == rung
+        and row.get("point") in NONEXECUTABLE_RUNG_POINTS
+    ]
 
 
 def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: list[dict]):
@@ -214,14 +235,19 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
             location = locations[0]
             readiness = by_matrix.get(location.get("matrix_id"))
             rung_state = _rung_state(readiness, location.get("rung"))
-            if rung_state in {None, "BLOCKED"}:
+            rung_blockers = _rung_execution_blockers(readiness, location.get("rung"))
+            if rung_state in {None, "BLOCKED"} or rung_blockers:
                 disposition = OWNER_DECISION
                 owner_required.add(item.get("capability_ref"))
                 owner_decisions.append({
                     "capability_ref": item.get("capability_ref"),
                     "matrix_id": location.get("matrix_id"),
                     "rung": location.get("rung"),
-                    "reason": "the demanded teaching rung is not executable without an owner choice",
+                    "blocking_points": [row.get("point") for row in rung_blockers],
+                    "reason": (
+                        "the demanded teaching rung has no safe executable teaching path; "
+                        "an owner choice or content repair is required"
+                    ),
                 })
             else:
                 executable += 1
@@ -572,6 +598,66 @@ def _question_readiness(
     return readiness_rows, blockers, external_bridges
 
 
+def _primary_verification_supported(
+    mapping: dict,
+    question: dict,
+    readiness_rows: list[dict],
+    repo: Path = REPO,
+) -> bool:
+    """Whether canonical support can independently verify the question's primary capability."""
+    from Shared.tools import study_map
+
+    primary = question.get("primary_capability_ref")
+    if not primary:
+        return False
+    index = study_map.subject_index(mapping.get("subject"), repo)
+    locations = list(index.get("locations", {}).get(primary, []))
+    if len(locations) != 1:
+        return False
+    location = locations[0]
+    readiness = next(
+        (
+            row for row in readiness_rows
+            if row.get("matrix_id") == location.get("matrix_id")
+        ),
+        None,
+    )
+    detail = _rung_detail(readiness, location.get("rung"))
+    return bool(detail and detail.get("verification"))
+
+
+def _limit_demonstration_without_verification(
+    report: dict,
+    *,
+    verification_supported: bool,
+) -> dict:
+    """Keep learning evidence conservative when no canonical fresh verification path exists."""
+    observation = report.get("observation_draft")
+    if (
+        verification_supported
+        or not observation
+        or observation.get("result") != "DEMONSTRATED"
+    ):
+        return report
+
+    limited = dict(report)
+    limited_observation = dict(observation)
+    limited_observation["result"] = "UNCERTAIN"
+    limited_observation["independence"] = (
+        "Independent correctness was observed, but the canonical capability has no "
+        "fresh verification path; do not promote this draft to DEMONSTRATED yet."
+    )
+    limited["observation_draft"] = limited_observation
+    limited["evidence_limited"] = {
+        "point": "STUDY_SESSION_VERIFICATION_UNAVAILABLE",
+        "detail": (
+            "teaching/attempt may continue, but independent mastery evidence is held at "
+            "UNCERTAIN until a fresh verification path exists"
+        ),
+    }
+    return limited
+
+
 def attempt(mapping: dict, question_id: str, *, result: str,
             when: str, failed_capability_ref: str | None = None,
             error_stage: str = "UNKNOWN", help_used: str = "NONE",
@@ -640,6 +726,16 @@ def attempt(mapping: dict, question_id: str, *, result: str,
         request["response_summary"] = response_summary
 
     report = feedback.run(request, repo)
+    if result == "CORRECT":
+        report = _limit_demonstration_without_verification(
+            report,
+            verification_supported=_primary_verification_supported(
+                mapping,
+                question,
+                readiness_rows,
+                repo,
+            ),
+        )
     return {
         **report,
         "readiness": readiness_rows,
@@ -802,6 +898,10 @@ def readable_attempt(report: dict) -> str:
     review = report.get("review")
     if review:
         out += ["", f'Next review: {review.get("next_review")}']
+
+    if report.get("evidence_limited"):
+        out += ["", "## Evidence limit", ""]
+        out.append(report["evidence_limited"].get("detail", ""))
 
     if report.get("findings"):
         out += ["", "## Findings", ""]
