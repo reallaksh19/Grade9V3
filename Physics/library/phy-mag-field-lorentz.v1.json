@@ -512,8 +512,102 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-MAG-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-MAG-FIELD-LORENTZ"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Magnetic direction and qualitative field practice",
+      "capability_refs": [
+        "CAP-MAG-FIELD-DIRECTION",
+        "CAP-MAG-FLUX-ORIENTATION",
+        "CAP-MAG-REDIRECT-NOT-SPEED"
+      ],
+      "solution_structure": [
+        "Fix the page convention before interpreting the drawing: a dot means toward the viewer and a cross means away from the viewer.",
+        "Turn the same physical setup so a direction that was drawn in the page now points toward the viewer, then redraw only its direction mark.",
+        "Trace one direction line around and through a bar magnet instead of stopping at a pole."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "No CORE2B item is authored until a changed demand can be repaired by an already-authored rung in this bucket."
+      ],
+      "common_wrong_routes": [
+        "Magnetic field lines begin at a north pole and end at a south pole everywhere."
+      ],
+      "item_refs": [
+        "Q-PHY-MAG-2A-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-MAG-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-MAG-FIELD-LORENTZ"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+      "original_identifier": "AUTHOR-MAG-2A-01",
+      "stem": "A diagram shows one magnetic direction once as an arrow and once with a page mark after the view is changed. Explain how both can describe the same physical direction and say whether the associated direction line may terminate at a pole.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The page mark changes with the view, but the physical magnetic direction does not; a field-direction line is continued through the magnet rather than terminated at a pole.",
+        "reasoning": [
+          "Bind every page mark to the declared viewing convention instead of reading dot or cross as an object.",
+          "Compare the physical direction before and after the viewpoint change; only its two-dimensional depiction has changed.",
+          "Continue the direction line through the magnet so the apparent outside endpoint is seen as part of a closed path."
+        ],
+        "check": "Rotate the imagined viewpoint back. The mark should recover the original arrow direction, and tracing the same line should never require an endpoint.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-MAG-FIELD-DIRECTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MAG-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: Before reading the mark, which way is the viewer facing relative to the page?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Treat field lines as a direction map: they continue in closed loops, including through the magnet.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-MAG-CORE1A",
