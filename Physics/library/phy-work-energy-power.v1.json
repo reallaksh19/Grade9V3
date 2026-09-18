@@ -147,6 +147,24 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-POWER-RATES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish total work from average power and decide when instantaneous power can be determined.",
+      "success_criterion": "Uses W/Delta t for an interval average and requires same-instant force/velocity information for instantaneous power.",
+      "prerequisite_refs": [
+        "CAP-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -692,9 +710,285 @@
           "confirms": "The condition is about actual transfer, not simply naming a force or surface."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-WEP-POWER-RATES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Power is an energy-transfer rate, not the work itself",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-POWER-RATES",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often keep the same units and reasoning for work and power or treat an interval average as an instantaneous value.",
+      "entry_assumptions": [
+        "Can identify work as an energy transfer and can keep an energy account over a stated interval."
+      ],
+      "inferential_jump": "Average power uses total work over a positive interval, while instantaneous power needs force and velocity information at the same instant; equal total work does not imply equal power.",
+      "teaching_path": [
+        {
+          "id": "WEP5-1",
+          "role": "DECLARE",
+          "action": "Compare two machines that perform the same work over different elapsed times.",
+          "why_valid": "Holding work fixed isolates time as the factor that changes average power.",
+          "inputs": [],
+          "output": "same W; shorter Delta t -> larger W / Delta t."
+        },
+        {
+          "id": "WEP5-2",
+          "role": "TRANSFORM",
+          "action": "Calculate average power from total work divided by the positive elapsed interval.",
+          "why_valid": "REL-AVERAGE-POWER is the gate-owned interval-rate relation.",
+          "inputs": [
+            "REL-AVERAGE-POWER"
+          ],
+          "output": "P_avg = W / Delta t."
+        },
+        {
+          "id": "WEP5-3",
+          "role": "DECLARE",
+          "action": "At one instant, resolve the force onto the velocity direction and pair that component with the instantaneous speed.",
+          "why_valid": "Instantaneous power depends on the force-velocity alignment at that same instant, not on the whole interval total.",
+          "inputs": [
+            "REL-INSTANTANEOUS-POWER"
+          ],
+          "output": "same instant: F_parallel and v."
+        },
+        {
+          "id": "WEP5-4",
+          "role": "VERIFY",
+          "action": "Use a perpendicular-force case as a boundary check.",
+          "why_valid": "F_parallel becomes zero although a nonzero force and nonzero speed are both present.",
+          "inputs": [],
+          "output": "force perpendicular to velocity -> F_parallel = 0 -> instantaneous power = 0."
+        }
+      ],
+      "relation_refs": [
+        "REL-AVERAGE-POWER",
+        "REL-INSTANTANEOUS-POWER"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If two machines do the same work, they have the same power.",
+          "diagnostic_prompt": "Two machines each transfer the same energy, but one finishes in half the time. Must their average powers be equal?",
+          "repair": "Keep work fixed and divide by each machine's own elapsed time; power is a rate, not the transfer total."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval.",
+          "reasoning": [
+            "Use P_avg = 120 J / 4 s = 30 W.",
+            "An interval average does not specify how the rate varied within the four seconds.",
+            "Instantaneous power would require same-instant force and velocity information, such as F_parallel and v."
+          ],
+          "check": "A second machine could transfer the same 120 J in the same 4 s with a varying rate and still have the same 30 W average.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "AVERAGE_POWER",
+            "bindings": {
+              "work": "DAT-WEP-POWER-WORK",
+              "dt": "DAT-WEP-POWER-DT"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created power-rate distinction bound to gate-owned average and instantaneous relations and Physics validators.",
+      "prerequisite_refs": [
+        "CAP-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two machines do the same work, but one takes twice as long. Before calculating, must their powers be equal?",
+          "defensible_answer": "No. The machine taking longer has the smaller average power because the same transfer is spread over more time."
+        },
+        "attempt": {
+          "produces": "An average-power calculation plus a statement of what extra information would be needed for instantaneous power.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Computes average power as work divided by elapsed time.",
+              "evidence_of": "Treating power as a rate rather than another name for work."
+            },
+            {
+              "criterion": "Does not infer instantaneous power from the average alone.",
+              "evidence_of": "Separating interval and same-instant information."
+            }
+          ],
+          "accepted": [
+            "120 J / 4 s = 30 W; instantaneous power still needs same-instant force and velocity information."
+          ],
+          "rejected": [
+            "120 J or 120 W, or saying the instantaneous power must also be 30 W solely because the average is 30 W."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What total energy transfer is fixed over the whole interval?",
+              "why_this_ask": "It identifies the numerator without yet supplying the rate relation.",
+              "from_step_ref": "WEP5-1"
+            },
+            {
+              "ask": "What positive time interval belongs to that transfer?",
+              "why_this_ask": "It establishes the averaging window."
+            },
+            {
+              "ask": "What would you need to know at one instant instead of over the whole interval?",
+              "why_this_ask": "It forces the distinction between average and instantaneous information.",
+              "from_step_ref": "WEP5-3"
+            },
+            {
+              "ask": "What happens if force is perpendicular to velocity?",
+              "why_this_ask": "The boundary checks the force-direction dependence of instantaneous power.",
+              "from_step_ref": "WEP5-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path contrasts the two rate definitions directly; the learner route begins from equal-work machines and reconstructs why interval totals cannot determine a same-instant rate."
+        },
+        "boundary_test": {
+          "prompt": "A nonzero force is exactly perpendicular to a nonzero velocity. What is the instantaneous mechanical power from that force?",
+          "answer": "Zero, because the signed force component along the velocity direction is zero.",
+          "confirms": "Instantaneous power depends on force-velocity alignment, not force magnitude alone."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-AVERAGE-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "P_avg = W / Delta t",
+      "meaning": "Average power is work transferred over a positive elapsed interval.",
+      "symbols": [
+        {
+          "symbol": "P_avg",
+          "meaning": "Average power",
+          "unit_or_domain": "W; scalar"
+        },
+        {
+          "symbol": "W",
+          "meaning": "Net work transferred over the interval",
+          "unit_or_domain": "J; signed scalar"
+        },
+        {
+          "symbol": "Delta t",
+          "meaning": "Positive elapsed interval",
+          "unit_or_domain": "s; positive scalar"
+        }
+      ],
+      "conditions": [
+        "Delta t > 0.",
+        "W is the net work assigned to the chosen system over that same interval."
+      ],
+      "derivation": [
+        {
+          "id": "WEP-PAVG-1",
+          "role": "DECLARE",
+          "action": "Choose the interval and total work transferred over exactly that interval.",
+          "why_valid": "Average power compares one total transfer with the duration over which it occurred.",
+          "inputs": [],
+          "output": "interval: Delta t; transfer: W."
+        },
+        {
+          "id": "WEP-PAVG-2",
+          "role": "TRANSFORM",
+          "action": "Divide the signed work by the positive elapsed time.",
+          "why_valid": "Average power is the interval energy-transfer rate.",
+          "inputs": [],
+          "output": "P_avg = W / Delta t."
+        }
+      ],
+      "limits": [
+        "The interval average does not reveal how power varied within the interval."
+      ],
+      "checks": [
+        "Doing the same positive work in half the time doubles average power.",
+        "Zero net work over a positive interval gives zero average power even if instantaneous power varied."
+      ],
+      "gate_relation_ref": "REL-AVERAGE-POWER"
+    },
+    {
+      "id": "REL-INSTANTANEOUS-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "P = F_parallel v",
+      "meaning": "Instantaneous mechanical power is the signed force component along velocity times instantaneous speed.",
+      "symbols": [
+        {
+          "symbol": "P",
+          "meaning": "Instantaneous power",
+          "unit_or_domain": "W; signed scalar"
+        },
+        {
+          "symbol": "F_parallel",
+          "meaning": "Signed component of force along the instantaneous velocity direction",
+          "unit_or_domain": "N; signed scalar"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Instantaneous speed",
+          "unit_or_domain": "m/s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "v >= 0.",
+        "F_parallel carries the sign of the force component along or opposite the velocity direction."
+      ],
+      "derivation": [
+        {
+          "id": "WEP-PINST-1",
+          "role": "DECLARE",
+          "action": "Resolve the force onto the instantaneous velocity direction.",
+          "why_valid": "Only the along-velocity component contributes to F dot v.",
+          "inputs": [],
+          "output": "force contribution along motion: F_parallel."
+        },
+        {
+          "id": "WEP-PINST-2",
+          "role": "TRANSFORM",
+          "action": "Multiply the signed along-velocity force component by instantaneous speed.",
+          "why_valid": "This is the scalar dot-product form of instantaneous mechanical power.",
+          "inputs": [],
+          "output": "P = F_parallel v."
+        }
+      ],
+      "limits": [
+        "This form assumes F_parallel and v are evaluated at the same instant.",
+        "The validator does not decide whether the supplied force resolution is physically correct."
+      ],
+      "checks": [
+        "A perpendicular force has F_parallel = 0 and zero instantaneous power.",
+        "A force opposing motion gives negative instantaneous power."
+      ],
+      "gate_relation_ref": "REL-INSTANTANEOUS-POWER"
+    }
+  ],
   "representations": [],
   "question_families": [
     {
@@ -979,6 +1273,38 @@
       "symbol": "d_example",
       "meaning": "Illustrative displacement length available to compiled study obligations; none of the qualitative exits depends on its numerical value.",
       "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-WEP-POWER-WORK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 120,
+      "unit": "J",
+      "symbol": "W",
+      "meaning": "Work transferred in the authored average-power exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-WEP-POWER-DT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 4,
+      "unit": "s",
+      "symbol": "Delta t",
+      "meaning": "Elapsed interval in the authored average-power exit task.",
+      "locator": "Author-created exact practice datum."
     }
   ]
 }
