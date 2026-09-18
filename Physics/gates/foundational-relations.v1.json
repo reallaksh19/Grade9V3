@@ -9,7 +9,7 @@
   "gates": [
     {
       "gate_id": "PHY-KIN-AVERAGE-RATES",
-      "title": "Grade 9 kinematics rates and constant-acceleration relations",
+      "title": "Grade 9 motion rates, graphs, constant acceleration and circular speed",
       "curriculum": {
         "board": "CBSE",
         "grade": 9,
@@ -26,6 +26,14 @@
         {
           "concept_id": "CON-KIN-CONSTANT-ACCELERATION-MODEL",
           "statement": "The familiar kinematic equations are exact only on an interval where acceleration is constant."
+        },
+        {
+          "concept_id": "CON-KIN-GRAPH-SLOPE",
+          "statement": "On a position-time graph, interval slope gives average velocity; on a velocity-time graph, interval slope gives average acceleration."
+        },
+        {
+          "concept_id": "CON-KIN-CIRCULAR-SPEED",
+          "statement": "Uniform circular motion has constant speed v = 2 pi r / T while its velocity direction changes continuously."
         }
       ],
       "prerequisites": [],
@@ -209,13 +217,80 @@
           "validator_refs": [
             "CONSTANT_ACCELERATION_NO_TIME"
           ]
+        },
+        {
+          "relation_id": "REL-AVERAGE-ACCELERATION",
+          "expression": "a_avg = Delta v / Delta t",
+          "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+          "symbols": [
+            {
+              "symbol": "a_avg",
+              "meaning": "Average acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "Delta v",
+              "meaning": "Final velocity minus initial velocity",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "Velocity values use one declared one-dimensional sign convention."
+          ],
+          "validator_refs": [
+            "AVERAGE_ACCELERATION"
+          ]
+        },
+        {
+          "relation_id": "REL-UNIFORM-CIRCULAR-SPEED",
+          "expression": "v = 2 pi r / T",
+          "meaning": "For one complete uniform circular revolution, speed equals circumference divided by the positive period.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Constant speed around the circular path",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "r",
+              "meaning": "Circle radius",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "T",
+              "meaning": "Time for one complete revolution",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "r > 0.",
+            "T > 0.",
+            "Motion is uniform and the path is circular over the measured revolution."
+          ],
+          "validator_refs": [
+            "UNIFORM_CIRCULAR_SPEED"
+          ]
         }
       ],
       "representations": [],
       "validity_conditions": [
         "One finite interval with a positive elapsed time.",
         "Average velocity requires a declared signed displacement convention.",
-        "Constant-acceleration relations are used only on intervals where one acceleration value describes the whole interval."
+        "Constant-acceleration relations are used only on intervals where one acceleration value describes the whole interval.",
+        "Graph-slope relations use two coordinates from the same graph and one declared axis convention.",
+        "Uniform circular speed uses one complete circular path of radius r completed in positive period T."
       ],
       "reasoning_sequence": [
         {
