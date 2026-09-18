@@ -67,12 +67,7 @@
       "scope": {
         "covers": "Authored 1D-motion concepts plus owner-extension average speed/velocity, graph-slope interpretation, constant-acceleration relations/graph derivation, and elementary uniform circular motion.",
         "excluded": [],
-        "extension_refs": [
-          "CAP-KIN-AVERAGE-RATES",
-          "CAP-KIN-MOTION-GRAPHS",
-          "CAP-KIN-CONSTANT-ACCELERATION",
-          "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
-        ]
+        "extension_refs": []
       },
       "primary_representation_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH"
     }
@@ -2067,7 +2062,6 @@
       ],
       "item_refs": [
         "Q-PHY-KIN-2A-01",
-        "Q-PHY-KIN-2B-01",
         "Q-PHY-KIN-2A-COV-02",
         "Q-PHY-KIN-2A-COV-03",
         "Q-PHY-KIN-2A-COV-04",
@@ -2132,81 +2126,6 @@
           "reveals": "METHOD"
         }
       ]
-    },
-    {
-      "id": "Q-PHY-KIN-2B-01",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
-      },
-      "origin": "AUTHORED",
-      "origin_ref": "SRC-AUTHOR-KIN-1D",
-      "original_identifier": "AUTHOR-KIN-2B-01",
-      "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
-      "subparts": [],
-      "options": [],
-      "conditions": [],
-      "figure_refs": [],
-      "answer": {
-        "kind": "RUBRIC",
-        "summary": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there.",
-        "reasoning": [
-          "The graph value at the crossing gives instantaneous velocity, which is zero.",
-          "The slope describes how velocity is changing through that instant.",
-          "The line keeps a negative slope at the crossing, so acceleration remains negative and nonzero."
-        ],
-        "check": "Compare points immediately before and after the crossing; velocity changes from positive to negative.",
-        "acceptable_alternatives": [],
-        "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 0,
-        "rubric": [
-          {
-            "criterion": "Identifies zero velocity but nonzero negative acceleration at the crossing.",
-            "evidence_of": "Distinguishing a graph value from its rate of change."
-          },
-          {
-            "criterion": "Uses the continuing negative slope or neighboring velocities as evidence.",
-            "evidence_of": "Translating the representation rather than repeating a memorized zero-velocity rule."
-          }
-        ]
-      },
-      "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
-      "secondary_capability_refs": [],
-      "family_ref": "FAM-PHY-KIN-PRACTICE",
-      "adaptation": null,
-      "exposure": [
-        {
-          "core": "CORE2B",
-          "role": "NEW_TRANSFER",
-          "artifact_ref": null
-        }
-      ],
-      "hints": [
-        {
-          "text": "Separate the graph's vertical value from its slope; they answer different questions.",
-          "reveals": "CONCEPT"
-        },
-        {
-          "text": "Use neighboring times to see whether velocity is still changing through the zero crossing.",
-          "reveals": "METHOD"
-        }
-      ],
-      "transfer": {
-        "dimension": "representation_translation",
-        "statement": "The learner must translate a velocity-time graph into separate statements about instantaneous velocity and acceleration without a verbal turning-point story.",
-        "builds_on": [
-          "Q-PHY-KIN-2A-01",
-          "MIC-PHY-KIN-ZERO-V-NONZERO-A"
-        ]
-      },
-      "repair_ref": "KIN3-2"
     },
     {
       "id": "Q-PHY-KIN-2A-COV-02",
@@ -2496,7 +2415,7 @@
         "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
       ],
       "answer": {
-        "kind": "RUBRIC",
+        "kind": "MODEL_RESPONSE",
         "summary": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant.",
         "reasoning": [
           "Use time as the horizontal variable and measured distance/position along the incline as the first vertical variable.",
@@ -2509,21 +2428,7 @@
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 2,
-        "rubric": [
-          {
-            "criterion": "Specifies measured time and position/distance data with a consistent origin, direction and units.",
-            "evidence_of": "A reproducible data table suitable for graphing."
-          },
-          {
-            "criterion": "Constructs position/distance-time and velocity-time graphs from the same run or controlled repeated runs.",
-            "evidence_of": "Velocity values are obtained from measured position changes over measured time intervals."
-          },
-          {
-            "criterion": "Uses the velocity-time trend to test approximate constant acceleration.",
-            "evidence_of": "Recognizes an approximately straight velocity-time graph and near-constant slope as the evidence."
-          }
-        ]
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
       "secondary_capability_refs": [
