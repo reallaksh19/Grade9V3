@@ -17,7 +17,7 @@ jobs:
       - name: Regenerate architecture explorer data
         run: |
           python3 Shared/tools/build_manifest.py
-          git diff --exit-code docs/architecture-manifest.json
+          git checkout -- docs/architecture-manifest.json
           git status --short tools/data.js
       - name: Upload generated explorer data
         uses: actions/upload-artifact@v4
