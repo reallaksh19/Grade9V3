@@ -1,0 +1,918 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHY-ISSUE19-FIRST-SLICE-RELATIONS-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "purpose": "Issue #19 subject-content relations required by the first 1D Motion -> Newton Second Law -> Work/Energy/Power owner-extension slice.",
+    "donor": "PR #9 final subject artifact",
+    "authority": "OWNER_EXTENSION_ONLY; no board-prescription claim."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-KIN-AVERAGE-RATES",
+      "title": "Grade 9 motion rates, graphs, constant acceleration and circular speed",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-KIN-TOTALS-FIRST",
+          "statement": "Average rates are formed from total path or displacement over the same total elapsed time, not by blindly averaging listed speeds."
+        },
+        {
+          "concept_id": "CON-KIN-CONSTANT-ACCELERATION-MODEL",
+          "statement": "The familiar kinematic equations are exact only on an interval where acceleration is constant."
+        },
+        {
+          "concept_id": "CON-KIN-GRAPH-SLOPE",
+          "statement": "On a position-time graph, interval slope gives average velocity; on a velocity-time graph, interval slope gives average acceleration."
+        },
+        {
+          "concept_id": "CON-KIN-CIRCULAR-SPEED",
+          "statement": "Uniform circular motion has constant speed v = 2 pi r / T while its velocity direction changes continuously."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-AVERAGE-SPEED",
+          "expression": "speed_avg = distance_total / Delta t",
+          "meaning": "Average speed is total distance travelled divided by the positive elapsed time.",
+          "symbols": [
+            {
+              "symbol": "speed_avg",
+              "meaning": "Average speed over the interval",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "distance_total",
+              "meaning": "Total path length travelled",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "distance_total >= 0."
+          ],
+          "validator_refs": [
+            "AVERAGE_RATE"
+          ]
+        },
+        {
+          "relation_id": "REL-AVERAGE-VELOCITY",
+          "expression": "v_avg = Delta x / Delta t",
+          "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+          "symbols": [
+            {
+              "symbol": "v_avg",
+              "meaning": "Average velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Delta x",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "Delta x uses one declared axis/sign convention."
+          ],
+          "validator_refs": [
+            "AVERAGE_RATE"
+          ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+          "expression": "v = u + a t",
+          "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Final velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Constant acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval.",
+            "u, v and a use one declared one-dimensional sign convention.",
+            "t >= 0."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_VELOCITY"
+          ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+          "expression": "s = u t + 0.5 a t^2",
+          "meaning": "For constant acceleration, signed displacement equals initial-velocity contribution plus the acceleration contribution over the interval.",
+          "symbols": [
+            {
+              "symbol": "s",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Constant acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval.",
+            "s, u and a use one declared one-dimensional sign convention.",
+            "t >= 0."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_DISPLACEMENT"
+          ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "expression": "v^2 = u^2 + 2 a s",
+          "meaning": "For constant acceleration, the squared velocities and signed displacement satisfy the no-time kinematic relation.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Final velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Constant acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "s",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval.",
+            "u, v, a and s use one declared one-dimensional sign convention."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_NO_TIME"
+          ]
+        },
+        {
+          "relation_id": "REL-AVERAGE-ACCELERATION",
+          "expression": "a_avg = Delta v / Delta t",
+          "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+          "symbols": [
+            {
+              "symbol": "a_avg",
+              "meaning": "Average acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "Delta v",
+              "meaning": "Final velocity minus initial velocity",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "Velocity values use one declared one-dimensional sign convention."
+          ],
+          "validator_refs": [
+            "AVERAGE_ACCELERATION"
+          ]
+        },
+        {
+          "relation_id": "REL-UNIFORM-CIRCULAR-SPEED",
+          "expression": "v = 2 pi r / T",
+          "meaning": "For one complete uniform circular revolution, speed equals circumference divided by the positive period.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Constant speed around the circular path",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "r",
+              "meaning": "Circle radius",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "T",
+              "meaning": "Time for one complete revolution",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "r > 0.",
+            "T > 0.",
+            "Motion is uniform and the path is circular over the measured revolution."
+          ],
+          "validator_refs": [
+            "UNIFORM_CIRCULAR_SPEED"
+          ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+          "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+          "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+          "symbols": [
+            {
+              "symbol": "s",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Final velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+            "u, v and s use one declared one-dimensional sign convention.",
+            "t >= 0."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_GRAPH_AREA"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "One finite interval with a positive elapsed time.",
+        "Average velocity requires a declared signed displacement convention.",
+        "Constant-acceleration relations are used only on intervals where one acceleration value describes the whole interval.",
+        "Graph-slope relations use two coordinates from the same graph and one declared axis convention.",
+        "Uniform circular speed uses one complete circular path of radius r completed in positive period T.",
+        "The graphical derivation treats displacement as signed velocity-time area over one constant-acceleration interval."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-KIN-AVG-TOTALS",
+          "sequence": 1,
+          "action": "Form the total path length and signed displacement over the same interval.",
+          "why_valid": "Both averages must refer to the same elapsed interval."
+        },
+        {
+          "step_id": "RS-KIN-AVG-DIVIDE",
+          "sequence": 2,
+          "action": "Divide each total by the common positive elapsed time.",
+          "why_valid": "Rate over an interval is total change measure divided by elapsed time.",
+          "depends_on": [
+            "RS-KIN-AVG-TOTALS"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-KIN-AVG-LIST",
+          "wrong_idea": "Average speed is always the arithmetic mean of the listed speeds.",
+          "counterexample": "Equal-distance legs at unequal speeds spend unequal times at the two speeds.",
+          "repair": "Use total distance divided by total time unless equal time weighting is explicitly given."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-KIN-AVG-TWO-LEG",
+          "title": "Two-leg trips with path and displacement kept separate",
+          "hidden_invariants": [
+            "Returning to the start can give nonzero average speed and zero average velocity."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "KINEMATICS"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-KIN-AVG-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-POWER-RATES",
+      "title": "Average and instantaneous mechanical power",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Work and Energy",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-POWER-RATE",
+          "statement": "Power is a rate of energy transfer; an interval average and an instantaneous rate answer different questions."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-AVERAGE-POWER",
+          "expression": "P_avg = W / Delta t",
+          "meaning": "Average power is work transferred over a positive elapsed interval.",
+          "symbols": [
+            {
+              "symbol": "P_avg",
+              "meaning": "Average power",
+              "unit": "W",
+              "dimension": "M L^2 T^-3"
+            },
+            {
+              "symbol": "W",
+              "meaning": "Net work transferred over the interval",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed interval",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "W is the net work assigned to the chosen system over that same interval."
+          ],
+          "validator_refs": [
+            "AVERAGE_POWER"
+          ]
+        },
+        {
+          "relation_id": "REL-INSTANTANEOUS-POWER",
+          "expression": "P = F_parallel v",
+          "meaning": "Instantaneous mechanical power is the signed force component along velocity times instantaneous speed.",
+          "symbols": [
+            {
+              "symbol": "P",
+              "meaning": "Instantaneous power",
+              "unit": "W",
+              "dimension": "M L^2 T^-3"
+            },
+            {
+              "symbol": "F_parallel",
+              "meaning": "Signed component of force along the instantaneous velocity direction",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Instantaneous speed",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "v >= 0.",
+            "F_parallel carries the sign of the force component along or opposite the velocity direction."
+          ],
+          "validator_refs": [
+            "INSTANTANEOUS_POWER"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Average power uses one positive interval.",
+        "Instantaneous power uses quantities evaluated at the same instant."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-POWER-TYPE",
+          "sequence": 1,
+          "action": "Decide whether the request is an interval average or an instantaneous rate.",
+          "why_valid": "The two relations use different information."
+        },
+        {
+          "step_id": "RS-POWER-EVAL",
+          "sequence": 2,
+          "action": "Evaluate the matching relation with a consistent work or force-velocity sign.",
+          "why_valid": "Sign distinguishes transfer into versus out of the mechanical account.",
+          "depends_on": [
+            "RS-POWER-TYPE"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-POWER-WORK",
+          "wrong_idea": "Objects that receive the same work must have the same power.",
+          "counterexample": "The same work delivered in half the time has twice the average power.",
+          "repair": "Keep total transfer and transfer rate as separate quantities."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-POWER-RATE",
+          "title": "Compare equal work delivered over unequal times or changing instantaneous rates",
+          "hidden_invariants": [
+            "Equal total work does not imply equal power."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "WORK-ENERGY"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-POWER-RATES-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-NEWTON-SECOND-LAW",
+      "title": "Newton's second law for net force and acceleration",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Force and Laws of Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-NLM-NET-FORCE-ACCELERATION",
+          "statement": "For a fixed positive mass, net force and acceleration are directed together and linked by F_net = m a."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-NEWTON-SECOND-LAW",
+          "expression": "F_net = m a",
+          "meaning": "The vector net external force on a body equals its mass times its acceleration.",
+          "symbols": [
+            {
+              "symbol": "F_net",
+              "meaning": "Net external force along the declared one-dimensional axis",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass of the chosen body",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Acceleration along the same declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "F_net and a refer to the same chosen body.",
+            "All signed components use one declared axis."
+          ],
+          "validator_refs": [
+            "NEWTON_SECOND_LAW"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose the body before summing external forces.",
+        "Use one inertial frame for the Grade 9 relation.",
+        "Mass is positive and treated as constant over the interval."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-NLM2-BODY",
+          "sequence": 1,
+          "action": "Choose one body and one signed axis, then sum only external forces acting on that body.",
+          "why_valid": "Newton's second law applies to the net external force on one chosen body."
+        },
+        {
+          "step_id": "RS-NLM2-EQUATE",
+          "sequence": 2,
+          "action": "Set the signed net force equal to mass times signed acceleration.",
+          "why_valid": "REL-NEWTON-SECOND-LAW owns the quantitative relation.",
+          "depends_on": [
+            "RS-NLM2-BODY"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-NLM2-LARGEST-FORCE",
+          "wrong_idea": "Acceleration points in the direction of the largest individual force rather than the net force.",
+          "counterexample": "Equal opposite forces can both be large while net force and acceleration are zero.",
+          "repair": "Sum signed external forces first, then use the direction of F_net."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-NLM2-ONE-AXIS",
+          "title": "One-dimensional net-force and acceleration problems",
+          "hidden_invariants": [
+            "The same chosen body and sign convention are used in the force sum and acceleration."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "FORCE-MOTION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-NLM2-VALIDATOR",
+          "mutation": "Replace the relation's validator reference with an undeclared id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-WORK-ENERGY-GRADE9",
+      "title": "Grade 9 work, kinetic energy and gravitational potential energy",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Work, Energy and Simple Machines",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-WEP-WORK-TRANSFER",
+          "statement": "Constant-force work depends on the force component along displacement."
+        },
+        {
+          "concept_id": "CON-WEP-ENERGY-FORMS",
+          "statement": "Kinetic energy depends on speed and gravitational potential energy near Earth depends on height relative to a declared reference."
+        },
+        {
+          "concept_id": "CON-WEP-CONSERVATION",
+          "statement": "Mechanical energy is conserved only when no additional transfer crosses the chosen mechanical account."
+        },
+        {
+          "concept_id": "CON-WEP-ENERGY-DERIVATIONS",
+          "statement": "The Grade 9 kinetic- and raised-body potential-energy expressions are consequences of the work ledger plus already-authored force/motion relations, not isolated formulas."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-WORK-CONSTANT-FORCE",
+          "expression": "W = F_parallel s",
+          "meaning": "For a constant force component along a straight displacement, work equals the signed along-path force component times displacement.",
+          "symbols": [
+            {
+              "symbol": "W",
+              "meaning": "Work done by the force",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "F_parallel",
+              "meaning": "Signed force component along displacement",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "s",
+              "meaning": "Displacement magnitude along the path",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Force component is constant over the displacement.",
+            "F_parallel uses the displacement direction as positive.",
+            "s >= 0."
+          ],
+          "validator_refs": [
+            "WORK_CONSTANT_FORCE"
+          ]
+        },
+        {
+          "relation_id": "REL-KINETIC-ENERGY",
+          "expression": "K = 0.5 m v^2",
+          "meaning": "Translational kinetic energy of a body in the declared reference frame.",
+          "symbols": [
+            {
+              "symbol": "K",
+              "meaning": "Kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Speed in the declared frame",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "v >= 0.",
+            "One declared reference frame is used."
+          ],
+          "validator_refs": [
+            "KINETIC_ENERGY"
+          ]
+        },
+        {
+          "relation_id": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+          "expression": "Delta U_g = m g Delta h",
+          "meaning": "Near Earth's surface with approximately uniform g, gravitational potential-energy change equals mass times g times vertical height change.",
+          "symbols": [
+            {
+              "symbol": "Delta U_g",
+              "meaning": "Change in gravitational potential energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "Delta h",
+              "meaning": "Final height minus initial height",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "g is approximately uniform over the height change.",
+            "One height reference and positive-up convention are used."
+          ],
+          "validator_refs": [
+            "GRAVITATIONAL_POTENTIAL_ENERGY"
+          ]
+        },
+        {
+          "relation_id": "REL-WORK-ENERGY-THEOREM",
+          "expression": "W_net = Delta K",
+          "meaning": "Net work on a body equals its change in translational kinetic energy.",
+          "symbols": [
+            {
+              "symbol": "W_net",
+              "meaning": "Net work by external forces",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "Delta K",
+              "meaning": "Final kinetic energy minus initial kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            }
+          ],
+          "conditions": [
+            "The same body and reference frame are used for the force work and kinetic energies."
+          ]
+        },
+        {
+          "relation_id": "REL-MECHANICAL-ENERGY-CONSERVATION",
+          "expression": "K_i + U_i = K_f + U_f",
+          "meaning": "The chosen mechanical-energy account remains constant when no additional transfer crosses it.",
+          "symbols": [
+            {
+              "symbol": "K_i",
+              "meaning": "Initial kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "U_i",
+              "meaning": "Initial potential energy in the chosen interaction model",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "K_f",
+              "meaning": "Final kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "U_f",
+              "meaning": "Final potential energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            }
+          ],
+          "conditions": [
+            "No frictional or outside transfer changes the chosen mechanical-energy account.",
+            "Initial and final energies use the same potential-energy reference."
+          ]
+        },
+        {
+          "relation_id": "REL-WEIGHT-NEAR-EARTH",
+          "expression": "F_weight = m g",
+          "meaning": "Near Earth's surface in an approximately uniform gravitational field, the weight-force magnitude on mass m is m times gravitational acceleration magnitude g.",
+          "symbols": [
+            {
+              "symbol": "F_weight",
+              "meaning": "Weight-force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Local gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "g > 0.",
+            "Near-Earth field is treated as approximately uniform over the height range.",
+            "This relation gives the force magnitude; downward direction is supplied by the physical geometry."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose the system/account before applying conservation.",
+        "Use the same reference frame and height reference consistently.",
+        "The Grade 9 derivation of K = 0.5 m v^2 uses a constant net force collinear with the displacement, so the constant-acceleration no-time relation applies.",
+        "The Grade 9 derivation of Delta U_g = m g Delta h uses a near-Earth approximately uniform g and a controlled lift whose applied force balances the weight."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-WEP9-ACCOUNT",
+          "sequence": 1,
+          "action": "Choose the body/system, displacement direction and energy reference before selecting a relation.",
+          "why_valid": "Work sign and energy values depend on those declarations."
+        },
+        {
+          "step_id": "RS-WEP9-RELATION",
+          "sequence": 2,
+          "action": "Choose work, kinetic energy, potential-energy change, work-energy, or conservation according to the stated transfer and account.",
+          "why_valid": "Each relation answers a different bookkeeping question.",
+          "depends_on": [
+            "RS-WEP9-ACCOUNT"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-WEP9-ALL-FORCE-WORK",
+          "wrong_idea": "Any nonzero force on a moving body does positive work.",
+          "counterexample": "A force perpendicular to displacement has zero along-path component and does zero work.",
+          "repair": "Resolve force along displacement before multiplying."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-WEP9-ENERGY-LEDGER",
+          "title": "Grade 9 work and mechanical-energy ledgers",
+          "hidden_invariants": [
+            "One system/account and one reference convention are used throughout."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "WORK-ENERGY"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-WEP9-VALIDATOR",
+          "mutation": "Replace the first relation's validator reference with an undeclared id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    }
+  ]
+}
