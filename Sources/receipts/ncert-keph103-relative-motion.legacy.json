@@ -40,5 +40,10 @@
   "notes": [
     "This receipt migrates existing inspection metadata; it does not claim that the source was re-fetched for this PR.",
     "LEGACY_METADATA_MIGRATION receipts are forbidden from asserting SUFFICIENT coverage."
-  ]
+  ],
+  "basis_assessment": {
+    "status": "UNKNOWN",
+    "reason": "Legacy metadata preserved that this resource was section-inspected, but did not record whether the supplied locator still matched the owner's intended Relative Motion source scope.",
+    "replacement_candidates": []
+  }
 }
