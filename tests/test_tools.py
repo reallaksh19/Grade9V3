@@ -1173,10 +1173,9 @@ class ResolveRequest(unittest.TestCase):
                         f'# Authoring brief -- {core["core"]}, Relative motion, '
                         f'rung {step["rung"]}', text)
         self.assertIn("## Purpose PRACTICE -- support medium", text)
-        # CORE2B is BLOCKED (no library question exposed to it), so the transfer
-        # brief is not emitted. This becomes assertIn once a transfer question is
-        # authored (P1).
-        self.assertNotIn("## Transfer --", text)
+        # P1: Relative Motion now owns a real transfer question, so CORE2B is READY
+        # and the matrix's changed-demand rows are included in the authoring brief.
+        self.assertIn("## Transfer -- 4 changed demands", text)
 
     def test_a_refused_request_yields_the_refusal_rather_than_briefs(self):
         request = self.request()
@@ -1233,14 +1232,13 @@ class ResolveRequest(unittest.TestCase):
         self.assertEqual(core["state"], "WITHHELD")
         self.assertIn("coverage gap wearing a transfer label", core["reason"])
 
-    def test_core2b_blocked_when_library_has_no_exposed_question(self):
-        """The plan says BLOCKED, not READY, when the library cannot back CORE2B."""
+    def test_core2b_ready_when_library_has_an_exposed_transfer_question(self):
+        """P1: a bucket-owned transfer question moves CORE2B from BLOCKED to READY."""
         report = resolve_request.plan(self.request())
         core = self.core(report, "CORE2B")
-        self.assertEqual(core["state"], "BLOCKED")
-        self.assertIn("no question exposed", core["reason"])
-        # The purpose is valid -- the block is about the library, not the purpose.
+        self.assertEqual(core["state"], "READY")
         self.assertEqual(core["purpose"], "COMPETITION")
+        self.assertEqual(core["rows"], 4)
 
     def test_library_exposure_is_owned_by_bucket_capability_not_package(self):
         """A question for a sibling bucket in the same package must not make this one READY."""
@@ -1337,11 +1335,11 @@ class PracticeReadiness(unittest.TestCase):
         report = practice_readiness.audit("Physics")
         row = next(r for r in report["buckets"] if r["bucket"] == "BUCKET-RELATIVE-MOTION")
         self.assertTrue(row["exposed"]["CORE2A"])
-        self.assertEqual(row["exposed"]["CORE2B"], [])
+        self.assertTrue(row["exposed"]["CORE2B"])
         self.assertEqual(row["planner"]["CORE2A"]["state"], "READY")
-        self.assertEqual(row["planner"]["CORE2B"]["state"], "BLOCKED")
+        self.assertEqual(row["planner"]["CORE2B"]["state"], "READY")
         self.assertIn("CORE2A", row["compiler_selected"])
-        self.assertNotIn("CORE2B", row["compiler_selected"])
+        self.assertIn("CORE2B", row["compiler_selected"])
 
 
 class CeilingAudit(unittest.TestCase):
