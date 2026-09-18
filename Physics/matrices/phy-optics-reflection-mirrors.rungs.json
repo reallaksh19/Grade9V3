@@ -131,6 +131,20 @@
           "hold": "the same mirror and principal-ray rules",
           "notice": "image position, orientation, and real/virtual character change systematically"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_REPRESENTATION",
+          "ref": "REP-MIRROR-PRINCIPAL-RAYS",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "Principal-ray construction needs an engineering-owned mirror representation."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "RAY_DIAGRAM",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "The subject contract must implement the ray-diagram kind before learner publication."
+        }
       ]
     },
     {
@@ -169,6 +183,26 @@
           "hold": "the same spherical mirror and object",
           "notice": "the simple formula becomes an approximation whose geometric agreement can degrade"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-SPHERICAL-MIRROR-EQUATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Signed mirror geometry and the paraxial boundary need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "MIRROR_EQUATION",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Signed image-distance calculations need an implemented validator."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "RAY_DIAGRAM",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "The equation must remain cross-checkable against an implemented ray diagram."
+        }
       ]
     },
     {
@@ -206,6 +240,26 @@
           "vary": "how much of the mirror aperture is uncovered",
           "hold": "object position and the remaining mirror curvature",
           "notice": "image brightness changes while the whole geometric image and magnification remain"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-MIRROR-MAGNIFICATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Signed magnification and orientation semantics need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "MIRROR_MAGNIFICATION",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Magnification calculations need an implemented validator."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "RAY_DIAGRAM",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "Orientation and size should remain cross-checkable in the subject's ray-diagram representation."
         }
       ]
     }
