@@ -22,7 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import capability_graph  # noqa: E402
+from Shared.tools import capability_delivery, capability_graph  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/worksheet-map.schema.json"
 
@@ -127,38 +127,31 @@ def _capability_row(capability_ref: str, role: str, index: dict) -> tuple[dict, 
         }])
 
     locations = list(index["locations"].get(capability_ref, []))
-    external_provider = cap.get("external_provider")
-    if len(locations) == 1:
-        state = "RESOLVED"
-    elif not locations and external_provider:
-        state = "EXTERNAL_BRIDGE"
-    elif not locations:
-        state = "NO_TEACHING_LOCATION"
-    else:
-        state = "AMBIGUOUS_LOCATION"
-
+    delivery = capability_delivery.resolve(cap, locations)
     row = {
         "role": role,
         "capability_ref": capability_ref,
-        "state": state,
+        "state": capability_delivery.legacy_state(delivery),
+        "delivery_state": delivery["state"],
+        "provider": delivery["provider"],
+        "external_provider": delivery["provider"],
+        "acceptance_status": delivery["acceptance_status"],
         "action": cap.get("action"),
         "success_criterion": cap.get("success_criterion"),
         "microtopic_refs": list(index["microtopics_by_capability"].get(capability_ref, [])),
         "locations": locations,
-        "external_provider": external_provider,
-        "acceptance_status": cap.get("acceptance_status"),
     }
     findings = []
-    if not locations and not external_provider:
+    if delivery["state"] == capability_delivery.UNRESOLVED:
         findings.append({
             "point": NO_TEACHING_LOCATION,
             "capability": capability_ref,
             "detail": (
-                "the capability exists but no matrix rung currently reaches a canonical "
-                "microtopic that teaches it"
+                "the capability exists but has neither a local matrix/rung teaching "
+                "location nor a declared external provider"
             ),
         })
-    elif len(locations) > 1:
+    elif delivery["state"] == capability_delivery.AMBIGUOUS:
         findings.append({
             "point": AMBIGUOUS_LOCATION,
             "capability": capability_ref,
@@ -313,9 +306,10 @@ def readable(report: dict) -> str:
         out += [f'## {question["question_id"]} -- {question["state"]}', ""]
         for cap in question.get("capabilities", []):
             out += [f'  {cap["role"]:9} {cap["capability_ref"]} -- {cap["state"]}']
-            if cap.get("state") == "EXTERNAL_BRIDGE":
+            if cap.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
                 out += [
-                    f'            external provider: {cap.get("external_provider")}'
+                    f'            bridge: {cap.get("provider")} '
+                    f'({cap.get("acceptance_status") or "UNSPECIFIED"})'
                 ]
             for loc in cap.get("locations", []):
                 out += [
