@@ -275,7 +275,8 @@
       "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
       "success_criterion": "Selects a relation only after declaring direction/reference and checking whether the mechanical-energy account is closed.",
       "prerequisite_refs": [
-        "CAP-WEP-MECH-ENERGY-CONDITION"
+        "CAP-WEP-MECH-ENERGY-CONDITION",
+        "CAP-WEP-ENERGY-DERIVATIONS"
       ],
       "curriculum_mappings": [
         {
@@ -307,7 +308,7 @@
       "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
       "success_criterion": "Shows the relation chain and model assumptions for both derivations rather than presenting either expression as a memorized formula.",
       "prerequisite_refs": [
-        "CAP-WEP-GRADE9-QUANT",
+        "CAP-WEP-MECH-ENERGY-CONDITION",
         "CAP-NLM-SECOND-LAW",
         "CAP-KIN-CONSTANT-ACCELERATION"
       ],
@@ -1307,7 +1308,7 @@
       },
       "research_contribution": "Author-created Grade 9 derivation route for the two energy expressions explicitly required by the verified CBSE learning outcomes.",
       "prerequisite_refs": [
-        "CAP-WEP-GRADE9-QUANT",
+        "CAP-WEP-MECH-ENERGY-CONDITION",
         "CAP-NLM-SECOND-LAW",
         "CAP-KIN-CONSTANT-ACCELERATION"
       ],
@@ -2270,9 +2271,7 @@
         ]
       },
       "primary_capability_ref": "CAP-WEP-ENERGY-DERIVATIONS",
-      "secondary_capability_refs": [
-        "CAP-WEP-GRADE9-QUANT"
-      ],
+      "secondary_capability_refs": [],
       "family_ref": "FAM-PHY-WEP-PRACTICE",
       "adaptation": null,
       "exposure": [
