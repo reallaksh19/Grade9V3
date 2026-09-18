@@ -70,6 +70,20 @@
           "hold": "the same physical process",
           "notice": "the algebraic form changes but the predicted physical delta U does not"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-FIRST-LAW-THERMODYNAMICS",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The signed energy balance needs gate-owned convention and validity conditions."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "THERMODYNAMIC_FIRST_LAW",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Signed heat/work numerical exits need an implemented validator."
+        }
       ]
     },
     {
