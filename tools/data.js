@@ -1491,50 +1491,66 @@ window.GRADE9V3 = {
           "microtopics": [
             {
               "id": "MIC-PHY-GRAV-R1",
-              "title": "Gravity is a mutual two-body interaction",
+              "title": "Gravity is a persistent mutual attraction fixed by source-receiver geometry",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "The rung must separate the interaction pair from the very different accelerations the two bodies may later have.",
+              "badge_reason": "Learners often make gravity one-sided, motion-dependent, or page-down; the rung must keep body ownership and geometric direction explicit.",
               "entry_assumptions": [
-                "Can identify two interacting bodies and describe a direction between their centres."
+                "Can identify two interacting bodies and describe the straight line joining their centres."
               ],
-              "inferential_jump": "Gravitational interaction is mutual and points along the line joining the two bodies; neither body is the one-sided source of the interaction.",
+              "inferential_jump": "In the Newtonian model, the two bodies exert equal-and-opposite attractive forces on distinct receivers along the line joining their centres; support or motion state does not switch the interaction on or redirect it.",
               "teaching_path": [
                 {
-                  "action": "Draw two separated bodies A and B and mark the straight line joining their centres before adding any interaction arrows.",
-                  "why_valid": "The direction of each gravitational force is fixed by the two centres, so the joining line is the reference the interaction needs.",
-                  "output": "A •----------------• B | centre-to-centre line marked"
+                  "action": "Draw bodies A and B, mark their centres, and identify which body is the receiver for each gravitational force before drawing arrows.",
+                  "why_valid": "A force statement is incomplete without the body on which the force acts; the source-receiver geometry also fixes the line of action.",
+                  "output": "two bodies, one centre-to-centre line, and explicit force-on-body ownership"
                 },
                 {
-                  "action": "Place one force arrow on A pointing toward B and one on B pointing toward A.",
-                  "why_valid": "A gravitational interaction involves both bodies, with each force directed toward the other along the same joining line.",
-                  "output": "on A: -> toward B | on B: <- toward A | one interaction pair"
+                  "action": "Draw the force on A toward B and the force on B toward A along the same joining line.",
+                  "why_valid": "Newtonian gravity is attractive and mutual; the interaction pair has equal magnitude, opposite directions, and acts on different bodies.",
+                  "output": "paired attractive force vectors on distinct receivers"
                 },
                 {
-                  "action": "Swap the labels A and B while leaving the physical pair in place, then check whether either force disappears.",
-                  "why_valid": "Relabelling cannot change the physical interaction; it only exchanges which body owns which arrow.",
-                  "output": "A <-> B labels swapped; both inward arrows remain paired and collinear"
+                  "action": "Keep the source positions fixed while changing A from supported to moving upward to falling, and compare the gravitational-force direction in each state.",
+                  "why_valid": "The gravitational-force direction is set by source-receiver geometry, not by velocity or whether the object is currently falling.",
+                  "output": "same gravity interaction retained across support and motion-state changes"
+                },
+                {
+                  "action": "Rotate the entire diagram or exchange A/B labels and verify that the force pair rotates with the physical joining line and remains attached to the correct bodies.",
+                  "why_valid": "Page orientation and labels are representational choices; the physical source-receiver geometry is invariant.",
+                  "output": "direction follows geometry, not page-down or name labels"
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "A massive body pulls on a smaller body, but the smaller body does not pull back with an equal interaction.",
-                  "diagnostic_prompt": "Earth pulls on an apple. Does the apple pull on Earth too, and if so in which direction?",
-                  "repair": "Treat gravity as an interaction pair: each body experiences a force directed toward the other along the same line."
+                  "wrong_idea": "The larger body pulls on the smaller body, but the smaller body does not exert an equal gravitational interaction back.",
+                  "diagnostic_prompt": "Earth pulls on an apple. Does the apple exert a gravitational force on Earth too, and if so on which body does that force act?",
+                  "repair": "Draw the two forces as an interaction pair on different receivers: force on apple toward Earth and force on Earth toward apple."
+                },
+                {
+                  "wrong_idea": "Gravity acts only while an object is falling; support or upward motion turns gravity off.",
+                  "diagnostic_prompt": "A book rests on a table and another ball is moving upward. Is a gravitational force present on each object?",
+                  "repair": "Keep the gravity arrow present whenever the mass-source interaction and Newtonian model apply; support or velocity changes other forces/motion, not the existence of gravity."
+                },
+                {
+                  "wrong_idea": "The gravitational-force direction follows the object's velocity or always points down the page.",
+                  "diagnostic_prompt": "If an object moves upward while Earth remains below it, which way does the gravitational-force arrow point?",
+                  "repair": "Use the source-receiver line. The force points toward the attracting source regardless of the object's instantaneous velocity or page orientation."
                 }
               ],
               "exit_task": {
-                "prompt": "Two separated bodies are shown with their centres marked. Draw the gravitational-force direction on each body and explain what changes if the body labels are exchanged.",
+                "prompt": "For a body near a spherical source, draw the gravitational-force direction while the body is (a) supported and (b) moving upward. Then draw the interaction partner force on the source and explain what stays unchanged when the page is rotated.",
                 "source_ref": "SRC-AUTHOR-PHY-GRAV",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "Each body has a gravitational-force arrow directed toward the other along the same centre-to-centre line; exchanging labels only exchanges ownership of the arrows.",
+                  "summary": "Gravity remains present in both motion states; the force on the body points toward the source centre, the partner force acts on the source toward the body, and the pair rotates with the physical geometry rather than the page.",
                   "reasoning": [
-                    "The two centres determine the common line of action.",
-                    "The force on A points from A toward B.",
-                    "The force on B points from B toward A, so the interaction remains paired when labels swap."
+                    "Support or upward velocity does not switch off the mass-mass interaction.",
+                    "The source-receiver line fixes the attractive direction.",
+                    "The two forces act on different bodies as an equal-and-opposite interaction pair.",
+                    "Rotating the page changes coordinates, not the physical geometry."
                   ],
-                  "check": "Rotate the entire drawing without changing the bodies or their separation; both force arrows should rotate with the joining line rather than stay tied to the page.",
+                  "check": "Reverse the body's velocity while keeping positions fixed; the gravitational-force direction must remain toward the source.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
@@ -1544,6 +1560,221 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-GRAV-INVERSE-SQUARE",
+              "title": "Universal gravitation: model scope, centre distance and inverse-square scaling",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The fragile move is not arithmetic: it is deciding whether the point/external-spherical model applies, defining centre-to-centre r, and keeping mass factors separate from the inverse-square distance factor.",
+              "entry_assumptions": [
+                "Can represent gravity as a persistent mutual attractive interaction with body ownership.",
+                "Can compare multiplicative and square factors."
+              ],
+              "inferential_jump": "Within the Newtonian point-mass model, or outside a spherically symmetric source where the external reduction is valid, F = G m1 m2/r^2 uses centre-to-centre separation; masses enter linearly, distance through the inverse square, and direction remains toward the attracting source.",
+              "teaching_path": [
+                {
+                  "action": "Identify the two interacting masses, name the receiver, mark both centres, and state whether the bodies can be treated as point masses or by an external spherical reduction.",
+                  "why_valid": "The simple inverse-square relation has a model scope; using it before defining the source/receiver and geometric separation can produce a formally neat but physically undefined result.",
+                  "output": "declared receiver, valid simple-source model, and centre-to-centre separation r"
+                },
+                {
+                  "action": "With both masses fixed, double r and predict the force factor before substituting any numbers.",
+                  "why_valid": "The distance appears squared in the denominator, so r -> 2r gives F -> F/4.",
+                  "output": "inverse-square distance scaling"
+                },
+                {
+                  "action": "Restore r, double one mass, and compare the force factor with the distance case.",
+                  "why_valid": "Each mass appears to the first power in the numerator, so doubling one mass doubles the magnitude.",
+                  "output": "linear mass scaling distinguished from inverse-square distance scaling"
+                },
+                {
+                  "action": "Check the result by testing direction, units/model meaning, and the limiting trend as r becomes larger.",
+                  "why_valid": "A correct Newtonian result must remain attractive, use the stated centre distance/model scope, and decrease toward zero as separation becomes very large.",
+                  "output": "model-validity, direction and limiting-case check"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Doubling the separation halves the gravitational force.",
+                  "diagnostic_prompt": "Two otherwise identical pairs have centre-to-centre separations r and 2r. Is the second force one half, one quarter, or unchanged?",
+                  "repair": "Apply the square to the distance factor: 2r contributes 1/2^2 = 1/4."
+                },
+                {
+                  "wrong_idea": "For spherical bodies, r in the simple inverse-square relation is the gap between the surfaces.",
+                  "diagnostic_prompt": "Two spherical bodies have radii shown and a surface gap labelled. Which distance belongs in the external Newtonian inverse-square model?",
+                  "repair": "Use the centre-to-centre separation. The external spherical reduction treats the source mass as if concentrated at its centre."
+                },
+                {
+                  "wrong_idea": "The computed gravitational-force direction should be chosen from the object's motion direction.",
+                  "diagnostic_prompt": "If the receiver moves away from the source, does the gravitational-force direction reverse to follow its velocity?",
+                  "repair": "No. Keep the force attractive along the source-receiver line; motion direction is a separate vector."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two externally spherical bodies are far enough apart for the external Newtonian model. One mass doubles while their centre-to-centre separation triples. State the force factor, identify the distance used, and state the force direction on the receiver.",
+                "source_ref": "SRC-AUTHOR-PHY-GRAV",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The force magnitude becomes 2/9 of the original; r is the centre-to-centre separation, and the force on the receiver points toward the other body's centre.",
+                  "reasoning": [
+                    "One doubled mass contributes a factor of 2.",
+                    "Tripling centre-to-centre r contributes 1/3^2 = 1/9.",
+                    "The combined magnitude factor is 2/9.",
+                    "The attractive direction is set by source-receiver geometry."
+                  ],
+                  "check": "Undo only the distance change: the remaining doubled-mass case should be twice the original force.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer checks proportional factors only; it does not assert a measured gravitational constant or force value."
+                }
+              },
+              "prerequisites": [
+                "CAP-PHY-GRAV-R1"
+              ]
+            },
+            {
+              "id": "MIC-PHY-GRAV-FREE-FALL-G",
+              "title": "Local gravitational acceleration: force per unit mass and free-fall mass independence",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners can conflate force with field/acceleration, treat 9.8 m/s^2 as universal, or assume a heavier object must accelerate more because it feels a larger gravitational force.",
+              "entry_assumptions": [
+                "Can apply the Newtonian inverse-square force model with its centre-distance scope.",
+                "Can use F_net = m a for one chosen body."
+              ],
+              "inferential_jump": "At one field point in the Newtonian test-mass model, local g is gravitational force per unit test mass. Combining F_grav = G M m/r^2 with F_net = m a cancels the test mass, giving local acceleration proportional to M/r^2 rather than to the falling object's mass.",
+              "teaching_path": [
+                {
+                  "action": "Choose a source mass M and one spatial point at centre-distance r; distinguish the local gravitational acceleration g at that point from the gravitational force on a particular test mass placed there.",
+                  "why_valid": "Local g characterizes the source/location in the test-mass model; force additionally depends on which test mass is present.",
+                  "output": "one source/location with local g separated from object-specific force"
+                },
+                {
+                  "action": "For a test mass m at that point, write gravitational force as proportional to M m/r^2 and also as m a under ideal free fall.",
+                  "why_valid": "Both expressions describe the same net gravitational force on the chosen falling body.",
+                  "output": "same test-mass factor m visible in both force descriptions"
+                },
+                {
+                  "action": "Cancel the common nonzero test-mass factor and interpret the result as local g proportional to M/r^2.",
+                  "why_valid": "The source mass and location remain after the test-mass factor cancels, so the ideal free-fall acceleration is independent of the falling object's mass at that point.",
+                  "output": "a = g at that location; g depends on source/location, not test-mass choice"
+                },
+                {
+                  "action": "Test two changes separately: double the test mass at fixed location, then move the field point farther from the same source.",
+                  "why_valid": "The first change doubles force but not g; the second changes local g through the source-distance dependence.",
+                  "output": "test-mass independence separated from spatial variation of local g"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A heavier object has a larger gravitational force, so it must have a larger ideal free-fall acceleration.",
+                  "diagnostic_prompt": "At one location, a 10 kg object feels twice the gravitational force of a 5 kg object. Must it accelerate twice as fast in ideal free fall?",
+                  "repair": "Use the same mass in both gravity and F = m a. Force and inertia both scale with test mass, so the mass factor cancels from acceleration."
+                },
+                {
+                  "wrong_idea": "Gravitational force and local g are the same physical quantity.",
+                  "diagnostic_prompt": "Two different masses are placed at the same location. Must the gravitational force and the local g be numerically identical for both?",
+                  "repair": "Local g is force per unit mass. Different masses can feel different forces at the same location while sharing the same local g."
+                },
+                {
+                  "wrong_idea": "g is universally 9.8 m/s^2 everywhere.",
+                  "diagnostic_prompt": "If the same source mass is observed at a much larger centre-distance, must local g stay equal to the near-surface value?",
+                  "repair": "No. The familiar near-Earth value is a local approximation; outside the source, the Newtonian model gives local g proportional to M/r^2."
+                }
+              ],
+              "exit_task": {
+                "prompt": "At one location near the same source, compare a 2 kg and a 6 kg test mass: how do their gravitational forces and ideal free-fall accelerations compare? Then state what happens to the local g if the observation point is moved farther from the source.",
+                "source_ref": "SRC-AUTHOR-PHY-GRAV",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The 6 kg mass feels three times the gravitational force, but both test masses have the same ideal free-fall acceleration at that location; moving farther from the same external source decreases local g according to the inverse-square distance dependence.",
+                  "reasoning": [
+                    "Gravitational force is proportional to test mass.",
+                    "Newton's second law contains the same test mass as inertia, so the test mass cancels from acceleration.",
+                    "Local g therefore characterizes the source/location in the test-mass model.",
+                    "For an external point/spherical source, increasing r decreases g through the 1/r^2 dependence."
+                  ],
+                  "check": "Double only the test mass: force doubles but g/a does not. Increase only r: local g must decrease.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer compares proportionalities and asserts no numerical value for g."
+                }
+              },
+              "prerequisites": [
+                "CAP-PHY-GRAV-INVERSE-SQUARE",
+                "CAP-NLM-SECOND-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-GRAV-MASS-WEIGHT",
+              "title": "Mass stays with the object; weight is its local gravitational force",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Everyday language and scale readings encourage mass/weight conflation; the learner must keep object mass, local g, and gravitational force as different quantities.",
+              "entry_assumptions": [
+                "Can explain local gravitational acceleration g.",
+                "Can distinguish a force from a mass."
+              ],
+              "inferential_jump": "For the same object, mass is kept distinct from local gravitational acceleration, while weight is the gravitational force W = m g and therefore changes if local g changes.",
+              "teaching_path": [
+                {
+                  "action": "Place the same unchanged object at locations A and B and keep its mass m explicitly the same in both records.",
+                  "why_valid": "The comparison changes environment/location, not which object is being considered.",
+                  "output": "same object, same mass m, possibly different local g"
+                },
+                {
+                  "action": "At each location identify weight as the local gravitational force and write W = m g.",
+                  "why_valid": "Weight is a force on the object, whereas mass is the object's inertial/gravitational mass parameter in this model.",
+                  "output": "W_A = m g_A and W_B = m g_B"
+                },
+                {
+                  "action": "Halve local g without changing the object and compare mass, weight, and units.",
+                  "why_valid": "For fixed m, weight scales with g; mass remains in kilograms while weight is a force.",
+                  "output": "same mass; half g gives half weight"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Mass and weight are the same quantity, so a smaller weight reading means the object's mass decreased.",
+                  "diagnostic_prompt": "The same object is moved to a location where local g is smaller. Which changes: the object's mass, its weight, or both?",
+                  "repair": "Keep the object's mass fixed. Weight is the local gravitational force W = m g, so changing g changes weight without changing mass."
+                },
+                {
+                  "wrong_idea": "Because local g is often written near 9.8, weight is effectively a fixed property of the object everywhere.",
+                  "diagnostic_prompt": "Would the same object necessarily have the same weight at a location with a different local gravitational acceleration?",
+                  "repair": "No. Weight follows the local g through W = m g; the same object's mass is the quantity held fixed."
+                }
+              ],
+              "exit_task": {
+                "prompt": "The same object is moved from location A to B, where local g is half as large. Compare its mass and weight, identify which quantity is a force, and state the relation used.",
+                "source_ref": "SRC-AUTHOR-PHY-GRAV",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The mass is unchanged; the weight at B is half the weight at A. Weight is the force and obeys W = m g.",
+                  "reasoning": [
+                    "The object is unchanged, so its mass stays m.",
+                    "Weight is the local gravitational force.",
+                    "With the same m and half the local g, W is halved."
+                  ],
+                  "check": "Return the object to location A: its weight returns to the original value without any mass change.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer uses a relative factor only; it asserts no numerical value of g or weight."
+                }
+              },
+              "prerequisites": [
+                "CAP-PHY-GRAV-FREE-FALL-G"
+              ]
             },
             {
               "id": "MIC-PHY-GRAV-R4",
@@ -1664,8 +1895,38 @@ window.GRADE9V3 = {
           "questions": [],
           "capabilities": [
             {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-MASS-WEIGHT",
+              "action": "Distinguish mass from weight by treating weight as the local gravitational force W = m g while keeping the object's mass separate from the local value of g.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-PHY-GRAV-R1",
-              "action": "Represent gravity as a mutual two-body interaction.",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -1682,7 +1943,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 8,
+          "record_count": 17,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -1693,7 +1954,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 76,
             "questions": 1,
-            "obligations": 5,
+            "obligations": 8,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",

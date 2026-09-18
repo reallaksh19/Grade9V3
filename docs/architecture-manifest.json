@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 143,
-  "relation_count": 197,
+  "component_count": 144,
+  "relation_count": 198,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 50,
+    "TEST": 51,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:dd77d148ebbf8bdb20c5ffb56fd0a139065fa77a638f9a5bbe687ffba00f6c5d",
+  "digest": "sha256:849a5a609c9ab9873174ca37b2d24b275c1db0cfcf5adeb8377293b43f3d6b48",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -796,6 +796,13 @@
       "sha256": "500223086fd4c1366428808b6fc3b3391e0c091b6705a0e4ba0404d8db2bf552"
     },
     {
+      "path": "tests/test_grade9_gravitation_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5745,
+      "sha256": "cf3b2c7be63a54b0e367f57482bb94a25a0cd9c83c2d9a7cfcd412af15126b0c"
+    },
+    {
       "path": "tests/test_grade9_motion_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -936,18 +943,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session_scenario_scan.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 26000,
-      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
-    },
-    {
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 29339,
       "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
+    },
+    {
+      "path": "tests/test_study_session_scenario_scan.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 26000,
+      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
     },
     {
       "path": "tests/test_study_start.py",
@@ -988,8 +995,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 421388,
-      "sha256": "71990408c8e707ea9e2a5c54e2a07b0b2563e935bd27e5a7f081c965d863867f"
+      "bytes": 441331,
+      "sha256": "47fb7df2e084cf98877b787ee403f19d0bf507a30101375e6cb44ceb42b7ff5d"
     },
     {
       "path": "tools/index.html",
@@ -1006,18 +1013,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run_agent_path_stress.py",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 6323,
-      "sha256": "de77a74ea3accc804d3e86fa3eac595f9375a4147d9071c54801622d191ed063"
-    },
-    {
       "path": "tools/run-builder/index.html",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 7041,
       "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
+    },
+    {
+      "path": "tools/run_agent_path_stress.py",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 6323,
+      "sha256": "de77a74ea3accc804d3e86fa3eac595f9375a4147d9071c54801622d191ed063"
     }
   ],
   "relations": [
@@ -1118,12 +1125,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
@@ -1153,12 +1160,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
@@ -1712,6 +1719,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_grade9_gravitation_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_high_likelihood_scenario_matrix_contract.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -1942,12 +1954,12 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

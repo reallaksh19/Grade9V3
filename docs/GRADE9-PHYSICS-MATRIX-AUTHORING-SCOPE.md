@@ -26,14 +26,44 @@ Do not add `grade`, `grade_level`, `class`, `syllabus_status`, or a similar fiel
 `Shared/library/matrix.schema.json`. Curriculum/grade claims belong in the existing source,
 curriculum-mapping, supplied-syllabus and route-scope layers.
 
+## Donor adaptation rule
+
+Before fresh Physics authoring, search the repository owner's prior `reallaksh19/Common`
+Physics PRs from the mature engineering period (PR #350 onward).
+
+The rule is **copy with adaptation, never cross-repository linking**:
+
+```text
+prior internal Physics record
+        ↓ inspect
+extract reusable physics semantics
+        ↓
+compare with current Grade9V3 capability
+        ↓
+copy/adapt only the useful delta into Grade9V3
+        ↓
+local Grade9V3 source_refs / tests / readiness
+```
+
+Do **not** put Common paths, Common gate IDs, Common readiness state, or cross-repository
+references into Grade9V3 runtime records. Donor PR/commit identifiers may be kept only in
+working/audit notes when traceability is useful.
+
+Do not inherit donor curriculum authority. Current Grade9V3 scope still uses
+`SYLLABUS_REQUIREMENT | QUESTION_DEMAND | PREREQUISITE | DECLARED_EXTENSION | DEFER`.
+
+The target architecture wins when granularity differs: one broad donor gate may map to
+several independently fail-able Grade9V3 capabilities, and advanced donor material may be
+discarded or kept extension-only.
+
 ## Grade-9 authoring progress
 
 | Slice | Status | Evidence |
 | --- | --- | --- |
 | G9-1 Motion | **AUDITED** | `docs/grade9/G9-1-MOTION-AUTHORING-AUDIT.md`; existing six-rung spine reused, broad Vector Add/Sub bucket prerequisite removed |
 | G9-2 Force and Laws of Motion | **AUDITED** | `docs/grade9/G9-2-FORCE-LAWS-AUTHORING-AUDIT.md`; existing seven-rung matrix reused, frame choice bounded to extension demand, false turning-point prerequisite removed |
-| G9-3 Gravitation | NEXT | not yet audited under the Grade-9 freeze |
-| G9-4 Work, Energy and Power | QUEUED | not yet audited under the Grade-9 freeze |
+| G9-3 Gravitation | **DONOR-ADAPTED / AUDITED** | `docs/grade9/G9-3-GRAVITATION-AUTHORING-AUDIT.md`; force/model-scope/local-g semantics copied and adapted locally; energy/orbit retained as extensions |
+| G9-4 Work, Energy and Power | NEXT | not yet audited under the Grade-9 freeze |
 | G9-5 Sound | QUEUED | not yet audited under the Grade-9 freeze |
 | G9-6 Simple Machines | SCOPE CONFIRMED; AUDIT QUEUED | current CBSE Class IX Science (2026-27), Standard explicitly includes simple machines and mechanical advantage; matrix audit remains deferred to G9-6 |
 
