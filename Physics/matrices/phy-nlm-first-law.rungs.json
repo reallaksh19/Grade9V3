@@ -91,8 +91,37 @@
       "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
     },
     {
+      "rung": "R5",
+      "ladder_position": 78,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+      "ceiling": [
+        "coefficient of friction",
+        "limiting friction formula",
+        "rolling resistance model"
+      ],
+      "must_contain": [
+        "A named contact surface and a relative-sliding or slip-tendency statement.",
+        "A conveyor-belt counterexample where friction need not point opposite the object's ground-frame velocity."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the belt speed relative to the box",
+          "hold": "the same contact pair",
+          "notice": "friction direction follows relative slip tendency at the contact"
+        },
+        {
+          "phase": 2,
+          "vary": "the object's ground-frame motion direction",
+          "hold": "the same relative slip tendency",
+          "notice": "friction is not defined by the object's velocity alone"
+        }
+      ]
+    },
+    {
       "rung": "R6",
-      "ladder_position": 80,
+      "ladder_position": 86,
       "provenance": "AUTHORED",
       "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
       "ceiling": [
@@ -116,6 +145,35 @@
           "vary": "the mass",
           "hold": "the same net force",
           "notice": "larger mass gives smaller acceleration magnitude"
+        }
+      ]
+    },
+    {
+      "rung": "R7",
+      "ladder_position": 94,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-THIRD-LAW",
+      "ceiling": [
+        "momentum conservation derivation",
+        "field exchange",
+        "relativistic interaction"
+      ],
+      "must_contain": [
+        "The same interaction named twice as A-on-B and B-on-A.",
+        "Equal-and-opposite partner arrows placed on different body diagrams."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which body is selected for the free-body diagram",
+          "hold": "the same interaction pair",
+          "notice": "only the force acting on the selected body appears in that diagram"
+        },
+        {
+          "phase": 2,
+          "vary": "the strength of the interaction",
+          "hold": "the same two bodies and interaction",
+          "notice": "both partner magnitudes change together while remaining opposite"
         }
       ]
     },
