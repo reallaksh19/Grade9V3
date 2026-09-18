@@ -47,8 +47,11 @@ lesson. It simply stops a declared provider boundary from being misreported as a
 unclassified missing-teaching error. If Mathematics later supplies a genuine canonical
 teaching location, the ordinary resolved route will replace the bridge naturally.
 
-The three-question relative-motion/reference-frame slice now produces a valid learner-facing
-study route with this bridge kept explicit.
+The three-question relative-motion/reference-frame slice now produces a **structurally valid**
+learner-facing study route with this bridge kept explicit. It is correctly marked **not
+ready** until learner evidence satisfies the prerequisite or the declared provider supplies
+or verifies it. Demonstrated evidence for the bridge capability clears the blocker without
+mutating Physics content.
 
 ## Feedback loop exercised on a real external question
 
