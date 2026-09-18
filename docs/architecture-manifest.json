@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 141,
-  "relation_count": 196,
+  "component_count": 143,
+  "relation_count": 197,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 49,
+    "TEST": 50,
     "TOOLING": 40,
-    "WEB": 5
+    "WEB": 6
   },
-  "digest": "sha256:b72f0e047b74059d54ea88514dc482d1a3153a0d117d63b42553c48df6b3ba5f",
+  "digest": "sha256:dd77d148ebbf8bdb20c5ffb56fd0a139065fa77a638f9a5bbe687ffba00f6c5d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -698,6 +698,13 @@
       "sha256": "a0a481d359a38bac437bf2243723ec0112e0a1c32a6bee89b26ba68dcc642f85"
     },
     {
+      "path": "tests/test_agent_path_stress_runner.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1841,
+      "sha256": "0f38c42de695864158ccd62ebef2505b60abf725b367d7d43d2593fc3bf6c843"
+    },
+    {
       "path": "tests/test_application_context_schema.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -997,6 +1004,13 @@
       "role_description": "Browsable surfaces over generated data",
       "bytes": 10707,
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
+    },
+    {
+      "path": "tools/run_agent_path_stress.py",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 6323,
+      "sha256": "de77a74ea3accc804d3e86fa3eac595f9375a4147d9071c54801622d191ed063"
     },
     {
       "path": "tools/run-builder/index.html",
@@ -1984,6 +1998,11 @@
     },
     {
       "from": "tests/test_worksheet_study_plan.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tools/run_agent_path_stress.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     }

@@ -234,3 +234,45 @@ If only content/rung coordinates change legitimately, create a new suite version
 silently erasing the historical case. The current suite id is:
 
 `AGENT-PATH-STRESS-V1`
+
+
+## Command-line replay
+
+The repository also includes a convenience runner:
+
+`tools/run_agent_path_stress.py`
+
+Use it to retrieve a blind prompt without seeing the answer key:
+
+```bash
+python3 tools/run_agent_path_stress.py \
+  --case APSTRESS-REL-60-TEACH \
+  --prompt-only
+```
+
+Give that output to the agent being tested.
+
+After the agent has acted, replay the saved machine projection:
+
+```bash
+python3 tools/run_agent_path_stress.py \
+  --case APSTRESS-REL-60-TEACH \
+  --enforce
+```
+
+To check every frozen case against current repository truth:
+
+```bash
+python3 tools/run_agent_path_stress.py --all --enforce
+```
+
+A machine `PASS` means the current planner still resolves the prompt according to the
+frozen architecture path. It does **not** by itself prove that an external agent followed
+that path. For an agent audit, inspect the agent's response/PR and compare its actual
+decisions against the matching frozen case, especially the `must_not` conditions.
+
+A useful later instruction is:
+
+> Run frozen stress case `APSTRESS-REL-60-TEACH` blind. Execute it from current repository
+> truth. After the work is complete, compare the path actually taken against the saved
+> expected path and report every deviation. Do not reveal the answer key before execution.
