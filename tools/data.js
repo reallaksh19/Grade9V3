@@ -4375,7 +4375,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 21,
             "questions": 1,
-            "obligations": 7,
+            "obligations": 8,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",

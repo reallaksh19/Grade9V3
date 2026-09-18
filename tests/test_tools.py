@@ -1481,11 +1481,32 @@ class PublicationProvenance(unittest.TestCase):
 
     def test_a_rung_authored_after_the_freeze_is_reported_as_stale(self):
         # The detector this exists to have on the day a run IS library-based: a microtopic
-        # the library teaches that the frozen page does not carry.
+        # the library teaches that the frozen page does not carry. Scoped to the buckets
+        # the run publishes, so the run has to name one -- it compared against every
+        # microtopic in the subject and reported forty omissions for eleven other
+        # subtopics the first time a real run was measured.
+        points = self.points(
+            declaration={"basis": "LIBRARY",
+                         "records": ["BUCKET-RELATIVE-MOTION", "MIC-SAME-TIME"]},
+            plan='{"x": "MIC-SAME-TIME"}')
+        self.assertIn("PUBLICATION_OMITS_A_MICROTOPIC_THE_LIBRARY_TEACHES", points)
+
+    def test_a_run_is_not_asked_for_teaching_that_belongs_to_another_bucket(self):
         points = self.points(
             declaration={"basis": "LIBRARY", "records": ["MIC-SAME-TIME"]},
             plan='{"x": "MIC-SAME-TIME"}')
-        self.assertIn("PUBLICATION_OMITS_A_MICROTOPIC_THE_LIBRARY_TEACHES", points)
+        self.assertNotIn("PUBLICATION_OMITS_A_MICROTOPIC_THE_LIBRARY_TEACHES", points)
+
+    def test_the_compilers_own_record_list_is_read_rather_than_the_plans_text(self):
+        # Scanning for ids cannot be made correct: loose matching counted
+        # CAP-RIGHT-TRIANGLE inside CAP-RIGHT-TRIANGLE-BRIDGE, and whole-token matching
+        # then missed MIC-MEASURED-FROM inside the block id CORE1A-MIC-MEASURED-FROM-T.
+        run = REPO / "Physics/content/relative-motion-library"
+        listed = json.loads((run / "inputs/library_records.json").read_text(encoding="utf-8"))
+        self.assertIn("MIC-MEASURED-FROM", listed)
+        report = publication_provenance.audit()
+        row = next(r for r in report["publications"] if r["run"].endswith("library"))
+        self.assertEqual(row["declared"], row["in_plan"])
 
     def test_staleness_is_reported_and_does_not_fail_the_build(self):
         # Republishing is owner work; failing CI would put the decision in the wrong hands.

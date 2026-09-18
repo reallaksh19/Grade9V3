@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 61,
-  "relation_count": 101,
+  "component_count": 62,
+  "relation_count": 102,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 17,
+    "TOOLING": 18,
     "WEB": 5
   },
-  "digest": "sha256:42a671a0e7ffaf98efffab43e879f01a5876bf54196af7fc487b9af8c478007c",
+  "digest": "sha256:439f3623a9eb008ed18a807ceb6552e5d7bbae1655b3ffdc32b91179681c6cf9",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 41639,
-      "sha256": "5cdab0ee5ab13ace0c96d077df9ccbc40d992c9933f04d63329104a3e4adf1f3"
+      "bytes": 42760,
+      "sha256": "6ce145c17629efc8f650536560f1d1abf3f3cf8a2be9b13852c719e96dfb6e31"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -323,8 +323,15 @@
       "path": "Shared/tools/publication_provenance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 6290,
-      "sha256": "9a797de744be32f26fa10a7616990225c2a84d1f2cbbb542eb8ee4d7ea7d9b9e"
+      "bytes": 8760,
+      "sha256": "e3b7a543639d51e3e1cd89535774d88a5ba37b06ba69140885d732b9bfdd9d02"
+    },
+    {
+      "path": "Shared/tools/reachability.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4500,
+      "sha256": "067c990d5caa34ffc7efeb6f698acf48108fea0ceacd1bd55a9792475fd348c4"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -407,8 +414,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 80741,
-      "sha256": "a4c7e06078f3a584ce9a6609e4d1f2822b7d7077cd38cff8fd358f255846fa83"
+      "bytes": 82098,
+      "sha256": "1cd104eb3e51b33316c8dbb5c0780a3a71bc557714dbaef9d9b761d3daddce34"
     },
     {
       "path": "tools/app.css",
@@ -422,7 +429,7 @@
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 272110,
-      "sha256": "807cc72b6e457591163d5417186ff4a4238d0708988d266251e9e54dede4379f"
+      "sha256": "380db270b2c702cd9dcd1bbac790431b3d93209709f5f0996340c1a5de2f5fed"
     },
     {
       "path": "tools/index.html",
@@ -714,6 +721,11 @@
     },
     {
       "from": "Shared/tools/publication_provenance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/reachability.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
     },

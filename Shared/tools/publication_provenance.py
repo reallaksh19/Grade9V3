@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -39,8 +40,11 @@ from Shared.contracts import load  # noqa: E402
 DECLARATION = "provenance.json"
 LIBRARY = "LIBRARY"
 OUTSIDE = "AUTHORED_OUTSIDE_THE_LIBRARY"
+# Every collection a package declares ids in. It omitted resources, so a run that
+# correctly declared the sources it compiled from was told the library does not hold them.
 RECORD_KEYS = ("buckets", "microtopics", "capabilities", "relations", "representations",
-               "question_families", "questions", "data")
+               "question_families", "questions", "data", "resources", "teaching_routes",
+               "practice_profiles", "evidence", "known_issues")
 
 
 def library_records(subject: str, repo: Path = REPO) -> dict[str, str]:
@@ -55,6 +59,30 @@ def library_records(subject: str, repo: Path = REPO) -> dict[str, str]:
                 if isinstance(record, dict) and record.get("id"):
                     found[record["id"]] = key
     return found
+
+
+def owning_bucket(subject: str, repo: Path = REPO) -> dict[str, str]:
+    """Which bucket each microtopic belongs to. A run publishes one bucket, so only that
+    bucket's teaching can be missing from it."""
+    owner = {}
+    for path in sorted((repo / subject / "library").glob("*.json")):
+        if path.name.endswith(".schema.json"):
+            continue
+        for row in load(path).get("microtopics", []):
+            if row.get("id"):
+                owner[row["id"]] = row.get("bucket_id")
+    return owner
+
+
+def mentions(rid: str, text: str) -> bool:
+    """Whether an id appears as a whole identifier rather than inside a longer one.
+
+    A plain substring scan counted CAP-RIGHT-TRIANGLE as present wherever
+    CAP-RIGHT-TRIANGLE-BRIDGE was written, which is a different capability. Identifiers
+    here are upper-case and hyphenated, so a hyphen is part of the token and not a
+    boundary.
+    """
+    return bool(re.search(rf"(?<![A-Z0-9-]){re.escape(rid)}(?![A-Z0-9-])", text))
 
 
 def runs(repo: Path = REPO) -> list[Path]:
@@ -80,9 +108,18 @@ def findings(run: Path, repo: Path = REPO) -> tuple[list[dict], dict]:
     declared = load(declaration)
     basis = declared.get("basis")
     named = list(declared.get("records") or [])
-    plan = run / "inputs/plan.json"
-    text = plan.read_text(encoding="utf-8") if plan.exists() else ""
-    in_plan = sorted(rid for rid in records if rid in text)
+    # What the compiler recorded it read, where it exists. Scanning the plan's text for
+    # ids cannot be made correct: a loose match counted CAP-RIGHT-TRIANGLE inside
+    # CAP-RIGHT-TRIANGLE-BRIDGE, and a whole-token match then missed MIC-MEASURED-FROM
+    # inside the block id CORE1A-MIC-MEASURED-FROM-T. The scan survives only for runs
+    # authored before the compiler existed, which have no list to read.
+    compiled = run / "inputs/library_records.json"
+    if compiled.exists():
+        in_plan = sorted(rid for rid in load(compiled) if rid in records)
+    else:
+        plan = run / "inputs/plan.json"
+        text = plan.read_text(encoding="utf-8") if plan.exists() else ""
+        in_plan = sorted(rid for rid in records if mentions(rid, text))
 
     if basis == LIBRARY:
         for rid in named:
@@ -95,10 +132,20 @@ def findings(run: Path, repo: Path = REPO) -> tuple[list[dict], dict]:
                  "not one anything can check")
         # Staleness, which is the reason this is worth running more than once: a rung
         # authored after the run was frozen is taught by the library and not by the page.
+        #
+        # Scoped to the buckets this run publishes. It compared against every microtopic
+        # in the subject, so the first library-based run reported forty omissions for
+        # teaching that belongs to eleven other subtopics -- which is not staleness, it is
+        # a run being asked to publish the whole subject.
+        owner = owning_bucket(subject, repo)
+        published = {rid for rid in set(named) | set(in_plan)
+                     if records.get(rid) == "buckets"}
         for rid in sorted(records):
-            if records[rid] == "microtopics" and rid not in named and rid not in in_plan:
+            if (records[rid] == "microtopics" and owner.get(rid) in published
+                    and rid not in named and rid not in in_plan):
                 fail("PUBLICATION_OMITS_A_MICROTOPIC_THE_LIBRARY_TEACHES",
-                     f"{rid} is taught by the library and does not appear in this run")
+                     f"{rid} is taught by {owner[rid]}, which this run publishes, and "
+                     f"does not appear in it")
     elif basis == OUTSIDE:
         if not str(declared.get("reason", "")).strip():
             fail("PUBLICATION_AUTHORED_OUTSIDE_WITHOUT_A_REASON",

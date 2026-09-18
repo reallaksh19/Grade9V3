@@ -377,6 +377,11 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
     plan["products"].sort(key=lambda p: COMPOSABLE.index(p["core"]))
     baseline["selected_cores"] = [p["core"] for p in plan["products"]]
     return {"baseline": baseline, "source": source, "plan": plan,
+            # Every library record this compilation actually read, so a later audit never
+            # has to infer it from the plan's text.
+            "library_records": sorted({row["id"] for rows in chosen["records"].values()
+                                       for row in rows if isinstance(row, dict)
+                                       and row.get("id")}),
             "authoring_requirements": requirements,
             "derived_from": {"bucket": bucket_id, "microtopics": [m["id"] for m in microtopics],
                              "packages": sorted({records[m]["_package"] for m in microtopic_ids})}}
@@ -696,7 +701,17 @@ def write(compiled: dict, out: Path) -> dict:
     (out / "authoring_requirements.json").write_text(
         json.dumps(compiled["authoring_requirements"], indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
+    # What this plan was compiled from, stated by the compiler rather than guessed from
+    # the plan's text afterwards. A downstream audit was scanning for record ids as
+    # substrings: it counted CAP-RIGHT-TRIANGLE wherever CAP-RIGHT-TRIANGLE-BRIDGE
+    # appeared, and tightening the match to a whole token then missed MIC-MEASURED-FROM
+    # inside the block id CORE1A-MIC-MEASURED-FROM-T. Both readings are wrong and neither
+    # can be fixed by a better pattern, because only the compiler knows what it read.
+    (out / "library_records.json").write_text(
+        json.dumps(sorted(compiled["library_records"]), indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8")
     return {"out": str(out), "selected_cores": compiled["baseline"]["selected_cores"],
+            "library_records": len(compiled["library_records"]),
             "atoms": len(compiled["source"]["atoms"]),
             "questions": len(compiled["source"]["questions"]),
             "obligations": len(compiled["baseline"]["obligations"]),

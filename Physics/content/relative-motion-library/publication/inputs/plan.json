@@ -1,0 +1,1292 @@
+{
+  "schema_version": "1.0.0",
+  "subject": "Physics",
+  "topic_id": "PHY-REL-MOTION-LIB",
+  "title": "Relative velocity in a plane",
+  "baseline_digest": "07253953f75be61b28b40b75b0ff79e8c084faafae190f0a912ef9d4ff233a26",
+  "practice_control": {
+    "mode": "DESIGN_PREVIEW",
+    "purpose": "PRACTICE"
+  },
+  "products": [
+    {
+      "core": "CORE1",
+      "units": [
+        {
+          "id": "U-CORE1-BUCKET-RELATIVE-MOTION",
+          "bucket_id": "BUCKET-RELATIVE-MOTION",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "CORE1-CONVENTIONS",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "Read these before anything that uses them.\nTwo directions are fixed for the whole bucket: x counts east and y counts north. A number written against x with a minus sign means west, and against y it means south.\nA quantity written A/B is A measured from B. The order belongs to the quantity and is not a label attached afterwards."
+            },
+            {
+              "id": "CORE1-SCOPE",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "This bucket covers Position and velocity of one object measured from another in a plane, at a single instant and over one common interval.\nDeliberately excluded: Rotating frames. REL-RELATIVE-VELOCITY states that its axes are parallel and non-rotating, and the extra terms a rotating frame needs are not carried here.\nDeliberately excluded: Relativistic composition. Both relations state classical speeds as a condition."
+            },
+            {
+              "id": "CORE1-QUANTITIES",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-ORIENTATION"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "The quantities this bucket works with.\nd_example: Illustrative path segment length available to compiled study obligations; no exit answer depends on its numerical value. (5 m)\nv_example: Illustrative steady speed available to compiled study obligations; none of the authored exits depends on its numerical value. (1 m/s)\nP_x: Vector P, east component (6 m/s)\nP_y: Vector P, north component (0 m/s)\n(P-Q)_x: P minus Q, east component (declared construction result) (6 m/s)\n(P-Q)_y: P minus Q, north component (declared construction result) (-8 m/s)\nQ_x: Vector Q, east component (0 m/s)\nQ_y: Vector Q, north component (8 m/s)\nv_A,x: Velocity of A, east component (6 m/s)\nv_A,y: Velocity of A, north component (0 m/s)\nv_A/B,x: A relative to B, east component (declared subtraction result) (6 m/s)\nv_A/B,y: A relative to B, north component (declared subtraction result) (-8 m/s)\nv_B,x: Velocity of B, east component (0 m/s)\nv_B,y: Velocity of B, north component (8 m/s)\nv_B/A,x: B relative to A, east component (reversed observer) (-6 m/s)\nv_B/A,y: B relative to A, north component (reversed observer) (8 m/s)\nL: Illustrative fixed arrow length used only to keep the qualitative operand-order comparison at one scale. (5 diagram-unit)\nw_x: Intro vector w, east component (3 m/s)\nw_y: Intro vector w, north component (4 m/s)\nd_example: Illustrative displacement length available to compiled study obligations; none of the qualitative exits depends on its numerical value. (1 m)"
+            },
+            {
+              "id": "CORE1-REL-RELATIVE-VELOCITY",
+              "kind": "EQUATION",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-ORIENTATION"
+              ],
+              "source_atom_ids": [
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "mathml": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>",
+              "meaning": "For constant velocities, relative position changes at the difference of their common-frame velocity vectors; the same finite-interval derivation also gives average relative velocity.",
+              "symbols": [
+                "v_A: Velocity of A in the common frame",
+                "v_B: Velocity of B in the same frame",
+                "v_A/B: Velocity of A relative to B with parallel nonrotating axes"
+              ],
+              "conditions": [
+                "Same observation times and one common interval.",
+                "Parallel, non-rotating Cartesian axes.",
+                "Classical speeds; relativistic velocity addition does not apply.",
+                "A finite-interval average is not automatically an instantaneous velocity when motion varies."
+              ]
+            },
+            {
+              "id": "CORE1-SI-REL-VELOCITY-CONSTRUCTION",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-ORIENTATION"
+              ],
+              "source_atom_ids": [
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y"
+              ],
+              "correspondence": [
+                {
+                  "element": "Labelled v_A, v_B and -v_B",
+                  "symbol": "v_A",
+                  "in_words": "how fast A goes over the ground, and which way"
+                },
+                {
+                  "element": "Labelled v_A, v_B and -v_B",
+                  "symbol": "v_B",
+                  "in_words": "the same for B, drawn to the same scale so the two can be compared by eye"
+                },
+                {
+                  "element": "Resultant labelled v_A/B, with tail/head and scale",
+                  "symbol": "v_A/B",
+                  "in_words": "what B sees A doing: the arrow you land on after reversing B's and following A's"
+                }
+              ],
+              "scene": {
+                "kind": "VECTOR_SUBTRACTION",
+                "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+                "caption": "v_A points east at 6 m/s and v_B north at 8 m/s. Reversing v_B and placing it at the head of v_A lands on v_A/B = (6, -8) m/s: what B sees A doing is east and south, at a speed neither object has.",
+                "x_label": "east (m/s)",
+                "y_label": "north (m/s)",
+                "unit": "m/s",
+                "minuend": {
+                  "symbol": "v_A",
+                  "x_atom": "DAT-VA-X",
+                  "y_atom": "DAT-VA-Y"
+                },
+                "subtrahend": {
+                  "symbol": "v_B",
+                  "x_atom": "DAT-VB-X",
+                  "y_atom": "DAT-VB-Y"
+                },
+                "resultant": {
+                  "symbol": "v_A/B",
+                  "x_atom": "DAT-VAB-X",
+                  "y_atom": "DAT-VAB-Y"
+                }
+              }
+            },
+            {
+              "id": "CORE1-DEMAND",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-ORIENTATION"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "Where the hard work is.\nA number alone does not say where something is. (MEDIUM) The idea is reachable by pacing a room, but it is routinely skipped as obvious and then assumed by every rung above it.\nPosition measured from the other object. (HARD) Observer order and common time are easily hidden by a memorized formula.\nFrom relative position to relative velocity. (HARD) The student must connect two same-time position statements to one common interval rather than memorize a subtraction rule.\nCheck direction, magnitude and observer reversal. (HARD) Correct arithmetic can conceal an incorrect vector construction or frame interpretation.\nWhen the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note). (HARD) Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE2",
+      "units": [
+        {
+          "id": "U-CORE2-BUCKET-RELATIVE-MOTION",
+          "bucket_id": "BUCKET-RELATIVE-MOTION",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "CORE2-Q-AUTHOR-REL-01",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-CUSTODY"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "source_id": "LIBRARY",
+              "source_question_id": "Q-AUTHOR-REL-01",
+              "source_refs": [
+                "SRC-AUTHOR"
+              ],
+              "origin": "AUTHORED",
+              "original_number": "AUTHOR-REL-01",
+              "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocities; common time and parallel nonrotating axes."
+              ],
+              "figure_refs": [
+                "REP-REL-VECTOR"
+              ],
+              "answer": {
+                "summary": "(6,-8) m/s, southeast; magnitude 10 m/s.",
+                "steps": [
+                  "Subtract (0,8) from (6,0).",
+                  "The southward component is 8 m/s and eastward component 6 m/s.",
+                  "Using a right triangle, magnitude is sqrt(36+64)=10 m/s."
+                ],
+                "check": "Over one second the relative displacement changes by (6,-8) m; reversing the observer gives (-6,8) m/s.",
+                "difficult_move": 0,
+                "numeric": {
+                  "value": 10,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                {
+                  "text": "Relative to B means measured from B. Which of the two velocities is the one being subtracted?",
+                  "reveals": "CONCEPT"
+                },
+                {
+                  "text": "Subtract axis by axis before doing anything with lengths, and keep both signs; the magnitude is something you compute from the answer, not the answer itself.",
+                  "reveals": "METHOD"
+                }
+              ],
+              "family": "FAM-RELATIVE-V",
+              "learner_action": "solve",
+              "exposure_role": "SOURCE_CUSTODY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE1A",
+      "units": [
+        {
+          "id": "U-CORE1A-BUCKET-RELATIVE-MOTION",
+          "bucket_id": "BUCKET-RELATIVE-MOTION",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "CORE1A-CONVENTIONS",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "Read these before anything that uses them.\nTwo directions are fixed for the whole bucket: x counts east and y counts north. A number written against x with a minus sign means west, and against y it means south.\nA quantity written A/B is A measured from B. The order belongs to the quantity and is not a label attached afterwards."
+            },
+            {
+              "id": "CORE1A-MIC-MEASURED-FROM-T",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-MEASURED-FROM"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "text": "A number alone does not say where something is.\n\n\"Where is it?\" has no answer until you say measured from what. Position is a relation, not a property of the object.\n\nWhat this assumes you can already do:\n- Can say where a thing is by pointing or counting paces.\n\nA common wrong idea:\nPosition is a property the object carries with it.\nTell them apart:\nTwo people give different answers for where the same chair is. Can both be right?\nInstead:\nSay what you measured from, then give the number; the number alone is not the answer.\nCount paces from the door to the chair: four. Now count from the window to the same chair: four again. Both counts are honest measurements of the same chair, made without moving it, so neither can be dismissed as a mistake. This gives:\ndoor -> chair: 4 paces.  window -> chair: 4 paces.\nSay each answer in full, out loud: four paces from the door, walking toward the window; four paces from the window, walking toward the door. Adding what each count started from is the only change made, and the two answers stop matching -- so the bare four was hiding the difference rather than describing it. This gives:\n\"4 paces from the door, toward the window\"  and  \"4 paces from the window, toward the door\".\nHand someone the number four on its own and ask them to put the chair back where it was. They cannot do it, and what they ask for is exactly what was left out: what the four was counted from. This gives:\n\"Four from where?\" -- the question the listener has to ask back.\n\nCheck yourself: Two people are asked where the same chair is. Both answer \"four paces\". Say whether they have described the same place, and what each would have to add before anyone could tell.\nAnswer: Not yet decidable: both answers are incomplete in the same way, and each needs what it was counted from.\n- Four is a count, and a count on its own does not name a place.\n- If both counted from the door they agree; if one counted from the door and one from the window they do not, and the two answers given cannot tell those cases apart.\n- What is missing from each is the thing it was counted from, together with which way the paces went.\nVerify: Ask someone else to put the chair back using only what was said. If they cannot, the description is still incomplete."
+            },
+            {
+              "id": "CORE1A-MIC-SAME-TIME-T",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-SAME-TIME"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "text": "Position measured from the other object.\n\nReplace two positions from an origin by the displacement from B to A.\n\nWhat this assumes you can already do:\n- Signed coordinate-pair arithmetic is available or bridged.\n\nA common wrong idea:\nSubtract whichever coordinate appears first in the question.\nTell them apart:\nWhich displacement carries you from B to A?\nInstead:\nDraw origin → B → A and reconstruct r_A = r_B + r_A/B before subtracting.\nFollow the path origin → B → A. Vector displacements add along consecutive paths. This gives:\nr_A = r_B + r_A/B.\nSubtract r_B from both sides. Apply the same vector operation to both sides. This gives:\nr_A/B = r_A - r_B.\n\nCheck yourself: At one instant A is at (7,2) m and B at (3,5) m. Give A relative to B and explain the signs.\nAnswer: (4,-3) m: 4 m east and 3 m south from B.\n- Subtract the same-time coordinates of B from A.\n- The negative north component means south.\nVerify: Add (4,-3) to B=(3,5); recover A=(7,2).\n\nChecks you can run on your own answer:\n- If A and B occupy the same point, r_A/B is zero.\n- Reversing A and B reverses the vector."
+            },
+            {
+              "id": "CORE1A-MIC-COMMON-INTERVAL-T",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-COMMON-INTERVAL"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "From relative position to relative velocity.\n\nSubtract two relative-position equations before dividing by a common time interval.\n\nWhat this assumes you can already do:\n- Can construct relative position and interpret displacement over time.\n\nA common wrong idea:\nSubtracting the two speeds always gives relative speed.\nTell them apart:\nIf one object moves east and the other north, do their directions disappear?\nInstead:\nCompute signed vector components first, then take the magnitude if requested.\nWrite relative position at t1 and t2. Apply the same relation at both instants. This gives:\nr_A/B(t2) - r_A/B(t1) = [r_A(t2)-r_A(t1)] - [r_B(t2)-r_B(t1)].\nGroup the displacement changes. Vector subtraction distributes through the two same-time equations. This gives:\nDelta r_A/B = Delta r_A - Delta r_B.\nDivide each term by the same nonzero Delta t. Each quotient is average velocity over that interval. This gives:\nvbar_A/B = vbar_A - vbar_B.\nFor this constant-velocity teaching case, use v for each constant average. No instantaneous calculus limit is needed in this case. This gives:\nv_A/B = v_A - v_B.\n\nCheck yourself: Why must both displacement changes be divided by the same time interval in this derivation?\nAnswer: The relation compares how the simultaneous separation changes over one shared interval.\n- Write the positions of both objects at t1 and again at t2.\n- Subtract those two relative positions.\n- Different intervals describe different displacement changes and do not form this comparison.\nVerify: For equal constant velocity vectors, the separation must stay constant.\n\nChecks you can run on your own answer:\n- If A and B occupy the same point, r_A/B is zero.\n- Reversing A and B reverses the vector.\n- Equal velocity vectors give zero relative velocity.\n- A stationary observer gives v_A/B = v_A.\n- Swapping A and B reverses direction."
+            },
+            {
+              "id": "CORE1A-MIC-GEOMETRIC-CHECK-T",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "Check direction, magnitude and observer reversal.\n\nReconcile the algebraic result with reversal of the observer vector in a geometric construction.\n\nWhat this assumes you can already do:\n- Can subtract velocity components; a magnitude calculation requires a reviewed right-triangle bridge.\n\nA common wrong idea:\nA correct length is enough for a correct vector answer.\nTell them apart:\nWould the same arrow reversed describe the same observer statement?\nInstead:\nName the observer, label both components and inspect the direction before taking a magnitude.\nReverse v_B. Subtraction is addition of the opposite vector. This gives:\n-v_B has the same magnitude and opposite direction.\nAdd v_A and -v_B tail to head. Free vectors may be translated without rotation. This gives:\nResultant v_A/B.\nCompare components and reverse the observer order. v_B/A = -(v_A/B). This gives:\nOpposite vectors have equal magnitudes.\n\nCheck yourself: If v_A/B points southeast, what direction does v_B/A point, and what happens to its magnitude?\nAnswer: Northwest, with the same magnitude.\n- Swap the subtraction order.\n- Every component changes sign.\nVerify: Adding the two relative vectors gives zero.\n\nChecks you can run on your own answer:\n- Equal velocity vectors give zero relative velocity.\n- A stationary observer gives v_A/B = v_A.\n- Swapping A and B reverses direction."
+            },
+            {
+              "id": "CORE1A-SI-REL-VELOCITY-CONSTRUCTION",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y"
+              ],
+              "correspondence": [
+                {
+                  "element": "Labelled v_A, v_B and -v_B",
+                  "symbol": "v_A",
+                  "in_words": "how fast A goes over the ground, and which way"
+                },
+                {
+                  "element": "Labelled v_A, v_B and -v_B",
+                  "symbol": "v_B",
+                  "in_words": "the same for B, drawn to the same scale so the two can be compared by eye"
+                },
+                {
+                  "element": "Resultant labelled v_A/B, with tail/head and scale",
+                  "symbol": "v_A/B",
+                  "in_words": "what B sees A doing: the arrow you land on after reversing B's and following A's"
+                }
+              ],
+              "scene": {
+                "kind": "VECTOR_SUBTRACTION",
+                "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+                "caption": "v_A points east at 6 m/s and v_B north at 8 m/s. Reversing v_B and placing it at the head of v_A lands on v_A/B = (6, -8) m/s: what B sees A doing is east and south, at a speed neither object has.",
+                "x_label": "east (m/s)",
+                "y_label": "north (m/s)",
+                "unit": "m/s",
+                "minuend": {
+                  "symbol": "v_A",
+                  "x_atom": "DAT-VA-X",
+                  "y_atom": "DAT-VA-Y"
+                },
+                "subtrahend": {
+                  "symbol": "v_B",
+                  "x_atom": "DAT-VB-X",
+                  "y_atom": "DAT-VB-Y"
+                },
+                "resultant": {
+                  "symbol": "v_A/B",
+                  "x_atom": "DAT-VAB-X",
+                  "y_atom": "DAT-VAB-Y"
+                }
+              }
+            },
+            {
+              "id": "CORE1A-Q-AUTHOR-REL-01",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-PRACTICE"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "source_id": "LIBRARY",
+              "source_question_id": "Q-AUTHOR-REL-01",
+              "source_refs": [
+                "SRC-AUTHOR"
+              ],
+              "origin": "AUTHORED",
+              "original_number": "AUTHOR-REL-01",
+              "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocities; common time and parallel nonrotating axes."
+              ],
+              "figure_refs": [
+                "REP-REL-VECTOR"
+              ],
+              "answer": {
+                "summary": "(6,-8) m/s, southeast; magnitude 10 m/s.",
+                "steps": [
+                  "Subtract (0,8) from (6,0).",
+                  "The southward component is 8 m/s and eastward component 6 m/s.",
+                  "Using a right triangle, magnitude is sqrt(36+64)=10 m/s."
+                ],
+                "check": "Over one second the relative displacement changes by (6,-8) m; reversing the observer gives (-6,8) m/s.",
+                "difficult_move": 0,
+                "numeric": {
+                  "value": 10,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                {
+                  "text": "Relative to B means measured from B. Which of the two velocities is the one being subtracted?",
+                  "reveals": "CONCEPT"
+                },
+                {
+                  "text": "Subtract axis by axis before doing anything with lengths, and keep both signs; the magnitude is something you compute from the answer, not the answer itself.",
+                  "reveals": "METHOD"
+                }
+              ],
+              "family": "FAM-RELATIVE-V",
+              "learner_action": "solve",
+              "exposure_role": "WORKED_EXAMPLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE1B",
+      "units": [
+        {
+          "id": "U-CORE1B-BUCKET-RELATIVE-MOTION",
+          "bucket_id": "BUCKET-RELATIVE-MOTION",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "CORE1B-CONVENTIONS",
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "text": "Read these before anything that uses them.\nTwo directions are fixed for the whole bucket: x counts east and y counts north. A number written against x with a minus sign means west, and against y it means south.\nA quantity written A/B is A measured from B. The order belongs to the quantity and is not a label attached afterwards."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-MEASURED-FROM"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-MEASURED-FROM-ASK",
+              "text": "A number alone does not say where something is.\n\nYou and a friend are each asked where the same chair is, and you both answer \"four paces\". Before reading on: does that mean you agree?\n\nThen produce:\nA sketch of a room with two starting places marked, and one chair that is four paces from both."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-MEASURED-FROM"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-MEASURED-FROM-ASK-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-MEASURED-FROM-ASK",
+              "text": "Our answer: Not necessarily. Four paces from one starting place and four paces from another put the chair in two different places, and nothing said so far rules that out.\n\nGetting there:\n  1. You counted four. What did you start counting from?\n  2. Your friend also counted four, starting somewhere else. Is the chair in the same place in both answers?\n  3. Say your answer again, this time in a way your friend could use to walk to the chair.\n  4. What did you have to add, and why could the number not do that job on its own?\n\nA common wrong idea:\nPosition is a property the object carries with it.\nTell them apart:\nTwo people give different answers for where the same chair is. Can both be right?\nInstead:\nSay what you measured from, then give the number; the number alone is not the answer.\n\nJudge your answer against these:\n  - Two different starting places are marked, and the chair is four paces from each.\n    It shows:\n    Holding both counts as correct at once, rather than deciding one of them must be a mistake.\n  - Each answer is written out with the place it was counted from attached.\n    It shows:\n    Treating what it was measured from as part of the answer rather than as background.\n\nAccepted:\nTwo starting places marked -- say the door and the window -- with the chair drawn four paces from each, and both answers written out as \"four paces from the door\" and \"four paces from the window\".\n\nNot accepted:\nOne starting place marked and the second answer treated as a miscount to be corrected. The sketch then shows one place for the chair, so the collision that makes the bare number look incomplete never appears, and the learner leaves agreeing with a rule they were told rather than one they hit."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-MEASURED-FROM"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-MEASURED-FROM-BOUNDARY",
+              "text": "Someone says the chair is four paces from the door. The next day the door has been moved. Is the description still right?"
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-MEASURED-FROM"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-MEASURED-FROM-BOUNDARY-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-MEASURED-FROM-BOUNDARY",
+              "text": "It is no longer usable, and that is the point: the description was never about the chair alone. It held for as long as what it was counted from stayed put.\n\nWhat this settles:\nThat what a place is measured from is part of the description, not a detail outside it."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-SAME-TIME"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-SAME-TIME-ASK",
+              "text": "Position measured from the other object.\n\nA is at (7,2) m and B at (3,5) m, both measured from the same origin. Before subtracting anything, predict which way you would walk to get from B to A -- east or west, north or south?\n\nThen produce:\nA sketch of origin, B and A with an arrow from B to A, and the two signs you expect the answer's components to have."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-SAME-TIME"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-SAME-TIME-ASK-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-SAME-TIME-ASK",
+              "text": "Our answer: East and south. A is further east than B and lower on the north axis, so the walk is east and south whatever the arithmetic turns out to be.\n\nGetting there:\n  1. Put your finger on the origin, then on B, then on A. Which two of those three moves does the question actually ask about?\n  2. Write the trip origin to B, then B to A, as one journey. What is the whole journey equal to?\n  3. You now have r_A = r_B + r_A/B and you want r_A/B on its own. What do you do to both sides?\n  4. Do the signs of your answer match the direction you predicted before you started?\n\nA common wrong idea:\nSubtract whichever coordinate appears first in the question.\nTell them apart:\nWhich displacement carries you from B to A?\nInstead:\nDraw origin → B → A and reconstruct r_A = r_B + r_A/B before subtracting.\n\nJudge your answer against these:\n  - The arrow is drawn from B to A, and the tail is the object the question measures from.\n    It shows:\n    Reading 'A relative to B' as a displacement with a starting point rather than as an instruction to subtract.\n  - The predicted signs are read off the sketch before any subtraction is performed.\n    It shows:\n    Having a check the arithmetic can be measured against rather than being the only answer.\n\nAccepted:\nArrow from B to A, pointing right and down; components predicted positive east and negative north, because A is to the right of B and below it.\n\nNot accepted:\nArrow from A to B, with the note that the order can be fixed at the end by changing the signs. The signs would indeed come out reversed, and the learner has no way to notice that they were."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-SAME-TIME"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-SAME-TIME-BOUNDARY",
+              "text": "Now give B relative to A for the same two positions. What has changed, and what has not?"
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-SAME-TIME"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+              ],
+              "id": "CORE1B-MIC-SAME-TIME-BOUNDARY-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-SAME-TIME-BOUNDARY",
+              "text": "(-4,3) m: 4 m west and 3 m north. Every component has reversed sign; the length of the arrow is unchanged.\n\nWhat this settles:\nThat the order in 'A relative to B' is carried by the whole vector and not by which number was written first."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-COMMON-INTERVAL"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-COMMON-INTERVAL-ASK",
+              "text": "From relative position to relative velocity.\n\nA walks east at 3 m/s and B walks north at 4 m/s. Predict the speed of A as seen by B, and say whether you can get it by subtracting 3 from 4.\n\nThen produce:\nThe relative velocity as a pair of signed components, and then its magnitude, with a note on which of the two the question asked for."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-COMMON-INTERVAL"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-COMMON-INTERVAL-ASK-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-COMMON-INTERVAL-ASK",
+              "text": "Our answer: 5 m/s, and no. The two motions are at right angles, so nothing cancels; subtracting the speeds throws away the directions that decide the answer.\n\nGetting there:\n  1. Write down where A is relative to B at the start of the second, and again at the end of it.\n  2. Subtract the first from the second. Whose displacements appear in what you are left with?\n  3. You have a change in separation over one second. What do you divide by, and why is it the same number for both objects?\n  4. Go back to A east at 3 and B north at 4. What do your components say now, and is it 1?\n\nA common wrong idea:\nSubtracting the two speeds always gives relative speed.\nTell them apart:\nIf one object moves east and the other north, do their directions disappear?\nInstead:\nCompute signed vector components first, then take the magnitude if requested.\n\nJudge your answer against these:\n  - Components are subtracted axis by axis before any magnitude is taken.\n    It shows:\n    Treating velocity as a pair of numbers that must both survive the subtraction.\n  - The answer says whether it is a velocity or a speed, and does not offer a magnitude where a direction was asked for.\n    It shows:\n    Knowing that a magnitude is something computed from the answer, not the answer.\n\nAccepted:\nv_A/B = (3,0) - (0,4) = (3,-4) m/s; its magnitude is 5 m/s. A appears to B to move east and south.\n\nNot accepted:\n4 - 3 = 1 m/s. The arithmetic is right and the two directions were dropped before it was done, which is what made the answer wrong rather than the subtraction."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-COMMON-INTERVAL"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY",
+              "text": "A and B both walk east, A at 5 m/s and B at 5 m/s. What is v_A/B, and what does B see?"
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-COMMON-INTERVAL"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY",
+              "text": "(0,0) m/s. B sees A holding still, at a fixed distance, even though both are moving quickly over the ground.\n\nWhat this settles:\nThat relative velocity is about the separation changing, not about either object being still. A learner who reads 'zero velocity' as 'not moving' is caught here."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-GEOMETRIC-CHECK-ASK",
+              "text": "Check direction, magnitude and observer reversal.\n\nYou have worked out that v_A/B points southeast at 5 m/s. Predict, without calculating, what v_B/A is -- both its direction and its size.\n\nThen produce:\nThe two arrows drawn on one sketch, with the observer named beside each and their lengths compared."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-GEOMETRIC-CHECK-ASK-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-GEOMETRIC-CHECK-ASK",
+              "text": "Our answer: Northwest, at 5 m/s. Swapping the observer reverses the arrow and leaves its length alone.\n\nGetting there:\n  1. Draw v_A and v_B from the same point. Which of the two do you have to turn around before adding?\n  2. Slide the reversed arrow so its tail sits on the head of the other. What does the arrow from the first tail to the last head represent?\n  3. Now reverse the observer: reverse which arrow you turned around, and redraw. What changed about the result?\n  4. If someone gives you only the number 5 m/s, what can you not answer?\n\nA common wrong idea:\nA correct length is enough for a correct vector answer.\nTell them apart:\nWould the same arrow reversed describe the same observer statement?\nInstead:\nName the observer, label both components and inspect the direction before taking a magnitude.\n\nJudge your answer against these:\n  - Each arrow is labelled with who is observing, not only with a magnitude.\n    It shows:\n    Treating the observer as part of the answer rather than as context for it.\n  - The two lengths are stated as equal, and the two directions as opposite, rather than one being recalculated.\n    It shows:\n    Reading reversal as a property of the vector instead of a second problem.\n\nAccepted:\nTwo arrows from one point, one southeast labelled 'A as seen by B' and one northwest labelled 'B as seen by A', drawn the same length.\n\nNot accepted:\nOne arrow of length 5 with the note that direction depends on the question. The length is right and the answer has no observer in it, which is the whole thing that was asked."
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY",
+              "text": "Two cars approach each other head-on, each at 20 m/s along the same line. What is the magnitude of one car's velocity relative to the other, and does reversing the observer change it?"
+            },
+            {
+              "kind": "TEXT",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "id": "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY-REVEAL",
+              "placement": "ELICITED_REVEAL",
+              "reveals_block_id": "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY",
+              "text": "40 m/s. Reversing the observer points the arrow the other way along the line and leaves the 40 unchanged.\n\nWhat this settles:\nThat reversal leaves magnitude alone even when the magnitude is not either car's speed -- a learner checking only the number has no way to tell the two observers apart here."
+            },
+            {
+              "id": "CORE1B-SI-REL-VELOCITY-CONSTRUCTION",
+              "kind": "FIGURE",
+              "obligation_ids": [
+                "OB-MIC-GEOMETRIC-CHECK"
+              ],
+              "source_atom_ids": [
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y"
+              ],
+              "correspondence": [
+                {
+                  "element": "Labelled v_A, v_B and -v_B",
+                  "symbol": "v_A",
+                  "in_words": "how fast A goes over the ground, and which way"
+                },
+                {
+                  "element": "Labelled v_A, v_B and -v_B",
+                  "symbol": "v_B",
+                  "in_words": "the same for B, drawn to the same scale so the two can be compared by eye"
+                },
+                {
+                  "element": "Resultant labelled v_A/B, with tail/head and scale",
+                  "symbol": "v_A/B",
+                  "in_words": "what B sees A doing: the arrow you land on after reversing B's and following A's"
+                }
+              ],
+              "scene": {
+                "kind": "VECTOR_SUBTRACTION",
+                "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+                "caption": "v_A points east at 6 m/s and v_B north at 8 m/s. Reversing v_B and placing it at the head of v_A lands on v_A/B = (6, -8) m/s: what B sees A doing is east and south, at a speed neither object has.",
+                "x_label": "east (m/s)",
+                "y_label": "north (m/s)",
+                "unit": "m/s",
+                "minuend": {
+                  "symbol": "v_A",
+                  "x_atom": "DAT-VA-X",
+                  "y_atom": "DAT-VA-Y"
+                },
+                "subtrahend": {
+                  "symbol": "v_B",
+                  "x_atom": "DAT-VB-X",
+                  "y_atom": "DAT-VB-Y"
+                },
+                "resultant": {
+                  "symbol": "v_A/B",
+                  "x_atom": "DAT-VAB-X",
+                  "y_atom": "DAT-VAB-Y"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "core": "CORE2A",
+      "units": [
+        {
+          "id": "U-CORE2A-BUCKET-RELATIVE-MOTION",
+          "bucket_id": "BUCKET-RELATIVE-MOTION",
+          "title": "Relative velocity in a plane",
+          "blocks": [
+            {
+              "id": "CORE2A-Q-AUTHOR-REL-01",
+              "kind": "QUESTION",
+              "obligation_ids": [
+                "OB-BUCKET-RELATIVE-MOTION-PRACTICE"
+              ],
+              "source_atom_ids": [
+                "DAT-KIN-ILLUSTRATIVE-PATH",
+                "DAT-NLM-ILLUSTRATIVE-SPEED",
+                "DAT-P-X",
+                "DAT-P-Y",
+                "DAT-PQ-X",
+                "DAT-PQ-Y",
+                "DAT-Q-X",
+                "DAT-Q-Y",
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VBA-X",
+                "DAT-VBA-Y",
+                "DAT-VEC-ORDER-LENGTH",
+                "DAT-W-X",
+                "DAT-W-Y",
+                "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+                "EQ-RELATIVE-VELOCITY-FORM"
+              ],
+              "source_id": "LIBRARY",
+              "source_question_id": "Q-AUTHOR-REL-01",
+              "source_refs": [
+                "SRC-AUTHOR"
+              ],
+              "origin": "AUTHORED",
+              "original_number": "AUTHOR-REL-01",
+              "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+              "subparts": [],
+              "options": [],
+              "conditions": [
+                "Constant velocities; common time and parallel nonrotating axes."
+              ],
+              "figure_refs": [
+                "REP-REL-VECTOR"
+              ],
+              "answer": {
+                "summary": "(6,-8) m/s, southeast; magnitude 10 m/s.",
+                "steps": [
+                  "Subtract (0,8) from (6,0).",
+                  "The southward component is 8 m/s and eastward component 6 m/s.",
+                  "Using a right triangle, magnitude is sqrt(36+64)=10 m/s."
+                ],
+                "check": "Over one second the relative displacement changes by (6,-8) m; reversing the observer gives (-6,8) m/s.",
+                "difficult_move": 0,
+                "numeric": {
+                  "value": 10,
+                  "unit": "m/s"
+                }
+              },
+              "hints": [
+                {
+                  "text": "Relative to B means measured from B. Which of the two velocities is the one being subtracted?",
+                  "reveals": "CONCEPT"
+                },
+                {
+                  "text": "Subtract axis by axis before doing anything with lengths, and keep both signs; the magnitude is something you compute from the answer, not the answer itself.",
+                  "reveals": "METHOD"
+                }
+              ],
+              "family": "FAM-RELATIVE-V",
+              "learner_action": "solve",
+              "exposure_role": "WORKED_EXAMPLE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

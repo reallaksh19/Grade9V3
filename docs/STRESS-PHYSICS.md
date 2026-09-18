@@ -145,6 +145,48 @@ true now.
 
 ---
 
+## S6 · The first publication from the library, and what it found
+
+`Physics/content/relative-motion-library` — five products, `basis: LIBRARY`, every block
+traced to a record. The first run in the repository that can say so.
+
+**It found that the entry rung reached nobody.** `MIC-MEASURED-FROM` was authored the day
+before with its capability, elicitation, misconception and exit oracle. Intake admitted it,
+the matrix bound it, `check_subjects` was green, `spec_delivery` was green — and it produced
+**no block in any product**, because no teaching route named it. A route is how a
+microtopic claims a product; the compiler emits nothing for one no route claims, and
+nothing said so.
+
+Measured across both subjects: **41 of 46 microtopics are claimed by a route, 5 are not** —
+all five in the two packages that predate the offload, none in the twelve the tracks
+authored. `reachability.py` reports them, in two states that mean different things:
+
+| | |
+|---|---|
+| `MICROTOPIC_REACHES_NO_PRODUCT` | the bucket has routes and they omit it — an omission |
+| `BUCKET_DECLARES_NO_TEACHING_ROUTE` | the bucket is not wired at all, visible at the bucket |
+
+Reported, not enforced: four of the five are content decisions belonging to those buckets'
+authors, including a non-assessment boundary note the benchmark records as *deliberately
+undecided*. The one that was mine is routed, and the entry rung now opens both teaching
+products.
+
+**Reading the page found a second defect.** The bucket's conventions are emitted first —
+correctly, since a convention is declared before it is used — and the one I wrote said
+*"every **component** … is signed"*. `component` is on the entry rung's own ceiling. The
+page handed a learner the word before the rung that teaches it, and `ceiling_audit` could
+not see it because it reads the record, not the composed page. Reworded; the check that
+would catch this class needs the compiled page and does not exist yet.
+
+**And a string heuristic broke twice in one hour.** `publication_provenance` scanned the
+plan's text for record ids: loose matching counted `CAP-RIGHT-TRIANGLE` wherever
+`CAP-RIGHT-TRIANGLE-BRIDGE` appeared; tightening it to whole tokens then missed
+`MIC-MEASURED-FROM` inside the block id `CORE1A-MIC-MEASURED-FROM-T`. Neither reading is
+fixable by a better pattern, because only the compiler knows what it read. It now emits
+`inputs/library_records.json` and the audit reads that: **49 declared, 49 confirmed.**
+
+---
+
 ## S4 · What the stress test did not break
 
 - **68 rungs, 14 matrices, 0 findings** against `matrix_conformance --enforce`.

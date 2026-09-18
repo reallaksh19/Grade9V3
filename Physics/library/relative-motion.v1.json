@@ -1228,6 +1228,7 @@
         "CORE1A"
       ],
       "microtopic_refs": [
+        "MIC-MEASURED-FROM",
         "MIC-SAME-TIME",
         "MIC-COMMON-INTERVAL",
         "MIC-GEOMETRIC-CHECK"
@@ -1275,6 +1276,7 @@
         "CORE1B"
       ],
       "microtopic_refs": [
+        "MIC-MEASURED-FROM",
         "MIC-SAME-TIME",
         "MIC-COMMON-INTERVAL",
         "MIC-GEOMETRIC-CHECK"
@@ -1443,7 +1445,7 @@
       "conventions": [
         {
           "id": "CONV-REL-AXES",
-          "statement": "Every component in this bucket is signed against one pair of directions: x counts east and y counts north, so a negative x is west and a negative y is south."
+          "statement": "Two directions are fixed for the whole bucket: x counts east and y counts north. A number written against x with a minus sign means west, and against y it means south."
         },
         {
           "id": "CONV-REL-ORDER",

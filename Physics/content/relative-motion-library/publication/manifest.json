@@ -1,0 +1,120 @@
+{
+  "basis_digest": "e5270dba6f9234eb297dae5dd2b25b3be17aef71ba72c882bf0a1809b750f689",
+  "runtime_digest": "755ed606607c6a340e5e6365400653e63d060c9ce170d2c03dee5ae1f87ee5f2",
+  "files": [
+    {
+      "path": "CORE1.html",
+      "sha256": "c009e27a991ec61ddc36ad841b227f9085e613f2442138e68b76c86e0617bd97"
+    },
+    {
+      "path": "CORE1A.html",
+      "sha256": "7bdc2ec9328f3a58d89ce4f43fed7842898b81a8b72c05229adf397e7b79a32d"
+    },
+    {
+      "path": "CORE1B.html",
+      "sha256": "8b261000542990983580ff92c7cb2b96eef110301d7b2002a3d71eff9e833c88"
+    },
+    {
+      "path": "CORE2.html",
+      "sha256": "85846878849e9f6420254d7d869f743e0a6c73acc33ad20ee0966f621e7ca09c"
+    },
+    {
+      "path": "CORE2A.html",
+      "sha256": "ea23d527620262ddf79f48cb1ebd65627de9c68ed87638487b2eae4c379712b8"
+    },
+    {
+      "path": "OWNER_BOARD.html",
+      "sha256": "bd29fa9c9aa5d6b75b8798a71dfa8a0c85f280bc2003673335d1bcdb3b77fff9"
+    },
+    {
+      "path": "evidence.json",
+      "sha256": "7130916ba29115b6c6fd5a5a003115053b5152d7bd99dfb48ab3368c0e21ec51"
+    },
+    {
+      "path": "figures/a5616e73071d596756597d10.svg",
+      "sha256": "44b6599f7b35378e58835cbfe10f16a358e5d9c9a48334e3047f4e676801a7b2"
+    },
+    {
+      "path": "inputs/baseline.json",
+      "sha256": "5d9112ce3eff808d5d2915cfdd7ab2a67abe74ef09151159906fcda75533a514"
+    },
+    {
+      "path": "inputs/plan.json",
+      "sha256": "cb393ab4c7aa0dc23941406eafea67e8d0e576c59c0b5cff7d3e7543d35524cf"
+    },
+    {
+      "path": "inputs/sources/sources/source.json",
+      "sha256": "fb45fd0a9108d631f41ceff924e91300d245577224aa38307f65bcc745fccbc5"
+    },
+    {
+      "path": "runtime/Physics/adapter/CoreContracts.json",
+      "sha256": "a97b73b148c7976627ed2fc67f4b38bf32e600bf16c1a383ec971bb2b5bfd4b5"
+    },
+    {
+      "path": "runtime/Physics/adapter/__init__.py",
+      "sha256": "0e50fd85793966af4e4511985b1def2518abb1d324b28fe2cd100eec5507600b"
+    },
+    {
+      "path": "runtime/Physics/adapter/scenes.py",
+      "sha256": "c6c060b0bac30c4dc50e6ae6d7b510dfa589e1a389c3b3cf866329cc704d8e9d"
+    },
+    {
+      "path": "runtime/Physics/adapter/validator.py",
+      "sha256": "0187de6feb5133d24b80b89d48f9402fef4665072fa12dd97d94bd8748eea9a5"
+    },
+    {
+      "path": "runtime/Physics/run.py",
+      "sha256": "730788e29601deb8ec7adb169410f0ce0a1de3c72dc6b9b746e0bacc4ed973fa"
+    },
+    {
+      "path": "runtime/Shared/__init__.py",
+      "sha256": "2ff32a69efbfc9f352bf8c64a02b3da54f824a1f6eab618d2364c08b6a3fc232"
+    },
+    {
+      "path": "runtime/Shared/contracts.py",
+      "sha256": "694fdde7a725490741f380597596c908258f6c9195de7e83e16a30498a896b3d"
+    },
+    {
+      "path": "runtime/Shared/publication_host/__init__.py",
+      "sha256": "7a570d99a08e7e0f8907f41350007c30d188de867d2a237b175c2f2c8a552798"
+    },
+    {
+      "path": "runtime/Shared/publication_host/adapter.py",
+      "sha256": "e6209f78a92445bcdebe1d828abc70f60a20487458a3dd2a6cea3f9460cba446"
+    },
+    {
+      "path": "runtime/Shared/publication_host/audit.py",
+      "sha256": "42db7d91eff9cb001b95b649d427b56cf5a28647e7ce7c929d6ee3941644d73b"
+    },
+    {
+      "path": "runtime/Shared/publication_host/cli.py",
+      "sha256": "7b23f2206ad6dc7cbd7f657dcc4f20586a2525fb8f2af3970d98a17f0483d472"
+    },
+    {
+      "path": "runtime/Shared/publication_host/compose.py",
+      "sha256": "5cf50fd9debabcdb812c07197295a03266de25c2cab88638b5bb2ab0fa854f65"
+    },
+    {
+      "path": "runtime/Shared/publication_host/drawing.py",
+      "sha256": "ecef46d3df3b3ee9354c2d5f32f8e3b9f63764eee6882afcbc5df608313c0268"
+    },
+    {
+      "path": "runtime/Shared/publication_host/host.py",
+      "sha256": "537c7337f4d2654fbd3dff220a265c000eeb2b9a44193df0186732e3dc31032d"
+    },
+    {
+      "path": "runtime/Shared/publication_host/inputs.py",
+      "sha256": "6aa80a86d46be598a8f4855c2b47e5c2fa3fe379cb27163f4ad4fdbdd511c14a"
+    },
+    {
+      "path": "runtime/Shared/publication_host/science.py",
+      "sha256": "202c5cad2428c640fb3da44cf64f57700ab213551042de8e1c740c80ba5f9578"
+    },
+    {
+      "path": "runtime/Shared/publication_host/storage.py",
+      "sha256": "deef788f71fd04c9dcfa9ad0b555a2bd7ef1f78743bfa65311a8fa3ed47be179"
+    }
+  ],
+  "release_authorized": false,
+  "portable_scope": "EXACT_INPUTS_AND_PUBLISH_VERIFY_COMMANDS; NOT_QUALIFIED_AUTHORING_RESTART"
+}
