@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 10,
-      "provenance": "SYNTHESIS",
-      "aha": "Angles in specular reflection are measured from the surface normal, and the reflected ray leaves with the same angle to that normal as the incident ray.",
-      "learner_owns": [
-        "Can trace a directed straight path and identify where it meets a surface."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "focus",
         "focal length",
@@ -24,12 +20,6 @@
         "The surface normal drawn at the point of incidence.",
         "Both incident and reflected rays labeled before angles are compared."
       ],
-      "misconception": {
-        "wrong_idea": "The angle of incidence is measured from the mirror surface.",
-        "diagnostic_prompt": "A ray makes 20 degrees with the mirror surface. Is its angle of incidence 20 degrees?",
-        "repair": "Draw the normal first; incidence and reflection angles are defined from that line, not from the surface."
-      },
-      "closure": "Given an incident ray and mirror surface, draw the normal and construct the reflected ray with equal normal-referenced angles.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -43,16 +33,13 @@
           "hold": "the physical incident and reflected geometry",
           "notice": "rotating the page does not change the normal-based law"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OPT-NORMAL-REFLECTION"
     },
     {
       "rung": "R2",
       "ladder_position": 25,
-      "provenance": "SYNTHESIS",
-      "aha": "An image location is determined by where reflected rays actually meet or where their backward extensions appear to meet; virtual describes ray geometry, not whether a camera can record it.",
-      "learner_owns": [
-        "R1: reflection direction is fixed by equal angles measured from the normal."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "principal ray",
         "focus",
@@ -63,12 +50,6 @@
         "At least two reflected rays from one object point.",
         "Solid rays for physical light paths and clearly distinguished backward extensions."
       ],
-      "misconception": {
-        "wrong_idea": "A virtual image is not a usable image and therefore cannot be photographed.",
-        "diagnostic_prompt": "A camera points at a plane mirror and records your reflection. Does that make the mirror image real?",
-        "repair": "Separate image geometry from recording: the mirror sends diverging rays that a camera lens can collect and refocus."
-      },
-      "closure": "From a two-ray construction, classify an image as real or virtual from ray-intersection geometry and explain why either can be viewed.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -82,16 +63,13 @@
           "hold": "the same rule for locating an image point",
           "notice": "real versus virtual is decided by ray geometry, not by visibility"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE"
     },
     {
       "rung": "R3",
       "ladder_position": 40,
-      "provenance": "SYNTHESIS",
-      "aha": "The Cartesian sign convention turns a mirror diagram into signed distances and heights; the signs come from declared directions, not from memorized object/image labels.",
-      "learner_owns": [
-        "R2: image nature is determined by actual versus backward-extended ray intersection."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "mirror formula",
         "magnification",
@@ -101,12 +79,6 @@
         "The pole, principal axis, and incident-light direction declared before distances receive signs.",
         "One horizontal and one vertical sign decision shown explicitly."
       ],
-      "misconception": {
-        "wrong_idea": "Object distance is always negative and image distance is always positive.",
-        "diagnostic_prompt": "Move the same object-and-mirror sketch so incident light travels the opposite page direction. Should the sign rule follow the page or the declared incident-light direction?",
-        "repair": "Apply the coordinate convention from the pole every time; signs follow measurement direction and height orientation."
-      },
-      "closure": "Assign signs to u, v, f, and image height on a stated mirror diagram without using a memorized object/image sign table.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -120,7 +92,8 @@
           "hold": "the same axis and vertical-positive convention",
           "notice": "height sign is independent of longitudinal distance sign"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OPT-SIGN-CONVENTION"
     },
     {
       "rung": "R4",
