@@ -22,7 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import capability_graph  # noqa: E402
+from Shared.tools import capability_delivery, capability_graph  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/worksheet-map.schema.json"
 
@@ -127,28 +127,30 @@ def _capability_row(capability_ref: str, role: str, index: dict) -> tuple[dict, 
         }])
 
     locations = list(index["locations"].get(capability_ref, []))
+    delivery = capability_delivery.resolve(cap, locations)
     row = {
         "role": role,
         "capability_ref": capability_ref,
-        "state": "RESOLVED" if len(locations) == 1 else (
-            "NO_TEACHING_LOCATION" if not locations else "AMBIGUOUS_LOCATION"
-        ),
+        "state": capability_delivery.legacy_state(delivery),
+        "delivery_state": delivery["state"],
+        "provider": delivery["provider"],
+        "acceptance_status": delivery["acceptance_status"],
         "action": cap.get("action"),
         "success_criterion": cap.get("success_criterion"),
         "microtopic_refs": list(index["microtopics_by_capability"].get(capability_ref, [])),
         "locations": locations,
     }
     findings = []
-    if not locations:
+    if delivery["state"] == capability_delivery.UNRESOLVED:
         findings.append({
             "point": NO_TEACHING_LOCATION,
             "capability": capability_ref,
             "detail": (
-                "the capability exists but no matrix rung currently reaches a canonical "
-                "microtopic that teaches it"
+                "the capability exists but has neither a local matrix/rung teaching "
+                "location nor a declared external provider"
             ),
         })
-    elif len(locations) > 1:
+    elif delivery["state"] == capability_delivery.AMBIGUOUS:
         findings.append({
             "point": AMBIGUOUS_LOCATION,
             "capability": capability_ref,
