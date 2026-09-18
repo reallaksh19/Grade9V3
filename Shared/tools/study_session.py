@@ -29,6 +29,7 @@ from Shared.tools import (  # noqa: E402
     capability_delivery,
     feedback,
     session_readiness,
+    study_map,
     worksheet_study_plan,
 )
 
@@ -605,8 +606,6 @@ def _primary_verification_supported(
     repo: Path = REPO,
 ) -> bool:
     """Whether canonical support can independently verify the question's primary capability."""
-    from Shared.tools import study_map
-
     primary = question.get("primary_capability_ref")
     if not primary:
         return False
