@@ -70,6 +70,20 @@
           "hold": "both masses",
           "notice": "equal steps in distance do not produce equal steps in force; the square controls the change"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-UNIVERSAL-GRAVITATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Inverse-square force and mass dependence need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "UNIVERSAL_GRAVITATION",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Quantitative force-ratio work needs an implemented validator."
+        }
       ]
     },
     {
@@ -104,6 +118,14 @@
           "vary": "test-object mass",
           "hold": "source mass and radius",
           "notice": "force changes with test mass but acceleration does not"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-GRAVITATIONAL-ACCELERATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The cancellation of test mass into gravitational acceleration needs gate ownership."
         }
       ]
     },
