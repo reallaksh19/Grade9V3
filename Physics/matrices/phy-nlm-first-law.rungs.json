@@ -9,7 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SOURCE",
+      "provenance": "AUTHORED",
       "ceiling": [
         "inertia",
         "equilibrium",
@@ -39,7 +39,7 @@
     {
       "rung": "R2",
       "ladder_position": 45,
-      "provenance": "SOURCE",
+      "provenance": "AUTHORED",
       "ceiling": [
         "equilibrium equation",
         "free-body diagram",
@@ -63,7 +63,7 @@
     {
       "rung": "R3",
       "ladder_position": 70,
-      "provenance": "SOURCE",
+      "provenance": "AUTHORED",
       "ceiling": [
         "Newton's third law",
         "interaction pair",
@@ -91,9 +91,38 @@
       "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
     },
     {
+      "rung": "R6",
+      "ladder_position": 80,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
+      "ceiling": [
+        "momentum derivative",
+        "impulse integral",
+        "non-inertial correction"
+      ],
+      "must_contain": [
+        "One chosen body with all signed external forces summed before using F = ma.",
+        "A zero-net-force boundary that recovers zero acceleration."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the signed net external force",
+          "hold": "the same positive mass",
+          "notice": "acceleration changes in direct proportion and follows the net-force sign"
+        },
+        {
+          "phase": 2,
+          "vary": "the mass",
+          "hold": "the same net force",
+          "notice": "larger mass gives smaller acceleration magnitude"
+        }
+      ]
+    },
+    {
       "rung": "R4",
-      "ladder_position": 90,
-      "provenance": "SOURCE",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
       "ceiling": [
         "inertial frame",
         "non-inertial frame",
