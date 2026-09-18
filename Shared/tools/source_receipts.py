@@ -202,6 +202,7 @@ def verify(receipt: dict, *, request: dict | None = None,
         "verified": verified,
         "coverage": receipt.get("coverage", {}),
         "inspection": receipt.get("inspection"),
+        "basis_assessment": receipt.get("basis_assessment"),
         "resource_refs": receipt.get("resource_refs", []),
         "findings": found,
     }
