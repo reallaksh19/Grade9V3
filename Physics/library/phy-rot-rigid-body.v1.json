@@ -54,13 +54,7 @@
       "badge_reason": "Multiple reference choices and coupled translation/rotation require explicit controlled comparisons.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
-      "prerequisite_refs": [],
-      "scope": {
-        "covers": "Conceptual rotation rungs R1, R3, R4 and R5; the torque equation rung R2 is intentionally not authored.",
-        "excluded": [
-          "Quantitative torque relation and its magnitude law remain blocked on an engineering gate relation."
-        ]
-      }
+      "prerequisite_refs": []
     }
   ],
   "capabilities": [
