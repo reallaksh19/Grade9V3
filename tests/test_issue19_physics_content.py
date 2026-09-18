@@ -36,7 +36,7 @@ KIN_EXT = {
     "CAP-KIN-CONSTANT-ACCELERATION",
     "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
 }
-NLM_EXT = {"CAP-NLM-SECOND-LAW"}
+NLM_EXT = {"CAP-NLM-FRICTION", "CAP-NLM-SECOND-LAW", "CAP-NLM-THIRD-LAW"}
 WEP_EXT = {
     "CAP-WEP-POWER-RATES",
     "CAP-WEP-ENERGY-DERIVATIONS",
@@ -128,10 +128,11 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
         deriv = self.records["CAP-WEP-ENERGY-DERIVATIONS"]
         self.assertIn("CAP-NLM-SECOND-LAW", deriv["prerequisite_refs"])
         self.assertIn("CAP-KIN-CONSTANT-ACCELERATION", deriv["prerequisite_refs"])
-        self.assertEqual(
-            self.records["CAP-NLM-SECOND-LAW"]["prerequisite_refs"],
-            ["CAP-NLM-FBD-BODY-OWNERSHIP"],
-        )
+        for cap_id in ("CAP-NLM-FRICTION", "CAP-NLM-SECOND-LAW", "CAP-NLM-THIRD-LAW"):
+            self.assertEqual(
+                self.records[cap_id]["prerequisite_refs"],
+                ["CAP-NLM-FBD-BODY-OWNERSHIP"],
+            )
         self.assertEqual(
             self.records["CAP-KIN-CONSTANT-ACCELERATION"]["prerequisite_refs"],
             ["CAP-KIN-ZERO-V-NONZERO-A"],
@@ -181,6 +182,10 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
             "Q-PHY-MACHINE-2A-01": (
                 "CAP-MACHINE-MA",
                 ["CAP-MACHINE-TRADEOFF"],
+            ),
+            "Q-PHY-NLM-PRACTICAL-12": (
+                "CAP-NLM-SECOND-LAW",
+                ["CAP-NLM-FBD-BODY-OWNERSHIP"],
             ),
         }
         for qid, (primary, secondary) in expected.items():
