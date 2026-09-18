@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/worksheet-map.schema.json",
+  "title": "Worksheet capability map",
+  "description": "Transient mapping from an arbitrary worksheet/question set to canonical capabilities. It is a planning artifact, not curriculum authority, learner evidence, or source custody.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["worksheet_id", "subject", "questions"],
+  "properties": {
+    "worksheet_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question_id",
+          "primary_capability_ref",
+          "secondary_capability_refs",
+          "mapping_basis"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "primary_capability_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "secondary_capability_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "mapping_basis": {
+            "enum": [
+              "MANUAL",
+              "AGENT_PROPOSAL",
+              "CANONICAL_QUESTION"
+            ]
+          },
+          "canonical_question_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
