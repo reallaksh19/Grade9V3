@@ -97,6 +97,10 @@ def _learner_route(request: dict, board: dict, caps: dict, mics: dict,
     elif "owner_estimate" in learner:
         candidate = resolve_request.entry_from_position(
             rows, learner["owner_estimate"].get("knowledge_percentage"))
+    elif "unknown" in learner:
+        return {"state": "BLOCKED", "entry": None, "bridges": [], "unresolved": [],
+                "reason": "LEARNER_ENTRY_EXPLICITLY_UNKNOWN",
+                "detail": "owner explicitly supplied no learner-entry evidence"}
     else:
         return {"state": "BLOCKED", "entry": None, "bridges": [], "unresolved": [],
                 "reason": "LEARNER_ENTRY_UNRECOGNISED"}
