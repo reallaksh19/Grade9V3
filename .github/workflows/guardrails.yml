@@ -63,6 +63,11 @@ jobs:
       - name: Verified curriculum mappings resolve to inspected sources
         run: python3 Shared/tools/curriculum_mapping_audit.py --enforce
 
+      # Buckets may opt into complete teaching custody.  For those buckets every owned
+      # microtopic must be present in both CORE1A and CORE1B routes.
+      - name: Opt-in teaching routes cover every owned microtopic
+        run: python3 Shared/tools/teaching_route_coverage.py --enforce
+
       # Engineering dependencies are declared by matrices but resolved only against
       # subject gates/contracts. Missing assets on backlog rows are reported; missing
       # assets on authored rows are contradictions.
