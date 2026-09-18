@@ -43,6 +43,20 @@
           "hold": "its direction",
           "notice": "the unit-direction arrow is unchanged by the original magnitude"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-UNIT-VECTOR-NORMALIZATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Normalising a nonzero vector to direction-only form needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "VECTOR_NORMALIZATION",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Quantitative normalization exits need an implemented validator."
+        }
       ]
     },
     {
@@ -81,6 +95,26 @@
           "vary": "the order in which the two vectors are placed tail-to-head",
           "hold": "the same two vectors",
           "notice": "the final resultant is unchanged, exposing commutativity of addition"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-VECTOR-ADDITION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Component and geometric vector addition need gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-VECTOR-RESULTANT-MAGNITUDE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The included-angle resultant-magnitude relation needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "VECTOR_RESULTANT",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Magnitude/resultant calculations need an implemented validator."
         }
       ]
     },
@@ -143,6 +177,26 @@
           "vary": "the angle between the vectors from perpendicular toward parallel",
           "hold": "their magnitudes and operand order",
           "notice": "the axial arrow shortens to zero as the input directions become parallel"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CROSS-PRODUCT",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Cross-product magnitude and operand-order orientation need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "CROSS_PRODUCT",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Quantitative cross-product exits need an implemented validator."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "AXIAL_VECTOR",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "The out-of-plane result needs an explicit axial-vector representation contract."
         }
       ]
     }
