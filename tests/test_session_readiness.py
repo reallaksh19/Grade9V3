@@ -267,5 +267,41 @@ class SessionReadiness(unittest.TestCase):
         )
 
 
+    def test_vector_representation_modernization_has_distinct_capabilities(self):
+        report = session_readiness.audit(
+            "Physics",
+            matrix_id="MATRIX-PHY-VECTOR-REPRESENTATION",
+        )
+        self.assertEqual(report["status"], session_readiness.READY_WITH_BRIDGE)
+        self.assertTrue(report["passed"])
+        self.assertEqual(
+            [row["capability_ref"] for row in report["rungs"]],
+            [
+                "CAP-VECTOR-VS-SCALAR",
+                "CAP-VECTOR-SIGNED-COMPONENT",
+                "CAP-GRAPHICAL-SUBTRACT",
+            ],
+        )
+        self.assertNotIn(
+            "READINESS_PREREQUISITE_AMBIGUOUS",
+            [row["point"] for row in report["findings"]],
+        )
+        self.assertTrue(all(row["core1a"] and row["core1b"] for row in report["rungs"]))
+        self.assertEqual(
+            {row["capability_ref"] for row in report["external_bridges"]},
+            {"CAP-SIGNED-PAIR-BRIDGE", "CAP-RIGHT-TRIANGLE-BRIDGE"},
+        )
+
+    def test_vector_add_sub_keeps_content_gaps_but_loses_prerequisite_ambiguity(self):
+        report = session_readiness.audit(
+            "Physics",
+            matrix_id="MATRIX-PHY-VEC-ADD-SUB",
+        )
+        self.assertEqual(report["status"], session_readiness.NOT_READY)
+        points = [row["point"] for row in report["findings"]]
+        self.assertIn("READINESS_MICROTOPIC_MISSING", points)
+        self.assertNotIn("READINESS_PREREQUISITE_AMBIGUOUS", points)
+
+
 if __name__ == "__main__":
     unittest.main()
