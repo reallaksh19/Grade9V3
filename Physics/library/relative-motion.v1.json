@@ -25,12 +25,12 @@
       "source_refs": [],
       "evidence_refs": [],
       "extensions": {},
-      "title": "CBSE Grade 9 optional Advanced Science",
+      "title": "CBSE Class IX Science Advanced 2026-27",
       "origin": "WEB",
       "locator": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/ScienceAd_SecP1_2026-27.pdf",
       "edition": "2026-27",
-      "section": "Chapter 2, sections 2.2–2.4; printed pages 10–12",
-      "last_checked": "2026-09-16",
+      "section": "Chapter 2, §§2.2–2.4 (frame of reference, relative motion, scalars/vectors, graphical vector addition) and Chapter 3, §3.1 (accelerating frames/pseudo force); printed pp.10–17",
+      "last_checked": "2026-09-18",
       "access_status": "SECTION_INSPECTED",
       "rights_status": "Reference only in seed; reproduction permission not established",
       "snapshot_ref": null,
@@ -39,10 +39,14 @@
         "CURRICULUM",
         "EXPLANATION"
       ],
-      "supports_claims": [],
+      "supports_claims": [
+        "Advanced Class IX material explicitly treats frame of reference and observer-dependent motion.",
+        "Advanced Class IX material explicitly treats scalars/vectors and graphical vector addition/subtraction.",
+        "Advanced Class IX material explicitly treats pseudo force in accelerating frames."
+      ],
       "entry_capabilities": [],
       "depth": [],
-      "selection_reason": "Ground observer dependence and graphical vector operations; do not infer full relative-velocity assessment scope.",
+      "selection_reason": "Official CBSE 2026-27 Advanced Science material used to distinguish prescribed Advanced content from local quantitative extensions.",
       "fallback": []
     },
     {
@@ -52,12 +56,12 @@
       "source_refs": [],
       "evidence_refs": [],
       "extensions": {},
-      "title": "CBSE Grade 9 Standard Science",
+      "title": "CBSE Class IX Science Standard 2026-27",
       "origin": "WEB",
       "locator": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/ScienceSt_SecP1_2026-27.pdf",
       "edition": "2026-27",
-      "section": "Motion; PDF page 14",
-      "last_checked": "2026-09-16",
+      "section": "Unit III: Motion; Force and Laws of Motion; Work, Energy and Simple Machines; Sound; printed pp.14–17",
+      "last_checked": "2026-09-18",
       "access_status": "SECTION_INSPECTED",
       "rights_status": "Reference only in seed; reproduction permission not established",
       "snapshot_ref": null,
@@ -65,10 +69,16 @@
       "role": [
         "CURRICULUM"
       ],
-      "supports_claims": [],
+      "supports_claims": [
+        "Standard Class IX Unit III prescribes Motion, Force and Laws of Motion, Work/Energy/Simple Machines, and Sound.",
+        "Standard Motion includes displacement, velocity, acceleration, motion graphs, constant-acceleration equations and elementary uniform circular motion.",
+        "Standard Force includes friction and Newton's first, second and third laws.",
+        "Standard Work/Energy includes constant-force work, work-energy theorem, kinetic/potential energy, conservation, power and mechanical advantage.",
+        "Standard Sound includes longitudinal propagation through a medium, wave characteristics, pitch/loudness, reflection, echo, reverberation and echolocation."
+      ],
       "entry_capabilities": [],
       "depth": [],
-      "selection_reason": "Distinguish standard one-dimensional scope from extension.",
+      "selection_reason": "Official CBSE 2026-27 Standard Science curriculum used as the Grade 9 Standard scope authority.",
       "fallback": []
     },
     {
