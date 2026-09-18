@@ -363,6 +363,11 @@ def _nlm2_validator(data):
     _undeclare_first_relation_validator(data, "PHY-NEWTON-SECOND-LAW")
 
 
+@mutates("FAL-WEP9-VALIDATOR")
+def _wep9_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-WORK-ENERGY-GRADE9")
+
+
 def registries():
     """Every subject's gate registries, with that subject's adapter and bindings."""
     import importlib
