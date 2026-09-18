@@ -1,0 +1,34 @@
+name: issue19-refresh-manifest-data
+
+on:
+  pull_request:
+    branches:
+      - architecture/final-release-authority
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.head_ref == 'content/issue-19-physics-math-matrices'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/issue-19-physics-math-matrices
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate manifest and explorer data
+        run: python3 Shared/tools/build_manifest.py
+      - name: Commit exact generated files
+        run: |
+          if git diff --quiet -- docs/architecture-manifest.json tools/data.js; then
+            echo "generated files already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture-manifest.json tools/data.js
+          git commit -m "Regenerate Issue 19 architecture artifacts"
+          git push origin HEAD:content/issue-19-physics-math-matrices
