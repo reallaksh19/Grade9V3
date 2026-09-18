@@ -248,7 +248,8 @@ def plan_ingestion(acquisition: dict, manifest: dict, package: dict,
     if not found:
         records = build_index([merged])
         coverage = source_receipts.derive_coverage(
-            records, acquisition["bucket_id"], [resource["id"]])
+            records, acquisition["bucket_id"], [resource["id"]],
+            subject=acquisition["subject"], repo=repo)
         receipt = {
             "receipt_id": f'SRCREC-{manifest["manifest_id"]}',
             "version": "1.0.0",
