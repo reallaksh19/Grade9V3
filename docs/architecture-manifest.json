@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:88e3ed134013098a29aa938ac35c7f307f783851ab2892f2a94ea561a7dce899",
+  "digest": "sha256:047a05de666ebe65c53fa3a00f00bc6efd923c62f17667a6c67c656c89c53385",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -596,8 +596,8 @@
       "path": "Shared/tools/study_session.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 36311,
-      "sha256": "938c2d965fc889c7c9d297097bf0a81af58bc1de2080ab888df8968c1dd4a2e2"
+      "bytes": 36286,
+      "sha256": "ce8ec278fda4d2334295e9c90534f53cba15f3ae929008d545241e1f732e1722"
     },
     {
       "path": "Shared/tools/study_start.py",
