@@ -970,32 +970,20 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 2,
+            "questions": 2,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -1217,32 +1205,20 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 2,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -1463,32 +1439,20 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 2,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -1641,7 +1605,20 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-VECREP-2B-01",
+              "stem": "Two directed positions P and Q are drawn from the same origin. The task asks for the directed change from the endpoint of Q to the endpoint of P, but it does not name an operation. Decide whether the required result is a sum, a difference, or only a magnitude, and describe the construction.",
+              "origin": "AUTHORED",
+              "answer": "The directed change from Q to P is P minus Q. Reverse Q without changing its length, add the reversed vector to P tail-to-head, and keep the signed direction of the resultant."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -1680,36 +1657,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 33,
+          "record_count": 35,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 4,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",
@@ -1937,27 +1902,19 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 1,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -2233,7 +2190,20 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-VECREP-2B-01",
+              "stem": "Two directed positions P and Q are drawn from the same origin. The task asks for the directed change from the endpoint of Q to the endpoint of P, but it does not name an operation. Decide whether the required result is a sum, a difference, or only a magnitude, and describe the construction.",
+              "origin": "AUTHORED",
+              "answer": "The directed change from Q to P is P minus Q. Reverse Q without changing its length, add the reversed vector to P tail-to-head, and keep the signed direction of the resultant."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -2296,36 +2266,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 41,
+          "record_count": 43,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 5,
+            "questions": 6,
+            "obligations": 7,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",
@@ -2554,32 +2512,20 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 2,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -2737,27 +2683,19 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 2,
+            "questions": 1,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -3046,32 +2984,20 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 4,
+            "questions": 2,
+            "obligations": 6,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -3355,32 +3281,20 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 4,
+            "questions": 2,
+            "obligations": 6,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -3477,7 +3391,20 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-VECREP-2B-01",
+              "stem": "Two directed positions P and Q are drawn from the same origin. The task asks for the directed change from the endpoint of Q to the endpoint of P, but it does not name an operation. Decide whether the required result is a sum, a difference, or only a magnitude, and describe the construction.",
+              "origin": "AUTHORED",
+              "answer": "The directed change from Q to P is P minus Q. Reverse Q without changing its length, add the reversed vector to P tail-to-head, and keep the signed direction of the resultant."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -3510,36 +3437,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 29,
+          "record_count": 31,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 2,
+            "questions": 4,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",
@@ -3816,7 +3731,20 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-VECREP-2B-01",
+              "stem": "Two directed positions P and Q are drawn from the same origin. The task asks for the directed change from the endpoint of Q to the endpoint of P, but it does not name an operation. Decide whether the required result is a sum, a difference, or only a magnitude, and describe the construction.",
+              "origin": "AUTHORED",
+              "answer": "The directed change from Q to P is P minus Q. Reverse Q without changing its length, add the reversed vector to P tail-to-head, and keep the signed direction of the resultant."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -3897,36 +3825,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 46,
+          "record_count": 48,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 20,
-            "questions": 0,
-            "obligations": 5,
+            "questions": 7,
+            "obligations": 7,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",
@@ -4299,6 +4215,24 @@ window.GRADE9V3 = {
               "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
               "origin": "AUTHORED",
               "answer": "(6,-8) m/s, southeast; magnitude 10 m/s."
+            },
+            {
+              "id": "Q-AUTHOR-REL-02",
+              "stem": "A rescue boat and a drifting marker are each shown by velocity arrows in the bank frame. The question asks for the velocity of the boat relative to the marker. Without being told the subtraction order, state which velocity must be subtracted from which and give one observer-reversal check.",
+              "origin": "AUTHORED",
+              "answer": "Use v_boat/marker = v_boat/bank - v_marker/bank. Reversing the requested observer order gives the opposite vector."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-VECREP-2B-01",
+              "stem": "Two directed positions P and Q are drawn from the same origin. The task asks for the directed change from the endpoint of Q to the endpoint of P, but it does not name an operation. Decide whether the required result is a sum, a difference, or only a magnitude, and describe the construction.",
+              "origin": "AUTHORED",
+              "answer": "The directed change from Q to P is P minus Q. Reverse Q without changing its length, add the reversed vector to P tail-to-head, and keep the signed direction of the resultant."
             }
           ],
           "capabilities": [
@@ -4363,7 +4297,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 49,
+          "record_count": 52,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4371,17 +4305,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 21,
-            "questions": 1,
+            "questions": 4,
             "obligations": 8,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -4635,7 +4565,20 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-VECREP-2B-01",
+              "stem": "Two directed positions P and Q are drawn from the same origin. The task asks for the directed change from the endpoint of Q to the endpoint of P, but it does not name an operation. Decide whether the required result is a sum, a difference, or only a magnitude, and describe the construction.",
+              "origin": "AUTHORED",
+              "answer": "The directed change from Q to P is P minus Q. Reverse Q without changing its length, add the reversed vector to P tail-to-head, and keep the signed direction of the resultant."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -4662,21 +4605,19 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 25,
+          "record_count": 27,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
-              "CORE1"
+              "CORE1",
+              "CORE2",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 21,
-            "questions": 0,
-            "obligations": 2,
+            "questions": 2,
+            "obligations": 4,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1A",
@@ -4686,31 +4627,6 @@ window.GRADE9V3 = {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1B",
                 "detail": "no teaching route claims this product for this bucket's microtopics"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-VECTOR-VS-SCALAR",
-                "detail": "no supported product or no data bound to its relations"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-SIGNED-COMPONENT",
-                "detail": "no supported product or no data bound to its relations"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-GRAPHICAL-SUBTRACTION",
-                "detail": "no supported product or no data bound to its relations"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",

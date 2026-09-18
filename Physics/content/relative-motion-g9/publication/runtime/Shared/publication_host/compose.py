@@ -53,16 +53,15 @@ def compose(ctx):
                 if block.get("placement") == "ANSWER":
                     answers.append(wrapped)
                 elif block.get("placement") == "ELICITED_REVEAL":
-                    # Closed, and open-able. The role wants attempt-first ordering and
-                    # also says the answer stays accessible rather than locked, which is
-                    # exactly what <details> is: a self-study learner can open it, and
-                    # cannot read it by accident on the way past.
+                    # Closed, and open-able. Question reveals keep their full answer
+                    # inside the same disclosure so a transfer task is genuinely
+                    # attempt-first rather than linking an open answer section below.
                     body += ('<details class="reveal"><summary>Check your answer</summary>'
-                             + wrapped + '</details>')
+                             + wrapped + (answer or '') + '</details>')
                 else:
                     body += wrapped
-                if answer:
-                    answers.append(answer)
+                    if answer:
+                        answers.append(answer)
         body += '<section class="answer-section" id="answers"><h2>Hints, answers and repair</h2>'
         body += ''.join(answers) + '</section>'
         files[core + '.html'] = document(ctx["plan"]["title"] + ' · ' + core, body)
@@ -145,7 +144,21 @@ def _question(ctx, block, numeric_assessment):
         n = answer["numeric"]
         reveal += f'<p class="numeric"><span data-answer-value="{qid}" data-unit="{escape(n["unit"], quote=True)}">{escape(str(n["value"]))}</span> {escape(n["unit"])}</p>'
     reveal += _list(answer["steps"]) + _list(answer.get("subparts", []))
-    reveal += '<p><strong>Check:</strong> ' + escape(answer["check"]) + '</p></article>'
+    reveal += '<p><strong>Check:</strong> ' + escape(answer["check"]) + '</p>'
+    if answer.get("rubric"):
+        reveal += '<p><strong>Rubric:</strong></p><ul>'
+        for row in answer["rubric"]:
+            reveal += ('<li>' + escape(row["criterion"]) + ' — '
+                       + escape(row["evidence_of"]) + '</li>')
+        reveal += '</ul>'
+    if block.get("transfer"):
+        transfer = block["transfer"]
+        reveal += ('<p><strong>Changed demand:</strong> '
+                   + escape(transfer["dimension"]) + ' — '
+                   + escape(transfer["statement"]) + '</p>')
+    if block.get("repair_ref"):
+        reveal += '<p><strong>Repair route:</strong> <code>' + escape(block["repair_ref"]) + '</code></p>'
+    reveal += '</article>'
     return body, reveal
 
 
