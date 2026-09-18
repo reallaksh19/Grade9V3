@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 10,
-      "provenance": "SYNTHESIS",
-      "aha": "Current is a rate of charge passing a boundary; charge is not used up by a resistor.",
-      "learner_owns": [
-        "Can count charge carriers or total charge crossing a point over a time interval."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "potential difference",
         "resistance",
@@ -24,12 +20,6 @@
         "A boundary in a wire and equal time windows so current is read as charge-per-time.",
         "A series path in which entering and leaving current can be compared."
       ],
-      "misconception": {
-        "wrong_idea": "Current gets smaller after charge passes through a resistor.",
-        "diagnostic_prompt": "One ampere enters a resistor in a single unbranched path. In steady operation, what current leaves it?",
-        "repair": "Track charge through the boundary: steady current cannot accumulate charge inside the resistor."
-      },
-      "closure": "Given a steady single-path circuit, state whether current changes across one resistor and justify it with charge conservation.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -37,7 +27,8 @@
           "hold": "the charge flow has no junction and no place for steady charge accumulation",
           "notice": "the current is the same on both sides even though other electrical quantities may change"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-ELEC-CURRENT-CONSERVATION"
     },
     {
       "rung": "R2",
