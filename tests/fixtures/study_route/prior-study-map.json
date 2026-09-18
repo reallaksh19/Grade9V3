@@ -1,0 +1,12 @@
+{
+  "study_map_id": "PRIOR-STUDY-DEMO",
+  "rows": [
+    {
+      "question_ref": "Q13",
+      "capability_ref": "CAP-MATH-ISOLATE",
+      "observed": "Equation setup was plausible but isolation steps were unstable.",
+      "suggested_state": "UNCERTAIN"
+    }
+  ],
+  "note": "C0 fixture only. C3 will define the importer into canonical learner observations."
+}
