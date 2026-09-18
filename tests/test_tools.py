@@ -15,8 +15,8 @@ from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
     check_subjects, capability_collisions, learner_evidence, matrix_conformance,
-    publication_provenance, resolve_request, spec_conformance, spec_delivery,
-    topic_independence_guard,
+    practice_readiness, publication_provenance, resolve_request, spec_conformance,
+    spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -1325,6 +1325,23 @@ class ResolveRequest(unittest.TestCase):
                                       f'compile_inputs does not support it')
             checked += 1
         self.assertGreater(checked, 0, "no matrices, so this asserts nothing")
+
+
+class PracticeReadiness(unittest.TestCase):
+    def test_planner_never_calls_an_uncompilable_practice_core_ready(self):
+        report = practice_readiness.audit("Physics")
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertGreater(len(report["buckets"]), 0)
+
+    def test_relative_motion_exposes_only_the_practice_core_its_question_supports(self):
+        report = practice_readiness.audit("Physics")
+        row = next(r for r in report["buckets"] if r["bucket"] == "BUCKET-RELATIVE-MOTION")
+        self.assertTrue(row["exposed"]["CORE2A"])
+        self.assertEqual(row["exposed"]["CORE2B"], [])
+        self.assertEqual(row["planner"]["CORE2A"]["state"], "READY")
+        self.assertEqual(row["planner"]["CORE2B"]["state"], "BLOCKED")
+        self.assertIn("CORE2A", row["compiler_selected"])
+        self.assertNotIn("CORE2B", row["compiler_selected"])
 
 
 class CeilingAudit(unittest.TestCase):
