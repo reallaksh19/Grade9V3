@@ -28,11 +28,11 @@ class WorksheetStudyMap(unittest.TestCase):
         first = report["questions"][0]
         primary = next(row for row in first["capabilities"] if row["role"] == "PRIMARY")
         secondary = next(row for row in first["capabilities"] if row["role"] == "SECONDARY")
-        self.assertEqual(primary["capability_ref"], "CAP-KIN-MOTION-GRAPHS")
+        self.assertEqual(primary["capability_ref"], "CAP-KIN-ZERO-V-NONZERO-A")
         self.assertEqual(primary["locations"][0]["matrix_id"], "MATRIX-PHY-KIN-1D-MOTION")
-        self.assertEqual(primary["locations"][0]["rung"], "R4G")
-        self.assertEqual(secondary["capability_ref"], "CAP-KIN-ZERO-V-NONZERO-A")
-        self.assertEqual(secondary["locations"][0]["rung"], "R3")
+        self.assertEqual(primary["locations"][0]["rung"], "R3")
+        self.assertEqual(secondary["capability_ref"], "CAP-KIN-DISTANCE-DISPLACEMENT")
+        self.assertEqual(secondary["locations"][0]["rung"], "R1")
 
         matrices = {
             row["locations"][0]["matrix_id"]
@@ -45,7 +45,7 @@ class WorksheetStudyMap(unittest.TestCase):
         mapping = self.physics()
         mapping["questions"] = [{
             "question_id": "SCHOOL-WORKSHEET-Q999",
-            "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
+            "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
             "secondary_capability_refs": [],
             "mapping_basis": "MANUAL",
         }]
@@ -77,7 +77,7 @@ class WorksheetStudyMap(unittest.TestCase):
         first = report["questions"][0]
         self.assertEqual(
             first["secondary_capability_refs"],
-            ["CAP-KIN-ZERO-V-NONZERO-A"],
+            ["CAP-KIN-DISTANCE-DISPLACEMENT"],
         )
         self.assertNotIn("prerequisites", first)
         self.assertNotIn("prerequisite_closure", first)
@@ -97,10 +97,10 @@ class WorksheetStudyMap(unittest.TestCase):
         mapping = self.physics()
         mapping["questions"] = [{
             "question_id": "COPY-OF-CANONICAL-Q",
-            "primary_capability_ref": "CAP-KIN-DISTANCE-DISPLACEMENT",
+            "primary_capability_ref": "CAP-MEASURED-FROM",
             "secondary_capability_refs": [],
             "mapping_basis": "CANONICAL_QUESTION",
-            "canonical_question_ref": "Q-PHY-KIN-2A-COV-05",
+            "canonical_question_ref": "Q-AUTHOR-REL-01",
         }]
         report = study_map.resolve(mapping)
         self.assertFalse(report["passed"])
