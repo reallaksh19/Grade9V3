@@ -395,6 +395,59 @@
       ],
       "proves": "Electrical power follows from the declared element voltage and current under the stated sign convention.",
       "does_not_prove": "That an Ohmic V-I model applies or that the element is dissipative."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "a",
+        "t"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "a": "m/s^2",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "t >= 0",
+        "a is constant over the interval",
+        "one signed axis is used consistently"
+      ],
+      "proves": "Signed displacement follows from u t + 0.5 a t^2 under constant acceleration.",
+      "does_not_prove": "That acceleration is actually constant in the described motion."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_NO_TIME",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "a",
+        "s"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "a": "m/s^2",
+        "s": "m"
+      },
+      "result": {
+        "shape": "STRUCTURED_STATE",
+        "fields": [
+          "v_squared_m2_s2"
+        ],
+        "comparison": "FIELDWISE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "a is constant over the interval",
+        "one signed axis is used consistently"
+      ],
+      "proves": "The final speed-squared state follows from u^2 + 2 a s under constant acceleration.",
+      "does_not_prove": "Which signed root for v is physically appropriate; direction must come from the motion context."
     }
   ],
   "representation_kinds": [
