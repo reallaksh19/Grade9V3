@@ -22,6 +22,20 @@ The intended order is:
 Use the question wording from the linked source page when presenting the problem to the
 learner.
 
+## River/boat supporting sources
+
+Use source roles conservatively:
+
+- official NCERT exemplar and OpenStax are the preferred scientific/question-demand
+  cross-checks for ordinary constant-current river crossing;
+- the Physics Anand article is a supplementary worked explanation for the distinction
+  between direct-opposite/shortest-path crossing and shortest-time crossing;
+- the Scribd Physicsaholics DPP is an external practice-demand bank only. Do not copy its
+  question set into canonical content or expose its answer key before an attempt.
+
+The detailed custody/use decision is recorded in
+`docs/relative-motion-river-boat-source-audit.md`.
+
 ## Before the learner starts
 
 Do not invent either of these inputs:
