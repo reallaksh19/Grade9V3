@@ -128,7 +128,7 @@
           "phase": 1,
           "vary": "applied potential difference across one device",
           "hold": "device identity and thermal condition",
-          "notice": "an ohmic device keeps V/I constant while a non-ohmic device need not"
+          "notice": "a constant-resistance model keeps V/I unchanged across operating points under the fixed condition, while a non-ohmic response need not"
         },
         {
           "phase": 2,
