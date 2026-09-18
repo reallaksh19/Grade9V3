@@ -5,7 +5,8 @@ on:
     branches: ["fix/p0-plan-compiler-agreement"]
 
 permissions:
-  contents: read
+  contents: write
+  actions: write
 
 jobs:
   regenerate-and-test:
@@ -41,3 +42,16 @@ jobs:
             docs/architecture-manifest.json
             tools/data.js
           if-no-files-found: error
+
+      - name: Commit tested final tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Regenerate PR9 artifacts and remove one-shot workflow"
+          git push origin HEAD:fix/p0-plan-compiler-agreement
+
+      - name: Dispatch guardrails on final commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run guardrails.yml --ref fix/p0-plan-compiler-agreement
