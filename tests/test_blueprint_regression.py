@@ -90,7 +90,7 @@ class BlueprintRegression(unittest.TestCase):
         workflow = GUARDRAILS.read_text(encoding="utf-8")
         self.assertIn("Blueprint architecture regression", workflow)
         self.assertIn(
-            "python3 -m unittest tests.test_blueprint_regression -v",
+            "python3 -m unittest discover -s tests -p "test_blueprint_regression.py" -v",
             workflow,
         )
         self.assertIn("Empirical learner acceptance status", workflow)
