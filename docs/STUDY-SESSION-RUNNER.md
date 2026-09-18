@@ -37,6 +37,21 @@ python3 Shared/tools/study_session.py plan \
 The estimate chooses where to try first inside the matrix. It never marks earlier
 capabilities demonstrated.
 
+## Validity versus execution readiness
+
+The plan now keeps two different ideas separate:
+
+- `valid=true`: the worksheet route and capability delivery graph are structurally sound;
+- `ready=true`: the plan is valid and every external-provider prerequisite needed for this
+  learner is already satisfied.
+
+A Relative Motion plan can therefore be valid while still returning `ready=false` and a
+Mathematics bridge as the first action. If learner evidence already demonstrates that
+prerequisite, the same route becomes ready and the bridge is skipped.
+
+All prerequisite delivery decisions use the shared `capability_delivery` resolver rather
+than reimplementing bridge logic in the session layer.
+
 ## Record one attempt
 
 The runner does not decide whether a free-form answer is correct. A human or another
