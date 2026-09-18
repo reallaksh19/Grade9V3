@@ -1,0 +1,36 @@
+rerun_id: "QSM-RERUN-4700abde-MATRIX-MATH-LINEAR-EQUATIONS"
+baseline_commit: "4700abdefecefd6211488a527594dabba8797e89"
+subject: "Mathematics"
+matrix_id: "MATRIX-MATH-LINEAR-EQUATIONS"
+subtopic: "One-unknown linear equations over the rationals"
+readiness: "SESSION_READY"
+overall_status: "PASS"
+original_pack: "benchmarks/question-study-map/cases/Mathematics/MATRIX-MATH-LINEAR-EQUATIONS/"
+case_statuses:
+  unknown_learner: PASS
+  rough_owner_estimate: PASS
+  prior_learner_evidence: PASS
+  feedback_diagnosis: PASS
+  repair: PASS
+  fresh_verification: PASS
+  helped_success: PASS
+  independent_success: PASS
+  direct_mapping: PASS
+  prerequisite_route: PASS
+  multi_capability: PASS
+  repeated_demand: NOT_APPLICABLE
+  external_bridge: NOT_APPLICABLE
+  content_gap: NOT_APPLICABLE
+  incomplete_source: NOT_APPLICABLE
+runtime_semantics:
+  usable_demanded_rung_in_incomplete_matrix: "EXECUTE_WITH_FALLBACK"
+  missing_or_ambiguous_demanded_teaching: "OWNER_DECISION"
+  blocked_prerequisite_propagates_to_dependents: true
+  unrelated_branch_may_continue: true
+  no_fresh_verification_caps_mastery_at: "UNCERTAIN"
+notes:
+  - "Normal ready/bridge routing remains unchanged by the fallback-first runtime work."
+  - "Independent correctness may draft DEMONSTRATED only when canonical fresh verification exists; otherwise #62 limits the observation draft to UNCERTAIN."
+boundary:
+  production_repairs_in_rerun: false
+  learner_episode_fabricated: false
