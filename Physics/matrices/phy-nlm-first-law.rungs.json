@@ -2,13 +2,13 @@
   "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
   "subject": "Physics",
   "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
-  "topic": "Laws of Motion",
-  "subtopic": "Newton's first law and free-body diagrams",
+  "topic": "Force and Laws of Motion",
+  "subtopic": "Balanced forces, friction and Newton's laws",
   "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
   "rungs": [
     {
       "rung": "R1",
-      "ladder_position": 20,
+      "ladder_position": 15,
       "provenance": "SOURCE",
       "ceiling": [
         "inertia",
@@ -38,7 +38,7 @@
     },
     {
       "rung": "R2",
-      "ladder_position": 45,
+      "ladder_position": 30,
       "provenance": "SOURCE",
       "ceiling": [
         "equilibrium equation",
@@ -61,8 +61,37 @@
       "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO"
     },
     {
+      "rung": "R5",
+      "ladder_position": 45,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "coefficient of friction",
+        "limiting friction formula",
+        "rolling resistance model"
+      ],
+      "must_contain": [
+        "A named contact surface and a relative-sliding or slip-tendency statement.",
+        "A conveyor-belt counterexample where friction need not point opposite the object's ground-frame velocity."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the belt speed relative to the box",
+          "hold": "the same contact pair",
+          "notice": "friction direction follows relative slip tendency at the contact"
+        },
+        {
+          "phase": 2,
+          "vary": "the object's ground-frame motion direction",
+          "hold": "the same relative slip tendency",
+          "notice": "friction is not defined by the object's velocity alone"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION"
+    },
+    {
       "rung": "R3",
-      "ladder_position": 70,
+      "ladder_position": 60,
       "provenance": "SOURCE",
       "ceiling": [
         "Newton's third law",
@@ -91,8 +120,80 @@
       "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
     },
     {
+      "rung": "R6",
+      "ladder_position": 80,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "momentum derivative",
+        "impulse integral",
+        "non-inertial correction"
+      ],
+      "must_contain": [
+        "One chosen body with all signed external forces summed before using F = ma.",
+        "A zero-net-force boundary that recovers zero acceleration."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the signed net external force",
+          "hold": "the same positive mass",
+          "notice": "acceleration changes in direct proportion and follows the net-force sign"
+        },
+        {
+          "phase": 2,
+          "vary": "the mass",
+          "hold": "the same net force",
+          "notice": "larger mass gives smaller acceleration magnitude"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-NEWTON-SECOND-LAW",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Grade 9 quantitative force-acceleration work needs gate-owned F_net = m a."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "NEWTON_SECOND_LAW",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Numerical net-force exits need the implemented Physics validator."
+        }
+      ]
+    },
+    {
+      "rung": "R7",
+      "ladder_position": 95,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "momentum conservation derivation",
+        "field exchange",
+        "relativistic interaction"
+      ],
+      "must_contain": [
+        "The same interaction named twice as A-on-B and B-on-A.",
+        "Equal-and-opposite partner arrows placed on different body diagrams."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which body is selected for the free-body diagram",
+          "hold": "the same interaction pair",
+          "notice": "only the force acting on the selected body appears in that diagram"
+        },
+        {
+          "phase": 2,
+          "vary": "the strength of the interaction",
+          "hold": "the same two bodies and interaction",
+          "notice": "both partner magnitudes change together while remaining opposite"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-THIRD-LAW"
+    },
+    {
       "rung": "R4",
-      "ladder_position": 90,
+      "ladder_position": 100,
       "provenance": "SOURCE",
       "ceiling": [
         "inertial frame",
@@ -157,6 +258,18 @@
       "changed_demand": "Two connected bodies must be analysed with one free-body diagram per body and the shared interaction linked across the equations.",
       "information_not_handed_over": "which equal-and-opposite forces belong to different equations",
       "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A one-body force diagram must be converted into a signed net-force equation before acceleration is calculated.",
+      "information_not_handed_over": "which individual forces belong in the same body's signed sum",
+      "repair_to": "R6"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A contact problem is described using object motion rather than relative slip, so the learner must decide the friction direction from the contact tendency.",
+      "information_not_handed_over": "which way the contacting surfaces tend to slide relative to each other",
+      "repair_to": "R5"
     }
   ]
 }
