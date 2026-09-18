@@ -49,6 +49,38 @@ The derivation capability carries explicit cross-topic prerequisites into Newton
 Second Law and constant-acceleration kinematics. No cross-matrix ordering is inferred
 from ladder positions.
 
+### Physics — Sound
+
+Migrated the scientifically useful authored Sound spine while deliberately holding the
+donor's curriculum-specific heritage row:
+
+- sound production by vibration and the role of a material medium;
+- longitudinal propagation with particle motion separated from disturbance propagation;
+- period/frequency/wavelength/amplitude/speed graph reasoning;
+- pitch/loudness/audible-range reasoning;
+- reflected-sound timing, echo, reverberation and echolocation;
+- five retained authored Core2A questions;
+- wave-speed, frequency-period and echo-distance validator support.
+
+The PR #9 Gol Gumbaz/C. V. Raman heritage capability, microtopic, question and matrix
+row were **not** migrated because their justification depended on the donor's
+`SRC-CBSE-STD` curriculum claim, which is not canonical in that package. This remains
+an explicit source-held gap rather than being relabelled as generic authored coverage.
+
+### Physics — Simple Machines
+
+Migrated the authored effort/load tradeoff, mechanical-advantage and machine-comparison
+spine:
+
+- three capabilities/microtopics/rungs;
+- explicit prerequisite `CAP-MACHINE-TRADEOFF → CAP-WEP-GRADE9-QUANT`;
+- mechanical-advantage and ideal work-tradeoff relations;
+- two retained authored Core2A questions;
+- executable mechanical-advantage validation.
+
+This material is carried as owner extension because the donor's verified curriculum
+mapping again relied on a non-canonical `SRC-CBSE-STD` binding.
+
 ## Mathematics added from current canonical content
 
 PR #9 contains no Mathematics matrix donor for the existing linear-equations package.
@@ -73,7 +105,6 @@ The following PR #9 content is deliberately not imported merely because it exist
 
 - PR #9 Shared/library, Shared/tools, Shared/roles or other framework changes;
 - friction and Newton's third-law donor material;
-- Sound and Simple-Machines donor gates/validators/content;
 - additional vector/other Physics donor content not yet reviewed as the next coherent
   slice;
 - PR #9 curriculum mappings that rely on `SRC-CBSE-STD` where the canonical package
