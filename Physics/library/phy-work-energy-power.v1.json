@@ -1795,8 +1795,8 @@
       "conditions": [
         "m > 0.",
         "g > 0.",
-        "Near-Earth field is approximately uniform over the height range.",
-        "Downward direction is supplied by the physical geometry."
+        "Near-Earth field is treated as approximately uniform over the height range.",
+        "This relation gives the force magnitude; downward direction is supplied by the physical geometry."
       ],
       "derivation": [
         {

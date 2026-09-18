@@ -1673,17 +1673,17 @@
         },
         {
           "symbol": "u",
-          "meaning": "Initial velocity along the declared axis",
+          "meaning": "Initial velocity that sets the rectangle height in the straight velocity-time construction",
           "unit_or_domain": "m/s; signed scalar"
         },
         {
           "symbol": "v",
-          "meaning": "Final velocity along the declared axis",
+          "meaning": "Final velocity at the endpoint of the straight velocity-time construction",
           "unit_or_domain": "m/s; signed scalar"
         },
         {
           "symbol": "t",
-          "meaning": "Elapsed time",
+          "meaning": "Elapsed horizontal time base of the velocity-time region",
           "unit_or_domain": "s; nonnegative scalar"
         }
       ],
