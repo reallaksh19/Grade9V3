@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:06d6729d851b41d366ae1b9a80000d1e6b35f8d53e60d7c4673b9d0ca736e2dc",
+  "digest": "sha256:a27997f39b89d5fc05d1d7417314c19e0dd951a858127ed8c053d1faddd47b04",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -596,15 +596,15 @@
       "path": "Shared/tools/study_session.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 23480,
-      "sha256": "6c3202f222448ca63210d242a0ba2a73b5657ddebc940f9b1f7a8ef974644052"
+      "bytes": 29082,
+      "sha256": "76c48f1317a8e051edceb608fa72b0103f1c13dcd7bc2dfe14f0e3c4df0d0196"
     },
     {
       "path": "Shared/tools/study_start.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10934,
-      "sha256": "ffbcdca9cf0d6db41e3dab26cc512f51706cf82b95d66d3ead4c06824e80cdf6"
+      "bytes": 11301,
+      "sha256": "11d0808f41b6e1452b26e87cdbc471133c11603f63a84279734f774e9ed01bba"
     },
     {
       "path": "Shared/tools/topic_independence_allowlist.json",
@@ -624,8 +624,8 @@
       "path": "Shared/tools/worksheet_study_plan.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 16634,
-      "sha256": "6adff0bb3565b4670c75c88663fc5dce5f8b7bbcf7953002ee8e4602fb87cb9b"
+      "bytes": 17162,
+      "sha256": "398965f0f5ca57a42334915cf5c62cb05ba936b544656e89437da55b300eb3ba"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
@@ -897,15 +897,15 @@
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11453,
-      "sha256": "73517c438845b376b0e17ebb4eb731ecca3e94563b768f82c0f97b6e18d4085b"
+      "bytes": 14228,
+      "sha256": "a4c247977ef527c456c850792e2e39c62490c7491e250492ce1eef1bb98d5db5"
     },
     {
       "path": "tests/test_study_start.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8342,
-      "sha256": "a3f44efc083400b1b3df939249f508e59411e1fcc3fba4313d11842d966d490e"
+      "bytes": 8899,
+      "sha256": "145b8a81bbc2f1fec55161059f36772fc3b765ca9bd1467447cf7ef3a4c860ce"
     },
     {
       "path": "tests/test_tools.py",
