@@ -1,0 +1,46 @@
+{
+  "worksheet_id": "NEETPREP-MQB-RELATIVE-MOTION-ROUTABLE-SLICE",
+  "subject": "Physics",
+  "source_note": "External demand evidence from NEETPrep Mini Q Bank - Motion in a Plane, Relative Motion filter. Only the text-visible questions that map cleanly to existing canonical capabilities are included here. External questions remain transient and are not promoted to Core2/source custody.",
+  "questions": [
+    {
+      "question_id": "NEETPREP-MQB-REL-Q1",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK",
+        "CAP-RIGHT-TRIANGLE"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Walking observer with vertical rain; requires relative velocity as a vector and perpendicular-component magnitude."
+    },
+    {
+      "question_id": "NEETPREP-MQB-REL-Q2",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Boat and water velocities are both given in the ground frame; learner must subtract in the correct observer order."
+    },
+    {
+      "question_id": "NEETPREP-MQB-REL-Q3",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK",
+        "CAP-RIGHT-TRIANGLE"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Symbolic rain-versus-runner version of perpendicular relative-velocity magnitude."
+    },
+    {
+      "question_id": "NEETPREP-MQB-REL-Q7",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-RIGHT-TRIANGLE",
+        "CAP-VECTOR-CHECK"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Perpendicular chase/intercept geometry; relative frame plus right-triangle relation is required to obtain catch time."
+    }
+  ]
+}
