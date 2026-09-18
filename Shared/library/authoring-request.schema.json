@@ -5,72 +5,191 @@
   "description": "Plan-level request. Missing owner decisions are legal and are returned as REQUIRED_OWNER_INPUTS; execution remains fail-closed.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["request_id", "subject", "requested_cores"],
-  "anyOf": [{"required": ["subtopic"]}, {"required": ["bucket_id"]}],
+  "required": [
+    "request_id",
+    "subject",
+    "requested_cores"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "subtopic"
+      ]
+    },
+    {
+      "required": [
+        "bucket_id"
+      ]
+    }
+  ],
   "properties": {
-    "request_id": {"type": "string", "minLength": 1},
-    "subject": {"type": "string", "minLength": 1},
-    "subtopic": {"type": "string", "minLength": 1},
-    "bucket_id": {"type": "string", "minLength": 1},
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtopic": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bucket_id": {
+      "type": "string",
+      "minLength": 1
+    },
     "requested_cores": {
-      "type": "array", "minItems": 1, "uniqueItems": true,
-      "items": {"enum": ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]}
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "CORE1",
+          "CORE2",
+          "CORE1A",
+          "CORE1B",
+          "CORE2A",
+          "CORE2B"
+        ]
+      }
     },
     "source_basis": {
-      "type": "array", "minItems": 1, "uniqueItems": true,
-      "items": {"type": "string", "minLength": 1}
-    },
-    "source_inspection": {
-      "type": "object", "additionalProperties": false, "required": ["status"],
-      "properties": {
-        "status": {"enum": ["UNINSPECTED", "INGESTED_SUFFICIENT", "INGESTED_INSUFFICIENT"]},
-        "note": {"type": "string", "minLength": 1},
-        "covered_cores": {
-          "type": "array", "uniqueItems": true,
-          "items": {"enum": ["CORE2", "CORE2A", "CORE2B"]}
-        }
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
       }
     },
     "learner": {
-      "type": "object", "additionalProperties": false,
-      "oneOf": [{"required": ["profile_ref"]}, {"required": ["owner_entry"]}, {"required": ["owner_estimate"]}],
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "profile_ref"
+          ]
+        },
+        {
+          "required": [
+            "owner_entry"
+          ]
+        },
+        {
+          "required": [
+            "owner_estimate"
+          ]
+        }
+      ],
       "properties": {
-        "profile_ref": {"type": "string", "minLength": 1},
+        "profile_ref": {
+          "type": "string",
+          "minLength": 1
+        },
         "owner_entry": {
-          "type": "object", "additionalProperties": false, "required": ["rung"],
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "rung"
+          ],
           "properties": {
-            "rung": {"type": "string", "minLength": 1},
-            "by": {"type": "string", "minLength": 1},
-            "instruction": {"type": "string", "minLength": 1}
+            "rung": {
+              "type": "string",
+              "minLength": 1
+            },
+            "by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "instruction": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
         "owner_estimate": {
-          "type": "object", "additionalProperties": false, "required": ["knowledge_percentage"],
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "knowledge_percentage"
+          ],
           "properties": {
-            "knowledge_percentage": {"type": "integer", "minimum": 0, "maximum": 100},
-            "by": {"type": "string", "minLength": 1},
-            "instruction": {"type": "string", "minLength": 1}
+            "knowledge_percentage": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "instruction": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }
     },
     "practice": {
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "CORE2A": {"$ref": "#/$defs/practiceIntent"},
-        "CORE2B": {"$ref": "#/$defs/transferIntent"}
+        "CORE2A": {
+          "$ref": "#/$defs/practiceIntent"
+        },
+        "CORE2B": {
+          "$ref": "#/$defs/transferIntent"
+        }
       }
     },
-    "supplemental_question_policy": {"enum": ["SOURCE_ONLY", "ALLOW_AUTHORED_CANDIDATES"]}
+    "supplemental_question_policy": {
+      "enum": [
+        "SOURCE_ONLY",
+        "ALLOW_AUTHORED_CANDIDATES"
+      ]
+    },
+    "source_receipt_ref": {
+      "type": "string",
+      "minLength": 1
+    }
   },
   "$defs": {
     "practiceIntent": {
-      "type": "object", "additionalProperties": false, "required": ["purpose"],
-      "properties": {"purpose": {"enum": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"]}}
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose"
+      ],
+      "properties": {
+        "purpose": {
+          "enum": [
+            "STARTER",
+            "PRACTICE",
+            "REVISION",
+            "COMPETITION"
+          ]
+        }
+      }
     },
     "transferIntent": {
-      "type": "object", "additionalProperties": false, "required": ["purpose"],
-      "properties": {"purpose": {"enum": ["PRACTICE", "REVISION", "COMPETITION", "NONE"]}}
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose"
+      ],
+      "properties": {
+        "purpose": {
+          "enum": [
+            "PRACTICE",
+            "REVISION",
+            "COMPETITION",
+            "NONE"
+          ]
+        }
+      }
     }
   }
 }
