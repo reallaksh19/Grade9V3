@@ -543,6 +543,30 @@
       ],
       "proves": "Near-Earth gravitational potential-energy change follows from m g Delta h.",
       "does_not_prove": "That the uniform-g approximation is appropriate over a large height range."
+    },
+    {
+      "id": "MECHANICAL_ADVANTAGE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "load_force",
+        "effort_force"
+      ],
+      "input_units": {
+        "load_force": "N",
+        "effort_force": "N"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "1",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "load_force >= 0",
+        "effort_force > 0",
+        "load and effort refer to the same machine state"
+      ],
+      "proves": "Mechanical advantage follows from load-force magnitude divided by effort-force magnitude.",
+      "does_not_prove": "That the machine is ideal, efficient, or correctly represented by the supplied forces."
     }
   ],
   "representation_kinds": [
