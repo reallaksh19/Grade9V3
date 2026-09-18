@@ -454,7 +454,7 @@
           "action": "Now add kinetic friction and compare a short route with a longer route between comparable endpoints.",
           "why_valid": "Friction acts along the travelled path, so changing path length changes its energy transfer even when endpoints are comparable.",
           "inputs": [],
-          "output": "short path: smaller friction transfer.  longer path: larger friction transfer."
+          "output": "short path -> smaller friction transfer.  longer path -> larger friction transfer."
         },
         {
           "id": "WEP3-3",
