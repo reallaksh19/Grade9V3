@@ -558,11 +558,15 @@ def _next_step(study_plan: dict) -> dict | None:
 
 
 def plan(mapping: dict, estimate_specs: list[str] | None = None,
-         profile: dict | None = None, repo: Path = REPO) -> dict:
+         profile: dict | None = None, repo: Path = REPO, *,
+         owner_choice_specs: list[str] | None = None) -> dict:
     """Compile a readiness-gated, learner-facing session plan."""
     subject = mapping.get("subject")
     estimates, estimate_findings = resolve_estimates(
         subject, estimate_specs or [], repo
+    )
+    owner_choices, owner_choice_parse_warnings = resolve_owner_choices(
+        owner_choice_specs or []
     )
     study_plan = worksheet_study_plan.resolve(
         mapping,
@@ -590,10 +594,26 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         *list(study_plan.get("warnings", [])),
     ]
 
-    route, owner_decisions, fallback_reasons, executable_count, disposition = _route_execution(
-        study_plan, readiness_rows, warnings
+    (
+        route,
+        owner_decisions,
+        fallback_reasons,
+        executable_count,
+        disposition,
+        applied_owner_choices,
+        owner_choice_warnings,
+    ) = _route_execution(
+        study_plan,
+        readiness_rows,
+        warnings,
+        owner_choices,
     )
+    applied_caps = {row["capability_ref"] for row in applied_owner_choices}
+    owner_resolved_findings = []
     for finding in decision_findings:
+        if finding.get("capability") in applied_caps:
+            owner_resolved_findings.append(finding)
+            continue
         owner_decisions.append({
             "point": finding.get("point"),
             "target": finding.get("where") or finding.get("capability"),
@@ -635,6 +655,13 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "ready": ready,
         "profile_id": study_plan.get("profile_id"),
         "owner_estimates": estimates,
+        "owner_choices": owner_choices,
+        "applied_owner_choices": applied_owner_choices,
+        "owner_choice_warnings": [
+            *owner_choice_parse_warnings,
+            *owner_choice_warnings,
+        ],
+        "owner_resolved_findings": owner_resolved_findings,
         "execution_disposition": disposition,
         "owner_decisions": owner_decisions,
         "fallback_reasons": fallback_reasons,
@@ -658,6 +685,7 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "rules": [
             "Matrix readiness remains truthful; execution may fall back only on demanded usable rungs.",
             "An unresolved prerequisite propagates OWNER_DECISION to its dependent route; the runner never leaps over an unresolved dependency.",
+            "Session owner choices may select an offered canonical location or supply an external bridge, but never mutate canonical truth.",
             "Only EXECUTE_WITH_FALLBACK and OWNER_DECISION are added as exceptional execution dispositions.",
             "Owner percentages choose a local starting attempt; they are not mastery evidence.",
             "Worksheet questions remain transient demand unless separately promoted.",
