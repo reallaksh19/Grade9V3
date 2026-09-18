@@ -30,14 +30,25 @@ from Shared.tools import resolve_request  # noqa: E402
 PRACTICE = ("CORE2A", "CORE2B")
 
 
-def _question_records(records: dict, bucket_id: str) -> list[dict]:
-    """Questions the compiler associates with this bucket's capability slice."""
-    chosen = slice_for_bucket(records, bucket_id)
-    capabilities = {row["id"] for row in chosen["records"].get("capabilities", [])}
+def _owned_question_records(records: dict, bucket_id: str) -> list[dict]:
+    """Questions whose primary capability is taught by this bucket, not a prerequisite.
+
+    The compiler intentionally carries prerequisite capabilities into a bucket slice,
+    which can make prerequisite questions reachable in a downstream product. Reachable
+    support is useful, but it is not local practice custody: a bucket is not practice-
+    complete merely because one of its prerequisites has a question.
+    """
+    owned_capabilities = {
+        record.get("primary_capability_ref")
+        for record in records.values()
+        if record.get("_collection") == "microtopics"
+        and record.get("bucket_id") == bucket_id
+        and record.get("primary_capability_ref")
+    }
     return sorted(
         (record for record in records.values()
          if record.get("_collection") == "questions"
-         and record.get("primary_capability_ref") in capabilities),
+         and record.get("primary_capability_ref") in owned_capabilities),
         key=lambda record: record["id"],
     )
 
@@ -89,7 +100,7 @@ def audit(subject: str, repo: Path = REPO) -> dict:
         except ContractError as error:
             compiler_error = {"code": error.code, "detail": error.detail}
 
-        questions = _question_records(records, bucket_id)
+        questions = _owned_question_records(records, bucket_id)
         exposed = {
             core: [
                 q["id"] for q in questions
@@ -100,6 +111,13 @@ def audit(subject: str, repo: Path = REPO) -> dict:
 
         for core in PRACTICE:
             state = planned.get(core, {}).get("state")
+            if state == "READY" and not exposed[core]:
+                findings.append({
+                    "point": "PLAN_READY_WITHOUT_BUCKET_OWNED_QUESTION",
+                    "bucket": bucket_id,
+                    "core": core,
+                    "detail": "practice is READY but only prerequisite/reachable questions, not a question owned by this bucket, could support it",
+                })
             if state == "READY" and core not in selected:
                 findings.append({
                     "point": "PLAN_READY_COMPILER_UNSUPPORTED",
