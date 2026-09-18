@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:73d9ab4aacdc7c40a9ab0b04eb668fdef70e13852b727d9944e9c38a813bbcab",
+  "digest": "sha256:fe0591170bd899688276bf82878284158a979800f66a9fa0671ad1ed24f7c7f1",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -813,8 +813,8 @@
       "path": "tests/test_neetprep_relative_motion_pilot.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5809,
-      "sha256": "dcb6d0206c655f38e42dcaeb76c99f91679172471330448c3b9dafb963d376b7"
+      "bytes": 10771,
+      "sha256": "a7517a1f44f0b516733f2b45aef8f6e0c6d6a997d6d1be9234640e62d8ef066d"
     },
     {
       "path": "tests/test_owner_decisions.py",
