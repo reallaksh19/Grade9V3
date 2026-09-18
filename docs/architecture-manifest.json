@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 129,
-  "relation_count": 189,
+  "component_count": 134,
+  "relation_count": 192,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 38,
-    "TOOLING": 39,
+    "TEST": 42,
+    "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:929b84931868aeebdbb1fab6fb4f9c044ea81ef4ff9877e86af7d10e1e6b9af7",
+  "digest": "sha256:94a0990677dce4b0d45185ed32e34ff6438bed9e706c5cf948580a76de9168a8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -120,8 +120,8 @@
       "path": "Shared/library/observation.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 2631,
-      "sha256": "e48295159729a888dd8ad30d053860cf0ecd32f86a2df47c2b9444af6a58ab3c"
+      "bytes": 3152,
+      "sha256": "8c34483c640d4de72b809ef618cd15e79dbb122f43b21e828d21266b5b036742"
     },
     {
       "path": "Shared/library/owner-decisions.schema.json",
@@ -439,6 +439,13 @@
       "sha256": "4395d19ce533d45e0d17ad57c87bf440c78f360da6e17a2bf1b2c061d433157a"
     },
     {
+      "path": "Shared/tools/empirical_acceptance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4121,
+      "sha256": "94df798144b0b3fff31d90406b31f24bd3abce54e0caf9fcdc9702340e62eba2"
+    },
+    {
       "path": "Shared/tools/execute_authoring_run.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -449,15 +456,15 @@
       "path": "Shared/tools/feedback.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 19236,
-      "sha256": "c76f16ffc7680e083a393baf7e9f3779b577a5a81bb8629e3f488be10003a9f2"
+      "bytes": 19286,
+      "sha256": "e719d7d168c5af4082df3d9fc6999a9bfba81247600cebc6e5f87fa6fd94d700"
     },
     {
       "path": "Shared/tools/import_study_observations.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5099,
-      "sha256": "baf7aea763721422dcef558ce215731fc35e73894456e448b07cfce0fefb9096"
+      "bytes": 5146,
+      "sha256": "01c37f09a771c390177bde58a421ab250e008600e8abe02e736dc4954dcc6f13"
     },
     {
       "path": "Shared/tools/learner_evidence.py",
@@ -589,8 +596,8 @@
       "path": "Shared/tools/study_session.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 22133,
-      "sha256": "864ed1a10cbd485779990de1c8a2b4f59c0d45563f4d62843f6d232c941f79a2"
+      "bytes": 23480,
+      "sha256": "6c3202f222448ca63210d242a0ba2a73b5657ddebc940f9b1f7a8ef974644052"
     },
     {
       "path": "Shared/tools/study_start.py",
@@ -626,6 +633,13 @@
       "role_description": "Executable checks",
       "bytes": 1996,
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
+    },
+    {
+      "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1882,
+      "sha256": "9930ca88099134beaefac6fd929b26994b592e96ad229fd982dc630d5541a676"
     },
     {
       "path": "tests/fixtures/source_ingest/acquisition.json",
@@ -691,6 +705,13 @@
       "sha256": "16e736a3d347d17c500075e1d0fbeee1748d0cc5fb2bd92f267212cdd9676e3a"
     },
     {
+      "path": "tests/test_blueprint_regression.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4196,
+      "sha256": "dbd650a9c59fc6761328830db24cf9b8ff2f9bac7dec96b7d9607ea3915c52d0"
+    },
+    {
       "path": "tests/test_c6_examside_motion_in_plane.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -710,6 +731,13 @@
       "role_description": "Executable checks",
       "bytes": 6393,
       "sha256": "63c0a564f2bb3e6d7ec013a7636cc69548710a4763b198e12c3e412d09342724"
+    },
+    {
+      "path": "tests/test_empirical_acceptance.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6552,
+      "sha256": "197f134b4e2bffbe1922b8592948ef7aea82c888b07465c3a19d4df208161405"
     },
     {
       "path": "tests/test_execution_packet.py",
@@ -773,6 +801,13 @@
       "role_description": "Executable checks",
       "bytes": 14849,
       "sha256": "157c679b1920bfaab60806171a2edd1651ab16f33b2cc359152cc2d8f2988dcb"
+    },
+    {
+      "path": "tests/test_neetprep_relative_motion_pilot.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5494,
+      "sha256": "f4c90447856dd913b31398ad4b98701689094f66d93e314620984d4c2bd18d3a"
     },
     {
       "path": "tests/test_owner_decisions.py",
@@ -862,8 +897,8 @@
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9011,
-      "sha256": "748473eed4bfee6e6697e1dc14b28df2db05960e913f08e3bbbc60210f78c5c6"
+      "bytes": 11453,
+      "sha256": "73517c438845b376b0e17ebb4eb731ecca3e94563b768f82c0f97b6e18d4085b"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1224,6 +1259,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/empirical_acceptance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/execute_authoring_run.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1569,6 +1609,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_empirical_acceptance.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_execution_packet.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -1676,6 +1721,11 @@
     {
       "from": "tests/test_mathematics.py",
       "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_neetprep_relative_motion_pilot.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
