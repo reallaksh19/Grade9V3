@@ -116,7 +116,14 @@ def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
                 fail("PHASE_HOLDS_NOTHING", f'{rung}.phase{phase.get("phase")}',
                      "an experience with no invariant cannot show one")
 
-    # The matrix coordinate is presentation order; capability prerequisites are the\n    # reachability authority. A mechanically valid row order may still be impossible to\n    # learn if a dependant appears before one of its prerequisites.\n    if board.get("subject"):\n        caps, graph_mics = capability_graph.subject_graph(board["subject"])\n        found.extend(capability_graph.topology_findings(board, caps, graph_mics))\n\n    for row in board.get("transfer", []):
+    # The matrix coordinate is presentation order; capability prerequisites are the
+    # reachability authority. A mechanically valid row order may still be impossible to
+    # learn if a dependant appears before one of its prerequisites.
+    if board.get("subject"):
+        caps, graph_mics = capability_graph.subject_graph(board["subject"])
+        found.extend(capability_graph.topology_findings(board, caps, graph_mics))
+
+    for row in board.get("transfer", []):
         if dimensions and row["dimension"] not in dimensions:
             fail("TRANSFER_DIMENSION_UNDECLARED", row["dimension"],
                  f'not a demand dimension this subject declares; it declares '
