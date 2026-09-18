@@ -9,7 +9,8 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SOURCE",
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
       "ceiling": [
         "vector",
         "signed coordinate",
@@ -32,17 +33,13 @@
           "hold": "the same total path length",
           "notice": "equal distances can end with different signed displacements"
         }
-      ],
-      "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT"
+      ]
     },
     {
       "rung": "R2",
       "ladder_position": 45,
-      "provenance": "SYNTHESIS",
-      "aha": "Average speed is total distance divided by total time, while average velocity uses displacement over the same time; neither is found by averaging listed speeds unless the time weighting makes that valid.",
-      "learner_owns": [
-        "Distance records how much path was travelled, while displacement records the signed change from start to finish; a long trip can have zero displacement."
-      ],
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-AVERAGE-RATES",
       "ceiling": [
         "harmonic mean",
         "instantaneous velocity",
@@ -53,12 +50,6 @@
         "A round trip with unequal speeds on equal-distance legs.",
         "The total-distance-over-total-time construction written before any averaging shortcut."
       ],
-      "misconception": {
-        "wrong_idea": "For a trip with two speeds, average speed is always the arithmetic mean of those speeds.",
-        "diagnostic_prompt": "A vehicle covers equal distances at 60 km/h and 30 km/h. Is its average speed 45 km/h? Which leg takes longer?",
-        "repair": "Compute each leg's time, add total distance and total time, then divide; use displacement instead of distance only for average velocity."
-      },
-      "closure": "For a two-leg trip, calculate average speed from totals and separately state average velocity when the final position is known.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -71,7 +62,8 @@
     {
       "rung": "R3",
       "ladder_position": 70,
-      "provenance": "SOURCE",
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
       "ceiling": [
         "jerk",
         "second derivative",
@@ -95,17 +87,44 @@
           "hold": "the same downward acceleration",
           "notice": "the time of the zero-velocity instant changes but the acceleration at that instant does not"
         }
+      ]
+    },
+    {
+      "rung": "R4G",
+      "ladder_position": 82,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+      "ceiling": [
+        "derivative notation",
+        "integration",
+        "area-under-curve displacement",
+        "jerk"
       ],
-      "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+      "must_contain": [
+        "A position-time graph with labelled time and position axes and at least two plotted points.",
+        "A velocity-time graph with labelled time and velocity axes and at least two plotted points.",
+        "An explicit distinction between graph height and graph slope."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the vertical-axis quantity from position to velocity",
+          "hold": "the same time axis and interval-reading procedure",
+          "notice": "segment slope changes meaning from average velocity to average acceleration"
+        },
+        {
+          "phase": 2,
+          "vary": "the segment from sloped to horizontal",
+          "hold": "the same graph type",
+          "notice": "the corresponding interval rate becomes zero when the numerator change is zero"
+        }
+      ]
     },
     {
       "rung": "R4",
       "ladder_position": 90,
-      "provenance": "SYNTHESIS",
-      "aha": "The constant-acceleration equations are a model with a condition: they apply only when acceleration stays constant over the interval.",
-      "learner_owns": [
-        "Velocity and acceleration are different statements: velocity can be zero at an instant while acceleration remains nonzero and fixes how velocity changes next."
-      ],
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
       "ceiling": [
         "integration",
         "differential equation",
@@ -116,12 +135,6 @@
         "Two velocity-time plots over equal intervals, one straight and one curved.",
         "A check of whether acceleration is constant before any constant-acceleration equation is selected."
       ],
-      "misconception": {
-        "wrong_idea": "The familiar kinematic equations can be used whenever initial velocity, time and some acceleration value are given.",
-        "diagnostic_prompt": "A velocity-time graph curves upward. Can one constant acceleration value describe the whole interval well enough to use v = u + at exactly?",
-        "repair": "Test the model condition first: constant acceleration gives a straight velocity-time graph and one unchanged acceleration value over the interval."
-      },
-      "closure": "Given several motion descriptions or graphs, classify which intervals permit exact use of the constant-acceleration equations and justify each classification.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -134,6 +147,36 @@
           "vary": "the graph from straight to curved",
           "hold": "the same starting velocity and total duration",
           "notice": "one acceleration value no longer describes every part of the motion"
+        }
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+      "ceiling": [
+        "centripetal force formula",
+        "angular velocity",
+        "calculus"
+      ],
+      "must_contain": [
+        "Equal-length tangent velocity arrows at different points on one circle.",
+        "An inward acceleration arrow distinguished from the tangent velocity direction.",
+        "A one-revolution path length 2 pi r divided by a positive revolution period T."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "position around the circle",
+          "hold": "the same speed and circle radius",
+          "notice": "velocity direction changes while speed stays constant"
+        },
+        {
+          "phase": 2,
+          "vary": "the path from curved toward straight",
+          "hold": "constant speed",
+          "notice": "the turning acceleration shrinks toward zero as direction stops changing"
         }
       ]
     }
@@ -160,9 +203,9 @@
   "transfer": [
     {
       "dimension": "representation_translation",
-      "changed_demand": "A velocity-time graph must be translated into signed displacement and acceleration statements without a verbal motion story.",
-      "information_not_handed_over": "which graph features correspond to signed change and to acceleration",
-      "repair_to": "R3"
+      "changed_demand": "A position-time or velocity-time graph segment must be translated into the correct interval-rate statement without a verbal motion story.",
+      "information_not_handed_over": "whether the segment slope represents average velocity or average acceleration",
+      "repair_to": "R4G"
     },
     {
       "dimension": "model_choice",
@@ -175,6 +218,18 @@
       "changed_demand": "A journey reverses direction in several stages, requiring segment-by-segment distance, displacement, and elapsed-time accounting.",
       "information_not_handed_over": "which segment signs contribute to displacement but not to distance",
       "repair_to": "R1"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A constant speed is maintained on a curved path, requiring the learner to decide whether acceleration can still be nonzero.",
+      "information_not_handed_over": "whether changing direction alone counts as a change of velocity",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A complete circular revolution is described by radius and period, requiring the learner to construct circumference before computing the uniform speed.",
+      "information_not_handed_over": "that one revolution travels path length 2 pi r",
+      "repair_to": "R5"
     }
   ]
 }
