@@ -21,7 +21,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import ContractError, load  # noqa: E402
-from Shared.tools import capability_graph, study_map  # noqa: E402
+from Shared.tools import capability_delivery, capability_graph, study_map  # noqa: E402
 
 UNKNOWN_SYLLABUS_CAPABILITY = "STUDY_ROUTE_SYLLABUS_CAPABILITY_UNKNOWN"
 UNKNOWN_EXTENSION_CAPABILITY = "STUDY_ROUTE_EXTENSION_CAPABILITY_UNKNOWN"
@@ -29,6 +29,7 @@ UNKNOWN_PREREQUISITE = "STUDY_ROUTE_PREREQUISITE_UNKNOWN"
 PREREQUISITE_CYCLE = "STUDY_ROUTE_PREREQUISITE_CYCLE"
 NO_TEACHING_LOCATION = "STUDY_ROUTE_CAPABILITY_HAS_NO_TEACHING_LOCATION"
 AMBIGUOUS_LOCATION = "STUDY_ROUTE_CAPABILITY_AMBIGUOUS_LOCATION"
+EXTERNAL_BRIDGE_REQUIRED = "STUDY_ROUTE_EXTERNAL_BRIDGE_REQUIRED"
 
 
 def _stable_unique(values) -> list[str]:
@@ -105,6 +106,9 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
             "subject": mapping.get("subject"),
             "route": [],
             "findings": structural,
+            "blockers": [],
+            "valid": False,
+            "ready": False,
             "passed": False,
         }
 
@@ -160,25 +164,39 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
 
     q_set, s_set, e_set = set(q_order), set(s_order), set(e_order)
     route = []
+    blockers = []
     for capability in ordered:
         locations = list(index["locations"].get(capability, []))
-        if not locations:
-            state = "NO_TEACHING_LOCATION"
+        delivery = capability_delivery.resolve(caps[capability], locations)
+        state = capability_delivery.legacy_state(delivery)
+
+        if delivery["state"] == capability_delivery.UNRESOLVED:
             findings.append({
                 "point": NO_TEACHING_LOCATION,
                 "capability": capability,
-                "detail": "canonical capability exists but no matrix/rung currently teaches it",
+                "detail": (
+                    "canonical capability exists but has neither a local teaching "
+                    "location nor a declared external provider"
+                ),
             })
-        elif len({row["matrix_id"] for row in locations}) > 1:
-            state = "AMBIGUOUS_LOCATION"
+        elif delivery["state"] == capability_delivery.AMBIGUOUS:
             findings.append({
                 "point": AMBIGUOUS_LOCATION,
                 "capability": capability,
-                "detail": "canonical capability resolves to more than one matrix",
+                "detail": "canonical capability resolves to more than one teaching location",
                 "locations": locations,
             })
-        else:
-            state = "RESOLVED"
+        elif delivery["state"] == capability_delivery.EXTERNAL_BRIDGE:
+            blockers.append({
+                "point": EXTERNAL_BRIDGE_REQUIRED,
+                "capability": capability,
+                "provider": delivery["provider"],
+                "acceptance_status": delivery["acceptance_status"],
+                "detail": (
+                    "capability is supplied across a declared subject/provider boundary; "
+                    "the route is structurally valid but needs evidence or a provider bridge"
+                ),
+            })
 
         scope, reasons = _scope(capability, q_set, s_set, e_set, prerequisites)
         route.append({
@@ -194,8 +212,13 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
             ],
             "locations": locations,
             "state": state,
+            "delivery_state": delivery["state"],
+            "provider": delivery["provider"],
+            "acceptance_status": delivery["acceptance_status"],
         })
 
+    valid = not findings
+    ready = valid and not blockers
     return {
         "worksheet_id": mapping["worksheet_id"],
         "subject": subject,
@@ -204,7 +227,10 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
         "declared_extension_capabilities": e_order,
         "route": route,
         "findings": findings,
-        "passed": not findings,
+        "blockers": blockers,
+        "valid": valid,
+        "ready": ready,
+        "passed": valid,
         "ordering_rule": (
             "Cross-matrix order is derived only from capability.prerequisite_refs; "
             "ladder_position is never compared across matrices."
@@ -212,6 +238,11 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
         "scope_rule": (
             "Question demand, syllabus requirement, prerequisite closure and declared "
             "extension remain separately labelled."
+        ),
+        "delivery_rule": (
+            "A missing local teaching rung is not automatically an error: a declared "
+            "external provider becomes an explicit bridge. Only capabilities with neither "
+            "local teaching nor an external provider are unresolved."
         ),
     }
 
@@ -231,10 +262,23 @@ def readable(report: dict) -> str:
         ]
         if row["required_by_questions"]:
             out += [f'    questions: {", ".join(row["required_by_questions"])}']
+        if row.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
+            out += [
+                f'    bridge: {row.get("provider")} '
+                f'({row.get("acceptance_status") or "UNSPECIFIED"})'
+            ]
         for loc in row["locations"]:
             out += [
                 f'    teaches: {loc["matrix_id"]} / {loc["rung"]} '
                 f'({loc["microtopic_ref"]})'
+            ]
+        out += [""]
+    if report.get("blockers"):
+        out += ["## Bridge blockers", ""]
+        for blocker in report["blockers"]:
+            out += [
+                f'  {blocker["point"]:48} {blocker.get("capability", "")} '
+                f'provider={blocker.get("provider", "")}'
             ]
         out += [""]
     if report.get("findings"):
