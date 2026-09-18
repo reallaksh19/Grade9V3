@@ -146,15 +146,11 @@ def _elicitation_complete(microtopic: dict) -> bool:
 
 
 def _source_question(question: dict) -> bool:
-    """Conservative signal: authored/candidate questions do not count as source custody."""
-    if question.get("source_basis") == "SOURCE":
-        return True
-    if question.get("provenance") == "SOURCE":
-        return True
-    # Most canonical question records carry source_refs rather than a single provenance
-    # field. SRC-AUTHOR is explicitly not source-question custody.
-    refs = [ref for ref in question.get("source_refs", []) if ref != "SRC-AUTHOR"]
-    return bool(refs)
+    """Conservative signal: only an explicit source-origin marker counts as custody."""
+    return any(
+        question.get(field) == "SOURCE"
+        for field in ("origin", "source_basis", "provenance")
+    )
 
 
 def audit_matrix(subject: str, matrix: dict, repo: Path = REPO) -> dict:
