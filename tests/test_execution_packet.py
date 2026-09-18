@@ -78,11 +78,7 @@ class ExecutionPacket(unittest.TestCase):
 
     def test_core2_source_custody_is_never_replaced_by_authored_generation(self):
         request = self.request(self.SIX)
-        request["source_inspection"] = {
-            "status": "INGESTED_SUFFICIENT",
-            "note": "Synthetic planning state for this architecture test.",
-            "covered_cores": ["CORE2", "CORE2A", "CORE2B"],
-        }
+        request["source_receipt_ref"] = "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY"
         request["learner"] = {
             "owner_entry": {
                 "rung": "R1", "by": "test",
@@ -103,11 +99,7 @@ class ExecutionPacket(unittest.TestCase):
 
     def test_authored_supplement_can_only_be_a_candidate_practice_question(self):
         request = self.request(self.SIX)
-        request["source_inspection"] = {
-            "status": "INGESTED_SUFFICIENT",
-            "note": "Synthetic planning state for this architecture test.",
-            "covered_cores": ["CORE2", "CORE2A"],
-        }
+        request["source_receipt_ref"] = "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY"
         request["learner"] = {
             "owner_entry": {
                 "rung": "R1", "by": "test",
@@ -125,6 +117,30 @@ class ExecutionPacket(unittest.TestCase):
         self.assertEqual(core2b["write_scope"]["mode"], "CANDIDATE_RECORDS_ONLY")
         self.assertEqual(core2b["write_scope"]["status"], "CANDIDATE")
         self.assertEqual(core2b["write_scope"]["origin"], "AUTHORED")
+
+    def test_source_receipt_is_pinned_and_staleness_is_detected(self):
+        request = self.request(self.SIX)
+        request["source_receipt_ref"] = "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY"
+        request["learner"] = {
+            "owner_entry": {
+                "rung": "R1", "by": "test",
+                "instruction": "Routing decision for a packet test."
+            }
+        }
+        request["practice"] = {
+            "CORE2A": {"purpose": "PRACTICE"},
+            "CORE2B": {"purpose": "COMPETITION"},
+        }
+        request["supplemental_question_policy"] = "ALLOW_AUTHORED_CANDIDATES"
+        packet = compile_execution_packet.compile_packet(request)
+        pin = packet["pins"]["source_receipt"]
+        self.assertEqual(pin["receipt_id"],
+                         "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY")
+        self.assertRegex(pin["digest"], r"^[0-9a-f]{64}$")
+        packet["pins"]["source_receipt"]["digest"] = "0" * 64
+        report = compile_execution_packet.verify(packet, request)
+        self.assertIn("EXECUTION_PACKET_SOURCE_RECEIPT_STALE",
+                      [row["point"] for row in report["findings"]])
 
     def test_request_change_invalidates_the_packet(self):
         request = self.request(self.TEACHING)
