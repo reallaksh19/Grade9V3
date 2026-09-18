@@ -1,0 +1,1412 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-SOUND-G9",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Grade 9 Sound: vibrating sources, propagation through material media as longitudinal disturbances, frequency/period/wavelength/amplitude/speed, pitch and loudness, and reflection applications including echo, reverberation and echolocation.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-SOUND-G9",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Author-created Grade 9 Sound constructions",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-sound.v1.json",
+      "edition": "0.1.0",
+      "section": "Grade 9 Sound spine",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; curriculum placement researched separately, no external scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [
+        "CAP-KIN-AVERAGE-RATES"
+      ],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Fills the missing Grade 9 Sound domain with gate-owned period, wave-speed and echo relations.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-SOUND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Sound",
+      "topic": "Sound",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The main difficulty is separating local particle vibration from wave propagation, then keeping frequency, wavelength, amplitude, speed, pitch and loudness distinct.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-KIN-1D-MOTION"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-SOUND-MEDIUM",
+          "statement": "Name the source, the material medium and the propagation direction before describing a sound wave."
+        },
+        {
+          "id": "CONV-SOUND-GRAPH",
+          "statement": "Distinguish a spatial snapshot of the medium from a time trace measured at one location."
+        }
+      ],
+      "scope": {
+        "covers": "Grade 9 sound production, propagation in solids/liquids/gases, longitudinal compressions/rarefactions, wave quantities and sound perception, plus reflection, echo, reverberation and echolocation.",
+        "excluded": [
+          "Interference, standing-wave mode formulae, Doppler effect, decibel logarithms and detailed acoustic impedance."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-SOUND-SOURCE-MEDIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Explain sound production by vibration and why mechanical sound propagation requires a material medium.",
+      "success_criterion": "Names a vibrating source and distinguishes source vibration from propagation through solids, liquids or gases; rejects propagation through vacuum.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-SOUND-LONGITUDINAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
+      "success_criterion": "States that particles oscillate about equilibrium mainly parallel to propagation while the disturbance/energy travels onward.",
+      "prerequisite_refs": [
+        "CAP-SOUND-SOURCE-MEDIUM"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-SOUND-WAVE-QUANTITIES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate period, frequency, wavelength and wave speed for one sound wave and keep amplitude as a separate measure.",
+      "success_criterion": "Uses f = 1/T and v = f lambda with values from the same wave/medium and does not confuse amplitude with wavelength.",
+      "prerequisite_refs": [
+        "CAP-SOUND-LONGITUDINAL"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-SOUND-PERCEPTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Connect higher frequency with higher pitch and distinguish amplitude/intensity from pitch.",
+      "success_criterion": "Predicts pitch from frequency and treats loudness as related to sound intensity/amplitude rather than frequency alone.",
+      "prerequisite_refs": [
+        "CAP-SOUND-WAVE-QUANTITIES"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-SOUND-REFLECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Explain reflection of sound and distinguish echo, reverberation and echolocation; compute a simple echo distance from round-trip delay.",
+      "success_criterion": "Uses the half-round-trip path for echo distance and classifies delayed distinct echoes versus overlapping reverberation.",
+      "prerequisite_refs": [
+        "CAP-SOUND-WAVE-QUANTITIES"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Sound starts with vibration and travels through a material medium",
+      "bucket_id": "BUCKET-PHY-SOUND",
+      "primary_capability_ref": "CAP-SOUND-SOURCE-MEDIUM",
+      "intrinsic_badge": "LOW",
+      "badge_reason": "The key distinction is between the vibrating source and the medium carrying the disturbance.",
+      "entry_assumptions": [
+        "Can identify repeated back-and-forth motion and can distinguish matter from empty space."
+      ],
+      "inferential_jump": "A vibrating source can launch a mechanical disturbance into nearby matter; sound can propagate through gases, liquids and solids but not through a vacuum because there are no particles to transmit the mechanical disturbance.",
+      "teaching_path": [
+        {
+          "id": "SOUND1-1",
+          "role": "DECLARE",
+          "action": "Identify the object that vibrates when sound is produced.",
+          "why_valid": "Sound production begins with a source undergoing repeated mechanical motion.",
+          "inputs": [],
+          "output": "source: vibrating object."
+        },
+        {
+          "id": "SOUND1-2",
+          "role": "TRANSFORM",
+          "action": "Follow how neighboring particles in a gas, liquid or solid can push/pull on nearby particles without travelling all the way to the listener.",
+          "why_valid": "Mechanical interactions between neighboring particles can transmit a disturbance through matter.",
+          "inputs": [],
+          "output": "medium particles move locally; disturbance propagates through the material."
+        },
+        {
+          "id": "SOUND1-3",
+          "role": "VERIFY",
+          "action": "Remove the material medium in a thought experiment and ask what interaction remains to carry ordinary sound.",
+          "why_valid": "A vacuum contains no material particles for the mechanical disturbance to pass between.",
+          "inputs": [],
+          "output": "vacuum -> no ordinary mechanical sound propagation."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SOUND-PRACTICE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The vibrating source's particles travel all the way to the listener carrying the sound.",
+          "diagnostic_prompt": "When a loudspeaker makes sound across a room, do air molecules from the speaker travel across the room to your ear?",
+          "repair": "Track one small region of air: particles oscillate locally while the disturbance passes from neighbor to neighbor."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A bell rings inside a sealed chamber. Compare what happens to ordinary sound transmission as the air is gradually removed, while the bell itself can still vibrate.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The bell may still vibrate, but ordinary sound transmission through the chamber becomes weaker and tends toward none as the material medium is removed.",
+          "reasoning": [
+            "The source vibration can remain.",
+            "Sound propagation requires neighboring material particles to transmit the disturbance.",
+            "Removing the gas removes that propagation path."
+          ],
+          "check": "The claim distinguishes source vibration from sound transmission rather than saying the bell must stop moving.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit makes a qualitative source-versus-medium comparison without a computed quantity."
+        }
+      },
+      "research_contribution": "Author-created Grade 9 sound-source and medium construction.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a bell keeps vibrating while the surrounding air is removed, must the heard sound stay unchanged?",
+          "defensible_answer": "No. The source can keep vibrating while the medium needed for ordinary sound propagation disappears."
+        },
+        "attempt": {
+          "produces": "A source/medium distinction and one vacuum prediction.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Keeps source vibration separate from propagation.",
+              "evidence_of": "Recognizing that the source can move even if sound cannot travel through vacuum."
+            },
+            {
+              "criterion": "Names a material medium as necessary for ordinary mechanical sound.",
+              "evidence_of": "Using the propagation mechanism rather than saying sound is an object moving through space."
+            }
+          ],
+          "accepted": [
+            "Bell vibrates; removing air removes the sound-carrying medium."
+          ],
+          "rejected": [
+            "No air means the bell cannot vibrate at all."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What object is vibrating?",
+              "why_this_ask": "It identifies the source.",
+              "from_step_ref": "SOUND1-1"
+            },
+            {
+              "ask": "What neighboring material carries the disturbance away?",
+              "why_this_ask": "It identifies the propagation medium.",
+              "from_step_ref": "SOUND1-2"
+            },
+            {
+              "ask": "What remains to carry the disturbance when that material is removed?",
+              "why_this_ask": "It exposes the vacuum boundary.",
+              "from_step_ref": "SOUND1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path follows source to medium; the learner route begins from the vacuum paradox and reconstructs the two roles."
+        },
+        "boundary_test": {
+          "prompt": "Can ordinary sound from a vibrating tuning fork propagate through an ideal vacuum?",
+          "answer": "No.",
+          "confirms": "Mechanical sound needs a material medium even though the source itself can vibrate."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-SOUND-LONGITUDINAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Sound in a fluid travels as longitudinal compressions and rarefactions",
+      "bucket_id": "BUCKET-PHY-SOUND",
+      "primary_capability_ref": "CAP-SOUND-LONGITUDINAL",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often confuse particle motion with the direction the wave travels.",
+      "entry_assumptions": [
+        "Can distinguish a local particle from a propagating disturbance in a medium."
+      ],
+      "inferential_jump": "In a simple sound wave through a fluid, particles oscillate back and forth mainly parallel to the propagation direction, producing moving regions of compression and rarefaction while each particle remains near its equilibrium position.",
+      "teaching_path": [
+        {
+          "id": "SOUND2-1",
+          "role": "DECLARE",
+          "action": "Choose one line through the medium and mark equilibrium positions of neighboring particles.",
+          "why_valid": "A longitudinal description needs a propagation axis and local reference positions.",
+          "inputs": [
+            "CAP-SOUND-SOURCE-MEDIUM"
+          ],
+          "output": "propagation axis; particle equilibrium positions."
+        },
+        {
+          "id": "SOUND2-2",
+          "role": "TRANSFORM",
+          "action": "Displace neighboring particles back and forth along the axis so crowded and spread-out regions form and move onward.",
+          "why_valid": "Parallel local oscillation changes local density/pressure, creating compressions and rarefactions that propagate.",
+          "inputs": [],
+          "output": "compression and rarefaction pattern moves; particles oscillate locally."
+        },
+        {
+          "id": "SOUND2-3",
+          "role": "VERIFY",
+          "action": "Track one marked particle while a compression passes it.",
+          "why_valid": "The marked particle should move around equilibrium rather than accompany the compression over a long distance.",
+          "inputs": [],
+          "output": "particle local motion != propagation distance of the disturbance."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SOUND-PRACTICE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Air particles move from the source to the listener at the speed of sound.",
+          "diagnostic_prompt": "After one compression passes, should a marked air particle remain displaced far toward the listener?",
+          "repair": "Track the marked particle: it oscillates around its local equilibrium while successive compressions/rarefactions travel onward."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener.",
+          "reasoning": [
+            "The wave is longitudinal in the simple fluid model.",
+            "Particle displacement is mainly parallel to propagation.",
+            "The travelling feature is the compression/rarefaction pattern, not a parcel of air moving across the room."
+          ],
+          "check": "After many cycles the particle can still be near its original equilibrium region even though the sound disturbance has propagated far away.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit describes qualitative particle and disturbance directions only."
+        }
+      },
+      "research_contribution": "Author-created longitudinal-wave particle-versus-disturbance construction.",
+      "prerequisite_refs": [
+        "CAP-SOUND-SOURCE-MEDIUM"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "When a sound pulse reaches you across a room, must the same air particles that touched the speaker have reached your ear?",
+          "defensible_answer": "No. Air particles oscillate locally; the compression/rarefaction disturbance travels through successive interactions."
+        },
+        "attempt": {
+          "produces": "One particle-motion statement and one propagation statement.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Particle motion is local and mainly parallel to propagation.",
+              "evidence_of": "Recognizing the longitudinal nature of the fluid sound wave."
+            },
+            {
+              "criterion": "The disturbance propagates farther than any one particle.",
+              "evidence_of": "Separating medium motion from wave motion."
+            }
+          ],
+          "accepted": [
+            "Particle oscillates left-right near equilibrium while compression pattern travels right."
+          ],
+          "rejected": [
+            "The marked particle rides with the wave all the way to the listener."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What direction does the wave travel?",
+              "why_this_ask": "It fixes the propagation axis.",
+              "from_step_ref": "SOUND2-1"
+            },
+            {
+              "ask": "Along what direction do nearby particles move?",
+              "why_this_ask": "It identifies longitudinal local motion.",
+              "from_step_ref": "SOUND2-2"
+            },
+            {
+              "ask": "What happens to one marked particle after the compression passes?",
+              "why_this_ask": "It separates local oscillation from propagation.",
+              "from_step_ref": "SOUND2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path constructs compression/rarefaction from particle motion; the learner route starts from the travelling pulse and traces one particle backward."
+        },
+        "boundary_test": {
+          "prompt": "If all particles were permanently carried from source to listener by each sound pulse, would the medium remain approximately in place after repeated sound?",
+          "answer": "No; that would imply sustained bulk transport inconsistent with the local-oscillation model.",
+          "confirms": "Sound propagation is not ordinary mass transport across the whole path."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Frequency, period, wavelength and speed describe different wave features",
+      "bucket_id": "BUCKET-PHY-SOUND",
+      "primary_capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common.",
+      "entry_assumptions": [
+        "Can identify repeating cycles and can measure time and distance intervals."
+      ],
+      "inferential_jump": "Period measures time per cycle, frequency counts cycles per second, wavelength measures spatial repeat distance, amplitude measures disturbance size, and propagation speed links frequency and wavelength through v = f lambda.",
+      "teaching_path": [
+        {
+          "id": "SOUND3-1",
+          "role": "DECLARE",
+          "action": "Separate one time-cycle measurement T from one spatial repeat distance lambda and from amplitude.",
+          "why_valid": "These quantities measure different axes/features and must not be inferred from one another without a relation.",
+          "inputs": [
+            "CAP-SOUND-LONGITUDINAL"
+          ],
+          "output": "T: s/cycle; lambda: m/cycle; amplitude: disturbance size."
+        },
+        {
+          "id": "SOUND3-2",
+          "role": "TRANSFORM",
+          "action": "Take the reciprocal of positive period to obtain frequency.",
+          "why_valid": "REL-FREQUENCY-PERIOD owns the one-cycle time/count relation.",
+          "inputs": [
+            "REL-FREQUENCY-PERIOD"
+          ],
+          "output": "f = 1 / T."
+        },
+        {
+          "id": "SOUND3-3",
+          "role": "TRANSFORM",
+          "action": "Multiply frequency by wavelength for values belonging to the same wave in the same medium.",
+          "why_valid": "REL-WAVE-SPEED owns the propagation-speed relation.",
+          "inputs": [
+            "REL-WAVE-SPEED"
+          ],
+          "output": "v = f lambda."
+        },
+        {
+          "id": "SOUND3-4",
+          "role": "VERIFY",
+          "action": "For the same medium speed, raise frequency and ask what must happen to wavelength.",
+          "why_valid": "Holding v fixed in v = f lambda requires inverse change between f and lambda.",
+          "inputs": [],
+          "output": "same medium speed: higher f -> shorter lambda."
+        }
+      ],
+      "relation_refs": [
+        "REL-FREQUENCY-PERIOD",
+        "REL-WAVE-SPEED"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SOUND-PRACTICE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A taller wave automatically has a higher frequency.",
+          "diagnostic_prompt": "Can two waves have the same period but different amplitudes?",
+          "repair": "Yes. Amplitude is disturbance size; period/frequency measure repetition rate. Keep vertical size separate from time spacing."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A repeating sound vibration has period 0.005 s and wavelength 1.7 m in one medium. Find its frequency and wave speed.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "f = 200 Hz and v = 340 m/s.",
+          "reasoning": [
+            "f = 1/0.005 s = 200 Hz.",
+            "v = f lambda = 200 x 1.7 = 340 m/s.",
+            "The period, frequency and wavelength all describe the same wave in the same medium."
+          ],
+          "check": "A 200 Hz wave has 200 cycles per second, so one cycle lasts 1/200 s = 0.005 s.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "FREQUENCY_PERIOD",
+            "bindings": {
+              "period": "DAT-SOUND-PERIOD"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 wave-quantity construction bound to frequency-period and wave-speed gate relations.",
+      "prerequisite_refs": [
+        "CAP-SOUND-LONGITUDINAL"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "In the same medium, if sound frequency doubles while propagation speed stays the same, what must happen to wavelength?",
+          "defensible_answer": "Wavelength halves because v = f lambda."
+        },
+        "attempt": {
+          "produces": "A period-to-frequency conversion and a same-wave speed calculation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses reciprocal period for frequency.",
+              "evidence_of": "Distinguishing time per cycle from cycles per second."
+            },
+            {
+              "criterion": "Pairs frequency and wavelength from the same wave.",
+              "evidence_of": "Applying v = f lambda without mixing data."
+            }
+          ],
+          "accepted": [
+            "T=0.005 s -> f=200 Hz; lambda=1.7 m -> v=340 m/s."
+          ],
+          "rejected": [
+            "f = T or v = f/lambda."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Is 0.005 s a count per second or time per cycle?",
+              "why_this_ask": "It distinguishes T from f.",
+              "from_step_ref": "SOUND3-1"
+            },
+            {
+              "ask": "What reciprocal converts time per cycle to cycles per second?",
+              "why_this_ask": "It reconstructs f=1/T.",
+              "from_step_ref": "SOUND3-2"
+            },
+            {
+              "ask": "Which spatial quantity pairs with that frequency?",
+              "why_this_ask": "It introduces wavelength."
+            },
+            {
+              "ask": "If medium speed stays fixed, how must f and lambda co-vary?",
+              "why_this_ask": "It independently checks the relation.",
+              "from_step_ref": "SOUND3-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels the quantities first; the learner route starts from the units of period and reconstructs the reciprocal and product relations."
+        },
+        "boundary_test": {
+          "prompt": "Can amplitude change while frequency and wavelength remain unchanged?",
+          "answer": "Yes, within the simple wave description.",
+          "confirms": "Amplitude is a separate disturbance-size quantity rather than another name for frequency or wavelength."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-SOUND-PERCEPTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Pitch follows frequency; loudness is a different perceptual dimension",
+      "bucket_id": "BUCKET-PHY-SOUND",
+      "primary_capability_ref": "CAP-SOUND-PERCEPTION",
+      "intrinsic_badge": "LOW",
+      "badge_reason": "Pitch and loudness are everyday words that learners often swap with frequency and amplitude.",
+      "entry_assumptions": [
+        "Can distinguish frequency from amplitude and can compare two wave descriptions."
+      ],
+      "inferential_jump": "Higher frequency corresponds to higher perceived pitch under comparable conditions, while louder sound is associated with greater sound intensity and typically larger disturbance amplitude; changing one does not automatically change the other.",
+      "teaching_path": [
+        {
+          "id": "SOUND4-1",
+          "role": "DECLARE",
+          "action": "Compare two waves with different frequencies but matched amplitudes.",
+          "why_valid": "Holding disturbance size fixed isolates repetition rate as the changed feature.",
+          "inputs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "output": "higher f -> higher pitch under comparable conditions."
+        },
+        {
+          "id": "SOUND4-2",
+          "role": "DECLARE",
+          "action": "Compare two waves with different amplitudes/intensities but the same frequency.",
+          "why_valid": "Holding repetition rate fixed isolates loudness-related strength from pitch.",
+          "inputs": [],
+          "output": "greater sound intensity / typically larger amplitude -> louder percept, while pitch stays tied to f."
+        },
+        {
+          "id": "SOUND4-3",
+          "role": "VERIFY",
+          "action": "Change frequency and amplitude in opposite directions and require two separate predictions.",
+          "why_valid": "The mixed case tests whether pitch and loudness have been collapsed into one idea.",
+          "inputs": [],
+          "output": "pitch prediction from f; loudness prediction from sound strength/intensity information."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SOUND-PRACTICE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A louder sound must have a higher pitch.",
+          "diagnostic_prompt": "Can a low-pitched drum sound be louder than a high-pitched whistle?",
+          "repair": "Yes. Use frequency for pitch and sound strength/intensity for loudness; they are separate dimensions."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Sound A has higher frequency than Sound B but lower amplitude/intensity under otherwise comparable conditions. Compare their pitch and likely loudness.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Sound A has the higher pitch, while Sound B can be louder because its sound strength is greater.",
+          "reasoning": [
+            "Pitch follows frequency, so A is higher-pitched.",
+            "Loudness is tied to sound intensity/amplitude rather than frequency alone.",
+            "The two perceptual comparisons therefore point in different directions."
+          ],
+          "check": "A loud bass sound and a quiet high whistle provide the same qualitative separation.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit makes qualitative pitch/loudness comparisons without a numerical psychoacoustic formula."
+        }
+      },
+      "research_contribution": "Author-created pitch-versus-loudness separation.",
+      "prerequisite_refs": [
+        "CAP-SOUND-WAVE-QUANTITIES"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Must a higher-pitched sound also be louder?",
+          "defensible_answer": "No. Pitch follows frequency; loudness depends on sound strength/intensity and can vary independently."
+        },
+        "attempt": {
+          "produces": "Separate pitch and loudness predictions for a mixed comparison.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses frequency only for the pitch comparison.",
+              "evidence_of": "Keeping repetition rate tied to pitch."
+            },
+            {
+              "criterion": "Uses sound strength/intensity information for loudness.",
+              "evidence_of": "Separating loudness from frequency."
+            }
+          ],
+          "accepted": [
+            "Higher frequency -> higher pitch; larger amplitude/intensity can make the other sound louder."
+          ],
+          "rejected": [
+            "Higher frequency automatically means louder."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which measured quantity counts cycles per second?",
+              "why_this_ask": "It recovers frequency."
+            },
+            {
+              "ask": "Which percept changes with frequency?",
+              "why_this_ask": "It maps f to pitch.",
+              "from_step_ref": "SOUND4-1"
+            },
+            {
+              "ask": "Which comparison is about sound strength rather than repetition rate?",
+              "why_this_ask": "It separates loudness.",
+              "from_step_ref": "SOUND4-2"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path uses controlled comparisons; the learner route starts from the everyday words and maps each back to the physical quantity."
+        },
+        "boundary_test": {
+          "prompt": "If frequency stays fixed while sound intensity increases, what happens to pitch in the simple Grade 9 comparison?",
+          "answer": "Pitch stays the same while loudness can increase.",
+          "confirms": "Pitch and loudness are distinct."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-SOUND-REFLECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reflected sound can form echoes, reverberation and echolocation cues",
+      "bucket_id": "BUCKET-PHY-SOUND",
+      "primary_capability_ref": "CAP-SOUND-REFLECTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Echo distance contains a round-trip factor of two, and echo/reverberation are easily confused as the same phenomenon.",
+      "entry_assumptions": [
+        "Can use wave speed and elapsed time and can distinguish one-way from round-trip travel."
+      ],
+      "inferential_jump": "A reflected sound that returns after enough delay can be heard as a separate echo; many overlapping reflections produce reverberation; organisms or devices can use return timing as an echolocation cue, with one-way distance equal to half the total reflected path.",
+      "teaching_path": [
+        {
+          "id": "SOUND5-1",
+          "role": "DECLARE",
+          "action": "Draw or describe the sound path from source to reflector and back to receiver.",
+          "why_valid": "Echo timing measures a round trip, not a one-way path.",
+          "inputs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "output": "total reflected path = outward leg + return leg."
+        },
+        {
+          "id": "SOUND5-2",
+          "role": "TRANSFORM",
+          "action": "Use d = v t_echo / 2 for a stationary reflector and one round-trip delay.",
+          "why_valid": "REL-ECHO-DISTANCE owns the factor-of-two path relation.",
+          "inputs": [
+            "REL-ECHO-DISTANCE"
+          ],
+          "output": "one-way reflector distance = v t_echo / 2."
+        },
+        {
+          "id": "SOUND5-3",
+          "role": "DECLARE",
+          "action": "Distinguish one clearly delayed return from many closely spaced overlapping reflections.",
+          "why_valid": "A distinct echo and reverberation differ primarily in whether reflected sound is perceived as separate or merged/extended.",
+          "inputs": [],
+          "output": "distinct delayed reflection -> echo; dense overlapping reflections -> reverberation."
+        },
+        {
+          "id": "SOUND5-4",
+          "role": "VERIFY",
+          "action": "Interpret echolocation as estimating location from emitted sound and reflected return timing rather than from sound travelling instantaneously.",
+          "why_valid": "The return delay carries path-length information when wave speed is known.",
+          "inputs": [],
+          "output": "known sound speed + round-trip timing -> range cue."
+        }
+      ],
+      "relation_refs": [
+        "REL-ECHO-DISTANCE",
+        "REL-WAVE-SPEED"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SOUND-PRACTICE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Echo delay time corresponds to one-way travel from source to wall.",
+          "diagnostic_prompt": "A clap returns after 0.4 s. Did the sound spend all 0.4 s travelling only from the source to the wall?",
+          "repair": "No. The measured delay includes the outward and return paths, so divide the total travelled distance by two for one-way range."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Sound travels at 340 m/s and a clear echo returns 0.40 s after a clap from a stationary wall. Estimate the one-way distance to the wall.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The wall is about 68 m away.",
+          "reasoning": [
+            "The 0.40 s is a round-trip delay.",
+            "Total sound path = 340 x 0.40 = 136 m.",
+            "One-way distance = 136/2 = 68 m."
+          ],
+          "check": "Doubling the wall distance at the same sound speed would double the echo delay.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "ECHO_DISTANCE",
+            "bindings": {
+              "speed": "DAT-SOUND-SPEED",
+              "echo_time": "DAT-SOUND-ECHO-T"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 sound-reflection and echo-distance construction.",
+      "prerequisite_refs": [
+        "CAP-SOUND-WAVE-QUANTITIES"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a wall is twice as far away and sound speed is unchanged, what happens to the echo delay?",
+          "defensible_answer": "It doubles because both the outward and return path lengths double."
+        },
+        "attempt": {
+          "produces": "A round-trip path statement, one echo-distance calculation, and an echo-versus-reverberation classification.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses half the round-trip path for one-way distance.",
+              "evidence_of": "Accounting for outward and reflected travel."
+            },
+            {
+              "criterion": "Distinguishes separate echo from overlapping reverberation.",
+              "evidence_of": "Using delay structure rather than treating all reflection effects as identical."
+            }
+          ],
+          "accepted": [
+            "340 m/s x 0.40 s / 2 = 68 m; distinct delayed return = echo."
+          ],
+          "rejected": [
+            "340 x 0.40 = 136 m as the one-way wall distance."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where does the sound travel before you hear the return?",
+              "why_this_ask": "It exposes both legs.",
+              "from_step_ref": "SOUND5-1"
+            },
+            {
+              "ask": "What distance does v times the whole delay represent?",
+              "why_this_ask": "It identifies total round-trip path."
+            },
+            {
+              "ask": "How do you recover one-way range?",
+              "why_this_ask": "It reconstructs the factor one half.",
+              "from_step_ref": "SOUND5-2"
+            },
+            {
+              "ask": "When do multiple returns merge into a prolonged sound instead of a separate echo?",
+              "why_this_ask": "It distinguishes reverberation.",
+              "from_step_ref": "SOUND5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path lays out reflection categories; the learner route starts from the timing calculation and reconstructs the physical path."
+        },
+        "boundary_test": {
+          "prompt": "If echo delay is zero in this simple stationary-path model, what one-way distance does the relation return?",
+          "answer": "Zero.",
+          "confirms": "The factor-of-two relation is tied to a nonnegative round-trip path."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-FREQUENCY-PERIOD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "f = 1 / T",
+      "meaning": "For a repeating vibration, frequency is the reciprocal of time period.",
+      "symbols": [
+        {
+          "symbol": "f",
+          "meaning": "Frequency",
+          "unit_or_domain": "Hz; positive scalar"
+        },
+        {
+          "symbol": "T",
+          "meaning": "Time period",
+          "unit_or_domain": "s; positive scalar"
+        }
+      ],
+      "conditions": [
+        "T > 0.",
+        "f and T refer to the same repeating vibration."
+      ],
+      "derivation": [
+        {
+          "id": "SOUND-FREQ-D1",
+          "role": "TRANSFORM",
+          "action": "Take the reciprocal of the positive time per cycle.",
+          "why_valid": "Frequency counts cycles per second while period measures seconds per cycle.",
+          "inputs": [],
+          "output": "f = 1 / T."
+        }
+      ],
+      "limits": [
+        "The relation assumes a repeating vibration with a meaningful period."
+      ],
+      "checks": [
+        "f T = 1.",
+        "Longer period means lower frequency."
+      ],
+      "gate_relation_ref": "REL-FREQUENCY-PERIOD"
+    },
+    {
+      "id": "REL-WAVE-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "v = f lambda",
+      "meaning": "Wave propagation speed equals temporal frequency times spatial wavelength.",
+      "symbols": [
+        {
+          "symbol": "v",
+          "meaning": "Wave propagation speed",
+          "unit_or_domain": "m/s; nonnegative scalar"
+        },
+        {
+          "symbol": "f",
+          "meaning": "Frequency",
+          "unit_or_domain": "Hz; nonnegative scalar"
+        },
+        {
+          "symbol": "lambda",
+          "meaning": "Wavelength",
+          "unit_or_domain": "m; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "f >= 0 and lambda >= 0.",
+        "All quantities describe the same wave mode in the same medium/state."
+      ],
+      "derivation": [
+        {
+          "id": "SOUND-SPEED-D1",
+          "role": "TRANSFORM",
+          "action": "Multiply cycles per second by metres advanced per cycle.",
+          "why_valid": "One cycle of a travelling wave advances the pattern by one wavelength.",
+          "inputs": [],
+          "output": "v = f lambda."
+        }
+      ],
+      "limits": [
+        "Changing medium can change propagation speed; do not assume one speed across different media."
+      ],
+      "checks": [
+        "Hz times m gives m/s.",
+        "At fixed medium speed, increasing f requires decreasing lambda."
+      ],
+      "gate_relation_ref": "REL-WAVE-SPEED"
+    },
+    {
+      "id": "REL-ECHO-DISTANCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "d = v t_echo / 2",
+      "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
+      "symbols": [
+        {
+          "symbol": "d",
+          "meaning": "One-way source-to-reflector distance",
+          "unit_or_domain": "m; nonnegative scalar"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Sound speed in the medium",
+          "unit_or_domain": "m/s; positive scalar"
+        },
+        {
+          "symbol": "t_echo",
+          "meaning": "Round-trip echo delay",
+          "unit_or_domain": "s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "v > 0.",
+        "t_echo >= 0.",
+        "The measured delay is for one outward-and-return path in the same medium."
+      ],
+      "derivation": [
+        {
+          "id": "SOUND-ECHO-D1",
+          "role": "DECLARE",
+          "action": "Write total reflected path as twice the one-way range for a source/receiver at the same location.",
+          "why_valid": "The sound travels to the reflector and back.",
+          "inputs": [],
+          "output": "total path = 2 d."
+        },
+        {
+          "id": "SOUND-ECHO-D2",
+          "role": "TRANSFORM",
+          "action": "Set total path equal to v t_echo and solve for d.",
+          "why_valid": "Distance travelled equals wave speed times elapsed time in the stated uniform-medium model.",
+          "inputs": [
+            "REL-WAVE-SPEED"
+          ],
+          "output": "d = v t_echo / 2."
+        }
+      ],
+      "limits": [
+        "Moving source/reflector geometry or multiple ambiguous reflections need a richer model."
+      ],
+      "checks": [
+        "Doubling d doubles t_echo at fixed v.",
+        "The factor one half prevents round-trip distance from being mistaken for one-way range."
+      ],
+      "gate_relation_ref": "REL-ECHO-DISTANCE"
+    }
+  ],
+  "representations": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-SOUND-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade 9 Sound propagation and wave-quantity practice",
+      "capability_refs": [
+        "CAP-SOUND-SOURCE-MEDIUM",
+        "CAP-SOUND-LONGITUDINAL",
+        "CAP-SOUND-WAVE-QUANTITIES",
+        "CAP-SOUND-PERCEPTION",
+        "CAP-SOUND-REFLECTION"
+      ],
+      "solution_structure": [
+        "Identify source, medium and propagation direction.",
+        "Separate local particle motion from wave propagation.",
+        "Keep period, frequency, wavelength and amplitude distinct.",
+        "Use f=1/T or v=f lambda only for one consistent wave.",
+        "For reflection, draw the round trip before halving for one-way range."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the question is about propagation mechanism, wave quantities, perception or reflection timing.",
+        "representation_translation": "Translate a compression/rarefaction description or wave graph language into the correct physical quantity without swapping particle and wave motion.",
+        "reasoning_steps": "Carry source/medium or round-trip path reasoning through the numerical relation and independent check.",
+        "novelty": "Map unfamiliar sonar, echolocation or acoustic-room contexts onto the same Grade 9 sound relations."
+      },
+      "safe_variations": [
+        "Change period, wavelength, medium, reflector distance or everyday sound source while preserving the declared model."
+      ],
+      "transfer_boundaries": [
+        "Do not introduce Doppler, logarithmic decibel or standing-wave formulae."
+      ],
+      "common_wrong_routes": [
+        "Treating particles as travelling with the sound.",
+        "Using amplitude to infer frequency.",
+        "Forgetting that echo timing is round trip."
+      ],
+      "item_refs": [
+        "Q-PHY-SOUND-2A-01",
+        "Q-PHY-SOUND-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-SOUND-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SOUND-G9",
+      "original_identifier": "AUTHOR-SOUND-2A-01",
+      "stem": "A sound vibration has period 0.005 s. Find its frequency and state whether doubling amplitude at the same period changes that frequency.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The frequency is 200 Hz. Doubling amplitude at the same period does not change the frequency in this simple description.",
+        "reasoning": [
+          "f = 1/T = 1/0.005 = 200 Hz.",
+          "Period stays 0.005 s, so cycles per second stay 200.",
+          "Amplitude is a separate measure of disturbance size."
+        ],
+        "check": "200 Hz corresponds to 1/200 s = 0.005 s per cycle.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
+      "secondary_capability_refs": [
+        "CAP-SOUND-PERCEPTION"
+      ],
+      "family_ref": "FAM-PHY-SOUND-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "verification": {
+        "validator_id": "FREQUENCY_PERIOD",
+        "bindings": {
+          "period": "DAT-SOUND-PERIOD"
+        }
+      },
+      "hints": [
+        {
+          "text": "Period is seconds per cycle; frequency is cycles per second.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Take the reciprocal of the positive period.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-SOUND-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SOUND-G9",
+      "original_identifier": "AUTHOR-SOUND-2B-01",
+      "stem": "A cave-mapping device emits a short sound pulse and receives a clear reflection 0.40 s later. If sound speed is 340 m/s, estimate the one-way distance to the reflecting wall and explain the factor of two without being told it is an 'echo formula.'",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Source and receiver are at the same location and the reflecting wall is stationary."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "The wall is 68 m away. The 0.40 s covers the outward and return paths, so 340 x 0.40 = 136 m is the round-trip distance and the one-way range is half of that.",
+        "reasoning": [
+          "Trace source to wall and wall back to receiver.",
+          "Use speed times the full delay for total travelled path.",
+          "Divide by two for one-way distance."
+        ],
+        "check": "A wall twice as far away would produce twice the round-trip delay at the same sound speed.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1,
+        "rubric": [
+          {
+            "criterion": "Uses the echo delay as a round-trip time.",
+            "evidence_of": "Reconstructing the physical reflection path."
+          },
+          {
+            "criterion": "Divides the total path by two for one-way range.",
+            "evidence_of": "Avoiding the standard factor-of-two error."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-SOUND-REFLECTION",
+      "secondary_capability_refs": [
+        "CAP-SOUND-WAVE-QUANTITIES"
+      ],
+      "family_ref": "FAM-PHY-SOUND-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "verification": {
+        "validator_id": "ECHO_DISTANCE",
+        "bindings": {
+          "speed": "DAT-SOUND-SPEED",
+          "echo_time": "DAT-SOUND-ECHO-T"
+        }
+      },
+      "hints": [
+        {
+          "text": "Trace the path before using any equation: source to wall, then wall back to receiver.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Speed times the whole delay gives the total path length, not the one-way range.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "novelty",
+        "statement": "An unfamiliar cave-mapping device must be recognized as the same round-trip reflection timing model as an ordinary echo.",
+        "builds_on": [
+          "Q-PHY-SOUND-2A-01",
+          "MIC-PHY-SOUND-REFLECTION"
+        ]
+      },
+      "repair_ref": "SOUND5-1"
+    }
+  ],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-SOUND-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal Grade 9 Sound spine",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-SOUND-SOURCE-MEDIUM",
+        "MIC-PHY-SOUND-LONGITUDINAL",
+        "MIC-PHY-SOUND-WAVE-QUANTITIES",
+        "MIC-PHY-SOUND-PERCEPTION",
+        "MIC-PHY-SOUND-REFLECTION"
+      ],
+      "entry_needs": [
+        "Basic Grade 9 motion ideas: repeating motion, time interval and speed."
+      ],
+      "learner_actions": [
+        "Separate vibrating source from material medium.",
+        "Track particle motion versus propagating compression.",
+        "Calculate frequency, speed and echo range.",
+        "Separate pitch from loudness.",
+        "Classify reflection effects."
+      ],
+      "help_plan": [
+        "Use one marked particle to repair particle-versus-wave confusion.",
+        "Use units s/cycle versus cycles/s to repair period/frequency confusion.",
+        "Draw the echo round trip before calculating distance."
+      ],
+      "reveal_plan": "Completed constructions are visible after each quantity/mechanism is identified.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-SOUND-G9",
+          "purpose": "Grade 9 Sound authored teaching",
+          "reason": "The bucket is authored from the researched Grade 9 scope without promoting candidate packets."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not extend into Doppler, standing-wave modes or logarithmic intensity levels."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-SOUND-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit Grade 9 Sound spine",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-SOUND-SOURCE-MEDIUM",
+        "MIC-PHY-SOUND-LONGITUDINAL",
+        "MIC-PHY-SOUND-WAVE-QUANTITIES",
+        "MIC-PHY-SOUND-PERCEPTION",
+        "MIC-PHY-SOUND-REFLECTION"
+      ],
+      "entry_needs": [
+        "Same intrinsic Grade 9 motion prerequisite."
+      ],
+      "learner_actions": [
+        "Predict what a vacuum changes.",
+        "Track one medium particle.",
+        "Reconstruct f=1/T and v=f lambda from units.",
+        "Separate pitch and loudness predictions.",
+        "Reconstruct the echo factor of two from the path."
+      ],
+      "help_plan": [
+        "Ask what physically oscillates and what propagates.",
+        "Ask which quantity is time per cycle versus cycles per second.",
+        "Ask how many path legs are included in an echo delay."
+      ],
+      "reveal_plan": "Prediction, attempt and reconstruction precede model answers.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-SOUND-G9",
+          "purpose": "Self-tutor Grade 9 Sound",
+          "reason": "The elicitation cycles target the major Sound misconceptions."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not infer undeclared advanced acoustics."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-SOUND-PERIOD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.005,
+      "unit": "s",
+      "symbol": "T",
+      "meaning": "Period in the authored Grade 9 Sound frequency example.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-SOUND-LAMBDA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1.7,
+      "unit": "m",
+      "symbol": "lambda",
+      "meaning": "Wavelength in the authored Grade 9 Sound wave-speed example.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-SOUND-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 340,
+      "unit": "m/s",
+      "symbol": "v",
+      "meaning": "Sound speed in the authored echo example.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-SOUND-ECHO-T",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.4,
+      "unit": "s",
+      "symbol": "t_echo",
+      "meaning": "Round-trip echo delay in the authored reflection example.",
+      "locator": "Author-created exact practice datum."
+    }
+  ]
+}
