@@ -16,7 +16,7 @@
     "TOOLING": 39,
     "WEB": 5
   },
-  "digest": "sha256:36f3bdb26c2826f47bade0daff1291ae9626d44fe84f04ec8c4fba57a1f32ad2",
+  "digest": "sha256:4e7ee6d6cdc220516e8ca9b9719b5a6a717df5734576fe9b1d2f9fbe7d2fcd5e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -687,8 +687,8 @@
       "path": "tests/test_c6_examside_motion_in_plane.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8315,
-      "sha256": "64e3188025b77013fb76340230b9a4cd911ce7b8e8f34c72fe582fd7952c52e0"
+      "bytes": 9757,
+      "sha256": "2ead444655f964007968ba5cd122956d61250e3cf5908ba2dabb28f623ffebfa"
     },
     {
       "path": "tests/test_capability_delivery.py",
