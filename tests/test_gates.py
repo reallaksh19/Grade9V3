@@ -196,6 +196,45 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
             "ELECTRIC_POWER", {"voltage": "V", "current": "A"}, voltage=12, current=2))
         self.assertEqual((wave, average, instant, electric), (15, 30, -12, 24))
 
+    def test_grade9_motion_force_energy_machine_and_sound_validators(self):
+        displacement = physics_recompute(self.case(
+            "CONSTANT_ACCELERATION_DISPLACEMENT",
+            {"u": "m/s", "a": "m/s^2", "t": "s"}, u=5, a=2, t=3))
+        no_time = physics_recompute(self.case(
+            "CONSTANT_ACCELERATION_NO_TIME",
+            {"u": "m/s", "a": "m/s^2", "s": "m"}, u=5, a=2, s=24))
+        force = physics_recompute(self.case(
+            "NEWTON_SECOND_LAW",
+            {"mass": "kg", "acceleration": "m/s^2"}, mass=4, acceleration=3))
+        work = physics_recompute(self.case(
+            "WORK_CONSTANT_FORCE",
+            {"force_parallel": "N", "displacement": "m"},
+            force_parallel=-5, displacement=4))
+        kinetic = physics_recompute(self.case(
+            "KINETIC_ENERGY", {"mass": "kg", "speed": "m/s"}, mass=2, speed=3))
+        potential = physics_recompute(self.case(
+            "GRAVITATIONAL_POTENTIAL_ENERGY",
+            {"mass": "kg", "g": "m/s^2", "delta_h": "m"},
+            mass=2, g=10, delta_h=5))
+        ma = physics_recompute(self.case(
+            "MECHANICAL_ADVANTAGE",
+            {"load_force": "N", "effort_force": "N"},
+            load_force=120, effort_force=40))
+        frequency = physics_recompute(self.case(
+            "FREQUENCY_PERIOD", {"period": "s"}, period=0.005))
+        echo = physics_recompute(self.case(
+            "ECHO_DISTANCE", {"speed": "m/s", "echo_time": "s"},
+            speed=340, echo_time=0.4))
+        self.assertEqual(displacement, 24)
+        self.assertEqual(no_time, {"v_squared_m2_s2": 121})
+        self.assertEqual(force, 12)
+        self.assertEqual(work, -20)
+        self.assertEqual(kinetic, 9)
+        self.assertEqual(potential, 100)
+        self.assertEqual(ma, 3)
+        self.assertEqual(frequency, 200)
+        self.assertEqual(echo, 68)
+
     def test_first_law_refuses_an_undeclared_work_convention(self):
         with self.assertRaisesRegex(ValueError, "THERMODYNAMIC_WORK_CONVENTION_REQUIRED"):
             physics_recompute(self.case(
@@ -366,6 +405,11 @@ def _nlm2_validator(data):
 @mutates("FAL-WEP9-VALIDATOR")
 def _wep9_validator(data):
     _undeclare_first_relation_validator(data, "PHY-WORK-ENERGY-GRADE9")
+
+
+@mutates("FAL-MACHINE-MA-VALIDATOR")
+def _machine_ma_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-SIMPLE-MACHINES-GRADE9")
 
 
 def registries():
