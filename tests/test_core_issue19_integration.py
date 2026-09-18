@@ -15,7 +15,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Shared.tools import capability_graph, feedback, resolve_request  # noqa: E402
-from Shared.tools import study_map, study_route, study_scope_audit  # noqa: E402
+from Shared.tools import study_map, study_route, study_scope_audit, study_start  # noqa: E402
 
 
 class CoreIssue19Integration(unittest.TestCase):
@@ -58,6 +58,25 @@ class CoreIssue19Integration(unittest.TestCase):
         self.assertEqual(entry["rung"], "R2")
         self.assertEqual(entry["selected_position"], 60)
         self.assertEqual(entry["prerequisite_checks"], ["CAP-MATH-SUBSTITUTE"])
+
+    def test_subtopic_estimate_overlay_uses_the_issue19_math_matrix(self):
+        report = study_start.resolve(self.load(self.MATH), [{
+            "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
+            "knowledge_percentage": 75,
+        }])
+        self.assertTrue(report["passed"], report["findings"])
+        rows = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(
+            rows["CAP-MATH-SUBSTITUTE"]["learner_action"],
+            "QUICK_CHECK",
+        )
+        self.assertEqual(
+            rows["CAP-MATH-ISOLATE"]["learner_action"],
+            "START_HERE",
+        )
+        decision = report["start_decisions"][0]
+        self.assertEqual(decision["selected_rung"], "R2")
+        self.assertEqual(decision["selected_position"], 60)
 
     def test_noncanonical_math_worksheet_question_can_enter_feedback_runtime(self):
         mapping = self.load(self.MATH)
