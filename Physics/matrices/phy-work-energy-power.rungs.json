@@ -174,6 +174,81 @@
       "microtopic_ref": "MIC-PHY-WEP-POWER-RATES"
     },
     {
+      "rung": "R5D",
+      "ladder_position": 95,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "calculus",
+        "variable-force integration",
+        "universal gravitation",
+        "relativistic energy"
+      ],
+      "must_contain": [
+        "A kinetic-energy derivation chain W_net = F_net s = m a s followed by substitution from v^2-u^2 = 2as.",
+        "An explicit identification W_net = Delta K, with the from-rest boundary producing K = 0.5 m v^2.",
+        "A slow near-Earth lift with a = 0, F_applied = F_weight = m g, and W_applied = m g h before Delta U_g = m g h is identified."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the final speed",
+          "hold": "the same positive mass and from-rest constant-force model",
+          "notice": "the derived kinetic energy changes with v squared"
+        },
+        {
+          "phase": 2,
+          "vary": "the lift height",
+          "hold": "the same mass, local g and slow-lift condition",
+          "notice": "the derived gravitational potential-energy increase changes in direct proportion to height"
+        },
+        {
+          "phase": 3,
+          "vary": "the acceleration model from constant to changing",
+          "hold": "the same start and finish speeds",
+          "notice": "the Grade 9 algebraic derivation using v^2-u^2=2as is no longer justified without a richer model"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WORK-CONSTANT-FORCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The kinetic and slow-lift derivations both use gate-owned constant-force work."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WORK-ENERGY-THEOREM",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The kinetic derivation must identify net work with Delta K through the gate-owned theorem."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-NEWTON-SECOND-LAW",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The kinetic derivation replaces constant net force by m a."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The kinetic derivation eliminates a s through the constant-acceleration no-time relation."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WEIGHT-NEAR-EARTH",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The raised-body potential-energy derivation needs the near-Earth weight magnitude m g."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The slow-lift work is identified with the gate-owned gravitational potential-energy change."
+        }
+      ]
+    },
+    {
       "rung": "R6",
       "ladder_position": 100,
       "provenance": "SOURCE",
@@ -310,6 +385,12 @@
       "changed_demand": "A numerical energy problem includes friction and the learner must decide whether to use mechanical-energy conservation alone or include an explicit transfer term.",
       "information_not_handed_over": "whether the chosen K + U account is closed",
       "repair_to": "R6"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Instead of being given K = 0.5 m v^2 or Delta U_g = m g h, the learner must reconstruct each expression from previously authored work, force and motion relations.",
+      "information_not_handed_over": "which already-owned mechanics relations must be chained to derive the two energy expressions",
+      "repair_to": "R5D"
     }
   ]
 }
