@@ -16,6 +16,7 @@ GUARDRAILS = REPO / ".github/workflows/guardrails.yml"
 
 SHARED_SESSION_SURFACE = [
     REPO / "Shared/tools/capability_delivery.py",
+    REPO / "Shared/tools/empirical_acceptance.py",
     REPO / "Shared/tools/session_readiness.py",
     REPO / "Shared/tools/study_session.py",
     REPO / "Shared/tools/study_map.py",
