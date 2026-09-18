@@ -1,0 +1,35 @@
+name: study session temporary artifact refresh
+
+on:
+  push:
+    branches:
+      - core/study-session-relative-motion-pilot
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: core/study-session-relative-motion-pilot
+          fetch-depth: 0
+
+      - name: Remove temporary workflow before generation
+        run: rm .github/workflows/study-session-temp.yml
+
+      - name: Regenerate committed derived artifacts
+        run: python3 Shared/tools/build_manifest.py
+
+      - name: Commit refreshed artifacts and self-remove
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture-manifest.json tools/data.js .github/workflows/study-session-temp.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Regenerate study session artifacts"
+          git push origin HEAD:core/study-session-relative-motion-pilot
