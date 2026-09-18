@@ -70,6 +70,26 @@
           "hold": "angular frequency and phase origin",
           "notice": "the plot scales vertically but the timing relationships among x, v, and a do not change"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-SHM-ACCELERATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The opposite proportional acceleration condition for SHM needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "SHM_ACCELERATION",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Quantitative phase/acceleration checks need an implemented validator."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "GRAPH",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "Aligned x-v-a time plots require the subject's implemented graph kind."
+        }
       ]
     },
     {
@@ -110,6 +130,26 @@
           "vary": "pendulum amplitude from small to large",
           "hold": "length, gravity, and bob mass",
           "notice": "the amplitude-independence claim belongs only to the small-angle regime and breaks outside it"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-SPRING-MASS-PERIOD",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Spring-mass period dependence needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-SIMPLE-PENDULUM-PERIOD",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Small-angle pendulum period dependence needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "OSCILLATION_PERIOD",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Parameter-change period exits need an implemented validator."
         }
       ]
     },
@@ -176,6 +216,26 @@
           "vary": "observation from a spatial snapshot to a time trace at one point",
           "hold": "the same travelling wave",
           "notice": "one graph shows shape across position and the other shows local oscillation through time"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WAVE-SPEED",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "v = f lambda and its medium assumptions need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "WAVE_SPEED",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Frequency-wavelength numerical exits need an implemented validator."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "GRAPH",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "Snapshot/time-trace comparisons require the implemented graph kind."
         }
       ]
     }
