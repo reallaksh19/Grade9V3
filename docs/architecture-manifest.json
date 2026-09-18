@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 83,
-  "relation_count": 134,
+  "component_count": 87,
+  "relation_count": 140,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 21,
-    "TEST": 13,
-    "TOOLING": 25,
+    "LIBRARY": 23,
+    "TEST": 14,
+    "TOOLING": 26,
     "WEB": 5
   },
-  "digest": "sha256:8c5171a27147d03d341bfb635d273075b1accc2e46dce73602aa8dba66b0225d",
+  "digest": "sha256:4fe2796f1373ee04c51d15376c98432c227893bb191e4844a3b4cdc852f58583",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -33,11 +33,25 @@
       "sha256": "035c37db5d57e321869ce326c369984a31ac3433299ba3b2d805b40af046e05e"
     },
     {
+      "bytes": 1520,
+      "path": "Shared/library/authoring-proposal.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "sha256": "3c8f02d299e39cc529fbbd23f44e74dffec5e34e3ad445591a7c2a8f06dc1a3b"
+    },
+    {
       "bytes": 4690,
       "path": "Shared/library/authoring-request.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "sha256": "8e5b450c07e5decf60bcdcb3bbec222f2f1304bd1df6afd32ae4d3c5393aca7d"
+    },
+    {
+      "bytes": 1571,
+      "path": "Shared/library/authoring-run-receipt.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "sha256": "855afd8c9a4f2ed76e23236237e275e22300984c8fcffe4f8c5d10788198b75f"
     },
     {
       "path": "Shared/library/authority.py",
@@ -383,6 +397,13 @@
       "sha256": "4395d19ce533d45e0d17ad57c87bf440c78f360da6e17a2bf1b2c061d433157a"
     },
     {
+      "bytes": 21307,
+      "path": "Shared/tools/execute_authoring_run.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "sha256": "42289024e8205987f07ba8025ed85fd407010854c65527d21095984dc4df2a8e"
+    },
+    {
       "path": "Shared/tools/learner_evidence.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -493,6 +514,13 @@
       "role_description": "Executable checks",
       "bytes": 8575,
       "sha256": "1a51da618798e4531eb6499cfc8a4a9b0b70d786f47b064f55b9623eeef261c4"
+    },
+    {
+      "bytes": 10334,
+      "path": "tests/test_authoring_run.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "sha256": "16e736a3d347d17c500075e1d0fbeee1748d0cc5fb2bd92f267212cdd9676e3a"
     },
     {
       "path": "tests/test_execution_packet.py",
@@ -902,6 +930,26 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/execute_authoring_run.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/execute_authoring_run.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/execute_authoring_run.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/execute_authoring_run.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/learner_evidence.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1063,6 +1111,16 @@
     },
     {
       "from": "tests/test_architecture.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_authoring_run.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_authoring_run.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
