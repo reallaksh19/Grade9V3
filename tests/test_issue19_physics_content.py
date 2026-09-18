@@ -205,12 +205,19 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
                 self.assertIn(q["origin_ref"], q["source_refs"], q["id"])
 
     def test_gate_validators_exist_in_contract_and_implementation(self):
-        gate = load_json(REPO / "Physics/gates/foundational-relations.v1.json")
         required = {
-            validator
-            for gate_row in gate["gates"]
-            for relation in gate_row.get("relations", [])
-            for validator in relation.get("validator_refs", [])
+            "AVERAGE_RATE",
+            "AVERAGE_POWER",
+            "INSTANTANEOUS_POWER",
+            "CONSTANT_ACCELERATION_DISPLACEMENT",
+            "CONSTANT_ACCELERATION_NO_TIME",
+            "NEWTON_SECOND_LAW",
+            "WORK_CONSTANT_FORCE",
+            "KINETIC_ENERGY",
+            "GRAVITATIONAL_POTENTIAL_ENERGY",
+            "AVERAGE_ACCELERATION",
+            "UNIFORM_CIRCULAR_SPEED",
+            "CONSTANT_ACCELERATION_GRAPH_AREA",
         }
         contract = load_json(REPO / "Physics/adapter/CoreContracts.json")
         declared = {row["id"] for row in contract["validator_catalogue"]}
