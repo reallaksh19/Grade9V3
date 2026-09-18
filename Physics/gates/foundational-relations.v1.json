@@ -1,0 +1,889 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHY-FOUNDATIONAL-QUANTITATIVE-RELATIONS-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "purpose": "Cross-track quantitative relation authority for matrix engineering dependencies. Owner-extension only; no board-prescription claim."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-KIN-AVERAGE-RATES",
+      "title": "Average speed and average velocity over one interval",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-KIN-TOTALS-FIRST",
+          "statement": "Average rates are formed from total path or displacement over the same total elapsed time, not by blindly averaging listed speeds."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-AVERAGE-SPEED",
+          "expression": "speed_avg = distance_total / Delta t",
+          "meaning": "Average speed is total distance travelled divided by the positive elapsed time.",
+          "symbols": [
+            {
+              "symbol": "speed_avg",
+              "meaning": "Average speed over the interval",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "distance_total",
+              "meaning": "Total path length travelled",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "distance_total >= 0."
+          ],
+          "validator_refs": [
+            "AVERAGE_RATE"
+          ]
+        },
+        {
+          "relation_id": "REL-AVERAGE-VELOCITY",
+          "expression": "v_avg = Delta x / Delta t",
+          "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+          "symbols": [
+            {
+              "symbol": "v_avg",
+              "meaning": "Average velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Delta x",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "Delta x uses one declared axis/sign convention."
+          ],
+          "validator_refs": [
+            "AVERAGE_RATE"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "One finite interval with a positive elapsed time.",
+        "Average velocity requires a declared signed displacement convention."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-KIN-AVG-TOTALS",
+          "sequence": 1,
+          "action": "Form the total path length and signed displacement over the same interval.",
+          "why_valid": "Both averages must refer to the same elapsed interval."
+        },
+        {
+          "step_id": "RS-KIN-AVG-DIVIDE",
+          "sequence": 2,
+          "action": "Divide each total by the common positive elapsed time.",
+          "why_valid": "Rate over an interval is total change measure divided by elapsed time.",
+          "depends_on": [
+            "RS-KIN-AVG-TOTALS"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-KIN-AVG-LIST",
+          "wrong_idea": "Average speed is always the arithmetic mean of the listed speeds.",
+          "counterexample": "Equal-distance legs at unequal speeds spend unequal times at the two speeds.",
+          "repair": "Use total distance divided by total time unless equal time weighting is explicitly given."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-KIN-AVG-TWO-LEG",
+          "title": "Two-leg trips with path and displacement kept separate",
+          "hidden_invariants": [
+            "Returning to the start can give nonzero average speed and zero average velocity."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "KINEMATICS"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-KIN-AVG-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-GRAV-SCALAR-LAWS",
+      "title": "Universal gravitation and source-field magnitude",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Gravitation",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-GRAV-INVERSE-SQUARE",
+          "statement": "For point masses or spherical bodies outside them, gravitational-force magnitude falls with the square of centre-to-centre separation."
+        },
+        {
+          "concept_id": "CON-GRAV-TEST-MASS-CANCELS",
+          "statement": "At one location the source-produced gravitational acceleration does not depend on the test mass."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-UNIVERSAL-GRAVITATION",
+          "expression": "F = G m1 m2 / r^2",
+          "meaning": "Magnitude of the mutual gravitational force for the declared point-mass/spherical model.",
+          "symbols": [
+            {
+              "symbol": "F",
+              "meaning": "Gravitational-force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "G",
+              "meaning": "Universal gravitational constant",
+              "unit": "N m^2/kg^2",
+              "dimension": "M^-1 L^3 T^-2"
+            },
+            {
+              "symbol": "m1",
+              "meaning": "First mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "m2",
+              "meaning": "Second mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "r",
+              "meaning": "Centre-to-centre separation",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "G > 0, m1 > 0, m2 > 0 and r > 0.",
+            "Use centre-to-centre separation.",
+            "Point-mass model or spherical bodies where the shell theorem reduction is valid."
+          ],
+          "validator_refs": [
+            "UNIVERSAL_GRAVITATION"
+          ]
+        },
+        {
+          "relation_id": "REL-GRAVITATIONAL-ACCELERATION",
+          "expression": "g = G M / r^2",
+          "meaning": "Magnitude of the gravitational acceleration produced by source mass M at radius r.",
+          "symbols": [
+            {
+              "symbol": "g",
+              "meaning": "Gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "G",
+              "meaning": "Universal gravitational constant",
+              "unit": "N m^2/kg^2",
+              "dimension": "M^-1 L^3 T^-2"
+            },
+            {
+              "symbol": "M",
+              "meaning": "Source mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "r",
+              "meaning": "Distance from the source centre",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "G > 0, M > 0 and r > 0.",
+            "Other source fields are excluded from this single-source relation."
+          ],
+          "validator_refs": [
+            "GRAVITATIONAL_ACCELERATION"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Point-mass or spherical-source reduction is valid.",
+        "All radii are measured from the source centre."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-GRAV-MODEL",
+          "sequence": 1,
+          "action": "Choose the point-mass or spherical-source model and identify centre-to-centre radius.",
+          "why_valid": "The inverse-square relation is defined on that geometric model."
+        },
+        {
+          "step_id": "RS-GRAV-EVALUATE",
+          "sequence": 2,
+          "action": "Evaluate the force or source-field magnitude with positive masses and radius.",
+          "why_valid": "The validator recomputes the declared scalar relation under those conditions.",
+          "depends_on": [
+            "RS-GRAV-MODEL"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-GRAV-SURFACE-GAP",
+          "wrong_idea": "Use the gap between object surfaces as r.",
+          "counterexample": "Two equal planets nearly touching have a small surface gap but their centres remain separated by about two radii.",
+          "repair": "Mark centres first and measure r between them."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-GRAV-RATIO",
+          "title": "Mass and separation ratio changes",
+          "hidden_invariants": [
+            "Doubling one mass doubles force; tripling separation divides force by nine."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "GRAVITATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-GRAV-SCALAR-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-FLUID-HYDROSTATIC",
+      "title": "Hydrostatic pressure difference",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Fluids",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-FLUID-DEPTH",
+          "statement": "In a static constant-density fluid, pressure difference is controlled by signed vertical depth change rather than container shape."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-HYDROSTATIC-PRESSURE",
+          "expression": "Delta p = rho g Delta h",
+          "meaning": "Static-pressure change for a constant-density fluid when positive Delta h is downward.",
+          "symbols": [
+            {
+              "symbol": "Delta p",
+              "meaning": "Pressure at the deeper point minus pressure at the shallower point",
+              "unit": "Pa",
+              "dimension": "M L^-1 T^-2"
+            },
+            {
+              "symbol": "rho",
+              "meaning": "Fluid density",
+              "unit": "kg/m^3",
+              "dimension": "M L^-3"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "Delta h",
+              "meaning": "Signed vertical depth change, positive downward",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Fluid is static.",
+            "rho is effectively constant over the compared depth interval.",
+            "g is effectively uniform.",
+            "Delta h is positive downward."
+          ],
+          "validator_refs": [
+            "HYDROSTATIC_PRESSURE_DIFFERENCE"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Static fluid.",
+        "Constant-density approximation over the compared interval.",
+        "Uniform gravitational field over the vessel scale."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-FLUID-DEPTH",
+          "sequence": 1,
+          "action": "Declare positive depth downward and identify the vertical depth difference.",
+          "why_valid": "The relation uses vertical depth, not path length along the vessel."
+        },
+        {
+          "step_id": "RS-FLUID-PRESSURE",
+          "sequence": 2,
+          "action": "Evaluate rho g Delta h with the declared sign.",
+          "why_valid": "The pressure change is the weight-per-area contribution of the intervening fluid column.",
+          "depends_on": [
+            "RS-FLUID-DEPTH"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-FLUID-SHAPE",
+          "wrong_idea": "A wider vessel must have higher pressure at the same depth.",
+          "counterexample": "Connected static-fluid points at the same depth have equal pressure despite different vessel widths.",
+          "repair": "Compare vertical depth in the same connected static fluid, not container shape."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-FLUID-STATIC-DEPTH",
+          "title": "Pressure comparisons in differently shaped static vessels",
+          "hidden_invariants": [
+            "Equal depth in one connected static fluid gives equal pressure."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "FLUIDS"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-FLUID-HYDRO-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-THERMO-FIRST-LAW",
+      "title": "First-law energy balance with declared work sign",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 11,
+        "chapter": "Thermodynamics",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-THERMO-LEDGER",
+          "statement": "Internal-energy change equals heat added minus work done by the system when that work convention is declared."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-FIRST-LAW-THERMODYNAMICS",
+          "expression": "Delta U = Q - W",
+          "meaning": "Energy balance for a closed system with work done by the system taken as positive.",
+          "symbols": [
+            {
+              "symbol": "Delta U",
+              "meaning": "Change in internal energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "Q",
+              "meaning": "Heat transferred into the system",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "W",
+              "meaning": "Work done by the system on surroundings",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            }
+          ],
+          "conditions": [
+            "Work convention is WORK_BY_SYSTEM_POSITIVE.",
+            "Q is positive for heat entering the chosen system.",
+            "The chosen system boundary is fixed for the stated process."
+          ],
+          "validator_refs": [
+            "THERMODYNAMIC_FIRST_LAW"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "One explicitly chosen system boundary.",
+        "Work-by-system-positive convention is declared before signs are assigned."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-THERMO-CONVENTION",
+          "sequence": 1,
+          "action": "Declare the system and sign convention before assigning Q or W.",
+          "why_valid": "Changing sign conventions mid-solution changes the meaning of every term."
+        },
+        {
+          "step_id": "RS-THERMO-BALANCE",
+          "sequence": 2,
+          "action": "Compute Delta U as Q minus W under that convention.",
+          "why_valid": "The first law is an energy ledger, not a source of energy.",
+          "depends_on": [
+            "RS-THERMO-CONVENTION"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-THERMO-WORK-SIGN",
+          "wrong_idea": "Compression always means positive W without naming a convention.",
+          "counterexample": "Under work-by-system-positive convention compression gives negative W.",
+          "repair": "Declare who does work on whom before assigning the sign."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-THERMO-QW",
+          "title": "Heating, expansion and compression energy ledgers",
+          "hidden_invariants": [
+            "The same physical process can use a different algebraic sign only when the convention changes consistently."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "THERMODYNAMICS"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-THERMO-FIRST-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-WAVE-SPEED",
+      "title": "Travelling-wave speed relation",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Oscillations and Waves",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-WAVE-F-LAMBDA",
+          "statement": "For one travelling-wave description, propagation speed is frequency times wavelength."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-WAVE-SPEED",
+          "expression": "v = f lambda",
+          "meaning": "Wave propagation speed equals temporal frequency times spatial wavelength.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Wave propagation speed",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "f",
+              "meaning": "Frequency",
+              "unit": "Hz",
+              "dimension": "T^-1"
+            },
+            {
+              "symbol": "lambda",
+              "meaning": "Wavelength",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "f >= 0 and lambda >= 0.",
+            "All quantities describe the same wave mode in the same medium/state."
+          ],
+          "validator_refs": [
+            "WAVE_SPEED"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Frequency and wavelength refer to the same travelling wave.",
+        "Changing medium may change the propagation speed relation through the medium properties."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-WAVE-PAIR",
+          "sequence": 1,
+          "action": "Identify one frequency and its corresponding wavelength for the same wave.",
+          "why_valid": "Mixing values from different waves breaks the relation."
+        },
+        {
+          "step_id": "RS-WAVE-MULTIPLY",
+          "sequence": 2,
+          "action": "Multiply frequency by wavelength to obtain propagation speed.",
+          "why_valid": "One cycle per period advances one wavelength in the travelling-wave description.",
+          "depends_on": [
+            "RS-WAVE-PAIR"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-WAVE-SOURCE-SPEED",
+          "wrong_idea": "Raising source frequency in the same medium must raise wave speed.",
+          "counterexample": "For a medium-set speed, higher frequency is accompanied by shorter wavelength.",
+          "repair": "Keep medium and mode fixed before deciding which quantity can change."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-WAVE-SAME-MEDIUM",
+          "title": "Frequency-wavelength comparisons in one medium",
+          "hidden_invariants": [
+            "If speed is fixed by the medium, frequency and wavelength vary inversely."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "WAVES"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-WAVE-SPEED-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-POWER-RATES",
+      "title": "Average and instantaneous mechanical power",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Work and Energy",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-POWER-RATE",
+          "statement": "Power is a rate of energy transfer; an interval average and an instantaneous rate answer different questions."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-AVERAGE-POWER",
+          "expression": "P_avg = W / Delta t",
+          "meaning": "Average power is work transferred over a positive elapsed interval.",
+          "symbols": [
+            {
+              "symbol": "P_avg",
+              "meaning": "Average power",
+              "unit": "W",
+              "dimension": "M L^2 T^-3"
+            },
+            {
+              "symbol": "W",
+              "meaning": "Net work transferred over the interval",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Positive elapsed interval",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Delta t > 0.",
+            "W is the net work assigned to the chosen system over that same interval."
+          ],
+          "validator_refs": [
+            "AVERAGE_POWER"
+          ]
+        },
+        {
+          "relation_id": "REL-INSTANTANEOUS-POWER",
+          "expression": "P = F_parallel v",
+          "meaning": "Instantaneous mechanical power is the signed force component along velocity times instantaneous speed.",
+          "symbols": [
+            {
+              "symbol": "P",
+              "meaning": "Instantaneous power",
+              "unit": "W",
+              "dimension": "M L^2 T^-3"
+            },
+            {
+              "symbol": "F_parallel",
+              "meaning": "Signed component of force along the instantaneous velocity direction",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Instantaneous speed",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "v >= 0.",
+            "F_parallel carries the sign of the force component along or opposite the velocity direction."
+          ],
+          "validator_refs": [
+            "INSTANTANEOUS_POWER"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Average power uses one positive interval.",
+        "Instantaneous power uses quantities evaluated at the same instant."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-POWER-TYPE",
+          "sequence": 1,
+          "action": "Decide whether the request is an interval average or an instantaneous rate.",
+          "why_valid": "The two relations use different information."
+        },
+        {
+          "step_id": "RS-POWER-EVAL",
+          "sequence": 2,
+          "action": "Evaluate the matching relation with a consistent work or force-velocity sign.",
+          "why_valid": "Sign distinguishes transfer into versus out of the mechanical account.",
+          "depends_on": [
+            "RS-POWER-TYPE"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-POWER-WORK",
+          "wrong_idea": "Objects that receive the same work must have the same power.",
+          "counterexample": "The same work delivered in half the time has twice the average power.",
+          "repair": "Keep total transfer and transfer rate as separate quantities."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-POWER-RATE",
+          "title": "Compare equal work delivered over unequal times or changing instantaneous rates",
+          "hidden_invariants": [
+            "Equal total work does not imply equal power."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "WORK-ENERGY"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-POWER-RATES-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-ELECTRIC-POWER",
+      "title": "Electrical power from element voltage and current",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Electricity",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-ELEC-POWER",
+          "statement": "Electrical power is energy-transfer rate associated with the signed element voltage and current under one consistent convention."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-ELECTRIC-POWER",
+          "expression": "P = V I",
+          "meaning": "Electrical power for an element under a consistent voltage-current sign convention.",
+          "symbols": [
+            {
+              "symbol": "P",
+              "meaning": "Electrical power",
+              "unit": "W",
+              "dimension": "M L^2 T^-3"
+            },
+            {
+              "symbol": "V",
+              "meaning": "Potential difference across the element",
+              "unit": "V",
+              "dimension": "M L^2 T^-3 I^-1"
+            },
+            {
+              "symbol": "I",
+              "meaning": "Current through the element",
+              "unit": "A",
+              "dimension": "I"
+            }
+          ],
+          "conditions": [
+            "Voltage and current use one consistent passive/sign convention.",
+            "V and I refer to the same element at the same instant or compatible steady condition."
+          ],
+          "validator_refs": [
+            "ELECTRIC_POWER"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "One element with a declared voltage/current sign convention.",
+        "The relation itself does not assume Ohmic behavior."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-ELEC-POWER-SIGNS",
+          "sequence": 1,
+          "action": "Declare the element voltage polarity and current direction.",
+          "why_valid": "Power sign is meaningless without one consistent convention."
+        },
+        {
+          "step_id": "RS-ELEC-POWER-EVAL",
+          "sequence": 2,
+          "action": "Multiply the signed voltage and current.",
+          "why_valid": "The product is the element's instantaneous electrical energy-transfer rate under the convention.",
+          "depends_on": [
+            "RS-ELEC-POWER-SIGNS"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-ELEC-POWER-OHM",
+          "wrong_idea": "P = VI is valid only for Ohmic resistors.",
+          "counterexample": "The power relation applies to an element without assuming V is proportional to I.",
+          "repair": "Separate the power definition from any additional V-I material model."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-ELEC-POWER",
+          "title": "Element power under declared voltage/current signs",
+          "hidden_invariants": [
+            "P = VI does not by itself grant V = IR."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "ELECTRICITY"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-ELEC-POWER-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    }
+  ]
+}
