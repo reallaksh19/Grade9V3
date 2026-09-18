@@ -145,6 +145,68 @@ class StudySessionRunner(unittest.TestCase):
         ]
         self.assertTrue(prompts)
 
+    def test_local_failure_can_be_repaired_when_an_unfailed_secondary_is_external(self):
+        mapping = self.mapping()
+        mapping["questions"][0]["secondary_capability_refs"].append(
+            "CAP-RIGHT-TRIANGLE"
+        )
+        report = study_session.attempt(
+            mapping,
+            "SCHOOL-REL-Q1",
+            result="INCORRECT",
+            when="2026-09-18",
+            failed_capability_ref="CAP-RELATIVE-V",
+            error_stage="CONCEPT",
+            response_summary="Relative-velocity setup failed before the magnitude step.",
+        )
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["next_action"], "DIAGNOSE")
+        self.assertEqual(
+            [row["capability_ref"] for row in report["external_bridges"]],
+            ["CAP-RIGHT-TRIANGLE"],
+        )
+
+    def test_explicit_failure_on_external_secondary_still_blocks_local_repair(self):
+        mapping = self.mapping()
+        mapping["questions"][0]["secondary_capability_refs"].append(
+            "CAP-RIGHT-TRIANGLE"
+        )
+        report = study_session.attempt(
+            mapping,
+            "SCHOOL-REL-Q1",
+            result="INCORRECT",
+            when="2026-09-18",
+            failed_capability_ref="CAP-RIGHT-TRIANGLE",
+            error_stage="EXECUTION",
+            response_summary="Relative velocity was set up, but the right-triangle magnitude failed.",
+        )
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["next_action"], "STOP")
+        self.assertIn(
+            "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
+            [row["point"] for row in report["findings"]],
+        )
+
+    def test_unattributed_wrong_attempt_with_external_secondary_requires_attribution(self):
+        mapping = self.mapping()
+        mapping["questions"][0]["secondary_capability_refs"].append(
+            "CAP-RIGHT-TRIANGLE"
+        )
+        report = study_session.attempt(
+            mapping,
+            "SCHOOL-REL-Q1",
+            result="INCORRECT",
+            when="2026-09-18",
+            error_stage="UNKNOWN",
+            response_summary="Final answer was wrong; failure point is not yet known.",
+        )
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["next_action"], "STOP")
+        self.assertIn(
+            "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
+            [row["point"] for row in report["findings"]],
+        )
+
     def test_confirmed_misconception_repairs_then_uses_fresh_canonical_check(self):
         report = study_session.attempt(
             self.mapping(),
