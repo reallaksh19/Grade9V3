@@ -38,14 +38,17 @@ def plan_digest(plan: dict) -> str:
 
 def template(request: dict, repo: Path = REPO) -> dict:
     plan = plan_request.plan(request, repo)
-    return {
+    artifact = {
         "decision_id": f'DEC-{request.get("request_id", "UNNAMED")}',
         "version": "1.0.0",
         "request_id": request.get("request_id"),
         "request_digest": digest(request),
         "plan_digest": plan_digest(plan),
-        "required_owner_inputs": plan.get("required_owner_inputs", []),
         "decisions": {},
+    }
+    return {
+        "artifact": artifact,
+        "required_owner_inputs": plan.get("required_owner_inputs", []),
     }
 
 
@@ -69,6 +72,20 @@ def _learner_value(value: dict) -> dict:
         "by": "owner",
         **({"instruction": value["instruction"]} if value.get("instruction") else {}),
     }}
+
+
+def _request_schema_findings(request: dict, repo: Path = REPO) -> list[dict]:
+    try:
+        import jsonschema
+    except ModuleNotFoundError:
+        return []
+    validator = jsonschema.Draft202012Validator(
+        load(repo / "Shared/library/authoring-request.schema.json"))
+    return [{
+        "point": "OWNER_DECISION_RESULT_REQUEST_STRUCTURE",
+        "where": "/".join(str(part) for part in error.path),
+        "detail": error.message,
+    } for error in validator.iter_errors(request)]
 
 
 def apply(request: dict, decisions: dict, repo: Path = REPO) -> dict:
@@ -146,6 +163,17 @@ def apply(request: dict, decisions: dict, repo: Path = REPO) -> dict:
         elif decision_id == "SUPPLEMENTAL_QUESTION_POLICY":
             patched["supplemental_question_policy"] = value
 
+    if found:
+        return {
+            "passed": False,
+            "findings": found,
+            "request_before": request,
+            "request_after": None,
+            "plan_before": current_plan,
+            "plan_after": None,
+        }
+
+    found.extend(_request_schema_findings(patched, repo))
     if found:
         return {
             "passed": False,
