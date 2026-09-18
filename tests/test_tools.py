@@ -14,8 +14,9 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
-    check_subjects, capability_collisions, engineering_readiness, learner_evidence,
-    matrix_conformance, practice_readiness, publication_provenance, resolve_request,
+    check_subjects, capability_collisions, curriculum_mapping_audit, engineering_readiness,
+    learner_evidence, matrix_conformance, practice_readiness, publication_provenance,
+    resolve_request,
     spec_conformance,
     spec_delivery, topic_independence_guard,
 )
@@ -1390,6 +1391,40 @@ class PracticeReadiness(unittest.TestCase):
         self.assertEqual(row["planner"]["CORE2B"]["state"], "READY")
         self.assertIn("CORE2A", row["compiler_selected"])
         self.assertIn("CORE2B", row["compiler_selected"])
+
+
+class CurriculumMappingAudit(unittest.TestCase):
+    def test_current_opt_in_curriculum_mappings_are_verified(self):
+        report = curriculum_mapping_audit.audit("Physics")
+        self.assertTrue(report["passed"], report["findings"])
+        rows = {row["bucket"]: row for row in report["policy_buckets"]}
+        self.assertEqual(rows["BUCKET-PHY-KIN-1D-MOTION"]["track"], "STANDARD")
+        self.assertEqual(rows["BUCKET-PHY-SOUND"]["track"], "STANDARD")
+        self.assertEqual(rows["BUCKET-VECTOR-REPRESENTATION"]["track"], "ADVANCED")
+        nlm = rows["BUCKET-PHY-NLM-FIRST-LAW"]["capabilities"]
+        frame = next(row for row in nlm if row["capability"] == "CAP-NLM-FRAME-CHOICE")
+        self.assertEqual(frame["track"], "ADVANCED")
+
+    def test_verified_mapping_must_resolve_to_an_inspected_curriculum_resource(self):
+        record = {
+            "id": "CAP-X",
+            "curriculum_mappings": [{
+                "board": "Example", "grade": 9, "academic_year": "2099-00",
+                "track": "STANDARD", "scope_class": "PRESCRIBED",
+                "source_ref": "SRC-X", "locator": "Unit 1", "mapping_status": "VERIFIED",
+            }],
+        }
+        records = {
+            "SRC-X": {
+                "id": "SRC-X", "_collection": "resources", "role": ["EXPLANATION"],
+                "access_status": "LANDING_INSPECTED", "last_checked": "2099-01-01",
+            }
+        }
+        findings = curriculum_mapping_audit._record_mapping_findings(
+            record, records, expected_track="STANDARD", owner="BUCKET-X")
+        points = {finding["point"] for finding in findings}
+        self.assertIn("CURRICULUM_MAPPING_SOURCE_WRONG_ROLE", points)
+        self.assertIn("CURRICULUM_MAPPING_SOURCE_NOT_INSPECTED", points)
 
 
 class EngineeringReadiness(unittest.TestCase):
