@@ -448,6 +448,29 @@
       ],
       "proves": "The final speed-squared state follows from u^2 + 2 a s under constant acceleration.",
       "does_not_prove": "Which signed root for v is physically appropriate; direction must come from the motion context."
+    },
+    {
+      "id": "NEWTON_SECOND_LAW",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "mass",
+        "acceleration"
+      ],
+      "input_units": {
+        "mass": "kg",
+        "acceleration": "m/s^2"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "N",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "mass > 0",
+        "net force and acceleration refer to the same chosen body and signed axis"
+      ],
+      "proves": "The signed net force follows from mass times signed acceleration under the declared one-dimensional model.",
+      "does_not_prove": "That the listed force inventory is complete or that the chosen frame is inertial."
     }
   ],
   "representation_kinds": [
