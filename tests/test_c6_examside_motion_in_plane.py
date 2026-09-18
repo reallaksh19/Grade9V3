@@ -9,7 +9,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import feedback, worksheet_study_plan  # noqa: E402
+from Shared.tools import feedback, study_session, worksheet_study_plan  # noqa: E402
 
 
 class ExamSideMotionInPlanePilot(unittest.TestCase):
@@ -17,6 +17,48 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
 
     def mapping(self):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
+
+    def relative_only(self):
+        mapping = self.mapping()
+        mapping["worksheet_id"] = "EXAMSIDE-RELATIVE-MOTION-SESSION"
+        mapping["questions"] = mapping["questions"][:2]
+        return mapping
+
+    def test_real_relative_motion_slice_runs_through_the_practical_session_runner(self):
+        report = study_session.plan(
+            self.relative_only(),
+            ["Relative motion=60"],
+        )
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["status"], "SESSION_READY_WITH_BRIDGE")
+        self.assertEqual(
+            [row["matrix_id"] for row in report["readiness"]],
+            ["MATRIX-PHY-RELATIVE-MOTION"],
+        )
+        route = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(route["CAP-SIGNED-PAIR"]["recommended_action"], "BRIDGE")
+        self.assertEqual(route["CAP-SAME-TIME"]["recommended_action"], "START_HERE")
+        self.assertEqual(route["CAP-RELATIVE-V"]["recommended_action"], "STUDY")
+        self.assertEqual(report["next_step"]["external_provider"], "Mathematics")
+
+    def test_real_relative_motion_attempt_runs_through_session_runner_without_persisting(self):
+        mapping = self.relative_only()
+        row = mapping["questions"][0]
+        report = study_session.attempt(
+            mapping,
+            row["question_id"],
+            result="INCORRECT",
+            when="2026-09-18",
+            failed_capability_ref="CAP-RELATIVE-V",
+            error_stage="CONCEPT",
+            response_summary="Subtracted the speeds as scalars and ignored direction.",
+        )
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["question_origin"], "WORKSHEET_MAPPING")
+        self.assertEqual(report["next_action"], "DIAGNOSE")
+        self.assertEqual(report["observation_draft"]["result"], "MISSING")
+        self.assertEqual(report["review"]["next_review"], "2026-09-19")
+        self.assertEqual(report["persistence"], "NOT_WRITTEN")
 
     def test_real_question_slice_maps_without_promoting_questions_to_canonical_truth(self):
         mapping = self.mapping()
