@@ -696,8 +696,176 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-WEP-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Work sign and energy-account practice",
+      "capability_refs": [
+        "CAP-WEP-WORK-DIRECTION",
+        "CAP-WEP-NET-WORK-SIGN",
+        "CAP-WEP-POTENTIAL-ELIGIBILITY",
+        "CAP-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "solution_structure": [
+        "Draw one displacement direction and compare three force arrows: along it, perpendicular to it, and opposite it.",
+        "For each case, ask whether the force has a part that carries the object along the path direction.",
+        "Increase the size of the perpendicular force while keeping it exactly perpendicular to the same path."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must choose whether mechanical-energy conservation applies instead of being told to use it."
+      ],
+      "common_wrong_routes": [
+        "Any force acting on a moving object does positive work because the object moves."
+      ],
+      "item_refs": [
+        "Q-PHY-WEP-2A-01",
+        "Q-PHY-WEP-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-WEP-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-2A-01",
+      "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Rightward force: positive work. Upward force: zero work. Leftward force: negative work.",
+        "reasoning": [
+          "The rightward force points with the displacement.",
+          "The upward force is perpendicular to the displacement.",
+          "The leftward force points against the displacement."
+        ],
+        "check": "Rotate the path instead of the force arrows; the classifications must follow the relative orientation, not page directions by themselves.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-WORK-DIRECTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: Which way does the object actually move during the interval?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare the force direction with the actual displacement direction; only the along-path contribution can produce work.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-2B-01",
+      "stem": "A problem shows a block descending between fixed endpoints on a rough track but never tells you which energy equation to use. Decide whether an unchanged K-plus-U mechanical-energy account is sufficient, and state what must be added to the bookkeeping.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "An unchanged K-plus-U-only account is not sufficient because friction transfers energy out of that mechanical account; the frictional transfer must be included explicitly.",
+        "reasoning": [
+          "The endpoints determine the same gravitational contribution that a smooth comparison would have.",
+          "The rough track introduces an additional frictional transfer.",
+          "Because that transfer crosses the chosen mechanical account, K plus U cannot remain unchanged by itself."
+        ],
+        "check": "Remove the roughness while keeping the same endpoints; the extra frictional transfer should disappear.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Rejects unchanged K-plus-U-only conservation for the rough-track case.",
+            "evidence_of": "Choosing the energy model from the transfer inventory."
+          },
+          {
+            "criterion": "Keeps the frictional transfer explicit rather than hiding it inside potential energy.",
+            "evidence_of": "Maintaining the authored boundary between conservative storage and dissipative transfer."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Inventory transfers before choosing an energy equation.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask whether friction or an outside agent moves energy across the chosen mechanical account.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must choose whether mechanical-energy conservation applies instead of being told to use it.",
+        "builds_on": [
+          "Q-PHY-WEP-2A-01",
+          "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+        ]
+      },
+      "repair_ref": "WEP4-3"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-WEP-A",
