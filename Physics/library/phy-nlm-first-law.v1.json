@@ -70,7 +70,16 @@
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED",
-        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B",
+        "practical_coverage_policy": "PRESCRIBED_PRACTICALS",
+        "prescribed_practicals": [
+          {
+            "id": "CBSE-IX-2026-PHY-PRACTICAL-12",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Practicals item 12; printed p.19 — Verification of Newton’s Second Law of Motion using a trolley, pulley and hanging masses (Ch. 6).",
+            "capability_ref": "CAP-NLM-SECOND-LAW"
+          }
+        ]
       },
       "title": "Force and Newton's laws",
       "topic": "Laws of Motion",
@@ -292,6 +301,16 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
           "locator": "Force and Laws of Motion; printed p.15; C-2.1 — Newton's second law, mass and acceleration",
+          "mapping_status": "VERIFIED"
+        },
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Practicals item 12; printed p.19 — Verification of Newton’s Second Law of Motion using a trolley, pulley and hanging masses (Ch. 6).",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -1410,7 +1429,8 @@
         "Q-PHY-NLM-2A-COV-03",
         "Q-PHY-NLM-2A-COV-04",
         "Q-PHY-NLM-2A-COV-05",
-        "Q-PHY-NLM-2A-COV-06"
+        "Q-PHY-NLM-2A-COV-06",
+        "Q-PHY-NLM-PRACTICAL-12"
       ]
     }
   ],
@@ -1808,6 +1828,84 @@
         },
         {
           "text": "No. Put each partner on the body it acts on; only then sum forces for one body.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-PRACTICAL-12",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "prescribed_practical_refs": [
+          "CBSE-IX-2026-PHY-PRACTICAL-12"
+        ]
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-PRACTICAL-12",
+      "stem": "Plan a trolley–pulley–hanging-mass experiment to verify Newton’s second law. Describe one controlled variation that tests the effect of net force at fixed system mass, what you measure, and what result would support F_net = m a.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Treat friction as small or measure/account for it consistently.",
+        "Use the same trolley–pulley system while changing the driving load."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Keep the total moving mass approximately fixed while transferring masses between trolley and hanger so the driving force changes, measure acceleration for each trial, and test whether acceleration changes in direct proportion to the corrected net driving force.",
+        "reasoning": [
+          "Choose the trolley plus hanging mass as the moving system and keep its total mass fixed for the force-variation test.",
+          "Move a known mass from trolley to hanger to increase the driving weight without changing total moving mass.",
+          "Measure acceleration from distance/time data or a suitable motion sensor for each trial.",
+          "Correct for friction consistently if it is not negligible.",
+          "For fixed total mass, a plot of corrected F_net against a should be approximately linear through the origin within experimental uncertainty."
+        ],
+        "check": "Changing force and total mass at the same time without controlling either would not isolate the F_net–a relationship.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 2,
+        "rubric": [
+          {
+            "criterion": "Controls total moving mass while varying the driving/net force.",
+            "evidence_of": "Mass is transferred within the trolley–hanger system rather than simply added to it."
+          },
+          {
+            "criterion": "Measures acceleration reproducibly for several force values.",
+            "evidence_of": "A stated timing/motion-measurement method and repeated trials or multiple data points."
+          },
+          {
+            "criterion": "States the proportionality evidence expected at fixed mass.",
+            "evidence_of": "Approximately linear F_net versus a behavior, with friction treated consistently."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "To test the effect of force, do not let total moving mass become a second uncontrolled variable.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Transfer masses between the trolley and hanger, then compare corrected net force with measured acceleration.",
           "reveals": "METHOD"
         }
       ]
