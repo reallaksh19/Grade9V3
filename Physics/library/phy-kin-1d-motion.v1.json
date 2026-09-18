@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored conceptual rungs for distance versus displacement and for the distinction between instantaneous velocity and acceleration. Average-rate formulae and constant-acceleration equations remain registry-blocked.",
+  "scope_summary": "Grade 9 motion spine covering distance/displacement, average rates, velocity versus acceleration, constant-acceleration equations, and elementary uniform circular motion.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -62,11 +62,8 @@
         }
       ],
       "scope": {
-        "covers": "Qualitative path-versus-displacement and velocity-versus-acceleration distinctions in one-dimensional motion.",
-        "excluded": [
-          "Average-speed and average-velocity formulae.",
-          "Constant-acceleration kinematic equations."
-        ],
+        "covers": "Grade 9 motion: path and displacement, average speed/velocity, velocity and acceleration, constant-acceleration equations, and elementary uniform circular motion.",
+        "excluded": [],
         "extension_refs": []
       }
     }
@@ -119,6 +116,42 @@
       "success_criterion": "Uses totals before division and keeps path length distinct from signed endpoint change.",
       "prerequisite_refs": [
         "CAP-KIN-DISTANCE-DISPLACEMENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-KIN-CONSTANT-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+      "success_criterion": "Checks the constant-acceleration condition before selecting a relation and keeps one signed axis throughout.",
+      "prerequisite_refs": [
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously.",
+      "success_criterion": "Identifies changing direction as the velocity change and points the acceleration toward the circle centre.",
+      "prerequisite_refs": [
+        "CAP-KIN-ZERO-V-NONZERO-A"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -542,6 +575,301 @@
           "confirms": "The two rates can agree without being the same quantity."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Constant-acceleration equations are conditional models",
+      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The algebra is elementary; the difficult decision is whether the constant-acceleration model applies.",
+      "entry_assumptions": [
+        "Can distinguish velocity from acceleration and can read whether a velocity-time graph has constant slope."
+      ],
+      "inferential_jump": "The standard kinematic equations are exact only on intervals with constant acceleration, so model checking comes before substitution.",
+      "teaching_path": [
+        {
+          "id": "KIN4-1",
+          "role": "DECLARE",
+          "action": "Compare a straight velocity-time graph with a curved one and decide whether one acceleration value describes each whole interval.",
+          "why_valid": "Acceleration is the slope of a velocity-time graph; a constant slope gives constant acceleration.",
+          "inputs": [
+            "CAP-KIN-ZERO-V-NONZERO-A"
+          ],
+          "output": "straight v-t graph -> constant a; curved v-t graph -> changing a."
+        },
+        {
+          "id": "KIN4-2",
+          "role": "TRANSFORM",
+          "action": "For the straight-graph case, use v = u + a t to update velocity and s = u t + 0.5 a t^2 to obtain signed displacement.",
+          "why_valid": "Both gate-owned relations apply to the same constant-acceleration interval.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-VELOCITY",
+            "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
+          ],
+          "output": "v = u + a t; s = u t + 0.5 a t^2."
+        },
+        {
+          "id": "KIN4-3",
+          "role": "TRANSFORM",
+          "action": "When time is not supplied, use v^2 = u^2 + 2 a s while keeping the velocity sign as a separate physical decision.",
+          "why_valid": "The no-time relation follows from the same constant-acceleration model but determines squared velocity.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-NO-TIME"
+          ],
+          "output": "v^2 = u^2 + 2 a s; direction still comes from context."
+        },
+        {
+          "id": "KIN4-4",
+          "role": "VERIFY",
+          "action": "Reject the same equations as exact models on a visibly curved velocity-time interval.",
+          "why_valid": "A changing slope means acceleration is not constant across the interval.",
+          "inputs": [],
+          "output": "curved v-t interval -> constant-a equations not exact over the whole interval."
+        }
+      ],
+      "relation_refs": [
+        "REL-CONSTANT-ACCELERATION-VELOCITY",
+        "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+        "REL-CONSTANT-ACCELERATION-NO-TIME"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If a problem gives an acceleration value, the constant-acceleration equations are automatically exact.",
+          "diagnostic_prompt": "A velocity-time graph curves upward but one acceleration value is listed at the start. Does that make v = u + at exact for the whole interval?",
+          "repair": "Inspect the entire interval. One constant a must describe all of it before the equations are exact."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope.",
+          "reasoning": [
+            "v = 5 + 2 x 3 = 11 m/s.",
+            "s = 5 x 3 + 0.5 x 2 x 3^2 = 24 m.",
+            "The stated constant acceleration is the model condition."
+          ],
+          "check": "Using v^2 = u^2 + 2as gives 121 = 25 + 96, consistent with v = 11 m/s.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+            "bindings": {
+              "u": "DAT-KIN-CA-U",
+              "a": "DAT-KIN-CA-A",
+              "t": "DAT-KIN-CA-T"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 constant-acceleration construction bound to gate-owned relations and validators.",
+      "prerequisite_refs": [
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two velocity-time graphs begin and end at the same velocities over the same duration; one is straight and one curved. Can the same constant-acceleration equations be exact for both?",
+          "defensible_answer": "No. Only the straight graph has one constant slope, so only it has constant acceleration over the whole interval."
+        },
+        "attempt": {
+          "produces": "A model-validity decision followed by one constant-acceleration calculation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Checks constant acceleration before selecting equations.",
+              "evidence_of": "Treating the equations as a model with conditions."
+            },
+            {
+              "criterion": "Keeps one sign convention through u, a, v and s.",
+              "evidence_of": "Maintaining directed one-dimensional quantities."
+            }
+          ],
+          "accepted": [
+            "Straight v-t graph -> constant a -> equations apply; curved graph -> reject exact use."
+          ],
+          "rejected": [
+            "Use the equations on the curved graph merely because an acceleration value appears somewhere."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What graph feature tells you whether acceleration is constant?",
+              "why_this_ask": "It reconstructs the model condition.",
+              "from_step_ref": "KIN4-1"
+            },
+            {
+              "ask": "Which quantities belong to the same signed axis?",
+              "why_this_ask": "It protects sign consistency."
+            },
+            {
+              "ask": "Which equation avoids time if t is absent?",
+              "why_this_ask": "It distinguishes relation selection from rote substitution.",
+              "from_step_ref": "KIN4-3"
+            },
+            {
+              "ask": "What would a curved v-t graph change about the model?",
+              "why_this_ask": "It tests the boundary rather than another calculation.",
+              "from_step_ref": "KIN4-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path begins from graph shape; the learner route reconstructs model validity from the relation choice and then returns to the graph as a falsifier."
+        },
+        "boundary_test": {
+          "prompt": "If acceleration changes during the interval, are the three constant-acceleration equations exact for the whole interval?",
+          "answer": "No. They require one constant acceleration across the interval.",
+          "confirms": "The equations are conditional models, not universal motion identities."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Uniform circular motion keeps speed while velocity turns",
+      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+      "primary_capability_ref": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Everyday use of 'speed' and 'velocity' can hide that direction change alone is a velocity change.",
+      "entry_assumptions": [
+        "Can distinguish speed from directed velocity and can recognize acceleration as a change of velocity."
+      ],
+      "inferential_jump": "An object moving around a circle at constant speed is still accelerating because its velocity direction changes continuously; the acceleration points inward toward the centre.",
+      "teaching_path": [
+        {
+          "id": "KIN5-1",
+          "role": "DECLARE",
+          "action": "Mark equal-length velocity arrows tangent to a circle at several positions.",
+          "why_valid": "Equal arrow length represents constant speed while tangent direction follows the instantaneous motion.",
+          "inputs": [],
+          "output": "same speed; different tangent velocity directions."
+        },
+        {
+          "id": "KIN5-2",
+          "role": "TRANSFORM",
+          "action": "Compare successive velocity arrows and identify the change in velocity direction.",
+          "why_valid": "Velocity changes whenever either its magnitude or direction changes.",
+          "inputs": [],
+          "output": "Delta v is nonzero even though |v| is unchanged."
+        },
+        {
+          "id": "KIN5-3",
+          "role": "VERIFY",
+          "action": "Use symmetry at opposite points to check that the required acceleration is directed toward the centre rather than along the tangent.",
+          "why_valid": "A tangential acceleration would change speed, while inward turning changes direction while preserving speed in the ideal uniform case.",
+          "inputs": [],
+          "output": "uniform circular motion -> acceleration inward; velocity tangent."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Constant speed means zero acceleration.",
+          "diagnostic_prompt": "A car moves around a circular track with a steady speedometer reading. Is its velocity unchanged?",
+          "repair": "Compare the tangent directions at different points: the direction changes, so velocity changes and acceleration is nonzero."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A runner moves around a circular track at constant speed. At the rightmost point, state the direction of velocity and the direction of acceleration qualitatively.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
+          "reasoning": [
+            "Instantaneous velocity follows the tangent to the path.",
+            "Constant speed removes any tangential speed-change requirement.",
+            "The continuing direction change requires inward acceleration."
+          ],
+          "check": "At the opposite side of the circle, both tangent velocity direction and inward acceleration direction change with the geometry.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit asserts only qualitative tangent and inward directions; no magnitude is computed."
+        }
+      },
+      "research_contribution": "Author-created Grade 9 uniform-circular-motion boundary.",
+      "prerequisite_refs": [
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a speedometer reading stays constant around a bend, is acceleration necessarily zero?",
+          "defensible_answer": "No. Velocity direction changes around the bend, so acceleration is nonzero even at constant speed."
+        },
+        "attempt": {
+          "produces": "Tangent velocity and inward acceleration arrows at one point on a circle.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Velocity is tangent to the path.",
+              "evidence_of": "Using instantaneous motion direction."
+            },
+            {
+              "criterion": "Acceleration points toward the centre.",
+              "evidence_of": "Recognizing direction change at constant speed."
+            }
+          ],
+          "accepted": [
+            "Velocity tangent, acceleration inward."
+          ],
+          "rejected": [
+            "Both velocity and acceleration tangent because the object is moving tangent to the path."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Has the speed changed?",
+              "why_this_ask": "It holds magnitude fixed."
+            },
+            {
+              "ask": "Has the velocity direction changed?",
+              "why_this_ask": "It exposes the remaining source of velocity change.",
+              "from_step_ref": "KIN5-2"
+            },
+            {
+              "ask": "Would a tangential acceleration keep the speed constant?",
+              "why_this_ask": "It rules out the tangent as the uniform-case acceleration direction."
+            },
+            {
+              "ask": "What direction is symmetric toward the turning centre?",
+              "why_this_ask": "It reconstructs inward acceleration.",
+              "from_step_ref": "KIN5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares tangent velocity arrows; the learner route starts from constant speed and discovers why direction change still requires acceleration."
+        },
+        "boundary_test": {
+          "prompt": "If the path becomes straight while speed remains constant, what happens to the turning acceleration?",
+          "answer": "It vanishes in the straight constant-velocity limit.",
+          "confirms": "The acceleration in uniform circular motion is tied to continuous change of direction."
+        }
+      }
     }
   ],
   "relations": [
@@ -663,6 +991,179 @@
         "Reversing the declared positive axis reverses both Delta x and v_avg but not the physical motion."
       ],
       "gate_relation_ref": "REL-AVERAGE-VELOCITY"
+    },
+    {
+      "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "v = u + a t",
+      "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+      "symbols": [
+        {
+          "symbol": "v",
+          "meaning": "Final velocity along the declared axis",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "u",
+          "meaning": "Initial velocity along the declared axis",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "a",
+          "meaning": "Constant acceleration along the declared axis",
+          "unit_or_domain": "m/s^2; signed scalar"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Elapsed time",
+          "unit_or_domain": "s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "Acceleration is constant over the whole interval.",
+        "u, v and a use one declared one-dimensional sign convention.",
+        "t >= 0."
+      ],
+      "derivation": [
+        {
+          "id": "KIN-R4-V1",
+          "role": "TRANSFORM",
+          "action": "Add the constant velocity change a t to the initial velocity.",
+          "why_valid": "Constant acceleration changes velocity by the same amount per unit time.",
+          "inputs": [],
+          "output": "v = u + a t."
+        }
+      ],
+      "limits": [
+        "Do not use as an exact relation when acceleration changes over the interval."
+      ],
+      "checks": [
+        "At t = 0, v = u.",
+        "The sign of v must match the declared axis and motion context."
+      ],
+      "gate_relation_ref": "REL-CONSTANT-ACCELERATION-VELOCITY"
+    },
+    {
+      "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "s = u t + 0.5 a t^2",
+      "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+      "symbols": [
+        {
+          "symbol": "s",
+          "meaning": "Signed displacement",
+          "unit_or_domain": "m; signed scalar"
+        },
+        {
+          "symbol": "u",
+          "meaning": "Initial velocity",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "a",
+          "meaning": "Constant acceleration",
+          "unit_or_domain": "m/s^2; signed scalar"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Elapsed time",
+          "unit_or_domain": "s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "Acceleration is constant over the whole interval.",
+        "s, u and a use one declared one-dimensional sign convention.",
+        "t >= 0."
+      ],
+      "derivation": [
+        {
+          "id": "KIN-R4-S1",
+          "role": "TRANSFORM",
+          "action": "Combine the initial-velocity displacement with the constant-acceleration contribution.",
+          "why_valid": "For constant acceleration the velocity-time graph is a straight line, and its signed area gives displacement.",
+          "inputs": [],
+          "output": "s = u t + 0.5 a t^2."
+        }
+      ],
+      "limits": [
+        "Do not use unchanged for a curved velocity-time graph whose slope changes."
+      ],
+      "checks": [
+        "At a = 0, the relation reduces to s = u t.",
+        "Dimensions reduce to length."
+      ],
+      "gate_relation_ref": "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
+    },
+    {
+      "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "v^2 = u^2 + 2 a s",
+      "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+      "symbols": [
+        {
+          "symbol": "v",
+          "meaning": "Final velocity",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "u",
+          "meaning": "Initial velocity",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "a",
+          "meaning": "Constant acceleration",
+          "unit_or_domain": "m/s^2; signed scalar"
+        },
+        {
+          "symbol": "s",
+          "meaning": "Signed displacement",
+          "unit_or_domain": "m; signed scalar"
+        }
+      ],
+      "conditions": [
+        "Acceleration is constant over the whole interval.",
+        "u, v, a and s use one declared one-dimensional sign convention."
+      ],
+      "derivation": [
+        {
+          "id": "KIN-R4-N1",
+          "role": "TRANSFORM",
+          "action": "Eliminate time between the constant-acceleration velocity and displacement relations.",
+          "why_valid": "Both relations describe the same interval under the same constant acceleration.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-VELOCITY",
+            "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
+          ],
+          "output": "v^2 = u^2 + 2 a s."
+        }
+      ],
+      "limits": [
+        "The relation determines v squared; the physical sign of v still comes from motion direction."
+      ],
+      "checks": [
+        "Both sides have units of squared speed.",
+        "If a = 0, v^2 = u^2."
+      ],
+      "gate_relation_ref": "REL-CONSTANT-ACCELERATION-NO-TIME"
     }
   ],
   "representations": [],
@@ -850,7 +1351,10 @@
       ],
       "microtopic_refs": [
         "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
-        "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+        "MIC-PHY-KIN-AVERAGE-RATES",
+        "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+        "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+        "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
       ],
       "entry_needs": [
         "A marked one-dimensional path and ordinary before/after motion descriptions."
@@ -891,7 +1395,10 @@
       ],
       "microtopic_refs": [
         "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
-        "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+        "MIC-PHY-KIN-AVERAGE-RATES",
+        "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+        "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+        "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
       ],
       "entry_needs": [
         "Same intrinsic content as Core1A; no learner-percentage assumption."
@@ -985,6 +1492,54 @@
       "unit": "s",
       "symbol": "Delta t",
       "meaning": "Elapsed time in the authored average-rate exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-KIN-CA-U",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 5,
+      "unit": "m/s",
+      "symbol": "u",
+      "meaning": "Initial velocity in the authored constant-acceleration exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-KIN-CA-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2,
+      "unit": "m/s^2",
+      "symbol": "a",
+      "meaning": "Constant acceleration in the authored exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-KIN-CA-T",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "s",
+      "symbol": "t",
+      "meaning": "Elapsed time in the authored exit.",
       "locator": "Author-created exact practice datum."
     }
   ]
