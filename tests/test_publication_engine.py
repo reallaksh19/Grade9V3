@@ -338,6 +338,44 @@ class RevealPlacementIsValidated(unittest.TestCase):
         self.assertEqual(self.plan_with(typo), "CONTENT_PLACEMENT_UNSUPPORTED")
 
 
+class GraphRegionsAreSourceBound(unittest.TestCase):
+    def draw(self, source_atom_ids=None):
+        from Physics.adapter.scenes import graph  # noqa: PLC0415
+        atoms = {
+            "T0": {"id": "T0", "value": 0, "unit": "s", "kind": "DATUM"},
+            "T1": {"id": "T1", "value": 3, "unit": "s", "kind": "DATUM"},
+            "V0": {"id": "V0", "value": 0, "unit": "m/s", "kind": "DATUM"},
+            "U": {"id": "U", "value": 5, "unit": "m/s", "kind": "DATUM"},
+            "V": {"id": "V", "value": 11, "unit": "m/s", "kind": "DATUM"},
+        }
+        scene = {
+            "kind": "GRAPH", "frame": "one velocity-time frame", "caption": "Area split.",
+            "x_label": "time (s)", "y_label": "velocity (m/s)",
+            "x_unit": "s", "y_unit": "m/s",
+            "points": [["T0", "U"], ["T1", "V"]], "y_min_atom": "V0",
+            "regions": [
+                {"label": "u t", "points": [["T0", "V0"], ["T1", "V0"],
+                                             ["T1", "U"], ["T0", "U"]]},
+                {"label": "1/2 (v-u)t", "points": [["T0", "U"], ["T1", "U"],
+                                                    ["T1", "V"]]},
+            ],
+        }
+        ids = list(atoms) if source_atom_ids is None else source_atom_ids
+        return graph({"atoms": atoms}, {"id": "FIG", "source_atom_ids": ids, "scene": scene})
+
+    def test_regions_are_drawn_and_reported_as_evidence(self):
+        markup, evidence = self.draw()
+        self.assertIn('data-graph-region="u t"', markup)
+        self.assertIn('data-graph-region="1/2 (v-u)t"', markup)
+        self.assertEqual([row["label"] for row in evidence["regions"]],
+                         ["u t", "1/2 (v-u)t"])
+
+    def test_region_vertices_may_only_use_declared_source_atoms(self):
+        with self.assertRaises(ContractError) as raised:
+            self.draw(["T0", "T1", "V0", "U"])
+        self.assertEqual(raised.exception.code, "FIGURE_SOURCE_BINDING_MISSING")
+
+
 class VectorSubtractionIsAConstruction(unittest.TestCase):
     """P minus Q drawn as a construction, not as a component readout.
 
