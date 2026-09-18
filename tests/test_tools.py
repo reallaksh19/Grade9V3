@@ -1303,11 +1303,12 @@ class CeilingAudit(unittest.TestCase):
             [ceiling_audit.BLOCKING])
 
     def test_a_plural_in_the_jump_still_matches_the_ceiling_word(self):
-        # MIC-VECTOR-VS-SCALAR says "a pair of signed components". Without this the check
-        # under-reports, and it did: `component` first landed in the wrong bucket.
-        self.assertEqual(
-            self.plant(lambda b: b["rungs"][0].update(ceiling=["component"])),
-            [ceiling_audit.BLOCKING])
+        # Keep this a planted rule test rather than coupling it to whichever real
+        # Vector Representation wording happens to be current.
+        def plant(board):
+            board["rungs"][0]["aha"] = "A pair of signed components is this rung's own output."
+            board["rungs"][0]["ceiling"] = ["component"]
+        self.assertEqual(self.plant(plant), [ceiling_audit.BLOCKING])
 
     def test_a_ceiling_word_in_learner_text_is_reported_and_does_not_fail(self):
         def plant(board):
@@ -1333,10 +1334,20 @@ class CeilingAudit(unittest.TestCase):
                          [ceiling_audit.REPORTED])
 
     def test_the_ceiling_is_compared_to_the_record_a_learner_actually_reads(self):
-        # The matrix row is advice to an author; the record is the explanation. Nothing
-        # compared the ceiling to it until relative motion's entry rung was authored.
-        self.assertEqual(self.plant(lambda b: b["rungs"][0].update(ceiling=["perpendicular"])),
-                         [ceiling_audit.AUTHORED])
+        # Plant the word in the bound microtopic explanation so this tests the rule,
+        # not a historical wording choice in one production record.
+        board = self.board()
+        board["rungs"][0]["ceiling"] = ["perpendicular"]
+        caps, mics = author_brief.capability_chain("Physics")
+        mics = json.loads(json.dumps(mics))
+        mic = mics[board["rungs"][0]["microtopic_ref"]]
+        mic["teaching_path"][0]["why_valid"] += " This planted explanation says perpendicular."
+        self.assertEqual(
+            [f["point"] for f in ceiling_audit.findings(
+                {"rungs": [board["rungs"][0]]}, caps, mics
+            )],
+            [ceiling_audit.AUTHORED],
+        )
         self.assertEqual(self.plant(lambda b: b["rungs"][0].update(ceiling=["determinant"])),
                          [], "a word the record does not use is not a finding")
 
@@ -1346,15 +1357,13 @@ class CeilingAudit(unittest.TestCase):
                            "nothing measured, so this asserts nothing")
         self.assertTrue(report["passed"])
 
-    def test_the_benchmarks_named_failure_is_now_mechanical(self):
-        # Named in prose since the benchmark was written: MIC-VECTOR-VS-SCALAR explains a
-        # vector with terms its entry assumptions never declare. This is the first check
-        # that can see it.
+    def test_vector_representation_modernization_clears_the_old_r1_ceiling_findings(self):
+        # The capability split deliberately moved axes/components out of R1. Keep a
+        # regression that the old authored-explanation findings do not return.
         report = ceiling_audit.audit()
         found = {f["where"] for b in report["boards"] for f in b["findings"]
                  if f["point"] == ceiling_audit.AUTHORED and "vector-representation" in b["matrix"]}
-        self.assertEqual({w for w in found if w.startswith("R1.")},
-                         {"R1.frame", "R1.axes", "R1.perpendicular", "R1.right-triangle"})
+        self.assertEqual({w for w in found if w.startswith("R1.")}, set())
 
     def test_every_reported_finding_is_a_true_positive(self):
         # This asserted a list of four. It has been wrong twice since -- once when rungs
