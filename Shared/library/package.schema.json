@@ -139,6 +139,14 @@
         "$ref": "#/$defs/datum"
       },
       "minItems": 0
+    },
+    "application_contexts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/application_context"
+      },
+      "minItems": 0,
+      "description": "Application/scenario contexts for question families and items. Contexts describe where capabilities are exercised; they are not capabilities, prerequisites, learner-state keys, or mastery targets."
     }
   },
   "required": [
@@ -1764,6 +1772,15 @@
             "minLength": 1
           },
           "minItems": 0
+        },
+        "context_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "description": "References application_context records. These classify the scenario/application only and do not add prerequisite or mastery semantics."
         }
       },
       "required": [
@@ -2077,6 +2094,15 @@
           "type": "string",
           "minLength": 1,
           "description": "The teaching_path step or misconception this task's predictable failure routes back to. A repair route that points at a whole microtopic is a reading assignment; the spec asks for the specific construction that addresses the failure."
+        },
+        "context_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "description": "References application_context records. These classify the scenario/application only and do not add prerequisite or mastery semantics."
         }
       },
       "required": [
@@ -2574,6 +2600,119 @@
       "required": [
         "criterion",
         "evidence_of"
+      ]
+    },
+    "application_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "DISCOVERED",
+            "CANDIDATE",
+            "REVIEWED",
+            "CURATED",
+            "DISPUTED",
+            "STALE",
+            "RETIRED"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "extensions": {
+          "type": "object",
+          "description": "Namespaced subject extensions; no scientific authority is inferred."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invariants": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "variation_dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "name",
+              "description"
+            ]
+          },
+          "minItems": 0
+        },
+        "task_objectives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "scope_limits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "status",
+        "source_refs",
+        "evidence_refs",
+        "extensions",
+        "title",
+        "description",
+        "invariants",
+        "variation_dimensions",
+        "task_objectives",
+        "scope_limits"
       ]
     }
   }
