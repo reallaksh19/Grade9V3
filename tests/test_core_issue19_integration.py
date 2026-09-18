@@ -15,7 +15,13 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Shared.tools import capability_graph, feedback, resolve_request  # noqa: E402
-from Shared.tools import study_map, study_route, study_scope_audit, study_start  # noqa: E402
+from Shared.tools import (  # noqa: E402
+    study_map,
+    study_route,
+    study_scope_audit,
+    study_start,
+    worksheet_study_plan,
+)
 
 
 class CoreIssue19Integration(unittest.TestCase):
@@ -104,6 +110,44 @@ class CoreIssue19Integration(unittest.TestCase):
             "CAP-MATH-ISOLATE",
         )
         self.assertEqual(report["review"]["next_review"], "2026-09-25")
+
+    def test_physics_learner_facing_plan_uses_minimal_issue19_machine_route(self):
+        mapping = {
+            "worksheet_id": "PHYSICS-MACHINE-INTEGRATION",
+            "subject": "Physics",
+            "source_note": "Integration-only transient worksheet mapping.",
+            "questions": [{
+                "question_id": "Q1",
+                "primary_capability_ref": "CAP-MACHINE-MA",
+                "secondary_capability_refs": [],
+                "mapping_basis": "MANUAL",
+            }],
+        }
+        report = worksheet_study_plan.resolve(mapping)
+        self.assertTrue(report["passed"], report["findings"])
+
+        capabilities = [row["capability_ref"] for row in report["route"]]
+        self.assertEqual(
+            capabilities,
+            [
+                "CAP-WEP-WORK-DIRECTION",
+                "CAP-MACHINE-TRADEOFF",
+                "CAP-MACHINE-MA",
+            ],
+        )
+        self.assertNotIn("CAP-WEP-ENERGY-DERIVATIONS", capabilities)
+        self.assertNotIn("CAP-NLM-SECOND-LAW", capabilities)
+        self.assertNotIn("CAP-KIN-CONSTANT-ACCELERATION", capabilities)
+
+        question = report["questions"][0]
+        self.assertEqual(question["primary_capability_ref"], "CAP-MACHINE-MA")
+        self.assertNotEqual(question["core_lesson"], "UNRESOLVED")
+        self.assertEqual(question["learner_state"], "UNOBSERVED")
+        self.assertIn("first attempt", question["why_extra_attention"])
+
+        rendered = worksheet_study_plan.readable(report)
+        self.assertIn("Question -> study map", rendered)
+        self.assertIn("CAP-MACHINE-MA", rendered)
 
 
 if __name__ == "__main__":
