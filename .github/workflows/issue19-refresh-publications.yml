@@ -1,0 +1,32 @@
+name: issue19-refresh-publications
+
+on:
+  pull_request:
+    branches:
+      - architecture/final-release-authority
+
+jobs:
+  refresh:
+    if: github.head_ref == 'content/issue-19-physics-math-matrices'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Regenerate frozen publication runtime snapshots
+        run: |
+          python3 Shared/tools/republish.py --write
+          git diff --exit-code -- '*.html' '*/content/*/publication/figures/*'
+          git status --short Physics/content
+
+      - name: Upload regenerated subject publications
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue19-refreshed-publications
+          path: |
+            Physics/content/relative-motion-g9/publication
+            Physics/content/relative-motion-library/publication
+          retention-days: 7
