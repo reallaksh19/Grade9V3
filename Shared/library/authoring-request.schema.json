@@ -191,5 +191,10 @@
         }
       }
     }
+  },
+  "dependentRequired": {
+    "source_receipt_ref": [
+      "source_basis"
+    ]
   }
 }
