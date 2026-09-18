@@ -57,6 +57,12 @@ jobs:
       - name: Practice readiness agrees with compilation
         run: python3 Shared/tools/practice_readiness.py --enforce
 
+      # Engineering dependencies are declared by matrices but resolved only against
+      # subject gates/contracts. Missing assets on backlog rows are reported; missing
+      # assets on authored rows are contradictions.
+      - name: Engineering dependencies are explicit and truthful
+        run: python3 Shared/tools/engineering_readiness.py --enforce
+
       - name: No ceiling forbids the word its own rung teaches
         run: python3 Shared/tools/ceiling_audit.py --enforce
 
