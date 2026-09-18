@@ -662,8 +662,176 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-THERMO-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Thermodynamic state and process-path practice",
+      "capability_refs": [
+        "CAP-PHY-THERMO-R1",
+        "CAP-PHY-THERMO-R3",
+        "CAP-PHY-THERMO-R4",
+        "CAP-PHY-THERMO-R5"
+      ],
+      "solution_structure": [
+        "Draw a boundary around one chosen system and label internal energy inside the boundary.",
+        "Add one arrow crossing the boundary because of a temperature difference and a second arrow crossing because the surroundings mechanically compress the system.",
+        "Stop both transfers and isolate the system after its state has changed, then ask which labels still describe something contained in the system."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must read state return and directed work from a pressure-volume loop rather than from a supplied process table."
+      ],
+      "common_wrong_routes": [
+        "A hot object contains heat, and cooling means some of that heat remains stored inside it."
+      ],
+      "item_refs": [
+        "Q-PHY-THERMO-2A-01",
+        "Q-PHY-THERMO-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-THERMO-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-THERMO",
+      "original_identifier": "AUTHOR-THERMO-2A-01",
+      "stem": "A block has finished being heated and is now isolated. Classify 'internal energy', 'heat', and 'work' as stored in the system or as names for energy transfer, and justify the classification using the boundary.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Internal energy is a state quantity stored in the system; heat and work describe energy transfers across the boundary and are not substances contained after the transfers stop.",
+        "reasoning": [
+          "The system boundary separates what belongs to the state from what crosses between system and surroundings.",
+          "Internal energy describes the system's stored microscopic energy.",
+          "Heat and work classify transfer mechanisms, so when no transfer is occurring they are not contents of the isolated system."
+        ],
+        "check": "Redraw the same physical object as part of a larger chosen system; the bookkeeping boundary changes, so every claimed transfer must be reconsidered relative to that boundary.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-PHY-THERMO-R1",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-THERMO-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: What is the system whose energy you are talking about?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Name the stored quantity internal energy; reserve heat for energy crossing the boundary because of temperature difference.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-THERMO-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-THERMO",
+      "original_identifier": "AUTHOR-THERMO-2B-01",
+      "stem": "Two pressure-volume diagrams trace the same closed loop but in opposite directions. Without being given a process table, compare the net internal-energy change over each cycle and compare the signs of the net work.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "The net internal-energy change is zero for both cycles because each returns to the same state. The net-work signs are opposite because reversing the direction around the same loop reverses the directed process work while preserving the enclosed-area magnitude.",
+        "reasoning": [
+          "A complete loop returns to the starting state, so the state-function change is zero in either direction.",
+          "The geometric loop is the same, so the work magnitude associated with the enclosed area is unchanged.",
+          "Reversing traversal reverses the sign of the directed work."
+        ],
+        "check": "Collapse the loop into a path retraced forward and backward; with no enclosed area, net work should vanish while the state still returns to its start.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "States zero net internal-energy change for both loop directions.",
+            "evidence_of": "Recognizing internal energy as a state function over a complete cycle."
+          },
+          {
+            "criterion": "States that reversing traversal reverses the net-work sign while preserving magnitude.",
+            "evidence_of": "Reading process direction from the graphical representation."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-PHY-THERMO-R4",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-THERMO-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Separate what depends only on the starting and ending state from what depends on how the loop is traversed.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask what changes when only the arrows around the same geometric loop are reversed.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must read state return and directed work from a pressure-volume loop rather than from a supplied process table.",
+        "builds_on": [
+          "Q-PHY-THERMO-2A-01",
+          "MIC-PHY-THERMO-R4"
+        ]
+      },
+      "repair_ref": "THERMO-R4-2"
+    }
+  ],
   "teaching_routes": [
     {
       "version": "0.1.0",
