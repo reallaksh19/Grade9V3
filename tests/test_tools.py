@@ -1067,11 +1067,18 @@ class ResolveRequest(unittest.TestCase):
         self.assertEqual(self.points(name("R4")), [])
         self.assertEqual(self.points(name("R2")), ["ENTRY_RUNG_NOT_ON_THE_LADDER"])
 
-    def test_a_position_between_rungs_is_a_hole_rather_than_a_depth(self):
-        self.assertEqual(
-            self.points(lambda r: r["learner"]["owner_estimate"].update(
-                knowledge_percentage=45)),
-            ["ENTRY_POSITION_BETWEEN_RUNGS"])
+    def test_an_owner_estimate_between_rungs_routes_conservatively(self):
+        request = self.request()
+        request["learner"]["owner_estimate"]["knowledge_percentage"] = 45
+        report = resolve_request.plan(request)
+        self.assertEqual(report["findings"], [])
+        # 45 is a practical owner estimate, not a claim of mastery. It chooses the
+        # greatest declared coordinate not above it, then prerequisite safety may
+        # backtrack further if needed.
+        self.assertEqual(report["entry"]["requested_position"], 45)
+        self.assertEqual(report["entry"]["selected_position"], 20)
+        self.assertEqual(report["entry"]["why"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
+        self.assertEqual(report["entry"]["rung"], "R1")
 
     def test_a_dangling_profile_is_refused(self):
         self.assertEqual(
