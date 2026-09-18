@@ -216,6 +216,9 @@ def plan_ingestion(acquisition: dict, manifest: dict, package: dict,
     found += _record_findings(resource, "resource", repo)
 
     questions = list(manifest.get("questions") or [])
+    if questions and not acquisition.get("snapshot_ref"):
+        fail("SOURCE_INGEST_SNAPSHOT_REQUIRED", acquisition.get("acquisition_id", ""),
+             "exact question custody requires retained source bytes, not digest-only acquisition")
     for question in questions:
         qid = question.get("id", "")
         if question.get("status") != "CANDIDATE":
