@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored conceptual spine for Newton's first-law reasoning, zero-net-force force inventories, free-body-diagram body ownership, and observer-frame choice. No equations or new depiction kinds are asserted.",
+  "scope_summary": "Authored Newton-law force reasoning with a deliberate owner-extension Second-Law quantitative rung. Friction and third-law donor content remain intentionally outside this first Issue #19 slice.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -45,11 +45,14 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Newton's first law and free-body diagrams",
       "topic": "Laws of Motion",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The difficult work is separating motion from change of motion, then assigning each force to the body it actually acts on.",
+      "badge_reason": "Force ownership and force-sum reasoning remain the foundation; the migrated Second-Law rung adds one explicit quantitative dependency needed by Work/Energy derivations.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -66,12 +69,14 @@
         }
       ],
       "scope": {
-        "covers": "Qualitative first-law reasoning, force cancellation, free-body-diagram ownership, and frame choice.",
+        "covers": "Authored net-force/force-ownership reasoning, observer-frame distinction, and an owner-extension F_net = m a capability for one chosen body.",
         "excluded": [
-          "Quantitative force-acceleration equations.",
-          "A canonical FREE_BODY_DIAGRAM representation or renderer implementation."
+          "Friction as a separate capability.",
+          "Newton's third law as a separate capability."
         ],
-        "extension_refs": []
+        "extension_refs": [
+          "CAP-NLM-SECOND-LAW"
+        ]
       }
     }
   ],
@@ -147,6 +152,27 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE",
+      "id": "CAP-NLM-SECOND-LAW",
+      "action": "Relate signed net external force to acceleration with F_net = m a.",
+      "success_criterion": "Builds the force sum for one chosen body before solving for signed acceleration or net force.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ]
     }
   ],
   "microtopics": [
@@ -690,12 +716,332 @@
           "confirms": "The trigger is observer acceleration, not observer motion in general."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-NLM-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Net force, not any one force, sets acceleration",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficult step is completing a one-body force inventory before using the simple equation.",
+      "entry_assumptions": [
+        "Can choose one body, draw its external forces, and distinguish zero from nonzero net force."
+      ],
+      "inferential_jump": "For a chosen body of positive mass in the Grade 9 inertial-frame model, acceleration points with the signed net external force and satisfies F_net = m a.",
+      "teaching_path": [
+        {
+          "id": "NLM6-1",
+          "role": "DECLARE",
+          "action": "Choose one body, declare a positive direction, and list only external forces acting on that body.",
+          "why_valid": "The net-force relation applies to one body's external force sum.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "one body; one signed axis; signed external-force list."
+        },
+        {
+          "id": "NLM6-2",
+          "role": "TRANSFORM",
+          "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
+          "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned relation for the chosen body.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW"
+          ],
+          "output": "F_net = signed sum; a = F_net / m."
+        },
+        {
+          "id": "NLM6-3",
+          "role": "VERIFY",
+          "action": "Return to an equal-opposite force case.",
+          "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
+          "inputs": [],
+          "output": "F_net = 0 -> a = 0 for m > 0."
+        }
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
+          "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
+          "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The acceleration is +3 m/s^2.",
+          "reasoning": [
+            "Use F_net = m a for the chosen body.",
+            "a = +12 N / 4 kg = +3 m/s^2.",
+            "The positive sign matches the net-force direction."
+          ],
+          "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "NEWTON_SECOND_LAW",
+            "bindings": {
+              "mass": "DAT-NLM-MASS",
+              "acceleration": "DAT-NLM-ACCEL"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 net-force calculation bound to the Newton-second-law gate and validator.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A body moves right while its net external force points left. Which way is its acceleration?",
+          "defensible_answer": "Left, with the net force; velocity direction does not set acceleration direction."
+        },
+        "attempt": {
+          "produces": "A one-body signed force sum and a signed acceleration.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Sums forces before using F = ma.",
+              "evidence_of": "Using net external force rather than a selected force."
+            },
+            {
+              "criterion": "Keeps the acceleration sign consistent with the chosen axis.",
+              "evidence_of": "Maintaining direction through the scalar component equation."
+            }
+          ],
+          "accepted": [
+            "+12 N on 4 kg -> +3 m/s^2."
+          ],
+          "rejected": [
+            "Using the direction of velocity to choose acceleration sign."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which body are we solving for?",
+              "why_this_ask": "It fixes force ownership.",
+              "from_step_ref": "NLM6-1"
+            },
+            {
+              "ask": "What is the signed sum of forces on that body?",
+              "why_this_ask": "It constructs the quantity the law uses."
+            },
+            {
+              "ask": "What positive mass belongs to that same body?",
+              "why_this_ask": "It prevents cross-body substitution."
+            },
+            {
+              "ask": "Does the zero-net-force boundary give zero acceleration?",
+              "why_this_ask": "It independently checks the result.",
+              "from_step_ref": "NLM6-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path builds the force sum directly; the learner route starts from the body choice and uses the zero-force boundary as a final falsifier."
+        },
+        "boundary_test": {
+          "prompt": "If the net external force is zero on a positive-mass body, what acceleration does F_net = ma give?",
+          "answer": "Zero acceleration.",
+          "confirms": "The second-law relation is consistent with the earlier first-law constant-velocity case."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-NEWTON-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "expression": "F_net = m a",
+      "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
+      "symbols": [
+        {
+          "symbol": "F_net",
+          "meaning": "Net external force along the declared axis",
+          "unit_or_domain": "N; signed scalar component"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass of the chosen body",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "a",
+          "meaning": "Acceleration along the same axis",
+          "unit_or_domain": "m/s^2; signed scalar"
+        }
+      ],
+      "conditions": [
+        "m > 0.",
+        "F_net and a refer to the same chosen body.",
+        "All signed components use one declared axis."
+      ],
+      "derivation": [
+        {
+          "id": "NLM-R6-D1",
+          "role": "DECLARE",
+          "action": "Choose one body, declare a positive direction, and add the signed external forces acting on that body.",
+          "why_valid": "Newton's second law uses the net external force on one chosen body.",
+          "inputs": [],
+          "output": "F_net = signed sum of external forces on the chosen body."
+        },
+        {
+          "id": "NLM-R6-D2",
+          "role": "TRANSFORM",
+          "action": "Set the signed net force equal to mass times signed acceleration.",
+          "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned quantitative relation.",
+          "inputs": [],
+          "output": "F_net = m a."
+        }
+      ],
+      "limits": [
+        "Do not mix forces acting on different bodies in one force sum.",
+        "The simple Grade 9 use assumes an inertial frame and constant positive mass."
+      ],
+      "checks": [
+        "Equal opposite forces give F_net = 0 and therefore a = 0.",
+        "For fixed mass, reversing F_net reverses a."
+      ],
+      "gate_relation_ref": "REL-NEWTON-SECOND-LAW"
+    }
+  ],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-NLM-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Newton second-law net-force practice",
+      "capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "solution_structure": [
+        "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
+        "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
+        "Compare the released moving cart with a cart that starts at rest under the same zero-net-force condition."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change positive mass, signed net force, or axis direction while preserving one-body force ownership and F_net = m a."
+      ],
+      "transfer_boundaries": [
+        "If the force inventory or observer-frame choice is itself unknown, prerequisite force-ownership/frame reasoning must be resolved first."
+      ],
+      "common_wrong_routes": [
+        "Using one visible force instead of the signed net external force.",
+        "Choosing acceleration direction from velocity rather than net force."
+      ],
+      "item_refs": [
+        "Q-PHY-NLM-2A-COV-05"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-NLM-2A-COV-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-COVERAGE-05",
+      "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The acceleration is +3 m/s^2.",
+        "reasoning": [
+          "Use F_net = m a for the chosen body.",
+          "a = +12 N / 4 kg = +3 m/s^2.",
+          "The positive sign matches the net-force direction."
+        ],
+        "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Which body are we solving for?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "NEWTON_SECOND_LAW",
+        "bindings": {
+          "mass": "DAT-NLM-MASS",
+          "acceleration": "DAT-NLM-ACCEL"
+        }
+      }
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-NLM-A",
@@ -705,7 +1051,10 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Reveal Newton/FBD conceptual spine",
       "cores": [
         "CORE1A"
@@ -714,6 +1063,7 @@
         "MIC-PHY-NLM-NET-ZERO-MOTION",
         "MIC-PHY-NLM-FORCES-SUM-ZERO",
         "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-SECOND-LAW",
         "MIC-PHY-NLM-FRAME-CHOICE"
       ],
       "entry_needs": [
@@ -752,7 +1102,10 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Elicit Newton/FBD conceptual spine",
       "cores": [
         "CORE1B"
@@ -761,6 +1114,7 @@
         "MIC-PHY-NLM-NET-ZERO-MOTION",
         "MIC-PHY-NLM-FORCES-SUM-ZERO",
         "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-SECOND-LAW",
         "MIC-PHY-NLM-FRAME-CHOICE"
       ],
       "entry_needs": [
@@ -809,6 +1163,44 @@
       "symbol": "v_example",
       "meaning": "Illustrative steady speed available to compiled study obligations; none of the authored exits depends on its numerical value.",
       "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-NLM-MASS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 4,
+      "unit": "kg",
+      "symbol": "m",
+      "meaning": "Mass in the authored Newton-second-law exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-NLM-ACCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "m/s^2",
+      "symbol": "a",
+      "meaning": "Signed acceleration in the authored Newton-second-law exit task.",
+      "locator": "Author-created exact practice datum."
     }
   ]
 }
