@@ -46,7 +46,7 @@ jobs:
       # The blueprint test is enforcing; the empirical audit treats missing live evidence
       # as PENDING and fails only malformed evidence that claims LIVE_LEARNER provenance.
       - name: Blueprint architecture regression
-        run: python3 -m unittest tests.test_blueprint_regression -v
+        run: python3 -m unittest discover -s tests -p "test_blueprint_regression.py" -v
 
       - name: Empirical learner acceptance status
         run: python3 Shared/tools/empirical_acceptance.py --enforce
