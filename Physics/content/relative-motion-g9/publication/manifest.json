@@ -1,6 +1,6 @@
 {
   "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
-  "runtime_digest": "755ed606607c6a340e5e6365400653e63d060c9ce170d2c03dee5ae1f87ee5f2",
+  "runtime_digest": "ab01d48b8cf89ace9252e7e86952a97c6cfca8c2db5ccc47faa230b0d71b9c4a",
   "files": [
     {
       "path": "CORE1A.html",
@@ -80,7 +80,7 @@
     },
     {
       "path": "runtime/Physics/adapter/CoreContracts.json",
-      "sha256": "a97b73b148c7976627ed2fc67f4b38bf32e600bf16c1a383ec971bb2b5bfd4b5"
+      "sha256": "a46006e59ba984d4275ff208f49759c0b1b95e3bc40f433e66f9495f9fb1056b"
     },
     {
       "path": "runtime/Physics/adapter/__init__.py",
@@ -92,7 +92,7 @@
     },
     {
       "path": "runtime/Physics/adapter/validator.py",
-      "sha256": "0187de6feb5133d24b80b89d48f9402fef4665072fa12dd97d94bd8748eea9a5"
+      "sha256": "74491599850d92a92f77827fd80cca9fe4cfc84a3413faa6c7b4164a82157548"
     },
     {
       "path": "runtime/Physics/run.py",
