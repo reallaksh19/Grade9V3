@@ -482,53 +482,6 @@
       ],
       "proves": "One-way reflector distance follows from speed times round-trip delay divided by two.",
       "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
-    },
-    {
-      "id": "AVERAGE_ACCELERATION",
-      "status": "IMPLEMENTED",
-      "inputs": [
-        "delta_v",
-        "dt"
-      ],
-      "input_units": {
-        "delta_v": "m/s",
-        "dt": "s"
-      },
-      "result": {
-        "shape": "SCALAR_WITH_UNIT",
-        "unit": "m/s^2",
-        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
-      },
-      "requires": [
-        "dt > 0",
-        "delta_v uses one declared signed velocity axis"
-      ],
-      "proves": "Average acceleration follows from signed velocity change divided by positive elapsed time.",
-      "does_not_prove": "That acceleration is constant within the interval."
-    },
-    {
-      "id": "UNIFORM_CIRCULAR_SPEED",
-      "status": "IMPLEMENTED",
-      "inputs": [
-        "radius",
-        "period"
-      ],
-      "input_units": {
-        "radius": "m",
-        "period": "s"
-      },
-      "result": {
-        "shape": "SCALAR_WITH_UNIT",
-        "unit": "m/s",
-        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
-      },
-      "requires": [
-        "radius > 0",
-        "period > 0",
-        "fixed-radius uniform circular motion"
-      ],
-      "proves": "Uniform circular speed follows from one circumference divided by one period.",
-      "does_not_prove": "The centripetal acceleration or force needed to maintain the circle."
     }
   ],
   "representation_kinds": [
