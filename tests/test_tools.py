@@ -14,7 +14,8 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
-    check_subjects, capability_collisions, curriculum_mapping_audit, engineering_readiness,
+    check_subjects, capability_collisions, curriculum_mapping_audit,
+    curriculum_outcome_coverage, engineering_readiness,
     learner_evidence, matrix_conformance, practice_readiness, prescribed_practical_coverage,
     publication_provenance, resolve_request, teaching_route_coverage,
     spec_conformance,
@@ -1425,6 +1426,90 @@ class CurriculumMappingAudit(unittest.TestCase):
         points = {finding["point"] for finding in findings}
         self.assertIn("CURRICULUM_MAPPING_SOURCE_WRONG_ROLE", points)
         self.assertIn("CURRICULUM_MAPPING_SOURCE_NOT_INSPECTED", points)
+
+
+class CurriculumOutcomeCoverage(unittest.TestCase):
+    def test_standard_grade9_outcomes_have_teaching_and_practice_custody(self):
+        report = curriculum_outcome_coverage.audit("Physics")
+        self.assertTrue(report["passed"], report["findings"])
+        rows = {row["bucket"]: row for row in report["buckets"]}
+        expected_counts = {
+            "BUCKET-PHY-KIN-1D-MOTION": 4,
+            "BUCKET-PHY-NLM-FIRST-LAW": 4,
+            "BUCKET-PHY-WORK-ENERGY-POWER": 4,
+            "BUCKET-PHY-SIMPLE-MACHINES": 2,
+            "BUCKET-PHY-SOUND": 6,
+        }
+        self.assertEqual(set(rows), set(expected_counts))
+        for bucket_id, expected_count in expected_counts.items():
+            self.assertEqual(len(rows[bucket_id]["outcomes"]), expected_count, bucket_id)
+            self.assertEqual(rows[bucket_id]["missing_capabilities"], [], bucket_id)
+            self.assertEqual(
+                set(rows[bucket_id]["track_capabilities"]),
+                set(rows[bucket_id]["outcome_covered_capabilities"]),
+                bucket_id,
+            )
+
+    def test_same_track_capability_without_outcome_is_reported(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            subject = root / "Example"
+            (subject / "library").mkdir(parents=True)
+            package = {
+                "buckets": [{
+                    "id": "BUCKET-X", "_collection": "buckets",
+                    "extensions": {
+                        "grade9_track": "STANDARD",
+                        "curriculum_outcome_coverage_policy": "DECLARED_OUTCOMES",
+                        "curriculum_outcomes": [{
+                            "id": "OUT-X1", "source_ref": "SRC-CURR",
+                            "locator": "Unit 1",
+                            "capability_refs": ["CAP-X1"],
+                            "microtopic_refs": ["MIC-X1"],
+                            "question_refs": ["Q-X1"],
+                        }],
+                    },
+                }],
+                "capabilities": [
+                    {"id": "CAP-X1", "_collection": "capabilities",
+                     "extensions": {"grade9_track": "STANDARD"}},
+                    {"id": "CAP-X2", "_collection": "capabilities",
+                     "extensions": {"grade9_track": "STANDARD"}},
+                ],
+                "microtopics": [
+                    {"id": "MIC-X1", "_collection": "microtopics",
+                     "bucket_id": "BUCKET-X", "primary_capability_ref": "CAP-X1"},
+                    {"id": "MIC-X2", "_collection": "microtopics",
+                     "bucket_id": "BUCKET-X", "primary_capability_ref": "CAP-X2"},
+                ],
+                "questions": [{
+                    "id": "Q-X1", "_collection": "questions",
+                    "primary_capability_ref": "CAP-X1", "secondary_capability_refs": [],
+                    "exposure": [{"core": "CORE2A"}],
+                }],
+                "resources": [{
+                    "id": "SRC-CURR", "_collection": "resources",
+                    "role": ["CURRICULUM"], "access_status": "SECTION_INSPECTED",
+                }],
+            }
+            (subject / "library/x.v1.json").write_text("{}", encoding="utf-8")
+            import Shared.tools.curriculum_outcome_coverage as outcome_audit
+            original_load, original_index = outcome_audit.load, outcome_audit.build_index
+            try:
+                outcome_audit.load = lambda _: package
+                records = {}
+                for collection in ("buckets", "capabilities", "microtopics",
+                                   "questions", "resources"):
+                    for record in package[collection]:
+                        records[record["id"]] = record
+                outcome_audit.build_index = lambda _: records
+                report = outcome_audit.audit("Example", root)
+            finally:
+                outcome_audit.load, outcome_audit.build_index = original_load, original_index
+            self.assertFalse(report["passed"])
+            finding = next(f for f in report["findings"]
+                           if f["point"] == "CURRICULUM_TRACK_CAPABILITY_WITHOUT_OUTCOME")
+            self.assertEqual(finding["capability_refs"], ["CAP-X2"])
 
 
 class PrescribedPracticalCoverage(unittest.TestCase):
