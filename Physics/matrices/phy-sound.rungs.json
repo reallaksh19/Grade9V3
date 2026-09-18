@@ -259,9 +259,9 @@
       "repair_to": "R3"
     },
     {
-      "dimension": "boundary_test",
-      "changed_demand": "A frequency just outside the approximate human audible band must be classified without treating 20 Hz and 20,000 Hz as exact personal hearing thresholds.",
-      "information_not_handed_over": "that the quoted audible range is an approximate usual range rather than a universal biological cutoff",
+      "dimension": "model_choice",
+      "changed_demand": "A frequency just outside the approximate human audible band must be classified using the Grade 9 hearing-range model without treating 20 Hz and 20,000 Hz as exact personal hearing thresholds.",
+      "information_not_handed_over": "that the quoted audible band is an approximate usual human-hearing model rather than a universal biological cutoff",
       "repair_to": "R4"
     }
   ]
