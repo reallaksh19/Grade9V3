@@ -19,23 +19,39 @@ jobs:
       - name: Acquire exact NCERT bytes
         run: |
           mkdir -p /tmp/ncert
-          python3 Shared/tools/source_pipeline.py acquire \
-            --url https://ncert.nic.in/textbook/pdf/keph103.pdf \
-            --subject Physics \
-            --bucket BUCKET-RELATIVE-MOTION \
-            --resource-ref SRC-NCERT-PLANE \
-            --locator https://ncert.nic.in/textbook/pdf/keph103.pdf \
-            --acquired-at 2026-09-18 \
-            --snapshot-output /tmp/ncert/keph103.pdf \
-            --output /tmp/ncert/acquisition.json
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --connect-timeout 20 --max-time 120 \
+            --user-agent 'Mozilla/5.0 Grade9V3-source-custody/1.0' \
+            --output /tmp/ncert/keph103.pdf \
+            https://ncert.nic.in/textbook/pdf/keph103.pdf
           python3 - <<'PY'
           import hashlib, json
           from pathlib import Path
+          from Shared.tools import source_pipeline
+
+          url = 'https://ncert.nic.in/textbook/pdf/keph103.pdf'
           p = Path('/tmp/ncert/keph103.pdf')
-          a = json.loads(Path('/tmp/ncert/acquisition.json').read_text())
-          assert p.stat().st_size == a['byte_length']
-          assert hashlib.sha256(p.read_bytes()).hexdigest() == a['sha256']
-          print(json.dumps(a, indent=2))
+          data = p.read_bytes()
+          acquisition = {
+              'acquisition_id': 'ACQ-' + hashlib.sha256(data).hexdigest()[:20].upper(),
+              'version': '1.0.0',
+              'subject': 'Physics',
+              'bucket_id': 'BUCKET-RELATIVE-MOTION',
+              'resource_ref': 'SRC-NCERT-PLANE',
+              'source_kind': 'URL',
+              'requested_locator': url,
+              'resolved_locator': url,
+              'acquired_at': '2026-09-18',
+              'media_type': 'application/pdf',
+              'byte_length': len(data),
+              'sha256': hashlib.sha256(data).hexdigest(),
+              'snapshot_ref': '/tmp/ncert/keph103.pdf',
+          }
+          Path('/tmp/ncert/acquisition.json').write_text(
+              json.dumps(acquisition, indent=2) + '\n', encoding='utf-8')
+          report = source_pipeline.verify_acquisition(acquisition)
+          assert report['passed'], report['findings']
+          print(json.dumps(acquisition, indent=2))
           PY
 
       - name: Upload pinned source acquisition
