@@ -96,8 +96,37 @@ def _learner_route(request: dict, board: dict, caps: dict, mics: dict,
     elif "owner_entry" in learner:
         candidate = {"rung": learner["owner_entry"].get("rung"), "why": "OWNER_NAMED"}
     elif "owner_estimate" in learner:
-        candidate = resolve_request.entry_from_position(
-            rows, learner["owner_estimate"].get("knowledge_percentage"))
+        estimate = resolve_request.resolve_owner_estimate(
+            rows,
+            learner["owner_estimate"].get("knowledge_percentage"),
+            caps,
+            mics,
+        )
+        if not estimate.get("rung"):
+            return {
+                "state": "BLOCKED",
+                "entry": None,
+                "bridges": [],
+                "prerequisite_checks": [],
+                "unresolved": estimate.get("unresolved_prerequisites", []),
+                "reason": estimate.get("why"),
+                "detail": estimate.get("detail"),
+            }
+        state = (
+            "BLOCKED"
+            if estimate.get("unresolved_prerequisites")
+            else ("READY_WITH_CHECKS" if estimate.get("prerequisite_checks") else "READY")
+        )
+        return {
+            "state": state,
+            "entry": estimate["rung"],
+            "requested_entry": estimate["rung"],
+            "selected_by": estimate.get("why"),
+            "bridges": [],
+            "prerequisite_checks": estimate.get("prerequisite_checks", []),
+            "unresolved": estimate.get("unresolved_prerequisites", []),
+            "route_reason": "OWNER_ESTIMATE_START_HERE_CHECK_PREREQUISITES_IF_NEEDED",
+        }
     elif "unknown" in learner:
         return {"state": "BLOCKED", "entry": None, "bridges": [], "unresolved": [],
                 "reason": "LEARNER_ENTRY_EXPLICITLY_UNKNOWN",
@@ -117,7 +146,8 @@ def _learner_route(request: dict, board: dict, caps: dict, mics: dict,
         state = "READY"
     return {"state": state, "entry": resolved["rung"],
             "requested_entry": candidate["rung"], "selected_by": candidate.get("why"),
-            "bridges": resolved["bridges"], "unresolved": resolved["unresolved"],
+            "bridges": resolved["bridges"], "prerequisite_checks": [],
+            "unresolved": resolved["unresolved"],
             "route_reason": resolved["reason"]}
 
 
