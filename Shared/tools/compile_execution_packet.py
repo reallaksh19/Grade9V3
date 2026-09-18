@@ -12,7 +12,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import digest, file_digest, load  # noqa: E402
-from Shared.tools import author_brief, plan_request  # noqa: E402
+from Shared.tools import author_brief, plan_request, source_receipts  # noqa: E402
 from Shared.tools.spec_conformance import requirements  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/execution-packet.schema.json"
@@ -150,6 +150,13 @@ def compile_packet(request: dict, repo: Path = REPO) -> dict:
         "pins": {
             "matrix": _matrix_snapshot(plan, repo) if plan.get("matrix") else None,
             "library": {"files": library_files, "digest": library_digest},
+            "source_receipt": (
+                {
+                    "receipt_id": plan.get("source", {}).get("receipt_ref"),
+                    "digest": plan.get("source", {}).get("receipt_digest"),
+                }
+                if plan.get("source", {}).get("receipt_ref") else None
+            ),
         },
         "canonical": {
             "rungs": plan.get("canonical_rungs", []),
@@ -266,6 +273,21 @@ def verify(packet: dict, request: dict, repo: Path = REPO) -> dict:
         if current != matrix.get("digest"):
             fail("EXECUTION_PACKET_MATRIX_STALE", matrix["path"],
                  "matrix changed after this packet was compiled")
+
+    receipt_pin = packet.get("pins", {}).get("source_receipt")
+    if receipt_pin:
+        current_receipt = source_receipts.resolve(
+            receipt_pin.get("receipt_id"), request=request,
+            expected_bucket=(packet.get("bucket") or None), repo=repo,
+        )
+        if not current_receipt.get("verified"):
+            fail("EXECUTION_PACKET_SOURCE_RECEIPT_INVALID",
+                 receipt_pin.get("receipt_id", ""),
+                 "pinned source receipt no longer verifies")
+        elif current_receipt.get("digest") != receipt_pin.get("digest"):
+            fail("EXECUTION_PACKET_SOURCE_RECEIPT_STALE",
+                 receipt_pin.get("receipt_id", ""),
+                 "source receipt changed after this packet was compiled")
 
     for order in packet.get("work_orders", []):
         role = order.get("role", {})
