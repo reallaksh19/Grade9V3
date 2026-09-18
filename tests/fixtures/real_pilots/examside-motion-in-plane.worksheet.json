@@ -1,0 +1,34 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-MOTION-IN-PLANE-PILOT",
+  "subject": "Physics",
+  "source_note": "Real external JEE Main Motion in a Plane question bank supplied by the owner: https://questions.examside.com/past-years/jee/jee-main/physics/motion-in-a-plane . This fixture keeps only a small representative subset whose capability demand can be mapped honestly to current canonical content. It is demand evidence, not curriculum authority or source-custody proof.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-MIP-2026-01-21-RIVER",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2026, 21 Jan evening: river/boat round trip, minimum time and downstream drift. Source: https://questions.examside.com/past-years/jee/question/pa-river-of-width-200-m-is-flowing-from-west-to-east-with-jee-main-physics-cxejvco5eunwtrgu"
+    },
+    {
+      "question_id": "EXAMSIDE-MIP-2022-06-27-RAIN",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2022, 27 Jun morning: rain/runner relative-velocity geometry. Source: https://questions.examside.com/past-years/jee/question/pa-girl-standing-on-road-holds-her-umbrella-at-45circ-jee-main-physics-motion-lyymnrgvtydyg6aw"
+    },
+    {
+      "question_id": "EXAMSIDE-MIP-2021-08-26-BOMB",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-NLM-FRAME-CHOICE"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2021, 26 Aug evening: trajectory of a dropped object as seen from the horizontally moving plane. Source: https://questions.examside.com/past-years/jee/question/a-bomb-is-dropped-by-fighter-plane-flying-horizontally-to-a-jee-main-physics-units-and-measurements-qbhwylhjqvbiuywi"
+    }
+  ]
+}
