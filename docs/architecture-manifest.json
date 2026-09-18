@@ -16,7 +16,7 @@
     "TOOLING": 22,
     "WEB": 5
   },
-  "digest": "sha256:580b203faefc41c7b781d3df20c7052b13d0885a307f68ba2e194dc291c22f81",
+  "digest": "sha256:872d683516c3451c309e9e4ff72038cae0620ef1d2833a4df892aabfe3a22142",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -71,8 +71,8 @@
       "path": "Shared/library/execution-packet.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 2997,
-      "sha256": "b35be0872054b8c15113d591249f12ed9fbb8e346b219323dad00b5f8062b3c0"
+      "bytes": 3030,
+      "sha256": "220ff6b5750f5938b80c08008186d84b91938dd10eafabcc96ce891366473956"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -344,8 +344,8 @@
       "path": "Shared/tools/compile_execution_packet.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 13168,
-      "sha256": "bf62dbe6f073b06a3048f0092baec2fa6d021b67e8d3b46b47e4bbb75943e7ae"
+      "bytes": 13703,
+      "sha256": "2a875b2cd3caede06026722005688a08f97385df16586298d64dda408e31d6b9"
     },
     {
       "path": "Shared/tools/learner_evidence.py",
