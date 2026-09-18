@@ -44,11 +44,12 @@ def _schema_findings(receipt: dict, repo: Path) -> list[dict]:
     except ModuleNotFoundError:
         return []
     validator = jsonschema.Draft202012Validator(load(repo / "Shared/library/source-inspection-receipt.schema.json"))
+    public = {key: value for key, value in receipt.items() if not key.startswith("_")}
     return [{
         "point": "SOURCE_RECEIPT_STRUCTURE",
         "where": "/".join(str(part) for part in error.path),
         "detail": error.message,
-    } for error in validator.iter_errors(receipt)]
+    } for error in validator.iter_errors(public)]
 
 
 def verify(receipt: dict, *, request: dict | None = None,
@@ -102,6 +103,15 @@ def verify(receipt: dict, *, request: dict | None = None,
 
     owned = bucket_capabilities(records, receipt.get("bucket_id", ""))
     resource_ids = set(receipt.get("resource_refs", []))
+    any_sufficient = any(
+        ((receipt.get("coverage") or {}).get(core) or {}).get("status") == "SUFFICIENT"
+        for core in CORES
+    )
+    if any_sufficient and not inspection.get("content_sha256"):
+        fail("SOURCE_RECEIPT_SUFFICIENT_WITHOUT_CONTENT_DIGEST",
+             receipt.get("receipt_id", ""),
+             "SUFFICIENT coverage requires a digest of the inspected source content")
+
     for core in CORES:
         claim = (receipt.get("coverage") or {}).get(core) or {}
         status = claim.get("status")
