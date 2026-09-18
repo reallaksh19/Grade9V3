@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Grade 9 Sound: vibrating sources, propagation through material media as longitudinal disturbances, frequency/period/wavelength/amplitude/speed, pitch and loudness, and reflection applications including echo, reverberation and echolocation.",
+  "scope_summary": "Grade 9 sound production and propagation, longitudinal waves, graphical sound-wave analysis, wavelength/frequency/period/amplitude/intensity/speed, approximate human audible range, pitch/loudness, reflection, echo, reverberation and echolocation.",
   "curriculum_mappings": [
     {
       "board": "CBSE",
@@ -47,6 +47,36 @@
       ],
       "selection_reason": "Fills the missing Grade 9 Sound domain with gate-owned period, wave-speed and echo relations.",
       "fallback": []
+    },
+    {
+      "id": "SRC-CBSE-ESSENTIAL-SOUND-RANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "CBSE Essential Concepts — Science, Grade 8: Sound audible range",
+      "origin": "WEB",
+      "locator": "https://cbseacademic.nic.in/web_material/Manuals/EI_Essential_Concepts.pdf",
+      "edition": "Essential Concepts | Science",
+      "section": "Grade 8, Sound; PDF page 29",
+      "last_checked": "2026-09-18",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Reference only; no reproduction permission asserted.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "SCIENTIFIC_CHECK"
+      ],
+      "supports_claims": [
+        "Human beings can usually hear sound having frequency between about 20 Hz and 20,000 Hz."
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Official CBSE reference used only to bound the approximate human audible-frequency range that the current Grade 9 curriculum asks learners to explain.",
+      "fallback": []
     }
   ],
   "buckets": [
@@ -66,7 +96,7 @@
       "title": "Sound",
       "topic": "Sound",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The main difficulty is separating local particle vibration from wave propagation, then keeping frequency, wavelength, amplitude, speed, pitch and loudness distinct.",
+      "badge_reason": "Grade 9 Sound requires separating particle motion from propagation, reading spatial/time wave graphs, deriving wave speed, distinguishing pitch/loudness, and applying reflection timing.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [
         {
@@ -94,12 +124,13 @@
         }
       ],
       "scope": {
-        "covers": "Grade 9 sound production, propagation in solids/liquids/gases, longitudinal compressions/rarefactions, wave quantities and sound perception, plus reflection, echo, reverberation and echolocation.",
+        "covers": "Grade 9 sound production and propagation, longitudinal waves, graphical sound-wave analysis, wavelength/frequency/period/amplitude/intensity/speed, approximate human audible range, pitch/loudness, reflection, echo, reverberation and echolocation.",
         "excluded": [
           "Interference, standing-wave mode formulae, Doppler effect, decibel logarithms and detailed acoustic impedance."
         ],
         "extension_refs": []
-      }
+      },
+      "primary_representation_ref": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH"
     }
   ],
   "capabilities": [
@@ -177,8 +208,8 @@
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED"
       },
-      "action": "Relate period, frequency, wavelength and wave speed for one sound wave and keep amplitude as a separate measure.",
-      "success_criterion": "Uses f = 1/T and v = f lambda with values from the same wave/medium and does not confuse amplitude with wavelength.",
+      "action": "Analyse spatial and temporal sound-wave graphs, relate period, frequency, wavelength, amplitude and speed, and derive v = lambda/T = f lambda for one wave in one medium.",
+      "success_criterion": "Reads graph axes before extracting amplitude, wavelength or period; uses f = 1/T and derives/uses v = f lambda with quantities from the same wave and medium.",
       "prerequisite_refs": [
         "CAP-SOUND-LONGITUDINAL"
       ],
@@ -190,7 +221,7 @@
           "track": "STANDARD",
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
-          "locator": "Sound; printed p.17; C-2.7 — wavelength, frequency, time period, amplitude, intensity and speed",
+          "locator": "Sound; printed pp.17–18; C-2.7 — graphical representation, analyse sound graphs, relate period/frequency, derive and calculate wave speed",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -209,8 +240,8 @@
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED"
       },
-      "action": "Connect higher frequency with higher pitch and distinguish amplitude/intensity from pitch.",
-      "success_criterion": "Predicts pitch from frequency and treats loudness as related to sound intensity/amplitude rather than frequency alone.",
+      "action": "Connect frequency with pitch, distinguish sound strength/intensity from pitch, and classify frequencies relative to the approximate human audible range.",
+      "success_criterion": "Uses frequency for pitch, keeps loudness conceptually separate, and treats roughly 20 Hz–20 kHz as an approximate typical human audible range rather than a universal hard boundary.",
       "prerequisite_refs": [
         "CAP-SOUND-WAVE-QUANTITIES"
       ],
@@ -222,7 +253,7 @@
           "track": "STANDARD",
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
-          "locator": "Sound; printed p.17; C-2.7/C-5.3 — pitch and loudness",
+          "locator": "Sound; printed p.18; C-2.7/C-5.3 — human perception in terms of audible range, loudness and pitch",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -538,60 +569,66 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Frequency, period, wavelength and speed describe different wave features",
+      "title": "Sound graphs separate amplitude, wavelength, period, frequency and speed",
       "bucket_id": "BUCKET-PHY-SOUND",
       "primary_capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common.",
       "entry_assumptions": [
-        "Can identify repeating cycles and can measure time and distance intervals."
+        "Can distinguish a spatial snapshot from a time trace and can measure horizontal and vertical coordinate differences."
       ],
-      "inferential_jump": "Period measures time per cycle, frequency counts cycles per second, wavelength measures spatial repeat distance, amplitude measures disturbance size, and propagation speed links frequency and wavelength through v = f lambda.",
+      "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, frequency is 1/T, and a travelling pattern advances one wavelength in one period so v = lambda/T = f lambda.",
       "teaching_path": [
         {
           "id": "SOUND3-1",
           "role": "DECLARE",
-          "action": "Separate one time-cycle measurement T from one spatial repeat distance lambda and from amplitude.",
-          "why_valid": "These quantities measure different axes/features and must not be inferred from one another without a relation.",
+          "action": "Compare the sampled spatial snapshot with the sampled time trace and read each horizontal-axis label before naming a repeat interval.",
+          "why_valid": "Repeat distance on a position axis is wavelength, while repeat time on a time axis is period; the axis determines the physical meaning.",
           "inputs": [
-            "CAP-SOUND-LONGITUDINAL"
+            "CAP-SOUND-LONGITUDINAL",
+            "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+            "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
           ],
-          "output": "T: s/cycle; lambda: m/cycle; amplitude: disturbance size."
+          "output": "spatial repeat: lambda = 1.7 m; temporal repeat: T = 0.005 s; vertical amplitude = 1 cm."
         },
         {
           "id": "SOUND3-2",
           "role": "TRANSFORM",
-          "action": "Take the reciprocal of positive period to obtain frequency.",
-          "why_valid": "REL-FREQUENCY-PERIOD owns the one-cycle time/count relation.",
+          "action": "Take the reciprocal of the positive period read from the temporal graph.",
+          "why_valid": "REL-FREQUENCY-PERIOD owns the conversion from time per cycle to cycles per second.",
           "inputs": [
             "REL-FREQUENCY-PERIOD"
           ],
-          "output": "f = 1 / T."
+          "output": "f = 1/T = 1/0.005 s = 200 Hz."
         },
         {
           "id": "SOUND3-3",
           "role": "TRANSFORM",
-          "action": "Multiply frequency by wavelength for values belonging to the same wave in the same medium.",
-          "why_valid": "REL-WAVE-SPEED owns the propagation-speed relation.",
+          "action": "Follow one repeated phase: in one period T the travelling pattern advances one wavelength lambda, then replace 1/T with f.",
+          "why_valid": "Speed is distance per time for the same pattern, and the gate-owned relations bind T and f for the same wave.",
           "inputs": [
+            "REL-FREQUENCY-PERIOD",
             "REL-WAVE-SPEED"
           ],
-          "output": "v = f lambda."
+          "output": "v = lambda/T = f lambda = 200 Hz × 1.7 m = 340 m/s."
         },
         {
           "id": "SOUND3-4",
           "role": "VERIFY",
-          "action": "For the same medium speed, raise frequency and ask what must happen to wavelength.",
-          "why_valid": "Holding v fixed in v = f lambda requires inverse change between f and lambda.",
+          "action": "Change only the plotted vertical amplitude while holding repeat spacing fixed.",
+          "why_valid": "Amplitude measures disturbance size, whereas period/frequency and wavelength measure repeat spacing on different axes.",
           "inputs": [],
-          "output": "same medium speed: higher f -> shorter lambda."
+          "output": "amplitude can change from 1 cm to 2 cm while T = 0.005 s, f = 200 Hz, and lambda = 1.7 m remain unchanged."
         }
       ],
       "relation_refs": [
         "REL-FREQUENCY-PERIOD",
         "REL-WAVE-SPEED"
       ],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+        "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
+      ],
       "question_family_refs": [
         "FAM-PHY-SOUND-PRACTICE"
       ],
@@ -603,31 +640,34 @@
         }
       ],
       "exit_task": {
-        "prompt": "A repeating sound vibration has period 0.005 s and wavelength 1.7 m in one medium. Find its frequency and wave speed.",
+        "prompt": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
         "source_ref": "SRC-AUTHOR-SOUND-G9",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "f = 200 Hz and v = 340 m/s.",
+          "summary": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s.",
           "reasoning": [
-            "f = 1/0.005 s = 200 Hz.",
-            "v = f lambda = 200 x 1.7 = 340 m/s.",
-            "The period, frequency and wavelength all describe the same wave in the same medium."
+            "The spatial repeat distance gives wavelength: lambda = 1.7 m.",
+            "The temporal repeat interval gives period: T = 0.005 s.",
+            "The vertical extreme gives amplitude: 1 cm.",
+            "f = 1/T = 200 Hz.",
+            "One wavelength advances in one period, so v = lambda/T = f lambda = 340 m/s."
           ],
-          "check": "A 200 Hz wave has 200 cycles per second, so one cycle lasts 1/200 s = 0.005 s.",
+          "check": "The units confirm Hz × m = m/s, and changing amplitude alone would not alter the repeat spacings.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
           "verification": {
-            "validator_id": "FREQUENCY_PERIOD",
+            "validator_id": "WAVE_SPEED",
             "bindings": {
-              "period": "DAT-SOUND-PERIOD"
+              "frequency": "DAT-SOUND-FREQUENCY",
+              "wavelength": "DAT-SOUND-LAMBDA"
             }
           }
         }
       },
-      "research_contribution": "Author-created Grade 9 wave-quantity construction bound to frequency-period and wave-speed gate relations.",
+      "research_contribution": "Author-created Grade 9 sound-graph analysis and speed derivation using the implemented GRAPH renderer and gate-owned period/speed relations.",
       "prerequisite_refs": [
         "CAP-SOUND-LONGITUDINAL"
       ],
@@ -697,7 +737,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Pitch follows frequency; loudness is a different perceptual dimension",
+      "title": "Pitch, loudness and the approximate human audible range are different questions",
       "bucket_id": "BUCKET-PHY-SOUND",
       "primary_capability_ref": "CAP-SOUND-PERCEPTION",
       "intrinsic_badge": "EASY",
@@ -705,7 +745,7 @@
       "entry_assumptions": [
         "Can distinguish frequency from amplitude and can compare two wave descriptions."
       ],
-      "inferential_jump": "Higher frequency corresponds to higher perceived pitch under comparable conditions, while louder sound is associated with greater sound intensity and typically larger disturbance amplitude; changing one does not automatically change the other.",
+      "inferential_jump": "Frequency controls pitch for heard tones, sound strength/intensity is a different loudness dimension, and humans usually hear only a finite frequency band—approximately 20 Hz to 20,000 Hz for typical young hearing—whose limits vary between people and with age.",
       "teaching_path": [
         {
           "id": "SOUND4-1",
@@ -732,6 +772,17 @@
           "why_valid": "The mixed case tests whether pitch and loudness have been collapsed into one idea.",
           "inputs": [],
           "output": "pitch prediction from f; loudness prediction from sound strength/intensity information."
+        },
+        {
+          "id": "SOUND4-4",
+          "role": "DECLARE",
+          "action": "Compare example frequencies with the approximate usual human audible band from the scientific-check source.",
+          "why_valid": "The current curriculum asks learners to explain audible range, while the separate source supplies the approximate numerical bounds rather than the curriculum mapping inventing them.",
+          "inputs": [
+            "DAT-SOUND-AUDIBLE-LOW",
+            "DAT-SOUND-AUDIBLE-HIGH"
+          ],
+          "output": "usual human audible band ≈ 20 Hz to 20,000 Hz; 10 Hz lies below it, 1,000 Hz lies within it, and 25,000 Hz lies above it."
         }
       ],
       "relation_refs": [],
@@ -744,29 +795,34 @@
           "wrong_idea": "A louder sound must have a higher pitch.",
           "diagnostic_prompt": "Can a low-pitched drum sound be louder than a high-pitched whistle?",
           "repair": "Yes. Use frequency for pitch and sound strength/intensity for loudness; they are separate dimensions."
+        },
+        {
+          "wrong_idea": "The 20 Hz and 20,000 Hz figures are exact universal hearing cutoffs for every person.",
+          "diagnostic_prompt": "Would every person of every age necessarily hear a 19,999 Hz tone but fail to hear a 20,001 Hz tone?",
+          "repair": "No. Treat 20 Hz–20 kHz as an approximate usual range; individual hearing limits vary, especially with age and hearing condition."
         }
       ],
       "exit_task": {
-        "prompt": "Sound A has higher frequency than Sound B but lower amplitude/intensity under otherwise comparable conditions. Compare their pitch and likely loudness.",
-        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "prompt": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+        "source_ref": "SRC-CBSE-ESSENTIAL-SOUND-RANGE",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "Sound A has the higher pitch, while Sound B can be louder because its sound strength is greater.",
+          "summary": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions.",
           "reasoning": [
-            "Pitch follows frequency, so A is higher-pitched.",
-            "Loudness is tied to sound intensity/amplitude rather than frequency alone.",
-            "The two perceptual comparisons therefore point in different directions."
+            "The approximate usual human range is about 20 Hz to 20,000 Hz.",
+            "10 Hz is below the lower bound; 1,000 Hz lies between the bounds; 25,000 Hz is above the upper bound.",
+            "Pitch comparisons use frequency, not amplitude or loudness."
           ],
-          "check": "A loud bass sound and a quiet high whistle provide the same qualitative separation.",
+          "check": "The range is approximate and varies among people; the classification is a Grade 9 model, not a personal hearing diagnosis.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit makes qualitative pitch/loudness comparisons without a numerical psychoacoustic formula."
+          "no_numeric_claim": "The numerical boundary values are source-backed classification thresholds rather than a computed formula claim."
         }
       },
-      "research_contribution": "Author-created pitch-versus-loudness separation.",
+      "research_contribution": "Author-created pitch/loudness/audible-range distinction; approximate numerical hearing bounds are held by a separate CBSE scientific-check resource.",
       "prerequisite_refs": [
         "CAP-SOUND-WAVE-QUANTITIES"
       ],
@@ -816,9 +872,9 @@
           "differs_from_teaching_path": "The teaching path uses controlled comparisons; the learner route starts from the everyday words and maps each back to the physical quantity."
         },
         "boundary_test": {
-          "prompt": "If frequency stays fixed while sound intensity increases, what happens to pitch in the simple Grade 9 comparison?",
-          "answer": "Pitch stays the same while loudness can increase.",
-          "confirms": "Pitch and loudness are distinct."
+          "prompt": "Does the approximate 20 Hz–20 kHz range mean every human has exactly those two hearing thresholds?",
+          "answer": "No. It is a usual approximate range; individual limits vary.",
+          "confirms": "The curriculum model is not being misrepresented as a universal biological cutoff."
         }
       }
     },
@@ -1063,11 +1119,21 @@
       "derivation": [
         {
           "id": "SOUND-SPEED-D1",
-          "role": "TRANSFORM",
-          "action": "Multiply cycles per second by metres advanced per cycle.",
-          "why_valid": "One cycle of a travelling wave advances the pattern by one wavelength.",
+          "role": "DECLARE",
+          "action": "Follow one identifiable phase of the travelling pattern through one complete cycle.",
+          "why_valid": "During one period T, the repeating pattern advances by one wavelength lambda.",
           "inputs": [],
-          "output": "v = f lambda."
+          "output": "distance advanced in one cycle = lambda; elapsed time for that cycle = T."
+        },
+        {
+          "id": "SOUND-SPEED-D2",
+          "role": "TRANSFORM",
+          "action": "Divide the one-cycle advance by the one-cycle time, then replace 1/T with frequency.",
+          "why_valid": "Speed is distance per time and REL-FREQUENCY-PERIOD gives f = 1/T for the same repeating wave.",
+          "inputs": [
+            "REL-FREQUENCY-PERIOD"
+          ],
+          "output": "v = lambda / T = f lambda."
         }
       ],
       "limits": [
@@ -1142,7 +1208,256 @@
       "gate_relation_ref": "REL-ECHO-DISTANCE"
     }
   ],
-  "representations": [],
+  "representations": [
+    {
+      "id": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show a sampled spatial snapshot so wavelength and amplitude can be read from repeat spacing and vertical extent.",
+      "required_elements": [
+        "position coordinates along the medium",
+        "signed disturbance samples",
+        "repeated spatial pattern"
+      ],
+      "relation_refs": [
+        "REL-WAVE-SPEED"
+      ],
+      "read_order": [
+        "Read the horizontal position axis in metres and identify that this is a spatial snapshot.",
+        "Read the vertical signed disturbance axis in centimetres.",
+        "Locate two matching crest samples and measure their horizontal separation.",
+        "Read the maximum displacement from the equilibrium level as amplitude."
+      ],
+      "instance_constraints": [
+        "Spatial samples must progress in strictly increasing position.",
+        "The horizontal axis must be position in metres and the vertical axis a signed disturbance quantity.",
+        "The polyline is a sampled teaching trace; straight joins do not assert a physically triangular waveform."
+      ],
+      "accessibility": [
+        "Caption identifies the graph as a spatial snapshot rather than a particle path.",
+        "Coordinates are labelled by the renderer.",
+        "Wavelength is described through repeated spatial phase, not colour."
+      ],
+      "misleading_alternatives": [
+        "Do not read the horizontal separation as period because the horizontal axis is position.",
+        "Do not interpret the curve as the trajectory of one material particle through space."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [
+        {
+          "id": "SCENE-PHY-SOUND-SPATIAL-01",
+          "cores": [
+            "CORE1A",
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+          "datum_refs": [
+            "DAT-SOUND-GRAPH-X0",
+            "DAT-SOUND-GRAPH-X1",
+            "DAT-SOUND-GRAPH-X2",
+            "DAT-SOUND-GRAPH-X3",
+            "DAT-SOUND-GRAPH-X4",
+            "DAT-SOUND-GRAPH-X5",
+            "DAT-SOUND-GRAPH-X6",
+            "DAT-SOUND-GRAPH-X7",
+            "DAT-SOUND-GRAPH-X8",
+            "DAT-SOUND-GRAPH-Y0",
+            "DAT-SOUND-GRAPH-YPLUS",
+            "DAT-SOUND-GRAPH-YMINUS"
+          ],
+          "scene": {
+            "kind": "GRAPH",
+            "frame": "spatial snapshot of a repeating sound disturbance",
+            "caption": "Sampled disturbance versus position: adjacent positive peaks are 1.7 m apart and the amplitude is 1 cm.",
+            "x_label": "position (m)",
+            "y_label": "disturbance (cm)",
+            "x_unit": "m",
+            "y_unit": "cm",
+            "points": [
+              [
+                "DAT-SOUND-GRAPH-X0",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X1",
+                "DAT-SOUND-GRAPH-YPLUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X2",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X3",
+                "DAT-SOUND-GRAPH-YMINUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X4",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X5",
+                "DAT-SOUND-GRAPH-YPLUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X6",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X7",
+                "DAT-SOUND-GRAPH-YMINUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-X8",
+                "DAT-SOUND-GRAPH-Y0"
+              ]
+            ]
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "position coordinates along the medium",
+          "symbol": "lambda",
+          "in_words": "The horizontal separation between matching phases in this spatial snapshot is the wavelength lambda."
+        },
+        {
+          "element": "repeated spatial pattern",
+          "symbol": "v",
+          "in_words": "The travelling repetition is the spatial pattern whose propagation speed is v; the static picture alone does not give v without time information."
+        }
+      ]
+    },
+    {
+      "id": "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show a sampled disturbance-versus-time trace at one location so period and amplitude can be read before converting period to frequency.",
+      "required_elements": [
+        "time coordinates at one location",
+        "signed disturbance samples",
+        "repeated temporal pattern"
+      ],
+      "relation_refs": [
+        "REL-FREQUENCY-PERIOD"
+      ],
+      "read_order": [
+        "Read the horizontal time axis in seconds and note that one location is being observed.",
+        "Read the vertical disturbance coordinate and its centimetre unit.",
+        "Locate two matching positive peaks and measure the elapsed time between them.",
+        "Use the vertical extreme relative to zero to identify amplitude."
+      ],
+      "instance_constraints": [
+        "Temporal samples must progress in strictly increasing time.",
+        "The trace must label time in seconds and disturbance in centimetres.",
+        "The sampled straight joins are display interpolation and do not assert a triangular oscillator model."
+      ],
+      "accessibility": [
+        "Caption identifies this as a time trace at one location.",
+        "Coordinates remain readable without colour.",
+        "Period is described by repeated timing, not by curve height."
+      ],
+      "misleading_alternatives": [
+        "Do not read the peak-to-peak time separation as wavelength because the horizontal axis is time.",
+        "Do not use vertical height to infer frequency."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [
+        {
+          "id": "SCENE-PHY-SOUND-TEMPORAL-01",
+          "cores": [
+            "CORE1A",
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+          "datum_refs": [
+            "DAT-SOUND-GRAPH-T0",
+            "DAT-SOUND-GRAPH-T1",
+            "DAT-SOUND-GRAPH-T2",
+            "DAT-SOUND-GRAPH-T3",
+            "DAT-SOUND-GRAPH-T4",
+            "DAT-SOUND-GRAPH-T5",
+            "DAT-SOUND-GRAPH-T6",
+            "DAT-SOUND-GRAPH-T7",
+            "DAT-SOUND-GRAPH-T8",
+            "DAT-SOUND-GRAPH-Y0",
+            "DAT-SOUND-GRAPH-YPLUS",
+            "DAT-SOUND-GRAPH-YMINUS"
+          ],
+          "scene": {
+            "kind": "GRAPH",
+            "frame": "temporal trace of a repeating sound disturbance at one location",
+            "caption": "Sampled disturbance versus time: adjacent positive peaks are 0.005 s apart and the amplitude is 1 cm.",
+            "x_label": "time (s)",
+            "y_label": "disturbance (cm)",
+            "x_unit": "s",
+            "y_unit": "cm",
+            "points": [
+              [
+                "DAT-SOUND-GRAPH-T0",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T1",
+                "DAT-SOUND-GRAPH-YPLUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T2",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T3",
+                "DAT-SOUND-GRAPH-YMINUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T4",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T5",
+                "DAT-SOUND-GRAPH-YPLUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T6",
+                "DAT-SOUND-GRAPH-Y0"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T7",
+                "DAT-SOUND-GRAPH-YMINUS"
+              ],
+              [
+                "DAT-SOUND-GRAPH-T8",
+                "DAT-SOUND-GRAPH-Y0"
+              ]
+            ]
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "time coordinates at one location",
+          "symbol": "T",
+          "in_words": "The elapsed time between matching phases on this time trace is the period T."
+        },
+        {
+          "element": "repeated temporal pattern",
+          "symbol": "f",
+          "in_words": "The repetition rate of this same trace is frequency f = 1/T."
+        }
+      ]
+    }
+  ],
   "question_families": [
     {
       "id": "FAM-PHY-SOUND-PRACTICE",
@@ -1163,9 +1478,10 @@
       ],
       "solution_structure": [
         "Identify source, medium and propagation direction.",
-        "Separate local particle motion from wave propagation.",
-        "Keep period, frequency, wavelength and amplitude distinct.",
-        "Use f=1/T or v=f lambda only for one consistent wave.",
+        "For a graph, read whether the horizontal coordinate is position or time before naming wavelength or period.",
+        "Keep amplitude, wavelength, period and frequency distinct.",
+        "Derive/use f = 1/T and v = lambda/T = f lambda for one consistent wave.",
+        "Use the approximate audible range only as a usual human-hearing model, not an exact personal threshold.",
         "For reflection, draw the round trip before halving for one-way range."
       ],
       "demand_dimensions": {
@@ -1178,7 +1494,9 @@
         "Change period, wavelength, medium, reflector distance or everyday sound source while preserving the declared model."
       ],
       "transfer_boundaries": [
-        "Do not introduce Doppler, logarithmic decibel or standing-wave formulae."
+        "Do not introduce Doppler, logarithmic decibel or standing-wave formulae.",
+        "Do not infer wavelength from a time-axis graph or period from a position-axis graph.",
+        "Do not treat the approximate human audible range as a universal clinical hearing threshold."
       ],
       "common_wrong_routes": [
         "Treating particles as travelling with the sound.",
@@ -1189,7 +1507,8 @@
         "Q-PHY-SOUND-2A-01",
         "Q-PHY-SOUND-2B-01",
         "Q-PHY-SOUND-2A-COV-02",
-        "Q-PHY-SOUND-2A-COV-03"
+        "Q-PHY-SOUND-2A-COV-03",
+        "Q-PHY-SOUND-2A-COV-04"
       ]
     }
   ],
@@ -1206,24 +1525,28 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-SOUND-G9",
       "original_identifier": "AUTHOR-SOUND-2A-01",
-      "stem": "A sound vibration has period 0.005 s. Find its frequency and state whether doubling amplitude at the same period changes that frequency.",
+      "stem": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
       "subparts": [],
       "options": [],
       "conditions": [],
-      "figure_refs": [],
+      "figure_refs": [
+        "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+        "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
+      ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The frequency is 200 Hz. Doubling amplitude at the same period does not change the frequency in this simple description.",
+        "summary": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s.",
         "reasoning": [
-          "f = 1/T = 1/0.005 = 200 Hz.",
-          "Period stays 0.005 s, so cycles per second stay 200.",
-          "Amplitude is a separate measure of disturbance size."
+          "The spatial repeat distance gives wavelength: lambda = 1.7 m.",
+          "The temporal repeat interval gives period: T = 0.005 s.",
+          "The vertical extreme gives amplitude: 1 cm.",
+          "f = 1/T = 200 Hz.",
+          "One wavelength advances in one period, so v = lambda/T = f lambda = 340 m/s."
         ],
-        "check": "200 Hz corresponds to 1/200 s = 0.005 s per cycle.",
+        "check": "The units confirm Hz × m = m/s, and changing amplitude alone would not alter the repeat spacings.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 1
+        "verification_status": "CHECKED_BY_AUTHOR"
       },
       "primary_capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
       "secondary_capability_refs": [
@@ -1239,18 +1562,19 @@
         }
       ],
       "verification": {
-        "validator_id": "FREQUENCY_PERIOD",
+        "validator_id": "WAVE_SPEED",
         "bindings": {
-          "period": "DAT-SOUND-PERIOD"
+          "frequency": "DAT-SOUND-FREQUENCY",
+          "wavelength": "DAT-SOUND-LAMBDA"
         }
       },
       "hints": [
         {
-          "text": "Period is seconds per cycle; frequency is cycles per second.",
+          "text": "First identify which horizontal axis is position and which is time.",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Take the reciprocal of the positive period.",
+          "text": "Read lambda from spatial repeat distance and T from temporal repeat time; then use f=1/T and v=f lambda.",
           "reveals": "METHOD"
         }
       ]
@@ -1443,6 +1767,63 @@
           "reveals": "METHOD"
         }
       ]
+    },
+    {
+      "id": "Q-PHY-SOUND-2A-COV-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-ESSENTIAL-SOUND-RANGE",
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SOUND-G9",
+      "original_identifier": "AUTHOR-SOUND-COVERAGE-04",
+      "stem": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use the approximate usual human audible range stated in the supplied source."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions.",
+        "reasoning": [
+          "The approximate usual human range is about 20 Hz to 20,000 Hz.",
+          "10 Hz is below the lower bound; 1,000 Hz lies between the bounds; 25,000 Hz is above the upper bound.",
+          "Pitch comparisons use frequency, not amplitude or loudness."
+        ],
+        "check": "The range is approximate and varies among people; the classification is a Grade 9 model, not a personal hearing diagnosis.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-SOUND-PERCEPTION",
+      "secondary_capability_refs": [
+        "CAP-SOUND-WAVE-QUANTITIES"
+      ],
+      "family_ref": "FAM-PHY-SOUND-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Treat 20 Hz and 20,000 Hz as approximate usual lower and upper bounds, not personal diagnostic thresholds.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Pitch follows frequency for an audible tone; loudness is a separate sound-strength perception.",
+          "reveals": "METHOD"
+        }
+      ]
     }
   ],
   "teaching_routes": [
@@ -1613,6 +1994,390 @@
       "symbol": "t_echo",
       "meaning": "Round-trip echo delay in the authored reflection example.",
       "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X0",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "unit": "m",
+      "symbol": "x_0",
+      "meaning": "First spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.425,
+      "unit": "m",
+      "symbol": "x_1",
+      "meaning": "Quarter-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.85,
+      "unit": "m",
+      "symbol": "x_2",
+      "meaning": "Half-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1.275,
+      "unit": "m",
+      "symbol": "x_3",
+      "meaning": "Three-quarter-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X4",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1.7,
+      "unit": "m",
+      "symbol": "x_4",
+      "meaning": "One-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2.125,
+      "unit": "m",
+      "symbol": "x_5",
+      "meaning": "Five-quarter-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2.55,
+      "unit": "m",
+      "symbol": "x_6",
+      "meaning": "Three-half-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2.975,
+      "unit": "m",
+      "symbol": "x_7",
+      "meaning": "Seven-quarter-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-X8",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 3.4,
+      "unit": "m",
+      "symbol": "x_8",
+      "meaning": "Two-wavelength spatial sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T0",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "unit": "s",
+      "symbol": "t_0",
+      "meaning": "First temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.00125,
+      "unit": "s",
+      "symbol": "t_1",
+      "meaning": "Quarter-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.0025,
+      "unit": "s",
+      "symbol": "t_2",
+      "meaning": "Half-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.00375,
+      "unit": "s",
+      "symbol": "t_3",
+      "meaning": "Three-quarter-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T4",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.005,
+      "unit": "s",
+      "symbol": "t_4",
+      "meaning": "One-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.00625,
+      "unit": "s",
+      "symbol": "t_5",
+      "meaning": "Five-quarter-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.0075,
+      "unit": "s",
+      "symbol": "t_6",
+      "meaning": "Three-half-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.00875,
+      "unit": "s",
+      "symbol": "t_7",
+      "meaning": "Seven-quarter-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-T8",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0.01,
+      "unit": "s",
+      "symbol": "t_8",
+      "meaning": "Two-period temporal sample coordinate.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-Y0",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "unit": "cm",
+      "symbol": "y_0",
+      "meaning": "Zero disturbance level for sampled sound graphs.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-YPLUS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1,
+      "unit": "cm",
+      "symbol": "A_plus",
+      "meaning": "Positive sampled disturbance amplitude.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-GRAPH-YMINUS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": -1,
+      "unit": "cm",
+      "symbol": "A_minus",
+      "meaning": "Negative sampled disturbance amplitude.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-FREQUENCY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 200,
+      "unit": "Hz",
+      "symbol": "f",
+      "meaning": "Frequency corresponding to the authored 0.005 s period.",
+      "locator": "Author-created exact Grade 9 Sound graph datum."
+    },
+    {
+      "id": "DAT-SOUND-AUDIBLE-LOW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-ESSENTIAL-SOUND-RANGE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 20,
+      "unit": "Hz",
+      "symbol": "f_low",
+      "meaning": "Approximate lower bound of usual human audible range in the scientific-check source.",
+      "locator": "CBSE Essential Concepts, Grade 8 Sound, PDF p.29."
+    },
+    {
+      "id": "DAT-SOUND-AUDIBLE-HIGH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-ESSENTIAL-SOUND-RANGE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 20000,
+      "unit": "Hz",
+      "symbol": "f_high",
+      "meaning": "Approximate upper bound of usual human audible range in the scientific-check source.",
+      "locator": "CBSE Essential Concepts, Grade 8 Sound, PDF p.29."
     }
   ]
 }
