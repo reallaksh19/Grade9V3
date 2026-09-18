@@ -272,5 +272,163 @@ class FeedbackRuntime(unittest.TestCase):
             )
 
 
+    def test_arbitrary_worksheet_question_can_produce_observation_and_review(self):
+        fixture = json.loads(
+            (REPO / "tests/fixtures/study_route/physics-cross-matrix.worksheet.json")
+            .read_text(encoding="utf-8")
+        )
+        row = fixture["questions"][0]
+        report = feedback.run({
+            "subject": fixture["subject"],
+            "question_ref": row["question_id"],
+            "worksheet_question": row,
+            "attempt_number": 1,
+            "attempted_question_refs": [row["question_id"]],
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "session_ref": fixture["worksheet_id"],
+            "response_summary": "Explained the top-of-flight case correctly.",
+            "evaluation": {
+                "result": "CORRECT",
+                "error_stage": "UNKNOWN",
+            },
+        })
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["question_origin"], "WORKSHEET_MAPPING")
+        self.assertEqual(report["next_action"], "CONTINUE")
+        self.assertEqual(
+            report["observation_draft"]["capability_ref"],
+            row["primary_capability_ref"],
+        )
+        self.assertEqual(
+            report["observation_draft"]["question_ref"],
+            row["question_id"],
+        )
+        self.assertEqual(report["review"]["next_review"], "2026-09-25")
+
+    def test_arbitrary_worksheet_question_diagnoses_instead_of_inventing_a_hint(self):
+        fixture = json.loads(
+            (REPO / "tests/fixtures/study_route/physics-cross-matrix.worksheet.json")
+            .read_text(encoding="utf-8")
+        )
+        row = fixture["questions"][0]
+        report = feedback.run({
+            "subject": fixture["subject"],
+            "question_ref": row["question_id"],
+            "worksheet_question": row,
+            "attempt_number": 1,
+            "attempted_question_refs": [row["question_id"]],
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "session_ref": fixture["worksheet_id"],
+            "response_summary": "Said acceleration must be zero because velocity is zero.",
+            "evaluation": {
+                "result": "INCORRECT",
+                "failed_capability_ref": row["primary_capability_ref"],
+                "error_stage": "CONCEPT",
+            },
+        })
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["question_origin"], "WORKSHEET_MAPPING")
+        self.assertEqual(report["next_action"], "DIAGNOSE")
+        self.assertNotIn("hint", report)
+        prompts = [
+            item
+            for option in report["diagnostic_options"]
+            for item in option["diagnostics"]
+        ]
+        self.assertTrue(prompts)
+        self.assertIn("diagnostic_prompt", prompts[0])
+
+    def test_diagnosed_worksheet_failure_routes_to_existing_repair_then_fresh_check(self):
+        fixture = json.loads(
+            (REPO / "tests/fixtures/study_route/physics-cross-matrix.worksheet.json")
+            .read_text(encoding="utf-8")
+        )
+        row = fixture["questions"][0]
+        report = feedback.run({
+            "subject": fixture["subject"],
+            "question_ref": row["question_id"],
+            "worksheet_question": row,
+            "attempt_number": 1,
+            "attempted_question_refs": [row["question_id"]],
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "session_ref": fixture["worksheet_id"],
+            "response_summary": "Velocity zero, therefore acceleration zero.",
+            "evaluation": {
+                "result": "INCORRECT",
+                "failed_capability_ref": row["primary_capability_ref"],
+                "error_stage": "CONCEPT",
+                "misconception_index": 0,
+            },
+        })
+        self.assertEqual(report["next_action"], "REPAIR")
+        self.assertEqual(report["repair"]["kind"], "MISCONCEPTION_REPAIR")
+        self.assertEqual(
+            report["repair"]["microtopic_ref"],
+            "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+        )
+        self.assertEqual(report["after_repair"]["next_action"], "VERIFY")
+        verification = report["after_repair"]["verification"]
+        self.assertEqual(verification["kind"], "EXIT_TASK")
+        self.assertNotIn("answer", verification)
+
+    def test_arbitrary_worksheet_mapping_with_unknown_capability_stops(self):
+        report = feedback.run({
+            "subject": "Physics",
+            "question_ref": "SCHOOL-Q-404",
+            "worksheet_question": {
+                "question_id": "SCHOOL-Q-404",
+                "primary_capability_ref": "CAP-NOT-REAL",
+                "secondary_capability_refs": [],
+                "mapping_basis": "MANUAL",
+            },
+            "attempt_number": 1,
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "evaluation": {
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-NOT-REAL",
+                "error_stage": "CONCEPT",
+            },
+        })
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["next_action"], "STOP")
+        self.assertIn(
+            "FEEDBACK_WORKSHEET_CAPABILITY_UNKNOWN",
+            [row["point"] for row in report["findings"]],
+        )
+
+    def test_canonical_question_remains_authoritative_if_a_supplied_mapping_drifts(self):
+        report = feedback.run({
+            "subject": "Mathematics",
+            "question_ref": self.QUESTION,
+            "worksheet_question": {
+                "question_id": self.QUESTION,
+                "primary_capability_ref": "CAP-MATH-SUBSTITUTE",
+                "secondary_capability_refs": [],
+                "mapping_basis": "AGENT_PROPOSAL",
+            },
+            "attempt_number": 1,
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "evaluation": {
+                "result": "CORRECT",
+                "error_stage": "UNKNOWN",
+            },
+        })
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["question_origin"], "CANONICAL_QUESTION")
+        self.assertIn(
+            "FEEDBACK_CANONICAL_MAPPING_DRIFT",
+            [row["point"] for row in report["findings"]],
+        )
+        self.assertEqual(
+            report["observation_draft"]["capability_ref"],
+            "CAP-MATH-ISOLATE",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
