@@ -131,31 +131,15 @@ class Resolution(unittest.TestCase):
 
 
 class Promotion(unittest.TestCase):
-    EVIDENCE = {"reviewer": "second-instance", "reviewed_on": "2026-09-16",
-                "scope": "relative motion derivations", "originals_inspected": True}
-
-    def test_a_stage_cannot_be_skipped(self):
+    def test_direct_upward_promotion_is_disabled(self):
         with self.assertRaises(ContractError) as caught:
-            promote({"id": "X", "status": "CANDIDATE"}, "CURATED",
-                    {"accepted_by": "owner", "accepted_on": "2026-09-16", "scope": "all"})
-        self.assertEqual(caught.exception.code, "PROMOTION_SKIPPED_A_STAGE")
+            promote({"id": "X", "status": "CANDIDATE"}, "REVIEWED", {})
+        self.assertEqual(caught.exception.code, "DIGEST_BOUND_REVIEW_AUTHORITY_REQUIRED")
 
-    def test_an_author_cannot_review_their_own_record(self):
-        record = {"id": "X", "status": "CANDIDATE", "authored_by": "second-instance"}
+    def test_direct_stage_skip_is_also_disabled_by_the_same_authority_boundary(self):
         with self.assertRaises(ContractError) as caught:
-            promote(record, "REVIEWED", self.EVIDENCE)
-        self.assertEqual(caught.exception.code, "SELF_REVIEW_NOT_INDEPENDENT")
-
-    def test_a_review_that_did_not_inspect_originals_is_refused(self):
-        evidence = {**self.EVIDENCE, "originals_inspected": False}
-        with self.assertRaises(ContractError) as caught:
-            promote({"id": "X", "status": "CANDIDATE"}, "REVIEWED", evidence)
-        self.assertEqual(caught.exception.code, "REVIEW_DID_NOT_INSPECT_ORIGINALS")
-
-    def test_a_valid_promotion_records_its_evidence(self):
-        promoted = promote({"id": "X", "status": "CANDIDATE"}, "REVIEWED", self.EVIDENCE)
-        self.assertEqual(promoted["status"], "REVIEWED")
-        self.assertEqual(promoted["lifecycle_history"][-1]["evidence"], self.EVIDENCE)
+            promote({"id": "X", "status": "CANDIDATE"}, "CURATED", {})
+        self.assertEqual(caught.exception.code, "DIGEST_BOUND_REVIEW_AUTHORITY_REQUIRED")
 
     def test_demotion_needs_no_evidence(self):
         self.assertEqual(promote({"id": "X", "status": "CURATED"}, "CANDIDATE", {})["status"],
