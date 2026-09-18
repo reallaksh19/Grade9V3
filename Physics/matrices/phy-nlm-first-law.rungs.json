@@ -61,37 +61,8 @@
       "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO"
     },
     {
-      "rung": "R5",
-      "ladder_position": 45,
-      "provenance": "SOURCE",
-      "ceiling": [
-        "coefficient of friction",
-        "limiting friction formula",
-        "rolling resistance model"
-      ],
-      "must_contain": [
-        "A named contact surface and a relative-sliding or slip-tendency statement.",
-        "A conveyor-belt counterexample where friction need not point opposite the object's ground-frame velocity."
-      ],
-      "controlled_variation": [
-        {
-          "phase": 1,
-          "vary": "the belt speed relative to the box",
-          "hold": "the same contact pair",
-          "notice": "friction direction follows relative slip tendency at the contact"
-        },
-        {
-          "phase": 2,
-          "vary": "the object's ground-frame motion direction",
-          "hold": "the same relative slip tendency",
-          "notice": "friction is not defined by the object's velocity alone"
-        }
-      ],
-      "microtopic_ref": "MIC-PHY-NLM-FRICTION"
-    },
-    {
       "rung": "R3",
-      "ladder_position": 60,
+      "ladder_position": 45,
       "provenance": "SOURCE",
       "ceiling": [
         "Newton's third law",
@@ -118,6 +89,35 @@
         }
       ],
       "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "coefficient of friction",
+        "limiting friction formula",
+        "rolling resistance model"
+      ],
+      "must_contain": [
+        "A named contact surface and a relative-sliding or slip-tendency statement.",
+        "A conveyor-belt counterexample where friction need not point opposite the object's ground-frame velocity."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the belt speed relative to the box",
+          "hold": "the same contact pair",
+          "notice": "friction direction follows relative slip tendency at the contact"
+        },
+        {
+          "phase": 2,
+          "vary": "the object's ground-frame motion direction",
+          "hold": "the same relative slip tendency",
+          "notice": "friction is not defined by the object's velocity alone"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION"
     },
     {
       "rung": "R6",
