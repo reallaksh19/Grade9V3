@@ -43,6 +43,7 @@ class AuthoringLifecycle(unittest.TestCase):
 class ExecutionPacket(unittest.TestCase):
     TEACHING = REPO / "Requests/relative-motion-teaching.author-request.json"
     SIX = REPO / "Requests/relative-motion-six-core.plan-request.json"
+    CURRENT = REPO / "Requests/relative-motion-six-core.ncert-current.plan-request.json"
 
     def request(self, path):
         return json.loads(path.read_text(encoding="utf-8"))
@@ -75,6 +76,15 @@ class ExecutionPacket(unittest.TestCase):
         self.assertIn("CORE1B", packet["summary"]["waiting_cores"])
         self.assertIn("CORE2A", packet["summary"]["waiting_cores"])
         self.assertIn("CORE2B", packet["summary"]["waiting_cores"])
+
+    def test_source_drift_blocks_only_source_backed_work_orders(self):
+        packet = compile_execution_packet.compile_packet(self.request(self.CURRENT))
+        core1 = next(row for row in packet["work_orders"] if row["core"] == "CORE1")
+        self.assertEqual(core1["authoring_action"], "BUILD_FROM_CANONICAL")
+        for core in ("CORE2", "CORE2A", "CORE2B"):
+            order = next(row for row in packet["work_orders"] if row["core"] == core)
+            self.assertEqual(order["authoring_action"], "WAIT")
+            self.assertIn("SOURCE_BASIS_DRIFT_DECISION", order["blockers"])
 
     def test_core2_source_custody_is_never_replaced_by_authored_generation(self):
         request = self.request(self.SIX)
