@@ -98,6 +98,8 @@ class FeedbackRuntime(unittest.TestCase):
         self.assertEqual(report["next_action"], "VERIFY")
         self.assertEqual(report["observation_draft"]["result"], "UNCERTAIN")
         self.assertEqual(report["observation_draft"]["help"], "HINT")
+        self.assertEqual(report["review"]["outcome"], "CORRECT_WITH_HINT")
+        self.assertEqual(report["review"]["next_review"], "2026-09-21")
         self.assertIsNotNone(report["verification"])
 
     def test_independent_correct_attempt_can_continue(self):
@@ -112,6 +114,8 @@ class FeedbackRuntime(unittest.TestCase):
         self.assertEqual(report["next_action"], "CONTINUE")
         self.assertEqual(report["observation_draft"]["result"], "DEMONSTRATED")
         self.assertEqual(report["observation_draft"]["capability_ref"], "CAP-MATH-ISOLATE")
+        self.assertEqual(report["review"]["outcome"], "CORRECT_INDEPENDENT")
+        self.assertEqual(report["review"]["next_review"], "2026-09-25")
 
     def test_multi_capability_failure_without_attribution_is_diagnosed_not_guessed(self):
         report = feedback.run(self.request(
