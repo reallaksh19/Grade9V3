@@ -513,8 +513,175 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-FLUID-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Fluid comparison and ideal-flow model practice",
+      "capability_refs": [
+        "CAP-PHY-FLUID-R2",
+        "CAP-PHY-FLUID-R3",
+        "CAP-PHY-FLUID-R4"
+      ],
+      "solution_structure": [
+        "Submerge two equal-mass objects of different volume in the same fluid and outline the volume occupied by each submerged object.",
+        "Replace each object outline by an imagined parcel of the same fluid occupying the displaced region, then compare the parcel weights.",
+        "Keep the object's mass label unchanged while changing only how much of it is submerged."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must decide whether the ideal-flow model applies instead of being handed Bernoulli as the required relation."
+      ],
+      "common_wrong_routes": [
+        "Objects with equal mass experience equal buoyant force in the same fluid."
+      ],
+      "item_refs": [
+        "Q-PHY-FLUID-2A-01",
+        "Q-PHY-FLUID-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-FLUID-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-FLUID",
+      "original_identifier": "AUTHOR-FLUID-2A-01",
+      "stem": "Two equal-mass objects with different volumes are fully submerged in the same fluid. Predict which experiences the larger buoyant force and explain the deciding quantity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The larger-volume object experiences the larger buoyant force because full submersion makes it displace a larger volume of the same fluid.",
+        "reasoning": [
+          "Object mass is held equal, so it cannot explain a difference in buoyant force between the two cases.",
+          "Full submersion makes displaced volume match object volume.",
+          "In one fluid, the larger displaced volume corresponds to a larger weight of displaced fluid and therefore a larger buoyant force."
+        ],
+        "check": "Partly lift the larger object out of the fluid while leaving its mass unchanged; the buoyant force should decrease with its submerged volume.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-PHY-FLUID-R2",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-FLUID-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: What quantity is guaranteed equal in this comparison?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare displaced volumes: buoyant force follows the weight of displaced fluid, not the object's mass label.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-FLUID-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-FLUID",
+      "original_identifier": "AUTHOR-FLUID-2B-01",
+      "stem": "A long narrow pipe carries steady flow, and the problem explicitly states that viscosity causes a substantial pressure loss along the pipe. Decide whether an ideal Bernoulli comparison between distant points is an adequate model and explain the deciding condition.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "The ideal Bernoulli comparison is not adequate across the stated lossy path because substantial viscous dissipation violates the ideal-flow assumption used by that energy ledger.",
+        "reasoning": [
+          "The authored pressure-speed-height comparison is conditional on an ideal-flow path.",
+          "The problem states a substantial viscous pressure loss along the path.",
+          "That dissipation is an additional energy transfer, so the ideal lossless ledger cannot be used unchanged."
+        ],
+        "check": "Shorten the comparison to a region where dissipation is negligible; only then can the ideal-flow ledger be reconsidered.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Rejects the unchanged ideal Bernoulli model for the distant lossy path.",
+            "evidence_of": "Checking model conditions before using a familiar relation."
+          },
+          {
+            "criterion": "Names viscous dissipation as the reason the ideal ledger is incomplete.",
+            "evidence_of": "Connecting the failure to the specific assumption that was violated."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-PHY-FLUID-R4",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-FLUID-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by listing the conditions under which the pressure-speed-height ledger was introduced.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "A stated energy loss along the path is evidence about model validity, not just another pressure value.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide whether the ideal-flow model applies instead of being handed Bernoulli as the required relation.",
+        "builds_on": [
+          "Q-PHY-FLUID-2A-01",
+          "MIC-PHY-FLUID-R4"
+        ]
+      },
+      "repair_ref": "FLUID-R4-1"
+    }
+  ],
   "teaching_routes": [
     {
       "version": "0.1.0",
