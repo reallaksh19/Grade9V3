@@ -255,17 +255,51 @@ def _rung_execution_blockers(readiness: dict | None, rung: str | None) -> list[d
     ]
 
 
-def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: list[dict]):
-    """Annotate only exceptional execution states; normal route actions stay unchanged."""
+def _route_execution(
+    study_plan: dict,
+    readiness_rows: list[dict],
+    warnings: list[dict],
+    owner_choices: dict[str, dict] | None = None,
+):
+    """Annotate exceptional execution states and apply session-only owner choices."""
     by_matrix = {row.get("matrix_id"): row for row in readiness_rows}
+    choices = owner_choices or {}
     route = []
     owner_decisions = []
     fallback_reasons = []
+    applied_owner_choices = []
+    choice_warnings = []
     executable = 0
     owner_required: set[str] = set()
+    route_capabilities = {
+        row.get("capability_ref")
+        for row in study_plan.get("route", [])
+        if row.get("capability_ref")
+    }
+
+    def bridge(item: dict, capability: str, choice: dict) -> None:
+        provider = choice["provider"]
+        item["recommended_action"] = "BRIDGE"
+        item["action_reason"] = (
+            f"Session-only owner bridge via {provider}; canonical delivery is unchanged."
+        )
+        item["external_provider"] = provider
+        item["provider"] = provider
+        item["acceptance_status"] = "SESSION_OWNER_CHOICE"
+        item["locations"] = []
+        item["lessons"] = []
+        item["owner_choice"] = dict(choice)
+        item["execution_disposition"] = EXECUTE_WITH_FALLBACK
+        applied_owner_choices.append({"capability_ref": capability, **choice})
+        fallback_reasons.append({
+            "capability_ref": capability,
+            "reason": "session-only owner bridge; canonical teaching truth is unchanged",
+        })
 
     for row in study_plan.get("route", []):
         item = dict(row)
+        capability = item.get("capability_ref")
+        choice = choices.get(capability)
         action = item.get("recommended_action")
         disposition = None
 
@@ -280,13 +314,13 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
         ]
         if blocked_dependencies:
             disposition = OWNER_DECISION
-            owner_required.add(item.get("capability_ref"))
+            owner_required.add(capability)
             owner_decisions.append({
-                "capability_ref": item.get("capability_ref"),
+                "capability_ref": capability,
                 "depends_on": blocked_dependencies,
                 "reason": (
-                    "a prerequisite route requires an owner decision; dependent study "
-                    "cannot safely leap over that unresolved prerequisite"
+                    "a prerequisite requires an owner decision; dependent study cannot "
+                    "safely leap over that prerequisite"
                 ),
             })
             item["execution_disposition"] = disposition
@@ -300,12 +334,47 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
             continue
 
         locations = list(item.get("locations") or [])
-        if item.get("state") != "RESOLVED" or len(locations) != 1:
+        owner_selected_location = False
+        if choice and choice.get("kind") == OWNER_LOCATION:
+            matches = [
+                location for location in locations
+                if location.get("matrix_id") == choice.get("matrix_id")
+                and location.get("rung") == choice.get("rung")
+            ]
+            if len(matches) == 1 and (
+                item.get("state") != "RESOLVED" or len(locations) != 1
+            ):
+                selected = matches[0]
+                locations = [selected]
+                item["locations"] = [selected]
+                item["lessons"] = [
+                    lesson for lesson in item.get("lessons", [])
+                    if lesson.get("matrix_id") == selected.get("matrix_id")
+                    and lesson.get("rung") == selected.get("rung")
+                ]
+                item["owner_choice"] = dict(choice)
+                owner_selected_location = True
+                applied_owner_choices.append({"capability_ref": capability, **choice})
+
+        unresolved = (
+            item.get("state") != "RESOLVED" or len(locations) != 1
+        ) and not owner_selected_location
+
+        if unresolved:
+            if choice and choice.get("kind") == OWNER_EXTERNAL:
+                bridge(item, capability, choice)
+                executable += 1
+                route.append(item)
+                continue
             disposition = OWNER_DECISION
-            owner_required.add(item.get("capability_ref"))
+            owner_required.add(capability)
             owner_decisions.append({
-                "capability_ref": item.get("capability_ref"),
-                "reason": "canonical teaching delivery is unresolved or ambiguous",
+                "capability_ref": capability,
+                "reason": (
+                    "supplied location is not one of the offered canonical locations"
+                    if choice and choice.get("kind") == OWNER_LOCATION
+                    else "canonical teaching delivery is unresolved or ambiguous"
+                ),
             })
         else:
             location = locations[0]
@@ -313,37 +382,70 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
             rung_state = _rung_state(readiness, location.get("rung"))
             rung_blockers = _rung_execution_blockers(readiness, location.get("rung"))
             if rung_state in {None, "BLOCKED"} or rung_blockers:
+                if choice and choice.get("kind") == OWNER_EXTERNAL:
+                    bridge(item, capability, choice)
+                    executable += 1
+                    route.append(item)
+                    continue
                 disposition = OWNER_DECISION
-                owner_required.add(item.get("capability_ref"))
+                owner_required.add(capability)
                 owner_decisions.append({
-                    "capability_ref": item.get("capability_ref"),
+                    "capability_ref": capability,
                     "matrix_id": location.get("matrix_id"),
                     "rung": location.get("rung"),
                     "blocking_points": [row.get("point") for row in rung_blockers],
                     "reason": (
-                        "the demanded teaching rung has no safe executable teaching path; "
-                        "an owner choice or content repair is required"
+                        "the demanded rung has no safe teaching path; use an owner external "
+                        "bridge or repair the canonical content"
                     ),
                 })
             else:
                 executable += 1
-                if (
+                if owner_selected_location:
+                    disposition = EXECUTE_WITH_FALLBACK
+                    fallback_reasons.append({
+                        "capability_ref": capability,
+                        "matrix_id": location.get("matrix_id"),
+                        "rung": location.get("rung"),
+                        "reason": (
+                            "owner selected one offered canonical location for this session; "
+                            "canonical ambiguity remains visible"
+                        ),
+                    })
+                elif (
                     rung_state == "NEEDS_SUPPORT"
                     or readiness.get("status") in {PILOT_READY, NOT_READY}
                 ):
                     disposition = EXECUTE_WITH_FALLBACK
                     fallback_reasons.append({
-                        "capability_ref": item.get("capability_ref"),
+                        "capability_ref": capability,
                         "matrix_id": location.get("matrix_id"),
                         "rung": location.get("rung"),
                         "reason": (
-                            "the demanded rung is usable, but the surrounding matrix has "
-                            "support/content gaps that remain visible"
+                            "the demanded rung is usable, but surrounding support/content "
+                            "gaps remain visible"
                         ),
                     })
 
         item["execution_disposition"] = disposition
         route.append(item)
+
+    applied_caps = {row["capability_ref"] for row in applied_owner_choices}
+    for capability in choices:
+        if capability in applied_caps:
+            continue
+        if capability not in route_capabilities:
+            choice_warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_TARGET_UNKNOWN",
+                "capability_ref": capability,
+                "detail": "owner choice names no capability in the current route",
+            })
+        elif capability not in owner_required:
+            choice_warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_NOT_REQUIRED",
+                "capability_ref": capability,
+                "detail": "canonical route is already executable; owner choice was ignored",
+            })
 
     if executable:
         overall = (
@@ -355,8 +457,16 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
         overall = OWNER_DECISION
     else:
         overall = None
-    return route, owner_decisions, fallback_reasons, executable, overall
 
+    return (
+        route,
+        owner_decisions,
+        fallback_reasons,
+        executable,
+        overall,
+        applied_owner_choices,
+        choice_warnings,
+    )
 
 def _question_execution(questions: list[dict], route: list[dict]) -> tuple[list[dict], list[str], list[str]]:
     """Project route-level fallback onto worksheet questions without inventing new states."""
