@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://grade9v3.local/source-acquisition.schema.json",
+  "title":"Source acquisition",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["acquisition_id","version","subject","bucket_id","resource_ref","source_kind","requested_locator","resolved_locator","acquired_at","media_type","byte_length","sha256","snapshot_ref"],
+  "properties":{
+    "acquisition_id":{"type":"string","minLength":1},
+    "version":{"type":"string","minLength":1},
+    "subject":{"type":"string","minLength":1},
+    "bucket_id":{"type":"string","minLength":1},
+    "resource_ref":{"type":"string","minLength":1},
+    "source_kind":{"enum":["URL","FILE"]},
+    "requested_locator":{"type":"string","minLength":1},
+    "resolved_locator":{"type":"string","minLength":1},
+    "acquired_at":{"type":"string","minLength":1},
+    "media_type":{"type":"string","minLength":1},
+    "byte_length":{"type":"integer","minimum":1},
+    "sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "snapshot_ref":{"anyOf":[{"type":"string","minLength":1},{"type":"null"}]}
+  }
+}

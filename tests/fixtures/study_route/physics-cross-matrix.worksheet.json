@@ -1,0 +1,28 @@
+{
+  "worksheet_id": "PHYSICS-CROSS-MATRIX-DEMO",
+  "subject": "Physics",
+  "source_note": "Synthetic worksheet-map fixture over canonical capabilities present on the post-PR18 base; the worksheet itself is not canonical curriculum.",
+  "questions": [
+    {
+      "question_id": "Q1",
+      "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+      "secondary_capability_refs": ["CAP-KIN-DISTANCE-DISPLACEMENT"],
+      "mapping_basis": "MANUAL",
+      "note": "Kinematics question requiring the distinction between zero velocity and nonzero acceleration, with signed motion quantities as supporting context."
+    },
+    {
+      "question_id": "Q2",
+      "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+      "secondary_capability_refs": ["CAP-NLM-FORCES-SUM-ZERO"],
+      "mapping_basis": "MANUAL",
+      "note": "Free-body-diagram question that also requires recognizing that nonzero forces may cancel."
+    },
+    {
+      "question_id": "Q3",
+      "primary_capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
+      "secondary_capability_refs": ["CAP-WEP-POTENTIAL-ELIGIBILITY"],
+      "mapping_basis": "MANUAL",
+      "note": "Energy-account question requiring both potential-energy eligibility and the condition for mechanical-energy conservation."
+    }
+  ]
+}

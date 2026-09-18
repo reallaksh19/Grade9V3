@@ -626,6 +626,118 @@ window.GRADE9V3 = {
             "shape": "STRUCTURED_STATE",
             "comparison": "FIELDWISE_TOLERANCE_1E-9",
             "does_not_prove": "That drag is negligible in the described situation."
+          },
+          {
+            "id": "AVERAGE_RATE",
+            "status": "IMPLEMENTED",
+            "shape": "STRUCTURED_STATE",
+            "comparison": "FIELDWISE_TOLERANCE_1E-9",
+            "does_not_prove": "That listed leg speeds may be averaged arithmetically or that the interval is appropriate for an instantaneous velocity."
+          },
+          {
+            "id": "AVERAGE_POWER",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That power was constant during the interval."
+          },
+          {
+            "id": "INSTANTANEOUS_POWER",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the supplied force component or velocity is correctly resolved from the physical situation."
+          },
+          {
+            "id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That acceleration is actually constant in the described motion."
+          },
+          {
+            "id": "CONSTANT_ACCELERATION_NO_TIME",
+            "status": "IMPLEMENTED",
+            "shape": "STRUCTURED_STATE",
+            "comparison": "FIELDWISE_TOLERANCE_1E-9",
+            "does_not_prove": "Which signed root for v is physically appropriate; direction must come from the motion context."
+          },
+          {
+            "id": "NEWTON_SECOND_LAW",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the listed force inventory is complete or that the chosen frame is inertial."
+          },
+          {
+            "id": "WORK_CONSTANT_FORCE",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That force is constant or that the supplied component is correctly resolved."
+          },
+          {
+            "id": "KINETIC_ENERGY",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That rotational/internal kinetic energy can be ignored."
+          },
+          {
+            "id": "GRAVITATIONAL_POTENTIAL_ENERGY",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the uniform-g approximation is appropriate over a large height range."
+          },
+          {
+            "id": "AVERAGE_ACCELERATION",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That acceleration is constant within the interval."
+          },
+          {
+            "id": "UNIFORM_CIRCULAR_SPEED",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the path is circular, speed is uniform, or the centripetal acceleration magnitude."
+          },
+          {
+            "id": "CONSTANT_ACCELERATION_GRAPH_AREA",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That acceleration is constant in the described motion or that the chosen endpoint velocities belong to the same interval."
+          },
+          {
+            "id": "WAVE_SPEED",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the medium is nondispersive or that the same speed applies after the medium changes."
+          },
+          {
+            "id": "MECHANICAL_ADVANTAGE",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the machine is ideal, efficient, or correctly represented by the supplied forces."
+          },
+          {
+            "id": "FREQUENCY_PERIOD",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the signal is periodic or that the measured period belongs to the intended mode."
+          },
+          {
+            "id": "ECHO_DISTANCE",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
           }
         ],
         "representation_kinds": [
@@ -700,6 +812,117 @@ window.GRADE9V3 = {
         }
       },
       "gates": [
+        {
+          "gate_id": "PHY-KIN-AVERAGE-RATES",
+          "title": "Grade 9 motion rates, graphs, constant acceleration and circular speed",
+          "grade": 9,
+          "chapter": "Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Average rates are formed from total path or displacement over the same total elapsed time, not by blindly averaging listed speeds.",
+            "The familiar kinematic equations are exact only on an interval where acceleration is constant.",
+            "On a position-time graph, interval slope gives average velocity; on a velocity-time graph, interval slope gives average acceleration.",
+            "Uniform circular motion has constant speed v = 2 pi r / T while its velocity direction changes continuously."
+          ],
+          "misconceptions": [
+            "Average speed is always the arithmetic mean of the listed speeds."
+          ]
+        },
+        {
+          "gate_id": "PHY-POWER-RATES",
+          "title": "Average and instantaneous mechanical power",
+          "grade": 9,
+          "chapter": "Work and Energy",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Power is a rate of energy transfer; an interval average and an instantaneous rate answer different questions."
+          ],
+          "misconceptions": [
+            "Objects that receive the same work must have the same power."
+          ]
+        },
+        {
+          "gate_id": "PHY-NEWTON-SECOND-LAW",
+          "title": "Newton's second law for net force and acceleration",
+          "grade": 9,
+          "chapter": "Force and Laws of Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "For a fixed positive mass, net force and acceleration are directed together and linked by F_net = m a."
+          ],
+          "misconceptions": [
+            "Acceleration points in the direction of the largest individual force rather than the net force."
+          ]
+        },
+        {
+          "gate_id": "PHY-WORK-ENERGY-GRADE9",
+          "title": "Grade 9 work, kinetic energy and gravitational potential energy",
+          "grade": 9,
+          "chapter": "Work, Energy and Simple Machines",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Constant-force work depends on the force component along displacement.",
+            "Kinetic energy depends on speed and gravitational potential energy near Earth depends on height relative to a declared reference.",
+            "Mechanical energy is conserved only when no additional transfer crosses the chosen mechanical account.",
+            "The Grade 9 kinetic- and raised-body potential-energy expressions are consequences of the work ledger plus already-authored force/motion relations, not isolated formulas."
+          ],
+          "misconceptions": [
+            "Any nonzero force on a moving body does positive work."
+          ]
+        },
+        {
+          "gate_id": "PHY-WAVE-SPEED",
+          "title": "Grade 9 sound frequency, wavelength, speed and echo relations",
+          "grade": 9,
+          "chapter": "Sound",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "For one travelling-wave description, propagation speed is frequency times wavelength.",
+            "Frequency and time period are reciprocals for one repeating vibration.",
+            "An echo delay covers an outward and return sound path, so one-way distance is half the total distance travelled by the sound."
+          ],
+          "misconceptions": [
+            "Raising source frequency in the same medium must raise wave speed."
+          ]
+        },
+        {
+          "gate_id": "PHY-SIMPLE-MACHINES-GRADE9",
+          "title": "Grade 9 simple machines and mechanical advantage",
+          "grade": 9,
+          "chapter": "Work, Energy and Simple Machines",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "A simple machine can trade force magnitude, direction or input distance; it does not create work or energy.",
+            "Mechanical advantage compares load force with effort force for the same machine state."
+          ],
+          "misconceptions": [
+            "A machine with mechanical advantage greater than one creates energy because the output force is larger."
+          ]
+        },
         {
           "gate_id": "PHY-VEC-SCALAR-VECTOR",
           "title": "Magnitude, vector and signed component",
@@ -973,7 +1196,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -1220,7 +1443,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -1463,27 +1686,19 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
-            "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "atoms": 76,
+            "questions": 1,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -1627,9 +1842,366 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-KIN-DISTANCE-DISPLACEMENT"
               ]
+            },
+            {
+              "id": "MIC-PHY-KIN-AVERAGE-RATES",
+              "title": "Average speed and average velocity come from different totals",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The arithmetic is simple, but equal-distance and equal-time weighting are easily confused.",
+              "entry_assumptions": [
+                "Can distinguish total travelled path from signed displacement and can read one positive elapsed interval."
+              ],
+              "inferential_jump": "Average speed divides total path length by total time, while average velocity divides signed displacement by that same time; neither is obtained by averaging listed speeds unless the weighting justifies it.",
+              "teaching_path": [
+                {
+                  "action": "For one two-leg trip, record total path length, signed start-to-finish displacement, and the total elapsed time in separate rows.",
+                  "why_valid": "The two averages differ only in the numerator, so separating the totals prevents path and endpoint information from being merged.",
+                  "output": "distance_total = sum of leg lengths; Delta x = x_final - x_initial; Delta t = total elapsed time."
+                },
+                {
+                  "action": "Divide total path length by total time, then divide signed displacement by the same total time.",
+                  "why_valid": "Each relation is a total-over-common-interval average and the gate owns both formulas.",
+                  "output": "speed_avg = distance_total / Delta t; v_avg = Delta x / Delta t."
+                },
+                {
+                  "action": "Check a return trip where the finish equals the start.",
+                  "why_valid": "The boundary keeps nonzero path length while forcing displacement to zero, so it tests whether the two averages stayed distinct.",
+                  "output": "return trip -> average speed may be nonzero; whole-trip average velocity = 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Average speed is always the arithmetic mean of the speeds listed for the trip.",
+                  "diagnostic_prompt": "Two equal-distance legs are travelled at different speeds. Did the traveller spend equal time at each speed?",
+                  "repair": "Build total distance and total time first. Only equal time weighting permits an unweighted arithmetic mean of speeds."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Average speed is 6 m/s and average velocity is +2 m/s.",
+                  "reasoning": [
+                    "Average speed uses 120 m / 20 s = 6 m/s.",
+                    "Average velocity uses the signed displacement +40 m / 20 s = +2 m/s.",
+                    "The different numerators explain why the two averages differ."
+                  ],
+                  "check": "Both calculations use the same 20 s interval; only the path-versus-displacement numerator changes.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "AVERAGE_RATE",
+                    "bindings": {
+                      "distance": "DAT-KIN-AVG-DIST",
+                      "displacement": "DAT-KIN-AVG-DISP",
+                      "dt": "DAT-KIN-AVG-DT"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-KIN-DISTANCE-DISPLACEMENT"
+              ]
+            },
+            {
+              "id": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+              "title": "Derive the constant-acceleration equations from one velocity-time graph",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The algebra is elementary, but the learner must connect graph slope and geometric area to three equivalent kinematic equations while preserving the model condition.",
+              "entry_assumptions": [
+                "Can read a velocity-time graph, calculate a segment slope, and calculate rectangle, triangle and trapezoid areas.",
+                "Can distinguish a constant-slope velocity-time segment from a curved changing-acceleration segment."
+              ],
+              "inferential_jump": "One straight velocity-time segment carries all three Grade 9 kinematic equations: its slope gives v = u + at, its rectangle-plus-triangle area gives s = ut + 0.5at^2, and combining trapezoid area with the slope relation eliminates time to give v^2 = u^2 + 2as.",
+              "teaching_path": [
+                {
+                  "action": "Read the straight velocity-time graph from (0,u) to (t,v) and identify one constant slope.",
+                  "why_valid": "A straight velocity-time segment means one acceleration value describes the whole interval.",
+                  "output": "slope = (v-u)/t = a; graph area = signed displacement s."
+                },
+                {
+                  "action": "Rearrange the straight-line slope equation.",
+                  "why_valid": "The graph slope is the constant acceleration for the interval.",
+                  "output": "a = (v-u)/t -> a t = v-u -> v = u + a t."
+                },
+                {
+                  "action": "Split the graph area into the initial-velocity rectangle and the acceleration triangle, then substitute v-u = a t.",
+                  "why_valid": "REL-CONSTANT-ACCELERATION-GRAPH-AREA owns the displacement area and the two regions exactly partition it.",
+                  "output": "s = u t + 0.5 (v-u)t -> s = u t + 0.5 (a t)t = u t + 0.5 a t^2."
+                },
+                {
+                  "action": "Write the same graph area as a trapezoid, substitute t = (v-u)/a from the slope, and factor the difference of squares.",
+                  "why_valid": "Both equations describe the same straight graph interval, so the common time variable can be eliminated.",
+                  "output": "s = 0.5(u+v)t; t=(v-u)/a -> 2as=(u+v)(v-u)=v^2-u^2 -> v^2=u^2+2as."
+                },
+                {
+                  "action": "Replace the straight segment with a curved velocity-time trace and ask whether the same graphical derivation is exact over the whole interval.",
+                  "why_valid": "A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.",
+                  "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
+                  "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
+                  "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as.",
+                  "reasoning": [
+                    "Slope: a = (11-5)/3 = 2 m/s^2, so a = (v-u)/t rearranges to v = u + at.",
+                    "Rectangle area: u t = 5 x 3 = 15 m.",
+                    "Triangle area: 0.5(v-u)t = 0.5 x 6 x 3 = 9 m, so s = 24 m; substituting v-u = at gives s = ut + 0.5at^2.",
+                    "The same area is s = 0.5(u+v)t. Substitute t=(v-u)/a: 2as=(u+v)(v-u)=v^2-u^2, hence v^2=u^2+2as."
+                  ],
+                  "check": "The direct displacement validator gives 24 m, and 11^2 = 5^2 + 2 x 2 x 24 = 121.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "CONSTANT_ACCELERATION_GRAPH_AREA",
+                    "bindings": {
+                      "u": "DAT-KIN-CA-U",
+                      "v": "DAT-KIN-CA-V",
+                      "t": "DAT-KIN-CA-T"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-KIN-MOTION-GRAPHS"
+              ]
+            },
+            {
+              "id": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+              "title": "Uniform circular motion keeps speed while velocity turns",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Everyday use of 'speed' and 'velocity' can hide that direction change alone is a velocity change.",
+              "entry_assumptions": [
+                "Can distinguish speed from directed velocity and can recognize acceleration as a change of velocity."
+              ],
+              "inferential_jump": "An object moving around a circle at constant speed is still accelerating because velocity direction changes continuously; velocity is tangent, acceleration points inward, and the constant speed for one revolution is circumference divided by period: v = 2 pi r / T.",
+              "teaching_path": [
+                {
+                  "action": "Mark equal-length velocity arrows tangent to a circle at several positions.",
+                  "why_valid": "Equal arrow length represents constant speed while tangent direction follows the instantaneous motion.",
+                  "output": "same speed; different tangent velocity directions."
+                },
+                {
+                  "action": "Compare successive velocity arrows and identify the change in velocity direction.",
+                  "why_valid": "Velocity changes whenever either its magnitude or direction changes.",
+                  "output": "At two different points A and B: |v_A| = |v_B| = v, but v_A and v_B point in different tangent directions, so Delta v = v_B - v_A is nonzero."
+                },
+                {
+                  "action": "Use symmetry at opposite points to check that the required acceleration is directed toward the centre rather than along the tangent.",
+                  "why_valid": "A tangential acceleration would change speed, while inward turning changes direction while preserving speed in the ideal uniform case.",
+                  "output": "uniform circular motion -> acceleration inward; velocity tangent."
+                },
+                {
+                  "action": "For one complete uniform revolution, divide the circumference 2 pi r by the positive revolution period T.",
+                  "why_valid": "REL-UNIFORM-CIRCULAR-SPEED is the gate-owned Grade 9 speed expression.",
+                  "output": "v = 2 pi r / T; for r = 7 m and T = 14 s, v = pi m/s ≈ 3.14 m/s."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Constant speed means zero acceleration.",
+                  "diagnostic_prompt": "A car moves around a circular track with a steady speedometer reading. Is its velocity unchanged?",
+                  "repair": "Compare the tangent directions at different points: the direction changes, so velocity changes and acceleration is nonzero."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
+                  "reasoning": [
+                    "One revolution covers circumference 2 pi r = 14 pi m.",
+                    "v = 14 pi m / 14 s = pi m/s ≈ 3.14 m/s.",
+                    "Constant speed does not make velocity constant because its direction changes.",
+                    "The velocity is tangent and the turning acceleration is inward."
+                  ],
+                  "check": "Doubling the period at the same radius would halve the speed, while the tangent/inward direction distinction remains.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "UNIFORM_CIRCULAR_SPEED",
+                    "bindings": {
+                      "radius": "DAT-KIN-CIRC-R",
+                      "period": "DAT-KIN-CIRC-T"
+                    }
+                  }
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "title": "Motion graphs turn coordinate change into rate",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The arithmetic is simple, but graph height, slope, and physical motion are easily confused.",
+              "entry_assumptions": [
+                "Can distinguish position, velocity and acceleration and can compute an interval average rate from two values."
+              ],
+              "inferential_jump": "On a position-time graph, segment slope is average velocity over that interval; on a velocity-time graph, segment slope is average acceleration. Graph height and graph slope answer different physical questions.",
+              "teaching_path": [
+                {
+                  "action": "Read the axis names, units and two plotted coordinates before describing the motion.",
+                  "why_valid": "A graph only acquires physical meaning through its labelled quantities and coordinate values.",
+                  "output": "position-time graph: horizontal t in s, vertical x in m; velocity-time graph: horizontal t in s, vertical v in m/s."
+                },
+                {
+                  "action": "On the position-time graph, subtract two position coordinates and divide by their time separation.",
+                  "why_valid": "REL-AVERAGE-VELOCITY is the gate-owned interval relation and the graph supplies Delta x and Delta t.",
+                  "output": "between (2 s, 4 m) and (4 s, 8 m): v_avg = (8 - 4)/(4 - 2) = +2 m/s."
+                },
+                {
+                  "action": "On the velocity-time graph, subtract two velocity coordinates and divide by their time separation.",
+                  "why_valid": "REL-AVERAGE-ACCELERATION is the gate-owned interval relation and the graph supplies Delta v and Delta t.",
+                  "output": "between (2 s, 3 m/s) and (4 s, 5 m/s): a_avg = (5 - 3)/(4 - 2) = +1 m/s^2."
+                },
+                {
+                  "action": "Use horizontal segments as boundary checks.",
+                  "why_valid": "A horizontal position-time segment has zero position change, while a horizontal velocity-time segment has zero velocity change.",
+                  "output": "horizontal x-t -> v_avg = 0; horizontal v-t -> a_avg = 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A higher point on a motion graph always means the object is moving faster.",
+                  "diagnostic_prompt": "Two position-time graph points are high on the page but connected by a horizontal segment. Is the object moving quickly during that interval?",
+                  "repair": "Read slope, not page height, for rate: a horizontal position-time segment has zero average velocity."
+                }
+              ],
+              "exit_task": {
+                "prompt": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval.",
+                  "reasoning": [
+                    "Delta v = +5 - (+3) = +2 m/s.",
+                    "Delta t = 4 - 2 = 2 s.",
+                    "a_avg = Delta v / Delta t = +1 m/s^2.",
+                    "A horizontal velocity-time segment has Delta v = 0, so its average acceleration is zero."
+                  ],
+                  "check": "The result matches the positive slope of the displayed velocity-time segment.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "AVERAGE_ACCELERATION",
+                    "bindings": {
+                      "v_initial": "DAT-KIN-GRAPH-V1",
+                      "v_final": "DAT-KIN-GRAPH-V2",
+                      "dt": "DAT-KIN-GRAPH-T1"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-KIN-AVERAGE-RATES"
+              ]
             }
           ],
           "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-SPEED",
+              "expression": "speed_avg = distance_total / Delta t",
+              "meaning": "Average speed is total distance travelled divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "distance_total >= 0."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-UNIFORM-CIRCULAR-SPEED",
+              "expression": "v = 2 pi r / T",
+              "meaning": "For one complete uniform circular revolution, speed equals circumference divided by the positive period.",
+              "conditions": [
+                "r > 0.",
+                "T > 0.",
+                "Motion is uniform and the path is circular over the measured revolution."
+              ]
+            },
             {
               "id": "REL-VECTOR-SUBTRACTION",
               "expression": "P - Q = P + (-Q)",
@@ -1641,7 +2213,50 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -1650,8 +2265,32 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
               "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -1680,42 +2319,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 33,
+          "record_count": 74,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
-            "atoms": 20,
-            "questions": 0,
-            "obligations": 3,
+            "atoms": 76,
+            "questions": 6,
+            "obligations": 10,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
                 "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
-                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -1940,7 +2561,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -2158,9 +2779,7 @@ window.GRADE9V3 = {
                   "no_numeric_claim": "The answer assigns force ownership qualitatively and contains no computed force value."
                 }
               },
-              "prerequisites": [
-                "CAP-NLM-FORCES-SUM-ZERO"
-              ]
+              "prerequisites": []
             },
             {
               "id": "MIC-PHY-NLM-FRAME-CHOICE",
@@ -2219,9 +2838,256 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-NLM-FBD-BODY-OWNERSHIP"
               ]
+            },
+            {
+              "id": "MIC-PHY-NLM-SECOND-LAW",
+              "title": "Net force, not any one force, sets acceleration",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The difficult step is completing a one-body force inventory before using the simple equation.",
+              "entry_assumptions": [
+                "Can choose one body, draw its external forces, and distinguish zero from nonzero net force."
+              ],
+              "inferential_jump": "For a chosen body of positive mass in the Grade 9 inertial-frame model, acceleration points with the signed net external force and satisfies F_net = m a.",
+              "teaching_path": [
+                {
+                  "action": "Choose one body, declare a positive direction, and list only external forces acting on that body.",
+                  "why_valid": "The net-force relation applies to one body's external force sum.",
+                  "output": "one body; one signed axis; signed external-force list."
+                },
+                {
+                  "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
+                  "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned relation for the chosen body.",
+                  "output": "F_net = signed sum; a = F_net / m."
+                },
+                {
+                  "action": "Return to an equal-opposite force case.",
+                  "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
+                  "output": "F_net = 0 -> a = 0 for m > 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
+                  "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
+                  "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The acceleration is +3 m/s^2.",
+                  "reasoning": [
+                    "Use F_net = m a for the chosen body.",
+                    "a = +12 N / 4 kg = +3 m/s^2.",
+                    "The positive sign matches the net-force direction."
+                  ],
+                  "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "NEWTON_SECOND_LAW",
+                    "bindings": {
+                      "mass": "DAT-NLM-MASS",
+                      "acceleration": "DAT-NLM-ACCEL"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-FRICTION",
+              "title": "Friction opposes relative sliding at a contact",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Friction is often memorized as 'opposite motion', which fails for driven or rolling contacts.",
+              "entry_assumptions": [
+                "Can choose one body and identify external contact interactions acting on it."
+              ],
+              "inferential_jump": "Friction is a contact force along the surface that opposes relative sliding, or the tendency for relative sliding, between the contacting surfaces; it is not defined by the object's overall velocity alone.",
+              "teaching_path": [
+                {
+                  "action": "Choose the body and mark the contact surface before deciding a friction direction.",
+                  "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
+                  "output": "chosen body; named contact; tangent direction available."
+                },
+                {
+                  "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+                  "why_valid": "Contact friction resists relative sliding between the surfaces.",
+                  "output": "friction tangent to contact and opposite relative sliding/tendency."
+                },
+                {
+                  "action": "Check a conveyor-belt case where the belt can frictionally accelerate an object in the same direction as the object's motion.",
+                  "why_valid": "The counterexample falsifies the shortcut 'friction always points opposite velocity'.",
+                  "output": "friction direction follows contact slip tendency, not a universal page-direction rule."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Friction always points opposite the object's velocity.",
+                  "diagnostic_prompt": "A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box's motion?",
+                  "repair": "Decide the relative sliding tendency at the contact first; friction opposes that tendency."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The friction force on the box points to the right.",
+                  "reasoning": [
+                    "Relative to the belt, the box tends to slip left at the contact.",
+                    "Friction opposes that relative slip tendency.",
+                    "Therefore the belt's friction on the box points right and accelerates it."
+                  ],
+                  "check": "The answer is allowed to point with the box's motion because friction is defined by the contact slip tendency, not by the box's velocity alone.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit asserts only the contact-force direction in a qualitative conveyor-belt case."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-THIRD-LAW",
+              "title": "Third-law partner forces act on different bodies",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Equal-and-opposite wording invites learners to cancel a pair that belongs to two different bodies.",
+              "entry_assumptions": [
+                "Can assign force arrows to the body on which they act."
+              ],
+              "inferential_jump": "One interaction produces two partner forces of equal magnitude and opposite direction, but they act on different bodies and therefore do not cancel in a single body's net-force sum.",
+              "teaching_path": [
+                {
+                  "action": "Name the interaction as 'A on B' and 'B on A' before drawing arrows.",
+                  "why_valid": "The agent-target wording records which body owns each partner force.",
+                  "output": "force of A on B belongs to B; force of B on A belongs to A."
+                },
+                {
+                  "action": "Draw equal-length opposite arrows on the two different body diagrams.",
+                  "why_valid": "Newton's third-law partners are equal in magnitude and opposite in direction for the same interaction.",
+                  "output": "partner arrows: equal magnitude, opposite direction, different bodies."
+                },
+                {
+                  "action": "Ask whether either single body's force sum contains both partner arrows.",
+                  "why_valid": "A force diagram for one body includes only forces acting on that body.",
+                  "output": "third-law partners do not cancel inside one body's F_net unless another separate force happens to balance one."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Action and reaction cancel each other, so interacting bodies cannot accelerate.",
+                  "diagnostic_prompt": "When a person pushes a cart, do the person's force on the cart and the cart's force on the person both appear on the cart's free-body diagram?",
+                  "repair": "No. Put each partner on the body it acts on; only then sum forces for one body."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
+                  "reasoning": [
+                    "The interaction is swimmer-water contact.",
+                    "Swimmer on water acts on the water.",
+                    "Water on swimmer acts on the swimmer in the opposite direction."
+                  ],
+                  "check": "Only the water-on-swimmer force belongs on the swimmer's free-body diagram.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit identifies interaction partners, directions and body ownership without a computed magnitude."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
             }
           ],
           "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-NEWTON-SECOND-LAW",
+              "expression": "F_net = m a",
+              "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
+              "conditions": [
+                "m > 0.",
+                "F_net and a refer to the same chosen body.",
+                "All signed components use one declared axis."
+              ]
+            },
             {
               "id": "REL-VECTOR-SUBTRACTION",
               "expression": "P - Q = P + (-Q)",
@@ -2233,7 +3099,50 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -2242,8 +3151,32 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
               "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -2272,8 +3205,26 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-FRICTION",
+              "action": "Identify friction as a contact force that opposes relative sliding or the tendency to slide.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-NLM-NET-ZERO-MOTION",
               "action": "Relate zero net force to unchanged velocity.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-THIRD-LAW",
+              "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -2296,42 +3247,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 41,
+          "record_count": 85,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
-            "atoms": 20,
-            "questions": 0,
-            "obligations": 5,
+            "atoms": 76,
+            "questions": 7,
+            "obligations": 11,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
                 "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
-                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -2557,7 +3490,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -2740,7 +3673,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -3049,7 +3982,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 4,
             "authoring_requirements": [
@@ -3068,6 +4001,1097 @@ window.GRADE9V3 = {
                 "core": "CORE2A",
                 "detail": "the library holds no question exposed to this product for this bucket"
               },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-SIMPLE-MACHINES",
+          "title": "Simple machines",
+          "topic": "Work, Energy and Simple Machines",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-WORK-ENERGY-POWER"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-MACHINE-TRADEOFF",
+              "title": "A machine trades force or direction for distance; it does not create work",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
+              "entry_assumptions": [
+                "Can distinguish force from work and identify work as a force acting through displacement."
+              ],
+              "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
+              "teaching_path": [
+                {
+                  "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
+                  "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
+                  "output": "input: F_effort, d_effort; output: F_load, d_load."
+                },
+                {
+                  "action": "For an ideal machine, compare the effort and load work using F_effort d_effort = F_load d_load.",
+                  "why_valid": "REL-IDEAL-MACHINE-WORK owns the lossless input-output work equality.",
+                  "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
+                },
+                {
+                  "action": "Double the load force advantage while keeping ideal useful output work fixed and ask what must happen to effort distance.",
+                  "why_valid": "The boundary exposes why force multiplication does not create energy.",
+                  "output": "greater force advantage -> compensating greater input distance in the ideal tradeoff."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If a machine gives a larger output force than the effort force, it creates energy.",
+                  "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still conserve work?",
+                  "repair": "Track both force and distance. In an ideal machine, a force advantage requires a compensating distance tradeoff."
+                }
+              ],
+              "exit_task": {
+                "prompt": "An ideal machine lets a person use a smaller effort force to raise a load. Without numbers, what must happen to the effort distance relative to the load distance if useful output work is unchanged?",
+                "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The effort point must move farther than the load point when the effort force is smaller than the load force.",
+                  "reasoning": [
+                    "Ideal input work equals useful output work.",
+                    "Reducing input force while keeping output work fixed requires a larger input distance.",
+                    "The machine trades force for distance rather than creating energy."
+                  ],
+                  "check": "If both force and distance were multiplied at the output with no extra input, output work would exceed input work and violate the ideal model.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit makes a qualitative ideal-work tradeoff claim without a computed value."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-WORK-DIRECTION"
+              ]
+            },
+            {
+              "id": "MIC-PHY-MACHINE-MA",
+              "title": "Mechanical advantage compares load force with effort force",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The ratio is simple once load and effort are correctly identified.",
+              "entry_assumptions": [
+                "Can label input/effort and output/load forces on the same machine state."
+              ],
+              "inferential_jump": "Mechanical advantage is a dimensionless force ratio, MA = F_load/F_effort; values above one indicate force advantage but do not measure energy efficiency.",
+              "teaching_path": [
+                {
+                  "action": "Label the effort force and the load force for the same machine state.",
+                  "why_valid": "The ratio is meaningful only when numerator and denominator refer to the same machine state.",
+                  "output": "load: F_load; effort: F_effort."
+                },
+                {
+                  "action": "Divide load-force magnitude by effort-force magnitude.",
+                  "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
+                  "output": "MA = F_load / F_effort."
+                },
+                {
+                  "action": "Check that the ratio is dimensionless and interpret MA = 1 as no force multiplication.",
+                  "why_valid": "Both numerator and denominator are forces, so units cancel.",
+                  "output": "MA has no unit; MA > 1 is force advantage; MA = 1 is no force multiplication."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Mechanical advantage is the same as efficiency.",
+                  "diagnostic_prompt": "Can an ideal fixed pulley have MA = 1 and still be useful?",
+                  "repair": "Yes. MA compares forces only; a machine can be useful by changing force direction even with MA = 1."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A machine lifts a 120 N load with a 40 N effort. Find the mechanical advantage and interpret it.",
+                "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "MA = 3. The load force is three times the effort force.",
+                  "reasoning": [
+                    "MA = F_load/F_effort.",
+                    "120 N / 40 N = 3.",
+                    "The ratio describes force advantage, not energy creation or efficiency."
+                  ],
+                  "check": "The newton units cancel, so MA is dimensionless.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "MECHANICAL_ADVANTAGE",
+                    "bindings": {
+                      "load_force": "DAT-MACHINE-LOAD",
+                      "effort_force": "DAT-MACHINE-EFFORT"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-MACHINE-TRADEOFF"
+              ]
+            },
+            {
+              "id": "MIC-PHY-MACHINE-COMPARE",
+              "title": "Levers, pulleys and inclined planes realize different force-distance tradeoffs",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners can memorize device names without identifying what each machine changes about force, direction and distance.",
+              "entry_assumptions": [
+                "Can explain the ideal force-distance tradeoff and compute mechanical advantage."
+              ],
+              "inferential_jump": "A lever, pulley or inclined plane should be analysed by its input/output force, direction and distance tradeoff rather than by a memorized claim that every simple machine reduces force.",
+              "teaching_path": [
+                {
+                  "action": "For each machine, identify the effort point/direction and the load motion.",
+                  "why_valid": "The same input-output language lets different machine types be compared without separate memorized rules.",
+                  "output": "lever, pulley and ramp each have named effort and load sides."
+                },
+                {
+                  "action": "Compare whether the machine mainly changes force magnitude, force direction, or required input distance in the stated setup.",
+                  "why_valid": "Simple-machine benefit is a geometric/input-output tradeoff, not a universal force reduction.",
+                  "output": "fixed pulley may change direction; force-advantage setups require extra input distance; incline spreads a height gain over a longer path."
+                },
+                {
+                  "action": "Use an ideal fixed pulley as the counterexample to 'all machines reduce effort force'.",
+                  "why_valid": "A direction-changing machine can be useful with no force multiplication.",
+                  "output": "machine usefulness can be directional even when MA = 1."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Every pulley, lever or inclined plane must reduce the effort force.",
+                  "diagnostic_prompt": "What useful change can an ideal fixed pulley provide even when effort and load force magnitudes are equal?",
+                  "repair": "It can reverse the direction of the required effort. Identify the actual setup before claiming force advantage."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Compare an ideal fixed pulley with a long inclined plane used to raise the same load. State one useful change each machine can provide without claiming that either creates energy.",
+                "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The fixed pulley can change the effort direction; the inclined plane can reduce the required force by spreading the same height gain over a longer input path.",
+                  "reasoning": [
+                    "The fixed pulley can redirect the pull even when force magnitude is not reduced.",
+                    "The incline increases the distance over which the load reaches the same height.",
+                    "Both are input-output tradeoffs consistent with work conservation in the ideal model."
+                  ],
+                  "check": "Neither description requires useful output work to exceed ideal input work.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit compares qualitative machine functions without a calculated device-specific force formula."
+                }
+              },
+              "prerequisites": [
+                "CAP-MACHINE-MA"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-IDEAL-MACHINE-WORK",
+              "expression": "F_effort d_effort = F_load d_load",
+              "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
+              "conditions": [
+                "Ideal lossless model.",
+                "Each force magnitude is paired with displacement along its own line of action.",
+                "All distances are nonnegative magnitudes."
+              ]
+            },
+            {
+              "id": "REL-MECHANICAL-ADVANTAGE",
+              "expression": "MA = F_load / F_effort",
+              "meaning": "Mechanical advantage is the ratio of load force magnitude to effort force magnitude.",
+              "conditions": [
+                "F_load >= 0.",
+                "F_effort > 0.",
+                "Load and effort magnitudes refer to the same machine state."
+              ]
+            },
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-MACHINE-2A-01",
+              "stem": "A simple machine supports a 150 N load with a 50 N effort. Find the mechanical advantage and state what that number does not tell you.",
+              "origin": "AUTHORED",
+              "answer": "MA = 3. It tells you the force ratio, not the efficiency or whether the machine creates energy."
+            },
+            {
+              "id": "Q-PHY-MACHINE-PRACTICAL-11",
+              "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
+              "origin": "AUTHORED",
+              "answer": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MACHINE-COMPARE",
+              "action": "Compare levers, pulleys and inclined planes by what they change about force, direction and input distance.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MACHINE-MA",
+              "action": "Compute mechanical advantage from load force divided by effort force.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MACHINE-TRADEOFF",
+              "action": "Explain how a simple machine trades effort force, direction or input distance without creating energy.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-WORK-DIRECTION",
+              "action": "Classify work as positive, zero, or negative from force and displacement directions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 86,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE2",
+              "CORE1A",
+              "CORE1B",
+              "CORE2A"
+            ],
+            "atoms": 76,
+            "questions": 2,
+            "obligations": 7,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-SOUND",
+          "title": "Sound",
+          "topic": "Sound",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-KIN-1D-MOTION"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+              "title": "Sound starts with vibration and travels through a material medium",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The key distinction is between the vibrating source and the medium carrying the disturbance.",
+              "entry_assumptions": [
+                "Can identify repeated back-and-forth motion and can distinguish matter from empty space."
+              ],
+              "inferential_jump": "A string, stretched membrane or enclosed air column can vibrate and launch a mechanical disturbance into nearby matter; sound then propagates through gases, liquids or solids, but not through a vacuum because there are no material particles to transmit the disturbance.",
+              "teaching_path": [
+                {
+                  "action": "Identify the object that vibrates when sound is produced.",
+                  "why_valid": "Sound production begins with a source undergoing repeated mechanical motion.",
+                  "output": "source: vibrating object."
+                },
+                {
+                  "action": "Compare three sound sources—a plucked string, a struck stretched membrane, and a blown air column—and identify what is actually vibrating in each.",
+                  "why_valid": "The current Grade 9 curriculum explicitly varies the sound-producing system; the common invariant is a vibrating physical source.",
+                  "output": "string instrument -> stretched string vibrates; drum-like source -> stretched membrane vibrates; blown pipe/bottle-like source -> enclosed air column vibrates."
+                },
+                {
+                  "action": "Follow how neighboring particles in a gas, liquid or solid can push/pull on nearby particles without travelling all the way to the listener.",
+                  "why_valid": "Mechanical interactions between neighboring particles can transmit a disturbance through matter.",
+                  "output": "medium particles move locally; disturbance propagates through the material."
+                },
+                {
+                  "action": "Remove the material medium in a thought experiment and ask what interaction remains to carry ordinary sound.",
+                  "why_valid": "A vacuum contains no material particles for the mechanical disturbance to pass between.",
+                  "output": "vacuum -> no ordinary mechanical sound propagation."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The vibrating source's particles travel all the way to the listener carrying the sound.",
+                  "diagnostic_prompt": "When a loudspeaker makes sound across a room, do air molecules from the speaker travel across the room to your ear?",
+                  "repair": "Track one small region of air: particles oscillate locally while the disturbance passes from neighbor to neighbor."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A plucked string, a struck drum membrane, and a blown air column all produce sound. Identify the vibrating source in each, then explain what happens to ordinary sound transmission if the surrounding material medium is removed.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The stretched string, stretched membrane and air column are the respective vibrating sources. Their vibration can launch sound into a material medium, but ordinary mechanical sound propagation tends to none as that surrounding medium is removed.",
+                  "reasoning": [
+                    "In the string example, the stretched string vibrates.",
+                    "In the membrane example, the stretched membrane vibrates.",
+                    "In the wind/air-column example, the air column vibrates.",
+                    "These source vibrations disturb neighboring material particles.",
+                    "Removing the transmitting material removes the ordinary mechanical path even though a source may still vibrate."
+                  ],
+                  "check": "The same source-medium distinction works across all three production methods; the vibrating element changes, but the need for a material transmission path does not.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit identifies curriculum-named vibrating sources and the qualitative need for a material propagation medium."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-SOUND-LONGITUDINAL",
+              "title": "Sound in a fluid travels as longitudinal compressions and rarefactions",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often confuse particle motion with the direction the wave travels.",
+              "entry_assumptions": [
+                "Can distinguish a local particle from a propagating disturbance in a medium."
+              ],
+              "inferential_jump": "In a simple sound wave through a fluid, particles oscillate back and forth mainly parallel to the propagation direction, producing moving regions of compression and rarefaction while each particle remains near its equilibrium position.",
+              "teaching_path": [
+                {
+                  "action": "Choose one line through the medium and mark equilibrium positions of neighboring particles.",
+                  "why_valid": "A longitudinal description needs a propagation axis and local reference positions.",
+                  "output": "propagation axis; particle equilibrium positions."
+                },
+                {
+                  "action": "Displace neighboring particles back and forth along the axis so crowded and spread-out regions form and move onward.",
+                  "why_valid": "Parallel local oscillation changes local density/pressure, creating compressions and rarefactions that propagate.",
+                  "output": "compression and rarefaction pattern moves; particles oscillate locally."
+                },
+                {
+                  "action": "Track one marked particle while a compression passes it.",
+                  "why_valid": "The marked particle should move around equilibrium rather than accompany the compression over a long distance.",
+                  "output": "particle local motion != propagation distance of the disturbance."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Air particles move from the source to the listener at the speed of sound.",
+                  "diagnostic_prompt": "After one compression passes, should a marked air particle remain displaced far toward the listener?",
+                  "repair": "Track the marked particle: it oscillates around its local equilibrium while successive compressions/rarefactions travel onward."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener.",
+                  "reasoning": [
+                    "The wave is longitudinal in the simple fluid model.",
+                    "Particle displacement is mainly parallel to propagation.",
+                    "The travelling feature is the compression/rarefaction pattern, not a parcel of air moving across the room."
+                  ],
+                  "check": "After many cycles the particle can still be near its original equilibrium region even though the sound disturbance has propagated far away.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit describes qualitative particle and disturbance directions only."
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-SOURCE-MEDIUM"
+              ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "title": "Sound graphs separate amplitude, wavelength, period, frequency and speed",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common.",
+              "entry_assumptions": [
+                "Can distinguish a spatial snapshot from a time trace and can measure horizontal and vertical coordinate differences."
+              ],
+              "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, frequency is 1/T, and a travelling pattern advances one wavelength in one period so v = lambda/T = f lambda.",
+              "teaching_path": [
+                {
+                  "action": "Compare the sampled spatial snapshot with the sampled time trace and read each horizontal-axis label before naming a repeat interval.",
+                  "why_valid": "Repeat distance on a position axis is wavelength, while repeat time on a time axis is period; the axis determines the physical meaning.",
+                  "output": "spatial repeat: lambda = 1.7 m; temporal repeat: T = 0.005 s; vertical amplitude = 1 cm."
+                },
+                {
+                  "action": "Take the reciprocal of the positive period read from the temporal graph.",
+                  "why_valid": "REL-FREQUENCY-PERIOD owns the conversion from time per cycle to cycles per second.",
+                  "output": "f = 1/T = 1/0.005 s = 200 Hz."
+                },
+                {
+                  "action": "Follow one repeated phase: in one period T the travelling pattern advances one wavelength lambda, then replace 1/T with f.",
+                  "why_valid": "Speed is distance per time for the same pattern, and the gate-owned relations bind T and f for the same wave.",
+                  "output": "v = lambda/T = f lambda = 200 Hz × 1.7 m = 340 m/s."
+                },
+                {
+                  "action": "Change only the plotted vertical amplitude while holding repeat spacing fixed.",
+                  "why_valid": "Amplitude measures disturbance size, whereas period/frequency and wavelength measure repeat spacing on different axes.",
+                  "output": "amplitude can change from 1 cm to 2 cm while T = 0.005 s, f = 200 Hz, and lambda = 1.7 m remain unchanged."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A taller wave automatically has a higher frequency.",
+                  "diagnostic_prompt": "Can two waves have the same period but different amplitudes?",
+                  "repair": "Yes. Amplitude is disturbance size; period/frequency measure repetition rate. Keep vertical size separate from time spacing."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s.",
+                  "reasoning": [
+                    "The spatial repeat distance gives wavelength: lambda = 1.7 m.",
+                    "The temporal repeat interval gives period: T = 0.005 s.",
+                    "The vertical extreme gives amplitude: 1 cm.",
+                    "f = 1/T = 200 Hz.",
+                    "One wavelength advances in one period, so v = lambda/T = f lambda = 340 m/s."
+                  ],
+                  "check": "The units confirm Hz × m = m/s, and changing amplitude alone would not alter the repeat spacings.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "WAVE_SPEED",
+                    "bindings": {
+                      "frequency": "DAT-SOUND-FREQUENCY",
+                      "wavelength": "DAT-SOUND-LAMBDA"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-LONGITUDINAL"
+              ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-PERCEPTION",
+              "title": "Pitch, loudness and the approximate human audible range are different questions",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "Pitch and loudness are everyday words that learners often swap with frequency and amplitude.",
+              "entry_assumptions": [
+                "Can distinguish frequency from amplitude and can compare two wave descriptions."
+              ],
+              "inferential_jump": "Frequency controls pitch for heard tones, sound strength/intensity is a different loudness dimension, and humans usually hear only a finite frequency band—approximately 20 Hz to 20,000 Hz for typical young hearing—whose limits vary between people and with age.",
+              "teaching_path": [
+                {
+                  "action": "Compare two waves with different frequencies but matched amplitudes.",
+                  "why_valid": "Holding disturbance size fixed isolates repetition rate as the changed feature.",
+                  "output": "higher f -> higher pitch under comparable conditions."
+                },
+                {
+                  "action": "Compare two waves with different amplitudes/intensities but the same frequency.",
+                  "why_valid": "Holding repetition rate fixed isolates loudness-related strength from pitch.",
+                  "output": "greater sound intensity / typically larger amplitude -> louder percept, while pitch stays tied to f."
+                },
+                {
+                  "action": "Change frequency and amplitude in opposite directions and require two separate predictions.",
+                  "why_valid": "The mixed case tests whether pitch and loudness have been collapsed into one idea.",
+                  "output": "pitch prediction from f; loudness prediction from sound strength/intensity information."
+                },
+                {
+                  "action": "Compare example frequencies with the approximate usual human audible band from the scientific-check source.",
+                  "why_valid": "The current curriculum asks learners to explain audible range, while the separate source supplies the approximate numerical bounds rather than the curriculum mapping inventing them.",
+                  "output": "usual human audible band ≈ 20 Hz to 20,000 Hz; 10 Hz lies below it, 1,000 Hz lies within it, and 25,000 Hz lies above it."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A louder sound must have a higher pitch.",
+                  "diagnostic_prompt": "Can a low-pitched drum sound be louder than a high-pitched whistle?",
+                  "repair": "Yes. Use frequency for pitch and sound strength/intensity for loudness; they are separate dimensions."
+                },
+                {
+                  "wrong_idea": "The 20 Hz and 20,000 Hz figures are exact universal hearing cutoffs for every person.",
+                  "diagnostic_prompt": "Would every person of every age necessarily hear a 19,999 Hz tone but fail to hear a 20,001 Hz tone?",
+                  "repair": "No. Treat 20 Hz–20 kHz as an approximate usual range; individual hearing limits vary, especially with age and hearing condition."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+                "source_ref": "SRC-CBSE-ESSENTIAL-SOUND-RANGE",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions.",
+                  "reasoning": [
+                    "The approximate usual human range is about 20 Hz to 20,000 Hz.",
+                    "10 Hz is below the lower bound; 1,000 Hz lies between the bounds; 25,000 Hz is above the upper bound.",
+                    "Pitch comparisons use frequency, not amplitude or loudness."
+                  ],
+                  "check": "The range is approximate and varies among people; the classification is a Grade 9 model, not a personal hearing diagnosis.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The numerical boundary values are source-backed classification thresholds rather than a computed formula claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-WAVE-QUANTITIES"
+              ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-REFLECTION",
+              "title": "Reflected sound can form echoes, reverberation and echolocation cues",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Echo distance contains a round-trip factor of two, and echo/reverberation are easily confused as the same phenomenon.",
+              "entry_assumptions": [
+                "Can use wave speed and elapsed time and can distinguish one-way from round-trip travel."
+              ],
+              "inferential_jump": "A reflected sound that returns after enough delay can be heard as a separate echo; many overlapping reflections produce reverberation; organisms or devices can use return timing as an echolocation cue, with one-way distance equal to half the total reflected path.",
+              "teaching_path": [
+                {
+                  "action": "Draw or describe the sound path from source to reflector and back to receiver.",
+                  "why_valid": "Echo timing measures a round trip, not a one-way path.",
+                  "output": "total reflected path = outward leg + return leg."
+                },
+                {
+                  "action": "Use d = v t_echo / 2 for a stationary reflector and one round-trip delay.",
+                  "why_valid": "REL-ECHO-DISTANCE owns the factor-of-two path relation.",
+                  "output": "one-way reflector distance = v t_echo / 2."
+                },
+                {
+                  "action": "Distinguish one clearly delayed return from many closely spaced overlapping reflections.",
+                  "why_valid": "A distinct echo and reverberation differ primarily in whether reflected sound is perceived as separate or merged/extended.",
+                  "output": "distinct delayed reflection -> echo; dense overlapping reflections -> reverberation."
+                },
+                {
+                  "action": "Interpret echolocation as estimating location from emitted sound and reflected return timing rather than from sound travelling instantaneously.",
+                  "why_valid": "The return delay carries path-length information when wave speed is known.",
+                  "output": "known sound speed + round-trip timing -> range cue."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Echo delay time corresponds to one-way travel from source to wall.",
+                  "diagnostic_prompt": "A clap returns after 0.4 s. Did the sound spend all 0.4 s travelling only from the source to the wall?",
+                  "repair": "No. The measured delay includes the outward and return paths, so divide the total travelled distance by two for one-way range."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Sound travels at 340 m/s and a clear echo returns 0.40 s after a clap from a stationary wall. Estimate the one-way distance to the wall.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The wall is about 68 m away.",
+                  "reasoning": [
+                    "The 0.40 s is a round-trip delay.",
+                    "Total sound path = 340 x 0.40 = 136 m.",
+                    "One-way distance = 136/2 = 68 m."
+                  ],
+                  "check": "Doubling the wall distance at the same sound speed would double the echo delay.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "ECHO_DISTANCE",
+                    "bindings": {
+                      "speed": "DAT-SOUND-SPEED",
+                      "echo_time": "DAT-SOUND-ECHO-T"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-WAVE-QUANTITIES"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-ECHO-DISTANCE",
+              "expression": "d = v t_echo / 2",
+              "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
+              "conditions": [
+                "v > 0.",
+                "t_echo >= 0.",
+                "The measured delay is for one outward-and-return path in the same medium."
+              ]
+            },
+            {
+              "id": "REL-FREQUENCY-PERIOD",
+              "expression": "f = 1 / T",
+              "meaning": "For a repeating vibration, frequency is the reciprocal of time period.",
+              "conditions": [
+                "T > 0.",
+                "f and T refer to the same repeating vibration."
+              ]
+            },
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            },
+            {
+              "id": "REL-WAVE-SPEED",
+              "expression": "v = f lambda",
+              "meaning": "Wave propagation speed equals temporal frequency times spatial wavelength.",
+              "conditions": [
+                "f >= 0 and lambda >= 0.",
+                "All quantities describe the same wave mode in the same medium/state."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-01",
+              "stem": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
+              "origin": "AUTHORED",
+              "answer": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-02",
+              "stem": "A bell rings inside a sealed chamber. Compare what happens to ordinary sound transmission as the air is gradually removed, while the bell itself can still vibrate.",
+              "origin": "AUTHORED",
+              "answer": "The bell may still vibrate, but ordinary sound transmission through the chamber becomes weaker and tends toward none as the material medium is removed."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-03",
+              "stem": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+              "origin": "AUTHORED",
+              "answer": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-04",
+              "stem": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+              "origin": "AUTHORED",
+              "answer": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions."
+            },
+            {
+              "id": "Q-PHY-SOUND-PRACTICAL-10",
+              "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
+              "origin": "AUTHORED",
+              "answer": "Measure a known propagation distance L along the stretched medium and the travel time Delta t for the pulse over that path, calculate v = L/Delta t, repeat several trials under the same tension, and average or use a longer timed path to reduce reaction-time error."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SOUND-LONGITUDINAL",
+              "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-PERCEPTION",
+              "action": "Connect frequency with pitch, distinguish sound strength/intensity from pitch, and classify frequencies relative to the approximate human audible range.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-REFLECTION",
+              "action": "Explain reflection of sound and distinguish echo, reverberation and echolocation; compute a simple echo distance from round-trip delay.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-SOURCE-MEDIUM",
+              "action": "Explain sound production by vibration using strings, membranes and vibrating air columns, and explain why mechanical sound propagation requires a material medium.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-WAVE-QUANTITIES",
+              "action": "Analyse spatial and temporal sound-wave graphs, relate period, frequency, wavelength, amplitude and speed, and derive v = lambda/T = f lambda for one wave in one medium.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 113,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE2",
+              "CORE1A",
+              "CORE1B",
+              "CORE2A"
+            ],
+            "atoms": 76,
+            "questions": 5,
+            "obligations": 9,
+            "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -3358,7 +5382,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 20,
+            "atoms": 76,
             "questions": 0,
             "obligations": 4,
             "authoring_requirements": [
@@ -3477,7 +5501,14 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -3510,31 +5541,23 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 29,
+          "record_count": 30,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
-            "atoms": 20,
-            "questions": 0,
-            "obligations": 2,
+            "atoms": 76,
+            "questions": 1,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -3625,9 +5648,7 @@ window.GRADE9V3 = {
                   "no_numeric_claim": "The answer classifies work sign only; it contains no computed work value."
                 }
               },
-              "prerequisites": [
-                "CAP-NLM-FBD-BODY-OWNERSHIP"
-              ]
+              "prerequisites": []
             },
             {
               "id": "MIC-PHY-WEP-NET-WORK-SIGN",
@@ -3802,9 +5823,335 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-WEP-POTENTIAL-ELIGIBILITY"
               ]
+            },
+            {
+              "id": "MIC-PHY-WEP-POWER-RATES",
+              "title": "Power is an energy-transfer rate, not the work itself",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often keep the same units and reasoning for work and power or treat an interval average as an instantaneous value.",
+              "entry_assumptions": [
+                "Can identify work as an energy transfer and can keep an energy account over a stated interval."
+              ],
+              "inferential_jump": "Average power uses total work over a positive interval, while instantaneous power needs force and velocity information at the same instant; equal total work does not imply equal power.",
+              "teaching_path": [
+                {
+                  "action": "Compare two machines that perform the same work over different elapsed times.",
+                  "why_valid": "Holding work fixed isolates time as the factor that changes average power.",
+                  "output": "same W; shorter Delta t -> larger W / Delta t."
+                },
+                {
+                  "action": "Calculate average power from total work divided by the positive elapsed interval.",
+                  "why_valid": "REL-AVERAGE-POWER is the gate-owned interval-rate relation.",
+                  "output": "P_avg = W / Delta t."
+                },
+                {
+                  "action": "At one instant, resolve the force onto the velocity direction and pair that component with the instantaneous speed.",
+                  "why_valid": "Instantaneous power depends on the force-velocity alignment at that same instant, not on the whole interval total.",
+                  "output": "same instant: F_parallel and v."
+                },
+                {
+                  "action": "Use a perpendicular-force case as a boundary check.",
+                  "why_valid": "F_parallel becomes zero although a nonzero force and nonzero speed are both present.",
+                  "output": "force perpendicular to velocity -> F_parallel = 0 -> instantaneous power = 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If two machines do the same work, they have the same power.",
+                  "diagnostic_prompt": "Two machines each transfer the same energy, but one finishes in half the time. Must their average powers be equal?",
+                  "repair": "Keep work fixed and divide by each machine's own elapsed time; power is a rate, not the transfer total."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval.",
+                  "reasoning": [
+                    "Use P_avg = 120 J / 4 s = 30 W.",
+                    "An interval average does not specify how the rate varied within the four seconds.",
+                    "Instantaneous power would require same-instant force and velocity information, such as F_parallel and v."
+                  ],
+                  "check": "A second machine could transfer the same 120 J in the same 4 s with a varying rate and still have the same 30 W average.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "AVERAGE_POWER",
+                    "bindings": {
+                      "work": "DAT-WEP-POWER-WORK",
+                      "dt": "DAT-WEP-POWER-DT"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-WORK-DIRECTION"
+              ]
+            },
+            {
+              "id": "MIC-PHY-WEP-GRADE9-QUANT",
+              "title": "Grade 9 work and mechanical-energy equations are one ledger",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The arithmetic is direct; the difficult part is deciding which account and relation the situation permits.",
+              "entry_assumptions": [
+                "Can classify work sign and decide whether extra frictional/outside transfer closes or opens the mechanical-energy account."
+              ],
+              "inferential_jump": "Work, kinetic energy, gravitational potential-energy change, the work-energy theorem and mechanical-energy conservation are linked bookkeeping statements with explicit conditions, not interchangeable formulas.",
+              "teaching_path": [
+                {
+                  "action": "Choose the body/system, displacement direction, reference frame and height reference before calculating.",
+                  "why_valid": "Work sign and energy values depend on these declarations.",
+                  "output": "chosen body/account; path direction; frame; height reference."
+                },
+                {
+                  "action": "Use W = F_parallel s, K = 0.5 m v^2 and Delta U_g = m g Delta h for the matching quantities.",
+                  "why_valid": "Each gate-owned relation defines one distinct part of the energy ledger.",
+                  "output": "W = F_parallel s; K = 0.5 m v^2; Delta U_g = m g Delta h, all in joules under their stated conditions."
+                },
+                {
+                  "action": "Relate net work to Delta K, or equate endpoint K + U only when no extra transfer crosses the chosen account.",
+                  "why_valid": "The work-energy theorem and mechanical-energy conservation answer different bookkeeping questions.",
+                  "output": "W_net = Delta K; closed account -> K_i + U_i = K_f + U_f."
+                },
+                {
+                  "action": "Use a rough-track counterexample to test whether a claimed K + U conservation statement is allowed.",
+                  "why_valid": "Frictional transfer opens the mechanical account and invalidates unchanged K + U by itself.",
+                  "output": "rough path -> include transfer; do not force K + U constant."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Once kinetic and potential energy appear, K + U must always be conserved.",
+                  "diagnostic_prompt": "A block descends the same height on a rough track and a smooth track. Must the final kinetic energies match?",
+                  "repair": "Inventory transfers first. Friction can move energy out of the mechanical account, so identical endpoints do not guarantee the same K + U ledger."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A 2 kg object moves at 3 m/s. Find its translational kinetic energy. Then state what additional condition is required before using K_i + U_i = K_f + U_f for a later motion.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account.",
+                  "reasoning": [
+                    "K = 0.5 x 2 x 3^2 = 9 J.",
+                    "The conservation equation is conditional, not automatic.",
+                    "If friction or an outside agent transfers energy, that transfer must be included."
+                  ],
+                  "check": "Doubling the speed to 6 m/s would quadruple K to 36 J.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "KINETIC_ENERGY",
+                    "bindings": {
+                      "mass": "DAT-WEP-KE-M",
+                      "speed": "DAT-WEP-KE-V"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-MECH-ENERGY-CONDITION"
+              ]
+            },
+            {
+              "id": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "title": "Derive kinetic and raised-body potential energy from the work ledger",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The endpoint formulae are simple; the harder work is maintaining one physical model through the force, motion and work substitutions.",
+              "entry_assumptions": [
+                "Can use F_net = m a for one chosen body in an inertial frame.",
+                "Can use v^2 = u^2 + 2 a s on a constant-acceleration interval.",
+                "Can calculate constant-force work from the signed force component along displacement."
+              ],
+              "inferential_jump": "The Grade 9 energy expressions follow from previously owned mechanics: constant-force work plus Newton/kinematics yields the change in kinetic energy, while a controlled lift against near-Earth weight yields the increase m g h in gravitational potential energy.",
+              "teaching_path": [
+                {
+                  "action": "For the kinetic-energy derivation, choose a body accelerated by a constant net force along its displacement from initial speed u to final speed v.",
+                  "why_valid": "This controlled case makes F_net = m a, W_net = F_net s and the constant-acceleration no-time relation valid on the same interval.",
+                  "output": "W_net = F_net s = m a s; v^2 - u^2 = 2 a s."
+                },
+                {
+                  "action": "Eliminate a s using the no-time kinematic relation and identify the net-work change as the kinetic-energy change.",
+                  "why_valid": "The two equations describe the same body and interval, and the work-energy theorem identifies net work with Delta K.",
+                  "output": "a s = (v^2-u^2)/2 -> W_net = 0.5 m(v^2-u^2) = Delta K; choosing K=0 at v=0 gives K = 0.5 m v^2."
+                },
+                {
+                  "action": "For the potential-energy derivation, raise the body slowly through vertical height h so acceleration is zero and the applied upward force balances the near-Earth weight.",
+                  "why_valid": "Zero acceleration makes the applied force magnitude equal the weight magnitude m g, while the displacement is along the applied force.",
+                  "output": "a = 0 -> F_applied = F_weight = m g; upward displacement = h."
+                },
+                {
+                  "action": "Calculate the external lifting work and identify it with the increase of gravitational potential energy in the controlled lift.",
+                  "why_valid": "With negligible kinetic-energy change in the slow lift, the work transferred into the object-gravity account appears as gravitational potential-energy increase.",
+                  "output": "W_applied = F_applied h = m g h -> Delta U_g = m g h."
+                },
+                {
+                  "action": "Check both derivations at their zero boundaries.",
+                  "why_valid": "At v=0 the chosen kinetic-energy expression must vanish, and at h=0 the gravitational potential-energy change must vanish.",
+                  "output": "v = 0 -> K = 0; h = 0 -> Delta U_g = 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "K = 0.5 m v^2 and m g h are definitions that cannot be connected to earlier mechanics.",
+                  "diagnostic_prompt": "Can you reach each expression using work plus previously learned force/motion relations without assuming the final formula?",
+                  "repair": "For K, combine W_net = F_net s, F_net = m a and v^2-u^2 = 2as. For raised-body U_g, use a slow lift where F_applied = m g and W_applied = F_applied h."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Derive the Grade 9 kinetic-energy expression for a body accelerated from rest by a constant net force, then derive the increase in gravitational potential energy when the same mass is raised slowly through height h near Earth's surface.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "From W_net = m a s and v^2 = 2 a s for motion from rest, W_net = 0.5 m v^2, so K = 0.5 m v^2 with K=0 at rest. For a slow lift, F_applied = m g and W_applied = m g h, so Delta U_g = m g h.",
+                  "reasoning": [
+                    "Constant-force work and Newton's second law give W_net = F_net s = m a s.",
+                    "For constant acceleration from rest, v^2 = 2 a s, hence a s = v^2/2 and W_net = 0.5 m v^2.",
+                    "By the work-energy theorem and the chosen zero at rest, K = 0.5 m v^2.",
+                    "For a slow vertical lift, zero acceleration requires F_applied = F_weight = m g.",
+                    "Work by that applied force through height h is m g h, which is stored as the increase in gravitational potential energy."
+                  ],
+                  "check": "The derived expressions satisfy the zero boundaries v=0 -> K=0 and h=0 -> Delta U_g=0.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit is a symbolic derivation using gate-owned relations; it makes no independent numerical claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-WORK-DIRECTION",
+                "CAP-NLM-SECOND-LAW",
+                "CAP-KIN-CONSTANT-ACCELERATION"
+              ]
             }
           ],
           "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-POWER",
+              "expression": "P_avg = W / Delta t",
+              "meaning": "Average power is work transferred over a positive elapsed interval.",
+              "conditions": [
+                "Delta t > 0.",
+                "W is the net work assigned to the chosen system over that same interval."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+              "expression": "Delta U_g = m g Delta h",
+              "meaning": "Near Earth's surface with approximately uniform g, gravitational potential-energy change equals mass times g times vertical height change.",
+              "conditions": [
+                "m > 0.",
+                "g is approximately uniform over the height change.",
+                "One height reference and positive-up convention are used."
+              ]
+            },
+            {
+              "id": "REL-INSTANTANEOUS-POWER",
+              "expression": "P = F_parallel v",
+              "meaning": "Instantaneous mechanical power is the signed force component along velocity times instantaneous speed.",
+              "conditions": [
+                "v >= 0.",
+                "F_parallel carries the sign of the force component along or opposite the velocity direction."
+              ]
+            },
+            {
+              "id": "REL-KINETIC-ENERGY",
+              "expression": "K = 0.5 m v^2",
+              "meaning": "Translational kinetic energy of a body in the declared reference frame.",
+              "conditions": [
+                "m > 0.",
+                "v >= 0.",
+                "One declared reference frame is used."
+              ]
+            },
+            {
+              "id": "REL-MECHANICAL-ENERGY-CONSERVATION",
+              "expression": "K_i + U_i = K_f + U_f",
+              "meaning": "The chosen mechanical-energy account remains constant when no additional transfer crosses it.",
+              "conditions": [
+                "No frictional or outside transfer changes the chosen mechanical-energy account.",
+                "Initial and final energies use the same potential-energy reference."
+              ]
+            },
+            {
+              "id": "REL-NEWTON-SECOND-LAW",
+              "expression": "F_net = m a",
+              "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
+              "conditions": [
+                "m > 0.",
+                "F_net and a refer to the same chosen body.",
+                "All signed components use one declared axis."
+              ]
+            },
             {
               "id": "REL-VECTOR-SUBTRACTION",
               "expression": "P - Q = P + (-Q)",
@@ -3814,9 +6161,123 @@ window.GRADE9V3 = {
                 "Reversal preserves magnitude and negates every component.",
                 "Free vectors may be translated without rotation for the graphical construction."
               ]
+            },
+            {
+              "id": "REL-WEIGHT-NEAR-EARTH",
+              "expression": "F_weight = m g",
+              "meaning": "Near Earth's surface in an approximately uniform gravitational field, the weight-force magnitude on mass m is m times gravitational acceleration magnitude g.",
+              "conditions": [
+                "m > 0.",
+                "g > 0.",
+                "Near-Earth field is treated as approximately uniform over the height range.",
+                "This relation gives the force magnitude; downward direction is supplied by the physical geometry."
+              ]
+            },
+            {
+              "id": "REL-WORK-CONSTANT-FORCE",
+              "expression": "W = F_parallel s",
+              "meaning": "For a constant force component along a straight displacement, work equals the signed along-path component times displacement.",
+              "conditions": [
+                "Force component is constant over the displacement.",
+                "F_parallel uses the displacement direction as positive.",
+                "s >= 0."
+              ]
+            },
+            {
+              "id": "REL-WORK-ENERGY-THEOREM",
+              "expression": "W_net = Delta K",
+              "meaning": "Net work on a body equals its change in translational kinetic energy.",
+              "conditions": [
+                "The same body and reference frame are used for the force work and kinetic energies."
+              ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-01",
+              "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
+              "origin": "AUTHORED",
+              "answer": "Rightward force: positive work. Upward force: zero work. Leftward force: negative work."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-02",
+              "stem": "For three otherwise comparable motions, the net work is described as positive, zero, and negative. State the corresponding direction of kinetic-energy change without calculating any energy value.",
+              "origin": "AUTHORED",
+              "answer": "Positive net work means kinetic energy increases; zero means no change; negative means kinetic energy decreases."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-03",
+              "stem": "Two routes share the same start and finish heights. Gravity gives the same potential-energy change on both, while friction removes more energy on the longer route. Which interaction is eligible for endpoint-only potential-energy bookkeeping?",
+              "origin": "AUTHORED",
+              "answer": "Gravity is eligible in this comparison; kinetic friction is not, because its transfer changes with the path."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-04",
+              "stem": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+              "origin": "AUTHORED",
+              "answer": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-05",
+              "stem": "A 2 kg object moves at 3 m/s. Find its translational kinetic energy. Then state what additional condition is required before using K_i + U_i = K_f + U_f for a later motion.",
+              "origin": "AUTHORED",
+              "answer": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-DERIV-01",
+              "stem": "Do not quote the final formula. Starting from constant-force work, Newton's second law and the constant-acceleration relation v^2-u^2=2as, derive the kinetic-energy expression for motion from rest. Then show why slowly raising the same mass through height h near Earth's surface gives a gravitational potential-energy increase mgh.",
+              "origin": "AUTHORED",
+              "answer": "The two required chains are W_net = mas = 0.5mv^2 -> K = 0.5mv^2 from rest, and slow lift F_applied = mg -> W_applied = mgh -> Delta U_g = mgh."
+            },
+            {
+              "id": "Q-PHY-WEP-PRACTICAL-09",
+              "stem": "Design a simple-pendulum investigation of mechanical-energy conservation. State what quantities you would compare between release and the lowest point, what ideal relation you expect, and how real losses would appear in the data.",
+              "origin": "AUTHORED",
+              "answer": "Measure release height relative to the lowest point and the bob’s speed at the lowest point, compare m g Delta h with 0.5 m v^2, repeat trials, and interpret a systematic shortfall in kinetic energy as evidence of friction/air losses rather than forcing exact equality."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -3825,8 +6286,32 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
               "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -3843,14 +6328,8 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-NLM-FORCES-SUM-ZERO",
-              "action": "Distinguish zero net force from the absence of individual forces.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-NLM-NET-ZERO-MOTION",
-              "action": "Relate zero net force to unchanged velocity.",
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -3873,6 +6352,18 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-WEP-ENERGY-DERIVATIONS",
+              "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-GRADE9-QUANT",
+              "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-WEP-MECH-ENERGY-CONDITION",
               "action": "Decide whether the mechanical-energy account can remain constant.",
               "provider": null,
@@ -3891,48 +6382,36 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-WEP-POWER-RATES",
+              "action": "Distinguish total work from average power and decide when instantaneous power can be determined.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-WEP-WORK-DIRECTION",
               "action": "Classify work as positive, zero, or negative from force and displacement directions.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 46,
+          "record_count": 105,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
-            "atoms": 20,
-            "questions": 0,
-            "obligations": 5,
+            "atoms": 76,
+            "questions": 7,
+            "obligations": 11,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
                 "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
-                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -4299,6 +6778,12 @@ window.GRADE9V3 = {
               "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
               "origin": "AUTHORED",
               "answer": "(6,-8) m/s, southeast; magnitude 10 m/s."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -4363,7 +6848,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 49,
+          "record_count": 50,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4373,7 +6858,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 21,
+            "atoms": 77,
             "questions": 1,
             "obligations": 8,
             "authoring_requirements": [
@@ -4635,7 +7120,14 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -4662,21 +7154,18 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 25,
+          "record_count": 26,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
-              "CORE1"
+              "CORE1",
+              "CORE2",
+              "CORE2A"
             ],
-            "atoms": 21,
-            "questions": 0,
-            "obligations": 2,
+            "atoms": 77,
+            "questions": 1,
+            "obligations": 4,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1A",
@@ -4689,28 +7178,8 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
                 "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-VECTOR-VS-SCALAR",
-                "detail": "no supported product or no data bound to its relations"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-SIGNED-COMPONENT",
-                "detail": "no supported product or no data bound to its relations"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-GRAPHICAL-SUBTRACTION",
-                "detail": "no supported product or no data bound to its relations"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",
@@ -4771,6 +7240,16 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-ROT-RIGID-BODY-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-SIMPLE-MACHINES-G9",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-SOUND-G9",
           "status": "CANDIDATE",
           "admitted": true
         },

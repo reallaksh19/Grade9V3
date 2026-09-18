@@ -1,0 +1,41 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://grade9v3.local/authoring-proposal.schema.json",
+  "title":"Authoring run proposal",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["run_id","version","actor_id","run_date","packet_digest","request_digest","core","target_package","proposed_records","artifacts"],
+  "properties":{
+    "run_id":{"type":"string","minLength":1},
+    "version":{"const":"1.0.0"},
+    "actor_id":{"type":"string","minLength":1},
+    "run_date":{"type":"string","minLength":1},
+    "packet_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "request_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "core":{"enum":["CORE1","CORE2","CORE1A","CORE1B","CORE2A","CORE2B"]},
+    "target_package":{"anyOf":[{"type":"string","minLength":1},{"type":"null"}]},
+    "proposed_records":{
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["collection","record"],
+        "properties":{
+          "collection":{"type":"string","minLength":1},
+          "record":{"type":"object"}
+        }
+      }
+    },
+    "artifacts":{
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["relative_path","media_type","content"],
+        "properties":{
+          "relative_path":{"type":"string","minLength":1},
+          "media_type":{"type":"string","minLength":1},
+          "content":{"type":"string"}
+        }
+      }
+    }
+  }
+}

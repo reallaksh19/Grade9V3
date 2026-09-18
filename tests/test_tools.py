@@ -1067,11 +1067,19 @@ class ResolveRequest(unittest.TestCase):
         self.assertEqual(self.points(name("R4")), [])
         self.assertEqual(self.points(name("R2")), ["ENTRY_RUNG_NOT_ON_THE_LADDER"])
 
-    def test_a_position_between_rungs_is_a_hole_rather_than_a_depth(self):
-        self.assertEqual(
-            self.points(lambda r: r["learner"]["owner_estimate"].update(
-                knowledge_percentage=45)),
-            ["ENTRY_POSITION_BETWEEN_RUNGS"])
+    def test_an_owner_estimate_between_rungs_routes_conservatively(self):
+        request = self.request()
+        request["learner"]["owner_estimate"]["knowledge_percentage"] = 45
+        report = resolve_request.plan(request)
+        self.assertEqual(report["findings"], [])
+        # 45 is a practical owner estimate, not a claim of mastery. It chooses the
+        # greatest declared coordinate not above it and keeps earlier prerequisites as
+        # unverified checks instead of silently marking them demonstrated.
+        self.assertEqual(report["entry"]["requested_position"], 45)
+        self.assertEqual(report["entry"]["selected_position"], 20)
+        self.assertEqual(report["entry"]["why"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
+        self.assertEqual(report["entry"]["rung"], "R1")
+        self.assertEqual(report["entry"]["prerequisite_checks"], [])
 
     def test_a_dangling_profile_is_refused(self):
         self.assertEqual(
@@ -1125,17 +1133,24 @@ class ResolveRequest(unittest.TestCase):
             "ABOVE_THE_LADDER")
 
     def test_selection_not_dilution(self):
-        # The invariant the whole layer exists to protect. A higher entry teaches FEWER
-        # rungs, never shallower ones: the segment is a suffix and each rung's task is
-        # identical in both plans.
+        # A rough owner estimate is useful only if a higher estimate can actually start
+        # higher. It selects a suffix of the ladder; it never changes what a rung teaches
+        # and it never turns earlier prerequisites into demonstrated mastery.
         def at(position):
             request = self.request()
             request["learner"]["owner_estimate"]["knowledge_percentage"] = position
             return resolve_request.plan(request)
         low, high = at(20), at(70)
         self.assertEqual(low["segment"], ["R1", "R3", "R4", "R5"])
+        self.assertEqual(high["entry"]["rung"], "R4")
+        self.assertEqual(high["entry"]["why"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
         self.assertEqual(high["segment"], ["R4", "R5"])
         self.assertEqual(high["segment"], low["segment"][-len(high["segment"]):])
+        self.assertEqual(
+            high["entry"]["prerequisite_checks"],
+            ["CAP-SIGNED-PAIR", "CAP-SAME-TIME"],
+        )
+        self.assertNotIn("held", high["entry"])
         tasks = {s["rung"]: s["task"] for s in self.core(low, "CORE1A")["segment"]}
         for step in self.core(high, "CORE1A")["segment"]:
             with self.subTest(rung=step["rung"]):
@@ -1173,7 +1188,13 @@ class ResolveRequest(unittest.TestCase):
                         f'# Authoring brief -- {core["core"]}, Relative motion, '
                         f'rung {step["rung"]}', text)
         self.assertIn("## Purpose PRACTICE -- support medium", text)
-        self.assertIn("## Transfer -- 4 changed demands", text)
+        # Matrix transfer rows are an authoring description, not a question asset.
+        # With no bucket-owned CORE2B question the strict resolver blocks the product,
+        # so no transfer brief may be emitted.
+        self.assertNotIn("## Transfer -- 4 changed demands", text)
+        transfer = self.core(report, "CORE2B")
+        self.assertEqual(transfer["state"], "BLOCKED")
+        self.assertIn("bucket-owned question", transfer["reason"])
 
     def test_a_refused_request_yields_the_refusal_rather_than_briefs(self):
         request = self.request()
@@ -1202,14 +1223,24 @@ class ResolveRequest(unittest.TestCase):
             report = resolve_request.plan(request)
             teaching = self.core(report, "CORE1A").get("segment") or []
             taught = any(s["state"] == "PRESENT" for s in teaching)
+            records = resolve_request.library_records("Physics")
             for name in ("CORE2A", "CORE2B"):
                 with self.subTest(bucket=board["bucket_id"], core=name):
                     core = self.core(report, name)
-                    if taught:
-                        self.assertNotEqual(core["state"], "BLOCKED")
-                    else:
+                    exposed = resolve_request.questions_for_core(
+                        records, board["bucket_id"], name)
+                    purpose = request["practice"][name]["purpose"]
+                    routes = resolve_request.purposes()[purpose]["routes_transfer"]
+                    if not taught:
                         self.assertEqual(core["state"], "BLOCKED")
                         self.assertIn("no rung of this ladder has a record", core["reason"])
+                    elif name == "CORE2B" and not routes:
+                        self.assertEqual(core["state"], "WITHHELD")
+                    elif exposed:
+                        self.assertEqual(core["state"], "READY")
+                    else:
+                        self.assertEqual(core["state"], "BLOCKED")
+                        self.assertIn("bucket-owned question", core["reason"])
             checked += 1
         self.assertGreater(checked, 0, "no matrices, so this asserts nothing")
 

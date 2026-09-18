@@ -39,6 +39,9 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
+from Shared.library.practice_inventory import questions_for_core  # noqa: E402
+from Shared.library.resolve import build_index, load_packages  # noqa: E402
+from Shared.tools import capability_graph, learner_evidence  # noqa: E402
 from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/request.schema.json"
@@ -67,6 +70,11 @@ def ladder(subject: str, bucket_id: str, repo: Path = REPO) -> dict | None:
     return None
 
 
+def library_records(subject: str, repo: Path = REPO) -> dict:
+    paths = sorted((repo / subject / "library").glob("*.json"))
+    return build_index(load_packages(paths))
+
+
 def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dict:
     """The lowest rung this learner cannot yet do, read from the per-capability map.
 
@@ -91,15 +99,68 @@ def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dic
 
 
 def entry_from_position(rows: list, position: int) -> dict:
-    exact = [r for r in rows if r.get("ladder_position") == position]
-    if exact:
-        return {"rung": exact[0]["rung"], "why": "LADDER_POSITION"}
-    below = [r["rung"] for r in rows if r.get("ladder_position", 0) < position]
-    above = [r["rung"] for r in rows if r.get("ladder_position", 0) > position]
-    return {"rung": None, "why": "BETWEEN_RUNGS",
-            "detail": f'nearest below {below[-1] if below else "none"}, nearest above '
-                      f'{above[0] if above else "none"}; a hole is not a depth to '
-                      f"interpolate"}
+    """Use an owner estimate as a conservative routing coordinate, never as mastery.
+
+    A parent's "about 60%" is useful even when the ladder happens to use 20/55/70/85.
+    Select the greatest declared position not above the estimate; below the first rung,
+    start at the first rung. This chooses where to try first. It does not mark earlier
+    capabilities as demonstrated.
+    """
+    if not rows:
+        return {"rung": None, "why": "EMPTY_LADDER",
+                "detail": "the ladder has no positions to route against"}
+    ordered = sorted(rows, key=lambda r: r.get("ladder_position", 0))
+    eligible = [row for row in ordered if row.get("ladder_position", 0) <= position]
+    selected = eligible[-1] if eligible else ordered[0]
+    return {
+        "rung": selected["rung"],
+        "why": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "requested_position": position,
+        "selected_position": selected.get("ladder_position"),
+        "detail": (
+            f'owner estimate {position} routed conservatively to '
+            f'{selected["rung"]} at {selected.get("ladder_position")}; '
+            "this is a starting coordinate, not evidence of prerequisite mastery"
+        ),
+    }
+
+
+def resolve_owner_estimate(rows: list, position: int, caps: dict, mics: dict) -> dict:
+    """Respect a rough owner estimate while naming what still has not been evidenced.
+
+    The estimate is allowed to choose a starting rung because that is the practical value
+    of asking for it. Its prerequisite closure is returned as quick-check candidates,
+    not converted into DEMONSTRATED states and not used to force the learner back to the
+    bottom before she has attempted anything.
+    """
+    entry = entry_from_position(rows, position)
+    if not entry.get("rung"):
+        return {**entry, "prerequisite_checks": [], "bridges": [],
+                "unresolved_prerequisites": []}
+
+    board = {"rungs": rows}
+    by_rung, _ = capability_graph.ladder_capabilities(board, mics)
+    target = by_rung.get(entry["rung"])
+    if target is None:
+        return {
+            **entry,
+            "capability": None,
+            "prerequisite_checks": [],
+            "bridges": [],
+            "unresolved_prerequisites": [],
+        }
+
+    capability = target["capability"]
+    checks = capability_graph.prerequisite_closure(capability, caps)
+    unresolved = capability_graph.unknown_prerequisites([capability], caps)
+    return {
+        **entry,
+        "capability": capability,
+        "prerequisite_checks": checks,
+        "bridges": [],
+        "unresolved_prerequisites": unresolved,
+        "prerequisite_policy": "CHECK_IF_NEEDED_DO_NOT_ASSUME_MASTERED",
+    }
 
 
 def plan(request: dict, repo: Path = REPO) -> dict:
@@ -122,6 +183,9 @@ def plan(request: dict, repo: Path = REPO) -> dict:
 
     rows = sorted(board.get("rungs", []), key=lambda r: r.get("ladder_position", 0))
     caps, mics = capability_chain(subject)
+    records = library_records(subject, repo)
+    for finding in capability_graph.topology_findings(board, caps, mics):
+        found.append(finding)
 
     # --- entry rung -------------------------------------------------------------
     learner = request.get("learner", {})
@@ -137,7 +201,8 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                  "for a learner who does not exist")
         else:
             provenance = profile.get("provenance", "UNKNOWN")
-            entry = entry_from_profile(rows, profile, caps, mics)
+            effective = {**profile, "held": learner_evidence.effective_held(profile, repo)}
+            entry = entry_from_profile(rows, effective, caps, mics)
             if entry["why"] == "UNDECIDABLE":
                 fail("ENTRY_UNDECIDABLE_FROM_THE_PROFILE", entry["at"], entry["detail"])
     elif "owner_entry" in learner:
@@ -149,10 +214,47 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             entry = {"rung": None, "why": "OWNER_NAMED_AN_ABSENT_RUNG"}
     elif "owner_estimate" in learner:
         provenance = "OWNER_ESTIMATE"
-        entry = entry_from_position(rows, learner["owner_estimate"]["knowledge_percentage"])
-        if entry["why"] == "BETWEEN_RUNGS":
-            fail("ENTRY_POSITION_BETWEEN_RUNGS",
-                 str(learner["owner_estimate"]["knowledge_percentage"]), entry["detail"])
+        entry = resolve_owner_estimate(
+            rows,
+            learner["owner_estimate"]["knowledge_percentage"],
+            caps,
+            mics,
+        )
+        if entry.get("unresolved_prerequisites"):
+            fail(
+                "ENTRY_PREREQUISITE_UNRESOLVED",
+                entry.get("rung") or "OWNER_ESTIMATE",
+                "prerequisites are unknown: "
+                + ", ".join(entry["unresolved_prerequisites"]),
+            )
+
+    # A profile or explicitly named rung still uses strict prerequisite safety. A rough
+    # owner estimate is different: it is useful only if it can choose where to try first.
+    # Its prerequisites remain explicitly unverified and can be checked/diagnosed during
+    # use; they are never silently marked as held.
+    held = {}
+    if "profile_ref" in learner and learner["profile_ref"] in store:
+        held = learner_evidence.effective_held(store[learner["profile_ref"]], repo)
+    if (
+        provenance != "OWNER_ESTIMATE"
+        and entry.get("rung") in {r["rung"] for r in rows}
+    ):
+        safe = capability_graph.resolve_entry(rows, entry["rung"], held, caps, mics)
+        requested_rung = entry["rung"]
+        entry["rung"] = safe["rung"]
+        entry["bridges"] = safe["bridges"]
+        entry["unresolved_prerequisites"] = safe["unresolved"]
+        entry.setdefault("prerequisite_checks", [])
+        if safe["reason"] == "PREREQUISITE_BACKTRACK":
+            entry["requested_rung"] = requested_rung
+            entry["why"] = "PREREQUISITE_BACKTRACK"
+            entry["detail"] = (
+                f'{requested_rung} was requested, but {safe["rung"]} is the earliest '
+                "same-ladder prerequisite not demonstrated"
+            )
+        if safe["unresolved"]:
+            fail("ENTRY_PREREQUISITE_UNRESOLVED", entry["rung"],
+                 "prerequisites have no recorded bridge: " + ", ".join(safe["unresolved"]))
 
     positions = {r["rung"]: r.get("ladder_position", 0) for r in rows}
     segment = ([r["rung"] for r in rows if positions[r["rung"]] >= positions[entry["rung"]]]
@@ -207,9 +309,19 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                               "purpose": purpose["id"],
                               "reason": purpose.get("reason_when_withheld", "")})
                 continue
+            exposed = questions_for_core(records, bucket_id, core)
+            if not exposed:
+                built.append({"core": core, "state": "BLOCKED",
+                              "purpose": purpose["id"],
+                              "support": purpose["support"],
+                              "handed_over": handed.get(purpose["support"]),
+                              "reason": "the library holds no bucket-owned question "
+                                        "exposed to this product"})
+                continue
             built.append({"core": core, "state": "READY", "purpose": purpose["id"],
                           "support": purpose["support"],
                           "handed_over": handed.get(purpose["support"]),
+                          "questions": [q["id"] for q in exposed],
                           "rows": len(board.get("transfer") or []) if core == TRANSFER
                           else None})
             continue
@@ -272,6 +384,11 @@ def readable(report: dict) -> str:
             f'  provenance  {entry.get("provenance")}']
     if entry.get("detail"):
         out += [f'  detail      {entry["detail"]}']
+    if entry.get("prerequisite_checks"):
+        out += [
+            "  quick checks  " + ", ".join(entry["prerequisite_checks"]),
+            "  note         these are unverified prerequisites, not assumed mastery",
+        ]
     out += ["",
             "Selection, never dilution: this chooses where teaching starts and changes",
             "nothing about what any rung teaches.", ""]
@@ -286,7 +403,7 @@ def readable(report: dict) -> str:
             out += [""]
         if core.get("purpose"):
             out += [f'  purpose      {core["purpose"]}',
-                    f'  support      {core["support"]}',
+                    f'  support      {core.get("support") or "NOT_RESOLVED"}',
                     f'  handed over  {core.get("handed_over") or "AUTHOR_REQUIRED"}']
             if core.get("rows") is not None:
                 out += [f'  transfer     {core["rows"]} rows available']

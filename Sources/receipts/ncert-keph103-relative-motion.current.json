@@ -1,0 +1,57 @@
+{
+  "receipt_id": "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-2026-09-18",
+  "version": "1.0.0",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-RELATIVE-MOTION",
+  "source_basis": [
+    "https://ncert.nic.in/textbook/pdf/keph103.pdf"
+  ],
+  "resource_refs": [
+    "SRC-NCERT-PLANE"
+  ],
+  "inspection": {
+    "inspector_kind": "AGENT",
+    "inspector_id": "PR14-current-official-source-review",
+    "inspected_at": "2026-09-18",
+    "access_status": "SECTION_INSPECTED",
+    "sections": [
+      "Chapter 3 title/contents",
+      "Section 3.4 vector subtraction",
+      "Example 3.1 rain and wind resultant",
+      "Example 3.3 motorboat and current resultant",
+      "Points to Ponder item 5",
+      "Exercises 3.1-3.6"
+    ],
+    "content_sha256": null,
+    "snapshot_ref": null
+  },
+  "basis_assessment": {
+    "status": "DRIFT",
+    "reason": "The supplied current official keph103.pdf is Motion in a Plane, while historical NCERT copies used keph103.pdf for Motion in a Straight Line with a Relative Velocity section. Current NCERT places Motion in a Straight Line at keph102.pdf; the supplied locator therefore no longer matches the historical source scope implied by a Relative Motion Core2 request.",
+    "replacement_candidates": [
+      "https://ncert.nic.in/textbook/pdf/keph102.pdf"
+    ]
+  },
+  "coverage": {
+    "CORE2": {
+      "status": "INSUFFICIENT",
+      "question_refs": [],
+      "basis": "The inspected current keph103.pdf has no canonical source-custody question yet and its exercise treatment of relative velocity is only classification-level."
+    },
+    "CORE2A": {
+      "status": "INSUFFICIENT",
+      "question_refs": [],
+      "basis": "No reviewed bucket-owned practice question is currently bound to the supplied keph103.pdf resource."
+    },
+    "CORE2B": {
+      "status": "INSUFFICIENT",
+      "question_refs": [],
+      "basis": "No reviewed bucket-owned transfer question is currently bound to the supplied keph103.pdf resource."
+    }
+  },
+  "notes": [
+    "The official URL was readable through the browser inspection service on 2026-09-18.",
+    "Exact byte acquisition from GitHub-hosted runners failed twice with connection reset by peer, so this receipt does not claim an immutable content digest or frozen snapshot.",
+    "No mirror was substituted for the owner's supplied locator."
+  ]
+}

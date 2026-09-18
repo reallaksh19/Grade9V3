@@ -31,6 +31,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load, normalise  # noqa: E402
+from Shared.tools import capability_graph  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/matrix.schema.json"
 # Where a record exists, these belong to it. A matrix carrying them is the second copy.
@@ -114,6 +115,13 @@ def findings(board: dict, mics: dict, dimensions: set[str]) -> list[dict]:
             if not str(phase.get("hold", "")).strip():
                 fail("PHASE_HOLDS_NOTHING", f'{rung}.phase{phase.get("phase")}',
                      "an experience with no invariant cannot show one")
+
+    # The matrix coordinate is presentation order; capability prerequisites are the
+    # reachability authority. A mechanically valid row order may still be impossible to
+    # learn if a dependant appears before one of its prerequisites.
+    if board.get("subject"):
+        caps, graph_mics = capability_graph.subject_graph(board["subject"])
+        found.extend(capability_graph.topology_findings(board, caps, graph_mics))
 
     for row in board.get("transfer", []):
         if dimensions and row["dimension"] not in dimensions:

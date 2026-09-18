@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored qualitative rungs for work sign from force/path orientation, net-work versus kinetic-energy change, potential-energy eligibility, and the condition for mechanical-energy conservation. Power formulae remain registry-blocked.",
+  "scope_summary": "Authored qualitative work-energy spine plus deliberate owner-extension rungs for power, algebraic energy derivations, and Grade 9-style quantitative relation selection. No board-prescription authority is claimed by this package.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -45,11 +45,14 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Work, energy and power",
       "topic": "Work and Energy",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The difficult decisions are directional work sign, which interactions may enter potential energy, and when the mechanical-energy account is closed.",
+      "badge_reason": "Directional work sign and energy-account conditions remain the conceptual core; owner-extension rungs add power, derivation and quantitative model-choice practice.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -66,11 +69,8 @@
         }
       ],
       "scope": {
-        "covers": "Qualitative work sign and energy-accounting distinctions.",
-        "excluded": [
-          "Power-rate equations.",
-          "Numerical work, kinetic-energy, potential-energy, or conservation calculations that require ungated relations."
-        ],
+        "covers": "Authored work-sign and energy-account reasoning plus owner-extension power, kinetic/potential-energy derivations, and quantitative work-energy relation selection.",
+        "excluded": [],
         "extension_refs": []
       }
     }
@@ -87,9 +87,7 @@
       "extensions": {},
       "action": "Classify work as positive, zero, or negative from force and displacement directions.",
       "success_criterion": "Recognize perpendicular force as a zero-work case.",
-      "prerequisite_refs": [
-        "CAP-NLM-FBD-BODY-OWNERSHIP"
-      ],
+      "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -143,6 +141,71 @@
       "success_criterion": "Reject unchanged K plus U when frictional or external transfer is present.",
       "prerequisite_refs": [
         "CAP-WEP-POTENTIAL-ELIGIBILITY"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-POWER-RATES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "action": "Distinguish total work from average power and decide when instantaneous power can be determined.",
+      "success_criterion": "Uses W/Delta t for an interval average and requires same-instant force/velocity information for instantaneous power.",
+      "prerequisite_refs": [
+        "CAP-WEP-WORK-DIRECTION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-GRADE9-QUANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
+      "success_criterion": "Selects a relation only after declaring direction/reference and checking whether the mechanical-energy account is closed.",
+      "prerequisite_refs": [
+        "CAP-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-ENERGY-DERIVATIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
+      "success_criterion": "Shows the relation chain and model assumptions for both derivations rather than presenting either expression as a memorized formula.",
+      "prerequisite_refs": [
+        "CAP-WEP-WORK-DIRECTION",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-KIN-CONSTANT-ACCELERATION"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -225,9 +288,7 @@
         }
       },
       "research_contribution": "Author-created directional classification that avoids asserting a quantitative work equation.",
-      "prerequisite_refs": [
-        "CAP-NLM-FBD-BODY-OWNERSHIP"
-      ],
+      "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
         "predict": {
@@ -692,12 +753,1468 @@
           "confirms": "The condition is about actual transfer, not simply naming a force or surface."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-WEP-POWER-RATES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Power is an energy-transfer rate, not the work itself",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-POWER-RATES",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often keep the same units and reasoning for work and power or treat an interval average as an instantaneous value.",
+      "entry_assumptions": [
+        "Can identify work as an energy transfer and can keep an energy account over a stated interval."
+      ],
+      "inferential_jump": "Average power uses total work over a positive interval, while instantaneous power needs force and velocity information at the same instant; equal total work does not imply equal power.",
+      "teaching_path": [
+        {
+          "id": "WEP5-1",
+          "role": "DECLARE",
+          "action": "Compare two machines that perform the same work over different elapsed times.",
+          "why_valid": "Holding work fixed isolates time as the factor that changes average power.",
+          "inputs": [],
+          "output": "same W; shorter Delta t -> larger W / Delta t."
+        },
+        {
+          "id": "WEP5-2",
+          "role": "TRANSFORM",
+          "action": "Calculate average power from total work divided by the positive elapsed interval.",
+          "why_valid": "REL-AVERAGE-POWER is the gate-owned interval-rate relation.",
+          "inputs": [
+            "REL-AVERAGE-POWER"
+          ],
+          "output": "P_avg = W / Delta t."
+        },
+        {
+          "id": "WEP5-3",
+          "role": "DECLARE",
+          "action": "At one instant, resolve the force onto the velocity direction and pair that component with the instantaneous speed.",
+          "why_valid": "Instantaneous power depends on the force-velocity alignment at that same instant, not on the whole interval total.",
+          "inputs": [
+            "REL-INSTANTANEOUS-POWER"
+          ],
+          "output": "same instant: F_parallel and v."
+        },
+        {
+          "id": "WEP5-4",
+          "role": "VERIFY",
+          "action": "Use a perpendicular-force case as a boundary check.",
+          "why_valid": "F_parallel becomes zero although a nonzero force and nonzero speed are both present.",
+          "inputs": [],
+          "output": "force perpendicular to velocity -> F_parallel = 0 -> instantaneous power = 0."
+        }
+      ],
+      "relation_refs": [
+        "REL-AVERAGE-POWER",
+        "REL-INSTANTANEOUS-POWER"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If two machines do the same work, they have the same power.",
+          "diagnostic_prompt": "Two machines each transfer the same energy, but one finishes in half the time. Must their average powers be equal?",
+          "repair": "Keep work fixed and divide by each machine's own elapsed time; power is a rate, not the transfer total."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval.",
+          "reasoning": [
+            "Use P_avg = 120 J / 4 s = 30 W.",
+            "An interval average does not specify how the rate varied within the four seconds.",
+            "Instantaneous power would require same-instant force and velocity information, such as F_parallel and v."
+          ],
+          "check": "A second machine could transfer the same 120 J in the same 4 s with a varying rate and still have the same 30 W average.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "AVERAGE_POWER",
+            "bindings": {
+              "work": "DAT-WEP-POWER-WORK",
+              "dt": "DAT-WEP-POWER-DT"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created power-rate distinction bound to gate-owned average and instantaneous relations and Physics validators.",
+      "prerequisite_refs": [
+        "CAP-WEP-WORK-DIRECTION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two machines do the same work, but one takes twice as long. Before calculating, must their powers be equal?",
+          "defensible_answer": "No. The machine taking longer has the smaller average power because the same transfer is spread over more time."
+        },
+        "attempt": {
+          "produces": "An average-power calculation plus a statement of what extra information would be needed for instantaneous power.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Computes average power as work divided by elapsed time.",
+              "evidence_of": "Treating power as a rate rather than another name for work."
+            },
+            {
+              "criterion": "Does not infer instantaneous power from the average alone.",
+              "evidence_of": "Separating interval and same-instant information."
+            }
+          ],
+          "accepted": [
+            "120 J / 4 s = 30 W; instantaneous power still needs same-instant force and velocity information."
+          ],
+          "rejected": [
+            "120 J or 120 W, or saying the instantaneous power must also be 30 W solely because the average is 30 W."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What total energy transfer is fixed over the whole interval?",
+              "why_this_ask": "It identifies the numerator without yet supplying the rate relation.",
+              "from_step_ref": "WEP5-1"
+            },
+            {
+              "ask": "What positive time interval belongs to that transfer?",
+              "why_this_ask": "It establishes the averaging window."
+            },
+            {
+              "ask": "What would you need to know at one instant instead of over the whole interval?",
+              "why_this_ask": "It forces the distinction between average and instantaneous information.",
+              "from_step_ref": "WEP5-3"
+            },
+            {
+              "ask": "What happens if force is perpendicular to velocity?",
+              "why_this_ask": "The boundary checks the force-direction dependence of instantaneous power.",
+              "from_step_ref": "WEP5-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path contrasts the two rate definitions directly; the learner route begins from equal-work machines and reconstructs why interval totals cannot determine a same-instant rate."
+        },
+        "boundary_test": {
+          "prompt": "A nonzero force is exactly perpendicular to a nonzero velocity. What is the instantaneous mechanical power from that force?",
+          "answer": "Zero, because the signed force component along the velocity direction is zero.",
+          "confirms": "Instantaneous power depends on force-velocity alignment, not force magnitude alone."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-WEP-GRADE9-QUANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Grade 9 work and mechanical-energy equations are one ledger",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The arithmetic is direct; the difficult part is deciding which account and relation the situation permits.",
+      "entry_assumptions": [
+        "Can classify work sign and decide whether extra frictional/outside transfer closes or opens the mechanical-energy account."
+      ],
+      "inferential_jump": "Work, kinetic energy, gravitational potential-energy change, the work-energy theorem and mechanical-energy conservation are linked bookkeeping statements with explicit conditions, not interchangeable formulas.",
+      "teaching_path": [
+        {
+          "id": "WEP6-1",
+          "role": "DECLARE",
+          "action": "Choose the body/system, displacement direction, reference frame and height reference before calculating.",
+          "why_valid": "Work sign and energy values depend on these declarations.",
+          "inputs": [
+            "CAP-WEP-MECH-ENERGY-CONDITION"
+          ],
+          "output": "chosen body/account; path direction; frame; height reference."
+        },
+        {
+          "id": "WEP6-2",
+          "role": "TRANSFORM",
+          "action": "Use W = F_parallel s, K = 0.5 m v^2 and Delta U_g = m g Delta h for the matching quantities.",
+          "why_valid": "Each gate-owned relation defines one distinct part of the energy ledger.",
+          "inputs": [
+            "REL-WORK-CONSTANT-FORCE",
+            "REL-KINETIC-ENERGY",
+            "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH"
+          ],
+          "output": "W = F_parallel s; K = 0.5 m v^2; Delta U_g = m g Delta h, all in joules under their stated conditions."
+        },
+        {
+          "id": "WEP6-3",
+          "role": "TRANSFORM",
+          "action": "Relate net work to Delta K, or equate endpoint K + U only when no extra transfer crosses the chosen account.",
+          "why_valid": "The work-energy theorem and mechanical-energy conservation answer different bookkeeping questions.",
+          "inputs": [
+            "REL-WORK-ENERGY-THEOREM",
+            "REL-MECHANICAL-ENERGY-CONSERVATION"
+          ],
+          "output": "W_net = Delta K; closed account -> K_i + U_i = K_f + U_f."
+        },
+        {
+          "id": "WEP6-4",
+          "role": "VERIFY",
+          "action": "Use a rough-track counterexample to test whether a claimed K + U conservation statement is allowed.",
+          "why_valid": "Frictional transfer opens the mechanical account and invalidates unchanged K + U by itself.",
+          "inputs": [],
+          "output": "rough path -> include transfer; do not force K + U constant."
+        }
+      ],
+      "relation_refs": [
+        "REL-WORK-CONSTANT-FORCE",
+        "REL-KINETIC-ENERGY",
+        "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+        "REL-WORK-ENERGY-THEOREM",
+        "REL-MECHANICAL-ENERGY-CONSERVATION"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Once kinetic and potential energy appear, K + U must always be conserved.",
+          "diagnostic_prompt": "A block descends the same height on a rough track and a smooth track. Must the final kinetic energies match?",
+          "repair": "Inventory transfers first. Friction can move energy out of the mechanical account, so identical endpoints do not guarantee the same K + U ledger."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A 2 kg object moves at 3 m/s. Find its translational kinetic energy. Then state what additional condition is required before using K_i + U_i = K_f + U_f for a later motion.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account.",
+          "reasoning": [
+            "K = 0.5 x 2 x 3^2 = 9 J.",
+            "The conservation equation is conditional, not automatic.",
+            "If friction or an outside agent transfers energy, that transfer must be included."
+          ],
+          "check": "Doubling the speed to 6 m/s would quadruple K to 36 J.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "KINETIC_ENERGY",
+            "bindings": {
+              "mass": "DAT-WEP-KE-M",
+              "speed": "DAT-WEP-KE-V"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 quantitative work-energy closure bound to gate-owned relations and validators.",
+      "prerequisite_refs": [
+        "CAP-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two 2 kg objects move at 3 m/s and 6 m/s. Does the faster one have twice the kinetic energy?",
+          "defensible_answer": "No. K depends on speed squared, so doubling speed gives four times the kinetic energy."
+        },
+        "attempt": {
+          "produces": "A kinetic-energy calculation plus a conservation-condition statement.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Computes kinetic energy with speed squared.",
+              "evidence_of": "Using the gate-owned Grade 9 relation."
+            },
+            {
+              "criterion": "States the no-extra-transfer condition before using mechanical-energy conservation.",
+              "evidence_of": "Treating conservation as a conditional ledger."
+            }
+          ],
+          "accepted": [
+            "2 kg at 3 m/s -> 9 J; conserve K+U only when no extra transfer changes the account."
+          ],
+          "rejected": [
+            "K = m v or automatic K+U conservation on a rough path."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which energy depends on motion in the declared frame?",
+              "why_this_ask": "It identifies K."
+            },
+            {
+              "ask": "How does speed enter that relation?",
+              "why_this_ask": "It protects the square dependence.",
+              "from_step_ref": "WEP6-2"
+            },
+            {
+              "ask": "What transfer inventory must be checked before conserving K + U?",
+              "why_this_ask": "It reconstructs the model condition.",
+              "from_step_ref": "WEP6-3"
+            },
+            {
+              "ask": "What does a rough path do to the account?",
+              "why_this_ask": "It provides the boundary falsifier.",
+              "from_step_ref": "WEP6-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path builds the ledger from declarations; the learner route starts from a kinetic-energy scaling question and then tests the conservation boundary."
+        },
+        "boundary_test": {
+          "prompt": "If a body is instantaneously at rest in the declared frame, what is its translational kinetic energy?",
+          "answer": "Zero.",
+          "confirms": "K is nonnegative and vanishes at zero speed."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Derive kinetic and raised-body potential energy from the work ledger",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-ENERGY-DERIVATIONS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The endpoint formulae are simple; the harder work is maintaining one physical model through the force, motion and work substitutions.",
+      "entry_assumptions": [
+        "Can use F_net = m a for one chosen body in an inertial frame.",
+        "Can use v^2 = u^2 + 2 a s on a constant-acceleration interval.",
+        "Can calculate constant-force work from the signed force component along displacement."
+      ],
+      "inferential_jump": "The Grade 9 energy expressions follow from previously owned mechanics: constant-force work plus Newton/kinematics yields the change in kinetic energy, while a controlled lift against near-Earth weight yields the increase m g h in gravitational potential energy.",
+      "teaching_path": [
+        {
+          "id": "WEP7-1",
+          "role": "DECLARE",
+          "action": "For the kinetic-energy derivation, choose a body accelerated by a constant net force along its displacement from initial speed u to final speed v.",
+          "why_valid": "This controlled case makes F_net = m a, W_net = F_net s and the constant-acceleration no-time relation valid on the same interval.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW",
+            "REL-WORK-CONSTANT-FORCE",
+            "REL-CONSTANT-ACCELERATION-NO-TIME"
+          ],
+          "output": "W_net = F_net s = m a s; v^2 - u^2 = 2 a s."
+        },
+        {
+          "id": "WEP7-2",
+          "role": "TRANSFORM",
+          "action": "Eliminate a s using the no-time kinematic relation and identify the net-work change as the kinetic-energy change.",
+          "why_valid": "The two equations describe the same body and interval, and the work-energy theorem identifies net work with Delta K.",
+          "inputs": [
+            "REL-WORK-ENERGY-THEOREM"
+          ],
+          "output": "a s = (v^2-u^2)/2 -> W_net = 0.5 m(v^2-u^2) = Delta K; choosing K=0 at v=0 gives K = 0.5 m v^2."
+        },
+        {
+          "id": "WEP7-3",
+          "role": "DECLARE",
+          "action": "For the potential-energy derivation, raise the body slowly through vertical height h so acceleration is zero and the applied upward force balances the near-Earth weight.",
+          "why_valid": "Zero acceleration makes the applied force magnitude equal the weight magnitude m g, while the displacement is along the applied force.",
+          "inputs": [
+            "REL-WEIGHT-NEAR-EARTH",
+            "REL-WORK-CONSTANT-FORCE"
+          ],
+          "output": "a = 0 -> F_applied = F_weight = m g; upward displacement = h."
+        },
+        {
+          "id": "WEP7-4",
+          "role": "TRANSFORM",
+          "action": "Calculate the external lifting work and identify it with the increase of gravitational potential energy in the controlled lift.",
+          "why_valid": "With negligible kinetic-energy change in the slow lift, the work transferred into the object-gravity account appears as gravitational potential-energy increase.",
+          "inputs": [
+            "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH"
+          ],
+          "output": "W_applied = F_applied h = m g h -> Delta U_g = m g h."
+        },
+        {
+          "id": "WEP7-5",
+          "role": "VERIFY",
+          "action": "Check both derivations at their zero boundaries.",
+          "why_valid": "At v=0 the chosen kinetic-energy expression must vanish, and at h=0 the gravitational potential-energy change must vanish.",
+          "inputs": [],
+          "output": "v = 0 -> K = 0; h = 0 -> Delta U_g = 0."
+        }
+      ],
+      "relation_refs": [
+        "REL-WORK-CONSTANT-FORCE",
+        "REL-WORK-ENERGY-THEOREM",
+        "REL-NEWTON-SECOND-LAW",
+        "REL-CONSTANT-ACCELERATION-NO-TIME",
+        "REL-WEIGHT-NEAR-EARTH",
+        "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-WEP-PRACTICE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "K = 0.5 m v^2 and m g h are definitions that cannot be connected to earlier mechanics.",
+          "diagnostic_prompt": "Can you reach each expression using work plus previously learned force/motion relations without assuming the final formula?",
+          "repair": "For K, combine W_net = F_net s, F_net = m a and v^2-u^2 = 2as. For raised-body U_g, use a slow lift where F_applied = m g and W_applied = F_applied h."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Derive the Grade 9 kinetic-energy expression for a body accelerated from rest by a constant net force, then derive the increase in gravitational potential energy when the same mass is raised slowly through height h near Earth's surface.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "From W_net = m a s and v^2 = 2 a s for motion from rest, W_net = 0.5 m v^2, so K = 0.5 m v^2 with K=0 at rest. For a slow lift, F_applied = m g and W_applied = m g h, so Delta U_g = m g h.",
+          "reasoning": [
+            "Constant-force work and Newton's second law give W_net = F_net s = m a s.",
+            "For constant acceleration from rest, v^2 = 2 a s, hence a s = v^2/2 and W_net = 0.5 m v^2.",
+            "By the work-energy theorem and the chosen zero at rest, K = 0.5 m v^2.",
+            "For a slow vertical lift, zero acceleration requires F_applied = F_weight = m g.",
+            "Work by that applied force through height h is m g h, which is stored as the increase in gravitational potential energy."
+          ],
+          "check": "The derived expressions satisfy the zero boundaries v=0 -> K=0 and h=0 -> Delta U_g=0.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit is a symbolic derivation using gate-owned relations; it makes no independent numerical claim."
+        }
+      },
+      "research_contribution": "Author-created Grade 9 derivation route for the two energy expressions explicitly required by the verified CBSE learning outcomes.",
+      "prerequisite_refs": [
+        "CAP-WEP-WORK-DIRECTION",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-KIN-CONSTANT-ACCELERATION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If an object's speed doubles at fixed mass, should the kinetic-energy expression that emerges from the work derivation double or quadruple?",
+          "defensible_answer": "It should quadruple because the derivation produces a speed-squared dependence."
+        },
+        "attempt": {
+          "produces": "A symbolic relation chain for K and a second relation chain for the raised-body potential-energy change.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Derives K by combining work, Newton's second law and constant-acceleration kinematics before invoking the work-energy theorem.",
+              "evidence_of": "Showing W_net = m a s = 0.5 m(v^2-u^2) rather than quoting K."
+            },
+            {
+              "criterion": "Derives the raised-body potential-energy change from a controlled slow lift against weight.",
+              "evidence_of": "Showing F_applied = m g and W_applied = m g h before identifying Delta U_g."
+            }
+          ],
+          "accepted": [
+            "From rest: W_net = mas and v^2=2as -> W_net=0.5mv^2 -> K=0.5mv^2.",
+            "Slow lift: F_applied=mg and W=Fh -> Delta U_g=mgh."
+          ],
+          "rejected": [
+            "Writing K=0.5mv^2 and U=mgh with no derivation or model conditions."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which three already-owned relations can all describe the same constant-force acceleration interval?",
+              "why_this_ask": "This reconstructs the kinetic-energy derivation from prior mechanics.",
+              "from_step_ref": "WEP7-1"
+            },
+            {
+              "ask": "How can you replace a s using v^2-u^2 = 2as?",
+              "why_this_ask": "This creates the speed-squared dependence.",
+              "from_step_ref": "WEP7-2"
+            },
+            {
+              "ask": "What condition on a slow lift makes the applied force match the weight magnitude?",
+              "why_this_ask": "This sets up the potential-energy derivation.",
+              "from_step_ref": "WEP7-3"
+            },
+            {
+              "ask": "What work is done through height h once the applied force is m g?",
+              "why_this_ask": "This completes the stored-energy change.",
+              "from_step_ref": "WEP7-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path presents two controlled derivations in order; the learner route starts from the previously owned mechanics and reconstructs why the familiar energy expressions have their particular forms."
+        },
+        "boundary_test": {
+          "prompt": "What do the two derived expressions predict at v = 0 and at zero height change?",
+          "answer": "K = 0 at v = 0, and Delta U_g = 0 when the height change is zero.",
+          "confirms": "Both derivations respect their natural zero boundaries."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-AVERAGE-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "expression": "P_avg = W / Delta t",
+      "meaning": "Average power is work transferred over a positive elapsed interval.",
+      "symbols": [
+        {
+          "symbol": "P_avg",
+          "meaning": "Average power",
+          "unit_or_domain": "W; scalar"
+        },
+        {
+          "symbol": "W",
+          "meaning": "Net work transferred over the interval",
+          "unit_or_domain": "J; signed scalar"
+        },
+        {
+          "symbol": "Delta t",
+          "meaning": "Positive elapsed interval",
+          "unit_or_domain": "s; positive scalar"
+        }
+      ],
+      "conditions": [
+        "Delta t > 0.",
+        "W is the net work assigned to the chosen system over that same interval."
+      ],
+      "derivation": [
+        {
+          "id": "WEP-PAVG-1",
+          "role": "DECLARE",
+          "action": "Choose the interval and total work transferred over exactly that interval.",
+          "why_valid": "Average power compares one total transfer with the duration over which it occurred.",
+          "inputs": [],
+          "output": "interval: Delta t; transfer: W."
+        },
+        {
+          "id": "WEP-PAVG-2",
+          "role": "TRANSFORM",
+          "action": "Divide the signed work by the positive elapsed time.",
+          "why_valid": "Average power is the interval energy-transfer rate.",
+          "inputs": [],
+          "output": "P_avg = W / Delta t."
+        }
+      ],
+      "limits": [
+        "The interval average does not reveal how power varied within the interval."
+      ],
+      "checks": [
+        "Doing the same positive work in half the time doubles average power.",
+        "Zero net work over a positive interval gives zero average power even if instantaneous power varied."
+      ],
+      "gate_relation_ref": "REL-AVERAGE-POWER"
+    },
+    {
+      "id": "REL-INSTANTANEOUS-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "expression": "P = F_parallel v",
+      "meaning": "Instantaneous mechanical power is the signed force component along velocity times instantaneous speed.",
+      "symbols": [
+        {
+          "symbol": "P",
+          "meaning": "Instantaneous power",
+          "unit_or_domain": "W; signed scalar"
+        },
+        {
+          "symbol": "F_parallel",
+          "meaning": "Signed component of force along the instantaneous velocity direction",
+          "unit_or_domain": "N; signed scalar"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Instantaneous speed",
+          "unit_or_domain": "m/s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "v >= 0.",
+        "F_parallel carries the sign of the force component along or opposite the velocity direction."
+      ],
+      "derivation": [
+        {
+          "id": "WEP-PINST-1",
+          "role": "DECLARE",
+          "action": "Resolve the force onto the instantaneous velocity direction.",
+          "why_valid": "Only the along-velocity component contributes to F dot v.",
+          "inputs": [],
+          "output": "force contribution along motion: F_parallel."
+        },
+        {
+          "id": "WEP-PINST-2",
+          "role": "TRANSFORM",
+          "action": "Multiply the signed along-velocity force component by instantaneous speed.",
+          "why_valid": "This is the scalar dot-product form of instantaneous mechanical power.",
+          "inputs": [],
+          "output": "P = F_parallel v."
+        }
+      ],
+      "limits": [
+        "This form assumes F_parallel and v are evaluated at the same instant.",
+        "The validator does not decide whether the supplied force resolution is physically correct."
+      ],
+      "checks": [
+        "A perpendicular force has F_parallel = 0 and zero instantaneous power.",
+        "A force opposing motion gives negative instantaneous power."
+      ],
+      "gate_relation_ref": "REL-INSTANTANEOUS-POWER"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "id": "REL-WORK-CONSTANT-FORCE",
+      "expression": "W = F_parallel s",
+      "meaning": "For a constant force component along a straight displacement, work equals the signed along-path component times displacement.",
+      "symbols": [
+        {
+          "symbol": "W",
+          "meaning": "Work done by the force",
+          "unit_or_domain": "J; signed scalar"
+        },
+        {
+          "symbol": "F_parallel",
+          "meaning": "Signed force component along displacement",
+          "unit_or_domain": "N; signed scalar"
+        },
+        {
+          "symbol": "s",
+          "meaning": "Displacement magnitude",
+          "unit_or_domain": "m; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "Force component is constant over the displacement.",
+        "F_parallel uses the displacement direction as positive.",
+        "s >= 0."
+      ],
+      "derivation": [
+        {
+          "id": "WEP6-W1",
+          "role": "TRANSFORM",
+          "action": "Multiply the signed force component along the path by displacement magnitude.",
+          "why_valid": "REL-WORK-CONSTANT-FORCE owns the Grade 9 constant-force work relation.",
+          "inputs": [],
+          "output": "W = F_parallel s."
+        }
+      ],
+      "limits": [
+        "A varying force requires a different treatment."
+      ],
+      "checks": [
+        "Perpendicular force gives F_parallel = 0 and zero work.",
+        "Opposing force gives negative work."
+      ],
+      "gate_relation_ref": "REL-WORK-CONSTANT-FORCE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "id": "REL-KINETIC-ENERGY",
+      "expression": "K = 0.5 m v^2",
+      "meaning": "Translational kinetic energy of a body in the declared reference frame.",
+      "symbols": [
+        {
+          "symbol": "K",
+          "meaning": "Kinetic energy",
+          "unit_or_domain": "J; nonnegative scalar"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Speed",
+          "unit_or_domain": "m/s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "m > 0.",
+        "v >= 0.",
+        "One declared reference frame is used."
+      ],
+      "derivation": [
+        {
+          "id": "WEP6-K1",
+          "role": "TRANSFORM",
+          "action": "Square the speed, multiply by mass, then take one half.",
+          "why_valid": "REL-KINETIC-ENERGY owns the translational kinetic-energy relation.",
+          "inputs": [],
+          "output": "K = 0.5 m v^2."
+        }
+      ],
+      "limits": [
+        "This record covers translational kinetic energy only."
+      ],
+      "checks": [
+        "Doubling speed quadruples K at fixed mass.",
+        "At v = 0, K = 0."
+      ],
+      "gate_relation_ref": "REL-KINETIC-ENERGY"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "id": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+      "expression": "Delta U_g = m g Delta h",
+      "meaning": "Near Earth's surface with approximately uniform g, gravitational potential-energy change equals mass times g times vertical height change.",
+      "symbols": [
+        {
+          "symbol": "Delta U_g",
+          "meaning": "Change in gravitational potential energy",
+          "unit_or_domain": "J; signed scalar"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "g",
+          "meaning": "Gravitational acceleration magnitude",
+          "unit_or_domain": "m/s^2; positive scalar"
+        },
+        {
+          "symbol": "Delta h",
+          "meaning": "Final height minus initial height",
+          "unit_or_domain": "m; signed scalar"
+        }
+      ],
+      "conditions": [
+        "m > 0.",
+        "g is approximately uniform over the height change.",
+        "One height reference and positive-up convention are used."
+      ],
+      "derivation": [
+        {
+          "id": "WEP6-U1",
+          "role": "TRANSFORM",
+          "action": "Multiply mass, local g and signed vertical height change.",
+          "why_valid": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH owns the near-Earth change relation.",
+          "inputs": [],
+          "output": "Delta U_g = m g Delta h."
+        }
+      ],
+      "limits": [
+        "Only changes are physically meaningful until a zero reference is declared.",
+        "Do not extend uniform g to large height ranges without review."
+      ],
+      "checks": [
+        "Raising the body gives positive Delta U_g under positive-up convention.",
+        "Returning to the original height gives net Delta U_g = 0."
+      ],
+      "gate_relation_ref": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "id": "REL-WORK-ENERGY-THEOREM",
+      "expression": "W_net = Delta K",
+      "meaning": "Net work on a body equals its change in translational kinetic energy.",
+      "symbols": [
+        {
+          "symbol": "W_net",
+          "meaning": "Net work by external forces",
+          "unit_or_domain": "J; signed scalar"
+        },
+        {
+          "symbol": "Delta K",
+          "meaning": "Final kinetic energy minus initial kinetic energy",
+          "unit_or_domain": "J; signed scalar"
+        }
+      ],
+      "conditions": [
+        "The same body and reference frame are used for the force work and kinetic energies."
+      ],
+      "derivation": [
+        {
+          "id": "WEP6-WET1",
+          "role": "DECLARE",
+          "action": "Compare the signed net work over an interval with the body's initial and final translational kinetic energies.",
+          "why_valid": "The gate relation identifies net work as the change in K.",
+          "inputs": [
+            "REL-KINETIC-ENERGY"
+          ],
+          "output": "W_net = K_f - K_i = Delta K."
+        }
+      ],
+      "limits": [
+        "This does not by itself choose which forces are included in the net work."
+      ],
+      "checks": [
+        "Positive net work increases K.",
+        "Negative net work decreases K."
+      ],
+      "gate_relation_ref": "REL-WORK-ENERGY-THEOREM"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "id": "REL-MECHANICAL-ENERGY-CONSERVATION",
+      "expression": "K_i + U_i = K_f + U_f",
+      "meaning": "The chosen mechanical-energy account remains constant when no additional transfer crosses it.",
+      "symbols": [
+        {
+          "symbol": "K_i",
+          "meaning": "Initial kinetic energy",
+          "unit_or_domain": "J; scalar"
+        },
+        {
+          "symbol": "U_i",
+          "meaning": "Initial potential energy",
+          "unit_or_domain": "J; scalar"
+        },
+        {
+          "symbol": "K_f",
+          "meaning": "Final kinetic energy",
+          "unit_or_domain": "J; scalar"
+        },
+        {
+          "symbol": "U_f",
+          "meaning": "Final potential energy",
+          "unit_or_domain": "J; scalar"
+        }
+      ],
+      "conditions": [
+        "No frictional or outside transfer changes the chosen mechanical-energy account.",
+        "Initial and final energies use the same potential-energy reference."
+      ],
+      "derivation": [
+        {
+          "id": "WEP6-C1",
+          "role": "DECLARE",
+          "action": "Inventory whether any frictional or outside transfer crosses the chosen mechanical account.",
+          "why_valid": "Conservation is conditional on a closed account.",
+          "inputs": [],
+          "output": "no extra transfer -> K + U can remain constant."
+        },
+        {
+          "id": "WEP6-C2",
+          "role": "TRANSFORM",
+          "action": "Equate initial and final K + U when the account is closed.",
+          "why_valid": "REL-MECHANICAL-ENERGY-CONSERVATION owns the endpoint ledger under the stated condition.",
+          "inputs": [],
+          "output": "K_i + U_i = K_f + U_f."
+        }
+      ],
+      "limits": [
+        "If friction or an outside agent transfers energy, include that transfer instead of forcing K + U to remain constant."
+      ],
+      "checks": [
+        "A rough path can share endpoints with a smooth path but not the same mechanical-energy conservation statement."
+      ],
+      "gate_relation_ref": "REL-MECHANICAL-ENERGY-CONSERVATION"
+    },
+    {
+      "id": "REL-WEIGHT-NEAR-EARTH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "expression": "F_weight = m g",
+      "meaning": "Near Earth's surface in an approximately uniform gravitational field, the weight-force magnitude on mass m is m times gravitational acceleration magnitude g.",
+      "symbols": [
+        {
+          "symbol": "F_weight",
+          "meaning": "Weight-force magnitude",
+          "unit_or_domain": "N; nonnegative scalar magnitude"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "g",
+          "meaning": "Local gravitational acceleration magnitude",
+          "unit_or_domain": "m/s^2; positive scalar"
+        }
+      ],
+      "conditions": [
+        "m > 0.",
+        "g > 0.",
+        "Near-Earth field is treated as approximately uniform over the height range.",
+        "This relation gives the force magnitude; downward direction is supplied by the physical geometry."
+      ],
+      "derivation": [
+        {
+          "id": "WEP-DER-WEIGHT-1",
+          "role": "DECLARE",
+          "action": "Use Newton's second-law magnitude form for free fall under the near-Earth gravity-only model.",
+          "why_valid": "When gravity is the only force, the body's acceleration magnitude is g, so the corresponding force magnitude is m g.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW"
+          ],
+          "output": "gravity only -> F_weight = m g."
+        }
+      ],
+      "limits": [
+        "This is the near-Earth approximately uniform-g model, not the universal-gravitation law for arbitrary separations."
+      ],
+      "checks": [
+        "Doubling mass at the same local g doubles weight-force magnitude.",
+        "The relation gives force units because kg × m/s^2 = N."
+      ],
+      "gate_relation_ref": "REL-WEIGHT-NEAR-EARTH"
+    }
+  ],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-WEP-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Work sign and energy-account practice",
+      "capability_refs": [
+        "CAP-WEP-WORK-DIRECTION",
+        "CAP-WEP-NET-WORK-SIGN",
+        "CAP-WEP-POTENTIAL-ELIGIBILITY",
+        "CAP-WEP-MECH-ENERGY-CONDITION",
+        "CAP-WEP-GRADE9-QUANT",
+        "CAP-WEP-POWER-RATES",
+        "CAP-WEP-ENERGY-DERIVATIONS"
+      ],
+      "solution_structure": [
+        "Draw one displacement direction and compare three force arrows: along it, perpendicular to it, and opposite it.",
+        "For each case, ask whether the force has a part that carries the object along the path direction.",
+        "Increase the size of the perpendicular force while keeping it exactly perpendicular to the same path."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must choose whether mechanical-energy conservation applies instead of being told to use it."
+      ],
+      "common_wrong_routes": [
+        "Any force acting on a moving object does positive work because the object moves."
+      ],
+      "item_refs": [
+        "Q-PHY-WEP-2A-01",
+        "Q-PHY-WEP-2A-COV-02",
+        "Q-PHY-WEP-2A-COV-03",
+        "Q-PHY-WEP-2A-COV-04",
+        "Q-PHY-WEP-2A-COV-05",
+        "Q-PHY-WEP-2A-DERIV-01",
+        "Q-PHY-WEP-PRACTICAL-09"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-WEP-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-2A-01",
+      "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Rightward force: positive work. Upward force: zero work. Leftward force: negative work.",
+        "reasoning": [
+          "The rightward force points with the displacement.",
+          "The upward force is perpendicular to the displacement.",
+          "The leftward force points against the displacement."
+        ],
+        "check": "Rotate the path instead of the force arrows; the classifications must follow the relative orientation, not page directions by themselves.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-WORK-DIRECTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: Which way does the object actually move during the interval?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare the force direction with the actual displacement direction; only the along-path contribution can produce work.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-02",
+      "stem": "For three otherwise comparable motions, the net work is described as positive, zero, and negative. State the corresponding direction of kinetic-energy change without calculating any energy value.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Positive net work means kinetic energy increases; zero means no change; negative means kinetic energy decreases.",
+        "reasoning": [
+          "The comparison holds the starting motion fixed.",
+          "The sign of the combined work indicates the sign of the kinetic-energy change.",
+          "No individual force alone decides the result unless it is the only contributor."
+        ],
+        "check": "Use braking as the negative case: slowing must correspond to a decrease in kinetic energy.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-NET-WORK-SIGN",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: During braking, is the force contribution along the motion or opposite it?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Combine the work of all acting forces to obtain net work, then match its sign to whether kinetic energy increases, stays unchanged, or decreases.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-03",
+      "stem": "Two routes share the same start and finish heights. Gravity gives the same potential-energy change on both, while friction removes more energy on the longer route. Which interaction is eligible for endpoint-only potential-energy bookkeeping?",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Gravity is eligible in this comparison; kinetic friction is not, because its transfer changes with the path.",
+        "reasoning": [
+          "The gravitational potential-energy change is fixed by the shared endpoints.",
+          "The frictional transfer changes when the route length changes.",
+          "An endpoint-only account cannot represent a path-dependent interaction."
+        ],
+        "check": "Change the route while keeping the endpoints fixed; an eligible endpoint-only contribution stays the same while the frictional transfer need not.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: If the start and finish heights are unchanged, what happens to the gravitational potential-energy change when the route bends?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use potential energy only for interactions whose energy change is fixed by endpoints; keep path-dependent friction as an explicit transfer.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-04",
+      "stem": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval.",
+        "reasoning": [
+          "Use P_avg = 120 J / 4 s = 30 W.",
+          "An interval average does not specify how the rate varied within the four seconds.",
+          "Instantaneous power would require same-instant force and velocity information, such as F_parallel and v."
+        ],
+        "check": "A second machine could transfer the same 120 J in the same 4 s with a varying rate and still have the same 30 W average.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-POWER-RATES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What total energy transfer is fixed over the whole interval?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Keep work fixed and divide by each machine's own elapsed time; power is a rate, not the transfer total.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "AVERAGE_POWER",
+        "bindings": {
+          "work": "DAT-WEP-POWER-WORK",
+          "dt": "DAT-WEP-POWER-DT"
+        }
+      }
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-05",
+      "stem": "A 2 kg object moves at 3 m/s. Find its translational kinetic energy. Then state what additional condition is required before using K_i + U_i = K_f + U_f for a later motion.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account.",
+        "reasoning": [
+          "K = 0.5 x 2 x 3^2 = 9 J.",
+          "The conservation equation is conditional, not automatic.",
+          "If friction or an outside agent transfers energy, that transfer must be included."
+        ],
+        "check": "Doubling the speed to 6 m/s would quadruple K to 36 J.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Which energy depends on motion in the declared frame?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Inventory transfers first. Friction can move energy out of the mechanical account, so identical endpoints do not guarantee the same K + U ledger.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "KINETIC_ENERGY",
+        "bindings": {
+          "mass": "DAT-WEP-KE-M",
+          "speed": "DAT-WEP-KE-V"
+        }
+      }
+    },
+    {
+      "id": "Q-PHY-WEP-2A-DERIV-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-DERIV-2A-01",
+      "stem": "Do not quote the final formula. Starting from constant-force work, Newton's second law and the constant-acceleration relation v^2-u^2=2as, derive the kinetic-energy expression for motion from rest. Then show why slowly raising the same mass through height h near Earth's surface gives a gravitational potential-energy increase mgh.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "For the kinetic derivation the net force is constant and collinear with the displacement.",
+        "For the potential-energy derivation the lift is slow enough that acceleration is zero and local g is approximately uniform."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The two required chains are W_net = mas = 0.5mv^2 -> K = 0.5mv^2 from rest, and slow lift F_applied = mg -> W_applied = mgh -> Delta U_g = mgh.",
+        "reasoning": [
+          "Use W_net = F_net s and F_net = ma.",
+          "Use v^2 = 2as from rest to replace as by v^2/2.",
+          "Use the work-energy theorem to identify the result as K when the initial kinetic energy is zero.",
+          "For the slow lift, zero acceleration makes the applied force balance the weight magnitude mg.",
+          "Applied work through vertical height h is therefore mgh and becomes the gravitational potential-energy increase."
+        ],
+        "check": "At v=0 the derived K is zero; at h=0 the derived potential-energy change is zero.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-WEP-ENERGY-DERIVATIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "For kinetic energy, first write work as net force times displacement and replace net force with m a.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Then use the no-time constant-acceleration relation to replace the product a s.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "For potential energy, make the lift slow enough that the applied force balances weight.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-PRACTICAL-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-PRACTICAL-09",
+      "stem": "Design a simple-pendulum investigation of mechanical-energy conservation. State what quantities you would compare between release and the lowest point, what ideal relation you expect, and how real losses would appear in the data.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use a small enough swing and a fixed pivot so the bob follows the same arc.",
+        "Choose one gravitational-potential reference consistently."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Measure release height relative to the lowest point and the bob’s speed at the lowest point, compare m g Delta h with 0.5 m v^2, repeat trials, and interpret a systematic shortfall in kinetic energy as evidence of friction/air losses rather than forcing exact equality.",
+        "reasoning": [
+          "At release from rest, the chosen mechanical account is mainly gravitational potential energy relative to the bottom.",
+          "At the lowest point, potential energy is minimum and kinetic energy is maximum.",
+          "Under the ideal no-loss model, m g Delta h should match 0.5 m v^2 within experimental uncertainty.",
+          "Use repeated trials and the same reference height and mass throughout.",
+          "If measured kinetic energy is consistently smaller, include pivot friction, air resistance or measurement error rather than claiming exact mechanical-energy conservation."
+        ],
+        "check": "The experiment tests a conditional conservation model; it should not erase observed losses to make K+U exactly constant.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 2
+      },
+      "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
+      "secondary_capability_refs": [
+        "CAP-WEP-MECH-ENERGY-CONDITION",
+        "CAP-WEP-ENERGY-DERIVATIONS"
+      ],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Choose the bottom as a convenient height reference and compare release energy with energy at the lowest point.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "The ideal equality is m g Delta h = 0.5 m v^2; real data should be compared with it, not forced to match it.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-WEP-A",
@@ -707,7 +2224,10 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Reveal work-energy conceptual spine",
       "cores": [
         "CORE1A"
@@ -716,7 +2236,10 @@
         "MIC-PHY-WEP-WORK-DIRECTION",
         "MIC-PHY-WEP-NET-WORK-SIGN",
         "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
-        "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+        "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+        "MIC-PHY-WEP-POWER-RATES",
+        "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+        "MIC-PHY-WEP-GRADE9-QUANT"
       ],
       "entry_needs": [
         "Force ownership from the Newton/FBD prerequisite and qualitative motion descriptions."
@@ -753,7 +2276,10 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Elicit work-energy conceptual spine",
       "cores": [
         "CORE1B"
@@ -762,7 +2288,10 @@
         "MIC-PHY-WEP-WORK-DIRECTION",
         "MIC-PHY-WEP-NET-WORK-SIGN",
         "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
-        "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+        "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+        "MIC-PHY-WEP-POWER-RATES",
+        "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+        "MIC-PHY-WEP-GRADE9-QUANT"
       ],
       "entry_needs": [
         "Same intrinsic coverage as Core1A; no learner-estimate shortcut."
@@ -811,6 +2340,82 @@
       "symbol": "d_example",
       "meaning": "Illustrative displacement length available to compiled study obligations; none of the qualitative exits depends on its numerical value.",
       "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-WEP-POWER-WORK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 120,
+      "unit": "J",
+      "symbol": "W",
+      "meaning": "Work transferred in the authored average-power exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-WEP-POWER-DT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 4,
+      "unit": "s",
+      "symbol": "Delta t",
+      "meaning": "Elapsed interval in the authored average-power exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-WEP-KE-M",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 2,
+      "unit": "kg",
+      "symbol": "m",
+      "meaning": "Mass in the authored kinetic-energy exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-WEP-KE-V",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "m/s",
+      "symbol": "v",
+      "meaning": "Speed in the authored kinetic-energy exit.",
+      "locator": "Author-created exact practice datum."
     }
   ]
 }

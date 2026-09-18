@@ -1,0 +1,7 @@
+{
+  "request_id": "PLAN-PHY-RELATIVE-MOTION-SIX-CORE",
+  "subject": "Physics",
+  "subtopic": "Relative motion",
+  "requested_cores": ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"],
+  "source_basis": ["https://ncert.nic.in/textbook/pdf/keph103.pdf"]
+}

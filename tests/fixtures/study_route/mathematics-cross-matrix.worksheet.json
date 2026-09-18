@@ -1,0 +1,15 @@
+{
+  "worksheet_id": "MATH-LINEAR-MAPPING-DEMO",
+  "subject": "Mathematics",
+  "source_note": "Stable worksheet-map fixture over canonical Mathematics capabilities. Whether it resolves to a matrix depends on the separately merged subject-content workstream; architecture falsifiers do not depend on that timing.",
+  "questions": [
+    {
+      "question_id": "Q1",
+      "primary_capability_ref": "CAP-MATH-ISOLATE",
+      "secondary_capability_refs": [
+        "CAP-MATH-SUBSTITUTE"
+      ],
+      "mapping_basis": "MANUAL"
+    }
+  ]
+}

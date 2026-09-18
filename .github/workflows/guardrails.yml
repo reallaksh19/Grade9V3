@@ -42,6 +42,15 @@ jobs:
       - name: Learner claims are backed by evidence or a waiver
         run: python3 Shared/tools/learner_evidence.py --enforce
 
+      # Regression and empirical acceptance are deliberately separate evidence layers.
+      # The blueprint test is enforcing; the empirical audit treats missing live evidence
+      # as PENDING and fails only malformed evidence that claims LIVE_LEARNER provenance.
+      - name: Blueprint architecture regression
+        run: python3 -m unittest discover -s tests -p "test_blueprint_regression.py" -v
+
+      - name: Empirical learner acceptance status
+        run: python3 Shared/tools/empirical_acceptance.py --enforce
+
       # A matrix may reference the library and may not restate or outrank it. Enforcing
       # from the start: it has no backlog, because the schema and the gate landed before
       # any matrix data did.
@@ -50,6 +59,54 @@ jobs:
 
       - name: Requests resolve to a plan, or refuse with a reason
         run: python3 Shared/tools/resolve_request.py --enforce
+
+      # Acquisition metadata is content-addressed. External availability is not part of
+      # CI: committed acquisitions must verify against their pinned local snapshot when
+      # one is retained, while URL fetching itself stays an explicit runtime action.
+      - name: Source acquisitions remain digest-pinned
+        run: python3 Shared/tools/source_pipeline.py audit --enforce
+
+      # Source coverage is evidence, not a request field. A receipt may preserve an
+      # inspection fact while still reporting insufficient custody; authored questions
+      # can never establish Core2 source custody.
+      - name: Source inspection receipts prove their custody claims
+        run: python3 Shared/tools/source_receipts.py --audit --enforce
+
+      # A short third-agent request is allowed to be incomplete: the plan must derive
+      # what the repository owns and return only the owner decisions that remain.
+      - name: Cold-agent authoring requests resolve without guessing
+        run: python3 Shared/tools/plan_request.py --audit --enforce
+
+      # Every owner question emitted by the planner must have a typed, stale-safe
+      # application path. Adding a new REQUIRED_OWNER_INPUT without an applier fails CI.
+      - name: Planner owner inputs have executable decision handlers
+        run: python3 Shared/tools/apply_owner_decisions.py --audit --enforce
+
+      # A resolved plan becomes a pinned per-Core work packet. The packet may be partial:
+      # unrelated work continues while a source or owner decision holds one Core.
+      - name: Third-agent execution packets are current and internally consistent
+        run: python3 Shared/tools/compile_execution_packet.py --audit --enforce
+
+      # Every runnable execution-packet write scope must be enforceable by the authoring
+      # runner. Candidate records and product outputs have separate, fail-closed paths.
+      - name: Authoring run write scopes are enforceable
+        run: python3 Shared/tools/execute_authoring_run.py --audit --enforce
+
+      # REVIEWED/CURATED are authority claims, not editable labels. Every committed
+      # current-stage promotion receipt must still verify against the exact record digest.
+      - name: Review and curation receipts remain digest-authoritative
+        run: python3 Shared/tools/review_authority.py --audit --enforce
+
+      # Learner release is an external, recomputable authority receipt. Publication
+      # manifests remain release_authorized=false and cannot self-grant approval.
+      - name: Final learner-release receipts remain current
+        run: python3 Shared/tools/release_authority.py --audit --enforce
+
+      # Mechanical academic-review prerequisites are measurable. Human scientific and
+      # pedagogical approval is not; report that state explicitly rather than turning
+      # a green CI check into a fake review.
+      - name: Academic review readiness report
+        run: python3 Shared/tools/academic_readiness.py
 
       - name: No ceiling forbids the word its own rung teaches
         run: python3 Shared/tools/ceiling_audit.py --enforce
@@ -83,6 +140,27 @@ jobs:
       # backlog it found is closed, so the claim and the code cannot drift apart again.
       - name: Contract claims are backed by code
         run: python3 Shared/tools/capability_audit.py --enforce
+
+      # Render the expected architecture index as an artifact without modifying the
+      # checkout. This makes drift repair inspectable while the following --check remains
+      # read-only and still fails when the committed artifact is stale.
+      - name: Render architecture manifest preview
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from Shared.tools import build_manifest
+          Path("/tmp/architecture-manifest.json").write_text(
+              json.dumps(build_manifest.collect(), indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload architecture manifest preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-manifest-preview
+          path: /tmp/architecture-manifest.json
 
       # --check compares the generated data file and the manifest without writing
       # either, so it covers both artifacts and leaves the checkout untouched.

@@ -1,0 +1,94 @@
+{
+  "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
+  "subject": "Mathematics",
+  "bucket_id": "BUCKET-LINEAR-EQUATION",
+  "topic": "Linear equations",
+  "subtopic": "One-unknown linear equations over the rationals",
+  "axis_note": "ladder_position orders this matrix only; cross-matrix study order must come from capability prerequisite refs, never by comparing positions.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-MATH-CONSTRAINT",
+      "ceiling": [
+        "equivalent equation",
+        "inverse operation",
+        "isolate the unknown",
+        "reversible operation"
+      ],
+      "must_contain": [
+        "One fixed rational equation with a declared domain.",
+        "At least one candidate value tested by substituting into both sides, including a value that fails."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the candidate rational value substituted for x",
+          "hold": "the same equation and declared rational domain",
+          "notice": "some values make the two sides equal and others do not, so the equation selects a solution set rather than acting as an instruction"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-MATH-EQUIVALENT-OPS",
+      "ceiling": [
+        "decimal approximation",
+        "rounding",
+        "residue",
+        "recurring decimal"
+      ],
+      "must_contain": [
+        "A step applied to both sides whose reversibility is named explicitly.",
+        "A contrasting case where division by an expression that can be zero would lose a solution."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the reversible operation used on both sides",
+          "hold": "the original solution set",
+          "notice": "reversible operations preserve exactly the same solutions"
+        },
+        {
+          "phase": 2,
+          "vary": "the divisor from a known non-zero constant to an expression that may be zero",
+          "hold": "the requirement that no original solution be silently lost",
+          "notice": "division is safe only after the non-zero condition is established or the zero case is handled separately"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-MATH-EXACT-SOLUTION",
+      "ceiling": [
+        "irrational number",
+        "error bound",
+        "significant figures",
+        "percentage error"
+      ],
+      "must_contain": [
+        "The exact rational solution written as a fraction and substituted into the original equation.",
+        "A truncated decimal of the same rational substituted separately so its non-zero residue is visible."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the number of decimal digits retained from a non-terminating rational expansion",
+          "hold": "the same exact rational solution and original equation",
+          "notice": "the substitution residue can shrink without becoming zero, so closer is not the same as equal"
+        },
+        {
+          "phase": 2,
+          "vary": "the solved rational from a non-terminating decimal case to a terminating decimal case",
+          "hold": "the requirement that the reported value satisfy the original equation exactly",
+          "notice": "a decimal can be exact when it terminates; the distinction is exact value versus approximation, not fraction notation versus decimal notation"
+        }
+      ]
+    }
+  ]
+}

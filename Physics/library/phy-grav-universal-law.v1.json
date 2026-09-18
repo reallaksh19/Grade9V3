@@ -512,8 +512,108 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-GRAV-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Gravitational interaction and orbital-reasoning practice",
+      "capability_refs": [
+        "CAP-PHY-GRAV-R1",
+        "CAP-PHY-GRAV-R4",
+        "CAP-PHY-GRAV-R5"
+      ],
+      "solution_structure": [
+        "Draw two separated bodies A and B and mark the straight line joining their centres before adding any interaction arrows.",
+        "Place one force arrow on A pointing toward B and one on B pointing toward A.",
+        "Swap the labels A and B while leaving the physical pair in place, then check whether either force disappears."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must test the conservation condition after an additional non-central force is introduced rather than applying central-force conservation automatically."
+      ],
+      "common_wrong_routes": [
+        "A massive body pulls on a smaller body, but the smaller body does not pull back with an equal interaction."
+      ],
+      "item_refs": [
+        "Q-PHY-GRAV-2A-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-GRAV-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-GRAV",
+      "original_identifier": "AUTHOR-GRAV-2A-01",
+      "stem": "Two separated bodies are shown with their centres marked. Draw the gravitational-force direction on each body and explain what changes if the body labels are exchanged.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Each body has a gravitational-force arrow directed toward the other along the same centre-to-centre line; exchanging labels only exchanges ownership of the arrows.",
+        "reasoning": [
+          "The two centres determine the common line of action.",
+          "The force on A points from A toward B.",
+          "The force on B points from B toward A, so the interaction remains paired when labels swap."
+        ],
+        "check": "Rotate the entire drawing without changing the bodies or their separation; both force arrows should rotate with the joining line rather than stay tied to the page.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-PHY-GRAV-R1",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-GRAV-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: What line is fixed by the positions of the two body centres?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Treat gravity as an interaction pair: each body experiences a force directed toward the other along the same line.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
   "teaching_routes": [
     {
       "version": "0.1.0",

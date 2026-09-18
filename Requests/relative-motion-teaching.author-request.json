@@ -1,0 +1,13 @@
+{
+  "request_id": "AUTHOR-PHY-RELATIVE-MOTION-TEACHING",
+  "subject": "Physics",
+  "subtopic": "Relative motion",
+  "requested_cores": ["CORE1", "CORE1A", "CORE1B"],
+  "learner": {
+    "owner_entry": {
+      "rung": "R1",
+      "by": "owner",
+      "instruction": "Start at the canonical entry rung; this is a routing decision, not evidence."
+    }
+  }
+}

@@ -1,16 +1,9 @@
-"""Promotion lifecycle: CANDIDATE -> REVIEWED -> CURATED, with evidence.
+"""Maturity utilities for the library lifecycle.
 
-Maturity is a claim about evidence, so it is granted by evidence, never by editing a
-field. Two rules do the real work:
-
-  * No stage may be skipped, and each promotion names the evidence that justifies it.
-    Review evidence must come from someone other than the author -- an author cannot
-    review their own work into a higher stage.
-
-  * Maturity is monotone down the dependency graph. A record may not be more mature
-    than anything it depends on. A CURATED microtopic resting on a CANDIDATE
-    capability is exactly the kind of quiet unsoundness this library exists to make
-    visible: the lesson looks accepted, its foundation was never reviewed.
+Upward promotion is no longer performed here. REVIEWED/CURATED are digest-bound authority
+claims and must go through Shared/tools/review_authority.py, which pins authoring/review
+receipts to the exact record digest. This module retains dependency-maturity auditing and
+demotion support only.
 
 Demotion needs no evidence. Withdrawing a claim is always permitted.
 """
@@ -48,17 +41,17 @@ def check_evidence(target_stage: str, evidence: dict, author: str | None) -> Non
 
 
 def promote(record: dict, target_stage: str, evidence: dict) -> dict:
+    """Compatibility surface: direct upward promotion is intentionally disabled."""
     require(target_stage in RANK, "UNKNOWN_LIFECYCLE_STAGE", target_stage)
     current = record.get("status", "CANDIDATE")
     require(current in RANK, "UNKNOWN_LIFECYCLE_STAGE", str(current))
     if RANK[target_stage] < RANK[current]:
-        return {**record, "status": target_stage}          # demotion: always allowed
-    require(RANK[target_stage] == RANK[current] + 1, "PROMOTION_SKIPPED_A_STAGE",
-            f"{current} -> {target_stage}")
-    check_evidence(target_stage, evidence, record.get("authored_by"))
-    history = list(record.get("lifecycle_history", []))
-    history.append({"from": current, "to": target_stage, "evidence": evidence})
-    return {**record, "status": target_stage, "lifecycle_history": history}
+        return {**record, "status": target_stage}
+    if target_stage == current:
+        return dict(record)
+    require(False, "DIGEST_BOUND_REVIEW_AUTHORITY_REQUIRED",
+            "upward promotion must use Shared/tools/review_authority.py")
+    return dict(record)
 
 
 def maturity_violations(records: dict) -> list[dict]:

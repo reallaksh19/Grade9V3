@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/release-receipt.schema.json",
+  "title": "Learner release receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "release_id",
+    "version",
+    "subject",
+    "request",
+    "plan",
+    "execution_packet",
+    "publication",
+    "learner_route",
+    "source_receipt",
+    "reviewed_records",
+    "promotion_receipts",
+    "authoring_receipts",
+    "validation"
+  ],
+  "properties": {
+    "release_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request": {
+      "type": "object"
+    },
+    "plan": {
+      "type": "object"
+    },
+    "execution_packet": {
+      "type": "object"
+    },
+    "publication": {
+      "type": "object"
+    },
+    "learner_route": {
+      "type": "object"
+    },
+    "source_receipt": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reviewed_records": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "promotion_receipts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "authoring_receipts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "validation": {
+      "type": "object"
+    }
+  }
+}
