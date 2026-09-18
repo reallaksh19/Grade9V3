@@ -112,11 +112,7 @@
     {
       "rung": "R4",
       "ladder_position": 46,
-      "provenance": "SYNTHESIS",
-      "aha": "Ohm's law is a model relation for an ohmic element under fixed conditions; constant resistance is not guaranteed for every device.",
-      "learner_owns": [
-        "R3: potential difference is energy transferred per unit charge, distinct from current."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "series equivalent",
         "parallel equivalent",
@@ -127,12 +123,6 @@
         "Pairs of V and I measurements for one element.",
         "A test for whether V/I stays constant as operating point changes."
       ],
-      "misconception": {
-        "wrong_idea": "Every electrical component has one fixed resistance, so V = IR always applies with constant R.",
-        "diagnostic_prompt": "If doubling the voltage more than doubles the current, is one constant R enough to describe the device?",
-        "repair": "Use the measured V-I relationship first; only treat R as constant when the relation is linear under fixed conditions."
-      },
-      "closure": "From a small V-I table, decide whether a constant-resistance Ohm model is supported and state the evidence.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -146,7 +136,8 @@
           "hold": "the device material and measurement method",
           "notice": "the same device can leave the constant-R model when conditions change"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-ELEC-OHMIC-MODEL-TEST"
     },
     {
       "rung": "R5",
