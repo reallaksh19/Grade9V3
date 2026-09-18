@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "Distance records how much path was travelled, while displacement records the signed change from start to finish; a long trip can have zero displacement.",
-      "learner_owns": [
-        "Can trace an object's route from a start point to an end point."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "vector",
         "signed coordinate",
@@ -23,12 +19,6 @@
         "A marked one-dimensional axis with a declared positive direction.",
         "An out-and-back path where path length is nonzero but the finish is at the start."
       ],
-      "misconception": {
-        "wrong_idea": "Distance travelled and displacement are always the same number.",
-        "diagnostic_prompt": "Walk 5 m east and 5 m west back to the start. What is the distance travelled, and what change in position remains?",
-        "repair": "Trace the path for distance; compare only the final and initial positions for displacement, including direction."
-      },
-      "closure": "Given a one-dimensional route, report both total distance and signed displacement and explain why they can differ.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -42,7 +32,8 @@
           "hold": "the same total path length",
           "notice": "equal distances can end with different signed displacements"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT"
     },
     {
       "rung": "R2",
@@ -80,11 +71,7 @@
     {
       "rung": "R3",
       "ladder_position": 70,
-      "provenance": "SYNTHESIS",
-      "aha": "Velocity and acceleration are different statements: velocity can be zero at an instant while acceleration remains nonzero and fixes how velocity changes next.",
-      "learner_owns": [
-        "Average speed is total distance divided by total time, while average velocity uses displacement over the same time; neither is found by averaging listed speeds unless the time weighting makes that valid."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "jerk",
         "second derivative",
@@ -95,12 +82,6 @@
         "A velocity-time plot crossing zero with a nonzero slope.",
         "The instant at the top of a vertical trip distinguished from an interval of rest."
       ],
-      "misconception": {
-        "wrong_idea": "If velocity is zero at an instant, acceleration must also be zero at that instant.",
-        "diagnostic_prompt": "At the highest point of a vertically thrown ball, the velocity is momentarily zero. Is the next moment also at the same velocity?",
-        "repair": "Ask what velocity does immediately before and after the instant: a sign change in velocity requires nonzero acceleration even when the instantaneous velocity is zero."
-      },
-      "closure": "Read a turning point from a motion description or velocity-time graph and state velocity and acceleration separately.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -114,7 +95,8 @@
           "hold": "the same downward acceleration",
           "notice": "the time of the zero-velocity instant changes but the acceleration at that instant does not"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A"
     },
     {
       "rung": "R4",
