@@ -238,6 +238,40 @@ def _rev_prereq_unknown(data):
     gate(data, "PHY-REL-OBSERVER-REVERSAL")["prerequisites"] = ["PHY-NO-SUCH-GATE"]
 
 
+def _drop_first_symbol_unit(data, gate_id):
+    del gate(data, gate_id)["relations"][0]["symbols"][0]["unit"]
+
+
+@mutates("FAL-KIN-AVG-SYMBOL-NO-UNIT")
+def _kin_avg_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-KIN-AVERAGE-RATES")
+
+
+@mutates("FAL-POWER-RATES-SYMBOL-NO-UNIT")
+def _power_rates_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-POWER-RATES")
+
+
+@mutates("FAL-NLM2-SYMBOL-NO-UNIT")
+def _nlm2_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-NEWTON-SECOND-LAW")
+
+
+@mutates("FAL-WEP9-SYMBOL-NO-UNIT")
+def _wep9_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-WORK-ENERGY-GRADE9")
+
+
+@mutates("FAL-WAVE-SPEED-SYMBOL-NO-UNIT")
+def _wave_speed_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-WAVE-SPEED")
+
+
+@mutates("FAL-MACHINE-MA-SYMBOL-NO-UNIT")
+def _machine_ma_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-SIMPLE-MACHINES-GRADE9")
+
+
 @mutates("FAL-EQ-SYMBOL-NO-DOMAIN")
 def _eq_symbol_no_domain(data):
     del gate(data, "MATH-EQ-CONSTRAINT")["relations"][0]["symbols"][0]["domain"]
@@ -318,6 +352,9 @@ class EveryDeclaredFalsifierIsExecuted(unittest.TestCase):
         self.assertEqual(sorted(set(MUTATIONS) - declared), [])
 
     def test_both_subjects_registries_are_reached(self):
-        # Five of the thirteen cases were in a registry this file never loaded.
-        self.assertEqual(sorted(p.relative_to(REPO).parts[0] for p, *_ in registries()),
-                         ["Mathematics", "Physics"])
+        # Multiple registries may belong to one subject; coverage is about reaching each
+        # subject, not preserving a one-registry-per-subject layout.
+        self.assertEqual(
+            sorted({p.relative_to(REPO).parts[0] for p, *_ in registries()}),
+            ["Mathematics", "Physics"],
+        )

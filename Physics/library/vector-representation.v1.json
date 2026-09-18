@@ -798,7 +798,10 @@
         "SRC-AUTHOR-VEC"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
       "title": "Read, subtract or construct a vector from signed components",
       "capability_refs": [
         "CAP-VECTOR-VS-SCALAR",
@@ -826,10 +829,69 @@
         "Report the magnitude as if it were the answer to a direction question.",
         "Drop or flip a sign when the axis convention changes."
       ],
-      "item_refs": []
+      "item_refs": [
+        "Q-PHY-VECREP-2A-01"
+      ]
     }
   ],
-  "questions": [],
+  "questions": [
+    {
+      "id": "Q-PHY-VECREP-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC",
+      "original_identifier": "AUTHOR-VECREP-2A-01",
+      "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size.",
+        "reasoning": [
+          "Magnitude records size and is nonnegative.",
+          "Opposite arrows can therefore share the same magnitude.",
+          "Their signed components change sign and preserve the directional information that distinguishes the two vectors."
+        ],
+        "check": "Reverse every component sign of one nonzero vector. Its magnitude stays the same while its direction reverses.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-VECTOR-VS-SCALAR",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-VECTOR-MAGNITUDE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Separate the question 'how large?' from the question 'which way?'",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask what happens to component signs when a vector is reversed.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
   "teaching_routes": [],
   "practice_profiles": [],
   "evidence": [],

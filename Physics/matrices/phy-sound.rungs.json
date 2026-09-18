@@ -1,0 +1,229 @@
+{
+  "matrix_id": "MATRIX-PHY-SOUND",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-SOUND",
+  "topic": "Sound",
+  "subtopic": "Production, propagation, wave quantities and reflection",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 15,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+      "ceiling": [
+        "electromagnetic wave",
+        "quantum",
+        "acoustic impedance"
+      ],
+      "must_contain": [
+        "Three distinct sound-production examples identifying the vibrating element: a stretched string, a stretched membrane, and an air column.",
+        "A vibrating source distinguished from the surrounding material medium.",
+        "A vacuum boundary showing that source vibration and sound propagation are different claims."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the sound-producing system from stretched string to stretched membrane to vibrating air column",
+          "hold": "the requirement that some physical source vibrates",
+          "notice": "the vibrating element changes, but vibration remains the common sound-production mechanism"
+        },
+        {
+          "phase": 2,
+          "vary": "the material medium from gas to liquid to solid",
+          "hold": "a vibrating mechanical source",
+          "notice": "ordinary sound can propagate through different material media"
+        },
+        {
+          "phase": 3,
+          "vary": "the amount of material medium toward vacuum",
+          "hold": "the source can still vibrate",
+          "notice": "ordinary sound propagation weakens as the mechanical transmission path is removed"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 35,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-SOUND-LONGITUDINAL",
+      "ceiling": [
+        "pressure differential equation",
+        "acoustic impedance",
+        "transverse polarization"
+      ],
+      "must_contain": [
+        "Compressions and rarefactions moving along one propagation axis.",
+        "One marked particle oscillating locally while the disturbance travels much farther."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the position of the compression pattern",
+          "hold": "one marked particle's equilibrium region",
+          "notice": "the pattern propagates while the particle oscillates locally"
+        },
+        {
+          "phase": 2,
+          "vary": "particle displacement from forward to backward",
+          "hold": "the same propagation direction",
+          "notice": "longitudinal particle motion is parallel to the propagation axis"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 60,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+      "ceiling": [
+        "angular frequency",
+        "phase constant",
+        "wave equation PDE"
+      ],
+      "must_contain": [
+        "A spatial sound-wave graph whose horizontal repeat distance is identified as wavelength.",
+        "A temporal sound-wave graph whose horizontal repeat time is identified as period.",
+        "Amplitude read from vertical extent without confusing it with wavelength or period.",
+        "An explicit derivation v = lambda/T = f lambda for one wave in one medium."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the horizontal graph coordinate from position to time",
+          "hold": "the same repeating disturbance shape",
+          "notice": "repeat spacing changes meaning from wavelength lambda to period T"
+        },
+        {
+          "phase": 2,
+          "vary": "period",
+          "hold": "the same wavelength and medium model",
+          "notice": "frequency changes reciprocally through f = 1/T"
+        },
+        {
+          "phase": 3,
+          "vary": "vertical amplitude",
+          "hold": "period and wavelength",
+          "notice": "disturbance size can change without changing repeat spacing"
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 78,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-SOUND-PERCEPTION",
+      "ceiling": [
+        "phon",
+        "decibel logarithm",
+        "equal-loudness contour"
+      ],
+      "must_contain": [
+        "A matched-amplitude frequency comparison for pitch.",
+        "A matched-frequency sound-strength comparison for loudness.",
+        "The approximate usual human audible band stated as about 20 Hz to 20,000 Hz, with an explicit warning that individual limits vary."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "frequency within the audible band",
+          "hold": "comparable sound strength",
+          "notice": "higher frequency corresponds to higher pitch"
+        },
+        {
+          "phase": 2,
+          "vary": "sound strength/amplitude",
+          "hold": "frequency",
+          "notice": "loudness can change while pitch stays the same"
+        },
+        {
+          "phase": 3,
+          "vary": "frequency from below 20 Hz through 1,000 Hz to above 20,000 Hz",
+          "hold": "the same human-listener model",
+          "notice": "the examples move from below the usual audible band to within it and then above it"
+        }
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 95,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-SOUND-REFLECTION",
+      "ceiling": [
+        "Doppler effect",
+        "interference",
+        "room-mode calculation"
+      ],
+      "must_contain": [
+        "An outward-and-return reflected path before echo distance is calculated.",
+        "A distinction between a separate echo and overlapping reverberation.",
+        "An echolocation example using return timing as a range cue."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "reflector distance",
+          "hold": "sound speed in the same medium",
+          "notice": "round-trip echo delay changes in direct proportion"
+        },
+        {
+          "phase": 2,
+          "vary": "reflection delay spacing",
+          "hold": "the same source event",
+          "notice": "a distinct delayed return can be heard as echo while dense returns merge into reverberation"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Identify source and medium, keep particle motion separate from wave propagation, distinguish the wave quantities, and trace reflection paths before calculating.",
+    "difficult_move": "Knowing which quantity the words describe—particle displacement, amplitude, period, frequency, wavelength, wave speed, pitch, loudness or round-trip delay—before selecting a relation.",
+    "independent_check": "Units and boundary cases must agree: fT=1, v=f lambda for one wave, and echo one-way range is half the round-trip path.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Source, medium, axes and the target quantity are labelled."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Source/medium or the reflection path is labelled."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the real-world sound description is supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A compression/rarefaction description must be translated into local particle motion and propagation direction without drawing particles travelling with the wave.",
+      "information_not_handed_over": "which motion belongs to particles and which belongs to the disturbance",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Frequency, amplitude and wavelength are all changed in a comparison, requiring separate pitch, loudness and speed reasoning rather than one 'bigger wave' judgment.",
+      "information_not_handed_over": "which physical quantity controls each percept/propagation relation",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A cave-mapping or animal echolocation problem must be recognized as an ordinary reflected-sound round-trip timing problem.",
+      "information_not_handed_over": "that the measured delay contains both outward and return paths",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A sampled sound graph must be identified as spatial or temporal before the learner can decide whether horizontal repeat spacing means wavelength or period.",
+      "information_not_handed_over": "whether the horizontal axis is position or time",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A frequency just outside the approximate human audible band must be classified using the Grade 9 hearing-range model without treating 20 Hz and 20,000 Hz as exact personal hearing thresholds.",
+      "information_not_handed_over": "that the quoted audible band is an approximate usual human-hearing model rather than a universal biological cutoff",
+      "repair_to": "R4"
+    }
+  ]
+}
