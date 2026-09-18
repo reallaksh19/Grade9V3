@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 126,
-  "relation_count": 186,
+  "component_count": 128,
+  "relation_count": 187,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 36,
-    "TOOLING": 38,
+    "TEST": 37,
+    "TOOLING": 39,
     "WEB": 5
   },
-  "digest": "sha256:e7750f48a0b6fd921f7eb74638eb3343e2c948316cf955e067ccd989971a6e96",
+  "digest": "sha256:36f3bdb26c2826f47bade0daff1291ae9626d44fe84f04ec8c4fba57a1f32ad2",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -404,6 +404,13 @@
       "sha256": "445bdd8ed4cb253598336012c23fc013e59fde531ce97563f5f5155b136e2116"
     },
     {
+      "path": "Shared/tools/capability_delivery.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 1563,
+      "sha256": "7325248cc79a0dc19a568fa89045997df8acf03fe110678bee79f0d69679ae02"
+    },
+    {
       "path": "Shared/tools/capability_graph.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -526,8 +533,8 @@
       "path": "Shared/tools/session_readiness.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 19146,
-      "sha256": "591a427222c1c81e1f65bc89e0b8374b0519716280f9f60d6207fcfdf7008ccd"
+      "bytes": 19756,
+      "sha256": "5df15af8f50494d61b6d564813def18c42b39f5fbc980de538bd52667339fa25"
     },
     {
       "path": "Shared/tools/source_pipeline.py",
@@ -561,36 +568,36 @@
       "path": "Shared/tools/study_map.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 13275,
-      "sha256": "ba656071bf0cb90387721b5a8880bcc64e97cdce9d6784901765038d7f387a76"
+      "bytes": 13320,
+      "sha256": "485482bc936164d4aa868388457e6beafcf5e97e29073cd932046e28c6969bb6"
     },
     {
       "path": "Shared/tools/study_route.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10283,
-      "sha256": "1413cff451957951436ec94b3d8988492d3bfbaf8f22642bf3ebf1c4270759ce"
+      "bytes": 11908,
+      "sha256": "c5c5476444098148c076ce76105f502da30687e57e4ea575d8051f36c59f7cf3"
     },
     {
       "path": "Shared/tools/study_scope_audit.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 3427,
-      "sha256": "2fbfcdcd572554caac213a11c254fbedd9d42dd2bce45a1846a76c29f49c6cf7"
+      "bytes": 3742,
+      "sha256": "9409f51b3323ca9d40824af9e1eba62e757917f2eafd1c727f7143eabd12ef8c"
     },
     {
       "path": "Shared/tools/study_session.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20821,
-      "sha256": "9de8e3c256cf5b5c12a151ba414e828ae8307f78dea4bd399df15c26a9bcf9cf"
+      "bytes": 22133,
+      "sha256": "864ed1a10cbd485779990de1c8a2b4f59c0d45563f4d62843f6d232c941f79a2"
     },
     {
       "path": "Shared/tools/study_start.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10726,
-      "sha256": "307bf1810d7548ebd0433fe495051dc6514c19f69cf8f954737773a28c8da6a4"
+      "bytes": 10934,
+      "sha256": "ffbcdca9cf0d6db41e3dab26cc512f51706cf82b95d66d3ead4c06824e80cdf6"
     },
     {
       "path": "Shared/tools/topic_independence_allowlist.json",
@@ -610,8 +617,8 @@
       "path": "Shared/tools/worksheet_study_plan.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 14120,
-      "sha256": "99962a759f81de0a62fac58261658c450407201d47ac02a56b29f655f2dc3423"
+      "bytes": 16634,
+      "sha256": "6adff0bb3565b4670c75c88663fc5dce5f8b7bbcf7953002ee8e4602fb87cb9b"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
@@ -682,6 +689,13 @@
       "role_description": "Executable checks",
       "bytes": 8315,
       "sha256": "64e3188025b77013fb76340230b9a4cd911ce7b8e8f34c72fe582fd7952c52e0"
+    },
+    {
+      "path": "tests/test_capability_delivery.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2529,
+      "sha256": "ed11e2123aa54f0acc9bc0299249d5145c8514a769b442f161942ec6518a087d"
     },
     {
       "path": "tests/test_core_issue19_integration.py",
@@ -799,8 +813,8 @@
       "path": "tests/test_session_readiness.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7816,
-      "sha256": "2dd145d1bd0656907b31c59ee220ea1523a957169cda0f5dc5840f6ac392718e"
+      "bytes": 9774,
+      "sha256": "e9f119b4ffcea4f38bd9e48ad00be8c434941d1405b81bb6092bbad4b62c5568"
     },
     {
       "path": "tests/test_source_pipeline.py",
@@ -820,15 +834,15 @@
       "path": "tests/test_study_map.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7068,
-      "sha256": "8cf672a860f3214c2ca7e6d2f767cbad1e221df9135e83dc57abd0241d30cda9"
+      "bytes": 9168,
+      "sha256": "5274b847fba7510d24b5ba22e2bc66188be390dcd6dd877c54946c2ca1f08321"
     },
     {
       "path": "tests/test_study_route.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 6641,
-      "sha256": "0fd6ecc072668ba7a5d957e4337ca272e4501286e3f073d2a7b08d69b56e6d14"
+      "bytes": 12891,
+      "sha256": "99bed66d38afcc028e362c45b2e78ed4a22d7a97a1cdfd46b48959ad0d1733a5"
     },
     {
       "path": "tests/test_study_scope_audit.py",
@@ -841,8 +855,8 @@
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7822,
-      "sha256": "a5be10b3c4afde357bf97688e51b198fce850c7e654274db71505346cb6dd8e9"
+      "bytes": 9011,
+      "sha256": "748473eed4bfee6e6697e1dc14b28df2db05960e913f08e3bbbc60210f78c5c6"
     },
     {
       "path": "tests/test_study_start.py",
@@ -862,8 +876,8 @@
       "path": "tests/test_worksheet_study_plan.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 6286,
-      "sha256": "3f47d4f0f19a1b35a634148b92434af66b03e0f115bcf7bfba81a57c56d094ea"
+      "bytes": 10584,
+      "sha256": "6166fd7df2c25d8c85723409a1b91460c967cb2a32c5cbf586527da92f356b92"
     },
     {
       "path": "tools/app.css",
@@ -1519,6 +1533,11 @@
     },
     {
       "from": "tests/test_c6_examside_motion_in_plane.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_capability_delivery.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
