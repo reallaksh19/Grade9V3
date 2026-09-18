@@ -219,11 +219,29 @@ def plan(request: dict, repo: Path = REPO) -> dict:
         owner_inputs.append({"id": "SOURCE_BASIS", "choices": ["supply source reference"]})
 
     coverage = receipt.get("coverage", {}) if receipt.get("verified") else {}
+    basis_assessment = receipt.get("basis_assessment") or {}
+    unresolved_basis_drift = (
+        receipt.get("verified")
+        and basis_assessment.get("status") == "DRIFT"
+        and request.get("source_basis_drift_acknowledgement")
+            != "KEEP_SUPPLIED_DESPITE_DRIFT"
+    )
+    if unresolved_basis_drift:
+        candidates = list(basis_assessment.get("replacement_candidates") or [])
+        owner_inputs.append({
+            "id": "SOURCE_BASIS_DRIFT_DECISION",
+            "choices": (
+                ["KEEP_SUPPLIED_DESPITE_DRIFT"]
+                + [f"CHANGE_SOURCE_BASIS:{candidate}" for candidate in candidates]
+            ),
+        })
+
     insufficient_practice = any(
         core in requested and (coverage.get(core) or {}).get("status") != "SUFFICIENT"
         for core in PRACTICE
     )
-    if (receipt.get("verified") and insufficient_practice
+    if (receipt.get("verified") and not unresolved_basis_drift
+            and insufficient_practice
             and not request.get("supplemental_question_policy")):
         owner_inputs.append({"id": "SUPPLEMENTAL_QUESTION_POLICY",
                              "choices": ["SOURCE_ONLY", "ALLOW_AUTHORED_CANDIDATES"]})
@@ -252,6 +270,8 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             state, reason = "WAITING_FOR_SOURCE_RECEIPT", "supplied source has no verified inspection receipt"
         elif core in SOURCE_PRODUCTS and receipt["state"] in {"INVALID", "DANGLING"}:
             state, reason = "BLOCKED_SOURCE_RECEIPT", "source inspection receipt is invalid or unresolved"
+        elif core in SOURCE_PRODUCTS and unresolved_basis_drift:
+            state, reason = "WAITING_FOR_SOURCE_BASIS_DECISION", "verified inspection found that the supplied source basis has drifted from the requested topic scope"
         elif core == "CORE2" and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT":
             state, reason = "BLOCKED_SOURCE_CUSTODY", "verified source receipt does not establish sufficient Core2 custody"
         elif core in PRACTICE and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT" and not request.get("supplemental_question_policy"):
@@ -300,6 +320,7 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             "receipt_state": receipt.get("state"),
             "receipt_digest": receipt.get("digest"),
             "inspection": receipt.get("inspection"),
+            "basis_assessment": basis_assessment or None,
             "coverage": coverage,
             "resource_refs": receipt.get("resource_refs", []),
         },
