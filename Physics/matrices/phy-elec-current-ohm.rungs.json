@@ -74,6 +74,26 @@
           "hold": "an ohmic isotropic material at fixed conductivity",
           "notice": "the conventional current-density direction follows E while electron drift is opposite"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CURRENT-DRIFT",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Current from carrier density, charge, area and drift speed needs gate-owned subject truth."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CURRENT-DENSITY-OHMIC",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The local J-E material relation needs gate-owned validity conditions."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "CURRENT_FROM_DRIFT",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "A numerical drift-current exit needs an implemented subject validator."
+        }
       ]
     },
     {
@@ -106,6 +126,14 @@
           "vary": "the component's energy transfer per coulomb",
           "hold": "the same steady current passes through every component in the series path",
           "notice": "voltage can change while current stays unchanged"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-POTENTIAL-DIFFERENCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Energy transferred per unit charge must be owned by a gate relation before teaching."
         }
       ]
     },
@@ -175,6 +203,20 @@
           "hold": "both branches connect to the same two nodes",
           "notice": "the same potential difference appears across both branches and current divides"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-SERIES-RESISTANCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Series equivalent resistance needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-PARALLEL-RESISTANCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Parallel equivalent resistance needs gate ownership."
+        }
       ]
     },
     {
@@ -212,6 +254,26 @@
           "vary": "resistance at fixed current",
           "hold": "the current is maintained and elements are modeled ohmically",
           "notice": "power increases as resistance increases"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-ELECTRIC-POWER",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "P = VI and its applicability need gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-OHMIC-POWER",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Power rewrites using the Ohmic model need a separately conditioned relation."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "ELECTRIC_POWER",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Numerical power items need an implemented validator."
         }
       ]
     },
@@ -251,6 +313,26 @@
           "vary": "the chosen loop traversal direction",
           "hold": "the same circuit and branch-current references",
           "notice": "every loop term reverses consistently and the conservation statement is unchanged"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-KIRCHHOFF-JUNCTION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Junction conservation needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-KIRCHHOFF-LOOP",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Signed loop conservation needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "KIRCHHOFF_NETWORK",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Solved network exits need a validator that checks the declared signs and equations."
         }
       ]
     }
