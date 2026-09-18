@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://grade9v3.local/observation.schema.json",
   "title": "Capability observation",
-  "description": "One thing actually seen. Without this record type provenance DIAGNOSTIC could never be truthful, which is why both committed profiles say UNKNOWN: observation_refs pointed at a record type that did not exist.",
+  "description": "One thing actually seen. Learner evidence stays outside canonical curriculum content. A result may describe what happened, while help/error fields preserve whether the learner was independent and where the first meaningful failure occurred.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -24,6 +24,16 @@
       "minLength": 1,
       "description": "The one capability this observation is about."
     },
+    "question_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional worksheet/canonical question identifier that produced the observation. It is descriptive learner evidence, not source custody."
+    },
+    "session_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional study/session identifier used to group observations from one sitting."
+    },
     "method": {
       "type": "string",
       "minLength": 1,
@@ -44,12 +54,32 @@
     "when": {
       "type": "string",
       "minLength": 1,
-      "description": "ISO date."
+      "description": "ISO date or timestamp. Lexically later ISO values are treated as newer evidence."
     },
     "independence": {
       "type": "string",
       "minLength": 1,
-      "description": "Whether the learner had help, and what kind. Seeing a worked solution is not evidence of independent mastery."
+      "description": "Human-readable note about whether the learner had help. Seeing a worked solution is not evidence of independent mastery."
+    },
+    "help": {
+      "enum": [
+        "NONE",
+        "HINT",
+        "WORKED_EXAMPLE",
+        "SOLUTION",
+        "UNKNOWN"
+      ],
+      "description": "Small structured record of assistance used during this observation."
+    },
+    "error_stage": {
+      "enum": [
+        "CONCEPT",
+        "SETUP",
+        "EXECUTION",
+        "CARELESS",
+        "UNKNOWN"
+      ],
+      "description": "First meaningful failure stage when one can be identified without guessing."
     }
   }
 }
