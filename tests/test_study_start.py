@@ -5,6 +5,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
@@ -85,12 +86,83 @@ class StudyStartOverlay(unittest.TestCase):
         self.assertEqual(rows["CAP-WEP-WORK-DIRECTION"]["learner_action"], "START_HERE")
 
     def test_recordless_matrix_rung_is_not_used_as_a_start_coordinate(self):
-        # On the current core branch Kinematics R2 exists in the matrix but has no
-        # canonical teaching microtopic. A 50% estimate must not strand the learner there.
-        report = study_start.resolve(self.mapping(), [{
-            "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
-            "knowledge_percentage": 50,
-        }])
+        mapping = {
+            "worksheet_id": "START-FALSIFIER",
+            "subject": "Physics",
+            "questions": [],
+        }
+        route = {
+            "worksheet_id": "START-FALSIFIER",
+            "subject": "Physics",
+            "route": [{
+                "order": 1,
+                "capability_ref": "CAP-A",
+                "scope": "PREREQUISITE",
+                "reasons": ["PREREQUISITE"],
+                "required_by_questions": [],
+                "syllabus_source_refs": [],
+                "depends_on": [],
+                "locations": [{
+                    "matrix_id": "MATRIX-X",
+                    "bucket_id": "BUCKET-X",
+                    "rung": "R1",
+                    "ladder_position": 20,
+                    "microtopic_ref": "MIC-A",
+                }],
+                "state": "RESOLVED",
+            }],
+            "findings": [],
+            "passed": True,
+        }
+        index = {
+            "locations": {
+                "CAP-A": [{
+                    "matrix_id": "MATRIX-X",
+                    "bucket_id": "BUCKET-X",
+                    "rung": "R1",
+                    "ladder_position": 20,
+                    "microtopic_ref": "MIC-A",
+                }],
+                "CAP-B": [{
+                    "matrix_id": "MATRIX-X",
+                    "bucket_id": "BUCKET-X",
+                    "rung": "R3",
+                    "ladder_position": 80,
+                    "microtopic_ref": "MIC-B",
+                }],
+            },
+        }
+        boards = {
+            "MATRIX-X": {
+                "matrix_id": "MATRIX-X",
+                "bucket_id": "BUCKET-X",
+                "topic": "Synthetic",
+                "subtopic": "Start falsifier",
+                "rungs": [
+                    {"rung": "R1", "ladder_position": 20, "microtopic_ref": "MIC-A"},
+                    {"rung": "R2", "ladder_position": 50, "microtopic_ref": None},
+                    {"rung": "R3", "ladder_position": 80, "microtopic_ref": "MIC-B"},
+                ],
+            },
+        }
+        with patch.object(
+            study_start.study_route,
+            "resolve",
+            return_value=route,
+        ), patch.object(
+            study_start.study_map,
+            "subject_index",
+            return_value=index,
+        ), patch.object(
+            study_start,
+            "_boards",
+            return_value=boards,
+        ):
+            report = study_start.resolve(mapping, [{
+                "matrix_id": "MATRIX-X",
+                "knowledge_percentage": 50,
+            }])
+
         self.assertTrue(report["passed"], report["findings"])
         decision = report["start_decisions"][0]
         self.assertEqual(decision["selected_rung"], "R1")
