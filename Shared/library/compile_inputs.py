@@ -365,7 +365,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             for record in question_records:
                 if not any(e.get("core") == core for e in record.get("exposure", [])):
                     continue
-                blocks.append(_question_block(core, record, practice_obligation, atoms))
+                blocks += _practice_question_blocks(core, record, practice_obligation, atoms)
         # Whatever was not placed beside a microtopic -- figures carried by the practice
         # obligation -- belongs with the questions, which is where they already sat.
         blocks += [b for b in figures if b not in blocks]
@@ -659,30 +659,73 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
     # is custody of the source, not a decision about how a question is used in teaching.
     exposure = next((e for e in record.get("exposure", []) if e.get("core") == core), None)
     role = ("SOURCE_CUSTODY" if exposure is None else
-            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE"}.get(exposure.get("role"), "PRACTICE"))
+            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE",
+             "NEW_TRANSFER": "NEW_TRANSFER",
+             "PRACTICE": "PRACTICE",
+             "RECONSTRUCTION_ANCHOR": "RECONSTRUCTION_ANCHOR",
+             "WORKED_TO_FADED": "WORKED_TO_FADED",
+             "SPACED_RETRIEVAL": "SPACED_RETRIEVAL"}.get(
+                 exposure.get("role"), "PRACTICE"))
     block = {"id": f'{core}-{record["id"]}', "kind": "QUESTION",
              "obligation_ids": [obligation_id],
              "source_atom_ids": sorted({a["id"] for a in atoms}),
              # source_id is the engine's key into the source inventory, not the
-             # question's provenance. R1.5 read the constant "LIBRARY" here as the
-             # compiler discarding source identity; it is not, and overwriting it broke
-             # the inventory lookup. The identity Core2 requires preserved travels
-             # beside it instead, as its own field.
+             # question's provenance. The authored identity travels beside it.
              "source_id": "LIBRARY", "source_question_id": record["id"],
              "source_refs": list(record.get("source_refs") or []),
              "origin": record.get("origin"),
              "original_number": record["original_identifier"], "stem": record["stem"],
-             "subparts": [], "options": [], "conditions": record.get("conditions", []),
+             "subparts": list(record.get("subparts") or []),
+             "options": list(record.get("options") or []),
+             "conditions": list(record.get("conditions") or []),
              "figure_refs": list(record.get("figure_refs") or []),
-             "answer": {"summary": answer["summary"], "steps": answer["reasoning"],
+             "answer": {"summary": answer["summary"], "steps": list(answer["reasoning"]),
                         "check": answer["check"],
                         **({"difficult_move": answer["difficult_move"]}
                            if answer.get("difficult_move") is not None else {}),
-                        **({"numeric": answer["numeric"]} if answer.get("numeric") else {})},
+                        **({"numeric": deepcopy(answer["numeric"])}
+                           if answer.get("numeric") else {}),
+                        **({"rubric": deepcopy(answer["rubric"])}
+                           if answer.get("rubric") else {})},
              "hints": [dict(hint) for hint in record.get("hints") or []],
              "family": record["family_ref"],
-             "learner_action": "solve", "exposure_role": role}
+             "learner_action": "solve", "exposure_role": role,
+             **({"transfer": deepcopy(record["transfer"])}
+                if record.get("transfer") else {}),
+             **({"repair_ref": record["repair_ref"]}
+                if record.get("repair_ref") else {})}
     return block
+
+
+def _practice_question_blocks(core: str, record: dict, obligation_id: str,
+                              atoms: list[dict]) -> list[dict]:
+    """Compile supported practice openly for A, attempt-first with a closed answer for B."""
+    block = _question_block(core, record, obligation_id, atoms)
+    if core != "CORE2B":
+        return [block]
+
+    prompt_id = f'{core}-{record["id"]}-PROMPT'
+    lines = [
+        f'Question {record["original_identifier"]}.',
+        record["stem"],
+    ]
+    if record.get("conditions"):
+        lines += ["", "Conditions:", *[f'- {item}' for item in record["conditions"]]]
+    if record.get("hints"):
+        lines += ["", "Graduated help:"]
+        lines += [f'- Hint {position}: {hint["text"]}'
+                  for position, hint in enumerate(record["hints"], 1)]
+    lines += ["", f'Origin: {record.get("origin")}.',
+              f'Source refs: {", ".join(record.get("source_refs") or [])}.',
+              "Commit to a response before opening the reveal."]
+
+    prompt = {"id": prompt_id, "kind": "TEXT",
+              "obligation_ids": [obligation_id],
+              "source_atom_ids": sorted({a["id"] for a in atoms}),
+              "text": "\n".join(lines)}
+    block["placement"] = REVEAL_PLACEMENT
+    block["reveals_block_id"] = prompt_id
+    return [prompt, block]
 
 
 def write(compiled: dict, out: Path) -> dict:
