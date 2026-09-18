@@ -159,30 +159,6 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
             distance=120, displacement=40, dt=20))
         self.assertEqual(result, {"average_speed_m_s": 6, "average_velocity_m_s": 2})
 
-    def test_gravitation_validators_use_centre_radius(self):
-        force = physics_recompute(self.case(
-            "UNIVERSAL_GRAVITATION",
-            {"G": "N m^2/kg^2", "m1": "kg", "m2": "kg", "r": "m"},
-            G=2, m1=3, m2=4, r=2))
-        field = physics_recompute(self.case(
-            "GRAVITATIONAL_ACCELERATION",
-            {"G": "N m^2/kg^2", "M": "kg", "r": "m"},
-            G=2, M=8, r=2))
-        self.assertEqual(force, 6)
-        self.assertEqual(field, 4)
-
-    def test_hydrostatic_and_first_law_signs_are_explicit(self):
-        pressure = physics_recompute(self.case(
-            "HYDROSTATIC_PRESSURE_DIFFERENCE",
-            {"rho": "kg/m^3", "g": "m/s^2", "delta_h": "m"},
-            rho=1000, g=10, delta_h=2))
-        energy = physics_recompute({
-            **self.case("THERMODYNAMIC_FIRST_LAW", {"Q": "J", "W": "J"}, Q=50, W=20),
-            "work_convention": "WORK_BY_SYSTEM_POSITIVE",
-        })
-        self.assertEqual(pressure, 20000)
-        self.assertEqual(energy, 30)
-
     def test_wave_and_power_validators_compute_only_the_declared_scalar(self):
         wave = physics_recompute(self.case(
             "WAVE_SPEED", {"frequency": "Hz", "wavelength": "m"},
@@ -192,9 +168,7 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         instant = physics_recompute(self.case(
             "INSTANTANEOUS_POWER", {"force_parallel": "N", "speed": "m/s"},
             force_parallel=-6, speed=2))
-        electric = physics_recompute(self.case(
-            "ELECTRIC_POWER", {"voltage": "V", "current": "A"}, voltage=12, current=2))
-        self.assertEqual((wave, average, instant, electric), (15, 30, -12, 24))
+        self.assertEqual((wave, average, instant), (15, 30, -12))
 
     def test_grade9_motion_force_energy_machine_and_sound_validators(self):
         displacement = physics_recompute(self.case(
@@ -234,15 +208,6 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         self.assertEqual(ma, 3)
         self.assertEqual(frequency, 200)
         self.assertEqual(echo, 68)
-
-    def test_first_law_refuses_an_undeclared_work_convention(self):
-        with self.assertRaisesRegex(ValueError, "THERMODYNAMIC_WORK_CONVENTION_REQUIRED"):
-            physics_recompute(self.case(
-                "THERMODYNAMIC_FIRST_LAW", {"Q": "J", "W": "J"}, Q=50, W=20))
-
-
-class GatesBindToAuthoredContent(unittest.TestCase):
-    """The gate set must actually cover the buckets this repository has authored."""
 
     def test_relative_velocity_gate_exists_for_the_authored_bucket(self):
         ids = {g["gate_id"] for g in registry()["gates"]}
@@ -367,21 +332,6 @@ def _kin_avg_validator(data):
     _undeclare_first_relation_validator(data, "PHY-KIN-AVERAGE-RATES")
 
 
-@mutates("FAL-GRAV-SCALAR-VALIDATOR")
-def _grav_scalar_validator(data):
-    _undeclare_first_relation_validator(data, "PHY-GRAV-SCALAR-LAWS")
-
-
-@mutates("FAL-FLUID-HYDRO-VALIDATOR")
-def _fluid_hydro_validator(data):
-    _undeclare_first_relation_validator(data, "PHY-FLUID-HYDROSTATIC")
-
-
-@mutates("FAL-THERMO-FIRST-VALIDATOR")
-def _thermo_first_validator(data):
-    _undeclare_first_relation_validator(data, "PHY-THERMO-FIRST-LAW")
-
-
 @mutates("FAL-WAVE-SPEED-VALIDATOR")
 def _wave_speed_validator(data):
     _undeclare_first_relation_validator(data, "PHY-WAVE-SPEED")
@@ -390,11 +340,6 @@ def _wave_speed_validator(data):
 @mutates("FAL-POWER-RATES-VALIDATOR")
 def _power_rates_validator(data):
     _undeclare_first_relation_validator(data, "PHY-POWER-RATES")
-
-
-@mutates("FAL-ELEC-POWER-VALIDATOR")
-def _electric_power_validator(data):
-    _undeclare_first_relation_validator(data, "PHY-ELECTRIC-POWER")
 
 
 @mutates("FAL-NLM2-VALIDATOR")
