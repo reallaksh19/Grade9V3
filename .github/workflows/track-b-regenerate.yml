@@ -1,0 +1,35 @@
+name: Track B Regenerate Shared Artifacts
+on:
+  push:
+    branches: [p0-foundations]
+    paths:
+      - ".github/workflows/track-b-regenerate.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p0-foundations
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet jsonschema
+      - name: Regenerate deterministic outputs
+        run: |
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_manifest.py --check
+          git status --short
+      - name: Commit generated outputs and remove this temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/track-b-regenerate.yml
+          git add docs/architecture-manifest.json tools/data.js
+          git commit -m "Regenerate shared artifacts after Track B"
+          git push origin HEAD:p0-foundations
