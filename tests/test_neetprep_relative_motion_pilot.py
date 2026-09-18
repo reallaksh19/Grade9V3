@@ -138,5 +138,119 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
         self.assertNotIn("NEETPREP-MQB-REL-Q8", ids)
 
 
+class RelativeMotionQ4DryRun(unittest.TestCase):
+    """Synthetic dry run of the Q4 learner loop; never empirical learner evidence."""
+
+    FIXTURE = (
+        REPO
+        / "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json"
+    )
+    Q4 = "NEETPREP-MQB-REL-Q4"
+    SESSION = "SESSION-DRY-PHY-REL-Q4-01"
+
+    def mapping(self):
+        return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
+
+    def attempt(self, **kwargs):
+        defaults = {
+            "result": "INCORRECT",
+            "when": "2026-09-18",
+            "session_ref": self.SESSION,
+        }
+        defaults.update(kwargs)
+        return study_session.attempt(self.mapping(), self.Q4, **defaults)
+
+    def test_independent_correct_is_only_an_unreviewed_draft(self):
+        report = self.attempt(result="CORRECT", help_used="NONE")
+        self.assertEqual(report["next_action"], "CONTINUE")
+        self.assertEqual(report["observation_draft"]["result"], "DEMONSTRATED")
+        self.assertEqual(
+            report["observation_draft"]["provenance"],
+            "UNREVIEWED_SESSION_DRAFT",
+        )
+        self.assertEqual(report["persistence"], "NOT_WRITTEN")
+
+    def test_helped_correct_requests_fresh_exit_verification(self):
+        report = self.attempt(result="CORRECT", help_used="HINT")
+        self.assertEqual(report["observation_draft"]["result"], "UNCERTAIN")
+        self.assertEqual(report["next_action"], "VERIFY")
+        self.assertEqual(report["verification"]["kind"], "EXIT_TASK")
+        self.assertEqual(
+            report["verification"]["microtopic_ref"],
+            "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+        )
+
+    def test_ambiguous_failure_diagnoses_without_guessing(self):
+        report = self.attempt(result="UNDECIDABLE")
+        self.assertEqual(report["next_action"], "DIAGNOSE")
+        self.assertIsNone(report["failed_capability_ref"])
+        self.assertIsNone(report["observation_draft"])
+        self.assertTrue(report["diagnostic_options"])
+
+    def test_clear_resultant_constraint_failure_repairs_then_verifies(self):
+        report = self.attempt(
+            failed_capability_ref="CAP-VEC-RESULTANT-CONSTRAINT",
+            error_stage="CONCEPT",
+            misconception_index=0,
+            response_summary=(
+                "Applied the directly-opposite condition to the swimmer vector "
+                "instead of the ground-relative resultant."
+            ),
+        )
+        self.assertEqual(report["next_action"], "REPAIR")
+        self.assertEqual(
+            report["repair"]["microtopic_ref"],
+            "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+        )
+        self.assertEqual(report["observation_draft"]["result"], "MISSING")
+        self.assertEqual(report["after_repair"]["next_action"], "VERIFY")
+        self.assertEqual(
+            report["after_repair"]["verification"]["kind"],
+            "EXIT_TASK",
+        )
+
+    def test_execution_slip_stays_uncertain(self):
+        report = self.attempt(
+            failed_capability_ref="CAP-VEC-RESULTANT-CONSTRAINT",
+            error_stage="EXECUTION",
+            response_summary="Set up the resultant constraint but made an arithmetic slip.",
+        )
+        self.assertEqual(report["observation_draft"]["result"], "UNCERTAIN")
+        self.assertEqual(report["next_action"], "DIAGNOSE")
+
+    def test_explicit_local_prerequisite_failure_can_be_attributed(self):
+        for capability in (
+            "CAP-VECTOR-SIGNED-COMPONENT",
+            "CAP-VEC-COMPONENT-SUM",
+        ):
+            with self.subTest(capability=capability):
+                report = self.attempt(
+                    failed_capability_ref=capability,
+                    error_stage="CONCEPT",
+                    response_summary=f"Dry-run evidence explicitly supports {capability}.",
+                )
+                self.assertNotEqual(report["next_action"], study_session.OWNER_DECISION)
+                self.assertEqual(report["failed_capability_ref"], capability)
+                self.assertEqual(report["observation_draft"]["capability_ref"], capability)
+                self.assertEqual(report["observation_draft"]["result"], "MISSING")
+                self.assertNotIn(
+                    "FEEDBACK_FAILED_CAPABILITY_NOT_REQUIRED",
+                    [row["point"] for row in report["findings"]],
+                )
+
+    def test_explicit_external_prerequisite_failure_requires_owner_decision(self):
+        report = self.attempt(
+            failed_capability_ref="CAP-SIGNED-PAIR-BRIDGE",
+            error_stage="CONCEPT",
+            response_summary="Dry-run evidence explicitly isolates signed-coordinate handling.",
+        )
+        self.assertEqual(report["next_action"], study_session.OWNER_DECISION)
+        self.assertEqual(report["execution_disposition"], study_session.OWNER_DECISION)
+        self.assertIn(
+            "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
+            [row["point"] for row in report["findings"]],
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
