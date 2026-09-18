@@ -29,7 +29,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
-from Shared.tools import review_schedule  # noqa: E402
+from Shared.tools import capability_graph, review_schedule  # noqa: E402
 
 RESULTS = {"CORRECT", "INCORRECT", "UNDECIDABLE"}
 ERROR_STAGES = {"CONCEPT", "SETUP", "EXECUTION", "CARELESS", "UNKNOWN"}
@@ -148,6 +148,16 @@ def required_capabilities(question: dict) -> list[str]:
         question["primary_capability_ref"],
         *list(question.get("secondary_capability_refs") or []),
     ]
+
+
+def prerequisite_capabilities(records: dict, capability_refs: list[str]) -> list[str]:
+    """Canonical prerequisite closure that may be explicitly attributed by reviewed work."""
+    caps = {
+        record_id: record
+        for record_id, record in records.items()
+        if record.get("_collection") == "capabilities"
+    }
+    return capability_graph.prerequisite_closure_many(capability_refs, caps)
 
 
 def microtopics_for_capability(records: dict, capability_ref: str) -> list[dict]:
@@ -384,12 +394,17 @@ def run(request: dict, repo: Path = REPO) -> dict:
         }
 
     candidates = required_capabilities(question)
+    prerequisites = prerequisite_capabilities(records, candidates)
+    attributable = [*candidates, *prerequisites]
     failed = evaluation.get("failed_capability_ref")
-    if failed and failed not in candidates:
+    if failed and failed not in attributable:
         findings.append({
             "point": "FEEDBACK_FAILED_CAPABILITY_NOT_REQUIRED",
             "capability_ref": failed,
-            "detail": "failed_capability_ref is not primary/secondary demand of this question",
+            "detail": (
+                "failed_capability_ref is neither direct question demand nor a canonical "
+                "prerequisite of that demand"
+            ),
         })
         failed = None
     if result == "INCORRECT" and not failed and len(candidates) == 1:
