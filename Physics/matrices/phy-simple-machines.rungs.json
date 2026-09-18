@@ -1,0 +1,166 @@
+{
+  "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
+  "topic": "Work, Energy and Simple Machines",
+  "subtopic": "Simple machines",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 25,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "efficiency formula",
+        "torque equation",
+        "pulley-count formula"
+      ],
+      "must_contain": [
+        "Explicit effort/input and load/output sides.",
+        "A force-distance tradeoff showing why force advantage does not create work."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the effort force",
+          "hold": "the same useful output work in the ideal model",
+          "notice": "a smaller effort force requires a larger effort distance"
+        },
+        {
+          "phase": 2,
+          "vary": "whether the machine changes force direction only or also force magnitude",
+          "hold": "the same load task",
+          "notice": "machine usefulness is broader than force multiplication"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-MACHINE-TRADEOFF",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-IDEAL-MACHINE-WORK",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The force-distance tradeoff must be owned by the ideal-machine work relation before it is taught as subject truth."
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "efficiency",
+        "velocity ratio",
+        "moment equation"
+      ],
+      "must_contain": [
+        "Load force divided by effort force, with both values from the same machine state.",
+        "A dimensionless-unit check and an interpretation of MA = 1 and MA > 1."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the effort force",
+          "hold": "the same load force",
+          "notice": "mechanical advantage changes as the load-to-effort ratio"
+        },
+        {
+          "phase": 2,
+          "vary": "the machine type",
+          "hold": "the same numerical load and effort forces",
+          "notice": "MA is a generic force ratio independent of the machine name"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-MACHINE-MA",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-MECHANICAL-ADVANTAGE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Mechanical advantage requires a gate-owned load/effort ratio."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "MECHANICAL_ADVANTAGE",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Numerical mechanical-advantage exits need the implemented Physics validator."
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "torque equation",
+        "pulley-system formula",
+        "inclined-plane trigonometry"
+      ],
+      "must_contain": [
+        "A lever, pulley and inclined-plane setup all described using effort/load input-output language.",
+        "A fixed-pulley counterexample to the claim that every useful machine reduces force magnitude."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the named machine",
+          "hold": "one fixed load task",
+          "notice": "different machines can change force magnitude, force direction or input distance in different combinations"
+        },
+        {
+          "phase": 2,
+          "vary": "the setup of the same machine type",
+          "hold": "the same effort/load language",
+          "notice": "the device name alone does not determine mechanical advantage"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-MACHINE-COMPARE",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-IDEAL-MACHINE-WORK",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Cross-machine force-distance reasoning inherits the gate-owned ideal work tradeoff."
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Identify effort and load sides, decide what the machine changes about force/direction/distance, and keep the work ledger explicit before interpreting force advantage.",
+    "difficult_move": "Recognizing that a larger output force is paid for by input distance or another tradeoff rather than created energy.",
+    "independent_check": "For an ideal machine, the force-distance products must match; mechanical advantage must be dimensionless and based on load divided by effort.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Effort/load sides and the relevant tradeoff are labelled."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Effort and load sides are labelled."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the real-world machine setup is supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "novelty",
+      "changed_demand": "An unfamiliar workshop tool must be analysed as a generic effort/load machine without being named as a lever, pulley or incline.",
+      "information_not_handed_over": "which familiar simple-machine label applies",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A fixed pulley changes force direction but not magnitude, requiring the learner to reject the assumption that all useful machines have MA > 1.",
+      "information_not_handed_over": "whether usefulness requires force multiplication",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A force advantage is given and the learner must infer the compensating distance tradeoff before calculating or claiming an energy gain.",
+      "information_not_handed_over": "which input/output distances complete the work ledger",
+      "repair_to": "R1"
+    }
+  ]
+}
