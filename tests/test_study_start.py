@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -85,12 +86,66 @@ class StudyStartOverlay(unittest.TestCase):
         self.assertEqual(rows["CAP-WEP-WORK-DIRECTION"]["learner_action"], "START_HERE")
 
     def test_recordless_matrix_rung_is_not_used_as_a_start_coordinate(self):
-        # On the current core branch Kinematics R2 exists in the matrix but has no
-        # canonical teaching microtopic. A 50% estimate must not strand the learner there.
-        report = study_start.resolve(self.mapping(), [{
-            "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
-            "knowledge_percentage": 50,
-        }])
+        # Architecture falsifier, not a snapshot of current Physics content. Build one
+        # temporary subject where R2 exists in the matrix but has no canonical teaching
+        # microtopic. A 50% estimate must not strand the learner there.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Example/matrices").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [{
+                    "id": "CAP-A",
+                    "action": "Do A",
+                    "success_criterion": "A is done",
+                    "prerequisite_refs": [],
+                }],
+                "microtopics": [{
+                    "id": "MIC-A",
+                    "primary_capability_ref": "CAP-A",
+                }],
+                "questions": [],
+            }), encoding="utf-8")
+            (root / "Example/matrices/example.rungs.json").write_text(json.dumps({
+                "matrix_id": "MATRIX-EXAMPLE",
+                "bucket_id": "BUCKET-EXAMPLE",
+                "topic": "Example",
+                "subtopic": "Example",
+                "rungs": [
+                    {
+                        "rung": "R1",
+                        "ladder_position": 20,
+                        "microtopic_ref": "MIC-A"
+                    },
+                    {
+                        "rung": "R2",
+                        "ladder_position": 45,
+                        "microtopic_ref": "MIC-NOT-AUTHORED"
+                    }
+                ]
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-WORKSHEET",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-A",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_start.resolve(mapping, [{
+                "matrix_id": "MATRIX-EXAMPLE",
+                "knowledge_percentage": 50,
+            }], root)
+
         self.assertTrue(report["passed"], report["findings"])
         decision = report["start_decisions"][0]
         self.assertEqual(decision["selected_rung"], "R1")
