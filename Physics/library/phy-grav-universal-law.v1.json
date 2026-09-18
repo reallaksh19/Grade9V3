@@ -105,6 +105,42 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-GRAV-R2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute or compare gravitational-force magnitudes from masses and centre-to-centre separation.",
+      "success_criterion": "Applies direct mass proportionality and inverse-square separation dependence with r measured between centres.",
+      "prerequisite_refs": [
+        "CAP-PHY-GRAV-R1"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-GRAV-R3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Determine source-produced gravitational acceleration independently of test mass.",
+      "success_criterion": "Cancels the same test mass from gravitational force and m a and uses g = G M / r^2.",
+      "prerequisite_refs": [
+        "CAP-PHY-GRAV-R2"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -508,9 +544,445 @@
           "confirms": "The learner ties conservation to central-force geometry about the named origin rather than to orbital motion in general."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-GRAV-R2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Gravitational force scales with both masses and inverse square of centre separation",
+      "bucket_id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "primary_capability_ref": "CAP-PHY-GRAV-R2",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The inverse-square dependence is often remembered while the geometric meaning of r is lost.",
+      "entry_assumptions": [
+        "Can identify the mutual force pair from the conceptual gravity rung and can square a positive distance."
+      ],
+      "inferential_jump": "For the declared point-mass or spherical model, force magnitude is proportional to each mass and inversely proportional to the square of centre-to-centre separation.",
+      "teaching_path": [
+        {
+          "id": "GRAV-R2-1",
+          "role": "DECLARE",
+          "action": "Mark the two body centres and label their separation r before substituting any number.",
+          "why_valid": "The gate relation uses centre-to-centre distance, not surface gap.",
+          "inputs": [
+            "CAP-PHY-GRAV-R1"
+          ],
+          "output": "r: centre-to-centre separation."
+        },
+        {
+          "id": "GRAV-R2-2",
+          "role": "TRANSFORM",
+          "action": "Hold r fixed and vary one mass, then hold both masses fixed and vary r.",
+          "why_valid": "Separating the changes exposes direct mass proportionality and inverse-square distance dependence.",
+          "inputs": [
+            "REL-UNIVERSAL-GRAVITATION"
+          ],
+          "output": "m doubled -> F doubled; r tripled -> F divided by 9."
+        },
+        {
+          "id": "GRAV-R2-3",
+          "role": "VERIFY",
+          "action": "Check dimensions and the limiting trend as r increases.",
+          "why_valid": "The expression must produce force units and decrease toward zero as separation grows.",
+          "inputs": [],
+          "output": "units -> N; larger r -> smaller F."
+        }
+      ],
+      "relation_refs": [
+        "REL-UNIVERSAL-GRAVITATION"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The inverse-square distance is the empty gap between surfaces.",
+          "diagnostic_prompt": "Two large spheres nearly touch. Is r nearly zero in the universal-gravitation relation?",
+          "repair": "Mark both centres first; r is the centre-to-centre separation."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two spherical bodies of masses 1.0e6 kg and 2.0e6 kg have centres 10 m apart. Using G = 6.6743e-11 N m^2/kg^2, find the gravitational-force magnitude.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The gravitational-force magnitude is 1.33486 N.",
+          "reasoning": [
+            "Use centre-to-centre r = 10 m.",
+            "F = G m1 m2 / r^2 = 6.6743e-11 x 1.0e6 x 2.0e6 / 100.",
+            "This gives 1.33486 N."
+          ],
+          "check": "Tripling the separation with the same masses would divide this force by nine.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "UNIVERSAL_GRAVITATION",
+            "bindings": {
+              "G": "DAT-GRAV-G",
+              "m1": "DAT-GRAV-M1",
+              "m2": "DAT-GRAV-M2",
+              "r": "DAT-GRAV-R-FORCE"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created inverse-square construction bound to gate-owned gravitation and an implemented validator.",
+      "prerequisite_refs": [
+        "CAP-PHY-GRAV-R1"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If the two masses stay fixed but their centre separation triples, by what factor should the gravitational-force magnitude change?",
+          "defensible_answer": "It becomes one ninth as large because the distance appears squared in the denominator."
+        },
+        "attempt": {
+          "produces": "A marked centre-to-centre r followed by a mass-factor and distance-factor comparison.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses centre-to-centre separation.",
+              "evidence_of": "Preserving the geometry required by the relation."
+            },
+            {
+              "criterion": "Applies the square to the separation factor.",
+              "evidence_of": "Using inverse-square rather than inverse-linear reasoning."
+            }
+          ],
+          "accepted": [
+            "Mass x2 gives force x2; distance x3 gives force /9."
+          ],
+          "rejected": [
+            "Using the surface gap as r or dividing force only by 3 when r triples."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where are the two centres?",
+              "why_this_ask": "It fixes the geometric meaning of r.",
+              "from_step_ref": "GRAV-R2-1"
+            },
+            {
+              "ask": "Which factors in the numerator change when one mass doubles?",
+              "why_this_ask": "It isolates direct proportionality."
+            },
+            {
+              "ask": "Where does r appear in the relation?",
+              "why_this_ask": "It exposes the square before a ratio is applied.",
+              "from_step_ref": "GRAV-R2-2"
+            },
+            {
+              "ask": "What limiting trend should occur as r becomes very large?",
+              "why_this_ask": "It gives an independent physical check.",
+              "from_step_ref": "GRAV-R2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states separate controlled variations; the learner route begins from the geometry of r and reconstructs each scaling factor."
+        },
+        "boundary_test": {
+          "prompt": "At fixed positive masses, what happens to the force magnitude as r becomes very large?",
+          "answer": "It approaches zero under the inverse-square model.",
+          "confirms": "The inverse-square dependence has the expected long-range trend."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-GRAV-R3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Source gravitational acceleration does not depend on test mass",
+      "bucket_id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "primary_capability_ref": "CAP-PHY-GRAV-R3",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The test mass appears in the force law, so its later cancellation can look like an algebra trick unless both physical roles are shown.",
+      "entry_assumptions": [
+        "Can use the universal gravitation magnitude relation and can identify the same test mass in F = m a."
+      ],
+      "inferential_jump": "At a fixed radius from one source, the same test mass multiplies both gravitational force and inertial response, so it cancels and leaves g = G M / r^2.",
+      "teaching_path": [
+        {
+          "id": "GRAV-R3-1",
+          "role": "DECLARE",
+          "action": "Write the gravitational force on a test mass beside the same body's inertial form m_test g.",
+          "why_valid": "The two expressions describe the same net gravitational force for the stated falling-body model.",
+          "inputs": [
+            "REL-UNIVERSAL-GRAVITATION"
+          ],
+          "output": "G M m_test / r^2 = m_test g."
+        },
+        {
+          "id": "GRAV-R3-2",
+          "role": "TRANSFORM",
+          "action": "Cancel the same nonzero test mass from both sides.",
+          "why_valid": "The same multiplicative factor appears in both the interaction force and the inertial response.",
+          "inputs": [
+            "REL-GRAVITATIONAL-ACCELERATION"
+          ],
+          "output": "g = G M / r^2."
+        },
+        {
+          "id": "GRAV-R3-3",
+          "role": "VERIFY",
+          "action": "Change only the test mass while holding source mass and radius fixed.",
+          "why_valid": "The resulting acceleration expression contains no test-mass term.",
+          "inputs": [],
+          "output": "same M and r; different test mass -> same g."
+        }
+      ],
+      "relation_refs": [
+        "REL-UNIVERSAL-GRAVITATION",
+        "REL-GRAVITATIONAL-ACCELERATION"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A heavier falling test object must have a larger gravitational acceleration because gravity pulls it harder.",
+          "diagnostic_prompt": "At one radius the heavier object has a larger gravitational force. Does its inertia remain unchanged?",
+          "repair": "Write both F_grav and m_test g; the same test mass scales both force and inertial response and cancels."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A source mass is 5.0e11 kg and a point is 2 m from its centre. Using G = 6.6743e-11 N m^2/kg^2, find the source-produced gravitational acceleration there and state whether a 1 kg and 5 kg test mass receive different gravitational accelerations.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "g = 8.342875 m/s^2, and both test masses have the same gravitational acceleration in this model.",
+          "reasoning": [
+            "g = G M / r^2 = 6.6743e-11 x 5.0e11 / 4.",
+            "This gives 8.342875 m/s^2.",
+            "The test mass does not appear in the final source-field expression."
+          ],
+          "check": "Substituting either test mass into F = m_test g changes force in direct proportion to mass but leaves F/m_test equal to the same g.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "GRAVITATIONAL_ACCELERATION",
+            "bindings": {
+              "G": "DAT-GRAV-G",
+              "M": "DAT-GRAV-M-SOURCE",
+              "r": "DAT-GRAV-R-FIELD"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created test-mass cancellation construction bound to gate-owned source-field acceleration.",
+      "prerequisite_refs": [
+        "CAP-PHY-GRAV-R2"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "At the same radius from one source, a 5 kg test body feels five times the gravitational force of a 1 kg test body. Must it accelerate five times as much?",
+          "defensible_answer": "No. Its inertia is also five times as large, so the gravitational acceleration is the same under the model."
+        },
+        "attempt": {
+          "produces": "Two force expressions for different test masses followed by the common F/m acceleration.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Shows the test mass in both gravitational force and m a.",
+              "evidence_of": "Representing both gravitational interaction and inertial response."
+            },
+            {
+              "criterion": "Cancels the same test mass before comparing accelerations.",
+              "evidence_of": "Explaining mass-independence rather than asserting it."
+            }
+          ],
+          "accepted": [
+            "G M m/r^2 = m g -> g = G M/r^2 for either test mass."
+          ],
+          "rejected": [
+            "Heavier test body accelerates more solely because its gravitational force is larger."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "How does the gravitational force change when only the test mass changes?",
+              "why_this_ask": "It acknowledges the larger force rather than denying it.",
+              "from_step_ref": "GRAV-R3-1"
+            },
+            {
+              "ask": "How does the inertial term m a change with the same test mass?",
+              "why_this_ask": "It places the same scaling on the response side."
+            },
+            {
+              "ask": "What factor appears on both sides?",
+              "why_this_ask": "It makes the cancellation physically interpretable.",
+              "from_step_ref": "GRAV-R3-2"
+            },
+            {
+              "ask": "What variables remain in g?",
+              "why_this_ask": "It tests whether test mass truly left the model.",
+              "from_step_ref": "GRAV-R3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path performs the cancellation directly; the learner route starts from the apparently stronger force on the heavier test body and reconciles it with greater inertia."
+        },
+        "boundary_test": {
+          "prompt": "If source mass and radius stay fixed while test mass changes, which quantity changes: gravitational force, gravitational acceleration, or both?",
+          "answer": "Force changes in proportion to test mass; gravitational acceleration remains the same.",
+          "confirms": "The model separates source-field strength from the force on a particular test mass."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-UNIVERSAL-GRAVITATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "F = G m1 m2 / r^2",
+      "meaning": "Magnitude of the mutual gravitational force for the declared point-mass/spherical model.",
+      "symbols": [
+        {
+          "symbol": "F",
+          "meaning": "Gravitational-force magnitude",
+          "unit_or_domain": "N; nonnegative scalar"
+        },
+        {
+          "symbol": "G",
+          "meaning": "Universal gravitational constant",
+          "unit_or_domain": "N m^2/kg^2; positive constant"
+        },
+        {
+          "symbol": "m1",
+          "meaning": "First mass",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "m2",
+          "meaning": "Second mass",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "r",
+          "meaning": "Centre-to-centre separation",
+          "unit_or_domain": "m; positive scalar"
+        }
+      ],
+      "conditions": [
+        "G > 0, m1 > 0, m2 > 0 and r > 0.",
+        "Use centre-to-centre separation.",
+        "Point-mass model or spherical bodies where the shell theorem reduction is valid."
+      ],
+      "derivation": [
+        {
+          "id": "GRAV-R2-D1",
+          "role": "DECLARE",
+          "action": "Mark both body centres and use their separation as r.",
+          "why_valid": "The gate relation is defined using centre-to-centre separation.",
+          "inputs": [],
+          "output": "r = distance between centres."
+        },
+        {
+          "id": "GRAV-R2-D2",
+          "role": "TRANSFORM",
+          "action": "Multiply G by both masses and divide by r squared.",
+          "why_valid": "REL-UNIVERSAL-GRAVITATION owns the inverse-square magnitude law.",
+          "inputs": [],
+          "output": "F = G m1 m2 / r^2."
+        }
+      ],
+      "limits": [
+        "Do not substitute surface gap for r.",
+        "Extended nonspherical mass distributions may require a different field calculation."
+      ],
+      "checks": [
+        "Doubling either mass doubles F at fixed r.",
+        "Tripling r divides F by nine at fixed masses."
+      ],
+      "gate_relation_ref": "REL-UNIVERSAL-GRAVITATION"
+    },
+    {
+      "id": "REL-GRAVITATIONAL-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "g = G M / r^2",
+      "meaning": "Magnitude of the gravitational acceleration produced by source mass M at radius r.",
+      "symbols": [
+        {
+          "symbol": "g",
+          "meaning": "Gravitational acceleration magnitude",
+          "unit_or_domain": "m/s^2; nonnegative scalar"
+        },
+        {
+          "symbol": "G",
+          "meaning": "Universal gravitational constant",
+          "unit_or_domain": "N m^2/kg^2; positive constant"
+        },
+        {
+          "symbol": "M",
+          "meaning": "Source mass",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "r",
+          "meaning": "Distance from the source centre",
+          "unit_or_domain": "m; positive scalar"
+        }
+      ],
+      "conditions": [
+        "G > 0, M > 0 and r > 0.",
+        "Other source fields are excluded from this single-source relation."
+      ],
+      "derivation": [
+        {
+          "id": "GRAV-R3-D1",
+          "role": "TRANSFORM",
+          "action": "Write the test-body force as m_test g and the gravitational interaction magnitude as G M m_test / r^2.",
+          "why_valid": "Both describe the same gravitational force on the same test body under the model.",
+          "inputs": [
+            "REL-UNIVERSAL-GRAVITATION"
+          ],
+          "output": "m_test g = G M m_test / r^2."
+        },
+        {
+          "id": "GRAV-R3-D2",
+          "role": "TRANSFORM",
+          "action": "Cancel the same nonzero test mass from both sides.",
+          "why_valid": "The same test mass multiplies both inertial response and gravitational force.",
+          "inputs": [],
+          "output": "g = G M / r^2."
+        }
+      ],
+      "limits": [
+        "The relation is for the source contribution at radius r and does not include other fields or non-gravitational acceleration."
+      ],
+      "checks": [
+        "Changing the test mass at fixed source and radius leaves g unchanged.",
+        "Increasing r decreases g by the inverse-square factor."
+      ],
+      "gate_relation_ref": "REL-GRAVITATIONAL-ACCELERATION"
+    }
+  ],
   "representations": [],
   "question_families": [
     {
@@ -771,5 +1243,102 @@
   "evidence": [],
   "known_issues": [],
   "extensions": {},
-  "data": []
+  "data": [
+    {
+      "id": "DAT-GRAV-G",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 6.6743e-11,
+      "unit": "N m^2/kg^2",
+      "symbol": "G",
+      "meaning": "Universal gravitational constant used in the authored quantitative exits.",
+      "locator": "CODATA-style rounded value authored for this exercise."
+    },
+    {
+      "id": "DAT-GRAV-M1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1000000,
+      "unit": "kg",
+      "symbol": "m1",
+      "meaning": "First mass in the authored force exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-GRAV-M2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2000000,
+      "unit": "kg",
+      "symbol": "m2",
+      "meaning": "Second mass in the authored force exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-GRAV-R-FORCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 10,
+      "unit": "m",
+      "symbol": "r",
+      "meaning": "Centre-to-centre separation in the authored force exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-GRAV-M-SOURCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 500000000000,
+      "unit": "kg",
+      "symbol": "M",
+      "meaning": "Source mass in the authored field-acceleration exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-GRAV-R-FIELD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2,
+      "unit": "m",
+      "symbol": "r",
+      "meaning": "Radius from the source centre in the authored field-acceleration exit.",
+      "locator": "Author-created exact practice datum."
+    }
+  ]
 }
