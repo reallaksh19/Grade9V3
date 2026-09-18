@@ -1,0 +1,33 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://grade9v3.local/authoring-run-receipt.schema.json",
+  "title":"Authoring run receipt",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "run_id","version","actor_id","run_date","packet_id","packet_digest",
+    "request_id","request_digest","core","authoring_action","work_order_digest",
+    "write_scope","library_before","library_after","changed_records",
+    "artifacts","validation","acceptance_commands"
+  ],
+  "properties":{
+    "run_id":{"type":"string","minLength":1},
+    "version":{"const":"1.0.0"},
+    "actor_id":{"type":"string","minLength":1},
+    "run_date":{"type":"string","minLength":1},
+    "packet_id":{"type":"string","minLength":1},
+    "packet_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "request_id":{"type":["string","null"]},
+    "request_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "core":{"enum":["CORE1","CORE2","CORE1A","CORE1B","CORE2A","CORE2B"]},
+    "authoring_action":{"enum":["BUILD_FROM_CANONICAL","AUTHOR_CANDIDATE_QUESTION"]},
+    "work_order_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "write_scope":{"type":"object"},
+    "library_before":{"anyOf":[{"type":"object"},{"type":"null"}]},
+    "library_after":{"anyOf":[{"type":"object"},{"type":"null"}]},
+    "changed_records":{"type":"array","items":{"type":"object"}},
+    "artifacts":{"type":"array","items":{"type":"object"}},
+    "validation":{"type":"object"},
+    "acceptance_commands":{"type":"array","items":{"type":"string"}}
+  }
+}
