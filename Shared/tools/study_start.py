@@ -182,6 +182,11 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     for row in route.get("route", []):
         item = dict(row)
         locations = row.get("locations") or []
+        if row.get("state") == "EXTERNAL_BRIDGE":
+            item["learner_action"] = "BRIDGE"
+            item["estimate_basis"] = None
+            learner_route.append(item)
+            continue
         if row.get("state") != "RESOLVED" or len(locations) != 1:
             item["learner_action"] = "UNRESOLVED"
             item["estimate_basis"] = None

@@ -127,19 +127,29 @@ def _capability_row(capability_ref: str, role: str, index: dict) -> tuple[dict, 
         }])
 
     locations = list(index["locations"].get(capability_ref, []))
+    external_provider = cap.get("external_provider")
+    if len(locations) == 1:
+        state = "RESOLVED"
+    elif not locations and external_provider:
+        state = "EXTERNAL_BRIDGE"
+    elif not locations:
+        state = "NO_TEACHING_LOCATION"
+    else:
+        state = "AMBIGUOUS_LOCATION"
+
     row = {
         "role": role,
         "capability_ref": capability_ref,
-        "state": "RESOLVED" if len(locations) == 1 else (
-            "NO_TEACHING_LOCATION" if not locations else "AMBIGUOUS_LOCATION"
-        ),
+        "state": state,
         "action": cap.get("action"),
         "success_criterion": cap.get("success_criterion"),
         "microtopic_refs": list(index["microtopics_by_capability"].get(capability_ref, [])),
         "locations": locations,
+        "external_provider": external_provider,
+        "acceptance_status": cap.get("acceptance_status"),
     }
     findings = []
-    if not locations:
+    if not locations and not external_provider:
         findings.append({
             "point": NO_TEACHING_LOCATION,
             "capability": capability_ref,
@@ -303,6 +313,10 @@ def readable(report: dict) -> str:
         out += [f'## {question["question_id"]} -- {question["state"]}', ""]
         for cap in question.get("capabilities", []):
             out += [f'  {cap["role"]:9} {cap["capability_ref"]} -- {cap["state"]}']
+            if cap.get("state") == "EXTERNAL_BRIDGE":
+                out += [
+                    f'            external provider: {cap.get("external_provider")}'
+                ]
             for loc in cap.get("locations", []):
                 out += [
                     f'            {loc["matrix_id"]} / {loc["rung"]} '

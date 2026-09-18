@@ -33,7 +33,7 @@ def audit(mapping: dict, proposed_capabilities: list[str] | None = None,
 
     routed = {row["capability_ref"]: row for row in route.get("route", [])}
     for row in route.get("route", []):
-        if row["state"] == "RESOLVED":
+        if row["state"] in {"RESOLVED", "EXTERNAL_BRIDGE"}:
             continue
         point = (ASSESSMENT_NOT_TAUGHT if "QUESTION_DEMAND" in row["reasons"]
                  else STUDY_NOT_TAUGHT)

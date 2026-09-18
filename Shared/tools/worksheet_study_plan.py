@@ -114,6 +114,11 @@ def _attention_for(capabilities: list[dict], observations: dict[str, dict]) -> t
 
 def _route_action(row: dict, learner_state: dict) -> tuple[str, str]:
     """Let real evidence override an estimate; otherwise preserve study_start's action."""
+    if row.get("state") == "EXTERNAL_BRIDGE":
+        provider = row.get("external_provider") or "external provider"
+        status = row.get("acceptance_status")
+        suffix = f" ({status})" if status else ""
+        return "BRIDGE", f"Use/check the declared provider: {provider}{suffix}."
     if row.get("state") != "RESOLVED":
         return "UNRESOLVED", "Canonical teaching location is unresolved."
 
@@ -184,8 +189,11 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             capability_rows.append({
                 "role": cap.get("role"),
                 "capability_ref": capability_ref,
+                "state": cap.get("state"),
                 "action": cap.get("action"),
                 "success_criterion": cap.get("success_criterion"),
+                "external_provider": cap.get("external_provider"),
+                "acceptance_status": cap.get("acceptance_status"),
                 "learner_state": state,
                 "lessons": lessons,
             })
@@ -204,6 +212,11 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             lesson["label"]
             for cap in capability_rows
             for lesson in cap.get("lessons", [])
+        ]
+        lesson_labels += [
+            f'External bridge: {cap.get("external_provider")}'
+            for cap in capability_rows
+            if cap.get("state") == "EXTERNAL_BRIDGE"
         ]
         question_state, attention = _attention_for(capability_rows, observations)
         question_rows.append({
@@ -287,6 +300,8 @@ def readable(report: dict) -> str:
     ]
     for row in report.get("route", []):
         lesson = " + ".join(item["label"] for item in row.get("lessons", []))
+        if not lesson and row.get("state") == "EXTERNAL_BRIDGE":
+            lesson = f'External bridge: {row.get("external_provider")}'
         out.append(
             "| " + " | ".join([
                 _md(row.get("order")),
