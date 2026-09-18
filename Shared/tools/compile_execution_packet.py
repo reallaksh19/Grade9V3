@@ -227,8 +227,24 @@ def compile_packet(request: dict, repo: Path = REPO) -> dict:
     return packet
 
 
+def _schema_findings(packet: dict, repo: Path = REPO) -> list[dict]:
+    try:
+        import jsonschema
+    except ModuleNotFoundError:
+        return []
+    schema = load(repo / "Shared/library/execution-packet.schema.json")
+    return [
+        {
+            "point": "EXECUTION_PACKET_STRUCTURE",
+            "where": "/".join(str(part) for part in error.path),
+            "detail": error.message,
+        }
+        for error in jsonschema.Draft202012Validator(schema).iter_errors(packet)
+    ]
+
+
 def verify(packet: dict, request: dict, repo: Path = REPO) -> dict:
-    found = []
+    found = list(_schema_findings(packet, repo))
     def fail(point: str, where: str, detail: str) -> None:
         found.append({"point": point, "where": where, "detail": detail})
 
