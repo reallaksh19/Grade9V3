@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 129,
+  "component_count": 130,
   "relation_count": 189,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 38,
+    "TEST": 39,
     "TOOLING": 39,
     "WEB": 5
   },
-  "digest": "sha256:929b84931868aeebdbb1fab6fb4f9c044ea81ef4ff9877e86af7d10e1e6b9af7",
+  "digest": "sha256:ba1ab4614d16a0259f5afac3d1ac1db21144f9dad76e6f5329b4f1633e774d36",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -689,6 +689,13 @@
       "role_description": "Executable checks",
       "bytes": 10334,
       "sha256": "16e736a3d347d17c500075e1d0fbeee1748d0cc5fb2bd92f267212cdd9676e3a"
+    },
+    {
+      "path": "tests/test_blueprint_regression.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3587,
+      "sha256": "fd0bff6cfe167981e2fbac4cccdbcdf7ec9401f1723b3d7348d86a02a1d37b0e"
     },
     {
       "path": "tests/test_c6_examside_motion_in_plane.py",
