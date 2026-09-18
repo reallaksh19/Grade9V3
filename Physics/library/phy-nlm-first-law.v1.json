@@ -45,7 +45,10 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
+        "grade9_track": "STANDARD"
+      },
       "title": "Force and Newton's laws",
       "topic": "Laws of Motion",
       "intrinsic_badge": "MEDIUM",
@@ -1270,7 +1273,12 @@
       ],
       "item_refs": [
         "Q-PHY-NLM-2A-01",
-        "Q-PHY-NLM-2B-01"
+        "Q-PHY-NLM-2B-01",
+        "Q-PHY-NLM-2A-COV-02",
+        "Q-PHY-NLM-2A-COV-03",
+        "Q-PHY-NLM-2A-COV-04",
+        "Q-PHY-NLM-2A-COV-05",
+        "Q-PHY-NLM-2A-COV-06"
       ]
     }
   ],
@@ -1399,6 +1407,278 @@
         ]
       },
       "repair_ref": "NLM4-1"
+    },
+    {
+      "id": "Q-PHY-NLM-2A-COV-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-COVERAGE-02",
+      "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.",
+        "reasoning": [
+          "Each force remains an actual interaction on the body.",
+          "Opposite equal directional effects cancel only when combined.",
+          "A zero net force is consistent with unchanged velocity."
+        ],
+        "check": "Increase both forces equally; the net remains zero even though neither individual force disappears.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-FORCES-SUM-ZERO",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Before adding anything, how many pushes are physically acting on the box?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "List every interaction force on the body, then combine their directions; cancellation belongs to the net result, not to the individual forces.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-COV-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-COVERAGE-03",
+      "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
+        "reasoning": [
+          "Choose the box first.",
+          "Ask which member of the contact pair acts on the box.",
+          "The partner acts on the person, so it cannot cancel the first force on the box diagram."
+        ],
+        "check": "Switch the chosen body to the person; the membership of the two partner arrows must switch with it.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Which single body are you describing first?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-COV-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-COVERAGE-04",
+      "stem": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The friction force on the box points to the right.",
+        "reasoning": [
+          "Relative to the belt, the box tends to slip left at the contact.",
+          "Friction opposes that relative slip tendency.",
+          "Therefore the belt's friction on the box points right and accelerates it."
+        ],
+        "check": "The answer is allowed to point with the box's motion because friction is defined by the contact slip tendency, not by the box's velocity alone.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Which two surfaces are in contact?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Decide the relative sliding tendency at the contact first; friction opposes that tendency.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-COV-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-COVERAGE-05",
+      "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The acceleration is +3 m/s^2.",
+        "reasoning": [
+          "Use F_net = m a for the chosen body.",
+          "a = +12 N / 4 kg = +3 m/s^2.",
+          "The positive sign matches the net-force direction."
+        ],
+        "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Which body are we solving for?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "NEWTON_SECOND_LAW",
+        "bindings": {
+          "mass": "DAT-NLM-MASS",
+          "acceleration": "DAT-NLM-ACCEL"
+        }
+      }
+    },
+    {
+      "id": "Q-PHY-NLM-2A-COV-06",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-COVERAGE-06",
+      "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
+        "reasoning": [
+          "The interaction is swimmer-water contact.",
+          "Swimmer on water acts on the water.",
+          "Water on swimmer acts on the swimmer in the opposite direction."
+        ],
+        "check": "Only the water-on-swimmer force belongs on the swimmer's free-body diagram.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-THIRD-LAW",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What is the interaction?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "No. Put each partner on the body it acts on; only then sum forces for one body.",
+          "reveals": "METHOD"
+        }
+      ]
     }
   ],
   "teaching_routes": [
@@ -1503,7 +1783,9 @@
   "practice_profiles": [],
   "evidence": [],
   "known_issues": [],
-  "extensions": {},
+  "extensions": {
+    "grade9_track": "STANDARD"
+  },
   "data": [
     {
       "id": "DAT-NLM-ILLUSTRATIVE-SPEED",
