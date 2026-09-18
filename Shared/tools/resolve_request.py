@@ -103,8 +103,8 @@ def entry_from_position(rows: list, position: int) -> dict:
 
     A parent's "about 60%" is useful even when the ladder happens to use 20/55/70/85.
     Select the greatest declared position not above the estimate; below the first rung,
-    start at the first rung. Prerequisite backtracking still runs afterwards, so this
-    choice cannot prove that anything below it is held.
+    start at the first rung. This chooses where to try first. It does not mark earlier
+    capabilities as demonstrated.
     """
     if not rows:
         return {"rung": None, "why": "EMPTY_LADDER",
@@ -122,6 +122,44 @@ def entry_from_position(rows: list, position: int) -> dict:
             f'{selected["rung"]} at {selected.get("ladder_position")}; '
             "this is a starting coordinate, not evidence of prerequisite mastery"
         ),
+    }
+
+
+def resolve_owner_estimate(rows: list, position: int, caps: dict, mics: dict) -> dict:
+    """Respect a rough owner estimate while naming what still has not been evidenced.
+
+    The estimate is allowed to choose a starting rung because that is the practical value
+    of asking for it. Its prerequisite closure is returned as quick-check candidates,
+    not converted into DEMONSTRATED states and not used to force the learner back to the
+    bottom before she has attempted anything.
+    """
+    entry = entry_from_position(rows, position)
+    if not entry.get("rung"):
+        return {**entry, "prerequisite_checks": [], "bridges": [],
+                "unresolved_prerequisites": []}
+
+    board = {"rungs": rows}
+    by_rung, _ = capability_graph.ladder_capabilities(board, mics)
+    target = by_rung.get(entry["rung"])
+    if target is None:
+        return {
+            **entry,
+            "capability": None,
+            "prerequisite_checks": [],
+            "bridges": [],
+            "unresolved_prerequisites": [],
+        }
+
+    capability = target["capability"]
+    checks = capability_graph.prerequisite_closure(capability, caps)
+    unresolved = capability_graph.unknown_prerequisites([capability], caps)
+    return {
+        **entry,
+        "capability": capability,
+        "prerequisite_checks": checks,
+        "bridges": [],
+        "unresolved_prerequisites": unresolved,
+        "prerequisite_policy": "CHECK_IF_NEEDED_DO_NOT_ASSUME_MASTERED",
     }
 
 
@@ -176,20 +214,37 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             entry = {"rung": None, "why": "OWNER_NAMED_AN_ABSENT_RUNG"}
     elif "owner_estimate" in learner:
         provenance = "OWNER_ESTIMATE"
-        entry = entry_from_position(rows, learner["owner_estimate"]["knowledge_percentage"])
+        entry = resolve_owner_estimate(
+            rows,
+            learner["owner_estimate"]["knowledge_percentage"],
+            caps,
+            mics,
+        )
+        if entry.get("unresolved_prerequisites"):
+            fail(
+                "ENTRY_PREREQUISITE_UNRESOLVED",
+                entry.get("rung") or "OWNER_ESTIMATE",
+                "prerequisites are unknown: "
+                + ", ".join(entry["unresolved_prerequisites"]),
+            )
 
-    # A named rung or percentage is a coordinate, never evidence that its prerequisites
-    # are held. Backtrack to the earliest unmet prerequisite on this ladder; prerequisites
-    # taught elsewhere become explicit bridges. Unknown prerequisites fail closed.
+    # A profile or explicitly named rung still uses strict prerequisite safety. A rough
+    # owner estimate is different: it is useful only if it can choose where to try first.
+    # Its prerequisites remain explicitly unverified and can be checked/diagnosed during
+    # use; they are never silently marked as held.
     held = {}
     if "profile_ref" in learner and learner["profile_ref"] in store:
         held = learner_evidence.effective_held(store[learner["profile_ref"]], repo)
-    if entry.get("rung") in {r["rung"] for r in rows}:
+    if (
+        provenance != "OWNER_ESTIMATE"
+        and entry.get("rung") in {r["rung"] for r in rows}
+    ):
         safe = capability_graph.resolve_entry(rows, entry["rung"], held, caps, mics)
         requested_rung = entry["rung"]
         entry["rung"] = safe["rung"]
         entry["bridges"] = safe["bridges"]
         entry["unresolved_prerequisites"] = safe["unresolved"]
+        entry.setdefault("prerequisite_checks", [])
         if safe["reason"] == "PREREQUISITE_BACKTRACK":
             entry["requested_rung"] = requested_rung
             entry["why"] = "PREREQUISITE_BACKTRACK"
@@ -329,6 +384,11 @@ def readable(report: dict) -> str:
             f'  provenance  {entry.get("provenance")}']
     if entry.get("detail"):
         out += [f'  detail      {entry["detail"]}']
+    if entry.get("prerequisite_checks"):
+        out += [
+            "  quick checks  " + ", ".join(entry["prerequisite_checks"]),
+            "  note         these are unverified prerequisites, not assumed mastery",
+        ]
     out += ["",
             "Selection, never dilution: this chooses where teaching starts and changes",
             "nothing about what any rung teaches.", ""]
