@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored conceptual rung for operand-order orientation in vector subtraction. Quantitative magnitude, addition, unit-vector and cross-product rungs remain blocked on engineering-gate relations and are not promoted here.",
+  "scope_summary": "Grade 9 Advanced vector addition/subtraction overlay. It is optional support for advanced relative-motion work and is not a prerequisite for the Standard Grade 9 Motion spine.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -45,12 +45,14 @@
         "SRC-AUTHOR-VEC-ADD-SUB"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED"
+      },
       "title": "Vector addition, subtraction and orientation",
       "topic": "Vectors / Motion in a Plane",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "Only the operand-order discrimination is authored here; the surrounding quantitative vector operations remain registry-blocked.",
-      "depth_overlay": "FOUNDATION",
+      "depth_overlay": "ADVANCED",
       "curriculum_mappings": [],
       "prerequisite_refs": [
         "BUCKET-VECTOR-REPRESENTATION"
@@ -486,7 +488,9 @@
   "practice_profiles": [],
   "evidence": [],
   "known_issues": [],
-  "extensions": {},
+  "extensions": {
+    "grade9_track": "ADVANCED"
+  },
   "data": [
     {
       "id": "DAT-VEC-ORDER-LENGTH",
