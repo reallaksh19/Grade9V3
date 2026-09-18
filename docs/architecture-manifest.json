@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:8f2301b2861b7de8a72d2d6bd999d6eb8aab8950598ef425cba3cd9c5a36b031",
+  "digest": "sha256:8cf318c48a6a9bbd08a3aaad01f1bc642153cb787776c36e54f9f710679b46e1",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -638,8 +638,8 @@
       "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 1882,
-      "sha256": "9930ca88099134beaefac6fd929b26994b592e96ad229fd982dc630d5541a676"
+      "bytes": 2741,
+      "sha256": "37bc53f2b878d1dd345fc0f1701ba6e24e963f560646a57b704b72f1068c3394"
     },
     {
       "path": "tests/fixtures/source_ingest/acquisition.json",
@@ -806,8 +806,8 @@
       "path": "tests/test_neetprep_relative_motion_pilot.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5494,
-      "sha256": "f4c90447856dd913b31398ad4b98701689094f66d93e314620984d4c2bd18d3a"
+      "bytes": 6197,
+      "sha256": "df6368efde50607caa3405f738839cfed516c2378c19af2982b0d151eb9b696f"
     },
     {
       "path": "tests/test_owner_decisions.py",
@@ -855,8 +855,8 @@
       "path": "tests/test_session_readiness.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11258,
-      "sha256": "fa6c42219401560281e335187b97e0c94ef22cf04400678c59a524e33751c8ed"
+      "bytes": 11562,
+      "sha256": "d5dbd8cbbb23f06300548b50dfa7e52675d566ed6cb2f99fadf89e562560499f"
     },
     {
       "path": "tests/test_source_pipeline.py",
@@ -932,8 +932,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 424515,
-      "sha256": "4e1129c70c1bbfb64d743c903154b6c6c179ec1e5aa7da00220fc3dd6f95049e"
+      "bytes": 440360,
+      "sha256": "ba3302f239333d690f42eb304d2d8bc3a9240215bd8f87b141086503ff96ab8c"
     },
     {
       "path": "tools/index.html",
