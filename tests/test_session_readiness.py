@@ -292,15 +292,21 @@ class SessionReadiness(unittest.TestCase):
             {"CAP-SIGNED-PAIR-BRIDGE", "CAP-RIGHT-TRIANGLE-BRIDGE"},
         )
 
-    def test_vector_add_sub_keeps_content_gaps_but_loses_prerequisite_ambiguity(self):
+    def test_vector_add_sub_completion_is_session_ready_with_math_bridge(self):
         report = session_readiness.audit(
             "Physics",
             matrix_id="MATRIX-PHY-VEC-ADD-SUB",
         )
-        self.assertEqual(report["status"], session_readiness.NOT_READY)
+        self.assertEqual(report["status"], session_readiness.READY_WITH_BRIDGE)
+        self.assertTrue(report["passed"], report["findings"])
         points = [row["point"] for row in report["findings"]]
-        self.assertIn("READINESS_MICROTOPIC_MISSING", points)
+        self.assertNotIn("READINESS_MICROTOPIC_MISSING", points)
         self.assertNotIn("READINESS_PREREQUISITE_AMBIGUOUS", points)
+        self.assertTrue(all(row["core1a"] and row["core1b"] for row in report["rungs"]))
+        self.assertIn(
+            "CAP-RIGHT-TRIANGLE-BRIDGE",
+            {row["capability_ref"] for row in report["external_bridges"]},
+        )
 
 
 if __name__ == "__main__":

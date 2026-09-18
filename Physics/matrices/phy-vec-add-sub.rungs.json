@@ -43,7 +43,8 @@
           "hold": "its direction",
           "notice": "the unit-direction arrow is unchanged by the original magnitude"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-DIRECTION"
     },
     {
       "rung": "R2",
@@ -82,7 +83,8 @@
           "hold": "the same two vectors",
           "notice": "the final resultant is unchanged, exposing commutativity of addition"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-VEC-ADD-DECOMPOSE"
     },
     {
       "rung": "R3",
@@ -144,7 +146,8 @@
           "hold": "their magnitudes and operand order",
           "notice": "the axial arrow shortens to zero as the input directions become parallel"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-VEC-CROSS-ORIENTATION"
     }
   ],
   "family": {

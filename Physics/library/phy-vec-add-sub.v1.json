@@ -1,24 +1,24 @@
 {
   "schema_version": "0.1.0",
   "package_id": "LIB-PHY-VEC-ADD-SUB-AUTHORED",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored conceptual rung for operand-order orientation in vector subtraction. Quantitative magnitude, addition, unit-vector and cross-product rungs remain blocked on engineering-gate relations and are not promoted here.",
+  "scope_summary": "Self-study candidate for the existing Vector Addition/Subtraction matrix: unit direction, vector addition/decomposition with component cancellation, subtraction-order orientation, and qualitative cross-product orientation. The river-crossing demand activates the addition/decomposition rung; all records remain CANDIDATE and do not claim external source/review authority.",
   "curriculum_mappings": [],
   "resources": [
     {
       "id": "SRC-AUTHOR-VEC-ADD-SUB",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Track A authored vector-order construction",
+      "title": "Grade9V3 authored vector operations candidate",
       "origin": "AUTHORED",
       "locator": "Physics/library/phy-vec-add-sub.v1.json",
       "edition": "0.1.0",
-      "section": "R3 operand-order orientation",
+      "section": "R1-R4 vector operations",
       "last_checked": "2026-09-18",
       "access_status": "FULL_ITEM_INSPECTED",
       "rights_status": "Author-created project draft; no external curriculum or scientific-review authority claimed.",
@@ -32,14 +32,14 @@
       "depth": [
         "FOUNDATION"
       ],
-      "selection_reason": "Provides the conceptual operand-order rung without duplicating the existing graphical-subtraction construction; that existing capability is a prerequisite.",
+      "selection_reason": "Completes the already-committed Vector Add/Sub matrix after real river-crossing demand exposed the missing addition/decomposition prerequisite. Candidate packet input remains non-authoritative.",
       "fallback": []
     }
   ],
   "buckets": [
     {
       "id": "BUCKET-PHY-VEC-ADD-SUB",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
@@ -49,7 +49,7 @@
       "title": "Vector addition, subtraction and orientation",
       "topic": "Vectors / Motion in a Plane",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Only the operand-order discrimination is authored here; the surrounding quantitative vector operations remain registry-blocked.",
+      "badge_reason": "Direction and operand order must survive several representations; river-crossing constraints additionally require component cancellation before magnitude work.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -62,11 +62,11 @@
         }
       ],
       "scope": {
-        "covers": "Qualitative operand-order orientation for vector subtraction.",
+        "covers": "Unit-direction normalisation, vector addition/decomposition with signed-component cancellation, subtraction-order orientation, and qualitative cross-product orientation.",
         "excluded": [
-          "Unit-vector normalization and magnitude formulae.",
-          "Quantitative vector-addition resultant formulae.",
-          "Cross-product magnitude and axial-orientation formulae."
+          "Direction-cosine methods.",
+          "Determinant-based cross-product computation.",
+          "General three-dimensional vector algebra beyond the existing matrix intent."
         ],
         "extension_refs": []
       }
@@ -74,8 +74,46 @@
   ],
   "capabilities": [
     {
+      "id": "CAP-VEC-UNIT-DIRECTION",
+      "version": "0.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Separate a nonzero vector's direction from its magnitude by constructing or interpreting the unit vector along it.",
+      "success_criterion": "Given two nonzero vectors or one vector and its magnitude, explain that dividing by the magnitude produces a magnitude-one vector in the same direction, and use that direction-only representation without confusing equal magnitudes with equal vectors.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-VS-SCALAR"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-ADD-DECOMPOSE",
+      "version": "0.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compose vectors by tail-to-head or signed components and resolve a vector along declared perpendicular axes, including choosing one component to cancel a specified resultant component.",
+      "success_criterion": "Given two directed quantities or a resultant-direction constraint, declare axes, preserve component signs, add corresponding components, impose any required cancellation, and check the same resultant geometrically.",
+      "prerequisite_refs": [
+        "CAP-VEC-UNIT-DIRECTION",
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
       "id": "CAP-VEC-SUB-ORDER",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
@@ -90,12 +128,326 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-CROSS-ORIENTATION",
+      "version": "0.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Determine the perpendicular direction of the cross product for an ordered pair of nonparallel vectors and predict how swapping the order or making the vectors parallel changes the result.",
+      "success_criterion": "For an oriented input plane, give the two opposite cross-product directions for A cross B and B cross A, and identify the parallel-input case as zero without using a determinant calculation.",
+      "prerequisite_refs": [
+        "CAP-VEC-SUB-ORDER"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
     {
+      "id": "MIC-PHY-VEC-UNIT-DIRECTION",
+      "version": "0.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Unit direction keeps orientation and removes size",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-UNIT-DIRECTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often treat an arrow's length as inseparable from the directed quantity and therefore miss why differently sized parallel vectors can share one direction-only representation.",
+      "entry_assumptions": [
+        "Can distinguish a vector from its magnitude.",
+        "Can divide a nonzero quantity by its own positive magnitude."
+      ],
+      "inferential_jump": "Normalising a nonzero vector removes its original size but preserves its direction, so different positive multiples in one direction share the same unit-direction vector.",
+      "teaching_path": [
+        {
+          "id": "VEC1-1",
+          "role": "DECLARE",
+          "action": "Draw two arrows from the same start, one three times as long as the other, with both pointing in exactly the same direction.",
+          "why_valid": "Holding direction fixed while changing only length separates directional information from magnitude.",
+          "inputs": [
+            "CAP-VECTOR-VS-SCALAR"
+          ],
+          "output": "short arrow: magnitude L, long arrow: magnitude 3L, both with the same direction."
+        },
+        {
+          "id": "VEC1-2",
+          "role": "TRANSFORM",
+          "action": "Scale each nonzero arrow by the reciprocal of its own magnitude.",
+          "why_valid": "Multiplying a vector by a positive scalar changes its magnitude by that factor without reversing its direction.",
+          "inputs": [],
+          "output": "short/L and long/(3L) both have magnitude 1 and point the same way."
+        },
+        {
+          "id": "VEC1-3",
+          "role": "VERIFY",
+          "action": "Multiply the direction-only arrow back by L and by 3L and compare with the two original arrows.",
+          "why_valid": "Reconstruction shows that one unit direction plus a scalar magnitude recovers either original directed quantity.",
+          "inputs": [],
+          "output": "L times the unit direction recovers the short arrow; 3L times it recovers the long arrow."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A unit vector is a different direction invented by making the arrow one unit long.",
+          "diagnostic_prompt": "Two nonzero arrows point northeast; one is three times longer. After each is normalised, should the two direction-only arrows point differently?",
+          "repair": "Keep the direction fixed while dividing each arrow by its own positive magnitude. Only the size is removed; the direction is preserved."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Vector A points southwest with magnitude 6 units. Vector B points southwest with magnitude 2 units. Compare the unit-direction vectors along A and B, and state how A can be reconstructed from its unit direction.",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The two unit-direction vectors are the same because A and B point in the same direction. A is 6 times that unit-direction vector.",
+          "reasoning": [
+            "Normalising divides each nonzero vector by its positive magnitude.",
+            "Positive scaling does not reverse direction.",
+            "Both vectors therefore reduce to the same magnitude-one direction.",
+            "Multiplying that unit direction by 6 reconstructs A."
+          ],
+          "check": "The reconstructed arrow must point southwest and have magnitude 6.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Only the given magnitude 6 is reused as the reconstruction scale; no derived measurement is asserted."
+        }
+      },
+      "research_contribution": "Author-created migration of the existing R1 matrix intent. The imported candidate packet was consulted only as non-authoritative input; no external review authority is claimed.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-VS-SCALAR"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two arrows point in exactly the same direction, but one is three times longer. If each is divided by its own magnitude, do the results still differ?",
+          "defensible_answer": "No. Both become magnitude-one arrows in the same direction."
+        },
+        "attempt": {
+          "produces": "A before/after sketch for the two same-direction arrows, with original magnitudes labelled and both normalised results shown at equal unit length.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The normalised arrows preserve the original common direction.",
+              "evidence_of": "Treating direction independently of magnitude."
+            },
+            {
+              "criterion": "Both normalised arrows have magnitude one.",
+              "evidence_of": "Using the vector's own positive magnitude as the scale factor."
+            }
+          ],
+          "accepted": [
+            "Both original arrows reduce to the same magnitude-one arrow pointing in their common direction."
+          ],
+          "rejected": [
+            "The longer arrow keeps a longer unit vector, which means its magnitude was not actually removed."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What did we hold fixed when drawing the two original arrows?",
+              "why_this_ask": "It isolates direction as shared information.",
+              "from_step_ref": "VEC1-1"
+            },
+            {
+              "ask": "What positive factor makes each arrow's magnitude become one?",
+              "why_this_ask": "The learner derives normalisation from scaling rather than memorising notation.",
+              "from_step_ref": "VEC1-2"
+            },
+            {
+              "ask": "How would you recover either original arrow from the shared unit direction?",
+              "why_this_ask": "Reconstruction closes the magnitude-times-direction interpretation.",
+              "from_step_ref": "VEC1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path demonstrates the scale change; the elicitation route starts from two unequal lengths and makes the learner identify what survives normalisation."
+        },
+        "boundary_test": {
+          "prompt": "Can the zero vector be normalised by dividing by its magnitude?",
+          "answer": "No. Its magnitude is zero, so division by its magnitude is undefined and there is no unique direction to preserve.",
+          "confirms": "The unit-direction construction applies only to nonzero vectors."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-VEC-ADD-DECOMPOSE",
+      "version": "0.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Add vectors by components and engineer component cancellation",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-ADD-DECOMPOSE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficult move is not arithmetic but preserving direction: learners often add magnitudes, drop signs, or miss that a required resultant direction is a component constraint.",
+      "entry_assumptions": [
+        "Can read signed vector components against declared axes.",
+        "Can interpret a unit direction separately from magnitude.",
+        "Can obtain a hypotenuse from perpendicular leg lengths through the declared Mathematics bridge."
+      ],
+      "inferential_jump": "Vector addition is a directional ledger: corresponding signed components add independently, and a required resultant direction can be enforced by making the unwanted component sum to zero.",
+      "teaching_path": [
+        {
+          "id": "VEC2-1",
+          "role": "DECLARE",
+          "action": "Declare perpendicular positive axes and write each input vector as signed horizontal and vertical parts before combining anything.",
+          "why_valid": "A declared axis system makes direction explicit and prevents a speed or magnitude from silently replacing a directed quantity.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "A=(A_x,A_y), B=(B_x,B_y), with the signs read from the declared axes."
+        },
+        {
+          "id": "VEC2-2",
+          "role": "TRANSFORM",
+          "action": "Place the second arrow tail-to-head with the first and, in parallel, add corresponding signed parts.",
+          "why_valid": "Tail-to-head translation preserves each vector, while addition along independent perpendicular axes gives the same endpoint displacement.",
+          "inputs": [],
+          "output": "R=A+B=(A_x+B_x, A_y+B_y), matching the arrow from the first tail to the final head."
+        },
+        {
+          "id": "VEC2-3",
+          "role": "TRANSFORM",
+          "action": "When the requested resultant must have no motion along one axis, set that resultant part to zero and solve the cancellation condition before finding any magnitude.",
+          "why_valid": "A direction constraint such as 'directly opposite' or 'straight across' is equivalent to saying the unwanted signed component of the resultant is zero.",
+          "inputs": [],
+          "output": "for a zero horizontal resultant: A_x+B_x=0, so one input must supply the equal-and-opposite horizontal part."
+        },
+        {
+          "id": "VEC2-4",
+          "role": "VERIFY",
+          "action": "Check the signed-component result against the tail-to-head diagram and, for perpendicular resultant parts, use the right-triangle bridge only after the signs and cancellation are settled.",
+          "why_valid": "The diagram checks direction and the bridge checks magnitude; agreement between representations catches dropped signs and magnitude-only addition.",
+          "inputs": [
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "output": "direction agrees with the signed parts; magnitude is computed from the nonnegative leg lengths only when needed."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The magnitude of A plus B is always the sum of the two input magnitudes.",
+          "diagnostic_prompt": "A 5-unit vector points east and another 5-unit vector points west. What is the resultant vector?",
+          "repair": "Add directed components, not magnitudes. Equal and opposite components cancel, so the resultant is zero."
+        },
+        {
+          "wrong_idea": "If the desired path is straight across a river, the swimmer should simply aim straight across relative to the water.",
+          "diagnostic_prompt": "A current adds an eastward component. What must the swimmer's water-relative velocity contribute horizontally if the ground-relative path must have zero east-west component?",
+          "repair": "Translate the path constraint into a component equation: the swimmer must supply an equal westward component so the east-west resultant is zero."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A river current is 3 units/s east. A swimmer can move at 5 units/s relative to the water and wants the ground-relative path to be due north. What west-east component must the swimmer choose, and what northward component then remains?",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The swimmer must contribute 3 units/s west so the horizontal parts cancel. With total swimmer-relative speed 5, the remaining northward part is 4 units/s.",
+          "reasoning": [
+            "Take east as positive horizontal and north as positive vertical.",
+            "The current contributes +3 horizontally, so a due-north resultant requires swimmer horizontal component -3.",
+            "The swimmer-relative speed 5 is the hypotenuse of perpendicular component lengths 3 and the unknown northward part.",
+            "The right-triangle relation gives the northward part sqrt(5^2-3^2)=4."
+          ],
+          "check": "Horizontal ground-relative component: +3 + (-3)=0; swimmer component magnitude: sqrt(3^2+4^2)=5.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The 3-4-5 check is an author-created illustrative verification, not a sourced measurement."
+        }
+      },
+      "research_contribution": "Author-created completion of the existing R2 matrix intent, specifically activated by the owner-supplied river-crossing demand. The external NEETPrep items remain transient and are not copied into canonical content.",
+      "prerequisite_refs": [
+        "CAP-VEC-UNIT-DIRECTION",
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A current carries 3 units/s east. If a swimmer wants the ground-relative path to have no east-west motion, what must be true of the swimmer's horizontal part?",
+          "defensible_answer": "It must be 3 units/s west so the horizontal parts sum to zero."
+        },
+        "attempt": {
+          "produces": "A declared-axis component ledger for current + swimmer = ground result, with the unwanted component set to zero before any magnitude calculation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Axes and signs are declared before addition.",
+              "evidence_of": "Preserving direction rather than adding bare magnitudes."
+            },
+            {
+              "criterion": "The required path direction is translated into a zero-component equation.",
+              "evidence_of": "Using the physical constraint to determine cancellation."
+            },
+            {
+              "criterion": "A geometric/tail-to-head check agrees with the component result.",
+              "evidence_of": "Reconciling two representations of the same vector sum."
+            }
+          ],
+          "accepted": [
+            "east positive: current=(3,0), swimmer=(-3,v), result=(0,v); then determine v only if the swimmer's speed is needed."
+          ],
+          "rejected": [
+            "Add 3 to 5 because both are speeds, without representing their directions."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which direction should be positive on each axis, and what signed pair does each input have?",
+              "why_this_ask": "It prevents scalar-only reasoning before the operation begins.",
+              "from_step_ref": "VEC2-1"
+            },
+            {
+              "ask": "What component of the required ground result must be zero?",
+              "why_this_ask": "It converts wording such as 'directly opposite' into a precise constraint.",
+              "from_step_ref": "VEC2-3"
+            },
+            {
+              "ask": "Which input component must cancel the current's unwanted part?",
+              "why_this_ask": "The learner solves the directional condition before touching magnitude."
+            },
+            {
+              "ask": "Does the tail-to-head endpoint point in the same direction as the component sum?",
+              "why_this_ask": "A second representation catches sign and order mistakes.",
+              "from_step_ref": "VEC2-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path shows both geometric and component addition; the elicitation route begins with the desired direction and makes the learner derive the cancellation equation."
+        },
+        "boundary_test": {
+          "prompt": "If two equal vectors point in exactly opposite directions, what do the component sum and tail-to-head construction both give?",
+          "answer": "The zero vector. Every signed component cancels, and the final head returns to the starting point.",
+          "confirms": "Magnitude addition is only valid in special same-direction cases; vector addition preserves orientation."
+        }
+      }
+    },
+    {
       "id": "MIC-PHY-VEC-SUB-ORDER",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
@@ -230,6 +582,148 @@
           "confirms": "The reversal statement applies to a directed nonzero result; the zero case is the limiting boundary."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-VEC-CROSS-ORIENTATION",
+      "version": "0.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Ordered cross-product direction",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-CROSS-ORIENTATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The operation is order-sensitive in a way ordinary addition is not; learners can remember 'perpendicular' yet still point the result to the wrong side of the input plane.",
+      "entry_assumptions": [
+        "Can preserve operand order in a directed vector operation.",
+        "Can distinguish the plane containing two nonparallel input vectors from a direction perpendicular to that plane."
+      ],
+      "inferential_jump": "For two nonparallel vectors, the ordered cross product points perpendicular to their plane; swapping the operand order reverses that direction, while parallel inputs give zero.",
+      "teaching_path": [
+        {
+          "id": "VEC4-1",
+          "role": "DECLARE",
+          "action": "Draw A and B from one start in the same plane and label the order A first, B second.",
+          "why_valid": "The ordered pair, not just the two unlabeled arrows, determines which of the two perpendicular directions is selected.",
+          "inputs": [
+            "CAP-VEC-SUB-ORDER"
+          ],
+          "output": "one oriented input plane with a declared first and second vector."
+        },
+        {
+          "id": "VEC4-2",
+          "role": "TRANSFORM",
+          "action": "Use the conventional right-hand orientation: align fingers with the first vector and curl toward the second through the smaller angle; the thumb selects the perpendicular direction.",
+          "why_valid": "This orientation convention assigns one of the two opposite perpendicular directions consistently to the ordered pair.",
+          "inputs": [],
+          "output": "A cross B is assigned to one side of the input plane."
+        },
+        {
+          "id": "VEC4-3",
+          "role": "VERIFY",
+          "action": "Swap the labels so B is first and A is second, repeat the orientation check, and compare the two results.",
+          "why_valid": "The same input plane is held fixed while only order changes, isolating the sign reversal caused by anti-commutativity.",
+          "inputs": [],
+          "output": "B cross A points to the opposite side of the same input plane."
+        },
+        {
+          "id": "VEC4-4",
+          "role": "VERIFY",
+          "action": "Rotate B until it becomes parallel to A and observe the limiting case.",
+          "why_valid": "With no swept area between parallel directions, the cross-product magnitude is zero, so no nonzero perpendicular arrow remains.",
+          "inputs": [],
+          "output": "parallel inputs give the zero vector; perpendicular fixed-magnitude inputs give the largest cross-product magnitude."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Swapping A and B leaves the cross-product direction unchanged because the same two vectors are used.",
+          "diagnostic_prompt": "If A cross B points out of the page, where must B cross A point?",
+          "repair": "Keep the plane fixed and reverse only the operand order; the selected perpendicular direction flips to the opposite side."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Take a right-handed page coordinate system with east as +x and north as +y. A points east and B points north. State the directions of A cross B and B cross A, then state what happens if B is rotated until it also points east.",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A cross B points +z (out of the page), B cross A points -z (into the page), and parallel eastward inputs give the zero vector.",
+          "reasoning": [
+            "The ordered east-to-north turn selects +z under the declared orientation convention.",
+            "Swapping the order reverses the perpendicular direction.",
+            "Parallel inputs have zero cross-product magnitude."
+          ],
+          "check": "Swapping the operands twice must return the original direction; making the included angle zero must eliminate the nonzero perpendicular result.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task checks qualitative orientation and the parallel zero case; it does not ask for a computed magnitude."
+        }
+      },
+      "research_contribution": "Author-created completion of the already-committed R4 matrix skeleton. It does not add a new matrix or new learner product and claims no independent scientific review.",
+      "prerequisite_refs": [
+        "CAP-VEC-SUB-ORDER"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A cross B points out of the page. Without redrawing the vectors, what direction should B cross A point?",
+          "defensible_answer": "Into the page: swapping the ordered pair reverses the perpendicular direction."
+        },
+        "attempt": {
+          "produces": "Two side-by-side ordered-pair sketches for A cross B and B cross A, with opposite perpendicular arrows and a one-sentence parallel-input boundary case.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The two operand orders produce opposite perpendicular directions.",
+              "evidence_of": "Preserving order in the cross product."
+            },
+            {
+              "criterion": "Parallel inputs are identified as a zero-result case.",
+              "evidence_of": "Understanding the orientation result together with its magnitude boundary."
+            }
+          ],
+          "accepted": [
+            "A×B points to one side of the plane; B×A points to the other; if A and B are parallel the result is zero."
+          ],
+          "rejected": [
+            "Both orders point to the same side because the input vectors are unchanged."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What stayed fixed when we changed A cross B into B cross A?",
+              "why_this_ask": "It isolates operand order as the only changed feature.",
+              "from_step_ref": "VEC4-1"
+            },
+            {
+              "ask": "Repeat the same orientation convention with the new first vector. Which side of the plane is selected?",
+              "why_this_ask": "The learner reconstructs the reversal rather than memorising a minus sign.",
+              "from_step_ref": "VEC4-3"
+            },
+            {
+              "ask": "What result is left when the two input directions become parallel?",
+              "why_this_ask": "The zero boundary checks that the learner is not treating perpendicular direction as automatic for every pair.",
+              "from_step_ref": "VEC4-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states the orientation convention first; the elicitation route starts from a known A cross B direction and asks the learner to predict the swapped-order and parallel cases."
+        },
+        "boundary_test": {
+          "prompt": "If either input vector is the zero vector, can the cross product have a nonzero perpendicular result?",
+          "answer": "No. Its magnitude is zero, so the cross product is the zero vector.",
+          "confirms": "A direction convention does not create a nonzero result when the magnitude condition collapses."
+        }
+      }
     }
   ],
   "relations": [],
@@ -237,7 +731,7 @@
   "question_families": [
     {
       "id": "FAM-PHY-VECOPS-PRACTICE",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
@@ -247,9 +741,12 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "title": "Directed subtraction and operand-order practice",
+      "title": "Vector operation and orientation practice",
       "capability_refs": [
-        "CAP-VEC-SUB-ORDER"
+        "CAP-VEC-UNIT-DIRECTION",
+        "CAP-VEC-ADD-DECOMPOSE",
+        "CAP-VEC-SUB-ORDER",
+        "CAP-VEC-CROSS-ORIENTATION"
       ],
       "solution_structure": [
         "Write two ordered requests for the same pair: A minus B, then B minus A.",
@@ -279,7 +776,7 @@
   "questions": [
     {
       "id": "Q-PHY-VECOPS-2A-01",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
@@ -337,32 +834,39 @@
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-VEC-ADD-SUB-A",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Reveal operand-order reversal",
+      "title": "Reveal vector operations and component cancellation",
       "cores": [
         "CORE1A"
       ],
       "microtopic_refs": [
-        "MIC-PHY-VEC-SUB-ORDER"
+        "MIC-PHY-VEC-UNIT-DIRECTION",
+        "MIC-PHY-VEC-ADD-DECOMPOSE",
+        "MIC-PHY-VEC-SUB-ORDER",
+        "MIC-PHY-VEC-CROSS-ORIENTATION"
       ],
       "entry_needs": [
-        "Graphical subtraction construction is available from the vector-foundation prerequisite."
+        "Vector-vs-magnitude and signed-component foundations are supplied by Vector Representation; the right-triangle magnitude step remains an explicit Mathematics bridge."
       ],
       "learner_actions": [
-        "Compare the two operand orders from one common start.",
-        "Explain which aspect changes when order swaps."
+        "Normalise a nonzero vector without changing direction.",
+        "Add vectors by tail-to-head and signed parts.",
+        "Turn a required resultant direction into a component-cancellation equation.",
+        "Track operand order in subtraction and cross-product orientation."
       ],
       "help_plan": [
-        "Show the completed first-order construction before the comparison.",
-        "Keep the same scale and start point for both results."
+        "Hold direction fixed while varying length for unit direction.",
+        "Declare axes before adding components.",
+        "Set the unwanted resultant component to zero before computing magnitude.",
+        "Keep input pairs fixed while swapping operand order."
       ],
-      "reveal_plan": "The completed two-order construction is visible with the reversal check beside it.",
+      "reveal_plan": "Completed declarative reasoning is shown for all four existing matrix rungs; external bridges remain visible where used.",
       "source_preferences": [
         {
           "resource_ref": "SRC-AUTHOR-VEC-ADD-SUB",
@@ -371,38 +875,44 @@
         }
       ],
       "when_not_suitable": [
-        "Do not use this route to teach vector magnitude formulae or cross-product calculations."
+        "Do not treat this candidate route as source custody or independent academic review.",
+        "Do not use it for determinant-based or general 3D vector algebra."
       ],
       "practice_profile_ref": null
     },
     {
       "id": "ROUTE-PHY-VEC-ADD-SUB-B",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC-ADD-SUB"
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Predict operand-order reversal",
+      "title": "Elicit vector operations and component cancellation",
       "cores": [
         "CORE1B"
       ],
       "microtopic_refs": [
-        "MIC-PHY-VEC-SUB-ORDER"
+        "MIC-PHY-VEC-UNIT-DIRECTION",
+        "MIC-PHY-VEC-ADD-DECOMPOSE",
+        "MIC-PHY-VEC-SUB-ORDER",
+        "MIC-PHY-VEC-CROSS-ORIENTATION"
       ],
       "entry_needs": [
-        "Same intrinsic prerequisite as Core1A; no learner-percentage assumption."
+        "Same intrinsic prerequisites as Core1A; learner estimates never substitute for bridge verification."
       ],
       "learner_actions": [
-        "Predict the swapped-order direction before reconstructing it.",
-        "Use the rubric and boundary case to close the attempt."
+        "Predict what normalisation preserves.",
+        "Derive a cancellation equation from a required path direction.",
+        "Predict subtraction and cross-product order reversals before reconstruction."
       ],
       "help_plan": [
-        "Ask which input is second before offering any completed arrow.",
-        "Reveal the superposed comparison only after the learner commits."
+        "Ask what stays fixed before naming unit direction.",
+        "Ask which resultant component must be zero before showing any equation.",
+        "Ask which operand is second/first before revealing an orientation result."
       ],
-      "reveal_plan": "Prediction and construction precede the closed reveal; the full answer remains available for self-study.",
+      "reveal_plan": "Prediction and attempt precede reconstruction; misconception repair and fresh exit tasks close each rung.",
       "source_preferences": [
         {
           "resource_ref": "SRC-AUTHOR-VEC-ADD-SUB",
@@ -411,7 +921,8 @@
         }
       ],
       "when_not_suitable": [
-        "Do not replace the prerequisite graphical-subtraction teaching with this order check."
+        "Do not use elicitation as evidence of independent academic review.",
+        "Do not reveal the river-cancellation equation before the learner identifies the unwanted component."
       ],
       "practice_profile_ref": null
     }

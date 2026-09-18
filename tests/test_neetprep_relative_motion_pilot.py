@@ -25,7 +25,7 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
         mapping = self.mapping()
         report = study_map.resolve(mapping)
         self.assertTrue(report["passed"], report["findings"])
-        self.assertEqual(len(report["questions"]), 4)
+        self.assertEqual(len(report["questions"]), 6)
 
         index = study_map.subject_index("Physics")
         canonical = index["canonical_questions"]
@@ -122,10 +122,22 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
         self.assertEqual(verification["kind"], "QUESTION")
         self.assertEqual(verification["question_ref"], "Q-AUTHOR-REL-01")
 
-    def test_unmapped_source_items_are_not_smuggled_into_the_executable_fixture(self):
+    def test_new_river_crossing_demand_uses_vector_addition_without_becoming_canonical(self):
+        mapping = self.mapping()
+        ids = {row["question_id"] for row in mapping["questions"]}
+        self.assertIn("NEETPREP-MQB-REL-Q4", ids)
+        self.assertIn("NEETPREP-MQB-REL-Q5", ids)
+        index = study_map.subject_index("Physics")
+        self.assertNotIn("NEETPREP-MQB-REL-Q4", index["canonical_questions"])
+        self.assertNotIn("NEETPREP-MQB-REL-Q5", index["canonical_questions"])
+        report = study_session.plan(mapping)
+        self.assertTrue(report["valid"], report["findings"])
+        route = {row["capability_ref"]: row for row in report["route"]}
+        self.assertIn("CAP-VEC-ADD-DECOMPOSE", route)
+        self.assertNotEqual(route["CAP-VEC-ADD-DECOMPOSE"]["recommended_action"], "UNRESOLVED")
+
+    def test_figure_dependent_source_items_remain_unmapped(self):
         ids = {row["question_id"] for row in self.mapping()["questions"]}
-        self.assertNotIn("NEETPREP-MQB-REL-Q4", ids)
-        self.assertNotIn("NEETPREP-MQB-REL-Q5", ids)
         self.assertNotIn("NEETPREP-MQB-REL-Q6", ids)
         self.assertNotIn("NEETPREP-MQB-REL-Q8", ids)
 

@@ -21,13 +21,15 @@ The supplied Relative Motion view exposes eight questions on the page.
 
 ### Routable with the current v1 content
 
-The following four questions map cleanly to the existing Relative Motion capability family:
+The following six text-visible questions now map cleanly to the existing capability graph. Q4/Q5 became routable only after the Vector Addition/Decomposition content completion; all mappings remain transient demand evidence:
 
 | External item | Demand summary | Primary | Secondary |
 | --- | --- | --- | --- |
 | Q1 | walking observer + vertical rain; relative speed magnitude | `CAP-RELATIVE-V` | `CAP-VECTOR-CHECK`, `CAP-RIGHT-TRIANGLE` |
 | Q2 | boat and water velocities in the same ground frame; correct subtraction order | `CAP-RELATIVE-V` | `CAP-VECTOR-CHECK` |
 | Q3 | symbolic rain/runner perpendicular relative-speed case | `CAP-RELATIVE-V` | `CAP-VECTOR-CHECK`, `CAP-RIGHT-TRIANGLE` |
+| Q4 | river crossing directly opposite; component cancellation plus velocity composition | `CAP-VEC-ADD-DECOMPOSE` | `CAP-RELATIVE-V` |
+| Q5 | shortest-path river crossing; perpendicular-resultant constraint plus magnitude check | `CAP-VEC-ADD-DECOMPOSE` | `CAP-RELATIVE-V`, `CAP-RIGHT-TRIANGLE` |
 | Q7 | perpendicular chase/intercept; catch time from relative frame geometry | `CAP-RELATIVE-V` | `CAP-RIGHT-TRIANGLE`, `CAP-VECTOR-CHECK` |
 
 These mappings remain `AGENT_PROPOSAL`.
@@ -36,41 +38,24 @@ Fixture:
 
 `tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json`
 
-## Questions intentionally not forced into the current map
+## Newly routable river-crossing demand
 
-### Q4 — river crossing directly opposite
+Q4 and Q5 previously exposed a real content gap: general vector addition/decomposition and component cancellation. That gap is now represented by `CAP-VEC-ADD-DECOMPOSE` with canonical teaching and verification. The questions remain external/transient; only their capability mappings are stored.
 
-The learner must combine swimmer-relative-to-water and water-relative-to-ground velocities,
-resolve components, and make the along-river component cancel.
-
-The present Relative Motion matrix can express observer-relative velocity, but the durable
-general vector-addition/decomposition teaching needed by this question is not yet
-`SESSION_READY`.
-
-Disposition:
+The key learner route is:
 
 ```text
-CONTENT_GAP
-→ general vector addition / decomposition
-→ component cancellation in a chosen axis system
-→ then relative-motion composition
+declare axes
+→ represent current and swimmer as signed components
+→ impose the required resultant direction
+→ cancel the unwanted component
+→ use relative-motion composition
+→ use the Mathematics right-triangle bridge only when a magnitude is required
 ```
 
-Do not stretch `CAP-RELATIVE-V` to pretend this entire demand is already taught.
+Do not copy either external question into Core2 merely because it is now routable.
 
-### Q5 — shortest-path river crossing
-
-This again requires velocity composition plus perpendicular/component geometry. It is useful
-real evidence for the same vector-addition/decomposition gap exposed by Q4.
-
-Disposition:
-
-```text
-CONTENT_GAP
-→ vector addition / decomposition
-→ perpendicular resultant constraint
-→ right-triangle magnitude relation
-```
+## Questions still intentionally not forced into the current map
 
 ### Q6 — two projected particles
 
@@ -114,7 +99,7 @@ is complete.
 
 ## First practical learner session
 
-Use the four routable questions first.
+Use the six routable text-visible questions as demand evidence, while keeping Q4/Q5 behind the Vector Addition/Decomposition teaching route when learner evidence is missing or uncertain.
 
 No learner knowledge percentage is assumed by this pilot. If the parent supplies an estimate,
 the runner may use it as a starting coordinate; otherwise the study route begins
@@ -126,7 +111,7 @@ transient throughout diagnosis and repair.
 ## Anti-drift
 
 - Do not copy the NEETPrep question bank into canonical question records.
-- Do not mark Q4/Q5 routable by weakening vector-readiness checks.
+- Q4/Q5 are routable only because their required vector-addition/decomposition teaching now exists; do not weaken readiness checks to preserve that result.
 - Do not map Q6/Q8 until the required figures are available.
 - Do not treat NEETPrep difficulty percentages as learner evidence.
 - Do not treat site labels such as Level 1/2/3 as our ladder coordinates.
