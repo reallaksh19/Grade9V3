@@ -90,6 +90,17 @@ The previous review receipt then becomes stale automatically. The effective stag
 
 Unrelated changes elsewhere in the package do not invalidate the record-level review authority.
 
+## Legacy promotion helper
+
+`Shared.library.promote.promote()` no longer performs upward promotion.
+
+Any direct `CANDIDATE -> REVIEWED` or `REVIEWED -> CURATED` call fails with
+`DIGEST_BOUND_REVIEW_AUTHORITY_REQUIRED`. The helper retains demotion and dependency
+maturity auditing only.
+
+This removes a parallel promotion path that could otherwise bypass authoring receipts and
+record-digest checks.
+
 ## Storage
 
 Promotion receipts are stored under:
