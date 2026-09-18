@@ -1,5 +1,24 @@
 # Master offload prompt — one Physics subtopic matrix per agent
 
+> **CURRENT PRODUCTION OVERRIDE — GRADE 9 ONLY**
+>
+> This file is retained as a historical/mechanical reference for matrix authoring. Do **not**
+> execute its thirteen-unit assignment list as the current production plan.
+>
+> Current Physics authoring is sequential by grade: **Grade 9 → Grade 10 → Grade 11**.
+> The active authoring slice is **Grade 9 only**, governed by
+> `docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md`.
+>
+> In particular, the historical statement below that “Units 2–13 have no library record”
+> is obsolete. For every proposed rung, inspect the **current** `Physics/library/` first and
+> reference an existing canonical microtopic when one already teaches the learner action.
+> Do not duplicate current canonical teaching, and do not author higher-grade matrices merely
+> because they appeared in this older broad offload.
+>
+> No grade field is being added to the matrix schema. Grade/curriculum scope remains external
+> to the matrix and is justified through curriculum mapping, supplied syllabus, question
+> demand, prerequisite need, or declared extension.
+
 **Thirteen independent tasks. Each agent writes exactly one new file and edits nothing
 else. Measured: they share no files, not even the manifest.**
 
