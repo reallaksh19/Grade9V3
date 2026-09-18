@@ -282,6 +282,45 @@
           "validator_refs": [
             "UNIFORM_CIRCULAR_SPEED"
           ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+          "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+          "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+          "symbols": [
+            {
+              "symbol": "s",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Final velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+            "u, v and s use one declared one-dimensional sign convention.",
+            "t >= 0."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_GRAPH_AREA"
+          ]
         }
       ],
       "representations": [],
@@ -290,7 +329,8 @@
         "Average velocity requires a declared signed displacement convention.",
         "Constant-acceleration relations are used only on intervals where one acceleration value describes the whole interval.",
         "Graph-slope relations use two coordinates from the same graph and one declared axis convention.",
-        "Uniform circular speed uses one complete circular path of radius r completed in positive period T."
+        "Uniform circular speed uses one complete circular path of radius r completed in positive period T.",
+        "The graphical derivation treats displacement as signed velocity-time area over one constant-acceleration interval."
       ],
       "reasoning_sequence": [
         {
