@@ -55,6 +55,30 @@ class EmpiricalAcceptanceBoundary(unittest.TestCase):
         }, "2026-09-01")
         self.assertEqual(rows[0]["provenance"], "HISTORICAL_IMPORT")
 
+    def test_committed_direct_attempt_without_provenance_is_not_silently_ignored(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_observation(root, {
+                "observation_id": "OBS-UNCLASSIFIED",
+                "capability_ref": "CAP-A",
+                "method": "question attempt",
+                "evidence_kind": "DIRECT_ATTEMPT",
+                "question_ref": "Q-1",
+                "session_ref": "SESSION-1",
+                "observed": "Attempt exists but its evidence layer is unknown.",
+                "result": "UNCERTAIN",
+                "when": "2026-09-18",
+                "help": "NONE",
+                "error_stage": "UNKNOWN",
+            })
+            report = empirical_acceptance.audit(root)
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["status"], "INVALID_EMPIRICAL_EVIDENCE")
+        self.assertIn(
+            "EMPIRICAL_DIRECT_ATTEMPT_PROVENANCE_MISSING",
+            [row["point"] for row in report["findings"]],
+        )
+
     def test_synthetic_and_unreviewed_attempts_do_not_satisfy_empirical_layer(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
