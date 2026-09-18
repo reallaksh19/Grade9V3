@@ -902,8 +902,8 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                 {"help_used": "NOT-A-LEVEL", "shown_hint_indices": []},
                 "UNCERTAIN",
                 "UNKNOWN",
-                "CORRECT_WITH_HINT",
-                "2026-09-21",
+                "INCORRECT",
+                "2026-09-19",
             ),
         ]
         for request_bits, state, help_value, outcome, next_review in cases:
