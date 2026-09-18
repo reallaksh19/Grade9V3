@@ -1,7 +1,7 @@
 {
   "manifest_id": "FIXTURE-RELATIVE-MOTION-SOURCE",
   "version": "1.0.0",
-  "acquisition_ref": "ACQ-C1C64A00E3D28DA787D6",
+  "acquisition_ref": "ACQ-55FB92E0AA0024F51429",
   "target_package": "Physics/library/relative-motion.v1.json",
   "inspector_id": "tests/source-pipeline-fixture",
   "inspection_sections": [
@@ -26,7 +26,7 @@
     "access_status": "FULL_ITEM_INSPECTED",
     "rights_status": "Test fixture authored for repository validation",
     "snapshot_ref": "tests/fixtures/source_ingest/relative-motion-source.txt",
-    "snapshot_digest": "c1c64a00e3d28da787d6413789fb53b668aa1f98eee7589b65cc67f42b5b1d5d",
+    "snapshot_digest": "55fb92e0aa0024f514296e4d77bad50e485c0cacf661cc3f720411e211a98e17",
     "role": [
       "QUESTION_BANK"
     ],
@@ -47,7 +47,7 @@
       "evidence_refs": [],
       "extensions": {
         "source_custody": {
-          "acquisition_ref": "ACQ-C1C64A00E3D28DA787D6",
+          "acquisition_ref": "ACQ-55FB92E0AA0024F51429",
           "section": "Question F1"
         }
       },
