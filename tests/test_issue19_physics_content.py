@@ -19,11 +19,15 @@ SLICE_PACKAGES = {
     "phy-kin-1d-motion.v1.json",
     "phy-nlm-first-law.v1.json",
     "phy-work-energy-power.v1.json",
+    "phy-sound.v1.json",
+    "phy-simple-machines.v1.json",
 }
 SLICE_MATRICES = {
     "phy-kin-1d-motion.rungs.json",
     "phy-nlm-first-law.rungs.json",
     "phy-work-energy-power.rungs.json",
+    "phy-sound.rungs.json",
+    "phy-simple-machines.rungs.json",
 }
 
 KIN_EXT = {
@@ -38,7 +42,19 @@ WEP_EXT = {
     "CAP-WEP-ENERGY-DERIVATIONS",
     "CAP-WEP-GRADE9-QUANT",
 }
-ALL_EXT = KIN_EXT | NLM_EXT | WEP_EXT
+SOUND_EXT = {
+    "CAP-SOUND-SOURCE-MEDIUM",
+    "CAP-SOUND-LONGITUDINAL",
+    "CAP-SOUND-WAVE-QUANTITIES",
+    "CAP-SOUND-PERCEPTION",
+    "CAP-SOUND-REFLECTION",
+}
+MACHINE_EXT = {
+    "CAP-MACHINE-TRADEOFF",
+    "CAP-MACHINE-MA",
+    "CAP-MACHINE-COMPARE",
+}
+ALL_EXT = KIN_EXT | NLM_EXT | WEP_EXT | SOUND_EXT | MACHINE_EXT
 
 
 def load_json(path: Path) -> dict:
@@ -120,6 +136,10 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
             self.records["CAP-KIN-CONSTANT-ACCELERATION"]["prerequisite_refs"],
             ["CAP-KIN-ZERO-V-NONZERO-A"],
         )
+        self.assertEqual(
+            self.records["CAP-MACHINE-TRADEOFF"]["prerequisite_refs"],
+            ["CAP-WEP-GRADE9-QUANT"],
+        )
 
     def test_questions_resolve_and_belong_to_bucket_through_primary_capability(self):
         cap_buckets = {}
@@ -154,6 +174,14 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
                 "CAP-WEP-GRADE9-QUANT",
                 ["CAP-WEP-MECH-ENERGY-CONDITION", "CAP-WEP-ENERGY-DERIVATIONS"],
             ),
+            "Q-PHY-SOUND-2A-01": (
+                "CAP-SOUND-WAVE-QUANTITIES",
+                ["CAP-SOUND-PERCEPTION"],
+            ),
+            "Q-PHY-MACHINE-2A-01": (
+                "CAP-MACHINE-MA",
+                ["CAP-MACHINE-TRADEOFF"],
+            ),
         }
         for qid, (primary, secondary) in expected.items():
             q = self.records[qid]
@@ -186,6 +214,8 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
                 "PHY-NEWTON-SECOND-LAW",
                 "PHY-POWER-RATES",
                 "PHY-WORK-ENERGY-GRADE9",
+                "PHY-WAVE-SPEED",
+                "PHY-SIMPLE-MACHINES-GRADE9",
             },
         )
         for row in gate["gates"]:
@@ -218,6 +248,10 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
             "AVERAGE_ACCELERATION",
             "UNIFORM_CIRCULAR_SPEED",
             "CONSTANT_ACCELERATION_GRAPH_AREA",
+            "WAVE_SPEED",
+            "FREQUENCY_PERIOD",
+            "ECHO_DISTANCE",
+            "MECHANICAL_ADVANTAGE",
         }
         contract = load_json(REPO / "Physics/adapter/CoreContracts.json")
         declared = {row["id"] for row in contract["validator_catalogue"]}
