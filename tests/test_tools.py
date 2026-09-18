@@ -16,7 +16,7 @@ from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
     check_subjects, capability_collisions, curriculum_mapping_audit, engineering_readiness,
     learner_evidence, matrix_conformance, practice_readiness, publication_provenance,
-    resolve_request,
+    resolve_request, teaching_route_coverage,
     spec_conformance,
     spec_delivery, topic_independence_guard,
 )
@@ -1425,6 +1425,98 @@ class CurriculumMappingAudit(unittest.TestCase):
         points = {finding["point"] for finding in findings}
         self.assertIn("CURRICULUM_MAPPING_SOURCE_WRONG_ROLE", points)
         self.assertIn("CURRICULUM_MAPPING_SOURCE_NOT_INSPECTED", points)
+
+
+class TeachingRouteCoverage(unittest.TestCase):
+    def test_standard_grade9_buckets_teach_every_microtopic_in_both_core1_routes(self):
+        report = teaching_route_coverage.audit("Physics")
+        self.assertTrue(report["passed"], report["findings"])
+        rows = {row["bucket"]: row for row in report["buckets"]}
+        expected = {
+            "BUCKET-PHY-KIN-1D-MOTION",
+            "BUCKET-PHY-NLM-FIRST-LAW",
+            "BUCKET-PHY-WORK-ENERGY-POWER",
+            "BUCKET-PHY-SIMPLE-MACHINES",
+            "BUCKET-PHY-SOUND",
+        }
+        self.assertTrue(expected <= rows.keys())
+        for bucket_id in expected:
+            microtopics = set(rows[bucket_id]["microtopics"])
+            for core in ("CORE1A", "CORE1B"):
+                self.assertEqual(rows[bucket_id]["cores"][core]["missing"], [], bucket_id)
+                self.assertEqual(set(rows[bucket_id]["cores"][core]["covered"]),
+                                 microtopics, f"{bucket_id}:{core}")
+
+    def test_opt_in_bucket_fails_when_one_core_route_omits_a_microtopic(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            subject = root / "Example"
+            (subject / "library").mkdir(parents=True)
+            package = {
+                "schema_version": "0.1.0",
+                "package_id": "LIB-X",
+                "version": "0.1.0",
+                "status": "CANDIDATE",
+                "subject": "Example",
+                "scope_summary": "test",
+                "curriculum_mappings": [],
+                "resources": [],
+                "buckets": [{
+                    "id": "BUCKET-X", "version": "0.1.0", "status": "CANDIDATE",
+                    "source_refs": [], "evidence_refs": [],
+                    "extensions": {"teaching_route_coverage_policy":
+                                   "ALL_MICROTOPICS_CORE1A_CORE1B"},
+                    "title": "X", "topic": "X", "intrinsic_badge": "EASY",
+                    "badge_reason": "test", "depth_overlay": "FOUNDATION",
+                    "curriculum_mappings": [], "prerequisite_refs": [], "conventions": [],
+                    "scope": {"covers": "x", "excluded": [], "extension_refs": []},
+                }],
+                "capabilities": [],
+                "microtopics": [
+                    {"id": "MIC-X1", "version": "0.1.0", "status": "CANDIDATE",
+                     "source_refs": [], "evidence_refs": [], "extensions": {},
+                     "title": "x1", "bucket_id": "BUCKET-X",
+                     "primary_capability_ref": "CAP-X1"},
+                    {"id": "MIC-X2", "version": "0.1.0", "status": "CANDIDATE",
+                     "source_refs": [], "evidence_refs": [], "extensions": {},
+                     "title": "x2", "bucket_id": "BUCKET-X",
+                     "primary_capability_ref": "CAP-X2"},
+                ],
+                "relations": [], "representations": [], "question_families": [],
+                "questions": [],
+                "teaching_routes": [
+                    {"id": "ROUTE-A", "version": "0.1.0", "status": "CANDIDATE",
+                     "source_refs": [], "evidence_refs": [], "extensions": {},
+                     "title": "A", "cores": ["CORE1A"],
+                     "microtopic_refs": ["MIC-X1", "MIC-X2"]},
+                    {"id": "ROUTE-B", "version": "0.1.0", "status": "CANDIDATE",
+                     "source_refs": [], "evidence_refs": [], "extensions": {},
+                     "title": "B", "cores": ["CORE1B"],
+                     "microtopic_refs": ["MIC-X1"]},
+                ],
+                "practice_profiles": [], "evidence": [], "known_issues": [],
+                "extensions": {}, "data": [],
+            }
+            # The audit only needs indexed identity/ownership/route fields; use a
+            # temporary load shim rather than making this fixture satisfy full intake.
+            import Shared.tools.teaching_route_coverage as route_audit
+            original_load, original_index = route_audit.load, route_audit.build_index
+            try:
+                (subject / "library/x.v1.json").write_text("{}", encoding="utf-8")
+                route_audit.load = lambda _: package
+                records = {}
+                for collection in ("buckets", "microtopics", "teaching_routes"):
+                    for record in package[collection]:
+                        records[record["id"]] = {**record, "_collection": collection}
+                route_audit.build_index = lambda _: records
+                report = route_audit.audit("Example", root)
+            finally:
+                route_audit.load, route_audit.build_index = original_load, original_index
+            self.assertFalse(report["passed"])
+            self.assertEqual(report["findings"][0]["point"],
+                             "TEACHING_ROUTE_COVERAGE_INCOMPLETE")
+            self.assertEqual(report["findings"][0]["core"], "CORE1B")
+            self.assertEqual(report["findings"][0]["missing_microtopics"], ["MIC-X2"])
 
 
 class EngineeringReadiness(unittest.TestCase):
