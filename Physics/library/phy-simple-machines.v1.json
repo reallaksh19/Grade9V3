@@ -47,7 +47,10 @@
         "SRC-AUTHOR-SIMPLE-MACHINES"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
+        "grade9_track": "STANDARD"
+      },
       "title": "Simple machines",
       "topic": "Work, Energy and Simple Machines",
       "intrinsic_badge": "MEDIUM",
@@ -935,7 +938,9 @@
   "practice_profiles": [],
   "evidence": [],
   "known_issues": [],
-  "extensions": {},
+  "extensions": {
+    "grade9_track": "STANDARD"
+  },
   "data": [
     {
       "id": "DAT-MACHINE-LOAD",
