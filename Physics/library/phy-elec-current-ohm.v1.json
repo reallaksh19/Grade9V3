@@ -361,8 +361,174 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-ELEC-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Steady current and model-testing practice",
+      "capability_refs": [
+        "CAP-ELEC-CURRENT-CONSERVATION",
+        "CAP-ELEC-OHMIC-MODEL-TEST"
+      ],
+      "solution_structure": [
+        "Mark an entry boundary and an exit boundary around one component, and compare charge passage over matching time windows.",
+        "Suppose the entry flow were persistently larger than the exit flow while the circuit stayed steady.",
+        "Repeat the boundary comparison after replacing the component with a different ordinary component while keeping a single unbranched path."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The device name no longer hands over the model; the learner must decide from voltage-current evidence whether one constant resistance is valid."
+      ],
+      "common_wrong_routes": [
+        "Current gets smaller after charge passes through a resistor."
+      ],
+      "item_refs": [
+        "Q-PHY-ELEC-2A-01",
+        "Q-PHY-ELEC-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-ELEC-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "original_identifier": "AUTHOR-ELEC-2A-01",
+      "stem": "A steady single-path circuit carries charge through one component. Say whether the charge-flow rate can be persistently smaller at the exit than at the entry and justify the answer without appealing to what the component does with energy.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "It cannot be persistently smaller in the stated steady one-path case, because the missing charge would otherwise have to accumulate inside the component.",
+        "reasoning": [
+          "Compare entry and exit over the same time window so the two flow statements refer to the same interval.",
+          "A sustained excess entering over leaving would increase the charge stored inside the component.",
+          "The stated steady condition excludes continuing accumulation, so the entry and exit flow rates must match."
+        ],
+        "check": "Ask where the difference would physically go if the two steady flow rates were unequal; if no accumulating store is allowed, the mismatch is inconsistent.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-ELEC-CURRENT-CONSERVATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-ELEC-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: What two boundaries would you watch if you wanted to know whether charge disappeared inside the component?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Track charge through the boundary: steady current cannot accumulate charge inside the resistor.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-ELEC-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "original_identifier": "AUTHOR-ELEC-2B-01",
+      "stem": "A component has been called a resistor, but its fixed-condition voltage-current trace is curved rather than proportional. Decide whether one constant-resistance model should be carried into this case and state what evidence controls the decision.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Do not carry one constant resistance into this case: the curved voltage-current behavior shows that the voltage-to-current ratio is not constant over the tested operating range.",
+        "reasoning": [
+          "Treat the device label as a description, not as proof of one model.",
+          "Use the measured voltage-current behavior under the stated fixed condition as the evidence.",
+          "A changing proportionality means one constant-resistance model is not supported over the full range."
+        ],
+        "check": "Choose separated operating regions on the trace; if one constant model were valid, both would preserve the same proportionality.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Rejects the constant-resistance model because proportionality changes across the trace.",
+            "evidence_of": "Using measurement structure rather than a device label to choose the model."
+          },
+          {
+            "criterion": "Keeps the conclusion scoped to the stated tested conditions.",
+            "evidence_of": "Treating model validity as conditional rather than permanent."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-ELEC-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Do not decide from the component name; decide from what stays constant in the measurements.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask whether one proportionality can describe the whole tested range under the same condition.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The device name no longer hands over the model; the learner must decide from voltage-current evidence whether one constant resistance is valid.",
+        "builds_on": [
+          "Q-PHY-ELEC-2A-01",
+          "MIC-ELEC-OHMIC-MODEL-TEST"
+        ]
+      },
+      "repair_ref": "ELEC-R4-3"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-ELEC-CORE1A",
