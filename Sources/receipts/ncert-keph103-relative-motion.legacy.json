@@ -1,0 +1,44 @@
+{
+  "receipt_id": "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY",
+  "version": "1.0.0",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-RELATIVE-MOTION",
+  "source_basis": [
+    "https://ncert.nic.in/textbook/pdf/keph103.pdf"
+  ],
+  "resource_refs": [
+    "SRC-NCERT-PLANE"
+  ],
+  "inspection": {
+    "inspector_kind": "LEGACY_METADATA_MIGRATION",
+    "inspector_id": "Physics/library/relative-motion.v1.json",
+    "inspected_at": "2026-09-16",
+    "access_status": "SECTION_INSPECTED",
+    "sections": [
+      "Chapter 3; graphical vector addition/subtraction"
+    ],
+    "content_sha256": null,
+    "snapshot_ref": null
+  },
+  "coverage": {
+    "CORE2": {
+      "status": "INSUFFICIENT",
+      "question_refs": [],
+      "basis": "The canonical library contains no ORIGINAL or ADAPTED question bound to SRC-NCERT-PLANE, so the inspected reference does not establish Core2 custody."
+    },
+    "CORE2A": {
+      "status": "INSUFFICIENT",
+      "question_refs": [],
+      "basis": "No bucket-owned question exposed to CORE2A is bound to SRC-NCERT-PLANE."
+    },
+    "CORE2B": {
+      "status": "INSUFFICIENT",
+      "question_refs": [],
+      "basis": "No bucket-owned transfer question exposed to CORE2B is bound to SRC-NCERT-PLANE."
+    }
+  },
+  "notes": [
+    "This receipt migrates existing inspection metadata; it does not claim that the source was re-fetched for this PR.",
+    "LEGACY_METADATA_MIGRATION receipts are forbidden from asserting SUFFICIENT coverage."
+  ]
+}
