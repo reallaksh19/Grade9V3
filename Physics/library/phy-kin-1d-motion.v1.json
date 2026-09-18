@@ -60,7 +60,16 @@
         "grade9_track": "STANDARD",
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "curriculum_mapping_policy": "VERIFIED",
-        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B",
+        "practical_coverage_policy": "PRESCRIBED_PRACTICALS",
+        "prescribed_practicals": [
+          {
+            "id": "CBSE-IX-2026-PHY-PRACTICAL-13",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Practicals item 13; printed p.19 — Plotting of distance-time and velocity-time graphs using an inclined plane (Ch. 4).",
+            "capability_ref": "CAP-KIN-MOTION-GRAPHS"
+          }
+        ]
       },
       "title": "One-dimensional motion",
       "topic": "Motion",
@@ -280,6 +289,16 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
           "locator": "Motion; printed p.14; C-2.1 — plot and interpret position-time and velocity-time graphs, including average velocity and acceleration",
+          "mapping_status": "VERIFIED"
+        },
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Practicals item 13; printed p.19 — Plotting of distance-time and velocity-time graphs using an inclined plane (Ch. 4).",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -2112,7 +2131,8 @@
         "Q-PHY-KIN-2A-COV-02",
         "Q-PHY-KIN-2A-COV-03",
         "Q-PHY-KIN-2A-COV-04",
-        "Q-PHY-KIN-2A-COV-05"
+        "Q-PHY-KIN-2A-COV-05",
+        "Q-PHY-KIN-PRACTICAL-13"
       ]
     }
   ],
@@ -2488,6 +2508,86 @@
         },
         {
           "text": "Average acceleration is signed velocity change divided by elapsed time.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-KIN-PRACTICAL-13",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "prescribed_practical_refs": [
+          "CBSE-IX-2026-PHY-PRACTICAL-13"
+        ]
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-PRACTICAL-13",
+      "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use one trolley/body moving down one fixed incline and one declared positive direction."
+      ],
+      "figure_refs": [
+        "REP-PHY-KIN-POSITION-TIME-GRAPH",
+        "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
+      ],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant.",
+        "reasoning": [
+          "Use time as the horizontal variable and measured distance/position along the incline as the first vertical variable.",
+          "Keep the same origin, direction and units for every reading.",
+          "Estimate interval velocity from Delta x / Delta t for successive measurements and associate each value with its interval or midpoint time.",
+          "Plot the velocity estimates against time; an approximately straight trend indicates approximately constant acceleration over the tested interval.",
+          "Repeat trials or use multiple readings so a single timing error does not determine the conclusion."
+        ],
+        "check": "The position-time graph and velocity-time graph must be built from the same motion data and use increasing time coordinates; graph slope, not graph height, carries the rate interpretation.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 2,
+        "rubric": [
+          {
+            "criterion": "Specifies measured time and position/distance data with a consistent origin, direction and units.",
+            "evidence_of": "A reproducible data table suitable for graphing."
+          },
+          {
+            "criterion": "Constructs position/distance-time and velocity-time graphs from the same run or controlled repeated runs.",
+            "evidence_of": "Velocity values are obtained from measured position changes over measured time intervals."
+          },
+          {
+            "criterion": "Uses the velocity-time trend to test approximate constant acceleration.",
+            "evidence_of": "Recognizes an approximately straight velocity-time graph and near-constant slope as the evidence."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
+      "secondary_capability_refs": [
+        "CAP-KIN-CONSTANT-ACCELERATION"
+      ],
+      "family_ref": "FAM-PHY-KIN-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start with a table of time and position along the incline; both graphs must come from measured motion data.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use successive Delta x / Delta t values to build the velocity-time data before interpreting its slope.",
           "reveals": "METHOD"
         }
       ]
