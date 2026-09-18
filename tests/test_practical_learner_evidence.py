@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -154,6 +155,12 @@ class PracticalLearnerEvidence(unittest.TestCase):
     def test_diagnostic_profile_cannot_claim_demonstrated_from_solution_help(self):
         with self.temp_root() as tmp:
             root = Path(tmp)
+            schema_dir = root / "Shared/library"
+            schema_dir.mkdir(parents=True)
+            shutil.copy(
+                REPO / "Shared/library/observation.schema.json",
+                schema_dir / "observation.schema.json",
+            )
             library = root / "Example/library"
             library.mkdir(parents=True)
             (library / "example.v1.json").write_text(json.dumps({
