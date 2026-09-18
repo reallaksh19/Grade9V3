@@ -162,7 +162,10 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
     route = []
     for capability in ordered:
         locations = list(index["locations"].get(capability, []))
-        if not locations:
+        external_provider = caps[capability].get("external_provider")
+        if not locations and external_provider:
+            state = "EXTERNAL_BRIDGE"
+        elif not locations:
             state = "NO_TEACHING_LOCATION"
             findings.append({
                 "point": NO_TEACHING_LOCATION,
@@ -194,6 +197,8 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
             ],
             "locations": locations,
             "state": state,
+            "external_provider": external_provider,
+            "acceptance_status": caps[capability].get("acceptance_status"),
         })
 
     return {
@@ -231,6 +236,10 @@ def readable(report: dict) -> str:
         ]
         if row["required_by_questions"]:
             out += [f'    questions: {", ".join(row["required_by_questions"])}']
+        if row.get("state") == "EXTERNAL_BRIDGE":
+            out += [
+                f'    bridge: external provider {row.get("external_provider")}'
+            ]
         for loc in row["locations"]:
             out += [
                 f'    teaches: {loc["matrix_id"]} / {loc["rung"]} '
