@@ -51,6 +51,17 @@ jobs:
       - name: Requests resolve to a plan, or refuse with a reason
         run: python3 Shared/tools/resolve_request.py --enforce
 
+      # A short third-agent request is allowed to be incomplete: the plan must derive
+      # what the repository owns and return only the owner decisions that remain.
+      - name: Cold-agent authoring requests resolve without guessing
+        run: python3 Shared/tools/plan_request.py --audit --enforce
+
+      # Mechanical academic-review prerequisites are measurable. Human scientific and
+      # pedagogical approval is not; report that state explicitly rather than turning
+      # a green CI check into a fake review.
+      - name: Academic review readiness report
+        run: python3 Shared/tools/academic_readiness.py
+
       - name: No ceiling forbids the word its own rung teaches
         run: python3 Shared/tools/ceiling_audit.py --enforce
 
