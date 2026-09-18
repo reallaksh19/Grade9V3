@@ -56,6 +56,11 @@ jobs:
       - name: Cold-agent authoring requests resolve without guessing
         run: python3 Shared/tools/plan_request.py --audit --enforce
 
+      # A resolved plan becomes a pinned per-Core work packet. The packet may be partial:
+      # unrelated work continues while a source or owner decision holds one Core.
+      - name: Third-agent execution packets are current and internally consistent
+        run: python3 Shared/tools/compile_execution_packet.py --audit --enforce
+
       # Mechanical academic-review prerequisites are measurable. Human scientific and
       # pedagogical approval is not; report that state explicitly rather than turning
       # a green CI check into a fake review.
