@@ -179,29 +179,33 @@ class StudyStartOverlay(unittest.TestCase):
             "MATRIX-PHY-WORK-ENERGY-POWER",
         )
 
-    def test_unknown_matrix_is_explicit(self):
+    def test_unknown_matrix_estimate_warns_and_falls_back_to_neutral_route(self):
         report = study_start.resolve(self.mapping(), [{
             "matrix_id": "MATRIX-NOT-REAL",
             "knowledge_percentage": 50,
         }])
-        self.assertFalse(report["passed"])
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["findings"], [])
+        self.assertEqual(report["execution_disposition"], "EXECUTE_WITH_FALLBACK")
         self.assertIn(
             "STUDY_START_MATRIX_UNKNOWN",
-            [row["point"] for row in report["findings"]],
+            [row["point"] for row in report["warnings"]],
         )
+        self.assertTrue(report["route"])
 
-    def test_out_of_range_estimate_is_refused(self):
+    def test_out_of_range_estimate_warns_and_falls_back_to_neutral_route(self):
         report = study_start.resolve(self.mapping(), [{
             "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
             "knowledge_percentage": 140,
         }])
-        self.assertFalse(report["passed"])
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["execution_disposition"], "EXECUTE_WITH_FALLBACK")
         self.assertIn(
             "STUDY_START_ESTIMATE_OUT_OF_RANGE",
-            [row["point"] for row in report["findings"]],
+            [row["point"] for row in report["warnings"]],
         )
 
-    def test_duplicate_estimate_for_same_matrix_is_refused(self):
+    def test_duplicate_estimate_warns_and_keeps_first_deterministic_choice(self):
         report = study_start.resolve(self.mapping(), [
             {
                 "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
@@ -212,11 +216,13 @@ class StudyStartOverlay(unittest.TestCase):
                 "knowledge_percentage": 70,
             },
         ])
-        self.assertFalse(report["passed"])
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["execution_disposition"], "EXECUTE_WITH_FALLBACK")
         self.assertIn(
             "STUDY_START_ESTIMATE_DUPLICATE",
-            [row["point"] for row in report["findings"]],
+            [row["point"] for row in report["warnings"]],
         )
+        self.assertEqual(report["start_decisions"][0]["knowledge_percentage"], 40)
 
 
 if __name__ == "__main__":
