@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored conceptual spine for Newton's first-law reasoning, zero-net-force force inventories, free-body-diagram body ownership, and observer-frame choice. No equations or new depiction kinds are asserted.",
+  "scope_summary": "Grade 9 force-and-laws spine: balanced and unbalanced forces, friction, one-body force diagrams, Newton's first/second/third laws, plus accelerating-frame choice as an advanced extension.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -46,7 +46,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Newton's first law and free-body diagrams",
+      "title": "Force and Newton's laws",
       "topic": "Laws of Motion",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "The difficult work is separating motion from change of motion, then assigning each force to the body it actually acts on.",
@@ -66,9 +66,8 @@
         }
       ],
       "scope": {
-        "covers": "Qualitative first-law reasoning, force cancellation, free-body-diagram ownership, and frame choice.",
+        "covers": "Grade 9 balanced/unbalanced force reasoning, friction, free-body ownership, Newton's first, second and third laws; accelerating-frame choice is retained as an advanced extension.",
         "excluded": [
-          "Quantitative force-acceleration equations.",
           "A canonical FREE_BODY_DIAGRAM representation or renderer implementation."
         ],
         "extension_refs": []
@@ -147,6 +146,60 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE",
+      "id": "CAP-NLM-FRICTION",
+      "action": "Identify friction as a contact force that opposes relative sliding or the tendency to slide.",
+      "success_criterion": "Draws friction along the contact surface in the direction that opposes relative sliding/tendency, not automatically opposite the object's velocity.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE",
+      "id": "CAP-NLM-SECOND-LAW",
+      "action": "Relate signed net external force to acceleration with F_net = m a.",
+      "success_criterion": "Builds the force sum for one chosen body before solving for signed acceleration or net force.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE",
+      "id": "CAP-NLM-THIRD-LAW",
+      "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
+      "success_criterion": "Names both bodies and keeps the two partner forces on separate free-body diagrams.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ]
     }
   ],
   "microtopics": [
@@ -690,9 +743,490 @@
           "confirms": "The trigger is observer acceleration, not observer motion in general."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-NLM-FRICTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Friction opposes relative sliding at a contact",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Friction is often memorized as 'opposite motion', which fails for driven or rolling contacts.",
+      "entry_assumptions": [
+        "Can choose one body and identify external contact interactions acting on it."
+      ],
+      "inferential_jump": "Friction is a contact force along the surface that opposes relative sliding, or the tendency for relative sliding, between the contacting surfaces; it is not defined by the object's overall velocity alone.",
+      "teaching_path": [
+        {
+          "id": "NLM5-1",
+          "role": "DECLARE",
+          "action": "Choose the body and mark the contact surface before deciding a friction direction.",
+          "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "chosen body; named contact; tangent direction available."
+        },
+        {
+          "id": "NLM5-2",
+          "role": "TRANSFORM",
+          "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+          "why_valid": "Contact friction resists relative sliding between the surfaces.",
+          "inputs": [],
+          "output": "friction tangent to contact and opposite relative sliding/tendency."
+        },
+        {
+          "id": "NLM5-3",
+          "role": "VERIFY",
+          "action": "Check a conveyor-belt case where the belt can frictionally accelerate an object in the same direction as the object's motion.",
+          "why_valid": "The counterexample falsifies the shortcut 'friction always points opposite velocity'.",
+          "inputs": [],
+          "output": "friction direction follows contact slip tendency, not a universal page-direction rule."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Friction always points opposite the object's velocity.",
+          "diagnostic_prompt": "A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box's motion?",
+          "repair": "Decide the relative sliding tendency at the contact first; friction opposes that tendency."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The friction force on the box points to the right.",
+          "reasoning": [
+            "Relative to the belt, the box tends to slip left at the contact.",
+            "Friction opposes that relative slip tendency.",
+            "Therefore the belt's friction on the box points right and accelerates it."
+          ],
+          "check": "The answer is allowed to point with the box's motion because friction is defined by the contact slip tendency, not by the box's velocity alone.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit asserts only the contact-force direction in a qualitative conveyor-belt case."
+        }
+      },
+      "research_contribution": "Author-created Grade 9 friction counterexample.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Must friction on a moving object always point opposite the object's motion?",
+          "defensible_answer": "No. Its direction opposes relative sliding or the tendency to slide at the contact."
+        },
+        "attempt": {
+          "produces": "A contact-level slip-tendency statement and a friction arrow.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Names the relative slip tendency at the contact.",
+              "evidence_of": "Reasoning from the contact rather than object velocity alone."
+            },
+            {
+              "criterion": "Points friction opposite that relative slip tendency.",
+              "evidence_of": "Using the physical definition consistently."
+            }
+          ],
+          "accepted": [
+            "Belt outruns box -> box slips left relative to belt -> friction on box points right."
+          ],
+          "rejected": [
+            "Friction must point left because the box moves right."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which two surfaces are in contact?",
+              "why_this_ask": "It locates the interaction.",
+              "from_step_ref": "NLM5-1"
+            },
+            {
+              "ask": "Which way would those surfaces slide relative to each other without friction?",
+              "why_this_ask": "It identifies the relevant tendency.",
+              "from_step_ref": "NLM5-2"
+            },
+            {
+              "ask": "Which way must friction oppose that relative motion?",
+              "why_this_ask": "It reconstructs the force direction."
+            },
+            {
+              "ask": "Does that direction have to oppose the box's ground-frame velocity?",
+              "why_this_ask": "It tests the common shortcut.",
+              "from_step_ref": "NLM5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path begins from the contact; the learner route begins from the misleading object-velocity shortcut and repairs it through relative slip."
+        },
+        "boundary_test": {
+          "prompt": "If there is no relative sliding and no tendency to slide at a contact, must friction be nonzero?",
+          "answer": "No. Friction can be zero when no tangential contact force is needed.",
+          "confirms": "Friction responds to the contact constraint rather than existing automatically whenever surfaces touch."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Net force, not any one force, sets acceleration",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficult step is completing a one-body force inventory before using the simple equation.",
+      "entry_assumptions": [
+        "Can choose one body, draw its external forces, and distinguish zero from nonzero net force."
+      ],
+      "inferential_jump": "For a chosen body of positive mass in the Grade 9 inertial-frame model, acceleration points with the signed net external force and satisfies F_net = m a.",
+      "teaching_path": [
+        {
+          "id": "NLM6-1",
+          "role": "DECLARE",
+          "action": "Choose one body, declare a positive direction, and list only external forces acting on that body.",
+          "why_valid": "The net-force relation applies to one body's external force sum.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "one body; one signed axis; signed external-force list."
+        },
+        {
+          "id": "NLM6-2",
+          "role": "TRANSFORM",
+          "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
+          "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned relation for the chosen body.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW"
+          ],
+          "output": "F_net = signed sum; a = F_net / m."
+        },
+        {
+          "id": "NLM6-3",
+          "role": "VERIFY",
+          "action": "Return to an equal-opposite force case.",
+          "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
+          "inputs": [],
+          "output": "F_net = 0 -> a = 0 for m > 0."
+        }
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
+          "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
+          "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The acceleration is +3 m/s^2.",
+          "reasoning": [
+            "Use F_net = m a for the chosen body.",
+            "a = +12 N / 4 kg = +3 m/s^2.",
+            "The positive sign matches the net-force direction."
+          ],
+          "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "NEWTON_SECOND_LAW",
+            "bindings": {
+              "mass": "DAT-NLM-MASS",
+              "acceleration": "DAT-NLM-ACCEL"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created Grade 9 net-force calculation bound to the Newton-second-law gate and validator.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A body moves right while its net external force points left. Which way is its acceleration?",
+          "defensible_answer": "Left, with the net force; velocity direction does not set acceleration direction."
+        },
+        "attempt": {
+          "produces": "A one-body signed force sum and a signed acceleration.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Sums forces before using F = ma.",
+              "evidence_of": "Using net external force rather than a selected force."
+            },
+            {
+              "criterion": "Keeps the acceleration sign consistent with the chosen axis.",
+              "evidence_of": "Maintaining direction through the scalar component equation."
+            }
+          ],
+          "accepted": [
+            "+12 N on 4 kg -> +3 m/s^2."
+          ],
+          "rejected": [
+            "Using the direction of velocity to choose acceleration sign."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which body are we solving for?",
+              "why_this_ask": "It fixes force ownership.",
+              "from_step_ref": "NLM6-1"
+            },
+            {
+              "ask": "What is the signed sum of forces on that body?",
+              "why_this_ask": "It constructs the quantity the law uses."
+            },
+            {
+              "ask": "What positive mass belongs to that same body?",
+              "why_this_ask": "It prevents cross-body substitution."
+            },
+            {
+              "ask": "Does the zero-net-force boundary give zero acceleration?",
+              "why_this_ask": "It independently checks the result.",
+              "from_step_ref": "NLM6-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path builds the force sum directly; the learner route starts from the body choice and uses the zero-force boundary as a final falsifier."
+        },
+        "boundary_test": {
+          "prompt": "If the net external force is zero on a positive-mass body, what acceleration does F_net = ma give?",
+          "answer": "Zero acceleration.",
+          "confirms": "The second-law relation is consistent with the earlier first-law constant-velocity case."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-THIRD-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Third-law partner forces act on different bodies",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-THIRD-LAW",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Equal-and-opposite wording invites learners to cancel a pair that belongs to two different bodies.",
+      "entry_assumptions": [
+        "Can assign force arrows to the body on which they act."
+      ],
+      "inferential_jump": "One interaction produces two partner forces of equal magnitude and opposite direction, but they act on different bodies and therefore do not cancel in a single body's net-force sum.",
+      "teaching_path": [
+        {
+          "id": "NLM7-1",
+          "role": "DECLARE",
+          "action": "Name the interaction as 'A on B' and 'B on A' before drawing arrows.",
+          "why_valid": "The agent-target wording records which body owns each partner force.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "force of A on B belongs to B; force of B on A belongs to A."
+        },
+        {
+          "id": "NLM7-2",
+          "role": "TRANSFORM",
+          "action": "Draw equal-length opposite arrows on the two different body diagrams.",
+          "why_valid": "Newton's third-law partners are equal in magnitude and opposite in direction for the same interaction.",
+          "inputs": [],
+          "output": "partner arrows: equal magnitude, opposite direction, different bodies."
+        },
+        {
+          "id": "NLM7-3",
+          "role": "VERIFY",
+          "action": "Ask whether either single body's force sum contains both partner arrows.",
+          "why_valid": "A force diagram for one body includes only forces acting on that body.",
+          "inputs": [],
+          "output": "third-law partners do not cancel inside one body's F_net unless another separate force happens to balance one."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Action and reaction cancel each other, so interacting bodies cannot accelerate.",
+          "diagnostic_prompt": "When a person pushes a cart, do the person's force on the cart and the cart's force on the person both appear on the cart's free-body diagram?",
+          "repair": "No. Put each partner on the body it acts on; only then sum forces for one body."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
+          "reasoning": [
+            "The interaction is swimmer-water contact.",
+            "Swimmer on water acts on the water.",
+            "Water on swimmer acts on the swimmer in the opposite direction."
+          ],
+          "check": "Only the water-on-swimmer force belongs on the swimmer's free-body diagram.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit identifies interaction partners, directions and body ownership without a computed magnitude."
+        }
+      },
+      "research_contribution": "Author-created Grade 9 third-law body-ownership construction.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If action and reaction are equal and opposite, why do they not automatically make the net force on one object zero?",
+          "defensible_answer": "They act on different objects, so they are not both terms in the same object's force sum."
+        },
+        "attempt": {
+          "produces": "Two agent-target force statements and one arrow on each body.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Names both partner forces with agent and target.",
+              "evidence_of": "Keeping force ownership explicit."
+            },
+            {
+              "criterion": "Places the partners on different body diagrams.",
+              "evidence_of": "Avoiding false cancellation in one net-force sum."
+            }
+          ],
+          "accepted": [
+            "swimmer on water backward; water on swimmer forward; different bodies."
+          ],
+          "rejected": [
+            "Both arrows cancel on the swimmer."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the interaction?",
+              "why_this_ask": "It identifies the partner pair."
+            },
+            {
+              "ask": "Which body receives the first force?",
+              "why_this_ask": "It assigns ownership.",
+              "from_step_ref": "NLM7-1"
+            },
+            {
+              "ask": "Which body receives the partner?",
+              "why_this_ask": "It prevents both arrows landing on one diagram."
+            },
+            {
+              "ask": "Can both partners appear in one body's force sum?",
+              "why_this_ask": "It tests the cancellation misconception.",
+              "from_step_ref": "NLM7-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path names agent-target pairs before drawing; the learner route starts from the cancellation paradox and resolves it by body ownership."
+        },
+        "boundary_test": {
+          "prompt": "Can a third-law partner force ever be the force that balances another force on the same body?",
+          "answer": "A separate force may happen to balance it, but its own third-law partner acts on the other body and is not the balancing term on the same diagram.",
+          "confirms": "Equal-and-opposite third-law pairing is different from same-body force balance."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-NEWTON-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "F_net = m a",
+      "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
+      "symbols": [
+        {
+          "symbol": "F_net",
+          "meaning": "Net external force along the declared axis",
+          "unit_or_domain": "N; signed scalar component"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass of the chosen body",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "a",
+          "meaning": "Acceleration along the same axis",
+          "unit_or_domain": "m/s^2; signed scalar"
+        }
+      ],
+      "conditions": [
+        "m > 0.",
+        "F_net and a refer to the same chosen body.",
+        "All signed components use one declared axis."
+      ],
+      "derivation": [
+        {
+          "id": "NLM-R6-D1",
+          "role": "DECLARE",
+          "action": "Choose one body, declare a positive direction, and add the signed external forces acting on that body.",
+          "why_valid": "Newton's second law uses the net external force on one chosen body.",
+          "inputs": [],
+          "output": "F_net = signed sum of external forces on the chosen body."
+        },
+        {
+          "id": "NLM-R6-D2",
+          "role": "TRANSFORM",
+          "action": "Set the signed net force equal to mass times signed acceleration.",
+          "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned quantitative relation.",
+          "inputs": [],
+          "output": "F_net = m a."
+        }
+      ],
+      "limits": [
+        "Do not mix forces acting on different bodies in one force sum.",
+        "The simple Grade 9 use assumes an inertial frame and constant positive mass."
+      ],
+      "checks": [
+        "Equal opposite forces give F_net = 0 and therefore a = 0.",
+        "For fixed mass, reversing F_net reverses a."
+      ],
+      "gate_relation_ref": "REL-NEWTON-SECOND-LAW"
+    }
+  ],
   "representations": [],
   "question_families": [
     {
@@ -709,7 +1243,10 @@
         "CAP-NLM-NET-ZERO-MOTION",
         "CAP-NLM-FORCES-SUM-ZERO",
         "CAP-NLM-FBD-BODY-OWNERSHIP",
-        "CAP-NLM-FRAME-CHOICE"
+        "CAP-NLM-FRAME-CHOICE",
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
       ],
       "solution_structure": [
         "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
@@ -882,6 +1419,9 @@
         "MIC-PHY-NLM-NET-ZERO-MOTION",
         "MIC-PHY-NLM-FORCES-SUM-ZERO",
         "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-FRICTION",
+        "MIC-PHY-NLM-SECOND-LAW",
+        "MIC-PHY-NLM-THIRD-LAW",
         "MIC-PHY-NLM-FRAME-CHOICE"
       ],
       "entry_needs": [
@@ -929,6 +1469,9 @@
         "MIC-PHY-NLM-NET-ZERO-MOTION",
         "MIC-PHY-NLM-FORCES-SUM-ZERO",
         "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-FRICTION",
+        "MIC-PHY-NLM-SECOND-LAW",
+        "MIC-PHY-NLM-THIRD-LAW",
         "MIC-PHY-NLM-FRAME-CHOICE"
       ],
       "entry_needs": [
@@ -977,6 +1520,38 @@
       "symbol": "v_example",
       "meaning": "Illustrative steady speed available to compiled study obligations; none of the authored exits depends on its numerical value.",
       "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-NLM-MASS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 4,
+      "unit": "kg",
+      "symbol": "m",
+      "meaning": "Mass in the authored Newton-second-law exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-NLM-ACCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "m/s^2",
+      "symbol": "a",
+      "meaning": "Signed acceleration in the authored Newton-second-law exit task.",
+      "locator": "Author-created exact practice datum."
     }
   ]
 }
