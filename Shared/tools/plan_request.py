@@ -16,7 +16,7 @@ from Shared.contracts import ContractError, load
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.practice_inventory import coverage as practice_coverage
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import academic_readiness, capability_graph, resolve_request, source_receipts
+from Shared.tools import academic_readiness, capability_graph, learner_evidence, resolve_request, source_receipts
 
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
@@ -90,8 +90,9 @@ def _learner_route(request: dict, board: dict, caps: dict, mics: dict,
         if profile is None:
             return {"state": "BLOCKED", "entry": None, "bridges": [],
                     "unresolved": [learner["profile_ref"]], "reason": "PROFILE_REF_DANGLING"}
-        held = profile.get("held", {})
-        candidate = resolve_request.entry_from_profile(rows, profile, caps, mics)
+        held = learner_evidence.effective_held(profile, repo)
+        candidate = resolve_request.entry_from_profile(
+            rows, {**profile, "held": held}, caps, mics)
     elif "owner_entry" in learner:
         candidate = {"rung": learner["owner_entry"].get("rung"), "why": "OWNER_NAMED"}
     elif "owner_estimate" in learner:
