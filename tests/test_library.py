@@ -199,13 +199,28 @@ class Compilation(unittest.TestCase):
         self.assertEqual(result["numeric_answers_compared"], 3)
         self.assertIn("CORE1", result["products"])
         self.assertIn("CORE2", result["products"])
+        self.assertIn("CORE2B", result["products"])
         self.assertFalse(result["release_authorized"])
 
-    def test_a_product_the_library_cannot_support_is_reported_not_padded(self):
+    def test_a_transfer_question_makes_core2b_buildable(self):
         compiled = self.compile()
-        self.assertNotIn("CORE2B", compiled["baseline"]["selected_cores"])
-        unsupported = [r for r in compiled["authoring_requirements"] if r["kind"] == "PRODUCT_UNSUPPORTED"]
-        self.assertEqual([r["core"] for r in unsupported], ["CORE2B"])
+        self.assertIn("CORE2B", compiled["baseline"]["selected_cores"])
+        unsupported = [r for r in compiled["authoring_requirements"]
+                       if r["kind"] == "PRODUCT_UNSUPPORTED" and r.get("core") == "CORE2B"]
+        self.assertEqual(unsupported, [])
+
+        product = next(p for p in compiled["plan"]["products"] if p["core"] == "CORE2B")
+        blocks = product["units"][0]["blocks"]
+        prompt = next(b for b in blocks if b["id"].endswith("-PROMPT"))
+        reveal = next(b for b in blocks if b.get("placement") == "ELICITED_REVEAL")
+        self.assertLess(blocks.index(prompt), blocks.index(reveal))
+        self.assertEqual(reveal["reveals_block_id"], prompt["id"])
+        self.assertEqual(reveal["exposure_role"], "NEW_TRANSFER")
+        self.assertTrue(reveal["answer"]["rubric"])
+        self.assertTrue(reveal["transfer"]["builds_on"])
+        self.assertTrue(reveal["repair_ref"])
+        self.assertTrue(differentiation.audit(
+            compiled["plan"], compiled["baseline"]["obligations"])["differentiated"])
 
     def test_remaining_authoring_is_declared_rather_than_invented(self):
         # This named FIGURE_AUTHORING, which R3.1 closed for this subject. Asserting a
@@ -1375,13 +1390,12 @@ class PurposeIsOneVocabularyAndItBranches(unittest.TestCase):
         self.assertIn("STARTER", owed[0]["detail"])
         self.assertIn("does not route transfer", owed[0]["detail"])
 
-    def test_a_routing_purpose_gives_a_different_reason_entirely(self):
-        # Withheld on purpose and absent because nothing exists must not look alike.
-        owed = [r for r in self.compiled("COMPETITION")["authoring_requirements"]
+    def test_a_routing_purpose_builds_transfer_when_the_library_holds_it(self):
+        compiled = self.compiled("COMPETITION")
+        self.assertIn("CORE2B", compiled["baseline"]["selected_cores"])
+        owed = [r for r in compiled["authoring_requirements"]
                 if r["kind"] == "PRODUCT_UNSUPPORTED" and r.get("core") == "CORE2B"]
-        self.assertEqual(len(owed), 1)
-        self.assertNotIn("does not route transfer", owed[0]["detail"])
-        self.assertIn("no question exposed", owed[0]["detail"])
+        self.assertEqual(owed, [])
 
     def test_every_declared_purpose_says_what_it_controls(self):
         for row in self.VOCAB["purposes"]:
