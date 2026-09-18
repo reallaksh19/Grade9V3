@@ -447,15 +447,54 @@ def write_run(report: dict, proposal: dict, repo: Path = REPO,
     return {"receipt_path": str(out), "receipt": receipt}
 
 
+def audit(repo: Path = REPO) -> dict:
+    supported = {
+        ("AUTHOR_CANDIDATE_QUESTION", "CANDIDATE_RECORDS_ONLY"),
+        ("BUILD_FROM_CANONICAL", "PRODUCT_OUTPUT_ONLY"),
+    }
+    rows, findings = [], []
+    for path in sorted((repo / "Requests").glob("*.author-request.json")):
+        request = load(path)
+        packet = compile_execution_packet.compile_packet(request, repo)
+        unsupported = []
+        for order in packet.get("work_orders", []):
+            action = order.get("authoring_action")
+            mode = (order.get("write_scope") or {}).get("mode")
+            if action in {"AUTHOR_CANDIDATE_QUESTION", "BUILD_FROM_CANONICAL"} and (action, mode) not in supported:
+                unsupported.append({"core": order.get("core"), "action": action, "mode": mode})
+        row_findings = [{
+            "point": "AUTHORING_EXECUTOR_SCOPE_UNSUPPORTED",
+            "where": item["core"] or "",
+            "detail": f'executor does not support {item["action"]} with write scope {item["mode"]}',
+        } for item in unsupported]
+        rows.append({
+            "request": str(path.relative_to(repo)),
+            "packet_state": packet.get("packet_state"),
+            "runnable": packet.get("summary", {}).get("runnable_cores", []),
+            "findings": row_findings,
+        })
+        findings.extend(row_findings)
+    return {"requests": len(rows), "rows": rows, "findings": findings, "passed": not findings}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--request", type=Path, required=True)
-    parser.add_argument("--packet", type=Path, required=True)
-    parser.add_argument("--proposal", type=Path, required=True)
+    parser.add_argument("--request", type=Path)
+    parser.add_argument("--packet", type=Path)
+    parser.add_argument("--proposal", type=Path)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--receipt-output", type=Path)
+    parser.add_argument("--audit", action="store_true")
     parser.add_argument("--enforce", action="store_true")
     args = parser.parse_args()
+
+    if args.audit:
+        report = audit()
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        return 1 if args.enforce and not report["passed"] else 0
+
+    if not args.request or not args.packet or not args.proposal:
+        parser.error("execution requires --request, --packet and --proposal")
 
     request = load(args.request)
     packet = load(args.packet)
