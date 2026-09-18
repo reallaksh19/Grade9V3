@@ -38,7 +38,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.contracts import load  # noqa: E402
+from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.library.resolve import build_index, slice_for_bucket  # noqa: E402
 from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
@@ -86,9 +86,9 @@ def _library_has_exposure(subject: str, bucket_id: str, core: str,
     try:
         records = build_index(packages)
         chosen = slice_for_bucket(records, bucket_id)
-    except Exception:
-        # Planning is a reporting layer: malformed or incomplete library state must not
-        # turn a request into a false READY merely because the ownership lookup failed.
+    except ContractError:
+        # Planning is a reporting layer: an unresolved library slice must not turn a
+        # request into a false READY merely because ownership could not be established.
         return False
     capabilities = {row["id"] for row in chosen["records"].get("capabilities", [])}
     return any(
