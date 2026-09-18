@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
@@ -153,6 +154,58 @@ class SessionReadiness(unittest.TestCase):
         self.assertEqual(
             report["external_bridges"][0]["capability_ref"],
             "CAP-EXT",
+        )
+
+    def test_readiness_uses_shared_delivery_resolver_for_prerequisites(self):
+        tmp, root = self.fixture(external=True)
+        calls = []
+        real_resolve = session_readiness.capability_delivery.resolve
+
+        def recording_resolve(capability, locations):
+            calls.append((capability["id"], list(locations)))
+            return real_resolve(capability, locations)
+
+        try:
+            with patch.object(
+                session_readiness.capability_delivery,
+                "resolve",
+                side_effect=recording_resolve,
+            ):
+                report = session_readiness.audit(
+                    "Example", matrix_id="MATRIX-EXAMPLE", repo=root
+                )
+        finally:
+            tmp.cleanup()
+
+        self.assertEqual(report["status"], session_readiness.READY_WITH_BRIDGE)
+        self.assertEqual(calls, [("CAP-EXT", [])])
+
+    def test_shared_unresolved_delivery_remains_a_readiness_blocker(self):
+        tmp, root = self.fixture(external=True)
+        try:
+            package = json.loads(
+                (root / "Example/library/example.json").read_text(encoding="utf-8")
+            )
+            external = next(
+                row for row in package["capabilities"]
+                if row["id"] == "CAP-EXT"
+            )
+            external["external_provider"] = None
+            (root / "Example/library/example.json").write_text(
+                json.dumps(package),
+                encoding="utf-8",
+            )
+            report = session_readiness.audit(
+                "Example", matrix_id="MATRIX-EXAMPLE", repo=root
+            )
+        finally:
+            tmp.cleanup()
+
+        self.assertEqual(report["status"], session_readiness.NOT_READY)
+        self.assertFalse(report["passed"])
+        self.assertIn(
+            "READINESS_PREREQUISITE_UNTAUGHT",
+            [row["point"] for row in report["blocking_findings"]],
         )
 
     def test_missing_diagnostic_is_pilot_ready_not_falsely_session_ready(self):
