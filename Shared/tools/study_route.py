@@ -143,7 +143,7 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
 
     try:
         ordered = capability_graph.topological_subset(known_roots, caps)
-        prerequisites = set(capability_graph.prerequisite_closure_many(known_roots, caps))
+        prerequisites = {\n            prerequisite\n            for root in known_roots\n            for prerequisite in capability_graph.prerequisite_closure(root, caps)\n        }
     except ContractError as exc:
         if exc.code != "CAPABILITY_PREREQUISITE_CYCLE":
             raise
