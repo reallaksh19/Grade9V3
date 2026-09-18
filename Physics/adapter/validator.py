@@ -12,6 +12,7 @@ VALIDATORS = {
     "HYDROSTATIC_PRESSURE_DIFFERENCE", "THERMODYNAMIC_FIRST_LAW", "WAVE_SPEED",
     "AVERAGE_POWER", "INSTANTANEOUS_POWER", "ELECTRIC_POWER",
     "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
+    "NEWTON_SECOND_LAW",
 }
 
 
@@ -92,6 +93,11 @@ def recompute(case: dict):
         a = _number(case, "a", "m/s^2")
         s = _number(case, "s", "m")
         return {"v_squared_m2_s2": u * u + 2 * a * s}
+    if kind == "NEWTON_SECOND_LAW":
+        mass = _number(case, "mass", "kg")
+        if mass <= 0:
+            raise ValueError("MASS_NONPOSITIVE")
+        return mass * _number(case, "acceleration", "m/s^2")
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
