@@ -69,6 +69,71 @@
             "locator": "Practicals item 13; printed p.19 — Plotting of distance-time and velocity-time graphs using an inclined plane (Ch. 4).",
             "capability_ref": "CAP-KIN-MOTION-GRAPHS"
           }
+        ],
+        "curriculum_outcome_coverage_policy": "DECLARED_OUTCOMES",
+        "curriculum_outcomes": [
+          {
+            "id": "CBSE9-MOTION-QUANTITIES",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Motion; printed p.14; C-2.1 — distance/displacement, speed/velocity and average-rate distinctions",
+            "capability_refs": [
+              "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "CAP-KIN-AVERAGE-RATES"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+              "MIC-PHY-KIN-AVERAGE-RATES"
+            ],
+            "question_refs": [
+              "Q-PHY-KIN-2A-01",
+              "Q-PHY-KIN-2A-COV-02"
+            ]
+          },
+          {
+            "id": "CBSE9-MOTION-GRAPHS-RATES",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Motion; printed p.14; C-2.1 — plot/interpret position-time and velocity-time graphs and determine average velocity/acceleration",
+            "capability_refs": [
+              "CAP-KIN-ZERO-V-NONZERO-A",
+              "CAP-KIN-MOTION-GRAPHS"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+              "MIC-PHY-KIN-MOTION-GRAPHS"
+            ],
+            "question_refs": [
+              "Q-PHY-KIN-2B-01",
+              "Q-PHY-KIN-2A-COV-05"
+            ]
+          },
+          {
+            "id": "CBSE9-MOTION-CONSTANT-ACCELERATION",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Motion; printed p.14; C-2.1 — graphical derivation and use of equations for uniformly accelerated motion",
+            "capability_refs": [
+              "CAP-KIN-CONSTANT-ACCELERATION"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-KIN-CONSTANT-ACCELERATION"
+            ],
+            "question_refs": [
+              "Q-PHY-KIN-2A-COV-03"
+            ]
+          },
+          {
+            "id": "CBSE9-MOTION-UNIFORM-CIRCULAR",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Motion; printed p.14; C-2.1 — elementary uniform circular motion and expression for speed",
+            "capability_refs": [
+              "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
+            ],
+            "question_refs": [
+              "Q-PHY-KIN-2A-COV-04"
+            ]
+          }
         ]
       },
       "title": "One-dimensional motion",
