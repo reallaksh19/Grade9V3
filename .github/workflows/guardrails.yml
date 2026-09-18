@@ -68,6 +68,11 @@ jobs:
       - name: Cold-agent authoring requests resolve without guessing
         run: python3 Shared/tools/plan_request.py --audit --enforce
 
+      # Every owner question emitted by the planner must have a typed, stale-safe
+      # application path. Adding a new REQUIRED_OWNER_INPUT without an applier fails CI.
+      - name: Planner owner inputs have executable decision handlers
+        run: python3 Shared/tools/apply_owner_decisions.py --audit --enforce
+
       # A resolved plan becomes a pinned per-Core work packet. The packet may be partial:
       # unrelated work continues while a source or owner decision holds one Core.
       - name: Third-agent execution packets are current and internally consistent
