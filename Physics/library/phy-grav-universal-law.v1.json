@@ -512,8 +512,175 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-GRAV-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Gravitational interaction and orbital-reasoning practice",
+      "capability_refs": [
+        "CAP-PHY-GRAV-R1",
+        "CAP-PHY-GRAV-R4",
+        "CAP-PHY-GRAV-R5"
+      ],
+      "solution_structure": [
+        "Draw two separated bodies A and B and mark the straight line joining their centres before adding any interaction arrows.",
+        "Place one force arrow on A pointing toward B and one on B pointing toward A.",
+        "Swap the labels A and B while leaving the physical pair in place, then check whether either force disappears."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must test the conservation condition after an additional non-central force is introduced rather than applying central-force conservation automatically."
+      ],
+      "common_wrong_routes": [
+        "A massive body pulls on a smaller body, but the smaller body does not pull back with an equal interaction."
+      ],
+      "item_refs": [
+        "Q-PHY-GRAV-2A-01",
+        "Q-PHY-GRAV-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-GRAV-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-GRAV",
+      "original_identifier": "AUTHOR-GRAV-2A-01",
+      "stem": "Two separated bodies are shown with their centres marked. Draw the gravitational-force direction on each body and explain what changes if the body labels are exchanged.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Each body has a gravitational-force arrow directed toward the other along the same centre-to-centre line; exchanging labels only exchanges ownership of the arrows.",
+        "reasoning": [
+          "The two centres determine the common line of action.",
+          "The force on A points from A toward B.",
+          "The force on B points from B toward A, so the interaction remains paired when labels swap."
+        ],
+        "check": "Rotate the entire drawing without changing the bodies or their separation; both force arrows should rotate with the joining line rather than stay tied to the page.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-PHY-GRAV-R1",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-GRAV-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: What line is fixed by the positions of the two body centres?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Treat gravity as an interaction pair: each body experiences a force directed toward the other along the same line.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-GRAV-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-GRAV",
+      "original_identifier": "AUTHOR-GRAV-2B-01",
+      "stem": "A satellite is moving under central gravity when a thruster fires tangentially for a short interval. Decide whether orbital angular momentum about the planet's centre is conserved during the firing interval, and explain what changes after the thruster turns off.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Angular momentum about the planet's centre is not conserved during the tangential thrust because the added force has a nonzero turning effect about that centre. After the thrust ends, central gravity alone again supplies no turning effect about the centre.",
+        "reasoning": [
+          "Conservation was established for a force directed through the chosen centre.",
+          "A tangential thrust is not collinear with the position line and therefore has a lever arm about that centre.",
+          "The added turning effect changes angular momentum during the firing interval; removing the thrust restores the central-force condition."
+        ],
+        "check": "Redirect the same thrust exactly along the radius; the added turning effect about the centre would then vanish.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "States that angular momentum about the centre changes during tangential thrust.",
+            "evidence_of": "Testing conservation from torque about the specified origin."
+          },
+          {
+            "criterion": "Restores the conservation claim only after the non-central thrust ends.",
+            "evidence_of": "Keeping the conclusion conditional on the force inventory."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-PHY-GRAV-R5",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-GRAV-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Conservation is about the chosen origin, so inspect the line of action of every force relative to that origin.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask whether the added force passes through the planet's centre or has a lever arm about it.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must test the conservation condition after an additional non-central force is introduced rather than applying central-force conservation automatically.",
+        "builds_on": [
+          "Q-PHY-GRAV-2A-01",
+          "MIC-PHY-GRAV-R5"
+        ]
+      },
+      "repair_ref": "GRAV-R5-2"
+    }
+  ],
   "teaching_routes": [
     {
       "version": "0.1.0",
