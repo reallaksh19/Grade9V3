@@ -45,7 +45,7 @@ class ReviewPromotionAuthority(unittest.TestCase):
                 if isinstance(value, list):
                     for row in value:
                         if isinstance(row, dict) and row.get("status") == "CANDIDATE":
-                            row["status"] = "REVIEWED"
+                            row["status"] = "CURATED"
             if original.name == "relative-motion.v1.json":
                 source = package
                 target = next(q for q in package["questions"] if q["id"] == self.RECORD_ID)
