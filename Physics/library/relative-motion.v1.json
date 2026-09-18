@@ -186,6 +186,145 @@
       ],
       "selection_reason": "Current official NCERT location closest to the intended Relative Motion basis; candidate replacement only until the owner changes the requested source basis and custody is acquired.",
       "fallback": []
+    },
+    {
+      "id": "SRC-NCERT-EXEMPLAR-RIVER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Exemplar Problems Class XI Physics — river crossing question",
+      "origin": "WEB",
+      "locator": "https://www.ncert.nic.in/pdf/publication/exemplarproblem/classXI/physics/keep317.pdf",
+      "edition": "2025-26",
+      "section": "Sample question paper, Question 20",
+      "last_checked": "2026-09-18",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Reference only; reproduction permission not established",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "SCIENTIFIC_CHECK",
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "entry_capabilities": [
+        "CAP-RELATIVE-V",
+        "CAP-VECTOR-CHECK"
+      ],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Official NCERT exemplar directly exercises river-current vector composition, direct-opposite crossing and comparison of crossing times without making a private coaching source authoritative.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-RELATIVE-RIVER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax University Physics — relative motion in one and two dimensions",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/university-physics-volume-1/pages/4-5-relative-motion-in-one-and-two-dimensions",
+      "edition": "University Physics Volume 1",
+      "section": "Section 4.5; boat/river relative-velocity example and exercises",
+      "last_checked": "2026-09-18",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Reference only in project metadata; use source under its published terms and do not copy more than needed",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "SCIENTIFIC_CHECK",
+        "EXPLANATION",
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "entry_capabilities": [
+        "CAP-RELATIVE-V",
+        "CAP-VECTOR-CHECK"
+      ],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Independent open textbook cross-check for velocity addition in a moving medium, including boat/river heading, ground velocity, crossing time and drift.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-ANAND-RIVER-BOAT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Physics Anand Classes — river boat and man problem",
+      "origin": "WEB",
+      "locator": "https://physicsanandclasses.co.in/river-boat-and-man-problem/",
+      "edition": "Web article inspected 2026-09-18",
+      "section": "Shortest-path versus shortest-time river crossing, solved examples and FAQs",
+      "last_checked": "2026-09-18",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Reference only; reproduction permission not established",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "EXPLANATION"
+      ],
+      "supports_claims": [
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "entry_capabilities": [
+        "CAP-RELATIVE-V",
+        "CAP-VECTOR-CHECK"
+      ],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Owner-supplied supplementary explanation that explicitly contrasts direct-opposite/shortest-path crossing with shortest-time crossing. It is not used as curriculum authority.",
+      "fallback": [
+        "SRC-OPENSTAX-RELATIVE-RIVER",
+        "SRC-NCERT-EXEMPLAR-RIVER"
+      ]
+    },
+    {
+      "id": "SRC-SCRIBD-DPP8-RIVER-BOAT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Physicsaholics DPP-8 Kinematics — river/boat problems (Scribd mirror)",
+      "origin": "WEB",
+      "locator": "https://www.scribd.com/document/731489807/Uploads1654688074DPP-8-JEE-Main-Adv-Kinematics-Relative-Motion-River-Boat-Problems",
+      "edition": "Three-page DPP mirror inspected 2026-09-18",
+      "section": "Questions 1-14 and answer key",
+      "last_checked": "2026-09-18",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Third-party/user-uploaded copyrighted practice material; retain locator and identifiers only, do not copy the bank into canonical content",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [
+        "CAP-RELATIVE-V",
+        "CAP-VECTOR-CHECK"
+      ],
+      "depth": [
+        "COMPETITION"
+      ],
+      "selection_reason": "Owner-supplied real JEE-style demand evidence spanning direct crossing, minimum time, drift, heading choice and harder variable-flow cases. Used only as practice-demand evidence, not scientific authority.",
+      "fallback": [
+        "SRC-NCERT-EXEMPLAR-RIVER",
+        "SRC-OPENSTAX-RELATIVE-RIVER"
+      ]
     }
   ],
   "capabilities": [
@@ -738,7 +877,9 @@
       "source_refs": [
         "SRC-NCERT-PLANE",
         "SRC-PHET",
-        "SRC-AUTHOR"
+        "SRC-AUTHOR",
+        "SRC-NCERT-EXEMPLAR-RIVER",
+        "SRC-OPENSTAX-RELATIVE-RIVER"
       ],
       "evidence_refs": [],
       "extensions": {},
@@ -812,7 +953,7 @@
           "no_numeric_claim": "The exit answer is a direction and a statement that magnitude is unchanged. No subject validator returns a compass direction, so there is no value here for an oracle to compare."
         }
       },
-      "research_contribution": "Graphical vector operations are source-supported; PhET is a candidate exploration route, not executed evidence. The reverse-then-add construction (GC-1/GC-2) reuses MIC-GRAPHICAL-SUBTRACTION (BUCKET-VECTOR-REPRESENTATION, V3B-Vector-Representation-Library-Seed.json) rather than re-deriving vector subtraction here; this is the added prerequisite edge below.",
+      "research_contribution": "Graphical vector operations are source-supported; PhET is a candidate exploration route, not executed evidence. The reverse-then-add construction (GC-1/GC-2) reuses MIC-GRAPHICAL-SUBTRACTION (BUCKET-VECTOR-REPRESENTATION, V3B-Vector-Representation-Library-Seed.json) rather than re-deriving vector subtraction here; this is the added prerequisite edge below. River/current application semantics are additionally cross-checked against official NCERT exemplar and OpenStax relative-motion material.",
       "prerequisite_refs": [
         "MIC-COMMON-INTERVAL",
         "MIC-GRAPHICAL-SUBTRACTION"
@@ -1287,6 +1428,16 @@
           "resource_ref": "SRC-NCERT-PLANE",
           "purpose": "Vector-operation checking",
           "reason": "Higher-grade source for construction semantics."
+        },
+        {
+          "resource_ref": "SRC-OPENSTAX-RELATIVE-RIVER",
+          "purpose": "Moving-medium application check",
+          "reason": "Independent open-textbook treatment of boat/river velocity composition and ground-relative motion."
+        },
+        {
+          "resource_ref": "SRC-NCERT-EXEMPLAR-RIVER",
+          "purpose": "Official river-crossing demand check",
+          "reason": "Official exemplar contains a multi-part river/current question that distinguishes resultant velocity, direct crossing and crossing-time comparison."
         }
       ],
       "when_not_suitable": [
@@ -1376,6 +1527,16 @@
           "resource_ref": "SRC-AUTHOR",
           "purpose": "Candidate question family",
           "reason": "No frozen owner question corpus was supplied for this seed."
+        },
+        {
+          "resource_ref": "SRC-NCERT-EXEMPLAR-RIVER",
+          "purpose": "Source-backed river/current practice",
+          "reason": "Official exemplar demand can seed adapted practice without treating a coaching bank as authority."
+        },
+        {
+          "resource_ref": "SRC-SCRIBD-DPP8-RIVER-BOAT",
+          "purpose": "External competition-demand scan",
+          "reason": "Use identifiers and demand patterns only; do not copy the third-party question bank into canonical content."
         }
       ],
       "when_not_suitable": [
@@ -1416,8 +1577,8 @@
         "Q-AUTHOR-REL-01"
       ],
       "classification": "CAPABILITY_LIMIT",
-      "description": "Only one authored candidate question; no official or frozen local bank acquired.",
-      "next_action": "Acquire/reconcile authorized questions; preserve identifiers and full source representations."
+      "description": "External question-demand sources are now identified (official NCERT exemplar, OpenStax exercises, owner-supplied ExamSIDE/Scribd banks), but the package still has only one canonical authored question and no immutable locally custodied authorized question corpus.",
+      "next_action": "Use external items as demand/source references and create narrowly adapted or authored questions with provenance as needed; do not copy third-party banks or claim source custody that has not been acquired."
     },
     {
       "id": "ISS-NO-RENDER",
