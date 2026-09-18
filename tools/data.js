@@ -2077,7 +2077,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 38,
-            "questions": 2,
+            "questions": 5,
             "obligations": 9,
             "authoring_requirements": [
               {
@@ -2837,7 +2837,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 38,
-            "questions": 4,
+            "questions": 9,
             "obligations": 11,
             "authoring_requirements": [
               {
@@ -3881,7 +3881,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 38,
-            "questions": 7,
+            "questions": 12,
             "obligations": 7,
             "authoring_requirements": [
               {
@@ -4256,6 +4256,18 @@ window.GRADE9V3 = {
               "answer": "The frequency is 200 Hz. Doubling amplitude at the same period does not change the frequency in this simple description."
             },
             {
+              "id": "Q-PHY-SOUND-2A-COV-02",
+              "stem": "A bell rings inside a sealed chamber. Compare what happens to ordinary sound transmission as the air is gradually removed, while the bell itself can still vibrate.",
+              "origin": "AUTHORED",
+              "answer": "The bell may still vibrate, but ordinary sound transmission through the chamber becomes weaker and tends toward none as the material medium is removed."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-03",
+              "stem": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+              "origin": "AUTHORED",
+              "answer": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener."
+            },
+            {
               "id": "Q-PHY-SOUND-2B-01",
               "stem": "A cave-mapping device emits a short sound pulse and receives a clear reflection 0.40 s later. If sound speed is 340 m/s, estimate the one-way distance to the reflecting wall and explain the factor of two without being told it is an 'echo formula.'",
               "origin": "AUTHORED",
@@ -4294,7 +4306,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 20,
+          "record_count": 22,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4306,7 +4318,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 38,
-            "questions": 2,
+            "questions": 4,
             "obligations": 9,
             "authoring_requirements": [
               {
@@ -5315,7 +5327,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 38,
-            "questions": 5,
+            "questions": 11,
             "obligations": 9,
             "authoring_requirements": [
               {

@@ -16,7 +16,7 @@
     "TOOLING": 20,
     "WEB": 5
   },
-  "digest": "sha256:b9ccfffe3d1ae69ef2d4ca3983bd69e52ade87f6ff8802b32f262de353212314",
+  "digest": "sha256:69c594c2eb5219cba8be5767fe858670389490c86685ada6177d1febedcfbc35",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -330,8 +330,8 @@
       "path": "Shared/tools/practice_readiness.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 7266,
-      "sha256": "aeb6d939754892f8f78989ef0bbe1ead12c78549835f15633ff08516945fc737"
+      "bytes": 9120,
+      "sha256": "69ac0f5be839770013906c8101190be925b38be8679f46fa1074783d039e4c3d"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -428,8 +428,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 91299,
-      "sha256": "5deb18b23049ed2d8f1a88bc276566fcff4e01b064f0e1b6c63a2ef4453e64fd"
+      "bytes": 93480,
+      "sha256": "3c1f0d10f8514b7b160bdd999511fb439f77c15763f131c64835adbdc4528a50"
     },
     {
       "path": "tools/app.css",
@@ -442,8 +442,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 353224,
-      "sha256": "c904b29502fe5d53f1488b399b122fa50f5c73dcfaf4d439e8bcb79c3d88f0f5"
+      "bytes": 354193,
+      "sha256": "779bef4f5f297caf4766c52e25b638e77bfc3344a2c7128ad8d6e0798dd0274e"
     },
     {
       "path": "tools/index.html",
