@@ -33,24 +33,30 @@ class ReviewPromotionAuthority(unittest.TestCase):
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(REPO / path, target)
 
-        source = json.loads(
-            (REPO / "Physics/library/relative-motion.v1.json").read_text(encoding="utf-8")
-        )
-        # This test isolates review authority, not dependency rollout. Give every
-        # dependency review-stage status while leaving the authored target candidate.
-        for value in source.values():
-            if isinstance(value, list):
-                for row in value:
-                    if isinstance(row, dict) and row.get("status") == "CANDIDATE":
-                        row["status"] = "REVIEWED"
-        target = next(q for q in source["questions"] if q["id"] == self.RECORD_ID)
-        target["status"] = "CANDIDATE"
-
+        # This test isolates review authority, not dependency rollout. Copy the full
+        # Physics library so cross-package prerequisites remain real, then give every
+        # dependency review-stage status while leaving only the authored target candidate.
         self.package_path = self.repo / "Physics/library/relative-motion.v1.json"
         self.package_path.parent.mkdir(parents=True, exist_ok=True)
-        self.package_path.write_text(
-            json.dumps(source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-        )
+        source = None
+        for original in sorted((REPO / "Physics/library").glob("*.json")):
+            package = json.loads(original.read_text(encoding="utf-8"))
+            for value in package.values():
+                if isinstance(value, list):
+                    for row in value:
+                        if isinstance(row, dict) and row.get("status") == "CANDIDATE":
+                            row["status"] = "REVIEWED"
+            if original.name == "relative-motion.v1.json":
+                source = package
+                target = next(q for q in package["questions"] if q["id"] == self.RECORD_ID)
+                target["status"] = "CANDIDATE"
+            out = self.repo / "Physics/library" / original.name
+            out.write_text(
+                json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+            )
+        if source is None:
+            raise AssertionError("relative-motion fixture package not found")
+        target = next(q for q in source["questions"] if q["id"] == self.RECORD_ID)
         self.target_package = "Physics/library/relative-motion.v1.json"
 
         authoring = {
