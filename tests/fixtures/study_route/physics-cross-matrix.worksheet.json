@@ -1,0 +1,28 @@
+{
+  "worksheet_id": "PHYSICS-CROSS-MATRIX-DEMO",
+  "subject": "Physics",
+  "source_note": "Synthetic worksheet-map fixture over existing canonical capabilities; the worksheet itself is not canonical curriculum.",
+  "questions": [
+    {
+      "question_id": "Q1",
+      "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
+      "secondary_capability_refs": ["CAP-KIN-ZERO-V-NONZERO-A"],
+      "mapping_basis": "MANUAL",
+      "note": "Graph interpretation question spanning graph reading and zero-velocity/nonzero-acceleration distinction."
+    },
+    {
+      "question_id": "Q2",
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": ["CAP-NLM-FBD-BODY-OWNERSHIP"],
+      "mapping_basis": "MANUAL",
+      "note": "Net-force calculation that also requires assigning forces to the chosen body."
+    },
+    {
+      "question_id": "Q3",
+      "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
+      "secondary_capability_refs": ["CAP-WEP-MECH-ENERGY-CONDITION"],
+      "mapping_basis": "MANUAL",
+      "note": "Work-energy calculation that also requires deciding whether the mechanical-energy account may be treated as closed."
+    }
+  ]
+}
