@@ -1686,27 +1686,19 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 1,
+            "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -2260,6 +2252,12 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -2324,7 +2322,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 73,
+          "record_count": 74,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3142,6 +3140,12 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -3248,7 +3252,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 84,
+          "record_count": 85,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4349,6 +4353,12 @@ window.GRADE9V3 = {
               "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
               "origin": "AUTHORED",
               "answer": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -4491,7 +4501,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 94,
+          "record_count": 95,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5027,6 +5037,12 @@ window.GRADE9V3 = {
               "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
               "origin": "AUTHORED",
               "answer": "Measure a known propagation distance L along the stretched medium and the travel time Delta t for the pulse over that path, calculate v = L/Delta t, repeat several trials under the same tension, and average or use a longer timed path to reduce reaction-time error."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -5121,7 +5137,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 112,
+          "record_count": 113,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5544,7 +5560,14 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -5577,31 +5600,23 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 29,
+          "record_count": 30,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 0,
-            "obligations": 2,
+            "questions": 1,
+            "obligations": 4,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -6276,6 +6291,12 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            },
+            {
               "id": "Q-PHY-WEP-2A-01",
               "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
               "origin": "AUTHORED",
@@ -6446,7 +6467,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 106,
+          "record_count": 107,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6830,6 +6851,12 @@ window.GRADE9V3 = {
               "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
               "origin": "AUTHORED",
               "answer": "(6,-8) m/s, southeast; magnitude 10 m/s."
+            },
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -6894,7 +6921,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 49,
+          "record_count": 50,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -7166,7 +7193,14 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-GRAPHICAL-SUBTRACT",
@@ -7193,21 +7227,18 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 25,
+          "record_count": 26,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
-              "CORE1"
+              "CORE1",
+              "CORE2",
+              "CORE2A"
             ],
             "atoms": 77,
-            "questions": 0,
-            "obligations": 2,
+            "questions": 1,
+            "obligations": 4,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1A",
@@ -7220,28 +7251,8 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
                 "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-VECTOR-VS-SCALAR",
-                "detail": "no supported product or no data bound to its relations"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-SIGNED-COMPONENT",
-                "detail": "no supported product or no data bound to its relations"
-              },
-              {
-                "kind": "MICROTOPIC_UNBOUND",
-                "microtopic": "MIC-GRAPHICAL-SUBTRACTION",
-                "detail": "no supported product or no data bound to its relations"
               },
               {
                 "kind": "FIGURE_PRODUCT_UNSUPPORTED",
