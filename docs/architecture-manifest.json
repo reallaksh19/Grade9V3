@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 136,
-  "relation_count": 194,
+  "component_count": 137,
+  "relation_count": 195,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 44,
+    "TEST": 45,
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:b837aff9c873694f3865783c62fff16b140ec17f9d9be893b1e850a27d82d3ed",
+  "digest": "sha256:73d9ab4aacdc7c40a9ab0b04eb668fdef70e13852b727d9944e9c38a813bbcab",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -759,6 +759,13 @@
       "role_description": "Executable checks",
       "bytes": 39505,
       "sha256": "368ab5c9a89a8009e5ecc05bafd22ef779acf0ae1e02cebe553cb86a18312b63"
+    },
+    {
+      "path": "tests/test_high_likelihood_scenario_matrix_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4981,
+      "sha256": "d63c9062d0c722b66e3626bffac79c3054a5c20dfa8de946ce77f21fe8cb997e"
     },
     {
       "path": "tests/test_gates.py",
@@ -1644,6 +1651,11 @@
     },
     {
       "from": "tests/test_feedback.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_high_likelihood_scenario_matrix_contract.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
