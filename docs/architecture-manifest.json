@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 80,
-  "relation_count": 131,
+  "component_count": 83,
+  "relation_count": 134,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 20,
-    "TEST": 12,
-    "TOOLING": 24,
+    "LIBRARY": 21,
+    "TEST": 13,
+    "TOOLING": 25,
     "WEB": 5
   },
-  "digest": "sha256:57dc303695214ef3cd31b086285a39ae9d5091fec269893546c03aab83141d81",
+  "digest": "sha256:8c5171a27147d03d341bfb635d273075b1accc2e46dce73602aa8dba66b0225d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -33,11 +33,11 @@
       "sha256": "035c37db5d57e321869ce326c369984a31ac3433299ba3b2d805b40af046e05e"
     },
     {
+      "bytes": 4690,
       "path": "Shared/library/authoring-request.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 4218,
-      "sha256": "c1373290384ee8e5e198a99fd1e490aafbee4d079851a9eb5c9d23abae3b0c57"
+      "sha256": "8e5b450c07e5decf60bcdcb3bbec222f2f1304bd1df6afd32ae4d3c5393aca7d"
     },
     {
       "path": "Shared/library/authority.py",
@@ -108,6 +108,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 1562,
       "sha256": "27b335cce8b36ca1170017b2415ad14c14ea2c4dd7cd018833fc76eb62dbfc0e"
+    },
+    {
+      "bytes": 3512,
+      "path": "Shared/library/owner-decisions.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "sha256": "efbc7c794205f60ff47ccd85c58fa4d813698971b5a2f091028e2ead6e9833b9"
     },
     {
       "path": "Shared/library/package.schema.json",
@@ -306,6 +313,13 @@
       "sha256": "39b2c555bd9dbfae99a19e660d01d07686e9e636c230433adf0ec44c50f6649b"
     },
     {
+      "bytes": 10040,
+      "path": "Shared/tools/apply_owner_decisions.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "sha256": "724af2879bf50b53a24d66ccf70fac31dc4083b1f0f7a2bdc1a965f37e34f7b1"
+    },
+    {
       "path": "Shared/tools/author_brief.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -383,11 +397,11 @@
       "sha256": "b0d032a87564cf43e9e1d0a26b84cd75f23766bbf9ba350b3ac7fa7d4df3fbe9"
     },
     {
+      "bytes": 19034,
       "path": "Shared/tools/plan_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 18776,
-      "sha256": "1272db570b47d7c89529ad40f38a5e4764c83619bcf4b904156012b5a7e77be5"
+      "sha256": "21e97c4b1ad4b905b68d8ee0862d79fdf04699de8b6b407870a764a21d97e062"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -514,6 +528,13 @@
       "role_description": "Executable checks",
       "bytes": 14849,
       "sha256": "157c679b1920bfaab60806171a2edd1651ab16f33b2cc359152cc2d8f2988dcb"
+    },
+    {
+      "bytes": 7049,
+      "path": "tests/test_owner_decisions.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "sha256": "36b518094a478680b0720e54984ad9e5641a0df2969c77e2843be72814ea5fd2"
     },
     {
       "path": "tests/test_publication_engine.py",
@@ -732,6 +753,16 @@
     },
     {
       "from": "Shared/tools/academic_readiness.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/apply_owner_decisions.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/apply_owner_decisions.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -1128,6 +1159,11 @@
     {
       "from": "tests/test_mathematics.py",
       "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_owner_decisions.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
