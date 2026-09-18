@@ -1,0 +1,1020 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-SIMPLE-MACHINES-G9",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Authored Grade 9 simple-machines owner-extension spine: effort/load tradeoffs, mechanical advantage, and qualitative lever/pulley/inclined-plane comparison. No board-prescription authority is claimed by this package.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-SIMPLE-MACHINES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Author-created Grade 9 simple-machines constructions",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-simple-machines.v1.json",
+      "edition": "0.1.0",
+      "section": "Simple machines Grade 9 spine",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; curriculum placement researched separately, no external scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [
+        "CAP-WEP-GRADE9-QUANT"
+      ],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Fills the missing Grade 9 simple-machines domain while reusing the repository's gate-owned work/energy framework.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-SIMPLE-MACHINES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B",
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Simple machines",
+      "topic": "Work, Energy and Simple Machines",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The arithmetic is simple; the conceptual difficulty is seeing force advantage as a distance/direction tradeoff rather than created energy.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-WORK-ENERGY-POWER"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-MACHINE-INPUT-OUTPUT",
+          "statement": "Name the effort/input side and load/output side before comparing force or distance."
+        }
+      ],
+      "scope": {
+        "covers": "Authored lever, pulley and inclined-plane reasoning with mechanical advantage and ideal force-distance work tradeoffs.",
+        "excluded": [
+          "Detailed pulley-system formula catalogues.",
+          "Torque equations or efficiency formulae beyond the declared relations."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MACHINE-TRADEOFF",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED",
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "action": "Explain how a simple machine trades effort force, direction or input distance without creating energy.",
+      "success_criterion": "Rejects free-energy interpretations and identifies the compensating distance/direction tradeoff.",
+      "prerequisite_refs": [
+        "CAP-WEP-GRADE9-QUANT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MACHINE-MA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED",
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "action": "Compute mechanical advantage from load force divided by effort force.",
+      "success_criterion": "Uses load and effort from the same machine state and interprets MA greater than one as force advantage, not energy gain.",
+      "prerequisite_refs": [
+        "CAP-MACHINE-TRADEOFF"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MACHINE-COMPARE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED",
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "action": "Compare levers, pulleys and inclined planes by what they change about force, direction and input distance.",
+      "success_criterion": "Identifies the machine's qualitative tradeoff without assuming that every machine reduces effort force.",
+      "prerequisite_refs": [
+        "CAP-MACHINE-MA"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-MACHINE-TRADEOFF",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "A machine trades force or direction for distance; it does not create work",
+      "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
+      "primary_capability_ref": "CAP-MACHINE-TRADEOFF",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
+      "entry_assumptions": [
+        "Can distinguish force from work and can compare input/output energy transfers."
+      ],
+      "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
+      "teaching_path": [
+        {
+          "id": "SM1-1",
+          "role": "DECLARE",
+          "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
+          "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
+          "inputs": [
+            "CAP-WEP-GRADE9-QUANT"
+          ],
+          "output": "input: F_effort, d_effort; output: F_load, d_load."
+        },
+        {
+          "id": "SM1-2",
+          "role": "TRANSFORM",
+          "action": "For an ideal machine, compare the effort and load work using F_effort d_effort = F_load d_load.",
+          "why_valid": "REL-IDEAL-MACHINE-WORK owns the lossless input-output work equality.",
+          "inputs": [
+            "REL-IDEAL-MACHINE-WORK"
+          ],
+          "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
+        },
+        {
+          "id": "SM1-3",
+          "role": "VERIFY",
+          "action": "Double the load force advantage while keeping ideal useful output work fixed and ask what must happen to effort distance.",
+          "why_valid": "The boundary exposes why force multiplication does not create energy.",
+          "inputs": [],
+          "output": "greater force advantage -> compensating greater input distance in the ideal tradeoff."
+        }
+      ],
+      "relation_refs": [
+        "REL-IDEAL-MACHINE-WORK"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SIMPLE-MACHINES"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "If a machine gives a larger output force than the effort force, it creates energy.",
+          "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still conserve work?",
+          "repair": "Track both force and distance. In an ideal machine, a force advantage requires a compensating distance tradeoff."
+        }
+      ],
+      "exit_task": {
+        "prompt": "An ideal machine lets a person use a smaller effort force to raise a load. Without numbers, what must happen to the effort distance relative to the load distance if useful output work is unchanged?",
+        "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The effort point must move farther than the load point when the effort force is smaller than the load force.",
+          "reasoning": [
+            "Ideal input work equals useful output work.",
+            "Reducing input force while keeping output work fixed requires a larger input distance.",
+            "The machine trades force for distance rather than creating energy."
+          ],
+          "check": "If both force and distance were multiplied at the output with no extra input, output work would exceed input work and violate the ideal model.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit makes a qualitative ideal-work tradeoff claim without a computed value."
+        }
+      },
+      "research_contribution": "Author-created simple-machine work-tradeoff construction bound to the gate-owned ideal machine relation.",
+      "prerequisite_refs": [
+        "CAP-WEP-GRADE9-QUANT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Can an ideal machine make the load force larger than the effort force without any other tradeoff?",
+          "defensible_answer": "No. A force advantage requires a distance or direction tradeoff; ideal work is not created."
+        },
+        "attempt": {
+          "produces": "An input/output force-distance comparison.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Tracks both force and distance.",
+              "evidence_of": "Treating machine benefit as a tradeoff rather than free energy."
+            },
+            {
+              "criterion": "Keeps ideal input and useful output work equal.",
+              "evidence_of": "Using the energy account inherited from Work/Energy."
+            }
+          ],
+          "accepted": [
+            "Smaller effort force requires a longer effort distance for the same ideal output work."
+          ],
+          "rejected": [
+            "The machine makes extra work because the load force is larger."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which side is the effort/input?",
+              "why_this_ask": "It fixes the machine boundary.",
+              "from_step_ref": "SM1-1"
+            },
+            {
+              "ask": "Which quantities determine work on each side?",
+              "why_this_ask": "It connects force and distance."
+            },
+            {
+              "ask": "What does the ideal model conserve?",
+              "why_this_ask": "It blocks free-energy reasoning.",
+              "from_step_ref": "SM1-2"
+            },
+            {
+              "ask": "If output force rises, what compensating quantity must change?",
+              "why_this_ask": "It reconstructs the tradeoff.",
+              "from_step_ref": "SM1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels both sides first; the learner route begins from the apparent force gain and reconstructs the missing distance tradeoff."
+        },
+        "boundary_test": {
+          "prompt": "If an ideal fixed pulley changes only the force direction, must it provide a force advantage greater than one?",
+          "answer": "No. Changing direction alone can be useful even without reducing the effort-force magnitude.",
+          "confirms": "Machine usefulness is not identical to force multiplication."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-MACHINE-MA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Mechanical advantage compares load force with effort force",
+      "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
+      "primary_capability_ref": "CAP-MACHINE-MA",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "The ratio is simple once load and effort are correctly identified.",
+      "entry_assumptions": [
+        "Can label input/effort and output/load forces on the same machine state."
+      ],
+      "inferential_jump": "Mechanical advantage is a dimensionless force ratio, MA = F_load/F_effort; values above one indicate force advantage but do not measure energy efficiency.",
+      "teaching_path": [
+        {
+          "id": "SM2-1",
+          "role": "DECLARE",
+          "action": "Label the effort force and the load force for the same machine state.",
+          "why_valid": "The ratio is meaningful only when numerator and denominator refer to the same machine state.",
+          "inputs": [
+            "CAP-MACHINE-TRADEOFF"
+          ],
+          "output": "load: F_load; effort: F_effort."
+        },
+        {
+          "id": "SM2-2",
+          "role": "TRANSFORM",
+          "action": "Divide load-force magnitude by effort-force magnitude.",
+          "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
+          "inputs": [
+            "REL-MECHANICAL-ADVANTAGE"
+          ],
+          "output": "MA = F_load / F_effort."
+        },
+        {
+          "id": "SM2-3",
+          "role": "VERIFY",
+          "action": "Check that the ratio is dimensionless and interpret MA = 1 as no force multiplication.",
+          "why_valid": "Both numerator and denominator are forces, so units cancel.",
+          "inputs": [],
+          "output": "MA has no unit; MA > 1 is force advantage; MA = 1 is no force multiplication."
+        }
+      ],
+      "relation_refs": [
+        "REL-MECHANICAL-ADVANTAGE"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SIMPLE-MACHINES"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Mechanical advantage is the same as efficiency.",
+          "diagnostic_prompt": "Can an ideal fixed pulley have MA = 1 and still be useful?",
+          "repair": "Yes. MA compares forces only; a machine can be useful by changing force direction even with MA = 1."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A machine lifts a 120 N load with a 40 N effort. Find the mechanical advantage and interpret it.",
+        "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "MA = 3. The load force is three times the effort force.",
+          "reasoning": [
+            "MA = F_load/F_effort.",
+            "120 N / 40 N = 3.",
+            "The ratio describes force advantage, not energy creation or efficiency."
+          ],
+          "check": "The newton units cancel, so MA is dimensionless.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "MECHANICAL_ADVANTAGE",
+            "bindings": {
+              "load_force": "DAT-MACHINE-LOAD",
+              "effort_force": "DAT-MACHINE-EFFORT"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created mechanical-advantage calculation bound to gate authority and validator.",
+      "prerequisite_refs": [
+        "CAP-MACHINE-TRADEOFF"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a 120 N load is lifted with a 40 N effort, is the mechanical advantage less than, equal to, or greater than one?",
+          "defensible_answer": "Greater than one, because the load force is larger than the effort force."
+        },
+        "attempt": {
+          "produces": "A force ratio with units cancelled and an interpretation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses load divided by effort.",
+              "evidence_of": "Maintaining the declared mechanical-advantage convention."
+            },
+            {
+              "criterion": "Interprets the ratio as force advantage only.",
+              "evidence_of": "Not confusing MA with efficiency or energy gain."
+            }
+          ],
+          "accepted": [
+            "120/40 = 3, dimensionless."
+          ],
+          "rejected": [
+            "40/120 or 3 N."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which force belongs in the numerator?",
+              "why_this_ask": "It fixes the convention.",
+              "from_step_ref": "SM2-1"
+            },
+            {
+              "ask": "Do the force units survive the division?",
+              "why_this_ask": "It checks the ratio's dimension."
+            },
+            {
+              "ask": "What does MA > 1 say, and what does it not say?",
+              "why_this_ask": "It separates force advantage from efficiency.",
+              "from_step_ref": "SM2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels before dividing; the learner route begins from the meaning of a force advantage and reconstructs the ratio order."
+        },
+        "boundary_test": {
+          "prompt": "What does MA = 1 mean about the load and effort force magnitudes?",
+          "answer": "They are equal in magnitude; the machine provides no force multiplication.",
+          "confirms": "Mechanical advantage is specifically a force ratio."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-MACHINE-COMPARE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Levers, pulleys and inclined planes realize different force-distance tradeoffs",
+      "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
+      "primary_capability_ref": "CAP-MACHINE-COMPARE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners can memorize device names without identifying what each machine changes about force, direction and distance.",
+      "entry_assumptions": [
+        "Can explain the ideal force-distance tradeoff and compute mechanical advantage."
+      ],
+      "inferential_jump": "A lever, pulley or inclined plane should be analysed by its input/output force, direction and distance tradeoff rather than by a memorized claim that every simple machine reduces force.",
+      "teaching_path": [
+        {
+          "id": "SM3-1",
+          "role": "DECLARE",
+          "action": "For each machine, identify the effort point/direction and the load motion.",
+          "why_valid": "The same input-output language lets different machine types be compared without separate memorized rules.",
+          "inputs": [
+            "CAP-MACHINE-MA"
+          ],
+          "output": "lever, pulley and ramp each have named effort and load sides."
+        },
+        {
+          "id": "SM3-2",
+          "role": "TRANSFORM",
+          "action": "Compare whether the machine mainly changes force magnitude, force direction, or required input distance in the stated setup.",
+          "why_valid": "Simple-machine benefit is a geometric/input-output tradeoff, not a universal force reduction.",
+          "inputs": [
+            "REL-IDEAL-MACHINE-WORK"
+          ],
+          "output": "fixed pulley may change direction; force-advantage setups require extra input distance; incline spreads a height gain over a longer path."
+        },
+        {
+          "id": "SM3-3",
+          "role": "VERIFY",
+          "action": "Use an ideal fixed pulley as the counterexample to 'all machines reduce effort force'.",
+          "why_valid": "A direction-changing machine can be useful with no force multiplication.",
+          "inputs": [],
+          "output": "machine usefulness can be directional even when MA = 1."
+        }
+      ],
+      "relation_refs": [
+        "REL-IDEAL-MACHINE-WORK"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-SIMPLE-MACHINES"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every pulley, lever or inclined plane must reduce the effort force.",
+          "diagnostic_prompt": "What useful change can an ideal fixed pulley provide even when effort and load force magnitudes are equal?",
+          "repair": "It can reverse the direction of the required effort. Identify the actual setup before claiming force advantage."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Compare an ideal fixed pulley with a long inclined plane used to raise the same load. State one useful change each machine can provide without claiming that either creates energy.",
+        "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The fixed pulley can change the effort direction; the inclined plane can reduce the required force by spreading the same height gain over a longer input path.",
+          "reasoning": [
+            "The fixed pulley can redirect the pull even when force magnitude is not reduced.",
+            "The incline increases the distance over which the load reaches the same height.",
+            "Both are input-output tradeoffs consistent with work conservation in the ideal model."
+          ],
+          "check": "Neither description requires useful output work to exceed ideal input work.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit compares qualitative machine functions without a calculated device-specific force formula."
+        }
+      },
+      "research_contribution": "Author-created cross-machine comparison using the shared work ledger.",
+      "prerequisite_refs": [
+        "CAP-MACHINE-MA"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a fixed pulley does not reduce force magnitude, can it still count as a useful simple machine?",
+          "defensible_answer": "Yes. It can change the direction in which the effort force is applied."
+        },
+        "attempt": {
+          "produces": "One input-output tradeoff for a pulley, lever or incline.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies the actual input/output change.",
+              "evidence_of": "Comparing machines by function rather than name."
+            },
+            {
+              "criterion": "Does not claim energy creation.",
+              "evidence_of": "Keeping the inherited work ledger."
+            }
+          ],
+          "accepted": [
+            "Fixed pulley: direction change; incline: smaller force over longer path."
+          ],
+          "rejected": [
+            "Every simple machine always multiplies force."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where is the effort applied?",
+              "why_this_ask": "It fixes the input side.",
+              "from_step_ref": "SM3-1"
+            },
+            {
+              "ask": "What motion must the load complete?",
+              "why_this_ask": "It fixes the useful output."
+            },
+            {
+              "ask": "Which quantity changes most clearly: force, direction or distance?",
+              "why_this_ask": "It classifies the machine benefit.",
+              "from_step_ref": "SM3-2"
+            },
+            {
+              "ask": "Does a fixed pulley falsify 'all machines reduce force'?",
+              "why_this_ask": "It tests overgeneralization.",
+              "from_step_ref": "SM3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares named machines in one framework; the learner route begins from a specific setup and reconstructs the functional category."
+        },
+        "boundary_test": {
+          "prompt": "Can a machine be useful if its mechanical advantage is exactly one?",
+          "answer": "Yes. It can still change force direction or make the task ergonomically easier.",
+          "confirms": "Mechanical advantage is not the only form of machine usefulness."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-MECHANICAL-ADVANTAGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "expression": "MA = F_load / F_effort",
+      "meaning": "Mechanical advantage is the ratio of load force magnitude to effort force magnitude.",
+      "symbols": [
+        {
+          "symbol": "MA",
+          "meaning": "Mechanical advantage",
+          "unit_or_domain": "dimensionless"
+        },
+        {
+          "symbol": "F_load",
+          "meaning": "Load force magnitude",
+          "unit_or_domain": "N; nonnegative scalar"
+        },
+        {
+          "symbol": "F_effort",
+          "meaning": "Effort force magnitude",
+          "unit_or_domain": "N; positive scalar"
+        }
+      ],
+      "conditions": [
+        "F_load >= 0.",
+        "F_effort > 0.",
+        "Load and effort magnitudes refer to the same machine state."
+      ],
+      "derivation": [
+        {
+          "id": "SM-MA-D1",
+          "role": "TRANSFORM",
+          "action": "Divide load-force magnitude by effort-force magnitude.",
+          "why_valid": "The gate defines mechanical advantage as this force ratio.",
+          "inputs": [],
+          "output": "MA = F_load / F_effort."
+        }
+      ],
+      "limits": [
+        "Mechanical advantage alone does not measure efficiency or energy loss."
+      ],
+      "checks": [
+        "Units cancel.",
+        "MA = 1 means equal load and effort force magnitudes."
+      ],
+      "gate_relation_ref": "REL-MECHANICAL-ADVANTAGE"
+    },
+    {
+      "id": "REL-IDEAL-MACHINE-WORK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "expression": "F_effort d_effort = F_load d_load",
+      "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
+      "symbols": [
+        {
+          "symbol": "F_effort",
+          "meaning": "Effort force magnitude",
+          "unit_or_domain": "N; positive scalar"
+        },
+        {
+          "symbol": "d_effort",
+          "meaning": "Effort-point distance",
+          "unit_or_domain": "m; nonnegative scalar"
+        },
+        {
+          "symbol": "F_load",
+          "meaning": "Load force magnitude",
+          "unit_or_domain": "N; nonnegative scalar"
+        },
+        {
+          "symbol": "d_load",
+          "meaning": "Load distance",
+          "unit_or_domain": "m; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "Ideal lossless model.",
+        "Each force magnitude is paired with displacement along its own line of action.",
+        "All distances are nonnegative magnitudes."
+      ],
+      "derivation": [
+        {
+          "id": "SM-WORK-D1",
+          "role": "DECLARE",
+          "action": "Equate ideal input work and useful output work.",
+          "why_valid": "The ideal machine transfers work without loss rather than creating it.",
+          "inputs": [],
+          "output": "F_effort d_effort = F_load d_load."
+        }
+      ],
+      "limits": [
+        "Real machines can require more input work because of losses."
+      ],
+      "checks": [
+        "A force advantage greater than one requires a corresponding distance disadvantage in the ideal model."
+      ],
+      "gate_relation_ref": "REL-IDEAL-MACHINE-WORK"
+    }
+  ],
+  "representations": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-SIMPLE-MACHINES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Grade 9 simple-machine tradeoff practice",
+      "capability_refs": [
+        "CAP-MACHINE-TRADEOFF",
+        "CAP-MACHINE-MA",
+        "CAP-MACHINE-COMPARE"
+      ],
+      "solution_structure": [
+        "Label effort and load sides.",
+        "Identify whether force magnitude, direction or distance is changing.",
+        "Use mechanical advantage or the ideal work tradeoff only after the setup is identified.",
+        "Check that no energy is created."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether a force ratio or qualitative work tradeoff is the relevant model.",
+        "representation_translation": "Translate a machine sketch or description into effort/load sides without relying on device name alone.",
+        "reasoning_steps": "Carry input/output labels through the force-distance tradeoff and energy check.",
+        "novelty": "Map an unfamiliar tool onto lever, pulley or inclined-plane input/output reasoning."
+      },
+      "safe_variations": [
+        "Change load/effort values, machine orientation or everyday context while keeping the same ideal tradeoff."
+      ],
+      "transfer_boundaries": [
+        "Do not infer device-specific force formulae that the gate registry has not declared."
+      ],
+      "common_wrong_routes": [
+        "Treating force multiplication as energy multiplication.",
+        "Assuming every simple machine reduces effort force."
+      ],
+      "item_refs": [
+        "Q-PHY-MACHINE-2A-01",
+        "Q-PHY-MACHINE-PRACTICAL-11"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-MACHINE-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+      "original_identifier": "AUTHOR-MACHINE-2A-01",
+      "stem": "A simple machine supports a 150 N load with a 50 N effort. Find the mechanical advantage and state what that number does not tell you.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "MA = 3. It tells you the force ratio, not the efficiency or whether the machine creates energy.",
+        "reasoning": [
+          "MA = 150/50 = 3.",
+          "The ratio is dimensionless.",
+          "Efficiency and energy loss require additional information."
+        ],
+        "check": "A mechanical advantage of 3 can coexist with different efficiencies in different real machines.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-MACHINE-MA",
+      "secondary_capability_refs": [
+        "CAP-MACHINE-TRADEOFF"
+      ],
+      "family_ref": "FAM-PHY-SIMPLE-MACHINES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Put the load force in the numerator and effort force in the denominator.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-MACHINE-PRACTICAL-11",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "prescribed_practical_refs": [
+          "CBSE-IX-2026-PHY-PRACTICAL-11"
+        ],
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+      "original_identifier": "AUTHOR-MACHINE-PRACTICAL-11",
+      "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use force magnitudes measured for the same lever setting."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort.",
+        "reasoning": [
+          "Identify the load side and effort side before taking readings.",
+          "Use force readings from the same steady/balanced lever state.",
+          "Calculate the dimensionless ratio F_load/F_effort.",
+          "For comparisons, keep the load and measuring instruments/method consistent while changing only the intended lever setup variable.",
+          "Repeat readings to reduce the influence of random measurement error."
+        ],
+        "check": "A load reading from one setting divided by an effort reading from a different setting is not a valid mechanical-advantage measurement.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-MACHINE-MA",
+      "secondary_capability_refs": [
+        "CAP-MACHINE-COMPARE"
+      ],
+      "family_ref": "FAM-PHY-SIMPLE-MACHINES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Load and effort must be measured for the same lever setting before forming the ratio.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "For a fair comparison, keep the load fixed while changing only the intended setup feature.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-MACHINE-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Reveal Grade 9 simple-machine spine",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-MACHINE-TRADEOFF",
+        "MIC-PHY-MACHINE-MA",
+        "MIC-PHY-MACHINE-COMPARE"
+      ],
+      "entry_needs": [
+        "Grade 9 work and energy account, including work as force-along-displacement times displacement."
+      ],
+      "learner_actions": [
+        "Label effort/load sides.",
+        "Compare force and distance tradeoffs.",
+        "Compute mechanical advantage.",
+        "Compare lever, pulley and inclined-plane functions."
+      ],
+      "help_plan": [
+        "Return to input/output work when force advantage looks like free energy.",
+        "Use a fixed pulley to separate direction change from force multiplication."
+      ],
+      "reveal_plan": "Model constructions remain visible after the learner sees the tradeoff and ratio definitions.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+          "purpose": "Grade 9 simple-machine authored teaching",
+          "reason": "No external candidate packet is promoted as subject truth."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not infer detailed pulley-count, moment or efficiency equations that are not gate-owned."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-MACHINE-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "title": "Elicit Grade 9 simple-machine spine",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-MACHINE-TRADEOFF",
+        "MIC-PHY-MACHINE-MA",
+        "MIC-PHY-MACHINE-COMPARE"
+      ],
+      "entry_needs": [
+        "Same intrinsic Grade 9 work/energy prerequisite."
+      ],
+      "learner_actions": [
+        "Predict whether force advantage implies energy gain.",
+        "Reconstruct mechanical advantage from load/effort labels.",
+        "Classify machine benefits without relying on names."
+      ],
+      "help_plan": [
+        "Ask for effort and load sides before formulas.",
+        "Ask what compensating distance change accompanies force advantage."
+      ],
+      "reveal_plan": "Prediction and reconstruction precede each model response.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+          "purpose": "Self-tutor Grade 9 simple machines",
+          "reason": "The elicitation cycles are authored for this bucket."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not teach undeclared device-specific quantitative formulae."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "issue19:scope_class": "OWNER_EXTENSION",
+    "issue19:donor": "PR9"
+  },
+  "data": [
+    {
+      "id": "DAT-MACHINE-LOAD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 120,
+      "unit": "N",
+      "symbol": "F_load",
+      "meaning": "Load force in the authored mechanical-advantage exit.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-MACHINE-EFFORT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "issue19:donor": "PR9"
+      },
+      "kind": "DATUM",
+      "value": 40,
+      "unit": "N",
+      "symbol": "F_effort",
+      "meaning": "Effort force in the authored mechanical-advantage exit.",
+      "locator": "Author-created exact practice datum."
+    }
+  ]
+}
