@@ -378,8 +378,174 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-KIN-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "One-dimensional motion interpretation practice",
+      "capability_refs": [
+        "CAP-KIN-DISTANCE-DISPLACEMENT",
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "solution_structure": [
+        "Mark a start point on a straight path and declare east as the positive direction.",
+        "Trace a walk away from S and then back to S, counting every part of the route.",
+        "Compare that return trip with a one-way trip chosen to have the same total route length."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must translate a velocity-time graph into separate statements about instantaneous velocity and acceleration without a verbal turning-point story."
+      ],
+      "common_wrong_routes": [
+        "Distance travelled and displacement are always the same number."
+      ],
+      "item_refs": [
+        "Q-PHY-KIN-2A-01",
+        "Q-PHY-KIN-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-KIN-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-2A-01",
+      "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement.",
+        "reasoning": [
+          "Distance follows the whole route, so equal total travel can give equal distance.",
+          "Displacement compares only the finish with the start.",
+          "Returning to the marker erases the start-to-finish change, not the travelled route."
+        ],
+        "check": "Ignore the middle of each route and look only at the two endpoints; only Route A has matching endpoints.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-KIN-DISTANCE-DISPLACEMENT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: Did the traveller move along any part of the path before returning?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Count every part of the route for distance; compare only the start and finish for displacement, keeping the declared direction.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-KIN-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-2B-01",
+      "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there.",
+        "reasoning": [
+          "The graph value at the crossing gives instantaneous velocity, which is zero.",
+          "The slope describes how velocity is changing through that instant.",
+          "The line keeps a negative slope at the crossing, so acceleration remains negative and nonzero."
+        ],
+        "check": "Compare points immediately before and after the crossing; velocity changes from positive to negative.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Identifies zero velocity but nonzero negative acceleration at the crossing.",
+            "evidence_of": "Distinguishing a graph value from its rate of change."
+          },
+          {
+            "criterion": "Uses the continuing negative slope or neighboring velocities as evidence.",
+            "evidence_of": "Translating the representation rather than repeating a memorized zero-velocity rule."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Separate the graph's vertical value from its slope; they answer different questions.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use neighboring times to see whether velocity is still changing through the zero crossing.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate a velocity-time graph into separate statements about instantaneous velocity and acceleration without a verbal turning-point story.",
+        "builds_on": [
+          "Q-PHY-KIN-2A-01",
+          "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+        ]
+      },
+      "repair_ref": "KIN3-2"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-KIN-1D-A",
