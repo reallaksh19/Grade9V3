@@ -6,8 +6,8 @@ Counts describe canonical records on the branch; they are not learner mastery me
 | Matrix | Rungs | Present microtopics | Owned primary capabilities | Representative mapped questions | Unresolved / held |
 | --- | ---: | ---: | ---: | ---: | --- |
 | Physics — One-dimensional motion | 6 | 6 | 6 | 6 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
-| Physics — Newton-law force reasoning | 5 | 5 | 5 | 1 retained Second-Law authored question in this migration slice, plus pre-existing authored questions | Human academic review pending; friction and third-law donor expansion intentionally deferred |
-| Physics — Work / Energy / Power | 7 | 7 | 7 | 6 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
+| Physics — Newton-law force reasoning | 5 | 5 | 5 | 1 retained authored Second-Law question | Human academic review pending; friction and third-law donor expansion intentionally deferred |
+| Physics — Work / Energy / Power | 7 | 7 | 7 | 7 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
 | Mathematics — Linear equations in one unknown | 3 | 3 | 3 | 1 authored question | Human academic review pending; no authorised question corpus, so source-backed Core2 remains held |
 
 ## Physics — One-dimensional motion
