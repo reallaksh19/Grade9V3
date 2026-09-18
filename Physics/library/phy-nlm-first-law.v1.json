@@ -74,9 +74,7 @@
           "Friction as a separate capability.",
           "Newton's third law as a separate capability."
         ],
-        "extension_refs": [
-          "CAP-NLM-SECOND-LAW"
-        ]
+        "extension_refs": []
       }
     }
   ],
