@@ -88,6 +88,15 @@
         "UNKNOWN"
       ],
       "description": "Earliest meaningful failure stage when one can be identified."
+    },
+    "provenance": {
+      "enum": [
+        "LIVE_LEARNER",
+        "UNREVIEWED_SESSION_DRAFT",
+        "HISTORICAL_IMPORT",
+        "SYNTHETIC_TEST"
+      ],
+      "description": "Evidence-layer provenance. LIVE_LEARNER is reserved for a reviewed observation of an actual learner session. Session-runtime drafts remain UNREVIEWED_SESSION_DRAFT until a person reviews and explicitly persists them. Historical imports and synthetic tests can inform their own workflows but never satisfy live empirical acceptance."
     }
   }
 }
