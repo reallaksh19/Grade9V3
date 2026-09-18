@@ -25,7 +25,12 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import feedback, session_readiness, worksheet_study_plan  # noqa: E402
+from Shared.tools import (  # noqa: E402
+    capability_delivery,
+    feedback,
+    session_readiness,
+    worksheet_study_plan,
+)
 
 READY = session_readiness.READY
 READY_WITH_BRIDGE = session_readiness.READY_WITH_BRIDGE
@@ -123,14 +128,11 @@ def _touched_matrix_ids(study_plan: dict) -> list[str]:
 
 def _session_status(readiness_rows: list[dict], study_plan: dict) -> str:
     statuses = {row.get("status") for row in readiness_rows}
-    if NOT_READY in statuses or not study_plan.get("passed", False):
+    if NOT_READY in statuses or not study_plan.get("valid", study_plan.get("passed", False)):
         return NOT_READY
     if PILOT_READY in statuses:
         return PILOT_READY
-    if READY_WITH_BRIDGE in statuses or any(
-        row.get("recommended_action") == "BRIDGE"
-        for row in study_plan.get("route", [])
-    ):
+    if READY_WITH_BRIDGE in statuses or not study_plan.get("ready", True):
         return READY_WITH_BRIDGE
     return READY
 
@@ -202,10 +204,18 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         for warning in row.get("academic_warnings", [])
     ]
 
+    valid = status != NOT_READY and not estimate_findings
+    ready = (
+        valid
+        and status != PILOT_READY
+        and study_plan.get("ready", True)
+    )
     return {
         "worksheet_id": mapping.get("worksheet_id"),
         "subject": subject,
         "status": status,
+        "valid": valid,
+        "ready": ready,
         "profile_id": study_plan.get("profile_id"),
         "owner_estimates": estimates,
         "readiness": [{
@@ -220,7 +230,8 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "route": study_plan.get("route", []),
         "academic_warnings": academic_warnings,
         "findings": findings,
-        "passed": status != NOT_READY and not estimate_findings,
+        "blockers": list(study_plan.get("blockers", [])),
+        "passed": valid,
         "rules": [
             "Readiness must be established before a subtopic is treated as self-study ready.",
             "Owner percentages choose a local starting attempt; they are not mastery evidence.",
@@ -246,20 +257,44 @@ def _question_readiness(mapping: dict, question: dict, repo: Path) -> tuple[list
     blockers = []
 
     for capability in mapped:
-        locations = index.get("locations", {}).get(capability, [])
+        locations = list(index.get("locations", {}).get(capability, []))
         cap_record = index.get("capabilities", {}).get(capability, {})
-        if not locations:
-            if cap_record.get("external_provider"):
-                blockers.append({
-                    "point": "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
-                    "capability_ref": capability,
-                    "detail": (
-                        "this mapped question capability is only an external bridge; "
-                        "the local feedback runtime has no canonical repair lesson for it"
-                    ),
-                })
+        if not cap_record:
+            blockers.append({
+                "point": "STUDY_SESSION_QUESTION_CAPABILITY_UNKNOWN",
+                "capability_ref": capability,
+                "detail": "mapped question capability is not canonical in the selected subject",
+            })
             continue
-        for location in locations:
+
+        delivery = capability_delivery.resolve(cap_record, locations)
+        if delivery["state"] == capability_delivery.EXTERNAL_BRIDGE:
+            blockers.append({
+                "point": "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
+                "capability_ref": capability,
+                "external_provider": delivery["provider"],
+                "detail": (
+                    "this mapped question capability is an external bridge; "
+                    "the local feedback runtime has no canonical repair lesson for it"
+                ),
+            })
+            continue
+        if delivery["state"] == capability_delivery.UNRESOLVED:
+            blockers.append({
+                "point": "STUDY_SESSION_QUESTION_DELIVERY_UNRESOLVED",
+                "capability_ref": capability,
+                "detail": "mapped question capability has no resolvable teaching delivery",
+            })
+            continue
+        if delivery["state"] == capability_delivery.AMBIGUOUS:
+            blockers.append({
+                "point": "STUDY_SESSION_QUESTION_DELIVERY_AMBIGUOUS",
+                "capability_ref": capability,
+                "detail": "mapped question capability has more than one teaching location",
+            })
+            continue
+
+        for location in delivery["locations"]:
             matrix_id = location.get("matrix_id")
             if matrix_id and matrix_id not in matrix_ids:
                 matrix_ids.append(matrix_id)
