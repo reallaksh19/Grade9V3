@@ -14,9 +14,9 @@ worksheet / questions
 → map demand
 → resolve prerequisites + delivery
 → apply learner evidence if available
-→ classify each demanded route item
-→ EXECUTE / EXECUTE_WITH_FALLBACK / OWNER_DECISION / DEFER_ITEM
-→ STOP only when no executable item remains
+→ keep existing normal route actions unchanged
+→ add only EXECUTE_WITH_FALLBACK or OWNER_DECISION when exceptional handling is needed
+→ existing hard-stop behavior remains only for genuinely uninterpretable/unsafe requests
 ~~~
 
 No new curriculum model, mastery model, or Core is introduced.
@@ -40,19 +40,18 @@ Session execution instead answers:
 - What needs an owner decision?
 - What must be deferred?
 
-## Execution disposition
+## Exceptional execution disposition
 
-Use one small vocabulary across the self-study path:
+Add **only two** new execution markers:
 
 ~~~text
-EXECUTE                safe normal path
-EXECUTE_WITH_FALLBACK  safe conservative path; limitation remains visible
-OWNER_DECISION         safe only after explicit session-level owner choice
-DEFER_ITEM             this question/capability/branch cannot proceed now
-STOP                   no safe executable path remains
+EXECUTE_WITH_FALLBACK  continue on the safe conservative path; limitation stays visible
+OWNER_DECISION         do not guess; ask the owner to choose how this session should proceed
 ~~~
 
-These are execution decisions, not academic truth or mastery states.
+Normal study actions such as STUDY, QUICK_CHECK, BRIDGE, REPAIR and SKIP remain unchanged. Existing hard-stop behavior is not a new disposition and is reserved for genuinely uninterpretable/unsafe requests.
+
+These two markers are execution decisions, not academic truth or mastery states.
 
 ## Input and gap fallback matrix
 
@@ -80,17 +79,9 @@ These are execution decisions, not academic truth or mastery states.
 
 Owner override is an execution mechanism only. It must never become curriculum truth or learner evidence.
 
-Initial actions should remain small:
+Do not create a second owner-action enum. `OWNER_DECISION` is the single signal that human input is required; the finding itself says what must be chosen or supplied.
 
-~~~text
-CONFIRM_MAPPING
-SELECT_TEACHING_LOCATION
-SUPPLY_EXTERNAL_BRIDGE
-ALLOW_PRIVATE_PILOT
-DEFER_ITEM
-~~~
-
-Each override records:
+Each owner decision records:
 
 - target;
 - action;
@@ -182,16 +173,16 @@ Acceptance:
 - matrix NOT_READY remains unchanged where appropriate;
 - full-session STOP only when no executable item remains.
 
-### F4 — Session owner override
+### F4 — Owner-decision handoff
 
-Add a narrow session-only override input.
+Keep `OWNER_DECISION` as the single exceptional human handoff. Do not add multiple execution-state enums.
 
 Acceptance:
 
-- explicit provenance;
-- warning retained;
-- stale/invalid override ignored or rejected safely;
-- no canonical or learner-state mutation.
+- the exact unresolved finding stays visible;
+- the owner can resolve the session choice explicitly at the caller/UI layer;
+- no canonical or learner-state mutation occurs;
+- no owner choice can manufacture mastery, source truth or curriculum truth.
 
 ### F5 — Attempt/feedback consistency
 
