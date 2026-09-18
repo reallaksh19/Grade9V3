@@ -167,7 +167,7 @@
           "inputs": [
             "REL-IDEAL-MACHINE-WORK"
           ],
-          "output": "smaller effort force requires larger effort distance when useful output work is fixed."
+          "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
         },
         {
           "id": "SM1-3",
@@ -285,7 +285,7 @@
       "title": "Mechanical advantage compares load force with effort force",
       "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
       "primary_capability_ref": "CAP-MACHINE-MA",
-      "intrinsic_badge": "LOW",
+      "intrinsic_badge": "EASY",
       "badge_reason": "The ratio is simple once load and effort are correctly identified.",
       "entry_assumptions": [
         "Can label input/effort and output/load forces on the same machine state."
