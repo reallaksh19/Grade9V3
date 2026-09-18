@@ -62,7 +62,16 @@
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED",
-        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B",
+        "practical_coverage_policy": "PRESCRIBED_PRACTICALS",
+        "prescribed_practicals": [
+          {
+            "id": "CBSE-IX-2026-PHY-PRACTICAL-11",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Practicals item 11; printed p.19 — Calculation of Mechanical Advantage of a lever using M.A. = Load / Effort (Ch. 7).",
+            "capability_ref": "CAP-MACHINE-MA"
+          }
+        ]
       },
       "title": "Simple machines",
       "topic": "Work, Energy and Simple Machines",
@@ -159,6 +168,16 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
           "locator": "Work, Energy and Simple Machines; printed pp.16–17; C-2.6 — define/calculate mechanical advantage",
+          "mapping_status": "VERIFIED"
+        },
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Practicals item 11; printed p.19 — Calculation of Mechanical Advantage of a lever using M.A. = Load / Effort (Ch. 7).",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -781,7 +800,8 @@
       ],
       "item_refs": [
         "Q-PHY-MACHINE-2A-01",
-        "Q-PHY-MACHINE-2B-01"
+        "Q-PHY-MACHINE-2B-01",
+        "Q-PHY-MACHINE-PRACTICAL-11"
       ]
     }
   ],
@@ -910,6 +930,83 @@
         ]
       },
       "repair_ref": "SM1-2"
+    },
+    {
+      "id": "Q-PHY-MACHINE-PRACTICAL-11",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SIMPLE-MACHINES"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "prescribed_practical_refs": [
+          "CBSE-IX-2026-PHY-PRACTICAL-11"
+        ]
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+      "original_identifier": "AUTHOR-MACHINE-PRACTICAL-11",
+      "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use force magnitudes measured for the same lever setting."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort.",
+        "reasoning": [
+          "Identify the load side and effort side before taking readings.",
+          "Use force readings from the same steady/balanced lever state.",
+          "Calculate the dimensionless ratio F_load/F_effort.",
+          "For comparisons, keep the load and measuring instruments/method consistent while changing only the intended lever setup variable.",
+          "Repeat readings to reduce the influence of random measurement error."
+        ],
+        "check": "A load reading from one setting divided by an effort reading from a different setting is not a valid mechanical-advantage measurement.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1,
+        "rubric": [
+          {
+            "criterion": "Measures load and effort for the same lever state.",
+            "evidence_of": "Numerator and denominator belong to one machine setting."
+          },
+          {
+            "criterion": "Calculates M.A. as load divided by effort and treats it as dimensionless.",
+            "evidence_of": "Uses the authored mechanical-advantage convention."
+          },
+          {
+            "criterion": "Names a controlled variable/repeat strategy for comparing settings.",
+            "evidence_of": "The experiment distinguishes setup effects from changing the load or measurement method."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-MACHINE-MA",
+      "secondary_capability_refs": [
+        "CAP-MACHINE-COMPARE"
+      ],
+      "family_ref": "FAM-PHY-SIMPLE-MACHINES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Load and effort must be measured for the same lever setting before forming the ratio.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "For a fair comparison, keep the load fixed while changing only the intended setup feature.",
+          "reveals": "METHOD"
+        }
+      ]
     }
   ],
   "teaching_routes": [
