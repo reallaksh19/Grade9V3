@@ -157,6 +157,11 @@ def plan(request: dict, repo: Path = REPO) -> dict:
     positions = {r["rung"]: r.get("ladder_position", 0) for r in rows}
     segment = ([r["rung"] for r in rows if positions[r["rung"]] >= positions[entry["rung"]]]
                if entry.get("rung") in positions else [])
+    # Practice varies instances of what teaching established, and transfer changes the
+    # demand while holding truth already taught. Both presuppose a taught rung, so a
+    # ladder with no records supports neither -- found by planning every bucket in a
+    # subject instead of the one with a library behind it.
+    taught = sum(1 for row in rows if rung_state(row, caps, mics)["state"] == "PRESENT")
 
     # --- purposes ---------------------------------------------------------------
     practice = request.get("practice", {})
@@ -189,6 +194,13 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             if purpose is None:
                 built.append({"core": core, "state": "BLOCKED",
                               "reason": "no purpose, so no support level and no routing"})
+                continue
+            if not taught:
+                built.append({"core": core, "state": "BLOCKED",
+                              "purpose": purpose["id"],
+                              "reason": "no rung of this ladder has a record, so there is "
+                                        "no established decision structure to vary and "
+                                        "nothing already taught to hold"})
                 continue
             if core == TRANSFER and not purpose["routes_transfer"]:
                 built.append({"core": core, "state": "WITHHELD",

@@ -15,7 +15,8 @@ from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
     check_subjects, capability_collisions, learner_evidence, matrix_conformance,
-    resolve_request, spec_conformance, spec_delivery, topic_independence_guard,
+    publication_provenance, resolve_request, spec_conformance, spec_delivery,
+    topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
     excluded_paths, scan_python, selftest,
@@ -761,6 +762,38 @@ class MatrixConformance(unittest.TestCase):
                 row.pop(field)
         self.assertEqual(self.synthetic(strip), [])
 
+    # Shapes a parallel author can produce. These promise findings, not tracebacks: a
+    # stack trace names no rule, and the committed board is too well formed to reach them.
+    MALFORMED = {
+        "rungs is a string": {"subject": "Physics", "rungs": "nope"},
+        "a rung is a string": {"subject": "Physics", "rungs": ["R1"]},
+        "a rung is empty": {"subject": "Physics", "rungs": [{}]},
+        "controlled_variation is null": {"subject": "Physics", "rungs": [
+            {"rung": "R1", "ladder_position": 1, "provenance": "ABSENT",
+             "controlled_variation": None}]},
+        "a transfer row is empty": {"subject": "Physics", "rungs": [], "transfer": [{}]},
+        "family is a list": {"subject": "Physics", "rungs": [], "family": []},
+    }
+
+    def test_structure_is_reported_before_meaning_is_read(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Physics/matrices").mkdir(parents=True)
+            (root / "Physics/matrices/broken.rungs.json").write_text(
+                json.dumps({"matrix_id": "X", "subject": "Physics", "bucket_id": "B",
+                            "topic": "t", "subtopic": "s", "rungs": "nope"}),
+                encoding="utf-8")
+            report = matrix_conformance.audit(root)
+        self.assertEqual([f["point"] for f in report["boards"][0]["findings"]],
+                         ["MATRIX_STRUCTURE"])
+        self.assertFalse(report["passed"])
+
+    def test_the_ceiling_audit_never_raises_on_a_malformed_board(self):
+        caps, mics = author_brief.capability_chain("Physics")
+        for name, board in self.MALFORMED.items():
+            with self.subTest(shape=name):
+                self.assertEqual(ceiling_audit.findings(board, caps, mics), [])
+
     def test_support_may_not_hand_over_the_invariant_demand(self):
         # The collapse from the support side. Remove the decision and what is left is
         # transcription wearing a practice label.
@@ -1149,6 +1182,26 @@ class ResolveRequest(unittest.TestCase):
         self.assertIn("PRACTICE_CORE_WITHOUT_A_PURPOSE", text)
         self.assertNotIn("# Authoring brief", text)
 
+    def test_practice_is_blocked_where_no_rung_has_a_record(self):
+        # Found by planning every bucket in the subject rather than the one with a library
+        # behind it: twelve reported CORE2A and CORE2B READY while teaching nothing.
+        # Practice varies instances of what teaching established; transfer holds truth
+        # already taught. Neither survives an empty ladder.
+        request = self.request()
+        request["bucket_id"] = "BUCKET-PHY-NLM-FIRST-LAW"
+        report = resolve_request.plan(request)
+        self.assertEqual([s["state"] for s in self.core(report, "CORE1A")["segment"]],
+                         ["ABSENT"] * 4)
+        for name in ("CORE2A", "CORE2B"):
+            with self.subTest(core=name):
+                core = self.core(report, name)
+                self.assertEqual(core["state"], "BLOCKED")
+                self.assertIn("no rung of this ladder has a record", core["reason"])
+
+    def test_practice_is_ready_where_the_ladder_is_taught(self):
+        report = resolve_request.plan(self.request())
+        self.assertEqual(self.core(report, "CORE2A")["state"], "READY")
+
     def test_a_withheld_transfer_product_says_why_rather_than_failing_quietly(self):
         request = self.request()
         request["practice"]["CORE2B"]["purpose"] = "STARTER"
@@ -1335,3 +1388,77 @@ class RelativeMotionEntryRung(unittest.TestCase):
         segment = next(c for c in report["cores"] if c["core"] == "CORE1A")["segment"]
         self.assertEqual([s["rung"] for s in segment], ["R1", "R3", "R4", "R5"])
         self.assertEqual({s["task"] for s in segment}, {"AUTHOR_THE_PRODUCT"})
+
+
+class PublicationProvenance(unittest.TestCase):
+    """A published page says which library records it came from, or says it came from none.
+
+    Every gate in this repository governs the library. Whether the artifact a learner
+    opens has anything to do with that library was, until this check, unasked.
+    """
+
+    def scaffold(self, tmp, *, declaration=None, plan="{}"):
+        root = Path(tmp)
+        (root / "Physics/library").mkdir(parents=True)
+        shutil.copy(REPO / "Physics/library/relative-motion.v1.json",
+                    root / "Physics/library/relative-motion.v1.json")
+        run = root / "Physics/content/probe"
+        (run / "publication").mkdir(parents=True)
+        (run / "inputs").mkdir(parents=True)
+        (run / "publication/manifest.json").write_text("{}", encoding="utf-8")
+        (run / "inputs/plan.json").write_text(plan, encoding="utf-8")
+        if declaration is not None:
+            (run / "provenance.json").write_text(json.dumps(declaration), encoding="utf-8")
+        return root, run
+
+    def points(self, **kwargs):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, run = self.scaffold(tmp, **kwargs)
+            return [f["point"] for f in publication_provenance.findings(run, root)[0]]
+
+    def test_the_committed_run_declares_its_basis(self):
+        report = publication_provenance.audit()
+        self.assertGreater(report["runs"], 0, "no publication, so this asserts nothing")
+        self.assertEqual(report["blocking"], 0,
+                         [f for r in report["publications"] for f in r["findings"]])
+
+    def test_a_run_that_says_nothing_is_refused(self):
+        self.assertEqual(self.points(), ["PUBLICATION_PROVENANCE_UNDECLARED"])
+
+    def test_authoring_beside_the_library_is_allowed_and_an_unexplained_one_is_not(self):
+        # The state has to be expressible or it stops being written down, which is how it
+        # went unnoticed in the first place.
+        self.assertEqual(self.points(declaration={
+            "basis": "AUTHORED_OUTSIDE_THE_LIBRARY", "reason": "engine proof before the "
+            "library could feed it"}), [])
+        self.assertEqual(self.points(declaration={"basis": "AUTHORED_OUTSIDE_THE_LIBRARY"}),
+                         ["PUBLICATION_AUTHORED_OUTSIDE_WITHOUT_A_REASON"])
+
+    def test_a_claimed_library_basis_must_name_records_the_library_holds(self):
+        # Staleness fires alongside it -- naming one microtopic leaves the rest uncarried
+        # -- so this asserts the dangling reference is among the findings, not that it is
+        # the only one.
+        self.assertIn(
+            "PUBLICATION_RECORD_UNKNOWN",
+            self.points(declaration={"basis": "LIBRARY", "records": ["MIC-NOT-REAL"]},
+                        plan='{"x": "MIC-SAME-TIME"}'))
+
+    def test_a_library_claim_no_plan_supports_is_refused(self):
+        points = self.points(declaration={"basis": "LIBRARY", "records": []}, plan="{}")
+        self.assertIn("PUBLICATION_CLAIMS_LIBRARY_BASIS_AND_NAMES_NOTHING", points)
+
+    def test_a_rung_authored_after_the_freeze_is_reported_as_stale(self):
+        # The detector this exists to have on the day a run IS library-based: a microtopic
+        # the library teaches that the frozen page does not carry.
+        points = self.points(
+            declaration={"basis": "LIBRARY", "records": ["MIC-SAME-TIME"]},
+            plan='{"x": "MIC-SAME-TIME"}')
+        self.assertIn("PUBLICATION_OMITS_A_MICROTOPIC_THE_LIBRARY_TEACHES", points)
+
+    def test_staleness_is_reported_and_does_not_fail_the_build(self):
+        # Republishing is owner work; failing CI would put the decision in the wrong hands.
+        self.assertTrue(publication_provenance.audit()["passed"])
+
+    def test_an_unknown_basis_is_not_silently_accepted(self):
+        self.assertEqual(self.points(declaration={"basis": "PROBABLY_FINE"}),
+                         ["PUBLICATION_BASIS_UNKNOWN"])

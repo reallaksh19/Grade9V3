@@ -150,17 +150,23 @@ def audit(repo: Path = REPO) -> dict:
         import jsonschema
     except ModuleNotFoundError:
         jsonschema = None
+    validator = (jsonschema.Draft202012Validator(load(SCHEMA))
+                 if jsonschema is not None else None)
     rows = []
     for path in sorted(repo.glob("*/matrices/*.rungs.json")):
         board = load(path)
-        mics, dimensions = library(board["subject"])
-        found = findings(board, mics, dimensions)
-        if jsonschema is not None:
-            validator = jsonschema.Draft202012Validator(load(SCHEMA))
-            found = [{"point": "MATRIX_STRUCTURE", "where": "/".join(str(p) for p in e.path),
-                      "detail": e.message} for e in validator.iter_errors(board)] + found
-        rows.append({"matrix": str(path.relative_to(repo)), "bucket": board["bucket_id"],
-                     "rungs": len(board.get("rungs", [])), "findings": found,
+        # Structure first, then meaning. The semantic checks below read a rung as a
+        # mapping with a label and a position; running them on a board that is not yet
+        # that shape turned a malformed file into a traceback, and a traceback names no
+        # rule. Found by feeding the gate the shapes thirteen parallel authors could
+        # produce, rather than the one committed board that is already well formed.
+        structural = ([{"point": "MATRIX_STRUCTURE",
+                        "where": "/".join(str(p) for p in e.path), "detail": e.message}
+                       for e in validator.iter_errors(board)] if validator else [])
+        found = structural or findings(board, *library(board.get("subject", "")))
+        rows.append({"matrix": str(path.relative_to(repo)),
+                     "bucket": board.get("bucket_id"),
+                     "rungs": len(board.get("rungs") or []), "findings": found,
                      "passed": not found})
     return {"matrices": len(rows), "boards": rows,
             "findings": sum(len(r["findings"]) for r in rows),

@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 60,
-  "relation_count": 100,
+  "component_count": 61,
+  "relation_count": 101,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 16,
+    "TOOLING": 17,
     "WEB": 5
   },
-  "digest": "sha256:b8e0d8c33d984a219d4604183ce1f8dcf86ad1c58e5b8bb094ecb72bbb61b35a",
+  "digest": "sha256:28490deaa240ca20da4a2188574892ace3871d6c60124691468b97ca940c95ac",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -295,8 +295,8 @@
       "path": "Shared/tools/ceiling_audit.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 7053,
-      "sha256": "a447807242166dd89c279b50dbaf9d08727fb719483abf856d6ce767edb38b4c"
+      "bytes": 7343,
+      "sha256": "4153577dbc8d1f0f5e54e176ed4bcaefc7c007cac53859f5ebf26c52101a5312"
     },
     {
       "path": "Shared/tools/check_subjects.py",
@@ -316,8 +316,15 @@
       "path": "Shared/tools/matrix_conformance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8909,
-      "sha256": "d3b0771657961fe0cfac9f8d67bafc832d775d0be805273dc4f6e790163d4568"
+      "bytes": 9396,
+      "sha256": "4d6374db2c8692afe6d0691048b034202d58d916cf8728fa7f6d86ac9d5203d8"
+    },
+    {
+      "path": "Shared/tools/publication_provenance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6290,
+      "sha256": "9a797de744be32f26fa10a7616990225c2a84d1f2cbbb542eb8ee4d7ea7d9b9e"
     },
     {
       "path": "Shared/tools/republish.py",
@@ -330,8 +337,8 @@
       "path": "Shared/tools/resolve_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 16851,
-      "sha256": "4f67077aefd11115e366dad2090db7110989e700f188416a0fcd546e10077bab"
+      "bytes": 17684,
+      "sha256": "1b7fa1db8d3fb958d03434b15c79f5fcb55fed3a189b58d1329a5b6759890c25"
     },
     {
       "path": "Shared/tools/spec_conformance.py",
@@ -400,8 +407,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 71942,
-      "sha256": "8169c31e7e148277d4233acd0f32150241abcc11dfe8860f53661f8c1211032d"
+      "bytes": 78799,
+      "sha256": "4dc4624683084c1c74da4b7d38fb70273a419e8ffeb2ed66eaf7dc89281d0d24"
     },
     {
       "path": "tools/app.css",
@@ -702,6 +709,11 @@
     },
     {
       "from": "Shared/tools/matrix_conformance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/publication_provenance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
     },

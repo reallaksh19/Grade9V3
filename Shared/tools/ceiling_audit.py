@@ -81,9 +81,14 @@ def learner_text(row: dict) -> str:
 
 def findings(board: dict, caps: dict, mics: dict) -> list[dict]:
     found = []
-    for row in board.get("rungs", []):
+    for row in board.get("rungs") or []:
+        # A row that is not a mapping is a structural finding matrix_conformance reports;
+        # reading it here would raise instead, and this tool promises findings, not
+        # tracebacks.
+        if not isinstance(row, dict):
+            continue
         ceiling = row.get("ceiling") or []
-        if not ceiling:
+        if not isinstance(ceiling, list) or not ceiling:
             continue
         # A SOURCE rung carries no `aha` -- the record owns it -- so the rung's own output
         # is read from the microtopic's jump. Reading only the matrix would let a ceiling

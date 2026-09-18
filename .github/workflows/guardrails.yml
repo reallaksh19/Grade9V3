@@ -54,6 +54,12 @@ jobs:
       - name: No ceiling forbids the word its own rung teaches
         run: python3 Shared/tools/ceiling_audit.py --enforce
 
+      - name: Every published run declares what it was built from
+        run: python3 Shared/tools/publication_provenance.py --enforce
+
+      - name: Committed publications still verify against their inputs
+        run: python3 Shared/tools/republish.py
+
       # A library may not invent a way of depicting its subject, and a figure bound to
       # mathematics must say which part of the picture is which symbol. Runs inside the
       # subject sweep below; this step is the standalone report, which names the record
