@@ -57,6 +57,12 @@ jobs:
       - name: Practice readiness agrees with compilation
         run: python3 Shared/tools/practice_readiness.py --enforce
 
+      # Buckets can opt into verified curriculum custody.  When they do, every taught
+      # primary capability must resolve to an inspected CURRICULUM resource and the
+      # declared track must agree with a verified mapping.
+      - name: Verified curriculum mappings resolve to inspected sources
+        run: python3 Shared/tools/curriculum_mapping_audit.py --enforce
+
       # Engineering dependencies are declared by matrices but resolved only against
       # subject gates/contracts. Missing assets on backlog rows are reported; missing
       # assets on authored rows are contradictions.
