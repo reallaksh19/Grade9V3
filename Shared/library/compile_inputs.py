@@ -163,6 +163,12 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
 
     # --- which products the library can actually support -------------------
     supported, unsupported = [], {}
+    # Validate the declared practice purpose before support is inferred from content.
+    # Once CORE2B questions existed, checking exposure first accidentally made purpose
+    # irrelevant: even STARTER routed transfer and an unknown purpose no longer failed.
+    # Purpose controls whether transfer is requested; exposure controls whether the
+    # library can satisfy that requested product. Both gates must hold, in that order.
+    practice_purpose = _purpose(practice_control)
     relation_ids = {r for m in microtopics for r in m.get("relation_refs", [])}
     relations = {rid: records[rid] for rid in relation_ids if rid in records}
     for core in COMPOSABLE:
@@ -179,17 +185,16 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             else:
                 unsupported[core] = "the library holds no question for this bucket to take custody of"
         elif core in PRACTICE:
+            if core == "CORE2B" and not practice_purpose["routes_transfer"]:
+                # Routing is a purpose decision even when the library already holds a
+                # transfer question. Existing content is availability, not permission
+                # to override a request whose purpose explicitly withholds transfer.
+                unsupported[core] = _withheld_reason(practice_control)
+                continue
             exposed = [q for q in question_records
                        if any(e.get("core") == core for e in q.get("exposure", []))]
             if exposed:
                 supported.append(core)
-            elif core == "CORE2B" and not _routes_transfer(practice_control):
-                # Declared by the purpose, not decided here: a purpose may legitimately
-                # say "do not build this product". Reported as unsupported with the
-                # vocabulary's own reason rather than silently omitted, because a product
-                # withheld on purpose and a product nobody could build must not look
-                # alike.
-                unsupported[core] = _withheld_reason(practice_control)
             else:
                 unsupported[core] = "the library holds no question exposed to this product for this bucket"
         elif covered:
