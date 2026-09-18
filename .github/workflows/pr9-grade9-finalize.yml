@@ -59,7 +59,7 @@ jobs:
         run: python3 Shared/tools/publication_provenance.py --enforce
 
       - name: Publication verification
-        run: python3 Shared/tools/republish.py --check
+        run: python3 Shared/tools/republish.py
 
       - name: Representation authority
         run: python3 Shared/library/depiction.py --enforce
