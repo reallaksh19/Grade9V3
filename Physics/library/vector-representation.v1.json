@@ -11,10 +11,10 @@
       "grade": 9,
       "academic_year": "2026-27",
       "track": "ADVANCED",
-      "scope_class": "OWNER_EXTENSION",
+      "scope_class": "PRESCRIBED",
       "source_ref": "SRC-CBSE-ADV",
-      "locator": "Chapter 2 for background only; quantitative vector construction/subtraction is treated as extension",
-      "mapping_status": "CANDIDATE"
+      "locator": "Chapter 2 §§2.3–2.4; printed pp.11–12 — scalars/vectors and graphical vector operations",
+      "mapping_status": "VERIFIED"
     }
   ],
   "resources": [
@@ -84,11 +84,25 @@
         "SRC-MATH-BRIDGE-CANDIDATE"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
       "success_criterion": "State which direction a negative or positive result names, without dropping the sign. Draft explanation only (not Mathematics-provider-accepted): on a signed number line, going from a point at coordinate b to a point at coordinate a is the displacement a-b; the sign of the result names the direction, its size names the distance. This is the one-axis case that a vector component uses along each axis independently.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PREREQUISITE_BRIDGE",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Mathematical prerequisite bridge supporting Advanced Chapter 2 vector constructions",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": "Mathematics",
       "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
     },
@@ -100,11 +114,25 @@
         "SRC-MATH-BRIDGE-CANDIDATE"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
       "success_criterion": "Apply length_of_hypotenuse = sqrt(leg1^2 + leg2^2) with nonnegative lengths, independent of either leg's sign. Draft explanation only (not Mathematics-provider-accepted): two perpendicular signed components are two legs of a right triangle whose hypotenuse is the vector's magnitude. Squaring removes the sign, so the same magnitude formula applies regardless of which quadrant the vector points into; the signs are only needed back again for direction.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PREREQUISITE_BRIDGE",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Mathematical prerequisite bridge supporting Advanced Chapter 2 vector constructions",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": "Mathematics",
       "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
     },
@@ -116,7 +144,10 @@
         "SRC-AUTHOR-VEC"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
       "success_criterion": "State a magnitude as nonnegative and a component as signed, for the same vector, without confusing the two.",
       "prerequisite_refs": [
@@ -128,10 +159,10 @@
           "grade": 9,
           "academic_year": "2026-27",
           "track": "ADVANCED",
-          "scope_class": "OWNER_EXTENSION",
+          "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector construction is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §2.3; printed p.11 — scalars and vectors",
+          "mapping_status": "VERIFIED"
         }
       ],
       "external_provider": null,
@@ -145,7 +176,10 @@
         "SRC-AUTHOR-VEC"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
       "success_criterion": "Reverse the second vector without changing its length, translate it without rotating it, add tail-to-head, and reconcile the result with the signed-component subtraction.",
       "prerequisite_refs": [
@@ -158,10 +192,10 @@
           "grade": 9,
           "academic_year": "2026-27",
           "track": "ADVANCED",
-          "scope_class": "OWNER_EXTENSION",
+          "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector subtraction is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §2.4 and Check Your Understanding; printed pp.11–14 — graphical vector addition/subtraction",
+          "mapping_status": "VERIFIED"
         }
       ],
       "external_provider": null,
@@ -1013,7 +1047,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "grade9_track": "ADVANCED"
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "Vector representation and subtraction",
       "topic": "Motion in two dimensions",
@@ -1026,10 +1061,10 @@
           "grade": 9,
           "academic_year": "2026-27",
           "track": "ADVANCED",
-          "scope_class": "OWNER_EXTENSION",
+          "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector construction/subtraction is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §§2.3–2.4; printed pp.11–12 — scalars/vectors and graphical vector operations",
+          "mapping_status": "VERIFIED"
         }
       ],
       "prerequisite_refs": [
