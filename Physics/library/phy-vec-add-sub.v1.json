@@ -5,7 +5,18 @@
   "status": "CANDIDATE",
   "subject": "Physics",
   "scope_summary": "Grade 9 Advanced vector addition/subtraction overlay. It is optional support for advanced relative-motion work and is not a prerequisite for the Standard Grade 9 Motion spine.",
-  "curriculum_mappings": [],
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "ADVANCED",
+      "scope_class": "PRESCRIBED",
+      "source_ref": "SRC-CBSE-ADV",
+      "locator": "Chapter 2 §2.4 and Check Your Understanding; printed pp.11–14 — graphical vector addition/subtraction",
+      "mapping_status": "VERIFIED"
+    }
+  ],
   "resources": [
     {
       "id": "SRC-AUTHOR-VEC-ADD-SUB",
@@ -46,14 +57,26 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "grade9_track": "ADVANCED"
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "Vector addition, subtraction and orientation",
       "topic": "Vectors / Motion in a Plane",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "Only the operand-order discrimination is authored here; the surrounding quantitative vector operations remain registry-blocked.",
       "depth_overlay": "ADVANCED",
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Chapter 2 §2.4 and Check Your Understanding; printed pp.11–14 — graphical vector addition/subtraction",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "prerequisite_refs": [
         "BUCKET-VECTOR-REPRESENTATION"
       ],
@@ -83,13 +106,27 @@
         "SRC-AUTHOR-VEC-ADD-SUB"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Distinguish the orientation of A minus B from B minus A.",
       "success_criterion": "State that swapping the subtraction order reverses the directed result.",
       "prerequisite_refs": [
         "CAP-GRAPHICAL-SUBTRACT"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Chapter 2 §2.4 / Check Your Understanding Q8–Q9; printed pp.11–14 — graphical vector subtraction and opposite vectors",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     }
