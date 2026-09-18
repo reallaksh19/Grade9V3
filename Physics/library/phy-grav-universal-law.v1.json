@@ -54,13 +54,7 @@
       "badge_reason": "The conceptual spine crosses interaction pairs, reference-dependent energy, and axial orbital reasoning while quantitative laws remain separate.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
-      "prerequisite_refs": [],
-      "scope": {
-        "covers": "Conceptual gravitation rungs R1, R4 and R5.",
-        "excluded": [
-          "Inverse-square force magnitude at R2 and free-fall acceleration at R3 are blocked on engineering gate relations."
-        ]
-      }
+      "prerequisite_refs": []
     }
   ],
   "capabilities": [
