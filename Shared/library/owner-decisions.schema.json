@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/owner-decisions.schema.json",
+  "title": "Owner decisions for an authoring request",
+  "description": "Typed, stale-detectable answers to REQUIRED_OWNER_INPUTS returned by the planner.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id", "version", "request_id", "request_digest", "plan_digest", "decisions"],
+  "properties": {
+    "decision_id": {"type": "string", "minLength": 1},
+    "version": {"const": "1.0.0"},
+    "request_id": {"type": "string", "minLength": 1},
+    "request_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "plan_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "LEARNER_ENTRY": {
+          "oneOf": [
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["kind", "profile_ref"],
+              "properties": {
+                "kind": {"const": "profile_ref"},
+                "profile_ref": {"type": "string", "minLength": 1}
+              }
+            },
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["kind", "rung"],
+              "properties": {
+                "kind": {"const": "owner_entry"},
+                "rung": {"type": "string", "minLength": 1},
+                "instruction": {"type": "string", "minLength": 1}
+              }
+            },
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["kind", "knowledge_percentage"],
+              "properties": {
+                "kind": {"const": "owner_estimate"},
+                "knowledge_percentage": {"type": "integer", "minimum": 0, "maximum": 100},
+                "instruction": {"type": "string", "minLength": 1}
+              }
+            },
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["kind"],
+              "properties": {
+                "kind": {"const": "unknown"},
+                "instruction": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        },
+        "CORE2A_PURPOSE": {"enum": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"]},
+        "CORE2B_PURPOSE": {"enum": ["PRACTICE", "REVISION", "COMPETITION", "NONE"]},
+        "SOURCE_BASIS": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "SOURCE_BASIS_DRIFT_DECISION": {
+          "oneOf": [
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["action"],
+              "properties": {"action": {"const": "KEEP_SUPPLIED_DESPITE_DRIFT"}}
+            },
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["action", "replacement_source_basis"],
+              "properties": {
+                "action": {"const": "CHANGE_SOURCE_BASIS"},
+                "replacement_source_basis": {
+                  "type": "array", "minItems": 1, "uniqueItems": true,
+                  "items": {"type": "string", "minLength": 1}
+                }
+              }
+            }
+          ]
+        },
+        "SUPPLEMENTAL_QUESTION_POLICY": {
+          "enum": ["SOURCE_ONLY", "ALLOW_AUTHORED_CANDIDATES"]
+        }
+      }
+    }
+  }
+}
