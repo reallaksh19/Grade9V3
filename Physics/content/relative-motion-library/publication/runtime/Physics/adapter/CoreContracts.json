@@ -170,6 +170,302 @@
       ],
       "proves": "The apex time and state under a no-drag constant-g model.",
       "does_not_prove": "That drag is negligible in the described situation."
+    },
+    {
+      "id": "AVERAGE_RATE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "distance",
+        "displacement",
+        "dt"
+      ],
+      "input_units": {
+        "distance": "m",
+        "displacement": "m",
+        "dt": "s"
+      },
+      "result": {
+        "shape": "STRUCTURED_STATE",
+        "fields": [
+          "average_speed_m_s",
+          "average_velocity_m_s"
+        ],
+        "comparison": "FIELDWISE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "distance >= 0",
+        "dt > 0"
+      ],
+      "proves": "Average speed from total distance and average velocity from signed displacement over the same positive interval.",
+      "does_not_prove": "That listed leg speeds may be averaged arithmetically or that the interval is appropriate for an instantaneous velocity."
+    },
+    {
+      "id": "AVERAGE_POWER",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "work",
+        "dt"
+      ],
+      "input_units": {
+        "work": "J",
+        "dt": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "W",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "dt > 0"
+      ],
+      "proves": "Average power follows from net work transferred over the declared positive time interval.",
+      "does_not_prove": "That power was constant during the interval."
+    },
+    {
+      "id": "INSTANTANEOUS_POWER",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "force_parallel",
+        "speed"
+      ],
+      "input_units": {
+        "force_parallel": "N",
+        "speed": "m/s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "W",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "force_parallel is the signed component of force along the instantaneous velocity direction",
+        "speed >= 0"
+      ],
+      "proves": "Instantaneous power follows from the signed along-velocity force component times instantaneous speed.",
+      "does_not_prove": "That the supplied force component or velocity is correctly resolved from the physical situation."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "a",
+        "t"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "a": "m/s^2",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "t >= 0",
+        "a is constant over the interval",
+        "one signed axis is used consistently"
+      ],
+      "proves": "Signed displacement follows from u t + 0.5 a t^2 under constant acceleration.",
+      "does_not_prove": "That acceleration is actually constant in the described motion."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_NO_TIME",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "a",
+        "s"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "a": "m/s^2",
+        "s": "m"
+      },
+      "result": {
+        "shape": "STRUCTURED_STATE",
+        "fields": [
+          "v_squared_m2_s2"
+        ],
+        "comparison": "FIELDWISE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "a is constant over the interval",
+        "one signed axis is used consistently"
+      ],
+      "proves": "The final speed-squared state follows from u^2 + 2 a s under constant acceleration.",
+      "does_not_prove": "Which signed root for v is physically appropriate; direction must come from the motion context."
+    },
+    {
+      "id": "NEWTON_SECOND_LAW",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "mass",
+        "acceleration"
+      ],
+      "input_units": {
+        "mass": "kg",
+        "acceleration": "m/s^2"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "N",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "mass > 0",
+        "net force and acceleration refer to the same chosen body and signed axis"
+      ],
+      "proves": "The signed net force follows from mass times signed acceleration under the declared one-dimensional model.",
+      "does_not_prove": "That the listed force inventory is complete or that the chosen frame is inertial."
+    },
+    {
+      "id": "WORK_CONSTANT_FORCE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "force_parallel",
+        "displacement"
+      ],
+      "input_units": {
+        "force_parallel": "N",
+        "displacement": "m"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "J",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "displacement >= 0",
+        "force_parallel is the signed component along displacement"
+      ],
+      "proves": "Constant-force work follows from F_parallel times displacement.",
+      "does_not_prove": "That force is constant or that the supplied component is correctly resolved."
+    },
+    {
+      "id": "KINETIC_ENERGY",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "mass",
+        "speed"
+      ],
+      "input_units": {
+        "mass": "kg",
+        "speed": "m/s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "J",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "mass > 0",
+        "speed >= 0"
+      ],
+      "proves": "Translational kinetic energy follows from one-half mass times speed squared.",
+      "does_not_prove": "That rotational/internal kinetic energy can be ignored."
+    },
+    {
+      "id": "GRAVITATIONAL_POTENTIAL_ENERGY",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "mass",
+        "g",
+        "delta_h"
+      ],
+      "input_units": {
+        "mass": "kg",
+        "g": "m/s^2",
+        "delta_h": "m"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "J",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "mass > 0",
+        "g > 0",
+        "g is approximately uniform over the height change"
+      ],
+      "proves": "Near-Earth gravitational potential-energy change follows from m g Delta h.",
+      "does_not_prove": "That the uniform-g approximation is appropriate over a large height range."
+    },
+    {
+      "id": "AVERAGE_ACCELERATION",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "v_initial",
+        "v_final",
+        "dt"
+      ],
+      "input_units": {
+        "v_initial": "m/s",
+        "v_final": "m/s",
+        "dt": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s^2",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "dt > 0",
+        "both velocities use the same signed one-dimensional axis"
+      ],
+      "proves": "Average acceleration follows from signed velocity change divided by a positive elapsed interval.",
+      "does_not_prove": "That acceleration is constant within the interval."
+    },
+    {
+      "id": "UNIFORM_CIRCULAR_SPEED",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "radius",
+        "period"
+      ],
+      "input_units": {
+        "radius": "m",
+        "period": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "radius > 0",
+        "period > 0",
+        "the motion completes one uniform circular revolution in the supplied period"
+      ],
+      "proves": "Uniform circular speed follows from circumference divided by revolution period.",
+      "does_not_prove": "That the path is circular, speed is uniform, or the centripetal acceleration magnitude."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_GRAPH_AREA",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "v",
+        "t"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "v": "m/s",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "t >= 0",
+        "u and v use one signed one-dimensional axis",
+        "acceleration is constant so the velocity-time segment between the endpoint velocities is straight"
+      ],
+      "proves": "Signed displacement from the constant-acceleration velocity-time trapezoid equals one-half the sum of endpoint velocities times elapsed time.",
+      "does_not_prove": "That acceleration is constant in the described motion or that the chosen endpoint velocities belong to the same interval."
     }
   ],
   "representation_kinds": [
