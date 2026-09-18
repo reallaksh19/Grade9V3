@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Author-created conceptual rung records for magnetic-field direction and surface orientation. Quantitative force, work, induction and motional-emf rungs remain outside this package pending gate-owned relations.",
+  "scope_summary": "Author-created conceptual rungs for magnetic-field direction, oriented flux, and the distinction between magnetic redirection and speed change. Lorentz-force magnitude, induction and motional-emf equations remain outside this package pending gate-owned relations.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -18,7 +18,7 @@
       "origin": "AUTHORED",
       "locator": "Track C / magnetic fields rung authoring",
       "edition": "0.1.0",
-      "section": "Conceptual constructions for magnetic direction and oriented-through-area reasoning",
+      "section": "Conceptual constructions for magnetic direction, oriented-through-area reasoning, and force-perpendicular-to-motion consequences",
       "last_checked": "2026-09-18",
       "access_status": "FULL_ITEM_INSPECTED",
       "rights_status": "Author-created project draft; no external reproduction rights claimed.",
@@ -31,13 +31,15 @@
         "MIC-MAG-FIELD-DIRECTION",
         "MIC-MAG-FLUX-ORIENTATION",
         "CAP-MAG-FIELD-DIRECTION",
-        "CAP-MAG-FLUX-ORIENTATION"
+        "CAP-MAG-FLUX-ORIENTATION",
+        "MIC-MAG-REDIRECT-NOT-SPEED",
+        "CAP-MAG-REDIRECT-NOT-SPEED"
       ],
       "entry_capabilities": [],
       "depth": [
         "FOUNDATION"
       ],
-      "selection_reason": "Supplies author-created teaching constructions for the conceptual magnetism rungs without claiming curriculum or equation authority.",
+      "selection_reason": "Supplies author-created magnetism distinctions without claiming quantitative Lorentz-force, induction, or motional-emf equations.",
       "fallback": []
     }
   ],
@@ -91,6 +93,22 @@
       "prerequisite_refs": [
         "CAP-MAG-FIELD-DIRECTION"
       ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAG-REDIRECT-NOT-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-MAG-FIELD-LORENTZ"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish a change in velocity direction from a change in speed for motion under a purely perpendicular magnetic force.",
+      "success_criterion": "Given successive velocity and force directions, explain why the path may curve while speed and kinetic energy remain unchanged.",
+      "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -356,6 +374,140 @@
           "confirms": "The comparison depends on how the surface faces the field, not merely on field presence."
         }
       }
+    },
+    {
+      "id": "MIC-MAG-REDIRECT-NOT-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-MAG-FIELD-LORENTZ"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "A perpendicular magnetic force redirects without speeding up",
+      "bucket_id": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+      "primary_capability_ref": "CAP-MAG-REDIRECT-NOT-SPEED",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners often transfer the everyday rule 'force means speeding up' to a case where force is everywhere sideways to the instantaneous motion.",
+      "entry_assumptions": [
+        "Can distinguish a velocity arrow's direction from its length.",
+        "Can recognize perpendicular directions and interpret a zero dot product geometrically."
+      ],
+      "inferential_jump": "When the magnetic force is perpendicular to the instantaneous velocity, it can continually turn the velocity arrow without lengthening or shortening it; the magnetic interaction redirects motion without supplying kinetic energy.",
+      "teaching_path": [
+        {
+          "id": "MAG-R4-1",
+          "role": "DECLARE",
+          "action": "At one instant, draw the velocity arrow tangent to the path and the magnetic-force arrow perpendicular to it.",
+          "why_valid": "The rung's claim applies to a pure magnetic interaction in the stated perpendicular case, so the local force-versus-velocity geometry must be fixed before any conclusion about speed is made.",
+          "inputs": [],
+          "output": "instant 1: v -> ; F ⟂ v"
+        },
+        {
+          "id": "MAG-R4-2",
+          "role": "TRANSFORM",
+          "action": "Advance a short time step and redraw the velocity with a changed direction but the same arrow length, while keeping the force sideways to the new velocity.",
+          "why_valid": "A sideways change alters direction while preserving the magnitude represented by arrow length; repeating that local update builds a curved path without a speed increase.",
+          "inputs": [],
+          "output": "|v₁| = |v₂| ; direction(v₁) ≠ direction(v₂)"
+        },
+        {
+          "id": "MAG-R4-3",
+          "role": "VERIFY",
+          "action": "Use the dot-product check on the force and instantaneous velocity at each snapshot.",
+          "why_valid": "Perpendicular vectors have zero dot product, so the magnetic force has no component along the motion to supply or remove kinetic energy.",
+          "inputs": [],
+          "output": "F ⟂ v -> F·v = 0 -> magnetic contribution to speed change = 0"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A magnetic field makes a charged particle speed up simply because a force acts on it.",
+          "diagnostic_prompt": "A particle curves in a uniform pure magnetic field. If its speed rises, what interaction supplied the extra kinetic energy?",
+          "repair": "Compare the force with the instantaneous velocity: a perpendicular magnetic force turns the motion, while its zero dot product with velocity means it does not add kinetic energy."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A particle moves through a region where the only force is magnetic and is perpendicular to its instantaneous velocity. State what may change about the velocity and what must remain unchanged, and justify the answer with the force-velocity geometry.",
+        "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The velocity direction may change, so the path can curve, but the speed and kinetic energy remain unchanged because the magnetic force has no component along the instantaneous motion.",
+          "reasoning": [
+            "Read speed from the length of the velocity arrow and direction from where that arrow points.",
+            "A force perpendicular to the velocity changes the direction of the arrow rather than its length in the ideal pure-magnetic case.",
+            "The perpendicular force-velocity dot product is zero, which is the work-or-power check that no kinetic energy is transferred by the magnetic force."
+          ],
+          "check": "Compare two nearby snapshots: the tangent direction should rotate while the velocity-arrow length stays fixed and the force remains perpendicular to the local tangent.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer distinguishes direction, speed, and kinetic-energy changes qualitatively; it computes no magnetic-force magnitude or trajectory radius."
+        }
+      },
+      "research_contribution": "This author-created local-snapshot construction teaches the work-free redirection distinction without importing a quantitative Lorentz-force magnitude or circular-motion relation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A force is acting on a moving charge, but the force arrow is exactly sideways to the velocity arrow. Must the particle be getting faster?",
+          "defensible_answer": "No. A sideways force can change the direction of motion while leaving the speed unchanged."
+        },
+        "attempt": {
+          "produces": "Two successive velocity-force snapshots on a curved path, with the velocity-arrow lengths compared and a force-velocity dot-product check.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The later velocity arrow changes direction without changing length.",
+              "evidence_of": "Separating redirection from speeding up."
+            },
+            {
+              "criterion": "The force is kept perpendicular to the instantaneous velocity and the dot-product check is identified as zero.",
+              "evidence_of": "Connecting the geometry to the no-energy-transfer conclusion."
+            }
+          ],
+          "accepted": [
+            "The path bends, the two velocity arrows have equal lengths, each force arrow is sideways to the local velocity, and the response uses the zero dot product to explain unchanged kinetic energy."
+          ],
+          "rejected": [
+            "The later velocity arrow is longer solely because a force exists, even though the force is drawn perpendicular to the motion."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which feature of a velocity arrow represents speed, and which represents direction?",
+              "why_this_ask": "The learner must separate the two properties before one can change without the other.",
+              "from_step_ref": "MAG-R4-1"
+            },
+            {
+              "ask": "If the force is exactly sideways, what could change about the velocity arrow without changing its length?",
+              "why_this_ask": "This makes redirection the learner's construction rather than a stated rule.",
+              "from_step_ref": "MAG-R4-2"
+            },
+            {
+              "ask": "What does the dot product of two perpendicular arrows tell you here?",
+              "why_this_ask": "The geometric check closes the work-or-power claim without asking for a force magnitude.",
+              "from_step_ref": "MAG-R4-3"
+            },
+            {
+              "ask": "If the field strength changed while the force stayed perpendicular, which conclusion survives?",
+              "why_this_ask": "It tests the invariant distinction: curvature may change, but the pure magnetic interaction still does not supply kinetic energy."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path starts from a declared perpendicular snapshot; the elicitation route first asks the learner to separate velocity length from direction, then makes the curved-path construction emerge from that distinction."
+        },
+        "boundary_test": {
+          "prompt": "If an additional non-magnetic force has a component along the velocity, may the speed still be assumed constant?",
+          "answer": "No. The no-speed-change conclusion belongs to the pure magnetic perpendicular-force case; an additional along-motion force can transfer kinetic energy.",
+          "confirms": "The rung's conclusion is conditional on the stated force geometry and does not claim that every curved charged-particle path has constant speed."
+        }
+      }
     }
   ],
   "relations": [],
@@ -378,18 +530,21 @@
       ],
       "microtopic_refs": [
         "MIC-MAG-FIELD-DIRECTION",
-        "MIC-MAG-FLUX-ORIENTATION"
+        "MIC-MAG-FLUX-ORIENTATION",
+        "MIC-MAG-REDIRECT-NOT-SPEED"
       ],
       "entry_needs": [
         "Learners can read ordinary arrows and compare orientations."
       ],
       "learner_actions": [
         "Follow the completed page-convention construction.",
-        "Explain why turning a surface changes through-going field while its size stays fixed."
+        "Explain why turning a surface changes through-going field while its size stays fixed.",
+        "Follow a completed two-snapshot construction showing direction change with unchanged velocity-arrow length."
       ],
       "help_plan": [
         "Keep the viewing convention beside every dot/cross mark.",
-        "Show the surface normal before asking for an orientation comparison."
+        "Show the surface normal before asking for an orientation comparison.",
+        "Keep the force perpendicular to each instantaneous velocity and show the zero force-velocity dot-product check."
       ],
       "reveal_plan": "The declarative route reveals each completed distinction and its self-check.",
       "source_preferences": [
@@ -400,7 +555,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not extend this route into magnetic-force, induction, work or motional-emf equations until gate relations exist."
+        "Do not extend this route into Lorentz-force magnitude, induction, circular-orbit, or motional-emf calculations without governed relations."
       ],
       "practice_profile_ref": null
     },
@@ -419,7 +574,8 @@
       ],
       "microtopic_refs": [
         "MIC-MAG-FIELD-DIRECTION",
-        "MIC-MAG-FLUX-ORIENTATION"
+        "MIC-MAG-FLUX-ORIENTATION",
+        "MIC-MAG-REDIRECT-NOT-SPEED"
       ],
       "entry_needs": [
         "Learners can commit to a direction or orientation prediction before seeing the construction."
@@ -427,12 +583,14 @@
       "learner_actions": [
         "Predict which page mark preserves one physical direction.",
         "Construct a normal for a surface before ranking orientations.",
-        "Use boundary cases to test the distinction."
+        "Use boundary cases to test the distinction.",
+        "Predict whether a sideways magnetic force must increase speed, then reconstruct the local velocity change from two snapshots."
       ],
       "help_plan": [
         "Ask for the viewing direction before naming the symbol.",
         "Ask what stayed fixed before revealing the orientation ranking.",
-        "Close every attempt with the model response and misconception repair."
+        "Close every attempt with the model response and misconception repair.",
+        "Ask which part of a velocity arrow encodes speed before revealing the unchanged-length construction."
       ],
       "reveal_plan": "The tutor withholds the key distinction until the learner has made a falsifiable direction or orientation choice.",
       "source_preferences": [
@@ -443,7 +601,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not turn the elicitation prompts into numerical force or induction tasks without governed relations."
+        "Do not turn the elicitation into quantitative force, induction, orbit-radius, or motional-emf practice without governed relations."
       ],
       "practice_profile_ref": null
     }
