@@ -19,7 +19,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import study_route  # noqa: E402
+from Shared.tools import capability_delivery, study_route  # noqa: E402
 
 ASSESSMENT_NOT_TAUGHT = "ASSESSMENT_CAPABILITY_NOT_TAUGHT"
 STUDY_NOT_TAUGHT = "STUDY_CAPABILITY_NOT_TAUGHT"
@@ -33,6 +33,11 @@ def audit(mapping: dict, proposed_capabilities: list[str] | None = None,
 
     routed = {row["capability_ref"]: row for row in route.get("route", [])}
     for row in route.get("route", []):
+        if row.get("delivery_state") in {
+            capability_delivery.LOCAL,
+            capability_delivery.EXTERNAL_BRIDGE,
+        }:
+            continue
         if row["state"] == "RESOLVED":
             continue
         point = (ASSESSMENT_NOT_TAUGHT if "QUESTION_DEMAND" in row["reasons"]
@@ -69,13 +74,17 @@ def audit(mapping: dict, proposed_capabilities: list[str] | None = None,
                 "detail": "routed capability carries no scope reason",
             })
 
+    valid = not findings
     return {
         "worksheet_id": route.get("worksheet_id"),
         "subject": route.get("subject"),
         "route": route.get("route", []),
         "proposed_capabilities": proposed,
         "findings": findings,
-        "passed": not findings,
+        "blockers": list(route.get("blockers", [])),
+        "valid": valid,
+        "ready": valid and not route.get("blockers", []),
+        "passed": valid,
     }
 
 
