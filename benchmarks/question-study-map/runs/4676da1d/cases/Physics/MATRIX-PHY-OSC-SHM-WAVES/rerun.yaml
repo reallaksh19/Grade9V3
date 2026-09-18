@@ -1,0 +1,29 @@
+rerun_id: "QSM-RERUN-4676da1d-MATRIX-PHY-OSC-SHM-WAVES"
+baseline_commit: "4676da1dc4b595ab88ad0f6a7aed24d3040a9040"
+subject: "Physics"
+matrix_id: "MATRIX-PHY-OSC-SHM-WAVES"
+subtopic: "Oscillations, simple harmonic motion and waves"
+readiness: "NOT_READY"
+overall_status: "PARTIAL"
+original_pack: "benchmarks/question-study-map/cases/Physics/MATRIX-PHY-OSC-SHM-WAVES/"
+case_statuses:
+  unknown_learner: PASS
+  rough_owner_estimate: PASS
+  prior_learner_evidence: PASS
+  feedback_diagnosis: PASS
+  repair: PASS
+  fresh_verification: PASS
+  helped_success: PASS
+  independent_success: PASS
+  direct_mapping: PARTIAL
+  prerequisite_route: NOT_APPLICABLE
+  multi_capability: NOT_APPLICABLE
+  repeated_demand: NOT_APPLICABLE
+  external_bridge: NOT_APPLICABLE
+  content_gap: PARTIAL
+  incomplete_source: NOT_APPLICABLE
+notes:
+  - "No material semantic change from the original sweep; current production baseline and Shared contracts reproduce the same disposition."
+boundary:
+  production_repairs_in_rerun: false
+  learner_episode_fabricated: false

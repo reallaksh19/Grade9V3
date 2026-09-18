@@ -1,0 +1,30 @@
+rerun_id: "QSM-RERUN-4676da1d-MATRIX-PHY-VEC-ADD-SUB"
+baseline_commit: "4676da1dc4b595ab88ad0f6a7aed24d3040a9040"
+subject: "Physics"
+matrix_id: "MATRIX-PHY-VEC-ADD-SUB"
+subtopic: "Vector addition, subtraction and orientation"
+readiness: "NOT_READY"
+overall_status: "PARTIAL"
+original_pack: "benchmarks/question-study-map/cases/Physics/MATRIX-PHY-VEC-ADD-SUB/"
+case_statuses:
+  unknown_learner: PASS
+  rough_owner_estimate: PASS
+  prior_learner_evidence: PASS
+  feedback_diagnosis: PASS
+  repair: PASS
+  fresh_verification: PASS
+  helped_success: PASS
+  independent_success: PASS
+  direct_mapping: PASS
+  prerequisite_route: PASS
+  multi_capability: NOT_APPLICABLE
+  repeated_demand: NOT_APPLICABLE
+  external_bridge: NOT_APPLICABLE
+  content_gap: PARTIAL
+  incomplete_source: NOT_APPLICABLE
+notes:
+  - "GAP-QSM-0003 verified resolved: prerequisite delivery no longer reports ambiguous local teaching ownership."
+  - "GAP-QSM-0002 persists: R1, R2 and R4 still lack canonical microtopic teaching, so NOT_READY remains correct."
+boundary:
+  production_repairs_in_rerun: false
+  learner_episode_fabricated: false

@@ -1,0 +1,31 @@
+rerun_id: "QSM-RERUN-4676da1d-MATRIX-PHY-VECTOR-REPRESENTATION"
+baseline_commit: "4676da1dc4b595ab88ad0f6a7aed24d3040a9040"
+subject: "Physics"
+matrix_id: "MATRIX-PHY-VECTOR-REPRESENTATION"
+subtopic: "Vector representation and subtraction"
+readiness: "SESSION_READY_WITH_BRIDGE"
+overall_status: "PASS"
+original_pack: "benchmarks/question-study-map/cases/Physics/MATRIX-PHY-VECTOR-REPRESENTATION/"
+case_statuses:
+  unknown_learner: PASS
+  rough_owner_estimate: PASS
+  prior_learner_evidence: PASS
+  feedback_diagnosis: PASS
+  repair: PASS
+  fresh_verification: PASS
+  helped_success: PASS
+  independent_success: PASS
+  direct_mapping: PASS
+  prerequisite_route: PASS
+  multi_capability: NOT_APPLICABLE
+  repeated_demand: NOT_APPLICABLE
+  external_bridge: PASS
+  content_gap: NOT_APPLICABLE
+  incomplete_source: NOT_APPLICABLE
+notes:
+  - "GAP-QSM-0004 verified resolved: all three matrix rungs now have Core1A/Core1B route and elicitation coverage."
+  - "Readiness is now SESSION_READY_WITH_BRIDGE."
+  - "Distinct primary capabilities now own R1, R2 and R3."
+boundary:
+  production_repairs_in_rerun: false
+  learner_episode_fabricated: false
