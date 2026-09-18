@@ -8,9 +8,9 @@ import math
 VALIDATORS = {
     "CONSTANT_ACCELERATION_VELOCITY", "CONSTANT_ACCELERATION_INITIAL_VELOCITY",
     "CONSTANT_ACCELERATION_EVENT_TIME", "SPEED_FROM_COMPONENTS", "APEX_STATE",
-    "AVERAGE_RATE", "UNIVERSAL_GRAVITATION", "GRAVITATIONAL_ACCELERATION",
-    "HYDROSTATIC_PRESSURE_DIFFERENCE", "THERMODYNAMIC_FIRST_LAW", "WAVE_SPEED",
-    "AVERAGE_POWER", "INSTANTANEOUS_POWER", "ELECTRIC_POWER",
+    "AVERAGE_RATE",
+    "WAVE_SPEED",
+    "AVERAGE_POWER", "INSTANTANEOUS_POWER",
     "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
     "NEWTON_SECOND_LAW", "WORK_CONSTANT_FORCE", "KINETIC_ENERGY",
     "GRAVITATIONAL_POTENTIAL_ENERGY", "MECHANICAL_ADVANTAGE",
@@ -43,30 +43,6 @@ def recompute(case: dict):
             raise ValueError("AVERAGE_RATE_DOMAIN_INVALID")
         return {"average_speed_m_s": distance / dt,
                 "average_velocity_m_s": displacement / dt}
-    if kind == "UNIVERSAL_GRAVITATION":
-        G = _number(case, "G", "N m^2/kg^2")
-        m1, m2, r = (_number(case, "m1", "kg"), _number(case, "m2", "kg"),
-                     _number(case, "r", "m"))
-        if min(G, m1, m2, r) <= 0:
-            raise ValueError("GRAVITATION_DOMAIN_INVALID")
-        return G * m1 * m2 / (r * r)
-    if kind == "GRAVITATIONAL_ACCELERATION":
-        G = _number(case, "G", "N m^2/kg^2")
-        M, r = _number(case, "M", "kg"), _number(case, "r", "m")
-        if min(G, M, r) <= 0:
-            raise ValueError("GRAVITATION_DOMAIN_INVALID")
-        return G * M / (r * r)
-    if kind == "HYDROSTATIC_PRESSURE_DIFFERENCE":
-        rho = _number(case, "rho", "kg/m^3")
-        g = _number(case, "g", "m/s^2")
-        delta_h = _number(case, "delta_h", "m")
-        if rho <= 0 or g <= 0:
-            raise ValueError("HYDROSTATIC_MODEL_INVALID")
-        return rho * g * delta_h
-    if kind == "THERMODYNAMIC_FIRST_LAW":
-        if case.get("work_convention") != "WORK_BY_SYSTEM_POSITIVE":
-            raise ValueError("THERMODYNAMIC_WORK_CONVENTION_REQUIRED")
-        return _number(case, "Q", "J") - _number(case, "W", "J")
     if kind == "WAVE_SPEED":
         frequency = _number(case, "frequency", "Hz")
         wavelength = _number(case, "wavelength", "m")
@@ -83,8 +59,6 @@ def recompute(case: dict):
         if speed < 0:
             raise ValueError("SPEED_NEGATIVE")
         return _number(case, "force_parallel", "N") * speed
-    if kind == "ELECTRIC_POWER":
-        return _number(case, "voltage", "V") * _number(case, "current", "A")
     if kind == "CONSTANT_ACCELERATION_DISPLACEMENT":
         t = _number(case, "t", "s")
         if t < 0:
