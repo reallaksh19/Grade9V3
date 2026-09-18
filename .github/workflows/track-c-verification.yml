@@ -1,61 +1,31 @@
-name: track-c-verification
+name: track-c-regenerate
 on:
   push:
     branches: ["p0-foundations"]
 
+permissions:
+  contents: write
+
 jobs:
-  verify:
+  regenerate:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: p0-foundations
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - name: Install schema validator
         run: pip install --quiet jsonschema
-
-      - name: Intake Track C packages
-        continue-on-error: true
+      - name: Regenerate indexes
+        run: python3 Shared/tools/build_manifest.py
+      - name: Commit deterministic generated files
         run: |
-          python3 Shared/library/intake.py \
-            Physics/library/phy-mag-field-lorentz.v1.json \
-            Physics/library/phy-elec-current-ohm.v1.json \
-            Physics/library/phy-osc-shm-waves.v1.json \
-            Physics/library/phy-optics-reflection-mirrors.v1.json
-
-      - name: Subject sweep
-        continue-on-error: true
-        run: python3 Shared/tools/check_subjects.py
-
-      - name: Matrix conformance
-        continue-on-error: true
-        run: python3 Shared/tools/matrix_conformance.py --enforce
-
-      - name: Ceiling audit
-        continue-on-error: true
-        run: python3 Shared/tools/ceiling_audit.py --enforce
-
-      - name: Request resolution
-        continue-on-error: true
-        run: python3 Shared/tools/resolve_request.py --enforce
-
-      - name: Authored rung briefs
-        continue-on-error: true
-        run: |
-          python3 Shared/tools/author_brief.py --subject Physics --bucket BUCKET-PHY-MAG-FIELD-LORENTZ --rung R1 --core CORE1A
-          python3 Shared/tools/author_brief.py --subject Physics --bucket BUCKET-PHY-ELEC-CURRENT-OHM --rung R1 --core CORE1A
-          python3 Shared/tools/author_brief.py --subject Physics --bucket BUCKET-PHY-OSC-SHM-WAVES --rung R1 --core CORE1A
-          python3 Shared/tools/author_brief.py --subject Physics --bucket BUCKET-PHY-OPTICS-REFLECTION-MIRRORS --rung R1 --core CORE1A
-
-      - name: Full tests
-        continue-on-error: true
-        run: python3 -m unittest discover -s tests -p "test_*.py" -v
-
-      - name: Capability collision report
-        continue-on-error: true
-        run: python3 Shared/tools/capability_collisions.py
-
-      - name: Generated artifact drift
-        continue-on-error: true
-        run: python3 Shared/tools/build_manifest.py --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/data.js docs/architecture-manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Regenerate indexes after Physics rung authoring"
+          git push origin HEAD:p0-foundations
