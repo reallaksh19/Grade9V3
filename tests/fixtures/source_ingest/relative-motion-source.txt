@@ -1,0 +1,2 @@
+Fixture source for deterministic acquisition tests.
+Question F1: In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B.
