@@ -45,7 +45,10 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
+        "grade9_track": "STANDARD"
+      },
       "title": "Work, energy and power",
       "topic": "Work and Energy",
       "intrinsic_badge": "MEDIUM",
@@ -1457,7 +1460,8 @@
         "CAP-WEP-NET-WORK-SIGN",
         "CAP-WEP-POTENTIAL-ELIGIBILITY",
         "CAP-WEP-MECH-ENERGY-CONDITION",
-        "CAP-WEP-GRADE9-QUANT"
+        "CAP-WEP-GRADE9-QUANT",
+        "CAP-WEP-POWER-RATES"
       ],
       "solution_structure": [
         "Draw one displacement direction and compare three force arrows: along it, perpendicular to it, and opposite it.",
@@ -1481,7 +1485,11 @@
       ],
       "item_refs": [
         "Q-PHY-WEP-2A-01",
-        "Q-PHY-WEP-2B-01"
+        "Q-PHY-WEP-2B-01",
+        "Q-PHY-WEP-2A-COV-02",
+        "Q-PHY-WEP-2A-COV-03",
+        "Q-PHY-WEP-2A-COV-04",
+        "Q-PHY-WEP-2A-COV-05"
       ]
     }
   ],
@@ -1610,6 +1618,232 @@
         ]
       },
       "repair_ref": "WEP4-3"
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-02",
+      "stem": "For three otherwise comparable motions, the net work is described as positive, zero, and negative. State the corresponding direction of kinetic-energy change without calculating any energy value.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Positive net work means kinetic energy increases; zero means no change; negative means kinetic energy decreases.",
+        "reasoning": [
+          "The comparison holds the starting motion fixed.",
+          "The sign of the combined work indicates the sign of the kinetic-energy change.",
+          "No individual force alone decides the result unless it is the only contributor."
+        ],
+        "check": "Use braking as the negative case: slowing must correspond to a decrease in kinetic energy.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-NET-WORK-SIGN",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: During braking, is the force contribution along the motion or opposite it?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Combine the work of all acting forces to obtain net work, then match its sign to whether kinetic energy increases, stays unchanged, or decreases.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-03",
+      "stem": "Two routes share the same start and finish heights. Gravity gives the same potential-energy change on both, while friction removes more energy on the longer route. Which interaction is eligible for endpoint-only potential-energy bookkeeping?",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Gravity is eligible in this comparison; kinetic friction is not, because its transfer changes with the path.",
+        "reasoning": [
+          "The gravitational potential-energy change is fixed by the shared endpoints.",
+          "The frictional transfer changes when the route length changes.",
+          "An endpoint-only account cannot represent a path-dependent interaction."
+        ],
+        "check": "Change the route while keeping the endpoints fixed; an eligible endpoint-only contribution stays the same while the frictional transfer need not.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: If the start and finish heights are unchanged, what happens to the gravitational potential-energy change when the route bends?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use potential energy only for interactions whose energy change is fixed by endpoints; keep path-dependent friction as an explicit transfer.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-04",
+      "stem": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval.",
+        "reasoning": [
+          "Use P_avg = 120 J / 4 s = 30 W.",
+          "An interval average does not specify how the rate varied within the four seconds.",
+          "Instantaneous power would require same-instant force and velocity information, such as F_parallel and v."
+        ],
+        "check": "A second machine could transfer the same 120 J in the same 4 s with a varying rate and still have the same 30 W average.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-POWER-RATES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What total energy transfer is fixed over the whole interval?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Keep work fixed and divide by each machine's own elapsed time; power is a rate, not the transfer total.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "AVERAGE_POWER",
+        "bindings": {
+          "work": "DAT-WEP-POWER-WORK",
+          "dt": "DAT-WEP-POWER-DT"
+        }
+      }
+    },
+    {
+      "id": "Q-PHY-WEP-2A-COV-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-COVERAGE-05",
+      "stem": "A 2 kg object moves at 3 m/s. Find its translational kinetic energy. Then state what additional condition is required before using K_i + U_i = K_f + U_f for a later motion.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account.",
+        "reasoning": [
+          "K = 0.5 x 2 x 3^2 = 9 J.",
+          "The conservation equation is conditional, not automatic.",
+          "If friction or an outside agent transfers energy, that transfer must be included."
+        ],
+        "check": "Doubling the speed to 6 m/s would quadruple K to 36 J.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Which energy depends on motion in the declared frame?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Inventory transfers first. Friction can move energy out of the mechanical account, so identical endpoints do not guarantee the same K + U ledger.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "KINETIC_ENERGY",
+        "bindings": {
+          "mass": "DAT-WEP-KE-M",
+          "speed": "DAT-WEP-KE-V"
+        }
+      }
     }
   ],
   "teaching_routes": [
@@ -1710,7 +1944,9 @@
   "practice_profiles": [],
   "evidence": [],
   "known_issues": [],
-  "extensions": {},
+  "extensions": {
+    "grade9_track": "STANDARD"
+  },
   "data": [
     {
       "id": "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
