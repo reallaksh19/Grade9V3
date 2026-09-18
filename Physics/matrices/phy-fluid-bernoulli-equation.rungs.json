@@ -44,6 +44,14 @@
           "hold": "fluid density, gravity, and surface pressure",
           "notice": "pressure increases with vertical depth regardless of container shape"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-HYDROSTATIC-PRESSURE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Static-fluid pressure versus depth needs gate-owned conditions."
+        }
       ]
     },
     {
@@ -165,6 +173,26 @@
           "vary": "pressure difference between Venturi taps",
           "hold": "steady incompressible flow and fixed section areas",
           "notice": "the measured pressure difference maps to the speed difference only after continuity links the section speeds"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-CONTINUITY-INCOMPRESSIBLE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Continuity must be gate-owned before combining it with an energy relation."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-BERNOULLI-IDEAL-FLOW",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Bernoulli's ideal-flow ledger needs gate-owned applicability conditions."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "BERNOULLI_CONTINUITY",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Tank and Venturi numerical exits need an implemented coupled validator."
         }
       ]
     }
