@@ -74,27 +74,29 @@
         "wave equation PDE"
       ],
       "must_contain": [
-        "Period, frequency, wavelength and amplitude explicitly separated by what each measures.",
-        "Both f = 1/T and v = f lambda applied only to quantities from one wave/medium."
+        "A spatial sound-wave graph whose horizontal repeat distance is identified as wavelength.",
+        "A temporal sound-wave graph whose horizontal repeat time is identified as period.",
+        "Amplitude read from vertical extent without confusing it with wavelength or period.",
+        "An explicit derivation v = lambda/T = f lambda for one wave in one medium."
       ],
       "controlled_variation": [
         {
           "phase": 1,
-          "vary": "period",
-          "hold": "the same wave description",
-          "notice": "frequency changes reciprocally"
+          "vary": "the horizontal graph coordinate from position to time",
+          "hold": "the same repeating disturbance shape",
+          "notice": "repeat spacing changes meaning from wavelength lambda to period T"
         },
         {
           "phase": 2,
-          "vary": "frequency in the same medium",
-          "hold": "propagation speed",
-          "notice": "wavelength changes inversely"
+          "vary": "period",
+          "hold": "the same wavelength and medium model",
+          "notice": "frequency changes reciprocally through f = 1/T"
         },
         {
           "phase": 3,
-          "vary": "amplitude",
-          "hold": "frequency and wavelength",
-          "notice": "disturbance size can change without changing repetition rate"
+          "vary": "vertical amplitude",
+          "hold": "period and wavelength",
+          "notice": "disturbance size can change without changing repeat spacing"
         }
       ],
       "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
@@ -122,6 +124,12 @@
           "ref": "WAVE_SPEED",
           "required_for": "NUMERIC_EXIT",
           "reason": "Wave-speed exits need the implemented Physics validator."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "GRAPH",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "The Grade 9 curriculum explicitly requires graphical representation and analysis of sound waves."
         }
       ]
     },
@@ -136,20 +144,27 @@
       ],
       "must_contain": [
         "A matched-amplitude frequency comparison for pitch.",
-        "A matched-frequency sound-strength comparison for loudness."
+        "A matched-frequency sound-strength comparison for loudness.",
+        "The approximate usual human audible band stated as about 20 Hz to 20,000 Hz, with an explicit warning that individual limits vary."
       ],
       "controlled_variation": [
         {
           "phase": 1,
-          "vary": "frequency",
+          "vary": "frequency within the audible band",
           "hold": "comparable sound strength",
-          "notice": "higher frequency gives higher pitch"
+          "notice": "higher frequency corresponds to higher pitch"
         },
         {
           "phase": 2,
           "vary": "sound strength/amplitude",
           "hold": "frequency",
           "notice": "loudness can change while pitch stays the same"
+        },
+        {
+          "phase": 3,
+          "vary": "frequency from below 20 Hz through 1,000 Hz to above 20,000 Hz",
+          "hold": "the same human-listener model",
+          "notice": "the examples move from below the usual audible band to within it and then above it"
         }
       ],
       "microtopic_ref": "MIC-PHY-SOUND-PERCEPTION"
@@ -236,6 +251,18 @@
       "changed_demand": "A cave-mapping or animal echolocation problem must be recognized as an ordinary reflected-sound round-trip timing problem.",
       "information_not_handed_over": "that the measured delay contains both outward and return paths",
       "repair_to": "R5"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A sampled sound graph must be identified as spatial or temporal before the learner can decide whether horizontal repeat spacing means wavelength or period.",
+      "information_not_handed_over": "whether the horizontal axis is position or time",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "boundary_test",
+      "changed_demand": "A frequency just outside the approximate human audible band must be classified without treating 20 Hz and 20,000 Hz as exact personal hearing thresholds.",
+      "information_not_handed_over": "that the quoted audible range is an approximate usual range rather than a universal biological cutoff",
+      "repair_to": "R4"
     }
   ]
 }
