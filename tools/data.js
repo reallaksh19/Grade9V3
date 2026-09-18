@@ -710,6 +710,34 @@ window.GRADE9V3 = {
             "shape": "SCALAR_WITH_UNIT",
             "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
             "does_not_prove": "That acceleration is constant in the described motion or that the chosen endpoint velocities belong to the same interval."
+          },
+          {
+            "id": "WAVE_SPEED",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the medium is nondispersive or that the same speed applies after the medium changes."
+          },
+          {
+            "id": "MECHANICAL_ADVANTAGE",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the machine is ideal, efficient, or correctly represented by the supplied forces."
+          },
+          {
+            "id": "FREQUENCY_PERIOD",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the signal is periodic or that the measured period belongs to the intended mode."
+          },
+          {
+            "id": "ECHO_DISTANCE",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
           }
         ],
         "representation_kinds": [
@@ -856,6 +884,43 @@ window.GRADE9V3 = {
           ],
           "misconceptions": [
             "Any nonzero force on a moving body does positive work."
+          ]
+        },
+        {
+          "gate_id": "PHY-WAVE-SPEED",
+          "title": "Grade 9 sound frequency, wavelength, speed and echo relations",
+          "grade": 9,
+          "chapter": "Sound",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "For one travelling-wave description, propagation speed is frequency times wavelength.",
+            "Frequency and time period are reciprocals for one repeating vibration.",
+            "An echo delay covers an outward and return sound path, so one-way distance is half the total distance travelled by the sound."
+          ],
+          "misconceptions": [
+            "Raising source frequency in the same medium must raise wave speed."
+          ]
+        },
+        {
+          "gate_id": "PHY-SIMPLE-MACHINES-GRADE9",
+          "title": "Grade 9 simple machines and mechanical advantage",
+          "grade": 9,
+          "chapter": "Work, Energy and Simple Machines",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "A simple machine can trade force magnitude, direction or input distance; it does not create work or energy.",
+            "Mechanical advantage compares load force with effort force for the same machine state."
+          ],
+          "misconceptions": [
+            "A machine with mechanical advantage greater than one creates energy because the output force is larger."
           ]
         },
         {
@@ -1131,7 +1196,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -1378,7 +1443,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -1624,7 +1689,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -2269,7 +2334,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 6,
             "obligations": 10,
             "authoring_requirements": [
@@ -2501,7 +2566,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -3065,7 +3130,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 1,
             "obligations": 9,
             "authoring_requirements": [
@@ -3298,7 +3363,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -3481,7 +3546,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -3790,7 +3855,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 4,
             "authoring_requirements": [
@@ -3809,6 +3874,1139 @@ window.GRADE9V3 = {
                 "core": "CORE2A",
                 "detail": "the library holds no question exposed to this product for this bucket"
               },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-SIMPLE-MACHINES",
+          "title": "Simple machines",
+          "topic": "Work, Energy and Simple Machines",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-WORK-ENERGY-POWER"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-MACHINE-TRADEOFF",
+              "title": "A machine trades force or direction for distance; it does not create work",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
+              "entry_assumptions": [
+                "Can distinguish force from work and can compare input/output energy transfers."
+              ],
+              "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
+              "teaching_path": [
+                {
+                  "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
+                  "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
+                  "output": "input: F_effort, d_effort; output: F_load, d_load."
+                },
+                {
+                  "action": "For an ideal machine, compare the effort and load work using F_effort d_effort = F_load d_load.",
+                  "why_valid": "REL-IDEAL-MACHINE-WORK owns the lossless input-output work equality.",
+                  "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
+                },
+                {
+                  "action": "Double the load force advantage while keeping ideal useful output work fixed and ask what must happen to effort distance.",
+                  "why_valid": "The boundary exposes why force multiplication does not create energy.",
+                  "output": "greater force advantage -> compensating greater input distance in the ideal tradeoff."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If a machine gives a larger output force than the effort force, it creates energy.",
+                  "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still conserve work?",
+                  "repair": "Track both force and distance. In an ideal machine, a force advantage requires a compensating distance tradeoff."
+                }
+              ],
+              "exit_task": {
+                "prompt": "An ideal machine lets a person use a smaller effort force to raise a load. Without numbers, what must happen to the effort distance relative to the load distance if useful output work is unchanged?",
+                "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The effort point must move farther than the load point when the effort force is smaller than the load force.",
+                  "reasoning": [
+                    "Ideal input work equals useful output work.",
+                    "Reducing input force while keeping output work fixed requires a larger input distance.",
+                    "The machine trades force for distance rather than creating energy."
+                  ],
+                  "check": "If both force and distance were multiplied at the output with no extra input, output work would exceed input work and violate the ideal model.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit makes a qualitative ideal-work tradeoff claim without a computed value."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-GRADE9-QUANT"
+              ]
+            },
+            {
+              "id": "MIC-PHY-MACHINE-MA",
+              "title": "Mechanical advantage compares load force with effort force",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The ratio is simple once load and effort are correctly identified.",
+              "entry_assumptions": [
+                "Can label input/effort and output/load forces on the same machine state."
+              ],
+              "inferential_jump": "Mechanical advantage is a dimensionless force ratio, MA = F_load/F_effort; values above one indicate force advantage but do not measure energy efficiency.",
+              "teaching_path": [
+                {
+                  "action": "Label the effort force and the load force for the same machine state.",
+                  "why_valid": "The ratio is meaningful only when numerator and denominator refer to the same machine state.",
+                  "output": "load: F_load; effort: F_effort."
+                },
+                {
+                  "action": "Divide load-force magnitude by effort-force magnitude.",
+                  "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
+                  "output": "MA = F_load / F_effort."
+                },
+                {
+                  "action": "Check that the ratio is dimensionless and interpret MA = 1 as no force multiplication.",
+                  "why_valid": "Both numerator and denominator are forces, so units cancel.",
+                  "output": "MA has no unit; MA > 1 is force advantage; MA = 1 is no force multiplication."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Mechanical advantage is the same as efficiency.",
+                  "diagnostic_prompt": "Can an ideal fixed pulley have MA = 1 and still be useful?",
+                  "repair": "Yes. MA compares forces only; a machine can be useful by changing force direction even with MA = 1."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A machine lifts a 120 N load with a 40 N effort. Find the mechanical advantage and interpret it.",
+                "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "MA = 3. The load force is three times the effort force.",
+                  "reasoning": [
+                    "MA = F_load/F_effort.",
+                    "120 N / 40 N = 3.",
+                    "The ratio describes force advantage, not energy creation or efficiency."
+                  ],
+                  "check": "The newton units cancel, so MA is dimensionless.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "MECHANICAL_ADVANTAGE",
+                    "bindings": {
+                      "load_force": "DAT-MACHINE-LOAD",
+                      "effort_force": "DAT-MACHINE-EFFORT"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-MACHINE-TRADEOFF"
+              ]
+            },
+            {
+              "id": "MIC-PHY-MACHINE-COMPARE",
+              "title": "Levers, pulleys and inclined planes realize different force-distance tradeoffs",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners can memorize device names without identifying what each machine changes about force, direction and distance.",
+              "entry_assumptions": [
+                "Can explain the ideal force-distance tradeoff and compute mechanical advantage."
+              ],
+              "inferential_jump": "A lever, pulley or inclined plane should be analysed by its input/output force, direction and distance tradeoff rather than by a memorized claim that every simple machine reduces force.",
+              "teaching_path": [
+                {
+                  "action": "For each machine, identify the effort point/direction and the load motion.",
+                  "why_valid": "The same input-output language lets different machine types be compared without separate memorized rules.",
+                  "output": "lever, pulley and ramp each have named effort and load sides."
+                },
+                {
+                  "action": "Compare whether the machine mainly changes force magnitude, force direction, or required input distance in the stated setup.",
+                  "why_valid": "Simple-machine benefit is a geometric/input-output tradeoff, not a universal force reduction.",
+                  "output": "fixed pulley may change direction; force-advantage setups require extra input distance; incline spreads a height gain over a longer path."
+                },
+                {
+                  "action": "Use an ideal fixed pulley as the counterexample to 'all machines reduce effort force'.",
+                  "why_valid": "A direction-changing machine can be useful with no force multiplication.",
+                  "output": "machine usefulness can be directional even when MA = 1."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Every pulley, lever or inclined plane must reduce the effort force.",
+                  "diagnostic_prompt": "What useful change can an ideal fixed pulley provide even when effort and load force magnitudes are equal?",
+                  "repair": "It can reverse the direction of the required effort. Identify the actual setup before claiming force advantage."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Compare an ideal fixed pulley with a long inclined plane used to raise the same load. State one useful change each machine can provide without claiming that either creates energy.",
+                "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The fixed pulley can change the effort direction; the inclined plane can reduce the required force by spreading the same height gain over a longer input path.",
+                  "reasoning": [
+                    "The fixed pulley can redirect the pull even when force magnitude is not reduced.",
+                    "The incline increases the distance over which the load reaches the same height.",
+                    "Both are input-output tradeoffs consistent with work conservation in the ideal model."
+                  ],
+                  "check": "Neither description requires useful output work to exceed ideal input work.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit compares qualitative machine functions without a calculated device-specific force formula."
+                }
+              },
+              "prerequisites": [
+                "CAP-MACHINE-MA"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-IDEAL-MACHINE-WORK",
+              "expression": "F_effort d_effort = F_load d_load",
+              "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
+              "conditions": [
+                "Ideal lossless model.",
+                "Each force magnitude is paired with displacement along its own line of action.",
+                "All distances are nonnegative magnitudes."
+              ]
+            },
+            {
+              "id": "REL-MECHANICAL-ADVANTAGE",
+              "expression": "MA = F_load / F_effort",
+              "meaning": "Mechanical advantage is the ratio of load force magnitude to effort force magnitude.",
+              "conditions": [
+                "F_load >= 0.",
+                "F_effort > 0.",
+                "Load and effort magnitudes refer to the same machine state."
+              ]
+            },
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-MACHINE-2A-01",
+              "stem": "A simple machine supports a 150 N load with a 50 N effort. Find the mechanical advantage and state what that number does not tell you.",
+              "origin": "AUTHORED",
+              "answer": "MA = 3. It tells you the force ratio, not the efficiency or whether the machine creates energy."
+            },
+            {
+              "id": "Q-PHY-MACHINE-PRACTICAL-11",
+              "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
+              "origin": "AUTHORED",
+              "answer": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MACHINE-COMPARE",
+              "action": "Compare levers, pulleys and inclined planes by what they change about force, direction and input distance.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MACHINE-MA",
+              "action": "Compute mechanical advantage from load force divided by effort force.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MACHINE-TRADEOFF",
+              "action": "Explain how a simple machine trades effort force, direction or input distance without creating energy.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FORCES-SUM-ZERO",
+              "action": "Distinguish zero net force from the absence of individual forces.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-NET-ZERO-MOTION",
+              "action": "Relate zero net force to unchanged velocity.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-ENERGY-DERIVATIONS",
+              "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-GRADE9-QUANT",
+              "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-MECH-ENERGY-CONDITION",
+              "action": "Decide whether the mechanical-energy account can remain constant.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-NET-WORK-SIGN",
+              "action": "Relate the sign of net work to the direction of kinetic-energy change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+              "action": "Decide whether an interaction may be represented by a potential-energy change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-WORK-DIRECTION",
+              "action": "Classify work as positive, zero, or negative from force and displacement directions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 94,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE2",
+              "CORE1A",
+              "CORE1B",
+              "CORE2A"
+            ],
+            "atoms": 76,
+            "questions": 2,
+            "obligations": 7,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-SOUND",
+          "title": "Sound",
+          "topic": "Sound",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-KIN-1D-MOTION"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+              "title": "Sound starts with vibration and travels through a material medium",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The key distinction is between the vibrating source and the medium carrying the disturbance.",
+              "entry_assumptions": [
+                "Can identify repeated back-and-forth motion and can distinguish matter from empty space."
+              ],
+              "inferential_jump": "A string, stretched membrane or enclosed air column can vibrate and launch a mechanical disturbance into nearby matter; sound then propagates through gases, liquids or solids, but not through a vacuum because there are no material particles to transmit the disturbance.",
+              "teaching_path": [
+                {
+                  "action": "Identify the object that vibrates when sound is produced.",
+                  "why_valid": "Sound production begins with a source undergoing repeated mechanical motion.",
+                  "output": "source: vibrating object."
+                },
+                {
+                  "action": "Compare three sound sources—a plucked string, a struck stretched membrane, and a blown air column—and identify what is actually vibrating in each.",
+                  "why_valid": "The current Grade 9 curriculum explicitly varies the sound-producing system; the common invariant is a vibrating physical source.",
+                  "output": "string instrument -> stretched string vibrates; drum-like source -> stretched membrane vibrates; blown pipe/bottle-like source -> enclosed air column vibrates."
+                },
+                {
+                  "action": "Follow how neighboring particles in a gas, liquid or solid can push/pull on nearby particles without travelling all the way to the listener.",
+                  "why_valid": "Mechanical interactions between neighboring particles can transmit a disturbance through matter.",
+                  "output": "medium particles move locally; disturbance propagates through the material."
+                },
+                {
+                  "action": "Remove the material medium in a thought experiment and ask what interaction remains to carry ordinary sound.",
+                  "why_valid": "A vacuum contains no material particles for the mechanical disturbance to pass between.",
+                  "output": "vacuum -> no ordinary mechanical sound propagation."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The vibrating source's particles travel all the way to the listener carrying the sound.",
+                  "diagnostic_prompt": "When a loudspeaker makes sound across a room, do air molecules from the speaker travel across the room to your ear?",
+                  "repair": "Track one small region of air: particles oscillate locally while the disturbance passes from neighbor to neighbor."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A plucked string, a struck drum membrane, and a blown air column all produce sound. Identify the vibrating source in each, then explain what happens to ordinary sound transmission if the surrounding material medium is removed.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The stretched string, stretched membrane and air column are the respective vibrating sources. Their vibration can launch sound into a material medium, but ordinary mechanical sound propagation tends to none as that surrounding medium is removed.",
+                  "reasoning": [
+                    "In the string example, the stretched string vibrates.",
+                    "In the membrane example, the stretched membrane vibrates.",
+                    "In the wind/air-column example, the air column vibrates.",
+                    "These source vibrations disturb neighboring material particles.",
+                    "Removing the transmitting material removes the ordinary mechanical path even though a source may still vibrate."
+                  ],
+                  "check": "The same source-medium distinction works across all three production methods; the vibrating element changes, but the need for a material transmission path does not.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit identifies curriculum-named vibrating sources and the qualitative need for a material propagation medium."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-SOUND-LONGITUDINAL",
+              "title": "Sound in a fluid travels as longitudinal compressions and rarefactions",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often confuse particle motion with the direction the wave travels.",
+              "entry_assumptions": [
+                "Can distinguish a local particle from a propagating disturbance in a medium."
+              ],
+              "inferential_jump": "In a simple sound wave through a fluid, particles oscillate back and forth mainly parallel to the propagation direction, producing moving regions of compression and rarefaction while each particle remains near its equilibrium position.",
+              "teaching_path": [
+                {
+                  "action": "Choose one line through the medium and mark equilibrium positions of neighboring particles.",
+                  "why_valid": "A longitudinal description needs a propagation axis and local reference positions.",
+                  "output": "propagation axis; particle equilibrium positions."
+                },
+                {
+                  "action": "Displace neighboring particles back and forth along the axis so crowded and spread-out regions form and move onward.",
+                  "why_valid": "Parallel local oscillation changes local density/pressure, creating compressions and rarefactions that propagate.",
+                  "output": "compression and rarefaction pattern moves; particles oscillate locally."
+                },
+                {
+                  "action": "Track one marked particle while a compression passes it.",
+                  "why_valid": "The marked particle should move around equilibrium rather than accompany the compression over a long distance.",
+                  "output": "particle local motion != propagation distance of the disturbance."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Air particles move from the source to the listener at the speed of sound.",
+                  "diagnostic_prompt": "After one compression passes, should a marked air particle remain displaced far toward the listener?",
+                  "repair": "Track the marked particle: it oscillates around its local equilibrium while successive compressions/rarefactions travel onward."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener.",
+                  "reasoning": [
+                    "The wave is longitudinal in the simple fluid model.",
+                    "Particle displacement is mainly parallel to propagation.",
+                    "The travelling feature is the compression/rarefaction pattern, not a parcel of air moving across the room."
+                  ],
+                  "check": "After many cycles the particle can still be near its original equilibrium region even though the sound disturbance has propagated far away.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit describes qualitative particle and disturbance directions only."
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-SOURCE-MEDIUM"
+              ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "title": "Sound graphs separate amplitude, wavelength, period, frequency and speed",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common.",
+              "entry_assumptions": [
+                "Can distinguish a spatial snapshot from a time trace and can measure horizontal and vertical coordinate differences."
+              ],
+              "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, frequency is 1/T, and a travelling pattern advances one wavelength in one period so v = lambda/T = f lambda.",
+              "teaching_path": [
+                {
+                  "action": "Compare the sampled spatial snapshot with the sampled time trace and read each horizontal-axis label before naming a repeat interval.",
+                  "why_valid": "Repeat distance on a position axis is wavelength, while repeat time on a time axis is period; the axis determines the physical meaning.",
+                  "output": "spatial repeat: lambda = 1.7 m; temporal repeat: T = 0.005 s; vertical amplitude = 1 cm."
+                },
+                {
+                  "action": "Take the reciprocal of the positive period read from the temporal graph.",
+                  "why_valid": "REL-FREQUENCY-PERIOD owns the conversion from time per cycle to cycles per second.",
+                  "output": "f = 1/T = 1/0.005 s = 200 Hz."
+                },
+                {
+                  "action": "Follow one repeated phase: in one period T the travelling pattern advances one wavelength lambda, then replace 1/T with f.",
+                  "why_valid": "Speed is distance per time for the same pattern, and the gate-owned relations bind T and f for the same wave.",
+                  "output": "v = lambda/T = f lambda = 200 Hz × 1.7 m = 340 m/s."
+                },
+                {
+                  "action": "Change only the plotted vertical amplitude while holding repeat spacing fixed.",
+                  "why_valid": "Amplitude measures disturbance size, whereas period/frequency and wavelength measure repeat spacing on different axes.",
+                  "output": "amplitude can change from 1 cm to 2 cm while T = 0.005 s, f = 200 Hz, and lambda = 1.7 m remain unchanged."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A taller wave automatically has a higher frequency.",
+                  "diagnostic_prompt": "Can two waves have the same period but different amplitudes?",
+                  "repair": "Yes. Amplitude is disturbance size; period/frequency measure repetition rate. Keep vertical size separate from time spacing."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s.",
+                  "reasoning": [
+                    "The spatial repeat distance gives wavelength: lambda = 1.7 m.",
+                    "The temporal repeat interval gives period: T = 0.005 s.",
+                    "The vertical extreme gives amplitude: 1 cm.",
+                    "f = 1/T = 200 Hz.",
+                    "One wavelength advances in one period, so v = lambda/T = f lambda = 340 m/s."
+                  ],
+                  "check": "The units confirm Hz × m = m/s, and changing amplitude alone would not alter the repeat spacings.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "WAVE_SPEED",
+                    "bindings": {
+                      "frequency": "DAT-SOUND-FREQUENCY",
+                      "wavelength": "DAT-SOUND-LAMBDA"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-LONGITUDINAL"
+              ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-PERCEPTION",
+              "title": "Pitch, loudness and the approximate human audible range are different questions",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "Pitch and loudness are everyday words that learners often swap with frequency and amplitude.",
+              "entry_assumptions": [
+                "Can distinguish frequency from amplitude and can compare two wave descriptions."
+              ],
+              "inferential_jump": "Frequency controls pitch for heard tones, sound strength/intensity is a different loudness dimension, and humans usually hear only a finite frequency band—approximately 20 Hz to 20,000 Hz for typical young hearing—whose limits vary between people and with age.",
+              "teaching_path": [
+                {
+                  "action": "Compare two waves with different frequencies but matched amplitudes.",
+                  "why_valid": "Holding disturbance size fixed isolates repetition rate as the changed feature.",
+                  "output": "higher f -> higher pitch under comparable conditions."
+                },
+                {
+                  "action": "Compare two waves with different amplitudes/intensities but the same frequency.",
+                  "why_valid": "Holding repetition rate fixed isolates loudness-related strength from pitch.",
+                  "output": "greater sound intensity / typically larger amplitude -> louder percept, while pitch stays tied to f."
+                },
+                {
+                  "action": "Change frequency and amplitude in opposite directions and require two separate predictions.",
+                  "why_valid": "The mixed case tests whether pitch and loudness have been collapsed into one idea.",
+                  "output": "pitch prediction from f; loudness prediction from sound strength/intensity information."
+                },
+                {
+                  "action": "Compare example frequencies with the approximate usual human audible band from the scientific-check source.",
+                  "why_valid": "The current curriculum asks learners to explain audible range, while the separate source supplies the approximate numerical bounds rather than the curriculum mapping inventing them.",
+                  "output": "usual human audible band ≈ 20 Hz to 20,000 Hz; 10 Hz lies below it, 1,000 Hz lies within it, and 25,000 Hz lies above it."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A louder sound must have a higher pitch.",
+                  "diagnostic_prompt": "Can a low-pitched drum sound be louder than a high-pitched whistle?",
+                  "repair": "Yes. Use frequency for pitch and sound strength/intensity for loudness; they are separate dimensions."
+                },
+                {
+                  "wrong_idea": "The 20 Hz and 20,000 Hz figures are exact universal hearing cutoffs for every person.",
+                  "diagnostic_prompt": "Would every person of every age necessarily hear a 19,999 Hz tone but fail to hear a 20,001 Hz tone?",
+                  "repair": "No. Treat 20 Hz–20 kHz as an approximate usual range; individual hearing limits vary, especially with age and hearing condition."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+                "source_ref": "SRC-CBSE-ESSENTIAL-SOUND-RANGE",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions.",
+                  "reasoning": [
+                    "The approximate usual human range is about 20 Hz to 20,000 Hz.",
+                    "10 Hz is below the lower bound; 1,000 Hz lies between the bounds; 25,000 Hz is above the upper bound.",
+                    "Pitch comparisons use frequency, not amplitude or loudness."
+                  ],
+                  "check": "The range is approximate and varies among people; the classification is a Grade 9 model, not a personal hearing diagnosis.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The numerical boundary values are source-backed classification thresholds rather than a computed formula claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-WAVE-QUANTITIES"
+              ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-REFLECTION",
+              "title": "Reflected sound can form echoes, reverberation and echolocation cues",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Echo distance contains a round-trip factor of two, and echo/reverberation are easily confused as the same phenomenon.",
+              "entry_assumptions": [
+                "Can use wave speed and elapsed time and can distinguish one-way from round-trip travel."
+              ],
+              "inferential_jump": "A reflected sound that returns after enough delay can be heard as a separate echo; many overlapping reflections produce reverberation; organisms or devices can use return timing as an echolocation cue, with one-way distance equal to half the total reflected path.",
+              "teaching_path": [
+                {
+                  "action": "Draw or describe the sound path from source to reflector and back to receiver.",
+                  "why_valid": "Echo timing measures a round trip, not a one-way path.",
+                  "output": "total reflected path = outward leg + return leg."
+                },
+                {
+                  "action": "Use d = v t_echo / 2 for a stationary reflector and one round-trip delay.",
+                  "why_valid": "REL-ECHO-DISTANCE owns the factor-of-two path relation.",
+                  "output": "one-way reflector distance = v t_echo / 2."
+                },
+                {
+                  "action": "Distinguish one clearly delayed return from many closely spaced overlapping reflections.",
+                  "why_valid": "A distinct echo and reverberation differ primarily in whether reflected sound is perceived as separate or merged/extended.",
+                  "output": "distinct delayed reflection -> echo; dense overlapping reflections -> reverberation."
+                },
+                {
+                  "action": "Interpret echolocation as estimating location from emitted sound and reflected return timing rather than from sound travelling instantaneously.",
+                  "why_valid": "The return delay carries path-length information when wave speed is known.",
+                  "output": "known sound speed + round-trip timing -> range cue."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Echo delay time corresponds to one-way travel from source to wall.",
+                  "diagnostic_prompt": "A clap returns after 0.4 s. Did the sound spend all 0.4 s travelling only from the source to the wall?",
+                  "repair": "No. The measured delay includes the outward and return paths, so divide the total travelled distance by two for one-way range."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Sound travels at 340 m/s and a clear echo returns 0.40 s after a clap from a stationary wall. Estimate the one-way distance to the wall.",
+                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The wall is about 68 m away.",
+                  "reasoning": [
+                    "The 0.40 s is a round-trip delay.",
+                    "Total sound path = 340 x 0.40 = 136 m.",
+                    "One-way distance = 136/2 = 68 m."
+                  ],
+                  "check": "Doubling the wall distance at the same sound speed would double the echo delay.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "ECHO_DISTANCE",
+                    "bindings": {
+                      "speed": "DAT-SOUND-SPEED",
+                      "echo_time": "DAT-SOUND-ECHO-T"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-WAVE-QUANTITIES"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-ECHO-DISTANCE",
+              "expression": "d = v t_echo / 2",
+              "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
+              "conditions": [
+                "v > 0.",
+                "t_echo >= 0.",
+                "The measured delay is for one outward-and-return path in the same medium."
+              ]
+            },
+            {
+              "id": "REL-FREQUENCY-PERIOD",
+              "expression": "f = 1 / T",
+              "meaning": "For a repeating vibration, frequency is the reciprocal of time period.",
+              "conditions": [
+                "T > 0.",
+                "f and T refer to the same repeating vibration."
+              ]
+            },
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            },
+            {
+              "id": "REL-WAVE-SPEED",
+              "expression": "v = f lambda",
+              "meaning": "Wave propagation speed equals temporal frequency times spatial wavelength.",
+              "conditions": [
+                "f >= 0 and lambda >= 0.",
+                "All quantities describe the same wave mode in the same medium/state."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-01",
+              "stem": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
+              "origin": "AUTHORED",
+              "answer": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-02",
+              "stem": "A bell rings inside a sealed chamber. Compare what happens to ordinary sound transmission as the air is gradually removed, while the bell itself can still vibrate.",
+              "origin": "AUTHORED",
+              "answer": "The bell may still vibrate, but ordinary sound transmission through the chamber becomes weaker and tends toward none as the material medium is removed."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-03",
+              "stem": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+              "origin": "AUTHORED",
+              "answer": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-04",
+              "stem": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+              "origin": "AUTHORED",
+              "answer": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions."
+            },
+            {
+              "id": "Q-PHY-SOUND-PRACTICAL-10",
+              "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
+              "origin": "AUTHORED",
+              "answer": "Measure a known propagation distance L along the stretched medium and the travel time Delta t for the pulse over that path, calculate v = L/Delta t, repeat several trials under the same tension, and average or use a longer timed path to reduce reaction-time error."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SOUND-LONGITUDINAL",
+              "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-PERCEPTION",
+              "action": "Connect frequency with pitch, distinguish sound strength/intensity from pitch, and classify frequencies relative to the approximate human audible range.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-REFLECTION",
+              "action": "Explain reflection of sound and distinguish echo, reverberation and echolocation; compute a simple echo distance from round-trip delay.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-SOURCE-MEDIUM",
+              "action": "Explain sound production by vibration using strings, membranes and vibrating air columns, and explain why mechanical sound propagation requires a material medium.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SOUND-WAVE-QUANTITIES",
+              "action": "Analyse spatial and temporal sound-wave graphs, relate period, frequency, wavelength, amplitude and speed, and derive v = lambda/T = f lambda for one wave in one medium.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 112,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE2",
+              "CORE1A",
+              "CORE1B",
+              "CORE2A"
+            ],
+            "atoms": 76,
+            "questions": 5,
+            "obligations": 9,
+            "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -4099,7 +5297,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 4,
             "authoring_requirements": [
@@ -4258,7 +5456,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -5130,7 +6328,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 46,
+            "atoms": 76,
             "questions": 7,
             "obligations": 11,
             "authoring_requirements": [
@@ -5578,7 +6776,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 47,
+            "atoms": 77,
             "questions": 1,
             "obligations": 8,
             "authoring_requirements": [
@@ -5873,7 +7071,7 @@ window.GRADE9V3 = {
             "supported_products": [
               "CORE1"
             ],
-            "atoms": 47,
+            "atoms": 77,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -5976,6 +7174,16 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-ROT-RIGID-BODY-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-SIMPLE-MACHINES-G9",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-SOUND-G9",
           "status": "CANDIDATE",
           "admitted": true
         },

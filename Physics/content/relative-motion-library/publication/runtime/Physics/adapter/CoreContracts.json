@@ -466,6 +466,97 @@
       ],
       "proves": "Signed displacement from the constant-acceleration velocity-time trapezoid equals one-half the sum of endpoint velocities times elapsed time.",
       "does_not_prove": "That acceleration is constant in the described motion or that the chosen endpoint velocities belong to the same interval."
+    },
+    {
+      "id": "WAVE_SPEED",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "frequency",
+        "wavelength"
+      ],
+      "input_units": {
+        "frequency": "Hz",
+        "wavelength": "m"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "frequency >= 0",
+        "wavelength >= 0"
+      ],
+      "proves": "Wave speed follows from frequency times wavelength for the declared travelling-wave description.",
+      "does_not_prove": "That the medium is nondispersive or that the same speed applies after the medium changes."
+    },
+    {
+      "id": "MECHANICAL_ADVANTAGE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "load_force",
+        "effort_force"
+      ],
+      "input_units": {
+        "load_force": "N",
+        "effort_force": "N"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "1",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "load_force >= 0",
+        "effort_force > 0",
+        "load and effort refer to the same machine state"
+      ],
+      "proves": "Mechanical advantage follows from load-force magnitude divided by effort-force magnitude.",
+      "does_not_prove": "That the machine is ideal, efficient, or correctly represented by the supplied forces."
+    },
+    {
+      "id": "FREQUENCY_PERIOD",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "period"
+      ],
+      "input_units": {
+        "period": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "Hz",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "period > 0"
+      ],
+      "proves": "Frequency follows as the reciprocal of the positive period for one repeating vibration.",
+      "does_not_prove": "That the signal is periodic or that the measured period belongs to the intended mode."
+    },
+    {
+      "id": "ECHO_DISTANCE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "speed",
+        "echo_time"
+      ],
+      "input_units": {
+        "speed": "m/s",
+        "echo_time": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "speed > 0",
+        "echo_time >= 0",
+        "echo_time is a round-trip delay in the same medium"
+      ],
+      "proves": "One-way reflector distance follows from speed times round-trip delay divided by two.",
+      "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
     }
   ],
   "representation_kinds": [
