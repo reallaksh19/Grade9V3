@@ -1,0 +1,34 @@
+name: temporary regenerate architecture manifest
+
+on:
+  push:
+    branches:
+      - core/worksheet-study-map
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: core/worksheet-study-map
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate manifest
+        run: python3 Shared/tools/build_manifest.py
+      - name: Commit generated manifest if changed
+        run: |
+          if git diff --quiet -- docs/architecture-manifest.json tools/data.js; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture-manifest.json tools/data.js
+          git commit -m "Regenerate architecture manifest"
+          git push
