@@ -85,6 +85,19 @@ class BlueprintRegression(unittest.TestCase):
             "Shared/core must stay generic; first-pilot identifiers belong only in content/tests",
         )
 
+    def test_regression_and_empirical_acceptance_are_visible_as_separate_ci_steps(self):
+        workflow = GUARDRAILS.read_text(encoding="utf-8")
+        self.assertIn("Blueprint architecture regression", workflow)
+        self.assertIn(
+            "python3 -m unittest tests.test_blueprint_regression -v",
+            workflow,
+        )
+        self.assertIn("Empirical learner acceptance status", workflow)
+        self.assertIn(
+            "python3 Shared/tools/empirical_acceptance.py --enforce",
+            workflow,
+        )
+
     def test_blueprint_regression_does_not_claim_to_replace_live_learner_evidence(self):
         runbook = (
             REPO / "docs/RELATIVE-MOTION-LIVE-PILOT-01.md"
