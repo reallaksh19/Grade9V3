@@ -164,6 +164,17 @@ jobs:
 
       # --check compares the generated data file and the manifest without writing
       # either, so it covers both artifacts and leaves the checkout untouched.
+      - name: Temporary regenerate repair artifacts
+        run: python3 Shared/tools/build_manifest.py
+
+      - name: Upload regenerated repair artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: regenerated-repair-artifacts
+          path: |
+            docs/architecture-manifest.json
+            tools/data.js
+
       - name: Generated artifacts have not drifted
         run: python3 Shared/tools/build_manifest.py --check
 
