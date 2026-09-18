@@ -567,7 +567,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                 request[key] = value
         return request
 
-    def run(self, **overrides):
+    def scan(self, **overrides):
         return feedback.run(self.request(**overrides), self.repo)
 
     def test_exhaustive_valid_result_help_stage_attempt_matrix(self):
@@ -586,7 +586,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                         else:
                             evaluation["failed_capability_ref"] = None
 
-                        report = self.run(
+                        report = self.scan(
                             help_used=help_used,
                             attempt_number=attempt_number,
                             evaluation=evaluation,
@@ -632,7 +632,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         """All eight shown-hint subsets preserve the no-answer invariant."""
         for mask in range(8):
             shown = [index for index in range(3) if mask & (1 << index)]
-            report = self.run(
+            report = self.scan(
                 attempt_number=2,
                 shown_hint_indices=shown,
                 help_used="HINT" if shown else "NONE",
@@ -657,7 +657,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             ),
         ]
         for failed, action, expected_failed, finding in cases:
-            report = self.run(
+            report = self.scan(
                 evaluation={
                     "result": "INCORRECT",
                     "failed_capability_ref": failed,
@@ -687,7 +687,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             "evaluation": {"result": "NOT-A-RESULT"},
         }, self.repo)
 
-        reports["DIAGNOSE"] = self.run(
+        reports["DIAGNOSE"] = self.scan(
             evaluation={
                 "result": "UNDECIDABLE",
                 "failed_capability_ref": None,
@@ -695,16 +695,16 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             },
         )
 
-        reports["RETRY"] = self.run()
+        reports["RETRY"] = self.scan()
 
-        reports["REPAIR"] = self.run(
+        reports["REPAIR"] = self.scan(
             attempt_number=3,
             shown_hint_indices=[0, 1],
             help_used="HINT",
             evaluation={"misconception_index": 0},
         )
 
-        reports["VERIFY"] = self.run(
+        reports["VERIFY"] = self.scan(
             help_used="HINT",
             evaluation={
                 "result": "CORRECT",
@@ -713,7 +713,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             },
         )
 
-        reports["VERIFICATION_ITEM_REQUIRED"] = self.run(
+        reports["VERIFICATION_ITEM_REQUIRED"] = self.scan(
             question_ref="Q-B",
             attempted_question_refs=["Q-B"],
             help_used="HINT",
@@ -724,7 +724,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             },
         )
 
-        reports["CONTINUE"] = self.run(
+        reports["CONTINUE"] = self.scan(
             evaluation={
                 "result": "CORRECT",
                 "failed_capability_ref": None,
@@ -738,11 +738,11 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                 self.assertEqual(report["next_action"], expected)
 
     def test_retry_repair_verify_sequence_is_explicit(self):
-        first = self.run()
+        first = self.scan()
         self.assertEqual(first["next_action"], "RETRY")
         self.assertEqual(first["hint"]["reveals"], "CONCEPT")
 
-        second = self.run(
+        second = self.scan(
             attempt_number=2,
             shown_hint_indices=[0],
             help_used="HINT",
@@ -750,7 +750,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         self.assertEqual(second["next_action"], "RETRY")
         self.assertEqual(second["hint"]["reveals"], "METHOD")
 
-        third = self.run(
+        third = self.scan(
             attempt_number=3,
             shown_hint_indices=[0, 1],
             help_used="HINT",
@@ -764,7 +764,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         )
 
     def test_model_choice_transfer_never_receives_method_or_answer_hint(self):
-        first = self.run(
+        first = self.scan(
             question_ref="Q-TRANSFER",
             attempted_question_refs=["Q-TRANSFER"],
             evaluation={
@@ -776,7 +776,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         self.assertEqual(first["next_action"], "RETRY")
         self.assertEqual(first["hint"]["reveals"], "CONCEPT")
 
-        second = self.run(
+        second = self.scan(
             question_ref="Q-TRANSFER",
             attempted_question_refs=["Q-TRANSFER"],
             attempt_number=2,
@@ -799,7 +799,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             "secondary_capability_refs": [],
             "mapping_basis": "AGENT_PROPOSAL",
         }
-        first = self.run(
+        first = self.scan(
             question_ref="W-A",
             worksheet_question=worksheet,
             attempted_question_refs=["W-A"],
@@ -812,7 +812,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         self.assertEqual(first["next_action"], "DIAGNOSE")
         self.assertNotIn("hint", first)
 
-        diagnosed = self.run(
+        diagnosed = self.scan(
             question_ref="W-A",
             worksheet_question=worksheet,
             attempted_question_refs=["W-A"],
@@ -830,7 +830,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         )
 
     def test_verification_fallback_scanner_covers_question_exit_and_missing(self):
-        fresh = self.run(
+        fresh = self.scan(
             help_used="HINT",
             evaluation={
                 "result": "CORRECT",
@@ -841,7 +841,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         self.assertEqual(fresh["verification"]["kind"], "QUESTION")
         self.assertEqual(fresh["verification"]["question_ref"], "Q-A-FRESH")
 
-        exit_task = self.run(
+        exit_task = self.scan(
             help_used="HINT",
             attempted_question_refs=["Q-A", "Q-A-FRESH", "Q-TRANSFER"],
             evaluation={
@@ -852,7 +852,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         )
         self.assertEqual(exit_task["verification"]["kind"], "EXIT_TASK")
 
-        missing = self.run(
+        missing = self.scan(
             question_ref="Q-B",
             attempted_question_refs=["Q-B"],
             help_used="HINT",
@@ -907,7 +907,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             ),
         ]
         for request_bits, state, help_value, outcome, next_review in cases:
-            report = self.run(
+            report = self.scan(
                 **request_bits,
                 evaluation={
                     "result": "CORRECT",
@@ -922,7 +922,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                 self.assertEqual(report["review"]["next_review"], next_review)
 
     def test_transfer_independent_success_uses_fourteen_day_review(self):
-        report = self.run(
+        report = self.scan(
             question_ref="Q-TRANSFER",
             attempted_question_refs=["Q-TRANSFER"],
             evaluation={
@@ -937,7 +937,7 @@ class LearningLoopScenarioScanner(unittest.TestCase):
         self.assertEqual(report["review"]["next_review"], "2026-10-02")
 
     def test_observation_is_always_draft_not_reviewed_live_evidence(self):
-        report = self.run(
+        report = self.scan(
             evaluation={
                 "result": "CORRECT",
                 "failed_capability_ref": None,
