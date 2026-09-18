@@ -14,8 +14,9 @@ sys.path.insert(0, str(REPO))
 from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
-    check_subjects, capability_collisions, learner_evidence, matrix_conformance,
-    practice_readiness, publication_provenance, resolve_request, spec_conformance,
+    check_subjects, capability_collisions, engineering_readiness, learner_evidence,
+    matrix_conformance, practice_readiness, publication_provenance, resolve_request,
+    spec_conformance,
     spec_delivery, topic_independence_guard,
 )
 from Shared.tools.topic_independence_guard import (  # noqa: E402
@@ -1340,6 +1341,66 @@ class PracticeReadiness(unittest.TestCase):
         self.assertEqual(row["planner"]["CORE2B"]["state"], "READY")
         self.assertIn("CORE2A", row["compiler_selected"])
         self.assertIn("CORE2B", row["compiler_selected"])
+
+
+class EngineeringReadiness(unittest.TestCase):
+    def test_current_engineering_backlog_is_reported_without_falsifying_authored_rungs(self):
+        report = engineering_readiness.audit_subject(REPO / "Physics")
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["blockers"], "no engineering backlog was reported")
+        self.assertTrue(all(row["provenance"] in {"SYNTHESIS", "ABSENT"}
+                            for row in report["blockers"]))
+
+    def test_missing_dependency_on_source_rung_is_a_contradiction(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Example"
+            (root / "adapter").mkdir(parents=True)
+            (root / "matrices").mkdir()
+            (root / "gates").mkdir()
+            (root / "adapter/CoreContracts.json").write_text(json.dumps({
+                "validator_catalogue": [], "representation_kinds": []
+            }), encoding="utf-8")
+            (root / "matrices/example.rungs.json").write_text(json.dumps({
+                "matrix_id": "M-EXAMPLE", "subject": "Example",
+                "bucket_id": "BUCKET-EXAMPLE", "topic": "Example", "subtopic": "Example",
+                "rungs": [{
+                    "rung": "R1", "ladder_position": 20, "provenance": "SOURCE",
+                    "engineering_dependencies": [{
+                        "kind": "GATE_RELATION", "ref": "REL-MISSING",
+                        "required_for": "RUNG_AUTHORITY",
+                        "reason": "The authored rung claims a relation that does not exist."
+                    }]
+                }]
+            }), encoding="utf-8")
+            report = engineering_readiness.audit_subject(root)
+            self.assertFalse(report["passed"])
+            self.assertEqual(report["findings"][0]["point"],
+                             "AUTHORED_RUNG_ENGINEERING_DEPENDENCY_UNREADY")
+
+    def test_missing_dependency_on_synthesis_rung_remains_backlog(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "Example"
+            (root / "adapter").mkdir(parents=True)
+            (root / "matrices").mkdir()
+            (root / "gates").mkdir()
+            (root / "adapter/CoreContracts.json").write_text(json.dumps({
+                "validator_catalogue": [], "representation_kinds": []
+            }), encoding="utf-8")
+            (root / "matrices/example.rungs.json").write_text(json.dumps({
+                "matrix_id": "M-EXAMPLE", "subject": "Example",
+                "bucket_id": "BUCKET-EXAMPLE", "topic": "Example", "subtopic": "Example",
+                "rungs": [{
+                    "rung": "R1", "ladder_position": 20, "provenance": "SYNTHESIS",
+                    "engineering_dependencies": [{
+                        "kind": "VALIDATOR", "ref": "VALIDATOR-MISSING",
+                        "required_for": "NUMERIC_EXIT",
+                        "reason": "The numerical exit has not been engineered yet."
+                    }]
+                }]
+            }), encoding="utf-8")
+            report = engineering_readiness.audit_subject(root)
+            self.assertTrue(report["passed"], report["findings"])
+            self.assertEqual(report["blockers"][0]["state"], "MISSING")
 
 
 class CeilingAudit(unittest.TestCase):
