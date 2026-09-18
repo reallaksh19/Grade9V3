@@ -5,77 +5,233 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "schema_version", "packet_id", "request_id", "request_digest", "mode",
-    "subject", "lifecycle", "pins", "canonical", "global_prohibitions",
-    "acceptance_commands", "work_orders", "packet_state", "summary"
+    "schema_version",
+    "packet_id",
+    "request_id",
+    "request_digest",
+    "mode",
+    "subject",
+    "lifecycle",
+    "pins",
+    "canonical",
+    "global_prohibitions",
+    "acceptance_commands",
+    "work_orders",
+    "packet_state",
+    "summary"
   ],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
-    "packet_id": {"type": "string", "minLength": 1},
-    "request_id": {"type": ["string", "null"]},
-    "request_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-    "mode": {"const": "AUTHORING_EXECUTION_PACKET"},
-    "subject": {"type": "string", "minLength": 1},
-    "bucket": {"type": ["string", "null"]},
-    "lifecycle": {"type": ["object", "null"]},
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "packet_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "request_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "mode": {
+      "const": "AUTHORING_EXECUTION_PACKET"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bucket": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lifecycle": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
     "pins": {
       "type": "object",
-      "required": ["matrix", "library"],
+      "required": [
+        "matrix",
+        "library",
+        "source_receipt"
+      ],
       "properties": {
-        "matrix": {"type": ["object", "null"]},
+        "matrix": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
         "library": {
           "type": "object",
-          "required": ["files", "digest"],
+          "required": [
+            "files",
+            "digest"
+          ],
           "properties": {
-            "files": {"type": "array", "items": {"type": "string"}},
-            "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
           }
+        },
+        "source_receipt": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "receipt_id",
+                "digest"
+              ],
+              "properties": {
+                "receipt_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       }
     },
-    "canonical": {"type": "object"},
-    "owner_decisions": {"type": "object"},
-    "global_prohibitions": {
-      "type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}
+    "canonical": {
+      "type": "object"
     },
-    "acceptance_commands": {"type": "array", "items": {"type": "string"}},
+    "owner_decisions": {
+      "type": "object"
+    },
+    "global_prohibitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "acceptance_commands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "work_orders": {
       "type": "array",
       "items": {
         "type": "object",
         "required": [
-          "core", "product_state", "authoring_action", "reason", "blockers",
-          "role", "target", "write_scope", "authority"
+          "core",
+          "product_state",
+          "authoring_action",
+          "reason",
+          "blockers",
+          "role",
+          "target",
+          "write_scope",
+          "authority"
         ],
         "properties": {
-          "core": {"enum": ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]},
-          "product_state": {"type": "string"},
-          "authoring_action": {
+          "core": {
             "enum": [
-              "BUILD_FROM_CANONICAL", "AUTHOR_CANDIDATE_QUESTION", "WAIT",
-              "WITHHELD", "HOLD_SOURCE_CUSTODY", "HOLD_ASSET",
-              "HOLD_ARCHITECTURE_ASSET", "HOLD"
+              "CORE1",
+              "CORE2",
+              "CORE1A",
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ]
           },
-          "reason": {"type": "string", "minLength": 1},
-          "blockers": {"type": "array", "items": {"type": "string"}},
-          "role": {
-            "type": "object",
-            "required": ["path", "sha256", "required_fields"],
-            "properties": {
-              "path": {"type": "string"},
-              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-              "required_fields": {"type": "array"}
+          "product_state": {
+            "type": "string"
+          },
+          "authoring_action": {
+            "enum": [
+              "BUILD_FROM_CANONICAL",
+              "AUTHOR_CANDIDATE_QUESTION",
+              "WAIT",
+              "WITHHELD",
+              "HOLD_SOURCE_CUSTODY",
+              "HOLD_ASSET",
+              "HOLD_ARCHITECTURE_ASSET",
+              "HOLD"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           },
-          "target": {"type": "object"},
-          "write_scope": {"type": "object"},
-          "authority": {"type": "object"}
+          "role": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "required_fields"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "required_fields": {
+                "type": "array"
+              }
+            }
+          },
+          "target": {
+            "type": "object"
+          },
+          "write_scope": {
+            "type": "object"
+          },
+          "authority": {
+            "type": "object"
+          }
         }
       }
     },
-    "findings": {"type": "array"},
-    "packet_state": {"enum": ["READY", "PARTIAL", "BLOCKED"]},
-    "summary": {"type": "object"}
+    "findings": {
+      "type": "array"
+    },
+    "packet_state": {
+      "enum": [
+        "READY",
+        "PARTIAL",
+        "BLOCKED"
+      ]
+    },
+    "summary": {
+      "type": "object"
+    }
   }
 }
