@@ -87,11 +87,7 @@
     {
       "rung": "R3",
       "ladder_position": 65,
-      "provenance": "SYNTHESIS",
-      "aha": "Vector subtraction is addition of the reversed second vector, so operand order matters even though ordinary vector addition is commutative.",
-      "learner_owns": [
-        "Vector addition combines directed quantities geometrically or component by component; input magnitudes cannot simply be added unless the directions make that valid."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "negative vector",
         "subtrahend",
@@ -101,12 +97,6 @@
         "A second arrow reversed without rescaling before addition.",
         "The same pair evaluated in both subtraction orders."
       ],
-      "misconception": {
-        "wrong_idea": "Vector subtraction is commutative in the same way as vector addition.",
-        "diagnostic_prompt": "If A - B points east, must B - A point east too?",
-        "repair": "Rewrite subtraction as adding the reversed second vector; swapping the operands reverses the resulting vector."
-      },
-      "closure": "Given two vectors, construct A - B and B - A and show the relation between the two answers.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -114,7 +104,8 @@
           "hold": "the same two input vectors",
           "notice": "the difference arrow reverses while its magnitude stays the same"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-VEC-SUB-ORDER"
     },
     {
       "rung": "R4",
