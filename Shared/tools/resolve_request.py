@@ -41,7 +41,7 @@ if __package__ in (None, ""):
 from Shared.contracts import load  # noqa: E402
 from Shared.library.practice_inventory import questions_for_core  # noqa: E402
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
-from Shared.tools import capability_graph  # noqa: E402
+from Shared.tools import capability_graph, learner_evidence  # noqa: E402
 from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/request.schema.json"
@@ -99,15 +99,30 @@ def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dic
 
 
 def entry_from_position(rows: list, position: int) -> dict:
-    exact = [r for r in rows if r.get("ladder_position") == position]
-    if exact:
-        return {"rung": exact[0]["rung"], "why": "LADDER_POSITION"}
-    below = [r["rung"] for r in rows if r.get("ladder_position", 0) < position]
-    above = [r["rung"] for r in rows if r.get("ladder_position", 0) > position]
-    return {"rung": None, "why": "BETWEEN_RUNGS",
-            "detail": f'nearest below {below[-1] if below else "none"}, nearest above '
-                      f'{above[0] if above else "none"}; a hole is not a depth to '
-                      f"interpolate"}
+    """Use an owner estimate as a conservative routing coordinate, never as mastery.
+
+    A parent's "about 60%" is useful even when the ladder happens to use 20/55/70/85.
+    Select the greatest declared position not above the estimate; below the first rung,
+    start at the first rung. Prerequisite backtracking still runs afterwards, so this
+    choice cannot prove that anything below it is held.
+    """
+    if not rows:
+        return {"rung": None, "why": "EMPTY_LADDER",
+                "detail": "the ladder has no positions to route against"}
+    ordered = sorted(rows, key=lambda r: r.get("ladder_position", 0))
+    eligible = [row for row in ordered if row.get("ladder_position", 0) <= position]
+    selected = eligible[-1] if eligible else ordered[0]
+    return {
+        "rung": selected["rung"],
+        "why": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "requested_position": position,
+        "selected_position": selected.get("ladder_position"),
+        "detail": (
+            f'owner estimate {position} routed conservatively to '
+            f'{selected["rung"]} at {selected.get("ladder_position")}; '
+            "this is a starting coordinate, not evidence of prerequisite mastery"
+        ),
+    }
 
 
 def plan(request: dict, repo: Path = REPO) -> dict:
@@ -148,7 +163,8 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                  "for a learner who does not exist")
         else:
             provenance = profile.get("provenance", "UNKNOWN")
-            entry = entry_from_profile(rows, profile, caps, mics)
+            effective = {**profile, "held": learner_evidence.effective_held(profile, repo)}
+            entry = entry_from_profile(rows, effective, caps, mics)
             if entry["why"] == "UNDECIDABLE":
                 fail("ENTRY_UNDECIDABLE_FROM_THE_PROFILE", entry["at"], entry["detail"])
     elif "owner_entry" in learner:
@@ -161,16 +177,13 @@ def plan(request: dict, repo: Path = REPO) -> dict:
     elif "owner_estimate" in learner:
         provenance = "OWNER_ESTIMATE"
         entry = entry_from_position(rows, learner["owner_estimate"]["knowledge_percentage"])
-        if entry["why"] == "BETWEEN_RUNGS":
-            fail("ENTRY_POSITION_BETWEEN_RUNGS",
-                 str(learner["owner_estimate"]["knowledge_percentage"]), entry["detail"])
 
     # A named rung or percentage is a coordinate, never evidence that its prerequisites
     # are held. Backtrack to the earliest unmet prerequisite on this ladder; prerequisites
     # taught elsewhere become explicit bridges. Unknown prerequisites fail closed.
     held = {}
     if "profile_ref" in learner and learner["profile_ref"] in store:
-        held = store[learner["profile_ref"]].get("held", {})
+        held = learner_evidence.effective_held(store[learner["profile_ref"]], repo)
     if entry.get("rung") in {r["rung"] for r in rows}:
         safe = capability_graph.resolve_entry(rows, entry["rung"], held, caps, mics)
         requested_rung = entry["rung"]
