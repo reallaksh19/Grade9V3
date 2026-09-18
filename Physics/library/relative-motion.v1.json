@@ -81,9 +81,9 @@
       "title": "NCERT Motion in a Plane",
       "origin": "WEB",
       "locator": "https://ncert.nic.in/textbook/pdf/keph103.pdf",
-      "edition": "Verify exact edition before adoption",
-      "section": "Chapter 3; graphical vector addition/subtraction",
-      "last_checked": "2026-09-16",
+      "edition": "Reprint 2026-27",
+      "section": "Chapter 3, Motion in a Plane: vector subtraction; Examples 3.1/3.3; Points to Ponder 5; Exercises include only lightweight relative-velocity classification",
+      "last_checked": "2026-09-18",
       "access_status": "SECTION_INSPECTED",
       "rights_status": "Reference only in seed; reproduction permission not established",
       "snapshot_ref": null,
@@ -95,7 +95,7 @@
       "supports_claims": [],
       "entry_capabilities": [],
       "depth": [],
-      "selection_reason": "Higher-grade vector source; exact claim-level reconciliation remains pending.",
+      "selection_reason": "Current official keph103.pdf supports vector subtraction/resultant velocity and a brief relative-velocity distinction, but is not a dedicated Relative Motion question corpus.",
       "fallback": []
     },
     {
@@ -153,6 +153,38 @@
         "ADVANCED"
       ],
       "selection_reason": "Concrete candidate teaching content for schema review; independent scientific review pending.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-NCERT-STRAIGHT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Motion in a Straight Line",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/textbook/pdf/keph102.pdf",
+      "edition": "Reprint 2026-27",
+      "section": "Chapter 2; contents list 2.5 Relative velocity; Exercise 2.14 is a direct relative-speed problem",
+      "last_checked": "2026-09-18",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Reference only; reproduction permission not established",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM",
+        "SCIENTIFIC_CHECK",
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Current official NCERT location closest to the intended Relative Motion basis; candidate replacement only until the owner changes the requested source basis and custody is acquired.",
       "fallback": []
     }
   ],
@@ -1404,6 +1436,17 @@
       "classification": "CAPABILITY_LIMIT",
       "description": "The exit task states relative positions, but no position data records are declared and no position validator exists for this subject, so its answer has no oracle.",
       "next_action": "Declare position data and add a position validator to the subject contract, or record that the answer stays author-checked."
+    },
+    {
+      "id": "ISS-NCERT-SOURCE-BASIS-DRIFT",
+      "affected_refs": [
+        "BUCKET-RELATIVE-MOTION",
+        "SRC-NCERT-PLANE",
+        "SRC-NCERT-STRAIGHT"
+      ],
+      "classification": "SOURCE_CUSTODY_HELD",
+      "description": "The supplied locator keph103.pdf currently resolves to Motion in a Plane. Older NCERT material used the same filename for Motion in a Straight Line with a Relative Velocity section; the current 2026-27 Motion in a Straight Line file is keph102.pdf. The supplied basis therefore cannot be silently treated as the historical Relative Motion source.",
+      "next_action": "Owner must either keep keph103.pdf despite the drift or change/add the source basis to the current official candidate; then acquire immutable source bytes and review candidate transcriptions."
     }
   ],
   "extensions": {
