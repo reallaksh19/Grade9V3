@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 68,
-  "relation_count": 118,
+  "component_count": 69,
+  "relation_count": 121,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 16,
     "TEST": 6,
-    "TOOLING": 22,
+    "TOOLING": 23,
     "WEB": 5
   },
-  "digest": "sha256:a7e159d21dd326fa0bee599339b1ebadfa2938dbf8c5c48fa32dfb84e8f1b034",
+  "digest": "sha256:632989f63cc6a9a85cecc57ef64b97d953b2525b1858dc709f03539d12027ee9",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -355,6 +355,13 @@
       "sha256": "bdba017eb28eabb528a15d353556713c81a368ec8b203b5f44d7d7c36e029d7e"
     },
     {
+      "path": "Shared/tools/prescribed_practical_coverage.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7953,
+      "sha256": "95e61c0c4b2eb1935539ffcd90158c999f956b4c9275c356856dbb340ba669a1"
+    },
+    {
       "path": "Shared/tools/publication_provenance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -456,8 +463,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 100320,
-      "sha256": "68598b7a5bd69de1da39ad5a7b3b9f42d7878b5e19235ea617bb92bf030e6131"
+      "bytes": 103328,
+      "sha256": "966872ed47640ed635b74dffe702b90837c7fd9b9b7ed4c2f112c945402985ac"
     },
     {
       "path": "tools/app.css",
@@ -470,8 +477,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 412802,
-      "sha256": "4d95bdbd664dc062cda325acd49825f57334b40ba9dfd08223688e687aaa5f14"
+      "bytes": 418398,
+      "sha256": "4c0d72deb652649ce0e935842cfa9a111d462c8bb71395b0ba9131c6f4f8cd1b"
     },
     {
       "path": "tools/index.html",
@@ -807,6 +814,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/prescribed_practical_coverage.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/prescribed_practical_coverage.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/publication_provenance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1069,6 +1086,11 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.prescribed_practical_coverage",
       "kind": "IMPORTS"
     },
     {

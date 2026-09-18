@@ -2223,6 +2223,12 @@ window.GRADE9V3 = {
               "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
               "origin": "AUTHORED",
               "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             }
           ],
           "capabilities": [
@@ -2263,7 +2269,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 47,
+          "record_count": 48,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -2275,7 +2281,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 6,
+            "questions": 7,
             "obligations": 10,
             "authoring_requirements": [
               {
@@ -3070,6 +3076,12 @@ window.GRADE9V3 = {
               "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
               "origin": "AUTHORED",
               "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             }
           ],
           "capabilities": [
@@ -3152,7 +3164,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 59,
+          "record_count": 60,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3164,7 +3176,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 7,
+            "questions": 8,
             "obligations": 11,
             "authoring_requirements": [
               {
@@ -4208,6 +4220,12 @@ window.GRADE9V3 = {
               "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
             },
             {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
               "id": "Q-PHY-MACHINE-2A-01",
               "stem": "A simple machine supports a 150 N load with a 50 N effort. Find the mechanical advantage and state what that number does not tell you.",
               "origin": "AUTHORED",
@@ -4218,6 +4236,12 @@ window.GRADE9V3 = {
               "stem": "A workshop tool uses a long handle to produce a larger load force over a much shorter load motion. A student says the tool must create energy because the output force is larger. Diagnose the claim without being told which named simple machine the tool is.",
               "origin": "AUTHORED",
               "answer": "The claim is false. A larger output force can be balanced by a shorter output distance while the effort point moves farther; in the ideal model input and useful output work are equal."
+            },
+            {
+              "id": "Q-PHY-MACHINE-PRACTICAL-11",
+              "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
+              "origin": "AUTHORED",
+              "answer": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort."
             }
           ],
           "capabilities": [
@@ -4336,7 +4360,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 68,
+          "record_count": 70,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4348,7 +4372,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 2,
+            "questions": 3,
             "obligations": 7,
             "authoring_requirements": [
               {
@@ -4834,6 +4858,12 @@ window.GRADE9V3 = {
               "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
             },
             {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
               "id": "Q-PHY-SOUND-2A-01",
               "stem": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
               "origin": "AUTHORED",
@@ -4862,6 +4892,12 @@ window.GRADE9V3 = {
               "stem": "A cave-mapping device emits a short sound pulse and receives a clear reflection 0.40 s later. If sound speed is 340 m/s, estimate the one-way distance to the reflecting wall and explain the factor of two without being told it is an 'echo formula.'",
               "origin": "AUTHORED",
               "answer": "The wall is 68 m away. The 0.40 s covers the outward and return paths, so 340 x 0.40 = 136 m is the round-trip distance and the one-way range is half of that."
+            },
+            {
+              "id": "Q-PHY-SOUND-PRACTICAL-10",
+              "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
+              "origin": "AUTHORED",
+              "answer": "Measure a known propagation distance L along the stretched medium and the travel time Delta t for the pulse over that path, calculate v = L/Delta t, repeat several trials under the same tension, and average or use a longer timed path to reduce reaction-time error."
             }
           ],
           "capabilities": [
@@ -4932,7 +4968,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 86,
+          "record_count": 88,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4944,7 +4980,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 5,
+            "questions": 6,
             "obligations": 9,
             "authoring_requirements": [
               {
@@ -6084,6 +6120,12 @@ window.GRADE9V3 = {
               "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
             },
             {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
               "id": "Q-PHY-WEP-2A-01",
               "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
               "origin": "AUTHORED",
@@ -6124,6 +6166,12 @@ window.GRADE9V3 = {
               "stem": "A problem shows a block descending between fixed endpoints on a rough track but never tells you which energy equation to use. Decide whether an unchanged K-plus-U mechanical-energy account is sufficient, and state what must be added to the bookkeeping.",
               "origin": "AUTHORED",
               "answer": "An unchanged K-plus-U-only account is not sufficient because friction transfers energy out of that mechanical account; the frictional transfer must be included explicitly."
+            },
+            {
+              "id": "Q-PHY-WEP-PRACTICAL-09",
+              "stem": "Design a simple-pendulum investigation of mechanical-energy conservation. State what quantities you would compare between release and the lowest point, what ideal relation you expect, and how real losses would appear in the data.",
+              "origin": "AUTHORED",
+              "answer": "Measure release height relative to the lowest point and the bob’s speed at the lowest point, compare m g Delta h with 0.5 m v^2, repeat trials, and interpret a systematic shortfall in kinetic energy as evidence of friction/air losses rather than forcing exact equality."
             }
           ],
           "capabilities": [
@@ -6230,7 +6278,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 80,
+          "record_count": 82,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6242,7 +6290,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 7,
+            "questions": 8,
             "obligations": 11,
             "authoring_requirements": [
               {
