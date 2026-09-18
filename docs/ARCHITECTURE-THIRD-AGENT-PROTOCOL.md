@@ -162,13 +162,20 @@ selection; it does not independently choose different ladders for A and B.
 A URL in a prompt is a request to inspect a source, not authority to claim everything in it
 supports every requested product.
 
-When a source basis is present but has not been inspected, the planner returns the agent
-action `INSPECT_AND_INGEST_SOURCE_BASIS`. The agent must inspect and register coverage
-before execution.
+When a source basis has no verified receipt, the planner returns the agent action
+`INSPECT_AND_INGEST_SOURCE_BASIS`. Inspection results do **not** travel as free-form request
+fields. They are recorded under `Sources/receipts/` and verified against the canonical
+library before planning can rely on them.
 
-If inspection is sufficient, no supplemental-policy question is needed. If inspection is
-insufficient, and only then, the planner asks for
-`SUPPLEMENTAL_QUESTION_POLICY = SOURCE_ONLY | ALLOW_AUTHORED_CANDIDATES`.
+The request may carry only `source_receipt_ref`. The verifier checks that the receipt
+matches the exact source basis and bucket, names real library resources, and that every
+question claimed as coverage is actually source-bound and bucket-owned. Core2 additionally
+rejects AUTHORED questions as custody evidence. A `SUFFICIENT` claim also requires an
+immutable source-content SHA-256.
+
+If the verified receipt is insufficient for Core2A/Core2B, and only then, the planner asks
+for `SUPPLEMENTAL_QUESTION_POLICY = SOURCE_ONLY | ALLOW_AUTHORED_CANDIDATES`. Insufficient
+Core2 custody remains held; authored supplementation can never close Core2.
 
 Source identity, existence and review are deliberately separate:
 
