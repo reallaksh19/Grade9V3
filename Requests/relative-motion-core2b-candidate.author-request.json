@@ -1,0 +1,26 @@
+{
+  "request_id": "AUTHOR-PHY-RELATIVE-MOTION-CORE2B-CANDIDATE",
+  "subject": "Physics",
+  "subtopic": "Relative motion",
+  "requested_cores": [
+    "CORE2B"
+  ],
+  "source_basis": [
+    "https://ncert.nic.in/textbook/pdf/keph103.pdf"
+  ],
+  "source_receipt_ref": "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-2026-09-18",
+  "source_basis_drift_acknowledgement": "KEEP_SUPPLIED_DESPITE_DRIFT",
+  "learner": {
+    "owner_entry": {
+      "rung": "R1",
+      "by": "owner",
+      "instruction": "Use the canonical entry rung for this authoring-run fixture; this is routing, not evidence."
+    }
+  },
+  "practice": {
+    "CORE2B": {
+      "purpose": "COMPETITION"
+    }
+  },
+  "supplemental_question_policy": "ALLOW_AUTHORED_CANDIDATES"
+}
