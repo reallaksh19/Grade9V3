@@ -154,6 +154,26 @@
           "hold": "the applied force direction and one overall interval",
           "notice": "the instantaneous power can vary even when one average power describes the interval"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-AVERAGE-POWER",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Average power as work per interval needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-INSTANTANEOUS-POWER",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Instantaneous force-velocity power needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "POWER_RATE",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Average and instantaneous power calculations need an implemented validator."
+        }
       ]
     }
   ],
