@@ -23,7 +23,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import study_map, study_route  # noqa: E402
+from Shared.tools import capability_delivery, study_map, study_route  # noqa: E402
 
 
 def _boards(subject: str, repo: Path = REPO) -> dict[str, dict]:
@@ -182,7 +182,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     for row in route.get("route", []):
         item = dict(row)
         locations = row.get("locations") or []
-        if row.get("state") == "EXTERNAL_BRIDGE":
+        if row.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
             item["learner_action"] = "BRIDGE"
             item["estimate_basis"] = None
             learner_route.append(item)
@@ -216,6 +216,8 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             }
         learner_route.append(item)
 
+    blockers = list(route.get("blockers", []))
+    valid = not findings
     return {
         "worksheet_id": route.get("worksheet_id"),
         "subject": route.get("subject"),
@@ -224,7 +226,10 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         ],
         "route": learner_route,
         "findings": findings,
-        "passed": not findings,
+        "blockers": blockers,
+        "valid": valid,
+        "ready": valid and not blockers,
+        "passed": valid,
         "rule": (
             "Subtopic estimates choose local starting attempts only. QUICK_CHECK is not "
             "mastery evidence; cross-matrix order still comes only from prerequisites."
