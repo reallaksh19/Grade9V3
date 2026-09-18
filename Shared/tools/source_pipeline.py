@@ -145,7 +145,7 @@ def verify_acquisition(acquisition: dict, repo: Path = REPO) -> dict:
                 found.append({
                     "point": "SOURCE_ACQUISITION_DIGEST_MISMATCH",
                     "where": str(snapshot),
-                    "detail": "snapshot SHA-256 differs from acquisition metadata",
+                    "detail": "snapshot digest differs from acquisition metadata",
                 })
     return {"passed": not found, "findings": found}
 
