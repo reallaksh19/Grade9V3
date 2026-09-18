@@ -14,6 +14,7 @@ VALIDATORS = {
     "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
     "NEWTON_SECOND_LAW", "WORK_CONSTANT_FORCE", "KINETIC_ENERGY",
     "GRAVITATIONAL_POTENTIAL_ENERGY", "MECHANICAL_ADVANTAGE",
+    "FREQUENCY_PERIOD", "ECHO_DISTANCE",
 }
 
 
@@ -122,6 +123,17 @@ def recompute(case: dict):
         if load_force < 0 or effort_force <= 0:
             raise ValueError("MECHANICAL_ADVANTAGE_DOMAIN_INVALID")
         return load_force / effort_force
+    if kind == "FREQUENCY_PERIOD":
+        period = _number(case, "period", "s")
+        if period <= 0:
+            raise ValueError("PERIOD_NONPOSITIVE")
+        return 1.0 / period
+    if kind == "ECHO_DISTANCE":
+        speed = _number(case, "speed", "m/s")
+        echo_time = _number(case, "echo_time", "s")
+        if speed <= 0 or echo_time < 0:
+            raise ValueError("ECHO_DOMAIN_INVALID")
+        return 0.5 * speed * echo_time
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
