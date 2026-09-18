@@ -471,6 +471,78 @@
       ],
       "proves": "The signed net force follows from mass times signed acceleration under the declared one-dimensional model.",
       "does_not_prove": "That the listed force inventory is complete or that the chosen frame is inertial."
+    },
+    {
+      "id": "WORK_CONSTANT_FORCE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "force_parallel",
+        "displacement"
+      ],
+      "input_units": {
+        "force_parallel": "N",
+        "displacement": "m"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "J",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "displacement >= 0",
+        "force_parallel is the signed component along displacement"
+      ],
+      "proves": "Constant-force work follows from F_parallel times displacement.",
+      "does_not_prove": "That force is constant or that the supplied component is correctly resolved."
+    },
+    {
+      "id": "KINETIC_ENERGY",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "mass",
+        "speed"
+      ],
+      "input_units": {
+        "mass": "kg",
+        "speed": "m/s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "J",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "mass > 0",
+        "speed >= 0"
+      ],
+      "proves": "Translational kinetic energy follows from one-half mass times speed squared.",
+      "does_not_prove": "That rotational/internal kinetic energy can be ignored."
+    },
+    {
+      "id": "GRAVITATIONAL_POTENTIAL_ENERGY",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "mass",
+        "g",
+        "delta_h"
+      ],
+      "input_units": {
+        "mass": "kg",
+        "g": "m/s^2",
+        "delta_h": "m"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "J",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "mass > 0",
+        "g > 0",
+        "g is approximately uniform over the height change"
+      ],
+      "proves": "Near-Earth gravitational potential-energy change follows from m g Delta h.",
+      "does_not_prove": "That the uniform-g approximation is appropriate over a large height range."
     }
   ],
   "representation_kinds": [
