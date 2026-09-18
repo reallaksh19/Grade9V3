@@ -1,6 +1,6 @@
 # Dry run — Physics Relative Motion Q4
 
-> Status: **synthetic dry run only — not learner evidence**
+> Status: **system dry run complete — synthetic evidence, not learner evidence**
 >
 > This replaces the unavailable interactive learner turn with explicit simulated attempt
 > signatures. It follows the same adaptation principle used for the earlier Mathematics
@@ -36,7 +36,7 @@ provenance = UNREVIEWED_SESSION_DRAFT
 persistence = NOT_WRITTEN
 ```
 
-and Issue #50 remains `PENDING_REAL_EVIDENCE`.
+and the empirical layer remains `PENDING_REAL_EVIDENCE`. This does not block the completed system dry-run lane.
 
 ## Real demand under test
 
@@ -276,3 +276,19 @@ The repair is deliberately generic and narrow:
 
 This preserves the no-guessing rule and avoids turning prerequisite topology into extra
 worksheet tags or a larger matrix schema.
+
+
+## Completion
+
+This dry run was merged in PR #72 and is now part of the accepted system-evidence lane
+described in `docs/SYSTEM-DRY-RUN-ACCEPTANCE.md`.
+
+Final merged validation:
+
+```text
+651 tests
+OK
+```
+
+The live learner packet remains available only for later empirical evidence if such input
+becomes available.

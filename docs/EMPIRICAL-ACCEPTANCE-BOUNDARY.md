@@ -1,14 +1,14 @@
 # Regression versus empirical learner acceptance
 
-The repository has two evidence layers and they must not be collapsed.
+The repository has two evidence lanes and they must not be collapsed. The system lane may complete through regression and dry-run evidence without an interactive learner; the empirical lane remains available separately for actual learner evidence.
 
-## 1. Architectural regression
+## 1. System regression and dry-run acceptance
 
-Architectural regression answers:
+System evidence answers:
 
-> Does the implementation still obey the repository/blueprint contracts?
+> Does the implementation still obey the repository/blueprint contracts, and can the real worksheet workflow traverse the intended branches safely?
 
-It is automatic and CI-enforced. It may use synthetic fixtures and planted falsifiers.
+It is automatic or reviewable without student input. It may use synthetic fixtures, planted falsifiers and real-source worksheet demand with simulated evaluated outcomes.
 
 Examples:
 
@@ -19,8 +19,9 @@ Examples:
 - blueprint-prescribed guard commands;
 - absence of case-specific identifiers in Shared/core.
 
-A green regression suite proves that the machinery behaves as specified. It does **not**
-prove that the machinery helped a real learner.
+A green regression/dry-run suite proves that the machinery behaves as specified across the exercised system paths. It does **not** prove that the machinery helped a real learner.
+
+For the current workflow, this lane is sufficient to continue architecture, content, matrix and worksheet-routing work. Missing live learner evidence is not a blocker for those activities. See `docs/SYSTEM-DRY-RUN-ACCEPTANCE.md`.
 
 ## 2. Empirical learner acceptance
 
@@ -60,9 +61,9 @@ product question being investigated.
 the session and question that produced it. CI may fail that state because the claimed
 evidence is not inspectable.
 
-## CI boundary
+## Workflow and CI boundary
 
-CI runs both layers differently:
+CI runs both lanes differently:
 
 ```text
 Blueprint regression
@@ -78,5 +79,6 @@ This prevents two opposite errors:
 - synthetic regression data becoming a fake learner-success claim;
 - lack of a learner session blocking unrelated architecture work.
 
-A real learner acceptance conclusion remains a human/product decision grounded in the
-retained learner episode. No test fixture can manufacture it.
+A real learner acceptance conclusion remains a human/product decision grounded in the retained learner episode. No test fixture can manufacture it.
+
+If learner input is unavailable, the empirical lane may remain `PENDING_REAL_EVIDENCE` indefinitely without blocking the completed system dry-run lane. If live evidence becomes available later, it is reviewed under the same provenance contract; synthetic outputs are never promoted retroactively.
