@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 91,
-  "relation_count": 147,
+  "component_count": 95,
+  "relation_count": 152,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 25,
-    "TEST": 15,
-    "TOOLING": 27,
+    "LIBRARY": 27,
+    "TEST": 16,
+    "TOOLING": 28,
     "WEB": 5
   },
-  "digest": "sha256:de6ee10a575587db62d26d352cf7544937681a4d485525923a38888585b79d36",
+  "digest": "sha256:fde3643ec44d35369ded98f3cb07e5b8a555361a05640fc72f237e6f2da12a7d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -150,6 +150,20 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 4361,
       "sha256": "f8632a06fc9b3a9df4b0b6f6a4be8f9fb00b830dd89e3cc6e8422bbb92e2b6fb"
+    },
+    {
+      "path": "Shared/library/release-receipt.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 1475,
+      "sha256": "5116463ec76fd281f6385e2e30a7b4d6e97756fee3188900d3e30987b2f47956"
+    },
+    {
+      "path": "Shared/library/release-request.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 912,
+      "sha256": "f1551761cfa02152c0a4c90490296d4a587e8da97b3c88f71640a3fe298ebeeb"
     },
     {
       "path": "Shared/library/request.schema.json",
@@ -453,6 +467,13 @@
       "sha256": "067c990d5caa34ffc7efeb6f698acf48108fea0ceacd1bd55a9792475fd348c4"
     },
     {
+      "path": "Shared/tools/release_authority.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 15839,
+      "sha256": "e343e48045525d2175d397fa3f919a8df7e8e04aaca270842c4322de2956db10"
+    },
+    {
       "path": "Shared/tools/republish.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -591,6 +612,13 @@
       "role_description": "Executable checks",
       "bytes": 24889,
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+    },
+    {
+      "path": "tests/test_release_authority.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 11965,
+      "sha256": "bc3fe7f9b50c470d7165402319284e02fea6fbe0e8dadde11ab1970652f72317"
     },
     {
       "path": "tests/test_review_authority.py",
@@ -1028,6 +1056,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/release_authority.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/release_authority.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/release_authority.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/republish.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1325,6 +1368,16 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.tools.republish",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_release_authority.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_release_authority.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
