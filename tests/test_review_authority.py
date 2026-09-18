@@ -27,6 +27,7 @@ class ReviewPromotionAuthority(unittest.TestCase):
             "Shared/library/review-promotion-request.schema.json",
             "Shared/library/review-promotion-receipt.schema.json",
             "Shared/library/authoring-run-receipt.schema.json",
+            "Shared/library/source-inspection-receipt.schema.json",
         ]:
             target = self.repo / path
             target.parent.mkdir(parents=True, exist_ok=True)
