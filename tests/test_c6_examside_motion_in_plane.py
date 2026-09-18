@@ -42,11 +42,17 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
     def test_real_slice_routes_declared_external_prerequisite_as_explicit_bridge(self):
         report = worksheet_study_plan.resolve(self.mapping())
         self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready"])
+        self.assertEqual(
+            [row["capability"] for row in report["blockers"]],
+            ["CAP-SIGNED-PAIR"],
+        )
         by_cap = {row["capability_ref"]: row for row in report["route"]}
         bridge = by_cap["CAP-SIGNED-PAIR"]
         self.assertEqual(bridge["state"], "EXTERNAL_BRIDGE")
         self.assertEqual(bridge["recommended_action"], "BRIDGE")
-        self.assertEqual(bridge["external_provider"], "Mathematics")
+        self.assertEqual(bridge["provider"], "Mathematics")
         self.assertEqual(
             bridge["acceptance_status"],
             "PROVIDER_REVIEW_REQUIRED",
@@ -56,6 +62,20 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
             and row.get("capability") == "CAP-SIGNED-PAIR"
             for row in report["findings"]
         ))
+
+    def test_demonstrated_external_prerequisite_clears_real_pilot_bridge(self):
+        profile = {
+            "profile_id": "PROFILE-C6-BRIDGE",
+            "provenance": "UNKNOWN",
+            "held": {"CAP-SIGNED-PAIR": "DEMONSTRATED"},
+            "observation_refs": [],
+        }
+        report = worksheet_study_plan.resolve(self.mapping(), profile=profile)
+        self.assertTrue(report["valid"], report["findings"])
+        self.assertTrue(report["ready"], report["blockers"])
+        self.assertEqual(report["blockers"], [])
+        by_cap = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(by_cap["CAP-SIGNED-PAIR"]["recommended_action"], "SKIP")
 
     def test_relative_motion_demand_keeps_reference_frame_support_explicit(self):
         report = worksheet_study_plan.resolve(self.mapping())
