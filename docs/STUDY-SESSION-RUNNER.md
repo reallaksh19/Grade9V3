@@ -52,6 +52,33 @@ prerequisite, the same route becomes ready and the bridge is skipped.
 All prerequisite delivery decisions use the shared `capability_delivery` resolver rather
 than reimplementing bridge logic in the session layer.
 
+## Session-only owner resolution
+
+When the plan returns `OWNER_DECISION`, the owner may resolve only the current session
+without editing canonical content.
+
+Two narrow forms are supported:
+
+```text
+CAPABILITY=LOCATION:MATRIX_ID:RUNG
+CAPABILITY=EXTERNAL:PROVIDER
+```
+
+`LOCATION` may select only a location already offered by the canonical route.
+`EXTERNAL` supplies a session-only bridge label and never creates a canonical provider.
+
+Example:
+
+```bash
+python3 Shared/tools/study_session.py plan \
+  --map path/to/worksheet.json \
+  --owner-choice "CAP-EXAMPLE=EXTERNAL:Owner-selected tutor" \
+  --readable
+```
+
+Applied owner choices remain visible in the report, use `EXECUTE_WITH_FALLBACK`, and do
+not mutate matrices, capabilities, learner evidence, or academic review state.
+
 ## Record one attempt
 
 The runner does not decide whether a free-form answer is correct. A human or another
