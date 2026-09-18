@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 115,
-  "relation_count": 174,
+  "component_count": 118,
+  "relation_count": 176,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 27,
+    "TEST": 30,
     "TOOLING": 36,
     "WEB": 5
   },
-  "digest": "sha256:ccbfc3727cefd8ced4c040b8603ea57beddb537c1b0c50390f3bad815af10087",
+  "digest": "sha256:cca28f90afe0e4f8d32b53737798d19814170733ccb8ac0a754725fd523924d8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -638,8 +638,8 @@
       "path": "tests/test_architecture.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8575,
-      "sha256": "1a51da618798e4531eb6499cfc8a4a9b0b70d786f47b064f55b9623eeef261c4"
+      "bytes": 8584,
+      "sha256": "6eb57de528a0e97e422f16e70a92c6958d30863e7b37f5cf852a90fe4921fb72"
     },
     {
       "path": "tests/test_authoring_run.py",
@@ -647,6 +647,13 @@
       "role_description": "Executable checks",
       "bytes": 10334,
       "sha256": "16e736a3d347d17c500075e1d0fbeee1748d0cc5fb2bd92f267212cdd9676e3a"
+    },
+    {
+      "path": "tests/test_core_issue19_integration.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6393,
+      "sha256": "63c0a564f2bb3e6d7ec013a7636cc69548710a4763b198e12c3e412d09342724"
     },
     {
       "path": "tests/test_execution_packet.py",
@@ -666,8 +673,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13798,
-      "sha256": "0b321793b498ac16d6480c8b7c538d9a61daa96aaf07918943d9617bedb1bbd8"
+      "bytes": 14811,
+      "sha256": "a6040975d63fc60744c647964f9d4dc156884a9ded9569891e0fa0609e84c099"
     },
     {
       "path": "tests/test_import_sil.py",
@@ -675,6 +682,20 @@
       "role_description": "Executable checks",
       "bytes": 13978,
       "sha256": "2c9f3987e74913b14937f2a743b1a3fb73788e464d4ee9177bc19f80a3afc26c"
+    },
+    {
+      "path": "tests/test_issue19_mathematics_content.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6882,
+      "sha256": "31ac1f0f4e53dcea27bbaebb35eef6bbccde07a65cd226030aef65f6714544a2"
+    },
+    {
+      "path": "tests/test_issue19_physics_content.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13356,
+      "sha256": "0b0552d224a4dfdb916ca5ae4a241adfc0d219e0ec7312513d9dd1049962ec2c"
     },
     {
       "path": "tests/test_library.py",
@@ -799,8 +820,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 272110,
-      "sha256": "380db270b2c702cd9dcd1bbac790431b3d93209709f5f0996340c1a5de2f5fed"
+      "bytes": 423479,
+      "sha256": "44e354fbb237f805be0f4701980b3e1babf0a6d319c7cd4a9e5859ea61056809"
     },
     {
       "path": "tools/index.html",
@@ -1412,6 +1433,16 @@
     },
     {
       "from": "tests/test_authoring_run.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_issue19_integration.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_issue19_integration.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
