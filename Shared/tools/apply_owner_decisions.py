@@ -203,25 +203,36 @@ def apply(request: dict, decisions: dict, repo: Path = REPO) -> dict:
 
 
 def audit(repo: Path = REPO) -> dict:
-    # The executable behavioral contract lives in tests; audit validates decision fixtures if present.
+    """Prove every owner question emitted by planner fixtures has a typed application path."""
+    schema = load(repo / "Shared/library/owner-decisions.schema.json")
+    supported = set(
+        schema["properties"]["decisions"]["properties"]
+    )
     rows, findings = [], []
-    root = repo / "Requests/decisions"
-    if root.is_dir():
-        for path in sorted(root.glob("*.json")):
-            artifact = load(path)
-            request_path = repo / artifact.get("request_path", "")
-            if not request_path.is_file():
-                row = {"path": str(path.relative_to(repo)), "passed": False,
-                       "findings": [{"point": "OWNER_DECISION_FIXTURE_REQUEST_MISSING",
-                                     "where": artifact.get("request_path", ""),
-                                     "detail": "decision fixture request_path does not exist"}]}
-            else:
-                payload = {k: v for k, v in artifact.items() if k != "request_path"}
-                report = apply(load(request_path), payload, repo)
-                row = {"path": str(path.relative_to(repo)), **report}
-            rows.append(row)
-            findings.extend(row.get("findings", []))
-    return {"fixtures": len(rows), "rows": rows, "findings": findings, "passed": not findings}
+    for path in sorted((repo / "Requests").glob("*.plan-request.json")):
+        request = load(path)
+        plan = plan_request.plan(request, repo)
+        required = [row["id"] for row in plan.get("required_owner_inputs", [])]
+        unsupported = sorted(set(required) - supported)
+        row_findings = [{
+            "point": "OWNER_DECISION_APPLICATION_UNSUPPORTED",
+            "where": decision_id,
+            "detail": "planner emits an owner decision with no typed application contract",
+        } for decision_id in unsupported]
+        rows.append({
+            "path": str(path.relative_to(repo)),
+            "required_owner_inputs": required,
+            "supported": not unsupported,
+            "findings": row_findings,
+        })
+        findings.extend(row_findings)
+    return {
+        "plan_fixtures": len(rows),
+        "supported_decision_ids": sorted(supported),
+        "rows": rows,
+        "findings": findings,
+        "passed": not findings,
+    }
 
 
 def main() -> int:
