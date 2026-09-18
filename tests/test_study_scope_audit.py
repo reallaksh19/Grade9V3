@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -38,7 +39,43 @@ class StudyScopeAudit(unittest.TestCase):
         )
 
     def test_question_demand_without_a_matrix_is_named_as_not_taught(self):
-        report = study_scope_audit.audit(self.load(self.MATH))
+        # This is an architecture rule, not a snapshot of Mathematics migration status.
+        # Use an isolated subject so PR #23 adding a Mathematics matrix cannot invalidate
+        # the falsifier.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [{
+                    "id": "CAP-EXAMPLE",
+                    "action": "Do the thing",
+                    "success_criterion": "The thing is done",
+                    "prerequisite_refs": [],
+                }],
+                "microtopics": [{
+                    "id": "MIC-EXAMPLE",
+                    "primary_capability_ref": "CAP-EXAMPLE",
+                }],
+                "questions": [],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-GAP",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-EXAMPLE",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_scope_audit.audit(mapping, repo=root)
         self.assertFalse(report["passed"])
         self.assertIn(
             study_scope_audit.ASSESSMENT_NOT_TAUGHT,
