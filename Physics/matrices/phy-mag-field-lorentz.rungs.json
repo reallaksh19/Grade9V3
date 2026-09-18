@@ -1,0 +1,259 @@
+{
+  "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+  "topic": "Magnetic Effects of Electric Current",
+  "subtopic": "Magnetic fields, Lorentz force and electromagnetic induction",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate, and Core1A/Core1B may not consult one.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 10,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "flux",
+        "cross product",
+        "Lorentz force",
+        "induction"
+      ],
+      "must_contain": [
+        "Arrow, dot, and cross conventions bound explicitly to magnetic-field direction.",
+        "The axial-vector character of B stated separately from the polar-vector motion of a charged particle.",
+        "A closed-loop field-line picture that does not treat lines as material strings."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the viewing orientation of the same magnetic field",
+          "hold": "the physical B direction in space",
+          "notice": "dot, cross, and in-plane arrow are representation choices for one axial direction"
+        },
+        {
+          "phase": 2,
+          "vary": "position around a bar magnet",
+          "hold": "the same magnet",
+          "notice": "the field direction changes continuously and the line closes rather than terminating"
+        }
+      ],
+      "microtopic_ref": "MIC-MAG-FIELD-DIRECTION"
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 25,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "Lorentz force",
+        "Lenz's law",
+        "motional emf"
+      ],
+      "must_contain": [
+        "An explicit area-normal direction before any cosine is used.",
+        "Comparison of face-on, tilted, and edge-on orientations at fixed B and area."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the angle between B and the area normal",
+          "hold": "field magnitude and loop area",
+          "notice": "flux changes from maximum to zero without changing B or area"
+        },
+        {
+          "phase": 2,
+          "vary": "the chosen normal orientation for the same physical surface",
+          "hold": "the surface and magnetic field",
+          "notice": "the signed flux reverses with the normal while the physical surface is unchanged"
+        }
+      ],
+      "microtopic_ref": "MIC-MAG-FLUX-ORIENTATION"
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 40,
+      "provenance": "SYNTHESIS",
+      "aha": "The magnetic force on a moving charge is set by q(v x B): it is perpendicular to both v and B, and its direction reverses for negative charge.",
+      "learner_owns": [
+        "R2: magnetic flux depends on an oriented area and on the direction of B, not only their magnitudes."
+      ],
+      "ceiling": [
+        "work",
+        "kinetic energy",
+        "circular motion",
+        "Lenz's law"
+      ],
+      "must_contain": [
+        "A three-direction construction: v, B, then v x B.",
+        "A separate sign step for the charge after the right-hand direction is found."
+      ],
+      "misconception": {
+        "wrong_idea": "The right-hand rule gives the force direction for both positive and negative charges without any extra step.",
+        "diagnostic_prompt": "A positive and a negative charge enter the same field with the same velocity. Do they bend to the same side?",
+        "repair": "First find v x B for a positive charge; then reverse that direction if q is negative."
+      },
+      "closure": "Given v, B, and the sign of q in a dot/cross diagram, determine the magnetic-force direction and identify the zero-force orientations.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the angle between velocity and magnetic field",
+          "hold": "charge sign, speed, and field magnitude",
+          "notice": "force is zero when v is parallel to B and largest when they are perpendicular"
+        },
+        {
+          "phase": 2,
+          "vary": "the sign of the charge",
+          "hold": "the same v and B",
+          "notice": "force direction reverses while magnitude stays the same"
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 55,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "induced emf",
+        "flux change",
+        "Lenz's law"
+      ],
+      "must_contain": [
+        "A velocity arrow before and after a short time step with equal lengths.",
+        "A work or power check using F dot v."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "elapsed time along a curved trajectory",
+          "hold": "uniform B and no electric field",
+          "notice": "the velocity direction changes while its magnitude stays fixed"
+        },
+        {
+          "phase": 2,
+          "vary": "field magnitude",
+          "hold": "particle charge and initial speed, with v perpendicular to B",
+          "notice": "the curvature changes but the speed does not"
+        }
+      ],
+      "microtopic_ref": "MIC-MAG-REDIRECT-NOT-SPEED"
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 70,
+      "provenance": "SYNTHESIS",
+      "aha": "Induced emf responds to change in magnetic flux, and its direction opposes the change rather than simply opposing the magnetic field.",
+      "learner_owns": [
+        "R4: pure magnetic force can redirect motion without changing speed or kinetic energy."
+      ],
+      "ceiling": [
+        "motional emf",
+        "generator",
+        "self-induction"
+      ],
+      "must_contain": [
+        "Two cases with the same external-field direction but opposite flux changes.",
+        "A stated cause of flux change: field magnitude, area, or orientation."
+      ],
+      "misconception": {
+        "wrong_idea": "Lenz's law says the induced field always points opposite to the external magnetic field.",
+        "diagnostic_prompt": "A north pole approaches a loop and then retreats. Should the induced current direction stay the same?",
+        "repair": "Name the flux change first; choose the induced effect that resists that change, not the field itself."
+      },
+      "closure": "Given whether magnetic flux through a loop is increasing or decreasing, determine the induced field/current sense and explain the opposition.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "whether the external flux is increasing or decreasing",
+          "hold": "the external-field direction and loop orientation",
+          "notice": "the induced direction reverses because the change reverses"
+        },
+        {
+          "phase": 2,
+          "vary": "whether flux changes through field magnitude or loop orientation",
+          "hold": "the same signed rate of flux change",
+          "notice": "the induced emf depends on flux change, not on which mechanism produced it"
+        }
+      ]
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 85,
+      "provenance": "SYNTHESIS",
+      "aha": "A conductor moving through a magnetic field develops motional emf because magnetic force separates charges; the simple Blv form requires the geometry to make the relevant directions perpendicular.",
+      "learner_owns": [
+        "R5: induced emf direction is fixed by opposition to a change in magnetic flux."
+      ],
+      "ceiling": [
+        "motional emf formula without geometry",
+        "generator power",
+        "eddy current"
+      ],
+      "must_contain": [
+        "The conductor length direction, motion direction, and B direction shown together.",
+        "A statement of the perpendicular geometry before using Blv."
+      ],
+      "misconception": {
+        "wrong_idea": "The motional-emf magnitude is Blv for any orientation of conductor, velocity, and magnetic field.",
+        "diagnostic_prompt": "A rod moves parallel to the magnetic field with speed v. Should the same Blv value appear as when it moves perpendicular to B?",
+        "repair": "Return to q(v x B): only the force component along the conductor separates charge end-to-end."
+      },
+      "closure": "Given rod, v, and B directions, decide whether motional emf is zero or nonzero and use Blv only in the perpendicular geometry.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the angle between velocity and magnetic field",
+          "hold": "rod length, speed magnitude, field magnitude, and rod orientation",
+          "notice": "charge separation vanishes when v is parallel to B"
+        },
+        {
+          "phase": 2,
+          "vary": "rod orientation relative to v x B",
+          "hold": "v and B perpendicular with fixed magnitudes",
+          "notice": "end-to-end emf depends on whether magnetic force has a component along the rod"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Identify the directed geometry, choose whether the situation calls for force or flux-change reasoning, determine direction before magnitude, and check the result against perpendicularity or energy conservation.",
+    "difficult_move": "Reading the three-dimensional direction information correctly before applying a right-hand or Lenz-law rule.",
+    "independent_check": "For pure magnetic force, F must be perpendicular to v and cannot change kinetic energy; for induction, the predicted response must oppose the stated flux change.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The relevant vectors are labeled and the applicable rule (force or flux change) is named."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The vectors and their dot/cross page conventions are labeled, but the learner chooses the rule and direction."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical situation and diagram are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A charged particle enters crossed electric and magnetic fields, so decide which effects can change speed and which only redirect motion.",
+      "information_not_handed_over": "that the electric-force term can do work while the magnetic term cannot",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Convert a dot/cross field diagram and a loop orientation into signed magnetic flux and an induced-current direction.",
+      "information_not_handed_over": "the area-normal direction implied by the drawing",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "Analyze a moving conducting rail or generator segment instead of a free charged particle.",
+      "information_not_handed_over": "which direction of magnetic force separates charge along the conductor",
+      "repair_to": "R6"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Use magnetic force as the centripetal force to relate a particle's path radius to q, v, B, and mass.",
+      "information_not_handed_over": "the step equating qvB with the required centripetal-force magnitude",
+      "repair_to": "R4"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-VEC-ADD-SUB-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Vector Mechanics & Resolving Components. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-VEC-ADD-SUB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-VEC-ADD-SUB",
+          "packet_digest": "8026e5bac0537113a8986964f25edcbb645afdb6cdb3ae836cb7fbe2e9b11ce0",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Vector Mechanics & Resolving Components",
+      "topic": "Vectors / Motion in a Plane",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-VEC-ADD-SUB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-VEC-ADD-SUB",
+          "packet_digest": "8026e5bac0537113a8986964f25edcbb645afdb6cdb3ae836cb7fbe2e9b11ce0",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Vector Mechanics & Resolving Components",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Vector Addition Commutativity & Parallelogram Law**: Vectors add geometrically ($\\vec{A} + \\vec{B} = \\vec{B} + \\vec{A}$). The magnitude of resultant is $R = \\sqrt{A^2 + B^2 + 2AB\\cos\\theta}$. Scalars and vectors cannot be added together.",
+        "**Coordinate Invariance of Dot and Cross Products**: The dot product $\\vec{A} \\cdot \\vec{B} = A B \\cos\\theta$ is a coordinate-invariant scalar. The cross product $\\vec{A} \\times \\vec{B} = A B \\sin\\theta\\,\\hat{n}$ is an axial vector perpendicular to both $\\vec{A}$ and $\\vec{B}$."
+      ],
+      "inferential_jump": "Vector representation: magnitude and direction; unit vector $\\hat{a} = \\frac{\\vec{A}}{|\\vec{A}|}$.",
+      "teaching_path": [
+        {
+          "id": "ATOM-VEC-03",
+          "role": "VERIFY",
+          "action": "Direction cosines identity: $\\cos^2\\alpha + \\cos^2\\beta + \\cos^2\\gamma = 1$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-VEC-04",
+          "role": "TRANSFORM",
+          "action": "Evaluating cross product via determinant: $\\vec{A} \\times \\vec{B} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ A_x & A_y & A_z \\\\ B_x & B_y & B_z \\end{vmatrix}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-VEC-05",
+          "role": "DECLARE",
+          "action": "Choosing rotated coordinate axes aligned with constraints (such as ramp inclination) to decouple equations of motion.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Writing $\\vec{A} \\times \\vec{B} = \\vec{B} \\times \\vec{A}$.",
+          "diagnostic_prompt": "",
+          "repair": "Cross product is anti-commutative: $\\vec{A} \\times \\vec{B} = -(\\vec{B} \\times \\vec{A})$. Reversing operand order flips the normal vector direction."
+        },
+        {
+          "wrong_idea": "Attempting to compute $\\frac{\\vec{A}}{\\vec{B}}$ to find a vector.",
+          "diagnostic_prompt": "",
+          "repair": "Division by a vector is undefined because multiple vectors can produce the same dot or cross product result."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-VEC-ADD-SUB",
+      "packet_digest": "8026e5bac0537113a8986964f25edcbb645afdb6cdb3ae836cb7fbe2e9b11ce0",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

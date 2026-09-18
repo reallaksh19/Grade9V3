@@ -1,0 +1,1165 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-MATH-LINEAR-EQUATIONS",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "One-unknown linear equations over the rationals, built around the distinction between an exact solution and its decimal approximation. Authored to exercise this repository's Mathematics adapter end to end; no curated acceptance is claimed.",
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "STANDARD",
+      "scope_class": "OWNER_EXTENSION",
+      "source_ref": "SRC-MATH-AUTHOR",
+      "locator": "Foundational one-variable solving assumed by the Linear Equations chapter; no exact board binding established",
+      "mapping_status": "CANDIDATE"
+    }
+  ],
+  "resources": [
+    {
+      "id": "SRC-MATH-AUTHOR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 linear-equations design seed",
+      "origin": "AUTHORED",
+      "locator": "Mathematics/library/linear-equations.v1.json",
+      "edition": "0.1.0",
+      "section": "Author-created derivations and micro-checks",
+      "last_checked": "2026-09-16",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no official exam provenance claimed",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "REL-MATH-LINEAR-SOLUTION",
+        "REL-MATH-EXACTNESS"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "STANDARD"
+      ],
+      "selection_reason": "Concrete candidate teaching content for the Mathematics adapter; independent mathematical review pending.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-LINEAR-EQUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Linear equations in one unknown",
+      "topic": "Linear equations",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The manipulation is short, but why a step preserves the solution set, and why an exact value differs from its decimal, are both genuinely missed.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-MATH-AUTHOR",
+          "locator": "Foundational one-variable solving; no exact board binding established",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-MATH-NUMBER-LINE"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MATH-SUBSTITUTE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Decide whether a given value satisfies an equation by substituting it.",
+      "success_criterion": "Evaluate both sides independently and compare them, rather than rearranging first.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-ISOLATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Isolate the unknown using operations that preserve the solution set.",
+      "success_criterion": "Name the operation applied to both sides and state why it is reversible, including that any divisor is non-zero.",
+      "prerequisite_refs": [
+        "CAP-MATH-SUBSTITUTE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-EXACTNESS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Report a rational solution exactly and distinguish it from a decimal approximation.",
+      "success_criterion": "Substitute both the exact fraction and a truncation, and state the residue the truncation leaves.",
+      "prerequisite_refs": [
+        "CAP-MATH-ISOLATE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-MATH-CONSTRAINT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "An equation constrains an unknown",
+      "bucket_id": "BUCKET-LINEAR-EQUATION",
+      "primary_capability_ref": "CAP-MATH-SUBSTITUTE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners arriving from arithmetic read the equals sign as an instruction to compute, and that reading survives unless it is confronted directly.",
+      "entry_assumptions": [
+        "Can evaluate an arithmetic expression containing a given number."
+      ],
+      "inferential_jump": "Read a*x + b = c as a statement that is true for some values of the unknown and false for others, rather than as an instruction to work out a left-hand side.",
+      "teaching_path": [
+        {
+          "id": "MC-1",
+          "action": "Declare the domain the unknown ranges over.",
+          "why_valid": "A solution set has no meaning until the admissible values are fixed.",
+          "inputs": [],
+          "output": "x ranges over the rationals.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MC-2",
+          "action": "Substitute a candidate value and evaluate both sides separately.",
+          "why_valid": "Membership of the solution set is decided by substitution, which is the definition of a solution.",
+          "inputs": [],
+          "output": "For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MC-3",
+          "action": "Try a second value that fails, and say why it fails.",
+          "why_valid": "A constraint is only understood once a non-solution has been seen.",
+          "inputs": [],
+          "output": "Evidence that the equation selects values rather than computing one.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-LINEAR-SOLUTION"
+      ],
+      "representation_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-LINEAR"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The equals sign means work out the left side and write the answer on the right.",
+          "diagnostic_prompt": "In 3x + 2 = 9, what would you 'work out' before you know x?",
+          "repair": "Read the statement aloud as a claim about the unknown, then test one value by substitution before manipulating anything."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Does x = 2 satisfy 3x + 2 = 9? Show how you decided.",
+        "source_ref": "SRC-MATH-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "No: substituting gives 8, not 9.",
+          "reasoning": [
+            "Substitute 2 for x on the left: 3 times 2, plus 2, is 8.",
+            "Compare with the required right-hand side, 9.",
+            "8 and 9 differ, so 2 is not in the solution set."
+          ],
+          "check": "A value that satisfied the equation would make both sides identical, not merely close.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-MATH-LIST-BINDING"
+        }
+      },
+      "research_contribution": "Author-created substitution-first framing; independent mathematical and pedagogical review pending.",
+      "prerequisite_refs": [
+        "CAP-MATH-SUBSTITUTE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before you change anything in 3x + 2 = 9: does this line ask you to do something, or does it claim something? Commit to one, and say what the other reading would mean.",
+          "defensible_answer": "It claims something -- that tripling x and adding 2 lands exactly on 9. Read as an instruction, it would have to hold for every x, and it does not."
+        },
+        "attempt": {
+          "produces": "Two values of x, one you believe satisfies the statement and one you believe does not, each with the arithmetic that decided it.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both values are tested by putting them into the statement, not by rearranging it first.",
+              "evidence_of": "Treating membership of the solution set as something substitution decides."
+            },
+            {
+              "criterion": "The rejected value is rejected because the two sides differ, and by how much is said.",
+              "evidence_of": "Reading the equals sign as a claim that is capable of being false."
+            }
+          ],
+          "accepted": [
+            "x = 7/3 works: 3 times 7/3 is 7, and 7 + 2 is 9. x = 2 fails: 3 times 2 is 6, and 6 + 2 is 8, which is one short of 9."
+          ],
+          "rejected": [
+            "x = 7/3, because that is what you get when you solve it. The value is right and nothing has been tested, so the statement was still read as an instruction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Pick any number you like for x, put it into 3x + 2, and write what you get. Is it 9?",
+              "why_this_ask": "It produces a false statement on purpose. Nothing else shows a learner that this line is capable of being false.",
+              "from_step_ref": "MC-2"
+            },
+            {
+              "ask": "That number failed. Does the failure make the whole line wrong, or does it only rule out that number?",
+              "why_this_ask": "This is the decision the microtopic turns on, and it cannot be asked until a failure has actually been seen."
+            },
+            {
+              "ask": "Which numbers were you allowed to try in the first place -- whole numbers only, or fractions too?",
+              "why_this_ask": "The domain only feels necessary once the learner has been choosing values and the choice has started to matter.",
+              "from_step_ref": "MC-1"
+            }
+          ],
+          "differs_from_teaching_path": "The expert fixes the domain before testing anything. Here the learner tests first and meets the domain last, at the point where deciding what is allowed to be tried has become their own problem."
+        },
+        "boundary_test": {
+          "prompt": "Is 0x + 2 = 9 a statement about an unknown? Which values of x make it true?",
+          "answer": "It is a statement, and no value of x makes it true: the left side is 2 whatever x is. The solution set is empty, which is an answer rather than a failure to solve.",
+          "confirms": "That the line is a claim about x even when x has no effect on it. A learner still reading it as an instruction has nothing here to work out, and stops."
+        }
+      }
+    },
+    {
+      "id": "MIC-MATH-EQUIVALENT-OPS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Operations that preserve the solution set",
+      "bucket_id": "BUCKET-LINEAR-EQUATION",
+      "primary_capability_ref": "CAP-MATH-ISOLATE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The steps are memorable as a procedure, which is exactly why the reversibility condition behind them goes unnoticed until it fails.",
+      "entry_assumptions": [
+        "Can decide by substitution whether a value satisfies an equation."
+      ],
+      "inferential_jump": "See each manipulation as an operation applied to both sides whose reversibility is what guarantees no solution is gained or lost.",
+      "teaching_path": [
+        {
+          "id": "ME-1",
+          "action": "Subtract b from both sides.",
+          "why_valid": "Adding the same quantity to both sides can be undone, so the solution set is unchanged.",
+          "inputs": [],
+          "output": "a*x = c - b",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "ME-2",
+          "action": "State that a is non-zero, then divide both sides by a.",
+          "why_valid": "Dividing by a non-zero quantity is reversible; division by zero is undefined, so the condition must be stated rather than assumed.",
+          "inputs": [],
+          "output": "x = (c - b)/a",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "ME-3",
+          "action": "Substitute the result into the original statement, not into an intermediate line.",
+          "why_valid": "Checking against the original catches an error introduced at any step.",
+          "inputs": [],
+          "output": "A verified solution.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-LINEAR-SOLUTION"
+      ],
+      "representation_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-LINEAR"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Both sides may be divided by any expression, including one containing the unknown.",
+          "diagnostic_prompt": "From x times x = x, what happens to the solution x = 0 if you divide both sides by x?",
+          "repair": "Before dividing, state that the divisor is non-zero; where it might be zero, handle that case separately instead of dividing."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Solve 5x - 4 = 11, naming the operation used at each step and why it is reversible.",
+        "source_ref": "SRC-MATH-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "x = 3.",
+          "reasoning": [
+            "Add 4 to both sides; addition of the same quantity is reversible, giving 5x = 15.",
+            "Divide both sides by 5, which is non-zero and therefore reversible, giving x = 3.",
+            "Substitute into the original: 5 times 3, minus 4, is 11."
+          ],
+          "check": "Each step can be undone, so the solution set never changed.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-MATH-EXIT-DATA"
+        }
+      },
+      "research_contribution": "Author-created reversibility framing; independent review pending.",
+      "prerequisite_refs": [
+        "MIC-MATH-CONSTRAINT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Adding 5 to both sides of an equation loses nothing. Predict whether the same holds for multiplying both sides by 5, and for multiplying both sides by x.",
+          "defensible_answer": "By 5, yes. By x, no: if x could be 0 then multiplying has quietly admitted a value that did not satisfy the original."
+        },
+        "attempt": {
+          "produces": "A rule for which multipliers are safe, and one worked equation where an unsafe one goes wrong.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The rule names a property the multiplier must have, not a list of multipliers that are allowed.",
+              "evidence_of": "Generalising from the failing case rather than memorising it."
+            },
+            {
+              "criterion": "The worked failure shows a solution appearing or disappearing, not merely an incorrect final value.",
+              "evidence_of": "Understanding that what is at risk is the solution set, not the arithmetic."
+            }
+          ],
+          "accepted": [
+            "Safe when the multiplier cannot be zero. In x times x = x the solutions are 0 and 1; dividing both sides by x leaves x = 1, and the solution 0 has gone."
+          ],
+          "rejected": [
+            "Safe when the multiplier is a number and unsafe when it is a letter. It sorts the examples correctly and names the wrong property: what matters is whether the multiplier can be zero, not how it is written."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write down every solution of x times x = x before you do anything to it.",
+              "why_this_ask": "The number of solutions has to be known first, or the loss later is invisible."
+            },
+            {
+              "ask": "Now divide both sides by x and solve what is left. How many solutions has the new line got?",
+              "why_this_ask": "The learner performs the damage themselves, which is not the same as being warned about it in advance.",
+              "from_step_ref": "ME-2"
+            },
+            {
+              "ask": "Which value of x did that division assume you were not using?",
+              "why_this_ask": "It names the hidden assumption inside the learner's own working rather than as a rule handed down before it."
+            },
+            {
+              "ask": "What would you write down before dividing next time, to keep that value in view?",
+              "why_this_ask": "It converts the diagnosis into something the learner carries to the next equation, which a stated rule does not do."
+            }
+          ],
+          "differs_from_teaching_path": "The expert states the non-zero condition as part of performing the division. Here the learner loses a solution first, then works out what would have prevented it."
+        },
+        "boundary_test": {
+          "prompt": "Square both sides of x = 3. What are the solutions now, and what does that tell you about squaring?",
+          "answer": "x = 3 and x = -3. Squaring gained a solution rather than losing one, because it cannot be undone without knowing the sign.",
+          "confirms": "That reversibility is the test, not the shape of the operation. A learner working from 'do the same to both sides' has no way to see why this one fails."
+        }
+      }
+    },
+    {
+      "id": "MIC-MATH-EXACT-SOLUTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "An exact solution is not its decimal approximation",
+      "bucket_id": "BUCKET-LINEAR-EQUATION",
+      "primary_capability_ref": "CAP-MATH-EXACTNESS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Calculator habits teach that a decimal is the finished answer, so a fraction reads as unfinished work rather than as the exact value.",
+      "entry_assumptions": [
+        "Can isolate the unknown using reversible operations."
+      ],
+      "inferential_jump": "Treat the exact rational and its truncated decimal as two different numbers, and use substitution to show the difference rather than asserting it.",
+      "teaching_path": [
+        {
+          "id": "MX-1",
+          "action": "Record the solution as a fraction in lowest terms.",
+          "why_valid": "The division producing it need not terminate as a decimal, so the fraction is the exact value.",
+          "inputs": [],
+          "output": "x = 7/3",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MX-2",
+          "action": "Substitute the exact fraction into the original statement.",
+          "why_valid": "Exact substitution reproduces the statement with no residue.",
+          "inputs": [],
+          "output": "3 times 7/3, plus 2, is exactly 9.",
+          "role": "VERIFY"
+        },
+        {
+          "id": "MX-3",
+          "action": "Substitute a truncated decimal and compare.",
+          "why_valid": "Seeing the residue is what distinguishes the two objects; being told they differ is not the same as observing it.",
+          "inputs": [],
+          "output": "3 times 2.333333333333, plus 2, is 8.999999999999.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-EXACTNESS"
+      ],
+      "representation_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-LINEAR"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A fraction should be converted to a decimal to give the real answer.",
+          "diagnostic_prompt": "Substitute 2.333333333333 into 3x + 2 = 9. Do you get 9 exactly?",
+          "repair": "Substitute both forms into the original statement and compare the two results digit for digit; the exact form is the one that closes."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Solve 3x + 2 = 9 over the rationals, and explain why writing the answer as 2.33 would be a different claim.",
+        "source_ref": "SRC-MATH-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "x = 7/3, which is not equal to 2.33.",
+          "reasoning": [
+            "Subtract 2 from both sides to get 3x = 7.",
+            "Divide both sides by 3, which is non-zero, giving x = 7/3.",
+            "Substituting 2.33 gives 8.99, not 9, so 2.33 does not satisfy the equation."
+          ],
+          "check": "Substituting 7/3 gives exactly 9, with no residue at any precision.",
+          "acceptable_alternatives": [
+            "Any argument showing the truncation leaves a non-zero residue is acceptable."
+          ],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "LINEAR_EQUATION",
+            "domain": "RATIONAL",
+            "bindings": {
+              "a": "DAT-MATH-A",
+              "b": "DAT-MATH-B",
+              "c": "DAT-MATH-C"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created exactness contrast; this is the microtopic the repository's exact-rational comparison exists to support.",
+      "prerequisite_refs": [
+        "MIC-MATH-EQUIVALENT-OPS"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A calculator gives 2.3333333 for x in 3x + 2 = 9. Predict whether putting that number back in returns exactly 9, and if not, how far off it lands.",
+          "defensible_answer": "It returns 8.9999999, short of 9 by 0.0000001. Writing more threes shrinks that shortfall and never removes it."
+        },
+        "attempt": {
+          "produces": "The two substitutions written side by side, each with the exact difference between its result and 9.",
+          "closure": "MODEL_RESPONSE",
+          "model_response": "3 times 7/3 is 7 exactly, so the total is 9 and the difference is 0. 3 times 2.3333333 is 6.9999999, so the total is 8.9999999 and the difference is 0.0000001. Each extra three shrinks the difference by a factor of ten and never closes it."
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write 7/3 as a decimal and stop wherever you like. What was the last digit you wrote, and what would have come next?",
+              "why_this_ask": "Stopping is the learner's decision here, so the truncation is theirs rather than the calculator's."
+            },
+            {
+              "ask": "Multiply the number you wrote by 3. How far short of 7 did you land?",
+              "why_this_ask": "The residue comes out of the learner's own arithmetic, so it cannot be put down to a quirk of the machine.",
+              "from_step_ref": "MX-3"
+            },
+            {
+              "ask": "Write one more three on the end and multiply again. Did the gap close, or only get smaller?",
+              "why_this_ask": "It separates getting closer from being equal, which is the distinction the whole microtopic rests on."
+            },
+            {
+              "ask": "So when the question says solve over the rationals, which of your two numbers is the answer, and what is the other one called?",
+              "why_this_ask": "It makes the learner name the decimal as an approximation, which is the claim they will have to defend in the exit task.",
+              "from_step_ref": "MX-1"
+            }
+          ],
+          "differs_from_teaching_path": "The expert records the exact fraction first and demonstrates the residue afterwards. Here the learner begins from the decimal they would have written anyway and is brought to find the residue themselves."
+        },
+        "boundary_test": {
+          "prompt": "Solve 4x = 2 and write the answer as a decimal. Does the same objection apply?",
+          "answer": "x = 1/2, which is 0.5 exactly; substituting 0.5 returns 2 with no residue. The objection does not apply, because this division terminates.",
+          "confirms": "That what matters is whether the decimal terminates, not that decimals are untrustworthy. A learner who took the rule to be never use decimals answers this one wrongly."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-MATH-LINEAR-SOLUTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "a*x + b = c  =>  x = (c - b)/a,  a != 0",
+      "mathml": "<math display=\"block\"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>-</mo><mi>b</mi></mrow><mi>a</mi></mfrac></mrow></math>",
+      "meaning": "Subtracting b and dividing by a non-zero a isolates the unknown using reversible operations, so the solution set is unchanged.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "Coefficient of the unknown; must not be zero",
+          "unit_or_domain": "Q without 0"
+        },
+        {
+          "symbol": "b",
+          "meaning": "Constant added on the left",
+          "unit_or_domain": "Q"
+        },
+        {
+          "symbol": "c",
+          "meaning": "Value the left side must equal",
+          "unit_or_domain": "Q"
+        },
+        {
+          "symbol": "x",
+          "meaning": "The unknown",
+          "unit_or_domain": "Q"
+        }
+      ],
+      "conditions": [
+        "a is non-zero; if a = 0 the statement is either never true or always true.",
+        "Both operations are reversible, which is why the solution set is preserved.",
+        "The declared domain is the rationals."
+      ],
+      "derivation": [
+        {
+          "id": "DL-1",
+          "action": "Subtract b from both sides.",
+          "why_valid": "Adding the same quantity to both sides is reversible.",
+          "inputs": [],
+          "output": "a*x = c - b",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "DL-2",
+          "action": "Divide both sides by the non-zero a.",
+          "why_valid": "Division by a non-zero quantity is reversible.",
+          "inputs": [],
+          "output": "x = (c - b)/a",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "Does not apply when a is zero.",
+        "Says nothing about equations that are not linear in the unknown."
+      ],
+      "checks": [
+        "Substituting the result into the original statement reproduces it exactly.",
+        "If c equals b then x is zero."
+      ],
+      "gate_relation_ref": "REL-EQ-LINEAR-SOLUTION"
+    },
+    {
+      "id": "REL-MATH-EXACTNESS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "x exact  =>  a*x + b = c holds exactly",
+      "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
+      "symbols": [
+        {
+          "symbol": "x",
+          "meaning": "The exact rational solution",
+          "unit_or_domain": "Q"
+        },
+        {
+          "symbol": "x~",
+          "meaning": "A terminating-decimal approximation of it",
+          "unit_or_domain": "the terminating decimals"
+        }
+      ],
+      "conditions": [
+        "Substituting a truncated decimal does not satisfy the statement exactly.",
+        "Rounding is a presentation choice made after the mathematics, never during it.",
+        "The residue may be small, but it is not zero."
+      ],
+      "derivation": [
+        {
+          "id": "DX-1",
+          "action": "Substitute the exact value.",
+          "why_valid": "Exact arithmetic over the rationals is closed under these operations.",
+          "inputs": [],
+          "output": "The statement holds with no residue.",
+          "role": "VERIFY"
+        },
+        {
+          "id": "DX-2",
+          "action": "Substitute a truncation and subtract the two sides.",
+          "why_valid": "The difference exhibits the residue directly.",
+          "inputs": [],
+          "output": "A non-zero difference.",
+          "role": "VERIFY"
+        }
+      ],
+      "limits": [
+        "Concerns the value named, not the notation used to name it; 14/6 and 7/3 name the same number."
+      ],
+      "checks": [
+        "A solution whose denominator has a prime factor other than 2 or 5 has no terminating decimal form."
+      ],
+      "gate_relation_ref": "REL-EQ-EXACT-VERIFICATION"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-MATH-NUMBER-LINE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "NUMBER_LINE",
+      "purpose": "Place the exact solution between its bracketing integers so that it is visibly not equal to either.",
+      "required_elements": [
+        "Declared domain",
+        "Marked solution with its exact label",
+        "Bracketing integer ticks",
+        "Whether each marked endpoint is included"
+      ],
+      "relation_refs": [
+        "REL-MATH-EXACTNESS"
+      ],
+      "read_order": [
+        "Identify the declared domain.",
+        "Locate the bracketing integers.",
+        "Read the marked exact value and confirm it coincides with neither."
+      ],
+      "instance_constraints": [
+        "Marks are placed at exact rational positions, not at rounded ones.",
+        "An open circle means the endpoint is excluded and must be used deliberately."
+      ],
+      "accessibility": [
+        "Label every mark in text as well as by position.",
+        "State the exact value in the caption, since position alone cannot convey it."
+      ],
+      "misleading_alternatives": [
+        "A mark placed at the nearer integer because the exact value is inconvenient.",
+        "A line with no declared domain."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [
+        {
+          "id": "FIG-MATH-EXACT-VS-TRUNCATED",
+          "cores": [
+            "CORE1",
+            "CORE1A",
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-MATH-EXACT-SOLUTION",
+          "datum_refs": [
+            "DAT-MATH-EXACT-SOLUTION",
+            "DAT-MATH-TRUNCATED-SOLUTION"
+          ],
+          "scene": {
+            "kind": "NUMBER_LINE",
+            "frame": "The rationals, drawn on a single axis with integer ticks.",
+            "caption": "x = 7/3 is the solution; 2.333333333333 is a different point, closed on the line but open as a solution because substituting it gives 8.999999999999, not 9.",
+            "x_label": "x (dimensionless)",
+            "unit": "dimensionless",
+            "marks": [
+              {
+                "atom": "DAT-MATH-EXACT-SOLUTION",
+                "label": "x = 7/3",
+                "closed": true
+              },
+              {
+                "atom": "DAT-MATH-TRUNCATED-SOLUTION",
+                "label": "2.333333333333 (not a solution)",
+                "closed": false
+              }
+            ]
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "Marked solution with its exact label",
+          "symbol": "x",
+          "in_words": "the one point on the line where substituting gives 9 and nothing is left over"
+        },
+        {
+          "element": "Bracketing integer ticks",
+          "symbol": "x~",
+          "in_words": "the whole numbers either side, which the truncated decimal sits between without landing on the marked point"
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-MATH-LINEAR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Solve a one-unknown linear equation over the rationals",
+      "capability_refs": [
+        "CAP-MATH-ISOLATE",
+        "CAP-MATH-EXACTNESS"
+      ],
+      "solution_structure": [
+        "State the declared domain.",
+        "Apply reversible operations, naming each.",
+        "Report the solution exactly.",
+        "Verify by substitution into the original."
+      ],
+      "demand_dimensions": {
+        "model_choice": "None initially; later items require deciding whether a divisor may be zero.",
+        "representation_translation": "Words, symbolic statement and a position on the number line.",
+        "reasoning_steps": "Domain, isolate, report exactly, verify.",
+        "novelty": "Changing the coefficients is same-family practice; a non-terminating solution changes the demand."
+      },
+      "safe_variations": [
+        "Change the rational coefficients while keeping a non-zero."
+      ],
+      "transfer_boundaries": [
+        "An equation that is not linear in the unknown is outside this family.",
+        "Introducing a divisor containing the unknown changes the required reasoning and is not a safe variation."
+      ],
+      "common_wrong_routes": [
+        "Dividing before checking the divisor is non-zero.",
+        "Converting the exact solution to a decimal and treating that as the answer."
+      ],
+      "item_refs": [
+        "Q-MATH-LINEAR-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-MATH-LINEAR-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-MATH-AUTHOR",
+      "original_identifier": "AUTHOR-MATH-01",
+      "stem": "Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The unknown ranges over the rationals.",
+        "Give the solution exactly, not as a rounded decimal."
+      ],
+      "figure_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "verification": {
+        "validator_id": "LINEAR_EQUATION",
+        "bindings": {
+          "a": "DAT-MATH-A",
+          "b": "DAT-MATH-B",
+          "c": "DAT-MATH-C"
+        },
+        "domain": "RATIONAL"
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "x = 7/3.",
+        "reasoning": [
+          "Subtract 2 from both sides; the operation is reversible, giving 3x = 7.",
+          "Divide both sides by 3, which is non-zero and therefore reversible, giving x = 7/3.",
+          "Substitute back: 3 times 7/3 is 7, and 7 plus 2 is 9, exactly as required."
+        ],
+        "check": "The truncation 2.333333333333 gives 8.999999999999, not 9, so the exact fraction is the solution and the decimal is not.",
+        "acceptable_alternatives": [
+          "Any equivalent exact form, such as 14/6 before reduction."
+        ],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "numeric": {
+          "value": "7/3",
+          "unit": "dimensionless"
+        },
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-MATH-ISOLATE",
+      "secondary_capability_refs": [
+        "CAP-MATH-EXACTNESS",
+        "CAP-MATH-SUBSTITUTE"
+      ],
+      "family_ref": "FAM-MATH-LINEAR",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        },
+        {
+          "core": "CORE2A",
+          "role": "PLANNED_WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The equation is a claim about x, not an instruction. What single operation on both sides would leave x with nothing added to it?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Take 2 off both sides first, then deal with the 3 that multiplies x. Say, for each step, why it can be undone.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "x = 7/3. Writing it as 2.33 would be a different claim: substituting 2.33 gives 8.99, not 9.",
+          "reveals": "ANSWER"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "id": "DAT-MATH-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "dimensionless",
+      "symbol": "a",
+      "meaning": "Coefficient of the unknown in the worked equation",
+      "locator": "Author-created for this package.",
+      "relation_ref": "REL-MATH-LINEAR-SOLUTION"
+    },
+    {
+      "id": "DAT-MATH-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2,
+      "unit": "dimensionless",
+      "symbol": "b",
+      "meaning": "Constant added on the left of the worked equation",
+      "locator": "Author-created for this package.",
+      "relation_ref": "REL-MATH-LINEAR-SOLUTION"
+    },
+    {
+      "id": "DAT-MATH-C",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 9,
+      "unit": "dimensionless",
+      "symbol": "c",
+      "meaning": "Value the left side must equal in the worked equation",
+      "locator": "Author-created for this package.",
+      "relation_ref": "REL-MATH-LINEAR-SOLUTION"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "unit": "dimensionless",
+      "relation_ref": "REL-MATH-EXACTNESS",
+      "id": "DAT-MATH-EXACT-SOLUTION",
+      "value": "7/3",
+      "symbol": "x",
+      "meaning": "The solution of the worked equation, recorded exactly",
+      "locator": "Author-created for this package; the exact value the equation selects."
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "unit": "dimensionless",
+      "relation_ref": "REL-MATH-EXACTNESS",
+      "id": "DAT-MATH-TRUNCATED-SOLUTION",
+      "value": 2.333333333333,
+      "symbol": "x~",
+      "meaning": "A twelve-digit truncation of the solution, which is a different number",
+      "locator": "Author-created for this package; the value a calculator display invites."
+    },
+    {
+      "id": "EQ-MATH-LINEAR-FORM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "EQUATION",
+      "value": "<math display=\"block\"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>-</mo><mi>b</mi></mrow><mi>a</mi></mfrac></mrow></math>",
+      "meaning": "Renderable form of the linear solution relation",
+      "locator": "Author-created for this package.",
+      "relation_ref": "REL-MATH-LINEAR-SOLUTION"
+    }
+  ],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-MATH-STUDY-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Completed construction of the solving argument",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-MATH-CONSTRAINT",
+        "MIC-MATH-EQUIVALENT-OPS",
+        "MIC-MATH-EXACT-SOLUTION"
+      ],
+      "entry_needs": [
+        "No learner-percentage filter; prerequisite substitution skill assumed or bridged."
+      ],
+      "learner_actions": [
+        "Follow each reversible step and say what makes it reversible.",
+        "Compare exact and truncated substitutions."
+      ],
+      "help_plan": [
+        "Show the substitution test before any rearrangement.",
+        "Keep the domain statement beside the relation."
+      ],
+      "reveal_plan": "Completed reasoning is visible throughout the declarative study product.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-MATH-AUTHOR",
+          "purpose": "Worked derivation",
+          "reason": "No external source corpus was supplied for this seed."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not present this as prescribed CBSE chapter content; it is carried as an extension."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-MATH-STUDY-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Predict, reconstruct and diagnose the solving argument",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-MATH-CONSTRAINT",
+        "MIC-MATH-EQUIVALENT-OPS",
+        "MIC-MATH-EXACT-SOLUTION"
+      ],
+      "entry_needs": [
+        "Same intrinsic coverage as the declarative route."
+      ],
+      "learner_actions": [
+        "Predict whether a candidate value satisfies the statement.",
+        "Reconstruct why dividing by an expression containing the unknown can lose a solution.",
+        "Diagnose an answer given as a rounded decimal."
+      ],
+      "help_plan": [
+        "Ask which operation was applied to both sides.",
+        "Offer the substitution check before revealing the model reasoning."
+      ],
+      "reveal_plan": "Attempt first is recommended; model responses stay accessible for self-study.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-MATH-AUTHOR",
+          "purpose": "Model responses",
+          "reason": "Authored alongside the declarative route to keep coverage identical."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not depend on a tutor for closure; every prompt has a model response."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-MATH-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Worked practice on exact rational solutions",
+      "cores": [
+        "CORE2A"
+      ],
+      "microtopic_refs": [
+        "MIC-MATH-EQUIVALENT-OPS",
+        "MIC-MATH-EXACT-SOLUTION"
+      ],
+      "entry_needs": [
+        "Unknown personal knowledge; design preview only."
+      ],
+      "learner_actions": [
+        "Inspect a fully worked exact solution and its verification."
+      ],
+      "help_plan": [
+        "Name the reversible operation at each step.",
+        "Contrast the exact substitution with a truncated one."
+      ],
+      "reveal_plan": "Worked solution visible; no personalised routing is claimed.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-MATH-AUTHOR",
+          "purpose": "Candidate question",
+          "reason": "No frozen owner question corpus was supplied for this seed."
+        }
+      ],
+      "when_not_suitable": [
+        "Not a calibrated learner prescription or an official item bank."
+      ],
+      "practice_profile_ref": "PROFILE-MATH-PREVIEW"
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [
+    {
+      "id": "ISS-MATH-REVIEW",
+      "affected_refs": [
+        "MIC-MATH-CONSTRAINT",
+        "MIC-MATH-EQUIVALENT-OPS",
+        "MIC-MATH-EXACT-SOLUTION"
+      ],
+      "classification": "SCIENTIFIC_REVIEW_REQUIRED",
+      "description": "Author-created teaching with no independent mathematical or pedagogical review.",
+      "next_action": "Route to an independent reviewer who inspects the original statements and the worked verifications."
+    },
+    {
+      "id": "ISS-MATH-NO-CORPUS",
+      "affected_refs": [
+        "Q-MATH-LINEAR-01"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "One authored candidate question; no frozen or official item bank was acquired, so Core2 remains held for this bucket.",
+      "next_action": "Acquire an authorised question corpus and switch the run to a frozen-supplied source."
+    },
+    {
+      "id": "ISS-MATH-LIST-BINDING",
+      "affected_refs": [
+        "FAM-MATH-LINEAR"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "POLYNOMIAL_VALUE and POLYNOMIAL_FROM_ROOTS take a list of coefficients, but the engine binds one datum per variable, so those families cannot yet be bound from the library.",
+      "next_action": "Extend the binding model to allow a variable to bind an ordered list of data before authoring polynomial buckets."
+    },
+    {
+      "id": "ISS-MATH-EXIT-DATA",
+      "affected_refs": [
+        "MIC-MATH-EQUIVALENT-OPS"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The exit task poses a case whose coefficients are not declared as data records, so no validator can be bound to its answer. The answer is author-checked only, while the worked question's answer is machine-checked.",
+      "next_action": "Declare the exit case's values as data records and bind the exit oracle to them, as the worked question already does."
+    }
+  ],
+  "extensions": {
+    "mathematics:domain_regime": "RATIONAL_EXACT",
+    "library:local_question_banks": []
+  }
+}

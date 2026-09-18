@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-OPTICS-REFLECTION-MIRRORS-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Ray Optics, Reflection & Refraction. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-OPTICS-REFLECTION-MIRRORS",
+          "packet_digest": "5e0170dd2734e62427815df23ac2ebba7e899adbc644e862be78491d4734a75e",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Ray Optics, Reflection & Refraction",
+      "topic": "Light - Reflection and Refraction",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-OPTICS-REFLECTION-MIRRORS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-OPTICS-REFLECTION-MIRRORS",
+          "packet_digest": "5e0170dd2734e62427815df23ac2ebba7e899adbc644e862be78491d4734a75e",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Ray Optics, Reflection & Refraction",
+      "bucket_id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Cartesian Sign Convention Precondition**: All distances are measured from the optical pole/center. Distances measured in the direction of incident light are positive; opposite to incident light are negative. Heights upward from principal axis are positive; downward are negative.",
+        "**Paraxial Ray Approximation**: Spherical mirror formula $\\frac{1}{v} + \\frac{1}{u} = \\frac{1}{f}$ and lens formula $\\frac{1}{v} - \\frac{1}{u} = \\frac{1}{f}$ hold strictly for rays close to and making small angles with the principal axis ($\\sin\\theta \\approx \\tan\\theta \\approx \\theta$)."
+      ],
+      "inferential_jump": "Specular reflection: incident ray, reflected ray, and surface normal lie in the same plane; angle of incidence equals angle of reflection ($\\theta_i = \\theta_r$).",
+      "teaching_path": [
+        {
+          "id": "ATOM-OPT-03",
+          "role": "VERIFY",
+          "action": "Transverse magnification: $m = -\\frac{v}{u} = \\frac{h_i}{h_o}$. Real inverted images have $m < 0$; virtual erect images have $m > 0$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-OPT-04",
+          "role": "TRANSFORM",
+          "action": "Principal ray tracing algorithm: (1) Ray parallel to axis reflects through focus, (2) Ray through focus reflects parallel to axis, (3) Ray through center of curvature retraces path.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-OPT-05",
+          "role": "DECLARE",
+          "action": "Identifying virtual objects where converging incident rays strike an optical element before meeting.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Claiming a camera cannot record an image in a plane mirror because the image is virtual.",
+          "diagnostic_prompt": "",
+          "repair": "A virtual image acts as a real divergence source for the camera's converging lens, which projects a real image onto the camera sensor."
+        },
+        {
+          "wrong_idea": "Believing that covering the top half of a concave mirror makes only the bottom half of the object visible.",
+          "diagnostic_prompt": "",
+          "repair": "Every point of the object sends infinite rays to the entire mirror surface. Covering half the mirror reduces image brightness by 50% without altering the complete field of view."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-OPTICS-REFLECTION-MIRRORS",
+      "packet_digest": "5e0170dd2734e62427815df23ac2ebba7e899adbc644e862be78491d4734a75e",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

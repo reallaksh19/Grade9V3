@@ -1,0 +1,343 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-VEC-ADD-SUB-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Authored conceptual rung for operand-order orientation in vector subtraction. Quantitative magnitude, addition, unit-vector and cross-product rungs remain blocked on engineering-gate relations and are not promoted here.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-VEC-ADD-SUB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track A authored vector-order construction",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-vec-add-sub.v1.json",
+      "edition": "0.1.0",
+      "section": "R3 operand-order orientation",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external curriculum or scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides the conceptual operand-order rung without duplicating the existing graphical-subtraction construction; that existing capability is a prerequisite.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-VEC-ADD-SUB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Vector addition, subtraction and orientation",
+      "topic": "Vectors / Motion in a Plane",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Only the operand-order discrimination is authored here; the surrounding quantitative vector operations remain registry-blocked.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-VECTOR-REPRESENTATION"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-VEC-ORDER",
+          "statement": "Treat subtraction order as part of the requested directed result; swapping the order reverses orientation rather than merely changing notation."
+        }
+      ],
+      "scope": {
+        "covers": "Qualitative operand-order orientation for vector subtraction.",
+        "excluded": [
+          "Unit-vector normalization and magnitude formulae.",
+          "Quantitative vector-addition resultant formulae.",
+          "Cross-product magnitude and axial-orientation formulae."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-VEC-SUB-ORDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish the orientation of A minus B from B minus A.",
+      "success_criterion": "State that swapping the subtraction order reverses the directed result.",
+      "prerequisite_refs": [
+        "CAP-GRAPHICAL-SUBTRACT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-VEC-SUB-ORDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Operand order reverses a subtraction result",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-SUB-ORDER",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The construction may already be familiar, but learners can still preserve the same arrow direction after swapping the words.",
+      "entry_assumptions": [
+        "Can construct one graphical subtraction by reversing the second arrow before tail-to-head addition."
+      ],
+      "inferential_jump": "Swapping which directed quantity comes first in a subtraction reverses the result's direction while leaving its length unchanged.",
+      "teaching_path": [
+        {
+          "id": "VEC3-1",
+          "role": "DECLARE",
+          "action": "Write two ordered requests for the same pair: A minus B, then B minus A.",
+          "why_valid": "Keeping the pair fixed isolates order as the only change.",
+          "inputs": [],
+          "output": "case 1: A minus B.  case 2: B minus A."
+        },
+        {
+          "id": "VEC3-2",
+          "role": "TRANSFORM",
+          "action": "For A minus B, follow A and then the reversed B arrow using the already-learned subtraction construction.",
+          "why_valid": "The prerequisite construction gives a directed result for the stated order without introducing a new rule.",
+          "inputs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "output": "A - B -> one completed arrow from the common start to the construction endpoint."
+        },
+        {
+          "id": "VEC3-3",
+          "role": "VERIFY",
+          "action": "Repeat with the order swapped and place both completed arrows from the same start for comparison.",
+          "why_valid": "Only the order changed, so direct superposition exposes what order does to orientation.",
+          "inputs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "output": "B minus A: same drawn length as the first result, pointing exactly the opposite way."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Vector subtraction is commutative in the same way as vector addition.",
+          "diagnostic_prompt": "If A minus B points east, must B minus A point east too?",
+          "repair": "Keep the same two inputs, swap only their order, and compare the two completed arrows from one start; the second points opposite the first."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two labelled arrows A and B are shown, and a completed construction for A minus B points southeast. Without recalculating its length, describe the direction of B minus A and explain the check you used.",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "B minus A points northwest: exactly opposite to the shown result, with the same length.",
+          "reasoning": [
+            "The two requests use the same pair and differ only in order.",
+            "Swapping the order swaps which arrow is reversed in the known construction.",
+            "Placing both results from one start makes the second point opposite the first."
+          ],
+          "check": "Swap the labels again; the direction must return to southeast without changing the length.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer asserts no computed magnitude. It checks the qualitative reversal caused by swapping operand order."
+        }
+      },
+      "research_contribution": "Author-created distinction layered on the existing graphical-subtraction capability. The candidate packet was consulted as non-authoritative input; no packet claim is promoted.",
+      "prerequisite_refs": [
+        "CAP-GRAPHICAL-SUBTRACT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A minus B has already been drawn pointing southeast. Before drawing anything else, where do you expect B minus A to point?",
+          "defensible_answer": "Northwest, because swapping the order reverses the completed directed result while keeping its length."
+        },
+        "attempt": {
+          "produces": "A second arrow, drawn from the same start as the first, showing the predicted direction for B minus A plus one sentence naming what changed.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The second arrow points exactly opposite the first.",
+              "evidence_of": "Treating operand order as directional information."
+            },
+            {
+              "criterion": "The explanation says order changed while the input pair stayed fixed.",
+              "evidence_of": "Isolating the cause of the reversal instead of appealing to a memorized sign change."
+            }
+          ],
+          "accepted": [
+            "A northwest arrow from the same start, the same length as the southeast arrow, with the note 'same pair; order swapped, so direction reverses.'"
+          ],
+          "rejected": [
+            "Another southeast arrow labelled B minus A. This treats subtraction as if swapping operands left the directed result unchanged."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which of the two original arrows is second in A minus B, and what does the construction do to that second arrow?",
+              "why_this_ask": "It reconnects the new order question to the already-owned graphical construction.",
+              "from_step_ref": "VEC3-2"
+            },
+            {
+              "ask": "Now make B the first quantity. Which arrow is second this time?",
+              "why_this_ask": "The learner has to identify the single structural change before seeing the result."
+            },
+            {
+              "ask": "Draw the swapped-order result from the same start as the first. Which way does it point relative to the first?",
+              "why_this_ask": "Superposition turns the order change into a visible orientation change.",
+              "from_step_ref": "VEC3-3"
+            },
+            {
+              "ask": "What stayed unchanged when the order swapped?",
+              "why_this_ask": "Naming the unchanged length prevents the learner from treating reversal as an unrelated second calculation."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path demonstrates both orders. The learner route begins with a prediction from one completed order, then reconstructs the second and uses superposition to test the prediction."
+        },
+        "boundary_test": {
+          "prompt": "Suppose A and B are identical arrows. What do both subtraction orders produce, and what happens to the idea of an opposite direction?",
+          "answer": "Both give the zero result. Its length is zero, so there is no direction to reverse.",
+          "confirms": "The reversal statement applies to a directed nonzero result; the zero case is the limiting boundary."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-VEC-ADD-SUB-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal operand-order reversal",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-SUB-ORDER"
+      ],
+      "entry_needs": [
+        "Graphical subtraction construction is available from the vector-foundation prerequisite."
+      ],
+      "learner_actions": [
+        "Compare the two operand orders from one common start.",
+        "Explain which aspect changes when order swaps."
+      ],
+      "help_plan": [
+        "Show the completed first-order construction before the comparison.",
+        "Keep the same scale and start point for both results."
+      ],
+      "reveal_plan": "The completed two-order construction is visible with the reversal check beside it.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+          "purpose": "Conceptual construction",
+          "reason": "The rung is an author-created distinction and no external source is being promoted."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to teach vector magnitude formulae or cross-product calculations."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-VEC-ADD-SUB-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Predict operand-order reversal",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-SUB-ORDER"
+      ],
+      "entry_needs": [
+        "Same intrinsic prerequisite as Core1A; no learner-percentage assumption."
+      ],
+      "learner_actions": [
+        "Predict the swapped-order direction before reconstructing it.",
+        "Use the rubric and boundary case to close the attempt."
+      ],
+      "help_plan": [
+        "Ask which input is second before offering any completed arrow.",
+        "Reveal the superposed comparison only after the learner commits."
+      ],
+      "reveal_plan": "Prediction and construction precede the closed reveal; the full answer remains available for self-study.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+          "purpose": "Elicitation route",
+          "reason": "The self-tutor cycle is authored specifically for this rung."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not replace the prerequisite graphical-subtraction teaching with this order check."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-VEC-ORDER-LENGTH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 5,
+      "unit": "diagram-unit",
+      "symbol": "L",
+      "meaning": "Illustrative fixed arrow length used only to keep the qualitative operand-order comparison at one scale.",
+      "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    }
+  ]
+}

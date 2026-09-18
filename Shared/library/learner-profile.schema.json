@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/learner-profile.schema.json",
+  "title": "Learner profile",
+  "description": "What is known about one learner, keyed by capability. Outside every subject, because a learner is not a property of a physics package: the two committed profiles lived inside one, so the same learner studying a second bucket needed a duplicate. Capabilities cross subjects, so this must too.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_id",
+    "provenance",
+    "held",
+    "measured_fit_claim"
+  ],
+  "properties": {
+    "profile_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier."
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What a person calls this profile."
+    },
+    "provenance": {
+      "enum": [
+        "DIAGNOSTIC",
+        "OWNER_ESTIMATE",
+        "SYNTHETIC_TEST",
+        "UNKNOWN"
+      ],
+      "description": "Where the knowledge came from. DIAGNOSTIC requires an observation per DEMONSTRATED capability. SYNTHETIC_TEST is the only value an agent may write, and such a profile is never routed."
+    },
+    "held": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "DEMONSTRATED",
+          "UNCERTAIN",
+          "MISSING"
+        ],
+        "description": "Per capability, and never inferred from an aggregate. The role specs forbid reading mastery of a prerequisite off a high overall score, so an entry rung is selected from this map or from a waiver -- never from a percentage."
+      },
+      "minProperties": 0,
+      "description": "capability id -> state. The vector an entry rung is selected from."
+    },
+    "knowledge_percentage": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "A summary the system stores and never computes from. Selecting anything from it would be the aggregate inference the role specs forbid."
+    },
+    "support_posture": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Standing instruction about scaffolding, from the purpose vocabulary's declared values."
+    },
+    "observation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": null
+      },
+      "minItems": 0
+    },
+    "owner_waiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instruction_ref",
+        "instruction"
+      ],
+      "description": "Required when there is no evidence. Absent evidence and absent waiver means personalised acceptance is held, not assumed.",
+      "properties": {
+        "instruction_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": null
+        },
+        "instruction": {
+          "type": "string",
+          "minLength": 1,
+          "description": null
+        }
+      }
+    },
+    "measured_fit_claim": {
+      "type": "boolean",
+      "description": "Must stay false unless independently established. A successfully generated book is not evidence of fit."
+    }
+  }
+}

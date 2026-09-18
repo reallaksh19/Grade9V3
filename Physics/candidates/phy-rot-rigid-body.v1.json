@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-ROT-RIGID-BODY-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Rotational Dynamics & Angular Momentum Conservation. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-ROT-RIGID-BODY",
+          "packet_digest": "6afc3619a9023af045bcb9d481fbbf1a439ab3ae03c40e635db7f92945d6ae4d",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Rotational Dynamics & Angular Momentum Conservation",
+      "topic": "System of Particles and Rotational Motion",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-ROT-RIGID-BODY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-ROT-RIGID-BODY",
+          "packet_digest": "6afc3619a9023af045bcb9d481fbbf1a439ab3ae03c40e635db7f92945d6ae4d",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Rotational Dynamics & Angular Momentum Conservation",
+      "bucket_id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Angular Momentum Origin Precondition**: Angular momentum $\\vec{L} = \\vec{r} \\times \\vec{p}$ and torque $\\vec{\\tau} = \\vec{r} \\times \\vec{F}$ **must always be defined with respect to the same specified origin point**. Shifting the origin changes both torque and angular momentum.",
+        "**Rolling Without Slipping Condition**: Pure rolling on a stationary surface requires the contact point instantaneous velocity to be zero: $v_{\\text{cm}} = \\omega R$. Static friction performs zero net work during pure rolling."
+      ],
+      "inferential_jump": "Moment of inertia as rotational inertia: $I = \\int r^2 dm$; parallel axis theorem $I = I_{\\text{cm}} + M d^2$; perpendicular axis theorem $I_z = I_x + I_y$ for laminar bodies.",
+      "teaching_path": [
+        {
+          "id": "ATOM-ROT-03",
+          "role": "VERIFY",
+          "action": "Conservation of angular momentum: $\\sum \\vec{\\tau}_{\\text{ext}} = 0 \\implies \\vec{L}_{\\text{total}} = \\text{const} \\implies I_1 \\omega_1 = I_2 \\omega_2$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-ROT-04",
+          "role": "TRANSFORM",
+          "action": "Total kinetic energy of rolling body: $K_{\\text{total}} = K_{\\text{trans}} + K_{\\text{rot}} = \\frac{1}{2}M v_{\\text{cm}}^2 + \\frac{1}{2}I_{\\text{cm}}\\omega^2 = \\frac{1}{2}M v_{\\text{cm}}^2\\left(1 + \\frac{k^2}{R^2}\\right)$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-ROT-05",
+          "role": "DECLARE",
+          "action": "Analyzing acceleration down an incline: $a_{\\text{cm}} = \\frac{g\\sin\\theta}{1 + I_{\\text{cm}}/(MR^2)}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming friction always points backward on a rolling cylinder or bicycle wheel.",
+          "diagnostic_prompt": "",
+          "repair": "Static friction opposes relative slippage between surfaces. On the rear driven wheel of a bicycle, friction points *forward*, propelling the bike forward."
+        },
+        {
+          "wrong_idea": "Applying $L_i = L_f$ about an origin where an external normal force exerts non-zero torque.",
+          "diagnostic_prompt": "",
+          "repair": "Angular momentum is conserved only about an axis or point where the net external torque is zero ($\\tau_{\\text{ext}} = 0$)."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-ROT-RIGID-BODY",
+      "packet_digest": "6afc3619a9023af045bcb9d481fbbf1a439ab3ae03c40e635db7f92945d6ae4d",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

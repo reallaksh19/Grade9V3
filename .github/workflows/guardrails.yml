@@ -1,0 +1,112 @@
+name: guardrails
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install schema validator
+        run: pip install --quiet jsonschema
+
+      # Proves the guard detects a planted violation. Without this a guard that
+      # scanned nothing would pass vacuously.
+      - name: Topic independence guard — self-test
+        run: python3 Shared/tools/topic_independence_guard.py --selftest
+
+      - name: Topic independence guard — scan engine and tooling
+        run: python3 Shared/tools/topic_independence_guard.py
+
+      # A role spec may not require content the schema has nowhere to keep. Enforcing:
+      # the 68 findings this first reported are closed, 28 by correcting the spec's path
+      # and 40 by adding the field. It is its own step rather than part of the subject
+      # sweep because the specs and the schema are shared -- running it per subject would
+      # report one shared finding three times and attribute it to a subject that has no
+      # say in it.
+      - name: Role specs resolve against the library schema
+        run: python3 Shared/tools/spec_conformance.py --enforce
+
+      # A claim about a learner must be backed by what was seen, or say it is a waiver.
+      # Enforcing from the start: the store landed with its gate, and both committed
+      # profiles are waiver-backed with a null percentage, which is the honest value.
+      - name: Learner claims are backed by evidence or a waiver
+        run: python3 Shared/tools/learner_evidence.py --enforce
+
+      # A matrix may reference the library and may not restate or outrank it. Enforcing
+      # from the start: it has no backlog, because the schema and the gate landed before
+      # any matrix data did.
+      - name: Matrices reference the library without restating it
+        run: python3 Shared/tools/matrix_conformance.py --enforce
+
+      - name: Requests resolve to a plan, or refuse with a reason
+        run: python3 Shared/tools/resolve_request.py --enforce
+
+      - name: No ceiling forbids the word its own rung teaches
+        run: python3 Shared/tools/ceiling_audit.py --enforce
+
+      - name: Every published run declares what it was built from
+        run: python3 Shared/tools/publication_provenance.py --enforce
+
+      - name: Committed publications still verify against their inputs
+        run: python3 Shared/tools/republish.py
+
+      # A library may not invent a way of depicting its subject, and a figure bound to
+      # mathematics must say which part of the picture is which symbol. Runs inside the
+      # subject sweep below; this step is the standalone report, which names the record
+      # rather than only failing the sweep.
+      - name: Representations are backed by their subject's contract
+        run: python3 Shared/library/depiction.py --enforce
+
+      # Every path a role spec requires must survive compilation. Enforcing: the
+      # compiler now drops nothing the library holds. The paths nobody has authored yet
+      # are reported as a named backlog and do not fail this step, because a backlog
+      # that fails the build gets the build switched off rather than the backlog closed.
+      - name: Requirements survive compilation
+        run: python3 Shared/tools/spec_delivery.py --enforce --summary
+
+      # One tested module, not a workflow heredoc: subject discovery is protected by
+      # the suite, so CI cannot quietly go back to checking a single named subject.
+      - name: Every subject's contract, gate registries and library
+        run: python3 Shared/tools/check_subjects.py
+
+      # A contract may not claim a capability nothing backs. Enforcing now that the
+      # backlog it found is closed, so the claim and the code cannot drift apart again.
+      - name: Contract claims are backed by code
+        run: python3 Shared/tools/capability_audit.py --enforce
+
+      # --check compares the generated data file and the manifest without writing
+      # either, so it covers both artifacts and leaves the checkout untouched.
+      - name: Generated artifacts have not drifted
+        run: python3 Shared/tools/build_manifest.py --check
+
+      - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
+
+      - name: All JSON parses
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          from pathlib import Path
+          bad = []
+          for path in sorted(Path(".").rglob("*.json")):
+              if ".git" in path.parts:
+                  continue
+              try:
+                  json.loads(path.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  bad.append(f"{path}: {exc}")
+          if bad:
+              print("\n".join(bad))
+              sys.exit(1)
+          print("all JSON documents parse")
+          PY

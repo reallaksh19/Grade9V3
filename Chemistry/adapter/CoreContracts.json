@@ -1,0 +1,188 @@
+{
+  "schema_version": "2.0.0",
+  "subject": "Chemistry",
+  "contract_version": "2.0.0",
+  "learner_products": {
+    "CORE1": {
+      "role": "COMPACT_ORIENTATION_NOTES",
+      "production": "COMPILED"
+    },
+    "CORE2": {
+      "role": "SOURCE_QUESTION_CUSTODY",
+      "production": "COMPILED"
+    },
+    "CORE1A": {
+      "role": "DECLARATIVE_STUDY",
+      "production": "COMPILED"
+    },
+    "CORE1B": {
+      "role": "CONCEPTUAL_SELF_TUTOR",
+      "production": "COMPILED"
+    },
+    "CORE2A": {
+      "role": "SOLUTION_APPRENTICESHIP",
+      "production": "COMPILED"
+    },
+    "CORE2B": {
+      "role": "APPLICATION_AND_TRANSFER_TUTOR",
+      "production": "COMPILED"
+    }
+  },
+  "equation_semantic_fields": [
+    "species_and_composition",
+    "conservation_basis",
+    "representation_level",
+    "model_not_mechanism"
+  ],
+  "required_symbol_fields": [
+    "symbol",
+    "meaning",
+    "species_role"
+  ],
+  "required_symbol_fields_reason": "A Chemistry symbol needs its role in the species accounting, since the same letter may name an element, a species or an amount.",
+  "validator_catalogue": [
+    {
+      "id": "PARTICLE_ATOM_COUNT",
+      "status": "PROPOSED",
+      "inputs": [
+        "species",
+        "species_authority_ref",
+        "amounts"
+      ],
+      "result": {
+        "shape": "ELEMENT_COUNT_MAP",
+        "comparison": "EXACT_INTEGER_MAP_EQUALITY"
+      },
+      "requires": [
+        "governed species composition with an authority reference",
+        "non-negative integer amounts"
+      ],
+      "proves": "The element totals follow exactly from the declared species compositions and amounts.",
+      "does_not_prove": "That the declared species are the species actually present, or that the amounts are physically achievable."
+    },
+    {
+      "id": "CONSERVATION_LEDGER",
+      "status": "PROPOSED",
+      "inputs": [
+        "species",
+        "species_authority_ref",
+        "reactant_coefficients",
+        "product_coefficients"
+      ],
+      "result": {
+        "shape": "CONSERVATION_LEDGER",
+        "fields": [
+          "reactant_atoms",
+          "product_atoms",
+          "balanced"
+        ],
+        "comparison": "EXACT_INTEGER_MAP_EQUALITY"
+      },
+      "requires": [
+        "governed species composition",
+        "positive integer coefficients on both sides"
+      ],
+      "proves": "Whether atom counts balance across the declared equation.",
+      "does_not_prove": "That the reaction occurs, that charge or phase are correct, or that the equation represents a real mechanism."
+    },
+    {
+      "id": "REACTION_EXTENT_COUNTS",
+      "status": "PROPOSED",
+      "inputs": [
+        "species",
+        "species_authority_ref",
+        "reactant_coefficients",
+        "product_coefficients",
+        "available_reactants"
+      ],
+      "result": {
+        "shape": "EXTENT_MAP",
+        "fields": [
+          "products",
+          "leftover_reactants"
+        ],
+        "comparison": "EXACT_INTEGER_MAP_EQUALITY"
+      },
+      "requires": [
+        "balanced equation",
+        "model = COMPLETE_REACTION_INTEGER_PARTICLE_ACCOUNTING",
+        "reactant inventory matching the equation's reactants"
+      ],
+      "proves": "Limiting-reactant accounting under a complete-reaction integer particle model.",
+      "does_not_prove": "Equilibrium behaviour, rate, yield, or that the reaction goes to completion in reality."
+    }
+  ],
+  "representation_kinds": [
+    {
+      "id": "PARTICLE_DIAGRAM",
+      "status": "PROPOSED",
+      "requires": [
+        "declared representation level",
+        "particle identity and count",
+        "no implied mechanism"
+      ]
+    },
+    {
+      "id": "SYMBOLIC_EQUATION",
+      "status": "PROPOSED",
+      "requires": [
+        "subscripts versus coefficients distinguished",
+        "charges",
+        "phase labels",
+        "reaction arrow semantics"
+      ]
+    },
+    {
+      "id": "ENERGY_PROFILE",
+      "status": "PROPOSED",
+      "requires": [
+        "declared reference state",
+        "axis meaning",
+        "no mechanistic claim from a schematic"
+      ]
+    }
+  ],
+  "risks": [
+    "coefficient versus subscript",
+    "species and charge identity",
+    "macroscopic versus particle interpretation",
+    "stoichiometry versus mechanism"
+  ],
+  "curriculum": {
+    "boards": [
+      "CBSE"
+    ],
+    "grades": [
+      9,
+      10,
+      11
+    ],
+    "tiers": [
+      "NOT_IN_JEE",
+      "JEE_MAINS",
+      "JEE_ADVANCED",
+      "BOTH"
+    ],
+    "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
+    "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
+  },
+  "source_truth": "ORIGINAL_EVIDENCE_WITH_EXACT_PROVENANCE",
+  "renderer_authority": "COMPOSITION_ONLY",
+  "new_generated_family_policy": "EXPLICIT_VALIDATOR_AND_SUBJECT_REVIEW_REQUIRED",
+  "release_authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+  "subject_specific_notes": {
+    "species_authority": "Every quantitative check requires a governed species composition with an authority reference. Absent that reference the check fails closed rather than inferring composition from a formula string.",
+    "representation_triplet": "Particle, symbolic and macroscopic descriptions are different claims about the same system. A product must state which level it is operating at; translating between levels is itself a taught transition, not a formatting choice.",
+    "intrinsic_depth": "Core1A/Core1B depth follows the subtopic's intrinsic badge. Earlier Chemistry guidance that tied study depth to learner readiness is superseded by the intrinsic-depth rule in Shared/roles."
+  },
+  "provenance": {
+    "ported_from": "reallaksh19/Common, Grade 9/V3B/Chemistry/CoreContracts.json at contract_version 1.0.0",
+    "subject_basis": "23d859a8fa0d07e0790d323767dc7fd08f396c5d",
+    "port_head": "f9bd41b14174b718e534fef1a6cc5bf59bff5ce6",
+    "changes_on_port": [
+      "Promoted to six learner products. The source contract declared only CORE1/CORE2/CORE1A/CORE2A; CORE1B and CORE2B are new obligations for this subject.",
+      "Expanded validator_ids into a validator_catalogue recording integer-count map result shapes, which the Physics-shaped scalar-with-unit comparison cannot represent.",
+      "Recorded the species-authority, representation-level and intrinsic-depth constraints that the shared engine must respect for this subject."
+    ]
+  }
+}

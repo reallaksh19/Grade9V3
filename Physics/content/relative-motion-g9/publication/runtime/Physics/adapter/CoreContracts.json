@@ -1,0 +1,266 @@
+{
+  "schema_version": "2.0.0",
+  "subject": "Physics",
+  "contract_version": "2.0.0",
+  "learner_products": {
+    "CORE1": {
+      "role": "COMPACT_ORIENTATION_NOTES",
+      "production": "COMPILED"
+    },
+    "CORE2": {
+      "role": "SOURCE_QUESTION_CUSTODY",
+      "production": "COMPILED"
+    },
+    "CORE1A": {
+      "role": "DECLARATIVE_STUDY",
+      "production": "COMPILED"
+    },
+    "CORE1B": {
+      "role": "CONCEPTUAL_SELF_TUTOR",
+      "production": "COMPILED"
+    },
+    "CORE2A": {
+      "role": "SOLUTION_APPRENTICESHIP",
+      "production": "COMPILED"
+    },
+    "CORE2B": {
+      "role": "APPLICATION_AND_TRANSFER_TUTOR",
+      "production": "COMPILED"
+    }
+  },
+  "equation_semantic_fields": [
+    "model_assumptions",
+    "axis_and_sign",
+    "dimensions",
+    "physical_interpretation"
+  ],
+  "required_symbol_fields": [
+    "symbol",
+    "meaning",
+    "unit",
+    "dimension"
+  ],
+  "required_symbol_fields_reason": "A Physics symbol is meaningless without its unit and dimensions; dimensional consistency is a check the subject can actually run.",
+  "validator_catalogue": [
+    {
+      "id": "SPEED_FROM_COMPONENTS",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "vx",
+        "vy"
+      ],
+      "input_units": {
+        "vx": "m/s",
+        "vy": "m/s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [],
+      "proves": "The stated magnitude follows from the two declared perpendicular components.",
+      "does_not_prove": "That the components themselves were derived correctly, or that the frame was chosen correctly."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_VELOCITY",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "a",
+        "t"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "a": "m/s^2",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = CONSTANT_ACCELERATION",
+        "axis_convention declared",
+        "t >= 0"
+      ],
+      "proves": "The final velocity follows from the declared initial velocity, acceleration and elapsed time.",
+      "does_not_prove": "That constant acceleration is the right model for the situation."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_INITIAL_VELOCITY",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "v",
+        "a",
+        "t"
+      ],
+      "input_units": {
+        "v": "m/s",
+        "a": "m/s^2",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = CONSTANT_ACCELERATION",
+        "axis_convention declared",
+        "t >= 0"
+      ],
+      "proves": "The initial velocity follows by inversion of the constant-acceleration relation.",
+      "does_not_prove": "That constant acceleration is the right model for the situation."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_EVENT_TIME",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "v",
+        "a"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "v": "m/s",
+        "a": "m/s^2"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = CONSTANT_ACCELERATION",
+        "axis_convention declared",
+        "a != 0",
+        "result >= 0"
+      ],
+      "proves": "The elapsed time to reach the stated velocity under the declared acceleration.",
+      "does_not_prove": "That the event occurs within the physical situation's validity window."
+    },
+    {
+      "id": "APEX_STATE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "ux",
+        "uy",
+        "g"
+      ],
+      "input_units": {
+        "ux": "m/s",
+        "uy": "m/s",
+        "g": "m/s^2"
+      },
+      "result": {
+        "shape": "STRUCTURED_STATE",
+        "fields": [
+          "time_s",
+          "velocity_m_s",
+          "acceleration_m_s2"
+        ],
+        "comparison": "FIELDWISE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "model = NO_DRAG_CONSTANT_G_UPWARD_POSITIVE",
+        "g > 0",
+        "uy > 0"
+      ],
+      "proves": "The apex time and state under a no-drag constant-g model.",
+      "does_not_prove": "That drag is negligible in the described situation."
+    }
+  ],
+  "representation_kinds": [
+    {
+      "id": "VECTOR",
+      "status": "IMPLEMENTED",
+      "requires": [
+        "frame",
+        "axis labels",
+        "unit",
+        "symbol",
+        "equal coordinate scale"
+      ]
+    },
+    {
+      "id": "VECTOR_SUBTRACTION",
+      "status": "IMPLEMENTED",
+      "requires": [
+        "frame",
+        "both source vectors labelled",
+        "the reversed vector labelled",
+        "tail-to-head placement without rotation",
+        "resultant labelled with tail and head",
+        "one length scale for every vector drawn"
+      ],
+      "limits": [
+        "a construction, not a component readout; VECTOR draws one vector against axes, and using it here would hide the reversal that the construction exists to show"
+      ]
+    },
+    {
+      "id": "GRAPH",
+      "status": "IMPLEMENTED",
+      "requires": [
+        "strictly increasing x domain",
+        "axis units",
+        "explicit labelled y minimum when not zero"
+      ],
+      "limits": [
+        "piecewise-linear interpolation only; must not imply a curved model"
+      ]
+    },
+    {
+      "id": "FREE_BODY_DIAGRAM",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "RAY_DIAGRAM",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "CIRCUIT_SCHEMATIC",
+      "status": "PROPOSED"
+    }
+  ],
+  "risks": [
+    "velocity versus acceleration",
+    "component versus magnitude",
+    "diagram arrow semantics",
+    "model applicability"
+  ],
+  "curriculum": {
+    "boards": [
+      "CBSE"
+    ],
+    "grades": [
+      9,
+      10,
+      11
+    ],
+    "tiers": [
+      "NOT_IN_JEE",
+      "JEE_MAINS",
+      "JEE_ADVANCED",
+      "BOTH"
+    ],
+    "binding_authority": "EXACT_REGISTRY_BINDING_REQUIRED",
+    "unbound_scope_state": "HELD_INSUFFICIENT_AUTHORITY"
+  },
+  "source_truth": "ORIGINAL_EVIDENCE_WITH_EXACT_PROVENANCE",
+  "renderer_authority": "COMPOSITION_ONLY",
+  "new_generated_family_policy": "EXPLICIT_VALIDATOR_AND_SUBJECT_REVIEW_REQUIRED",
+  "release_authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+  "provenance": {
+    "ported_from": "reallaksh19/Common, Grade 9/V3B/Physics/CoreContracts.json at contract_version 1.3.0",
+    "subject_basis": "1232ecaf6061b38fd692c25662d2af9936d921aa",
+    "port_head": "f9bd41b14174b718e534fef1a6cc5bf59bff5ce6",
+    "changes_on_port": [
+      "Promoted the six learner products to the primary structure; dropped the legacy four-Core runtime role block (no legacy runtime exists in this repository).",
+      "Moved result units and comparison semantics out of engine code (publication_host/science.py RESULT_UNITS) into validator_catalogue, so the shared engine carries no subject-specific units table.",
+      "Added explicit proves / does_not_prove per validator family.",
+      "Added curriculum binding authority with a fail-closed unbound state, adapted from PR #350's physics-curriculum-scope-bindings registry."
+    ]
+  }
+}

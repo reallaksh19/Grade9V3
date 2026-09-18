@@ -1,0 +1,303 @@
+{
+  "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+  "topic": "Electricity",
+  "subtopic": "Current electricity, Ohm's law and circuit analysis",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate, and Core1A/Core1B may not consult one.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 10,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "potential difference",
+        "resistance",
+        "Ohm's law",
+        "Kirchhoff"
+      ],
+      "must_contain": [
+        "A boundary in a wire and equal time windows so current is read as charge-per-time.",
+        "A series path in which entering and leaving current can be compared."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the resistor value in one unbranched steady circuit",
+          "hold": "the charge flow has no junction and no place for steady charge accumulation",
+          "notice": "the current is the same on both sides even though other electrical quantities may change"
+        }
+      ],
+      "microtopic_ref": "MIC-ELEC-CURRENT-CONSERVATION"
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 22,
+      "provenance": "SYNTHESIS",
+      "aha": "Macroscopic current can be produced by a slow average drift of many charge carriers; the response of a circuit is not the travel time of one electron from source to load.",
+      "learner_owns": [
+        "R1: current is charge-per-time and charge is conserved through an unbranched element."
+      ],
+      "ceiling": [
+        "potential difference",
+        "resistance",
+        "Ohm's law",
+        "Kirchhoff"
+      ],
+      "must_contain": [
+        "The factors n, e, A, and drift speed connected to current as I = n e A v_d.",
+        "A separate comparison between carrier drift direction/speed and the propagation of the electrical influence through a circuit.",
+        "Current density J as a directed local flow quantity, with J = sigma E only under the stated material model."
+      ],
+      "misconception": {
+        "wrong_idea": "Electrons switched on at the source race through the whole wire to the lamp at nearly the speed of light.",
+        "diagnostic_prompt": "If carrier drift is extremely slow, why can a distant lamp respond almost immediately after the switch closes?",
+        "repair": "Separate carrier motion from signal propagation: many carriers already occupy the conductor and begin drifting when the electromagnetic influence reaches them."
+      },
+      "closure": "Use I = n e A v_d to explain how a measurable current can coexist with a small drift speed, and distinguish that drift from circuit response propagation.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "carrier number density or wire cross-sectional area",
+          "hold": "the same current magnitude and carrier charge",
+          "notice": "the required drift speed changes even though the macroscopic current does not"
+        },
+        {
+          "phase": 2,
+          "vary": "wire length between switch and lamp",
+          "hold": "the conductor type and local drift-speed scale",
+          "notice": "the circuit response is not explained by one carrier traversing the full wire"
+        },
+        {
+          "phase": 3,
+          "vary": "electric-field direction",
+          "hold": "an ohmic isotropic material at fixed conductivity",
+          "notice": "the conventional current-density direction follows E while electron drift is opposite"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 34,
+      "provenance": "SYNTHESIS",
+      "aha": "Potential difference describes energy transferred per unit charge; a voltage drop is not a loss of charge.",
+      "learner_owns": [
+        "R2: macroscopic current can coexist with slow carrier drift; circuit response is not one electron racing from source to load."
+      ],
+      "ceiling": [
+        "resistance law",
+        "equivalent resistance",
+        "loop equation",
+        "power formula"
+      ],
+      "must_contain": [
+        "The same charge amount moved through two components with different energy changes.",
+        "A distinction between charge flow and energy-per-charge."
+      ],
+      "misconception": {
+        "wrong_idea": "Voltage is the amount of current left after a component.",
+        "diagnostic_prompt": "Two series lamps carry the same current but have different voltage drops. What quantity changed across each lamp?",
+        "repair": "Keep the current ledger and the energy-per-charge ledger separate: voltage belongs to the second."
+      },
+      "closure": "Given equal current through two series components, explain how their voltage drops may differ without charge disappearing.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the component's energy transfer per coulomb",
+          "hold": "the same steady current passes through every component in the series path",
+          "notice": "voltage can change while current stays unchanged"
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 46,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "series equivalent",
+        "parallel equivalent",
+        "Kirchhoff",
+        "dynamic resistance"
+      ],
+      "must_contain": [
+        "Pairs of V and I measurements for one element.",
+        "A test for whether V/I stays constant as operating point changes."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "applied potential difference across one device",
+          "hold": "device identity and thermal condition",
+          "notice": "a constant-resistance model keeps V/I unchanged across operating points under the fixed condition, while a non-ohmic response need not"
+        },
+        {
+          "phase": 2,
+          "vary": "device temperature",
+          "hold": "the device material and measurement method",
+          "notice": "the same device can leave the constant-R model when conditions change"
+        }
+      ],
+      "microtopic_ref": "MIC-ELEC-OHMIC-MODEL-TEST"
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 60,
+      "provenance": "SYNTHESIS",
+      "aha": "Circuit topology decides which quantity is shared: series elements share current, parallel branches share potential difference.",
+      "learner_owns": [
+        "R4: use V = IR with constant R only when the element is modeled as ohmic under fixed conditions."
+      ],
+      "ceiling": [
+        "node equation",
+        "loop equation",
+        "power"
+      ],
+      "must_contain": [
+        "A node-and-branch picture before any equivalent-resistance arithmetic.",
+        "One series comparison and one parallel comparison using the same resistor values."
+      ],
+      "misconception": {
+        "wrong_idea": "Resistors combine by whichever formula gives the smaller or easier number.",
+        "diagnostic_prompt": "Two equal resistors are first placed end-to-end, then across the same two nodes. What stays equal in each arrangement?",
+        "repair": "Read the connections first: one path implies shared current; common endpoints imply shared potential difference."
+      },
+      "closure": "Given an unlabeled two-resistor connection, identify series or parallel from topology and write the correct equivalent-resistance relation.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "resistor values in one series path",
+          "hold": "there is exactly one current path",
+          "notice": "the same current passes through each element and voltage divides"
+        },
+        {
+          "phase": 2,
+          "vary": "resistor values in two branches sharing both endpoints",
+          "hold": "both branches connect to the same two nodes",
+          "notice": "the same potential difference appears across both branches and current divides"
+        }
+      ]
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 74,
+      "provenance": "SYNTHESIS",
+      "aha": "Electrical power is the rate of energy transfer, and P = VI can be rewritten using the element model only after the correct V-I relation is established.",
+      "learner_owns": [
+        "R5: topology determines shared current or shared potential difference before combination rules are used."
+      ],
+      "ceiling": [
+        "Kirchhoff loop",
+        "junction rule",
+        "network reduction"
+      ],
+      "must_contain": [
+        "The distinction between energy, energy-per-charge, and energy-per-time.",
+        "At least two equivalent power expressions derived from P = VI and V = IR."
+      ],
+      "misconception": {
+        "wrong_idea": "Using P = V^2/R or P = I^2R is always safe without checking what is held or whether the element is ohmic.",
+        "diagnostic_prompt": "Two ohmic resistors are compared once at equal voltage and once at equal current. Which one dissipates more power in each case?",
+        "repair": "Start from P = VI; substitute V = IR only after the circuit conditions tell you which quantity is common."
+      },
+      "closure": "Choose a valid power expression for a stated circuit condition and predict how dissipation changes when R changes.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "resistance at fixed potential difference",
+          "hold": "the source maintains the same voltage and elements are modeled ohmically",
+          "notice": "power decreases as resistance increases"
+        },
+        {
+          "phase": 2,
+          "vary": "resistance at fixed current",
+          "hold": "the current is maintained and elements are modeled ohmically",
+          "notice": "power increases as resistance increases"
+        }
+      ]
+    },
+    {
+      "rung": "R7",
+      "ladder_position": 88,
+      "provenance": "SYNTHESIS",
+      "aha": "Kirchhoff analysis is a conservation ledger: junction equations conserve charge, and signed loop equations conserve energy per charge.",
+      "learner_owns": [
+        "R6: power relations follow from P = VI plus a valid element model and stated circuit conditions."
+      ],
+      "ceiling": [
+        "mesh current",
+        "nodal analysis",
+        "Thevenin",
+        "superposition"
+      ],
+      "must_contain": [
+        "A declared current direction on every branch used in an equation.",
+        "A declared traversal direction and sign convention for every loop."
+      ],
+      "misconception": {
+        "wrong_idea": "A negative solved current means the calculation failed.",
+        "diagnostic_prompt": "If an assumed clockwise branch current solves to -0.3 A, what physical direction does that result represent?",
+        "repair": "Treat directions as declared references. A negative result reverses the assumed direction; it does not invalidate conservation."
+      },
+      "closure": "Write and solve a one-junction, one-loop resistor network with declared signs, then interpret any negative current physically.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the initially assumed branch-current directions",
+          "hold": "the physical circuit and component values",
+          "notice": "solutions change sign with the reference choice but predict the same physical current directions"
+        },
+        {
+          "phase": 2,
+          "vary": "the chosen loop traversal direction",
+          "hold": "the same circuit and branch-current references",
+          "notice": "every loop term reverses consistently and the conservation statement is unchanged"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Read the circuit topology, choose the applicable element model, write conservation constraints, solve for the requested current or voltage, and check the result against charge and energy conservation.",
+    "difficult_move": "Translating the drawing into the correct shared-quantity and conservation constraints before doing algebra.",
+    "independent_check": "At every junction the signed currents sum to zero, and for a closed steady network the source power and resistor dissipation are consistent with the solved values.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Branch directions, node labels, and the first applicable element relation are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Node labels and a suggested loop are supplied, but the learner chooses signs and equations."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the circuit, component values, and requested quantity are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Replace one resistor with a filament or diode-like element whose V-I graph is non-linear and decide which circuit relations remain valid.",
+      "information_not_handed_over": "whether a single constant resistance is a valid model for that element",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Given an I-V graph plus a node-network diagram, determine the operating current and voltage.",
+      "information_not_handed_over": "which graphical operating point satisfies the circuit constraint",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "Analyze a sensor circuit described in words rather than with familiar resistor labels.",
+      "information_not_handed_over": "which physical parts map to source, branch, and resistive element roles",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "After solving a mixed series-parallel network, determine whether a resistor exceeds a stated power rating.",
+      "information_not_handed_over": "the need to carry the solved branch current or voltage into a separate power check",
+      "repair_to": "R6"
+    }
+  ]
+}

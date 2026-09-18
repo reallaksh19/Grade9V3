@@ -1,0 +1,162 @@
+{
+  "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+  "topic": "Laws of Motion",
+  "subtopic": "Newton's first law and free-body diagrams",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "inertia",
+        "equilibrium",
+        "resultant force",
+        "balanced forces"
+      ],
+      "must_contain": [
+        "A case that keeps moving after the push has ended.",
+        "A case at rest with no change in motion, treated by the same rule."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "whether a brief push is still in contact",
+          "hold": "the cart's direction and an approximately frictionless surface after release",
+          "notice": "the cart can continue moving after the applied push becomes zero"
+        },
+        {
+          "phase": 2,
+          "vary": "the initial velocity from zero to nonzero",
+          "hold": "zero net horizontal force",
+          "notice": "both rest and steady motion fit the same zero-change condition"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION"
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 45,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "equilibrium equation",
+        "free-body diagram",
+        "action-reaction pair",
+        "normal-force formula"
+      ],
+      "must_contain": [
+        "At least two nonzero force arrows whose vector sum is zero.",
+        "A comparison between 'no force' and 'zero net force'."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the magnitudes of two opposite collinear forces together",
+          "hold": "their equality and opposite directions",
+          "notice": "the individual arrows can grow while the net arrow remains zero"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO"
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 70,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "Newton's third law",
+        "interaction pair",
+        "system boundary",
+        "reaction force"
+      ],
+      "must_contain": [
+        "The same interaction shown on two separate body diagrams.",
+        "A rule that every arrow on one diagram must name an external agent acting on that chosen body."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which interacting body is isolated",
+          "hold": "the same horse-cart interaction",
+          "notice": "the equal-and-opposite partner arrow moves to the other body's diagram rather than cancelling on one diagram"
+        },
+        {
+          "phase": 2,
+          "vary": "an additional external horizontal force on one body",
+          "hold": "the same contact between the two bodies",
+          "notice": "the two bodies can have different net forces even though the two partner forces remain equal and opposite"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "inertial frame",
+        "non-inertial frame",
+        "fictitious force"
+      ],
+      "must_contain": [
+        "Two observers describing the same object, one in a non-accelerating frame and one in an accelerating frame.",
+        "An explicit declaration of the chosen frame before the force sum is written."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the observer from roadside to steadily moving bus",
+          "hold": "the physical interactions and the bus's zero acceleration",
+          "notice": "no extra force is needed when the frames differ only by constant velocity"
+        },
+        {
+          "phase": 2,
+          "vary": "the bus from steady speed to forward acceleration",
+          "hold": "the same object and physical interactions",
+          "notice": "the bus-frame account now needs an added backward pseudo-force"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE"
+    }
+  ],
+  "family": {
+    "invariant_demand": "Choose the body and frame, identify only forces acting on that body, add them as directed quantities, and use the net force to decide or determine the body's acceleration.",
+    "difficult_move": "Choosing the body boundary correctly so interaction partners are not accidentally cancelled on the same free-body diagram.",
+    "independent_check": "Every force arrow must name an external agent acting on the chosen body, and the direction of the vector sum must agree with the stated acceleration.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The target body, coordinate directions, and a list of candidate interactions are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The target body and coordinate directions are supplied."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical situation and requested acceleration or force are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "The problem is described from inside an accelerating vehicle and the learner must choose an inertial-frame analysis or add a pseudo-force.",
+      "information_not_handed_over": "whether the chosen observer frame is inertial",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A contact-and-motion sketch must be converted into separate free-body diagrams before any equations are written.",
+      "information_not_handed_over": "which interactions act on each chosen body",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Two connected bodies must be analysed with one free-body diagram per body and the shared interaction linked across the equations.",
+      "information_not_handed_over": "which equal-and-opposite forces belong to different equations",
+      "repair_to": "R3"
+    }
+  ]
+}

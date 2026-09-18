@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-NLM-FIRST-LAW-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Newton's Laws of Motion & Free Body Diagrams. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-NLM-FIRST-LAW",
+          "packet_digest": "0670e09de57e111a64e9cb8d68c0227de0791e9a94a52e2412bf1de00b926e97",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Newton's Laws of Motion & Free Body Diagrams",
+      "topic": "Laws of Motion",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-NLM-FIRST-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-NLM-FIRST-LAW",
+          "packet_digest": "0670e09de57e111a64e9cb8d68c0227de0791e9a94a52e2412bf1de00b926e97",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Newton's Laws of Motion & Free Body Diagrams",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Inertial Reference Frame Precondition**: Newton's First and Second Laws ($\\sum \\vec{F} = m\\vec{a}$) are valid **if and only if** evaluated in an inertial reference frame. In a frame accelerating with acceleration $\\vec{a}_0$, an observer must introduce fictitious pseudo forces $\\vec{F}_{\\text{pseudo}} = -m\\vec{a}_0$.",
+        "**Action-Reaction Pair Invariant**: Newton's Third Law forces $\\vec{F}_{AB} = -\\vec{F}_{BA}$ act on **two different interacting bodies**, never on the same body. They never cancel in a single-body free body diagram."
+      ],
+      "inferential_jump": "Inertia as the intrinsic resistance of mass to changes in its velocity vector ($\\vec{v} = \\text{const} \\iff \\sum \\vec{F} = 0$).",
+      "teaching_path": [
+        {
+          "id": "ATOM-NLM-03",
+          "role": "VERIFY",
+          "action": "Momentum conservation of isolated system: $\\sum \\vec{F}_{\\text{ext}} = 0 \\implies \\vec{P}_{\\text{total}} = \\text{const}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-NLM-04",
+          "role": "TRANSFORM",
+          "action": "Systematic FBD isolation: (1) Choose boundary of interest, (2) Draw coordinate axes along expected acceleration, (3) Enumerate all contact forces (normal, friction, tension) and long-range forces (gravity), (4) Project along axes: $\\sum F_x = m a_x, \\sum F_y = m a_y$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-NLM-05",
+          "role": "DECLARE",
+          "action": "Selection of non-inertial reference frame with pseudo force vs. inertial laboratory frame.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming $N = mg$ on an incline or when an external angled force acts.",
+          "diagnostic_prompt": "",
+          "repair": "Normal force is a contact constraint determined by dynamic balance: $\\sum F_{\\perp} = 0 \\implies N = mg \\cos\\theta \\pm F_{\\text{ext}}\\sin\\phi$."
+        },
+        {
+          "wrong_idea": "Arguing a horse cannot pull a cart because the cart pulls back on the horse with equal and opposite force.",
+          "diagnostic_prompt": "",
+          "repair": "The forward force on the cart is exerted by the horse; the backward force on the horse is exerted by the cart. Since they act on different bodies, each body accelerates according to the net force acting on *it*."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-NLM-FIRST-LAW",
+      "packet_digest": "0670e09de57e111a64e9cb8d68c0227de0791e9a94a52e2412bf1de00b926e97",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

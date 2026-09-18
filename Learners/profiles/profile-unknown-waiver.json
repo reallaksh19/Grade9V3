@@ -1,0 +1,17 @@
+{
+  "profile_id": "PROFILE-UNKNOWN-WAIVER",
+  "label": "Design preview carried over from relative-motion.v1.json",
+  "provenance": "UNKNOWN",
+  "held": {
+    "CAP-RELATIVE-V": "UNCERTAIN",
+    "CAP-VECTOR-CHECK": "UNCERTAIN"
+  },
+  "knowledge_percentage": null,
+  "support_posture": "SIMPLEST_FOUNDATION",
+  "observation_refs": [],
+  "owner_waiver": {
+    "instruction_ref": "../../Physics/StressTests/V3B-Motion-Grade9-Example.md",
+    "instruction": "Demonstration setting: begin simply with prerequisite bridges; no measured-fit claim."
+  },
+  "measured_fit_claim": false
+}

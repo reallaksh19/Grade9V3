@@ -1,0 +1,639 @@
+{
+  "objects": {
+    "CORE1-CONVENTIONS": {
+      "core": "CORE1",
+      "content_digest": "bfcf4ffbfbaac7b8c18b7e922c6bcd2921a2b4100aa8b3e7375dec536c46e1dc",
+      "artifact": "CORE1.html",
+      "kind": "TEXT"
+    },
+    "CORE1-SCOPE": {
+      "core": "CORE1",
+      "content_digest": "86eead8c16bcedf111ca98e59c16f3ad3a8a74b294f9c7bc9b693c415ec3b6d3",
+      "artifact": "CORE1.html",
+      "kind": "TEXT"
+    },
+    "CORE1-QUANTITIES": {
+      "core": "CORE1",
+      "content_digest": "847086ffcfe641ebcd4c383d614cd5cdc1b77728d52ca3644a63f290b24d267b",
+      "artifact": "CORE1.html",
+      "kind": "TEXT"
+    },
+    "CORE1-REL-RELATIVE-VELOCITY": {
+      "core": "CORE1",
+      "content_digest": "f3c350aa8d65088ca3c749a6372fb098848aec3fe7b4b5bff60cd972709d7bce",
+      "artifact": "CORE1.html",
+      "kind": "EQUATION"
+    },
+    "CORE1-SI-REL-VELOCITY-CONSTRUCTION": {
+      "core": "CORE1",
+      "content_digest": "ae8da58979da85c15d33facf045ca9f59c1cb22ef458f03c6d2f148005102fe2",
+      "artifact": "CORE1.html",
+      "kind": "FIGURE"
+    },
+    "CORE1-DEMAND": {
+      "core": "CORE1",
+      "content_digest": "779fc93c1b4ce4ed0533f8e8d5ec4518ebb5a2d266c2a11cc394994dfa5b4e99",
+      "artifact": "CORE1.html",
+      "kind": "TEXT"
+    },
+    "CORE2-Q-AUTHOR-REL-01": {
+      "core": "CORE2",
+      "content_digest": "1b6c9634fe7a3b98aeeeadb30647f57047ecbabe4617480a7acc0a1a9a94d629",
+      "artifact": "CORE2.html",
+      "kind": "QUESTION"
+    },
+    "CORE1A-CONVENTIONS": {
+      "core": "CORE1A",
+      "content_digest": "dbab7ca61235177011e37d56f77385f74868731032d1ca2750679f2d606ff808",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "CORE1A-MIC-MEASURED-FROM-T": {
+      "core": "CORE1A",
+      "content_digest": "7aecff074935fcd768af980770c98f76487d82984b2986df1d0dde3f0f65ccc6",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "CORE1A-MIC-SAME-TIME-T": {
+      "core": "CORE1A",
+      "content_digest": "d0279e9febf4759b016fe3852701ec83362b0850013d53c91e9648963fdd9892",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "CORE1A-MIC-COMMON-INTERVAL-T": {
+      "core": "CORE1A",
+      "content_digest": "a387f72d852de93167aaadc298a74aa2161fafd34618790ef66f60fe72d350e9",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "CORE1A-MIC-GEOMETRIC-CHECK-T": {
+      "core": "CORE1A",
+      "content_digest": "84681cb83389aa7c00b35de429a1e9c1aba399984cd573b2b341be1381284d38",
+      "artifact": "CORE1A.html",
+      "kind": "TEXT"
+    },
+    "CORE1A-SI-REL-VELOCITY-CONSTRUCTION": {
+      "core": "CORE1A",
+      "content_digest": "d758efd2eb66ef69271a767fcd201a03a39c372ff9bc99e8f92115f1638db818",
+      "artifact": "CORE1A.html",
+      "kind": "FIGURE"
+    },
+    "CORE1A-Q-AUTHOR-REL-01": {
+      "core": "CORE1A",
+      "content_digest": "6c86b01a7d48861be192dd70bbf6fafc371af083ac49aec591949d240039ef9d",
+      "artifact": "CORE1A.html",
+      "kind": "QUESTION"
+    },
+    "CORE1B-CONVENTIONS": {
+      "core": "CORE1B",
+      "content_digest": "1438071666f2ac032ce549e90f17abf5b04c10396bf125c21fa4edfdcdfbcdcd",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-MEASURED-FROM-ASK": {
+      "core": "CORE1B",
+      "content_digest": "5f1ed22dbfd429ecdf0980f369b0b686c10c3937c9fe86802b35a328fb627195",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-MEASURED-FROM-ASK-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "143b520200d6933f6dcf462b5412ebeb555fdf07d4cf3103c1acf25bf0780e19",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-MEASURED-FROM-BOUNDARY": {
+      "core": "CORE1B",
+      "content_digest": "ee8b297fa9d0020fb9a5f7faa8ab8568767603db28ee5d39c0fd16e410db8de3",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-MEASURED-FROM-BOUNDARY-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "b09769ffdb7aef5421c702ef547d43894f56a343f444cdc7fb05a2f30512fa29",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-SAME-TIME-ASK": {
+      "core": "CORE1B",
+      "content_digest": "0691ec54f22af4bc65d90980c5762f4ad5de6cef7f27114adb996db7eabb6f8b",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-SAME-TIME-ASK-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "05eb7b7279d4aa4a2fa49fb50f3d77f198d191b08c8c72d3686e7747f50ef04c",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-SAME-TIME-BOUNDARY": {
+      "core": "CORE1B",
+      "content_digest": "20d49d022e686a3b32cd3ed2f20c830378afa8be75c76b804e0365b9fbea4e6b",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-SAME-TIME-BOUNDARY-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "c2e7d9800d8d0f206ae32e14f5bb182e565f773413db419cc4e020a89a4ebf40",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-COMMON-INTERVAL-ASK": {
+      "core": "CORE1B",
+      "content_digest": "aff9662f6616016df95ed326cdbbb3c566adaff312435c216d9eb61855324c0b",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-COMMON-INTERVAL-ASK-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "2af8904eb96d9ff60c6e3f19ca40dd2c8d705e3584e2ff713463d08e5985f176",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY": {
+      "core": "CORE1B",
+      "content_digest": "de3ecec06571fe297fb75d8664c49e05e567c43bfc66842fd32abc7576fecc2c",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "ad8f58039d5235f28789a82e054f30ffb6989b8727119b47a08d242a4e418a86",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-GEOMETRIC-CHECK-ASK": {
+      "core": "CORE1B",
+      "content_digest": "3e5bad120fdbc935efc4e4cd9b4f50e9031e4191ad15b0bd1dd40952dcef077d",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-GEOMETRIC-CHECK-ASK-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "cde834380e7f7a92fe91b1b53b455099bbf77025c54b8772e3140ab4f79fa03f",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY": {
+      "core": "CORE1B",
+      "content_digest": "3d0bc6a9a5d3b36277c0f7e978b08592b9b42186089d9df7eb00a68a3eb83f11",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY-REVEAL": {
+      "core": "CORE1B",
+      "content_digest": "7b545cb4790770b0e12d2fbbfe6f0fdc0ca7fd422188ec70c3c1d12a9e46c874",
+      "artifact": "CORE1B.html",
+      "kind": "TEXT"
+    },
+    "CORE1B-SI-REL-VELOCITY-CONSTRUCTION": {
+      "core": "CORE1B",
+      "content_digest": "cc7ae35dd8f449a9e47b0bed18451939186907d8723ce2327704d8d7913eb8bf",
+      "artifact": "CORE1B.html",
+      "kind": "FIGURE"
+    },
+    "CORE2A-Q-AUTHOR-REL-01": {
+      "core": "CORE2A",
+      "content_digest": "3d3ebf0ded2826e2f98a5778cd4642f53e1756986c598538c899a1085c687f1f",
+      "artifact": "CORE2A.html",
+      "kind": "QUESTION"
+    }
+  },
+  "numeric_answers": {
+    "CORE2-Q-AUTHOR-REL-01": {
+      "value": 10.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 6,
+        "vy": -8
+      },
+      "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "CORE1A-Q-AUTHOR-REL-01": {
+      "value": 10.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 6,
+        "vy": -8
+      },
+      "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    },
+    "CORE2A-Q-AUTHOR-REL-01": {
+      "value": 10.0,
+      "unit": "m/s",
+      "case": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "units": {
+          "vx": "m/s",
+          "vy": "m/s"
+        },
+        "vx": 6,
+        "vy": -8
+      },
+      "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+      "status": "VERIFIED_BY_SUPPORTED_EVALUATOR",
+      "oracle": "SUBJECT_VALIDATOR_SOURCE_BOUND"
+    }
+  },
+  "figures": {
+    "CORE1-SI-REL-VELOCITY-CONSTRUCTION": {
+      "kind": "VECTOR_SUBTRACTION",
+      "unit": "m/s",
+      "minuend": [
+        6,
+        0
+      ],
+      "subtrahend": [
+        0,
+        8
+      ],
+      "resultant": [
+        6,
+        -8
+      ],
+      "reversed_from": [
+        325.75,
+        180.0
+      ],
+      "scale": [
+        15.25,
+        15.25
+      ],
+      "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+      "quantitative": true,
+      "width": 560,
+      "height": 360,
+      "minimum_label_px": 14,
+      "artifact": "figures/a5616e73071d596756597d10.svg",
+      "source_atom_ids": [
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y"
+      ]
+    },
+    "CORE1A-SI-REL-VELOCITY-CONSTRUCTION": {
+      "kind": "VECTOR_SUBTRACTION",
+      "unit": "m/s",
+      "minuend": [
+        6,
+        0
+      ],
+      "subtrahend": [
+        0,
+        8
+      ],
+      "resultant": [
+        6,
+        -8
+      ],
+      "reversed_from": [
+        325.75,
+        180.0
+      ],
+      "scale": [
+        15.25,
+        15.25
+      ],
+      "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+      "quantitative": true,
+      "width": 560,
+      "height": 360,
+      "minimum_label_px": 14,
+      "artifact": "figures/a5616e73071d596756597d10.svg",
+      "source_atom_ids": [
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y"
+      ]
+    },
+    "CORE1B-SI-REL-VELOCITY-CONSTRUCTION": {
+      "kind": "VECTOR_SUBTRACTION",
+      "unit": "m/s",
+      "minuend": [
+        6,
+        0
+      ],
+      "subtrahend": [
+        0,
+        8
+      ],
+      "resultant": [
+        6,
+        -8
+      ],
+      "reversed_from": [
+        325.75,
+        180.0
+      ],
+      "scale": [
+        15.25,
+        15.25
+      ],
+      "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+      "quantitative": true,
+      "width": 560,
+      "height": 360,
+      "minimum_label_px": 14,
+      "artifact": "figures/a5616e73071d596756597d10.svg",
+      "source_atom_ids": [
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y"
+      ]
+    }
+  },
+  "scientific_review_requirements": {},
+  "reuse_candidates": {
+    "objects_compared": 3,
+    "pairs_compared": 3,
+    "candidates": [
+      {
+        "objects": [
+          "CORE2-Q-AUTHOR-REL-01",
+          "CORE1A-Q-AUTHOR-REL-01"
+        ],
+        "cores": [
+          "CORE2",
+          "CORE1A"
+        ],
+        "same_source": true,
+        "same_declared_family": true,
+        "status": "INTENTIONAL_REUSE_REVIEW_REQUIRED"
+      },
+      {
+        "objects": [
+          "CORE2-Q-AUTHOR-REL-01",
+          "CORE2A-Q-AUTHOR-REL-01"
+        ],
+        "cores": [
+          "CORE2",
+          "CORE2A"
+        ],
+        "same_source": true,
+        "same_declared_family": true,
+        "status": "INTENTIONAL_REUSE_REVIEW_REQUIRED"
+      },
+      {
+        "objects": [
+          "CORE1A-Q-AUTHOR-REL-01",
+          "CORE2A-Q-AUTHOR-REL-01"
+        ],
+        "cores": [
+          "CORE1A",
+          "CORE2A"
+        ],
+        "same_source": true,
+        "same_declared_family": true,
+        "status": "INTENTIONAL_REUSE_REVIEW_REQUIRED"
+      }
+    ],
+    "semantic_novelty_validated": false
+  },
+  "schema_version": "1.0.0",
+  "basis_digest": "e5270dba6f9234eb297dae5dd2b25b3be17aef71ba72c882bf0a1809b750f689",
+  "subject": "Physics",
+  "products": [
+    "CORE1",
+    "CORE2",
+    "CORE1A",
+    "CORE1B",
+    "CORE2A"
+  ],
+  "coverage": [
+    {
+      "core": "CORE1",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS",
+      "object_id": "CORE1-CONVENTIONS",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS",
+      "object_id": "CORE1-SCOPE",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-ORIENTATION",
+      "object_id": "CORE1-QUANTITIES",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-ORIENTATION",
+      "object_id": "CORE1-REL-RELATIVE-VELOCITY",
+      "kind": "EQUATION"
+    },
+    {
+      "core": "CORE1",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-ORIENTATION",
+      "object_id": "CORE1-SI-REL-VELOCITY-CONSTRUCTION",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-ORIENTATION",
+      "object_id": "CORE1-DEMAND",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE2",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-CUSTODY",
+      "object_id": "CORE2-Q-AUTHOR-REL-01",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS",
+      "object_id": "CORE1A-CONVENTIONS",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-MIC-MEASURED-FROM",
+      "object_id": "CORE1A-MIC-MEASURED-FROM-T",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-MIC-SAME-TIME",
+      "object_id": "CORE1A-MIC-SAME-TIME-T",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-MIC-COMMON-INTERVAL",
+      "object_id": "CORE1A-MIC-COMMON-INTERVAL-T",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1A-MIC-GEOMETRIC-CHECK-T",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1A-SI-REL-VELOCITY-CONSTRUCTION",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE1A",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-PRACTICE",
+      "object_id": "CORE1A-Q-AUTHOR-REL-01",
+      "kind": "QUESTION"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS",
+      "object_id": "CORE1B-CONVENTIONS",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-MEASURED-FROM",
+      "object_id": "CORE1B-MIC-MEASURED-FROM-ASK",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-MEASURED-FROM",
+      "object_id": "CORE1B-MIC-MEASURED-FROM-ASK-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-MEASURED-FROM",
+      "object_id": "CORE1B-MIC-MEASURED-FROM-BOUNDARY",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-MEASURED-FROM",
+      "object_id": "CORE1B-MIC-MEASURED-FROM-BOUNDARY-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-SAME-TIME",
+      "object_id": "CORE1B-MIC-SAME-TIME-ASK",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-SAME-TIME",
+      "object_id": "CORE1B-MIC-SAME-TIME-ASK-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-SAME-TIME",
+      "object_id": "CORE1B-MIC-SAME-TIME-BOUNDARY",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-SAME-TIME",
+      "object_id": "CORE1B-MIC-SAME-TIME-BOUNDARY-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-COMMON-INTERVAL",
+      "object_id": "CORE1B-MIC-COMMON-INTERVAL-ASK",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-COMMON-INTERVAL",
+      "object_id": "CORE1B-MIC-COMMON-INTERVAL-ASK-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-COMMON-INTERVAL",
+      "object_id": "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-COMMON-INTERVAL",
+      "object_id": "CORE1B-MIC-COMMON-INTERVAL-BOUNDARY-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1B-MIC-GEOMETRIC-CHECK-ASK",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1B-MIC-GEOMETRIC-CHECK-ASK-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1B-MIC-GEOMETRIC-CHECK-BOUNDARY-REVEAL",
+      "kind": "TEXT"
+    },
+    {
+      "core": "CORE1B",
+      "obligation_id": "OB-MIC-GEOMETRIC-CHECK",
+      "object_id": "CORE1B-SI-REL-VELOCITY-CONSTRUCTION",
+      "kind": "FIGURE"
+    },
+    {
+      "core": "CORE2A",
+      "obligation_id": "OB-BUCKET-RELATIVE-MOTION-PRACTICE",
+      "object_id": "CORE2A-Q-AUTHOR-REL-01",
+      "kind": "QUESTION"
+    }
+  ],
+  "release_authorized": false,
+  "gates": {
+    "Source bytes and declared inventory": "CHECKED; extraction accuracy needs independent review",
+    "Required object and declared-question closure": "CHECKED; embedded prose prompts need academic review",
+    "Published numerical answers": "Supported families: oracle checked; other numeric candidates: transcription only, scientific review required",
+    "Scientific adaptations awaiting review": "0 — draft permitted; learner-ready acceptance held",
+    "Figure data and artifact binding": "CHECKED for vector/graph families; scientific visual review NOT_RUN",
+    "Core purpose and difficult inference depth": "NOT_RUN — independent academic review required",
+    "Reuse and transfer": "All declared question pairs screened; semantic adjudication NOT_RUN",
+    "Learner fit": "BLOCKED_NO_PERSONALIZATION",
+    "Final-medium layout": "NOT_RUN — browser/print inspection required",
+    "Portable inputs and command code": "COPIED; independent agent restart NOT_RUN",
+    "Learner release": "BLOCKED — no automatic owner or reviewer authority"
+  }
+}

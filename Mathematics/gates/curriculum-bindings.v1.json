@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "MATHEMATICS-CURRICULUM-BINDINGS-V1",
+  "subject": "Mathematics",
+  "selector_semantics": "EXACT_BOARD_GRADE_CHAPTER_AND_GATE_SET",
+  "rule": "A gate may claim scope_class PRESCRIBED only when an exact binding below matches its board, grade, chapter and the full gate set declared for that chapter. Missing binding fails closed as HELD_INSUFFICIENT_AUTHORITY.",
+  "bindings": [],
+  "empty_set_is_deliberate": "No exact CBSE binding has been established for this material, so every gate is declared OWNER_EXTENSION. The same posture as the Physics registry, for the same reason: an unestablished board claim is held, never assumed."
+}

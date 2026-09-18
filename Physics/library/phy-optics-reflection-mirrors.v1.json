@@ -1,0 +1,616 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-OPTICS-REFLECTION-MIRRORS-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Author-created conceptual records for normal-referenced reflection, real-or-virtual image geometry and Cartesian sign convention. Principal-ray, mirror-equation and magnification rungs remain blocked on upstream relation ownership.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track C authored reflection and image-geometry rung draft",
+      "origin": "AUTHORED",
+      "locator": "Track C / reflection and mirror rung authoring",
+      "edition": "0.1.0",
+      "section": "Conceptual constructions for normal-referenced reflection, image geometry and Cartesian sign convention",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external reproduction rights claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "MIC-OPT-NORMAL-REFLECTION",
+        "MIC-OPT-REAL-VIRTUAL-IMAGE",
+        "MIC-OPT-SIGN-CONVENTION",
+        "CAP-OPT-NORMAL-REFLECTION",
+        "CAP-OPT-REAL-VIRTUAL-IMAGE",
+        "CAP-OPT-SIGN-CONVENTION"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supplies directed-path and sign-convention teaching without claiming spherical-mirror or magnification equations.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reflection and mirror-geometry foundations",
+      "topic": "Light - Reflection and Refraction",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Directed paths and coordinate conventions must be stable before spherical-mirror equations can be used safely.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-OPT-NORMAL-REFLECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Construct a reflected path by measuring both ray directions from the surface normal.",
+      "success_criterion": "Draw the outgoing path with the same normal-referenced angle as the incoming path.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-OPT-REAL-VIRTUAL-IMAGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify an image point from actual reflected-path intersection versus backward-extension intersection.",
+      "success_criterion": "Identify real or virtual image geometry from where the light paths or their backward extensions meet.",
+      "prerequisite_refs": [
+        "CAP-OPT-NORMAL-REFLECTION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-OPT-SIGN-CONVENTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Assign signs to mirror distances and heights from a declared pole, incident-light direction and vertical convention.",
+      "success_criterion": "Give the sign of each optical coordinate by its measurement direction rather than by object or image labels.",
+      "prerequisite_refs": [
+        "CAP-OPT-REAL-VIRTUAL-IMAGE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-OPT-NORMAL-REFLECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Measure reflection from the normal, not the surface",
+      "bucket_id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "primary_capability_ref": "CAP-OPT-NORMAL-REFLECTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "A familiar mirror picture becomes wrong immediately if the reference line for the angle is the surface instead of the normal.",
+      "entry_assumptions": [
+        "Can trace a directed straight path and identify where it meets a surface."
+      ],
+      "inferential_jump": "Angles in specular reflection are measured from the surface normal, and the reflected ray leaves with the same angle to that normal as the incident ray.",
+      "teaching_path": [
+        {
+          "id": "OPT-R1-1",
+          "role": "DECLARE",
+          "action": "At the point where the incoming light path meets the mirror, draw the line perpendicular to the surface before marking any angle.",
+          "why_valid": "The reflection angle is defined relative to this perpendicular reference, so drawing it first fixes the reference instead of letting the page edge stand in for it.",
+          "inputs": [],
+          "output": "mirror surface ⟂ normal at the contact point"
+        },
+        {
+          "id": "OPT-R1-2",
+          "role": "TRANSFORM",
+          "action": "Copy the incoming path's tilt from the normal to the opposite side of that normal to construct the outgoing path.",
+          "why_valid": "Using the same reference line on both sides preserves the reflection rule while making the outgoing direction observable on the drawing.",
+          "inputs": [],
+          "output": "incoming tilt from normal -> matching outgoing tilt on the other side"
+        },
+        {
+          "id": "OPT-R1-3",
+          "role": "VERIFY",
+          "action": "Rotate the entire drawing on the page and repeat the construction without changing the physical geometry.",
+          "why_valid": "A page rotation changes how the paper is oriented but not perpendicularity or the pair of equal normal-referenced angles.",
+          "inputs": [],
+          "output": "rotated page -> same normal-based construction"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The angle of incidence is measured from the mirror surface.",
+          "diagnostic_prompt": "A ray makes 20 degrees with the mirror surface. Is its angle of incidence 20 degrees?",
+          "repair": "Draw the normal first; incidence and reflection angles are defined from that line, not from the surface."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Given an incoming light path and a plane mirror drawn at an arbitrary page angle, construct the normal and the reflected path, and state which line the two reflection angles are measured from.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Draw the perpendicular normal at the contact point, then place the outgoing path on the other side with the same tilt to that normal; both angles are measured from the normal.",
+          "reasoning": [
+            "Locate the point where the incoming path meets the surface.",
+            "Draw the perpendicular reference there before reading or copying any angle.",
+            "Use the same reference on the opposite side to place the outgoing path."
+          ],
+          "check": "Rotate the page mentally. If the construction depends on the page edge rather than the normal, it will change; a correct construction will not.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is a geometric construction and reference-line explanation, not a numerical angle calculation."
+        }
+      },
+      "research_contribution": "This author-created construction turns the normal-reference rule into a directed-path task suitable for review before any spherical-mirror equation is introduced.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If you rotate the mirror drawing on the page but keep the physical incoming path fixed relative to it, should the reflection construction change?",
+          "defensible_answer": "No. The construction is tied to the surface normal at the contact point, not to the page orientation."
+        },
+        "attempt": {
+          "produces": "A reflected-path construction on an oblique mirror with the normal drawn first and both angle arcs referenced to it.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The normal is perpendicular to the mirror at the contact point.",
+              "evidence_of": "Using the correct reference line for both angles."
+            },
+            {
+              "criterion": "Incoming and outgoing angle marks are placed on opposite sides of the same normal.",
+              "evidence_of": "Applying the reflection symmetry to a single local reference."
+            }
+          ],
+          "accepted": [
+            "The drawing places one perpendicular normal at the contact point and shows matching angle marks between each path and that normal."
+          ],
+          "rejected": [
+            "The angle arcs are drawn between each path and the mirror surface, so the construction uses the wrong reference even if the final path happens to look symmetric."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "At the exact contact point, which line could give both the incoming and outgoing path the same local reference?",
+              "why_this_ask": "It elicits the missing perpendicular reference before the rule is named.",
+              "from_step_ref": "OPT-R1-1"
+            },
+            {
+              "ask": "Once that line is drawn, where would you place an outgoing path with the same tilt but on the other side?",
+              "why_this_ask": "The learner performs the geometric transformation rather than receiving the finished ray.",
+              "from_step_ref": "OPT-R1-2"
+            },
+            {
+              "ask": "If the paper is rotated, which relationships in your construction must remain unchanged?",
+              "why_this_ask": "The page-rotation check exposes surface-based memorization.",
+              "from_step_ref": "OPT-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path names the normal immediately; the elicitation route begins from the need for a common local reference and makes the learner propose the perpendicular line."
+        },
+        "boundary_test": {
+          "prompt": "What happens for an incoming path that lies exactly along the normal?",
+          "answer": "The outgoing path retraces the same line in the opposite direction because its tilt from the normal is zero on both sides.",
+          "confirms": "The normal, rather than the surface, is the defining angular reference."
+        }
+      }
+    },
+    {
+      "id": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Real and virtual describe how light paths meet",
+      "bucket_id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "primary_capability_ref": "CAP-OPT-REAL-VIRTUAL-IMAGE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The everyday word virtual invites a false not-recordable interpretation unless image type is tied directly to ray geometry.",
+      "entry_assumptions": [
+        "R1: reflection direction is fixed by equal angles measured from the normal."
+      ],
+      "inferential_jump": "An image location is determined by where reflected rays actually meet or where their backward extensions appear to meet; virtual describes ray geometry, not whether a camera can record it.",
+      "teaching_path": [
+        {
+          "id": "OPT-R2-1",
+          "role": "DECLARE",
+          "action": "Trace at least two reflected light paths from the same object point and keep their physical forward portions solid.",
+          "why_valid": "One path cannot locate an image point; two or more paths reveal whether the light itself converges.",
+          "inputs": [],
+          "output": "two reflected paths -> enough geometry to test a meeting point"
+        },
+        {
+          "id": "OPT-R2-2",
+          "role": "TRANSFORM",
+          "action": "When the reflected paths diverge, extend them backward with a visibly different line style until the extensions meet.",
+          "why_valid": "The extensions are a geometric inference about apparent origin, not additional light travelling behind the mirror, so changing the line style preserves that distinction.",
+          "inputs": [],
+          "output": "solid paths diverge -> dashed backward extensions meet behind the mirror"
+        },
+        {
+          "id": "OPT-R2-3",
+          "role": "VERIFY",
+          "action": "Place an eye or camera where it can receive the reflected bundle and ask whether collecting those diverging paths changes where their backward extensions meet.",
+          "why_valid": "A detector can refocus incoming light without converting the mirror's apparent-origin geometry into an actual meeting point at the mirror.",
+          "inputs": [],
+          "output": "camera receives reflected bundle -> apparent mirror-image location remains virtual"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A virtual image is not a usable image and therefore cannot be photographed.",
+          "diagnostic_prompt": "A camera points at a plane mirror and records your reflection. Does that make the mirror image real?",
+          "repair": "Separate image geometry from recording: the mirror sends diverging rays that a camera lens can collect and refocus."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Given two reflected light paths from one object point, classify the image location from whether the physical paths meet or only their backward extensions meet, and explain why visibility or photography does not change that classification.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "An actual meeting of reflected light paths gives a real image point; a meeting only of backward extensions gives a virtual image point, and either ray bundle can still enter an eye or camera.",
+          "reasoning": [
+            "Use more than one reflected path so an intersection is a geometric fact rather than an assumption.",
+            "Distinguish physical forward paths from backward extensions by line style and direction.",
+            "Classify the image from which kind of intersection occurs, not from whether a detector can receive the light."
+          ],
+          "check": "Remove the observer or camera from the drawing. The path intersection or backward-extension intersection that defines the image should not move.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer classifies path geometry and detector independence; it asserts no computed distance or image size."
+        }
+      },
+      "research_contribution": "This author-created two-path construction gives the virtual-image misconception a geometric diagnostic without invoking later principal-ray or mirror-equation machinery.",
+      "prerequisite_refs": [
+        "MIC-OPT-NORMAL-REFLECTION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a camera successfully records a plane-mirror image, does that prove the reflected light actually met behind the mirror?",
+          "defensible_answer": "No. The camera can collect diverging reflected light even though only backward extensions meet behind the mirror."
+        },
+        "attempt": {
+          "produces": "A two-path diagram with physical reflected paths and backward extensions drawn differently, plus a real-or-virtual classification justified from the intersection.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Physical reflected paths and backward extensions are visually distinguished.",
+              "evidence_of": "Keeping actual light travel separate from apparent origin."
+            },
+            {
+              "criterion": "The image type is tied to which lines intersect, not to whether the image can be seen.",
+              "evidence_of": "Using ray geometry as the classification rule."
+            }
+          ],
+          "accepted": [
+            "The reflected paths are solid, their behind-mirror extensions are dashed, and the answer calls the behind-mirror point virtual because only the extensions intersect there."
+          ],
+          "rejected": [
+            "The answer calls the image real solely because a camera can photograph it, without checking whether the reflected paths themselves ever meet behind the mirror."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "How many reflected paths do you need before an image location can be fixed by intersection?",
+              "why_this_ask": "It prevents one arbitrary path from being treated as an image locator.",
+              "from_step_ref": "OPT-R2-1"
+            },
+            {
+              "ask": "If those paths spread apart, what lines could you extend backward to ask where they appear to come from?",
+              "why_this_ask": "The learner constructs apparent origin from observed directions.",
+              "from_step_ref": "OPT-R2-2"
+            },
+            {
+              "ask": "Would putting a camera in the bundle move that apparent origin?",
+              "why_this_ask": "It directly tests the mistaken link between recordability and image type.",
+              "from_step_ref": "OPT-R2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path distinguishes solid paths from extensions; the elicitation route starts with the successful camera observation and forces the learner to decide whether detection changes the mirror geometry."
+        },
+        "boundary_test": {
+          "prompt": "If two reflected light paths actually cross in front of a mirror before entering a detector, which classification follows from that crossing?",
+          "answer": "That crossing is a real image point because the physical reflected paths themselves meet there.",
+          "confirms": "Real versus virtual is determined by path intersection, independent of whether an observer is present."
+        }
+      }
+    },
+    {
+      "id": "MIC-OPT-SIGN-CONVENTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Optical signs come from declared directions",
+      "bucket_id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "primary_capability_ref": "CAP-OPT-SIGN-CONVENTION",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Memorized object-and-image sign tables fail as soon as the drawing is mirrored or a less familiar optical configuration is used.",
+      "entry_assumptions": [
+        "R2: image nature is determined by actual versus backward-extended ray intersection."
+      ],
+      "inferential_jump": "The Cartesian sign convention turns a mirror diagram into signed distances and heights; the signs come from declared directions, not from memorized object/image labels.",
+      "teaching_path": [
+        {
+          "id": "OPT-R3-1",
+          "role": "DECLARE",
+          "action": "Mark the pole as the distance origin, declare the direction of incident light as the positive horizontal direction, and declare upward from the principal axis as positive height.",
+          "why_valid": "Signs can only be reproducible when the origin and positive directions are fixed before any object or image is classified.",
+          "inputs": [],
+          "output": "pole = origin; incident-light direction = positive distance; upward = positive height"
+        },
+        {
+          "id": "OPT-R3-2",
+          "role": "TRANSFORM",
+          "action": "Take several marked points and assign each a distance sign from the pole and a height sign from the principal axis using only the declared directions.",
+          "why_valid": "The same coordinate rule applies to every point, so the result cannot depend on whether a point is called object, image, center or another label.",
+          "inputs": [],
+          "output": "with incident direction -> positive distance; against it -> negative distance; above axis -> positive height; below -> negative height"
+        },
+        {
+          "id": "OPT-R3-3",
+          "role": "VERIFY",
+          "action": "Redraw the same physical setup reversed left-to-right on the page, carrying the declared incident-light arrow with it, and assign the signs again.",
+          "why_valid": "A correct convention follows the declared physical direction, so changing the page layout does not change the signs of the same physical quantities.",
+          "inputs": [],
+          "output": "page reversed + direction declaration carried with setup -> physical sign assignments preserved"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Object distance is always negative and image distance is always positive.",
+          "diagnostic_prompt": "Move the same object-and-mirror sketch so incident light travels the opposite page direction. Should the sign rule follow the page or the declared incident-light direction?",
+          "repair": "Apply the coordinate convention from the pole every time; signs follow measurement direction and height orientation."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A mirror diagram declares its pole, incident-light direction and upward direction. Assign signs to the object distance, image distance, focal-location distance and image height from those declarations, and explain why an object-or-image sign table was unnecessary.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Each sign follows the declared coordinate direction from the pole or principal axis; the labels object and image do not determine signs by themselves.",
+          "reasoning": [
+            "Use the pole as the horizontal origin and compare every longitudinal position with the declared incident-light direction.",
+            "Use the principal axis as the vertical reference and compare each height with the declared upward direction.",
+            "Apply those two rules consistently to every named point instead of switching rules when the label changes."
+          ],
+          "check": "Mirror the whole drawing left-to-right while carrying the incident-light arrow with the physical setup; a convention-based answer should remain physically consistent.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer assigns qualitative signs from a declared coordinate convention and computes no numerical optical result."
+        }
+      },
+      "research_contribution": "This author-created sign-assignment routine makes the coordinate convention explicit before any gated mirror equation or magnification relation is used.",
+      "prerequisite_refs": [
+        "MIC-OPT-REAL-VIRTUAL-IMAGE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If the same mirror setup is drawn on the opposite side of the page, should an object's sign change merely because its ink moved left or right?",
+          "defensible_answer": "No. The sign follows the declared incident-light and vertical directions, which move with the physical setup rather than staying attached to page left or page right."
+        },
+        "attempt": {
+          "produces": "A sign-labelled mirror sketch with origin and positive directions declared before any object, image or focal-location signs are assigned.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The pole and both positive directions are declared before signs are written.",
+              "evidence_of": "Treating the coordinate convention as the source of the signs."
+            },
+            {
+              "criterion": "Every longitudinal and vertical sign is justified by direction from the declared reference.",
+              "evidence_of": "Avoiding memorized sign rules tied to object or image labels."
+            }
+          ],
+          "accepted": [
+            "The sketch marks the pole, incident-light arrow and upward direction first, then gives each position and height a sign by comparing it with those declarations."
+          ],
+          "rejected": [
+            "The response writes object is negative and image is positive before declaring any direction, so the signs are attached to labels rather than coordinates."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Before assigning any sign, where is the distance origin in this diagram?",
+              "why_this_ask": "A sign without an origin is not a coordinate decision.",
+              "from_step_ref": "OPT-R3-1"
+            },
+            {
+              "ask": "Which physical direction has been declared positive for longitudinal distance, and which for height?",
+              "why_this_ask": "The learner must state both coordinate directions before classifying points.",
+              "from_step_ref": "OPT-R3-1"
+            },
+            {
+              "ask": "Take one point without calling it object or image. Which sign follows from its direction from the pole?",
+              "why_this_ask": "Removing the familiar label tests whether the coordinate rule can stand on its own.",
+              "from_step_ref": "OPT-R3-2"
+            },
+            {
+              "ask": "If the page drawing is reversed, what must move with the setup so your signs remain physically consistent?",
+              "why_this_ask": "The reversal exposes page-left or page-right memorization.",
+              "from_step_ref": "OPT-R3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path declares a full coordinate system first; the elicitation route removes object and image labels and makes the learner recover signs from an unlabeled point before testing a mirrored page layout."
+        },
+        "boundary_test": {
+          "prompt": "What sign should a point exactly at the pole have for its longitudinal distance?",
+          "answer": "Its distance is zero, so it is neither on the positive nor negative side of the origin.",
+          "confirms": "The sign convention is a coordinate system with an origin, not a permanent label attached to a class of optical object."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-OPT-CORE1A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Completed reflection and image-geometry constructions",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-OPT-NORMAL-REFLECTION",
+        "MIC-OPT-REAL-VIRTUAL-IMAGE",
+        "MIC-OPT-SIGN-CONVENTION"
+      ],
+      "entry_needs": [
+        "Learners can trace directed paths and read simple coordinate directions."
+      ],
+      "learner_actions": [
+        "Follow the normal-based reflection construction.",
+        "Classify actual versus backward-extension intersections.",
+        "Apply the declared Cartesian sign convention."
+      ],
+      "help_plan": [
+        "Draw the normal before angle language.",
+        "Keep physical paths distinct from backward extensions.",
+        "Declare origin and positive directions before assigning signs."
+      ],
+      "reveal_plan": "The declarative route exposes the complete path and sign constructions with their checks.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+          "purpose": "Optics conceptual draft",
+          "reason": "The author-created resource supplies the three non-equation constructions."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not add principal-ray, spherical-mirror or magnification equations before their gate relations exist."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-OPT-CORE1B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit reflection geometry and optical signs",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-OPT-NORMAL-REFLECTION",
+        "MIC-OPT-REAL-VIRTUAL-IMAGE",
+        "MIC-OPT-SIGN-CONVENTION"
+      ],
+      "entry_needs": [
+        "Learners can commit to a path, image-type or sign decision before seeing the completed construction."
+      ],
+      "learner_actions": [
+        "Invent the common angular reference at a mirror.",
+        "Infer apparent origin from two reflected paths.",
+        "Recover signs from declared directions without object-or-image mnemonics."
+      ],
+      "help_plan": [
+        "Ask for the local reference line before naming the normal.",
+        "Use a camera counterexample before revealing the virtual-image repair.",
+        "Remove familiar labels before asking for signs."
+      ],
+      "reveal_plan": "The tutor delays each key distinction until a learner prediction exposes the corresponding misconception.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+          "purpose": "Optics self-tutor draft",
+          "reason": "The authored source contains prompts, rubrics and boundary tests for the three conceptual rungs."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn these elicitation cycles into numerical mirror-equation practice without governed relations."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

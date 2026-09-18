@@ -1,0 +1,180 @@
+{
+  "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+  "topic": "Motion",
+  "subtopic": "One-dimensional motion",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "vector",
+        "signed coordinate",
+        "resultant"
+      ],
+      "must_contain": [
+        "A marked one-dimensional axis with a declared positive direction.",
+        "An out-and-back path where path length is nonzero but the finish is at the start."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "how far the traveller goes before returning to the start",
+          "hold": "the same start and finish point",
+          "notice": "distance changes while displacement remains zero"
+        },
+        {
+          "phase": 2,
+          "vary": "the finish point on the marked axis",
+          "hold": "the same total path length",
+          "notice": "equal distances can end with different signed displacements"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT"
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 45,
+      "provenance": "SYNTHESIS",
+      "aha": "Average speed is total distance divided by total time, while average velocity uses displacement over the same time; neither is found by averaging listed speeds unless the time weighting makes that valid.",
+      "learner_owns": [
+        "Distance records how much path was travelled, while displacement records the signed change from start to finish; a long trip can have zero displacement."
+      ],
+      "ceiling": [
+        "harmonic mean",
+        "instantaneous velocity",
+        "derivative",
+        "calculus"
+      ],
+      "must_contain": [
+        "A round trip with unequal speeds on equal-distance legs.",
+        "The total-distance-over-total-time construction written before any averaging shortcut."
+      ],
+      "misconception": {
+        "wrong_idea": "For a trip with two speeds, average speed is always the arithmetic mean of those speeds.",
+        "diagnostic_prompt": "A vehicle covers equal distances at 60 km/h and 30 km/h. Is its average speed 45 km/h? Which leg takes longer?",
+        "repair": "Compute each leg's time, add total distance and total time, then divide; use displacement instead of distance only for average velocity."
+      },
+      "closure": "For a two-leg trip, calculate average speed from totals and separately state average velocity when the final position is known.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the slower leg's speed",
+          "hold": "equal distance on both legs and the faster leg's speed",
+          "notice": "the slower leg occupies more of the total time and pulls the average speed toward it"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 70,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "jerk",
+        "second derivative",
+        "dynamics",
+        "force law"
+      ],
+      "must_contain": [
+        "A velocity-time plot crossing zero with a nonzero slope.",
+        "The instant at the top of a vertical trip distinguished from an interval of rest."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the instant from just before to just after the top of the motion",
+          "hold": "constant downward acceleration",
+          "notice": "velocity passes through zero and changes sign while acceleration keeps the same direction"
+        },
+        {
+          "phase": 2,
+          "vary": "the initial upward speed",
+          "hold": "the same downward acceleration",
+          "notice": "the time of the zero-velocity instant changes but the acceleration at that instant does not"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 90,
+      "provenance": "SYNTHESIS",
+      "aha": "The constant-acceleration equations are a model with a condition: they apply only when acceleration stays constant over the interval.",
+      "learner_owns": [
+        "Velocity and acceleration are different statements: velocity can be zero at an instant while acceleration remains nonzero and fixes how velocity changes next."
+      ],
+      "ceiling": [
+        "integration",
+        "differential equation",
+        "position-dependent acceleration",
+        "jerk"
+      ],
+      "must_contain": [
+        "Two velocity-time plots over equal intervals, one straight and one curved.",
+        "A check of whether acceleration is constant before any constant-acceleration equation is selected."
+      ],
+      "misconception": {
+        "wrong_idea": "The familiar kinematic equations can be used whenever initial velocity, time and some acceleration value are given.",
+        "diagnostic_prompt": "A velocity-time graph curves upward. Can one constant acceleration value describe the whole interval well enough to use v = u + at exactly?",
+        "repair": "Test the model condition first: constant acceleration gives a straight velocity-time graph and one unchanged acceleration value over the interval."
+      },
+      "closure": "Given several motion descriptions or graphs, classify which intervals permit exact use of the constant-acceleration equations and justify each classification.",
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the time interval chosen on a straight velocity-time graph",
+          "hold": "its constant slope",
+          "notice": "the same acceleration describes every sub-interval"
+        },
+        {
+          "phase": 2,
+          "vary": "the graph from straight to curved",
+          "hold": "the same starting velocity and total duration",
+          "notice": "one acceleration value no longer describes every part of the motion"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Declare the positive direction and time interval, distinguish path quantities from signed change, choose a relation whose assumptions fit the motion, and keep velocity and acceleration as separate quantities.",
+    "difficult_move": "Deciding from the words or graph which signed quantity and which motion model are actually being asked for before substituting numbers.",
+    "independent_check": "The sign must match the declared axis, units must match the requested quantity, and any constant-acceleration calculation must agree with the slope/shape of the velocity-time representation.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The positive direction, time interval, and the relevant motion representation are labelled."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The positive direction and time interval are labelled."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the story, table, path, or graph is supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A velocity-time graph must be translated into signed displacement and acceleration statements without a verbal motion story.",
+      "information_not_handed_over": "which graph features correspond to signed change and to acceleration",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A motion interval has changing acceleration and the learner must decide that constant-acceleration equations are not an exact model.",
+      "information_not_handed_over": "whether acceleration is constant over the interval",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A journey reverses direction in several stages, requiring segment-by-segment distance, displacement, and elapsed-time accounting.",
+      "information_not_handed_over": "which segment signs contribute to displacement but not to distance",
+      "repair_to": "R1"
+    }
+  ]
+}

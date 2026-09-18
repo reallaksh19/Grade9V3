@@ -1,0 +1,762 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-THERMO-FIRST-SECOND-LAW-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Conceptual thermodynamics rung records for energy-role classification, state versus path dependence, cyclic pressure-volume reasoning, and second-law engine limits; the quantitative first-law sign equation remains un-authored.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "SRC-AUTHOR-PHY-THERMO",
+      "title": "Track B authored thermodynamics rung source",
+      "origin": "AUTHORED",
+      "locator": "docs/offload/physics-rungs-track-b.md + Physics/matrices/phy-thermo-first-second-law.rungs.json",
+      "edition": "Track B authoring pass",
+      "section": "Thermodynamics rungs R1, R3, R4, R5",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created repository content",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides provenance for authored scalar and pressure-volume conceptual teaching while leaving the quantitative sign-convention law outside the package.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "title": "Thermodynamics and heat engines",
+      "topic": "Thermodynamics",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The conceptual ladder turns on system boundaries, state/path distinctions, cycle plots, and reservoir limits rather than vector reasoning.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-THERMO-R1",
+      "action": "Classify internal energy as stored state and heat or work as boundary transfers.",
+      "success_criterion": "Distinguish internal energy from heat and work using a chosen system boundary.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-THERMO-R3",
+      "action": "Compare state-function change across different process paths with common endpoints.",
+      "success_criterion": "Identify internal-energy change as common to paths sharing both endpoint states.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-THERMO-R4",
+      "action": "Interpret a directed pressure-volume cycle from state return and loop direction.",
+      "success_criterion": "State the net internal-energy change for a complete cycle.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-THERMO-R5",
+      "action": "Distinguish the thermodynamic efficiency ceiling from mechanical friction losses.",
+      "success_criterion": "Reject complete heat-to-work conversion for a cyclic engine between finite reservoirs.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-THERMO-R1",
+      "title": "Internal energy is stored; heat and work are transfers",
+      "bucket_id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "primary_capability_ref": "CAP-PHY-THERMO-R1",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The entry distinction must be made with a system boundary before any energy-balance law is introduced.",
+      "entry_assumptions": [
+        "Can identify a physical system and its surroundings and can distinguish stored energy from an energy-transfer event."
+      ],
+      "inferential_jump": "A system contains internal energy, while heat and work name energy transferred across its boundary; a body does not contain 'heat'.",
+      "teaching_path": [
+        {
+          "id": "THERMO-R1-1",
+          "role": "DECLARE",
+          "action": "Draw a boundary around one chosen system and label internal energy inside the boundary.",
+          "why_valid": "Stored energy belongs to the state of the chosen system, so it must be located with the system before transfers are discussed.",
+          "inputs": [],
+          "output": "inside boundary: internal energy | outside boundary: surroundings"
+        },
+        {
+          "id": "THERMO-R1-2",
+          "role": "TRANSFORM",
+          "action": "Add one arrow crossing the boundary because of a temperature difference and a second arrow crossing because the surroundings mechanically compress the system.",
+          "why_valid": "Both arrows represent energy crossing the system boundary, but they are classified by the transfer mechanism rather than stored as substances inside.",
+          "inputs": [],
+          "output": "temperature-driven transfer -> heat crossing boundary | mechanical compression -> work crossing boundary"
+        },
+        {
+          "id": "THERMO-R1-3",
+          "role": "VERIFY",
+          "action": "Stop both transfers and isolate the system after its state has changed, then ask which labels still describe something contained in the system.",
+          "why_valid": "Once crossing stops, the stored internal energy remains a state property, whereas heat and work no longer name things sitting inside the isolated body.",
+          "inputs": [],
+          "output": "isolated final system: internal energy remains a state label | current heat transfer = none | current work transfer = none"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A hot object contains heat, and cooling means some of that heat remains stored inside it.",
+          "diagnostic_prompt": "When a hot block is isolated after heating stops, is 'heat' still a substance stored in the block?",
+          "repair": "Name the stored quantity internal energy; reserve heat for energy crossing the boundary because of temperature difference."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A block has finished being heated and is now isolated. Classify 'internal energy', 'heat', and 'work' as stored in the system or as names for energy transfer, and justify the classification using the boundary.",
+        "source_ref": "SRC-AUTHOR-PHY-THERMO",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Internal energy is a state quantity stored in the system; heat and work describe energy transfers across the boundary and are not substances contained after the transfers stop.",
+          "reasoning": [
+            "The system boundary separates what belongs to the state from what crosses between system and surroundings.",
+            "Internal energy describes the system's stored microscopic energy.",
+            "Heat and work classify transfer mechanisms, so when no transfer is occurring they are not contents of the isolated system."
+          ],
+          "check": "Redraw the same physical object as part of a larger chosen system; the bookkeeping boundary changes, so every claimed transfer must be reconsidered relative to that boundary.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response is a classification of energy roles and includes no computed energy quantity."
+        }
+      },
+      "research_contribution": "Author-created thermodynamic entry rung based on the matrix distinction; it intentionally stops before the blocked quantitative energy-balance equation at R2.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A hot block has been disconnected from its heater and isolated. Does it still 'contain heat'?",
+          "defensible_answer": "No. It contains internal energy; heat names energy transfer across a boundary due to temperature difference."
+        },
+        "attempt": {
+          "produces": "A boundary diagram classifying one stored-energy label inside and two possible transfer arrows across the boundary.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Internal energy is placed with the system state.",
+              "evidence_of": "The learner distinguishes stored energy from a transfer process."
+            },
+            {
+              "criterion": "Heat and work are shown crossing the boundary rather than sitting inside.",
+              "evidence_of": "The learner uses the system boundary to classify transfer mechanisms."
+            }
+          ],
+          "accepted": [
+            "The diagram places internal energy inside the system and labels heat or work only on boundary-crossing arrows."
+          ],
+          "rejected": [
+            "The diagram draws a quantity called 'heat stored inside' after the transfer has ended, preserving the misconception the rung must remove."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the system whose energy you are talking about?",
+              "why_this_ask": "The classification cannot be made until the bookkeeping boundary is chosen.",
+              "from_step_ref": "THERMO-R1-1"
+            },
+            {
+              "ask": "Which events actually cross that boundary?",
+              "why_this_ask": "It turns vague energy language into observable transfers.",
+              "from_step_ref": "THERMO-R1-2"
+            },
+            {
+              "ask": "When every crossing stops, which energy label still describes the system's state?",
+              "why_this_ask": "The isolation test separates stored state from transfer names.",
+              "from_step_ref": "THERMO-R1-3"
+            },
+            {
+              "ask": "What wording should replace 'the block contains heat'?",
+              "why_this_ask": "The learner performs the conceptual repair in ordinary language."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels the boundary and transfer mechanisms explicitly; the elicitation starts from the everyday phrase 'contains heat' and makes the learner use the boundary to decide which words can remain after isolation."
+        },
+        "boundary_test": {
+          "prompt": "If two systems at the same temperature are placed in contact and no energy crosses because of temperature difference, is there a heat transfer between them at that moment?",
+          "answer": "No. Without temperature-driven energy crossing the boundary, heat transfer is not occurring even though both systems possess internal energy.",
+          "confirms": "The learner treats heat as a transfer process rather than as a stock determined simply by temperature."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-THERMO-R3",
+      "title": "Internal-energy change is fixed by endpoint states, not process path",
+      "bucket_id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "primary_capability_ref": "CAP-PHY-THERMO-R3",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must read a Cartesian pressure-volume diagram as multiple paths between the same endpoints without turning path area into a state property.",
+      "entry_assumptions": [
+        "Can distinguish an initial state, a final state, and a process connecting them.",
+        "Can use a pressure-volume plot to trace alternative paths qualitatively."
+      ],
+      "inferential_jump": "Internal energy is a state function: its change depends only on endpoint states, while heat and work can differ between paths connecting the same endpoints.",
+      "teaching_path": [
+        {
+          "id": "THERMO-R3-1",
+          "role": "DECLARE",
+          "action": "Mark one initial point A and one final point B on a pressure-volume plot, then draw two visibly different paths between the same points.",
+          "why_valid": "Using identical endpoints isolates path choice from state choice, which is necessary to test state dependence.",
+          "inputs": [],
+          "output": "same endpoints: A and B | path 1: upper route | path 2: lower route"
+        },
+        {
+          "id": "THERMO-R3-2",
+          "role": "TRANSFORM",
+          "action": "Compare the geometric area under the two paths without moving A or B.",
+          "why_valid": "Mechanical work in a pressure-volume process depends on the path traced, so different path shapes can produce different work while endpoints remain fixed.",
+          "inputs": [],
+          "output": "A,B unchanged; area under path 1 != area under path 2 -> process work differs"
+        },
+        {
+          "id": "THERMO-R3-3",
+          "role": "VERIFY",
+          "action": "Ask which quantity must remain the same for both processes solely because the initial and final states are identical.",
+          "why_valid": "A state function is determined by the endpoint states, so its change cannot depend on which of the two process paths was taken.",
+          "inputs": [],
+          "output": "endpoint states equal across paths -> internal-energy change equal | heat/work allocations may differ"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If two processes start and finish at the same states, they must transfer the same heat and do the same work.",
+          "diagnostic_prompt": "Two P-V paths connect the same initial and final states but enclose different areas under the curves. Must W and Q be equal for both?",
+          "repair": "Keep delta U fixed by the endpoints; different path work is balanced by a different heat transfer through the first law."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two different pressure-volume paths connect the same initial state A to the same final state B. State which energy change must match between the paths and which transfers may differ, explaining the distinction without calculating areas.",
+        "source_ref": "SRC-AUTHOR-PHY-THERMO",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The internal-energy change must be the same because the endpoints are the same, while heat and work may differ because they depend on the process path.",
+          "reasoning": [
+            "The initial and final thermodynamic states are identical for both processes.",
+            "Internal energy is a state property, so its change is fixed by those endpoints.",
+            "The paths differ geometrically, so the transfer history can differ even though the state change does not."
+          ],
+          "check": "Change the final endpoint while keeping one path shape visually similar; the internal-energy change must be reconsidered because the endpoint state has changed.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer compares state dependence with path dependence and contains no computed work, heat, or internal-energy value."
+        }
+      },
+      "research_contribution": "Author-created state-function rung. It uses the pressure-volume plot qualitatively and does not author the blocked R2 energy-balance equation as a relation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two processes start at A and finish at B but follow different paths on a pressure-volume plot. Must they do the same work?",
+          "defensible_answer": "No. Work can differ with path even though the internal-energy change is the same because the endpoints match."
+        },
+        "attempt": {
+          "produces": "A two-path pressure-volume sketch annotated with 'same endpoint state change' and 'path-dependent transfers may differ'.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both paths begin at the identical A point and end at the identical B point.",
+              "evidence_of": "The learner is testing path dependence without changing the state change."
+            },
+            {
+              "criterion": "The response separates the common internal-energy change from potentially different transfers.",
+              "evidence_of": "The learner distinguishes a state function from path quantities."
+            }
+          ],
+          "accepted": [
+            "The diagram keeps A and B fixed, shows distinct path shapes, and labels internal-energy change as common while heat/work are allowed to differ."
+          ],
+          "rejected": [
+            "The response concludes every energy quantity is identical because the endpoints match, erasing the path-dependent distinction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is identical about the two processes before you compare any area?",
+              "why_this_ask": "It establishes the shared endpoints as the controlled feature.",
+              "from_step_ref": "THERMO-R3-1"
+            },
+            {
+              "ask": "What visible feature differs between the paths?",
+              "why_this_ask": "The learner identifies the process history represented by the plot.",
+              "from_step_ref": "THERMO-R3-2"
+            },
+            {
+              "ask": "Which energy change is determined only by the endpoints?",
+              "why_this_ask": "It elicits the state-function claim after the contrast is built.",
+              "from_step_ref": "THERMO-R3-3"
+            },
+            {
+              "ask": "What does that leave free to differ between paths?",
+              "why_this_ask": "The learner states the path-dependent consequence rather than memorizing a label."
+            }
+          ],
+          "differs_from_teaching_path": "The declarative route draws two paths and points to their differing areas before stating the invariant; the elicitation first makes the learner identify what is common and what changes, then asks which quantity belongs to the endpoints."
+        },
+        "boundary_test": {
+          "prompt": "If the two processes follow the same-looking path shape but end at different final states, must their internal-energy changes match?",
+          "answer": "No. Endpoint state has changed, so the state-function change need not be the same.",
+          "confirms": "The learner attributes invariance to matching states rather than to visual similarity of a plotted path."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-THERMO-R4",
+      "title": "A complete cycle returns the state while its loop records net work",
+      "bucket_id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "primary_capability_ref": "CAP-PHY-THERMO-R4",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The rung depends on reading a directed closed pressure-volume loop while keeping state return separate from nonzero energy transfer over the cycle.",
+      "entry_assumptions": [
+        "Can distinguish state-function change from path-dependent transfers.",
+        "Can interpret direction and enclosed area on a pressure-volume plot."
+      ],
+      "inferential_jump": "Over a complete thermodynamic cycle the system returns to its initial state, so net internal-energy change is zero and net heat balances net work; the directed pressure-volume loop records the sign of net work.",
+      "teaching_path": [
+        {
+          "id": "THERMO-R4-1",
+          "role": "DECLARE",
+          "action": "Trace a closed pressure-volume path until the system returns exactly to its starting state.",
+          "why_valid": "A complete cycle has identical initial and final states by definition, so every state function returns to its initial value.",
+          "inputs": [],
+          "output": "start state A -> path around loop -> final state A | state returned"
+        },
+        {
+          "id": "THERMO-R4-2",
+          "role": "TRANSFORM",
+          "action": "Reverse the direction around the same geometric loop while leaving every plotted point unchanged.",
+          "why_valid": "Reversing traversal changes the sign of process work while the enclosed geometric area keeps the same magnitude.",
+          "inputs": [],
+          "output": "clockwise loop -> one work sign | same loop counter-clockwise -> opposite work sign | enclosed area magnitude = same"
+        },
+        {
+          "id": "THERMO-R4-3",
+          "role": "VERIFY",
+          "action": "Use the returned state to check whether zero internal-energy change implies zero heat transfer for the full cycle.",
+          "why_valid": "Returning the state only forces the net state-function change to vanish; if the cycle has nonzero net work, energy conservation requires a matching net heat transfer.",
+          "inputs": [],
+          "output": "full cycle: internal-energy change = 0 | nonzero net work -> nonzero net heat with matching ledger balance"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A cyclic engine must have zero heat transfer because its internal energy returns to the starting value.",
+          "diagnostic_prompt": "If delta U over one full cycle is zero but the loop encloses positive work area, what must be true of net heat?",
+          "repair": "Apply the first law to the whole cycle: zero delta U requires net heat and net work to match under the chosen convention."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A directed closed pressure-volume loop returns to its starting state and encloses a nonzero area. Explain the internal-energy change over the cycle and how reversing loop direction changes the net work sign.",
+        "source_ref": "SRC-AUTHOR-PHY-THERMO",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The internal-energy change over the complete cycle is zero because the state returns to its start; reversing the loop reverses the net work sign while keeping the enclosed-area magnitude unchanged.",
+          "reasoning": [
+            "The final state equals the initial state, so the net change of the state function is zero.",
+            "A directed pressure-volume loop can still represent nonzero net process work.",
+            "Reversing the path direction reverses the sign of that work, so the corresponding net heat balance must reverse consistently under the same convention."
+          ],
+          "check": "Collapse the loop to a path retraced exactly forward and backward; the enclosed area disappears, so the net work should also disappear.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer interprets signs and state return qualitatively and does not compute a loop area or energy value."
+        }
+      },
+      "research_contribution": "Author-created cyclic-process rung based on Cartesian pressure-volume reasoning. It states the qualitative cycle balance without introducing a new symbolic thermodynamic relation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A system completes a closed pressure-volume loop and returns to its starting state. Does that force every energy transfer over the cycle to be zero?",
+          "defensible_answer": "No. The internal-energy change is zero, but net heat and net work can both be nonzero and balance over the cycle."
+        },
+        "attempt": {
+          "produces": "A directed closed-loop sketch with the returned state marked separately from the nonzero enclosed work area.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The start and finish are the same thermodynamic state.",
+              "evidence_of": "The zero state-function change is justified by state return."
+            },
+            {
+              "criterion": "The loop direction is used to distinguish opposite net-work signs.",
+              "evidence_of": "The learner reads the directed area as a process quantity rather than a state label."
+            }
+          ],
+          "accepted": [
+            "The response marks A as both start and finish, gives zero internal-energy change, and shows that clockwise versus counter-clockwise traversal reverses the work sign."
+          ],
+          "rejected": [
+            "The response says every transfer is zero merely because the system returns to A, ignoring the loop's nonzero directed area."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is true of the final thermodynamic state after one complete loop?",
+              "why_this_ask": "It anchors the only conclusion that follows directly from cyclic return.",
+              "from_step_ref": "THERMO-R4-1"
+            },
+            {
+              "ask": "What feature of the plot remains even though the state returns?",
+              "why_this_ask": "It separates process history from endpoint state."
+            },
+            {
+              "ask": "What changes if the same loop is traversed in the opposite direction?",
+              "why_this_ask": "It makes sign depend on directed traversal rather than on shape alone.",
+              "from_step_ref": "THERMO-R4-2"
+            },
+            {
+              "ask": "Can zero state change coexist with nonzero transfer over the cycle?",
+              "why_this_ask": "The learner must reject the central misconception explicitly.",
+              "from_step_ref": "THERMO-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path begins from a completed loop, reverses it, then checks the energy ledger; the elicitation begins with the false inference from state return and makes the learner identify which graphical feature still carries process information."
+        },
+        "boundary_test": {
+          "prompt": "If the plotted process goes from A to B and then retraces exactly from B to A along the same curve, is there a nonzero enclosed loop area?",
+          "answer": "No. Exact retracing encloses no area, so the net pressure-volume work over that out-and-back path is zero.",
+          "confirms": "The learner ties net work to the directed enclosed loop rather than to the mere fact that a process returns to its start."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-THERMO-R5",
+      "title": "Heat engines require heat rejection and obey a reservoir-temperature ceiling",
+      "bucket_id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "primary_capability_ref": "CAP-PHY-THERMO-R5",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The distinction is conceptual: removing mechanical losses does not remove the second-law need for a cold-reservoir heat flow.",
+      "entry_assumptions": [
+        "Can read a cyclic energy-flow diagram with heat entering, work leaving, and heat rejected.",
+        "Can compare hot- and cold-reservoir temperatures qualitatively."
+      ],
+      "inferential_jump": "A heat engine cannot convert all absorbed heat into work; even an ideal reversible engine between finite-temperature reservoirs has a maximum efficiency set by those reservoir temperatures.",
+      "teaching_path": [
+        {
+          "id": "THERMO-R5-1",
+          "role": "DECLARE",
+          "action": "Draw a cyclic engine between one hot reservoir and one colder reservoir, with absorbed heat entering, work leaving, and rejected heat leaving toward the cold reservoir.",
+          "why_valid": "A cyclic heat engine returns its working substance to its starting state, so sustained work output requires an energy-flow ledger across the cycle rather than storage inside the engine.",
+          "inputs": [],
+          "output": "hot reservoir -> heat in -> engine -> work out + heat out -> cold reservoir"
+        },
+        {
+          "id": "THERMO-R5-2",
+          "role": "TRANSFORM",
+          "action": "Imagine removing friction and other mechanical losses while keeping the same two finite-temperature reservoirs.",
+          "why_valid": "Removing dissipative losses can improve performance, but it does not remove the thermodynamic requirement that a cyclic engine reject some heat to the colder reservoir.",
+          "inputs": [],
+          "output": "mechanical losses: present -> removed; rejected heat: remains required; efficiency: improves but stays below complete conversion"
+        },
+        {
+          "id": "THERMO-R5-3",
+          "role": "VERIFY",
+          "action": "Lower the cold-reservoir temperature while holding the hot-reservoir temperature fixed, then compare the reversible performance ceiling.",
+          "why_valid": "The maximum reversible efficiency depends on the separation of the reservoir temperatures, so changing the cold reservoir changes the ceiling without changing mechanical friction.",
+          "inputs": [],
+          "output": "hot reservoir fixed; cold temperature -> lower; reversible efficiency ceiling -> higher, still below complete conversion for finite temperatures"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "An ideal engine can reach 100% efficiency if friction and other mechanical losses are removed.",
+          "diagnostic_prompt": "An engine absorbs heat from a hot reservoir and rejects none to a colder reservoir. Is that allowed merely because the engine is otherwise frictionless?",
+          "repair": "The second-law limitation is not a mechanical-loss correction; some heat rejection is unavoidable for a cyclic heat engine between finite-temperature reservoirs."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A frictionless cyclic heat engine operates between finite hot and cold reservoirs. Explain why frictionlessness does not permit complete conversion of absorbed heat into work and how making the cold reservoir colder changes the ideal ceiling.",
+        "source_ref": "SRC-AUTHOR-PHY-THERMO",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Eliminating mechanical losses does not remove the need to reject some heat to the colder reservoir; lowering the cold-reservoir temperature raises the reversible efficiency ceiling but does not make a finite-temperature engine a complete heat-to-work converter.",
+          "reasoning": [
+            "Mechanical friction is one source of loss, but the second-law restriction is not caused by friction.",
+            "A cyclic engine between finite reservoirs must reject heat to the colder reservoir.",
+            "Increasing the temperature separation can raise the reversible ceiling, yet the existence of the cold-reservoir heat flow remains part of the cycle."
+          ],
+          "check": "Compare two real engines between the same reservoirs; neither may be justified as exceeding the reversible benchmark simply by claiming better bearings or less friction.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response compares qualitative efficiency limits and heat-flow requirements without calculating an efficiency percentage."
+        }
+      },
+      "research_contribution": "Author-created second-law ceiling rung. It deliberately omits the quantitative reservoir-temperature efficiency formula because no engineering gate relation owns it for this bucket.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Suppose every mechanical friction loss in a heat engine vanished. Could the engine then turn all absorbed heat into work during each cycle?",
+          "defensible_answer": "No. A cyclic engine between finite-temperature reservoirs still must reject some heat to the colder reservoir."
+        },
+        "attempt": {
+          "produces": "An energy-flow diagram separating heat input, work output, and required heat rejection from mechanical-loss annotations.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Rejected heat remains on the diagram after friction is removed.",
+              "evidence_of": "The learner separates the thermodynamic limit from mechanical dissipation."
+            },
+            {
+              "criterion": "Changing reservoir temperature changes the ideal ceiling without changing the definition of the energy flows.",
+              "evidence_of": "The learner locates the bound in the reservoirs rather than in machine friction."
+            }
+          ],
+          "accepted": [
+            "The frictionless diagram still contains heat rejection to the cold reservoir, and a colder cold reservoir is described as raising the reversible performance ceiling."
+          ],
+          "rejected": [
+            "The response deletes the cold-reservoir heat flow as soon as friction is removed and claims complete conversion."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which energy flows must a cyclic engine exchange with its surroundings?",
+              "why_this_ask": "It establishes the ledger before efficiency claims are made.",
+              "from_step_ref": "THERMO-R5-1"
+            },
+            {
+              "ask": "Which of those flows is directly caused by mechanical friction?",
+              "why_this_ask": "It separates removable machine losses from the thermodynamic structure of the cycle."
+            },
+            {
+              "ask": "After friction is removed, what heat flow still cannot simply be deleted?",
+              "why_this_ask": "The learner supplies the second-law distinction before seeing the completed claim.",
+              "from_step_ref": "THERMO-R5-2"
+            },
+            {
+              "ask": "What qualitative change follows if the cold reservoir is made colder while the hot one stays fixed?",
+              "why_this_ask": "It tests whether the learner connects the ideal ceiling to reservoir temperatures.",
+              "from_step_ref": "THERMO-R5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path draws the full engine ledger, removes friction, then varies reservoir temperature; the elicitation first asks which flow is actually attributable to friction and forces the learner to retain heat rejection before discussing the ceiling."
+        },
+        "boundary_test": {
+          "prompt": "Two engines operate between identical reservoirs, but one has less mechanical friction. May the lower-friction engine exceed the reversible ceiling for those reservoirs?",
+          "answer": "No. It may approach the reversible benchmark more closely, but reducing friction does not permit crossing that thermodynamic ceiling.",
+          "confirms": "The learner distinguishes improved real-machine performance from the reservoir-set reversible limit."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-THERMO-CORE1A",
+      "title": "Declarative thermodynamics conceptual route",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-THERMO-R1",
+        "MIC-PHY-THERMO-R3",
+        "MIC-PHY-THERMO-R4",
+        "MIC-PHY-THERMO-R5"
+      ],
+      "entry_needs": [
+        "Keep R2 as an explicit quantitative gap; do not infer its sign equation from the later conceptual rungs."
+      ],
+      "learner_actions": [
+        "Use system boundaries and pressure-volume plots to separate state from process.",
+        "Explain cycle and engine limits through scalar energy-flow reasoning."
+      ],
+      "help_plan": [
+        "Keep transfer arrows at the system boundary.",
+        "Use paired pressure-volume paths before naming state dependence.",
+        "Keep reservoir heat flows distinct in the engine diagram."
+      ],
+      "reveal_plan": "Completed conceptual constructions are visible without inserting a vector representation or the missing R2 equation.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-THERMO",
+          "purpose": "Authored thermodynamics explanation",
+          "reason": "The record is self-contained and does not elevate the imported candidate packet."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route as authority for the quantitative first-law sign convention."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-THERMO"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-THERMO-CORE1B",
+      "title": "Elicited thermodynamics conceptual route",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-THERMO-R1",
+        "MIC-PHY-THERMO-R3",
+        "MIC-PHY-THERMO-R4",
+        "MIC-PHY-THERMO-R5"
+      ],
+      "entry_needs": [
+        "The same scalar and pressure-volume conceptual scope as Core1A, with decisions elicited before model responses."
+      ],
+      "learner_actions": [
+        "Classify, compare, and predict before reading the completed construction.",
+        "Use boundary cases to test everyday heat language, endpoint reasoning, loop interpretation, and engine-limit claims."
+      ],
+      "help_plan": [
+        "Ask for the system boundary before energy labels.",
+        "Ask what endpoints are shared before comparing process paths.",
+        "Ask which engine flow is actually removed by reducing friction."
+      ],
+      "reveal_plan": "Each attempt has explicit independent closure; no vector bridge or hidden tutor step is assumed.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-THERMO",
+          "purpose": "Self-tutor thermodynamics prompts",
+          "reason": "The authored source provides complete rubric and model-response closure."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not hand over the blocked R2 equation inside a prompt or repair."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

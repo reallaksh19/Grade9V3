@@ -1,0 +1,466 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-OSC-SHM-WAVES-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Author-created conceptual rungs for stable equilibrium and ideal-oscillator energy exchange. SHM kinematics, period scaling and wave-propagation equations remain outside the package pending gate-owned relations.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track C authored oscillation-entry rung draft",
+      "origin": "AUTHORED",
+      "locator": "Track C / oscillation rung authoring",
+      "edition": "0.1.0",
+      "section": "Conceptual constructions for stable equilibrium and the timing of kinetic-potential energy exchange",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external reproduction rights claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "MIC-OSC-STABLE-EQUILIBRIUM",
+        "CAP-OSC-STABLE-EQUILIBRIUM",
+        "MIC-OSC-ENERGY-EXCHANGE",
+        "CAP-OSC-ENERGY-EXCHANGE"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides conceptual oscillator distinctions without asserting SHM kinematics, period scaling, or wave-propagation equations.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Oscillation foundation: stable equilibrium",
+      "topic": "Oscillations",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The entry distinction separates return-directed behavior from mere repetition before quantitative oscillator models are used.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Identify whether a displaced system has a tendency directed back toward one stable equilibrium.",
+      "success_criterion": "Classify a repeated motion by whether displacement to either side produces a return-directed tendency.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-OSC-ENERGY-EXCHANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Track how kinetic and potential energy trade through one ideal oscillation cycle while total mechanical energy stays fixed.",
+      "success_criterion": "Identify the two kinetic-energy maxima in one displacement cycle and explain why opposite equal displacements carry the same potential-energy state.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-OSC-STABLE-EQUILIBRIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Repetition is not enough: look for a stable equilibrium",
+      "bucket_id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "primary_capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Repeated motion is visually salient, so learners can miss the stronger requirement that the system's response be organized around one stable equilibrium.",
+      "entry_assumptions": [
+        "Can identify a repeated back-and-forth motion and distinguish position from direction of motion."
+      ],
+      "inferential_jump": "An oscillation is organized around a stable equilibrium: when displaced, the system has a tendency that points back toward that equilibrium.",
+      "teaching_path": [
+        {
+          "id": "OSC-R1-1",
+          "role": "DECLARE",
+          "action": "Mark one position as the equilibrium and label displacements on opposite sides of it.",
+          "why_valid": "A return tendency can only be judged relative to a named equilibrium; otherwise back has no fixed destination.",
+          "inputs": [],
+          "output": "left displacement | equilibrium | right displacement"
+        },
+        {
+          "id": "OSC-R1-2",
+          "role": "TRANSFORM",
+          "action": "Move the same system first to the left of equilibrium and then to the right, recording the direction of its tendency each time.",
+          "why_valid": "If the equilibrium is stable, the direction must reverse when the side of displacement reverses so that it points inward in both cases.",
+          "inputs": [],
+          "output": "left side -> tendency right; right side -> tendency left"
+        },
+        {
+          "id": "OSC-R1-3",
+          "role": "VERIFY",
+          "action": "Compare that pattern with a motion that repeats around a circular track but has no single position toward which displacement produces a return tendency.",
+          "why_valid": "The counterexample keeps repetition while removing the stable-equilibrium structure, showing that repetition alone is insufficient.",
+          "inputs": [],
+          "output": "repeats -> yes; one return-directed equilibrium -> no"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Any motion that repeats is automatically simple harmonic motion.",
+          "diagnostic_prompt": "A ball moves periodically around a circular track. Does repetition alone show a restoring tendency toward one equilibrium position?",
+          "repair": "Separate periodicity from the restoring condition; repetition by itself does not identify simple harmonic motion."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Three motions repeat. For each, decide whether one stable equilibrium organizes the motion and justify the choice by what happens after a displacement to either side.",
+        "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A qualifying motion has one equilibrium toward which the system tends to return from either side; repetition without that inward pattern is not enough.",
+          "reasoning": [
+            "Name the candidate equilibrium before judging the motion.",
+            "Check the response after a displacement on one side and then the other side.",
+            "Accept the classification only when the response reverses so that it points toward the same equilibrium from both sides."
+          ],
+          "check": "Swap the side of displacement. A stable equilibrium should make the return tendency swap direction as well; a merely repeating path need not.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is a qualitative classification of restoring behavior and makes no computed period, frequency or amplitude claim."
+        }
+      },
+      "research_contribution": "This author-created counterexample sequence isolates stable-equilibrium reasoning before any later oscillator equation is admitted.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a motion repeats perfectly, is that alone enough to show it is organized around a stable equilibrium?",
+          "defensible_answer": "No. Repetition can occur without a single position that produces an inward return tendency from both sides."
+        },
+        "attempt": {
+          "produces": "A marked equilibrium for each candidate motion, with arrows showing the response after equal displacements to opposite sides.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "One equilibrium candidate is explicitly marked before arrows are judged.",
+              "evidence_of": "Making the reference position part of the reasoning."
+            },
+            {
+              "criterion": "The response direction is tested on both sides rather than inferred from one example.",
+              "evidence_of": "Showing the inward pattern that defines the distinction."
+            }
+          ],
+          "accepted": [
+            "The sketch marks one center and shows left displacement returning right and right displacement returning left, while the repeating circular case is rejected for lacking that one-center pattern."
+          ],
+          "rejected": [
+            "The response accepts every repeating path and never checks what a displacement to the opposite side would make the system do."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where would you place one position that the system could be displaced away from?",
+              "why_this_ask": "A return tendency is meaningless until the learner proposes an equilibrium.",
+              "from_step_ref": "OSC-R1-1"
+            },
+            {
+              "ask": "After moving the system to the left of that point, which way would a return tendency have to point?",
+              "why_this_ask": "The first side gives a concrete directional prediction.",
+              "from_step_ref": "OSC-R1-2"
+            },
+            {
+              "ask": "Now move it to the other side. What must reverse if the same point is truly stable?",
+              "why_this_ask": "The second side tests whether the result is structural rather than accidental.",
+              "from_step_ref": "OSC-R1-2"
+            },
+            {
+              "ask": "Can a circular repeating path pass the same two-sided test?",
+              "why_this_ask": "The counterexample removes stable equilibrium while preserving repetition.",
+              "from_step_ref": "OSC-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path contrasts examples directly; the elicitation route makes the learner nominate an equilibrium and commit to two opposite-side predictions before seeing the counterexample."
+        },
+        "boundary_test": {
+          "prompt": "If the system is placed exactly at the stable equilibrium and left undisturbed, which return direction should be preferred?",
+          "answer": "Neither side should be preferred; the defining return-direction test begins after a displacement away from equilibrium.",
+          "confirms": "The concept concerns response to displacement around an equilibrium, not a permanent arrow attached at the center."
+        }
+      }
+    },
+    {
+      "id": "MIC-OSC-ENERGY-EXCHANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Energy trades twice during one displacement cycle",
+      "bucket_id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "primary_capability_ref": "CAP-OSC-ENERGY-EXCHANGE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The position cycle repeats once while the energy pattern repeats at both center crossings, so learners must coordinate two time patterns without confusing sign with stored energy.",
+      "entry_assumptions": [
+        "Can identify turning points and equilibrium crossings in a repeated back-and-forth motion.",
+        "Can read a quantity as nonnegative even when position lies on the negative side of equilibrium."
+      ],
+      "inferential_jump": "In an ideal oscillator, energy shifts between motion and displacement storage while the total stays fixed; the energy state is the same at equal-magnitude displacements on opposite sides, so the kinetic-potential pattern repeats twice during one full displacement cycle.",
+      "teaching_path": [
+        {
+          "id": "OSC-R4-1",
+          "role": "DECLARE",
+          "action": "Mark five ordered checkpoints for one full displacement cycle: positive turning point, center crossing, negative turning point, second center crossing, and return to the positive turning point.",
+          "why_valid": "The energy pattern can only be counted against a complete position cycle if the cycle's repeated geometric checkpoints are fixed first.",
+          "inputs": [],
+          "output": "+turn -> center -> -turn -> center -> +turn"
+        },
+        {
+          "id": "OSC-R4-2",
+          "role": "TRANSFORM",
+          "action": "Assign the dominant energy form at each checkpoint while keeping the same total mechanical-energy level across the row.",
+          "why_valid": "At turning points the instantaneous motion is absent while displacement storage is greatest; at center crossings the displacement storage is least while motion is greatest.",
+          "inputs": [],
+          "output": "turn: KE low / PE high ; center: KE high / PE low ; turn: KE low / PE high ; center: KE high / PE low"
+        },
+        {
+          "id": "OSC-R4-3",
+          "role": "VERIFY",
+          "action": "Compare the positive and negative turning points, then count the center crossings before the displacement pattern returns to its start.",
+          "why_valid": "Opposite equal-magnitude displacements produce the same energy state, so sign reversal does not make stored energy negative; two center crossings give two kinetic-energy maxima per position cycle.",
+          "inputs": [],
+          "output": "+turn energy state = -turn energy state ; 1 displacement cycle -> 2 KE maxima"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Potential energy becomes negative whenever displacement is on the negative side of equilibrium.",
+          "diagnostic_prompt": "At equal distances on opposite sides of equilibrium, should the ideal oscillator have different stored-energy amounts just because one position has a negative sign?",
+          "repair": "Treat the side of equilibrium and the stored-energy amount separately: opposite equal-magnitude displacements have the same potential-energy state."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Follow one ideal oscillation from a positive turning point back to the same turning point. How many times does kinetic energy reach a maximum, and why does the total mechanical energy not rise and fall with those maxima?",
+        "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Kinetic energy reaches a maximum twice, once at each equilibrium crossing, while the total mechanical energy stays constant because kinetic and potential energy exchange rather than being created or destroyed.",
+          "reasoning": [
+            "One full displacement cycle crosses equilibrium twice before returning to the starting turning point.",
+            "Each center crossing is the state of greatest motion and least displacement storage, so kinetic energy peaks at both crossings.",
+            "At the turning points the balance reverses; the changing shares add to the same total throughout the ideal cycle."
+          ],
+          "check": "Lay the energy sequence under the five position checkpoints; the first and last energy states must match, and the two center checkpoints must carry the two kinetic-energy maxima.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer gives a qualitative cycle count and conservation explanation; it computes no energy value, frequency, or oscillator parameter."
+        }
+      },
+      "research_contribution": "This author-created checkpoint sequence teaches the double-repeat energy pattern and sign-independent stored-energy distinction without introducing an ungated oscillator energy equation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "During one complete back-and-forth position cycle, do you expect kinetic energy to peak once or more than once?",
+          "defensible_answer": "It peaks twice, because the oscillator passes through equilibrium twice before returning to the starting turning point."
+        },
+        "attempt": {
+          "produces": "A five-checkpoint position row with kinetic and potential energy marked high or low at each checkpoint and one constant-total line beneath it.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both equilibrium crossings are marked as kinetic-energy maxima.",
+              "evidence_of": "Coordinating the energy pattern with the full displacement cycle rather than counting only half a cycle."
+            },
+            {
+              "criterion": "Opposite turning points are assigned the same stored-energy state and the total is kept fixed.",
+              "evidence_of": "Separating position sign from energy sign and applying ideal mechanical-energy conservation."
+            }
+          ],
+          "accepted": [
+            "The row shows high kinetic energy at both center crossings, high potential energy at both turning points, and one unchanged total across all five checkpoints."
+          ],
+          "rejected": [
+            "The negative turning point is assigned negative potential energy and only one center crossing is counted before the cycle is declared complete."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What ordered checkpoints must you pass before the displacement pattern has truly returned to its starting state?",
+              "why_this_ask": "The learner must define a complete cycle before counting energy events.",
+              "from_step_ref": "OSC-R4-1"
+            },
+            {
+              "ask": "At a turning point, which energy share is largest and which is smallest?",
+              "why_this_ask": "This anchors the energy bookkeeping at a state with no instantaneous motion.",
+              "from_step_ref": "OSC-R4-2"
+            },
+            {
+              "ask": "How many center crossings occur before the position cycle closes, and what energy event occurs at each?",
+              "why_this_ask": "This produces the twice-per-cycle pattern from the motion rather than stating it.",
+              "from_step_ref": "OSC-R4-3"
+            },
+            {
+              "ask": "Why should the two opposite turning points have the same stored-energy state?",
+              "why_this_ask": "The final ask directly tests the misconception that negative position implies negative stored energy."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path lays out the five checkpoints before assigning energy; the elicitation route makes the learner define the cycle boundary and discover the repeated energy state by counting crossings."
+        },
+        "boundary_test": {
+          "prompt": "If mechanical energy is lost to an external dissipative interaction, should the constant-total row still be used unchanged?",
+          "answer": "No. The constant-total claim belongs to the ideal oscillator case; with an energy-losing interaction the mechanical total can decrease.",
+          "confirms": "The conservation statement is tied to the ideal model rather than asserted for every real oscillation."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-OSC-CORE1A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Completed stable-equilibrium comparison",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-OSC-STABLE-EQUILIBRIUM",
+        "MIC-OSC-ENERGY-EXCHANGE"
+      ],
+      "entry_needs": [
+        "Learners can recognize repeated motion and direction of motion."
+      ],
+      "learner_actions": [
+        "Read the completed two-sided equilibrium test.",
+        "Use the repeating-path counterexample to explain why repetition is insufficient.",
+        "Follow a completed five-checkpoint energy ledger through one ideal displacement cycle."
+      ],
+      "help_plan": [
+        "Keep one marked equilibrium visible.",
+        "Show opposite-side displacements before the counterexample.",
+        "Align the two center crossings and two turning-point energy states before asking how often kinetic energy peaks."
+      ],
+      "reveal_plan": "The declarative route reveals the complete inward-response pattern and boundary case.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+          "purpose": "Oscillation concept draft",
+          "reason": "The authored source supplies the qualitative equilibrium construction."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not introduce SHM kinematics, period scaling, wave propagation, or non-ideal energy-loss equations here."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-OSC-CORE1B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit a stable-equilibrium test",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-OSC-STABLE-EQUILIBRIUM",
+        "MIC-OSC-ENERGY-EXCHANGE"
+      ],
+      "entry_needs": [
+        "Learners can propose a center and make directional predictions."
+      ],
+      "learner_actions": [
+        "Nominate an equilibrium.",
+        "Predict the response from each side.",
+        "Reject a repeating counterexample that lacks the two-sided pattern.",
+        "Predict the number of kinetic-energy peaks, then reconstruct the energy ledger from position checkpoints."
+      ],
+      "help_plan": [
+        "Ask for the equilibrium before naming the rule.",
+        "Delay the circular counterexample until both side predictions are committed.",
+        "Close with the exact boundary at equilibrium.",
+        "Ask when the displacement cycle has actually closed before revealing the twice-per-cycle energy pattern."
+      ],
+      "reveal_plan": "The tutor makes the learner build the two-sided test before the classification language is revealed.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+          "purpose": "Oscillation self-tutor draft",
+          "reason": "The author-created resource supplies the prompts and closure."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn the route into numerical period, frequency, energy-value, or wave-speed work without governed equations."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

@@ -1,0 +1,1072 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-VECTOR-REPRESENTATION-SEED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Vector-representation-and-subtraction microtopic candidates (MEDIUM), authored as the prerequisite bucket for LIB-PHY-RELATIVE-MOTION-SEED during the Grade 9 relative-motion vertical slice. No learner products or curated acceptance supplied by this record alone.",
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "ADVANCED",
+      "scope_class": "OWNER_EXTENSION",
+      "source_ref": "SRC-CBSE-ADV",
+      "locator": "Chapter 2 for background only; quantitative vector construction/subtraction is treated as extension",
+      "mapping_status": "CANDIDATE"
+    }
+  ],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-VEC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "V3B vector-representation design seed",
+      "origin": "AUTHORED",
+      "locator": "V3B-Vector-Representation-Library-Seed.json",
+      "edition": "0.1.0",
+      "section": "Author-created derivation and micro-checks",
+      "last_checked": "2026-09-16",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no official exam provenance claimed",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Concrete candidate teaching content for the vector-representation prerequisite bucket; independent scientific review pending.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-MATH-BRIDGE-CANDIDATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Author-drafted Mathematics bridge note (signed coordinates, right-triangle magnitude)",
+      "origin": "AUTHORED",
+      "locator": "V3B-Vector-Representation-Library-Seed.json#capabilities",
+      "edition": "0.1.0",
+      "section": "CAP-SIGNED-PAIR-BRIDGE, CAP-RIGHT-TRIANGLE-BRIDGE",
+      "last_checked": "2026-09-16",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created bridge draft; not a Mathematics-provider-reviewed artifact",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [],
+      "selection_reason": "Physics cannot self-certify external-domain readiness (V3B-Pending-Activity-Handover.md, required sequence step 5). This bridge is a reviewable draft explanation only, held at PROVIDER_REVIEW_REQUIRED, not an accepted Mathematics capability record.",
+      "fallback": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-SIGNED-PAIR-BRIDGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-BRIDGE-CANDIDATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+      "success_criterion": "State which direction a negative or positive result names, without dropping the sign. Draft explanation only (not Mathematics-provider-accepted): on a signed number line, going from a point at coordinate b to a point at coordinate a is the displacement a-b; the sign of the result names the direction, its size names the distance. This is the one-axis case that a vector component uses along each axis independently.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": "Mathematics",
+      "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-BRIDGE-CANDIDATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+      "success_criterion": "Apply length_of_hypotenuse = sqrt(leg1^2 + leg2^2) with nonnegative lengths, independent of either leg's sign. Draft explanation only (not Mathematics-provider-accepted): two perpendicular signed components are two legs of a right triangle whose hypotenuse is the vector's magnitude. Squaring removes the sign, so the same magnitude formula applies regardless of which quadrant the vector points into; the signs are only needed back again for direction.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": "Mathematics",
+      "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "CAP-VECTOR-VS-SCALAR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+      "success_criterion": "State a magnitude as nonnegative and a component as signed, for the same vector, without confusing the two.",
+      "prerequisite_refs": [
+        "CAP-SIGNED-PAIR-BRIDGE"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Chapter 2 for background only; quantitative vector construction is treated as extension",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-GRAPHICAL-SUBTRACT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+      "success_criterion": "Reverse the second vector without changing its length, translate it without rotating it, add tail-to-head, and reconcile the result with the signed-component subtraction.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-VS-SCALAR",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Chapter 2 for background only; quantitative vector subtraction is treated as extension",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-VECTOR-VS-SCALAR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-ADV",
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Magnitude, vector and signed component",
+      "bucket_id": "BUCKET-VECTOR-REPRESENTATION",
+      "primary_capability_ref": "CAP-VECTOR-VS-SCALAR",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The distinction is easy to state and easy to blur under time pressure, once negative components appear.",
+      "entry_assumptions": [
+        "Signed coordinate subtraction on one axis is available or bridged."
+      ],
+      "inferential_jump": "See a nonnegative speed/magnitude and a pair of signed components as two different descriptions of one physical vector, not two separate quantities.",
+      "teaching_path": [
+        {
+          "id": "VS-1",
+          "action": "Name the frame and the two perpendicular axes before reading any component.",
+          "why_valid": "A signed component has no meaning without a declared positive direction.",
+          "inputs": [],
+          "output": "Declared frame: e.g. east positive x, north positive y.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "VS-2",
+          "action": "Read each component with its sign from the declared axes.",
+          "why_valid": "The sign is the axis reading itself, not an adjustment made afterwards.",
+          "inputs": [],
+          "output": "w = (3, 4) m/s means 3 m/s east and 4 m/s north.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "VS-3",
+          "action": "Apply the right-triangle bridge to the two component magnitudes.",
+          "why_valid": "Perpendicular components are legs of a right triangle whose hypotenuse is the vector length.",
+          "inputs": [
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "output": "speed = sqrt(3^2+4^2) = 5 m/s",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "VS-4",
+          "action": "State the magnitude as nonnegative and keep the signed components separately for direction.",
+          "why_valid": "Squaring erases sign, so recovering direction needs the original signed pair, not the magnitude.",
+          "inputs": [],
+          "output": "5 m/s is the speed; (3,4) m/s is still needed to say which way.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "representation_refs": [
+        "REP-VECTOR-COMPONENT"
+      ],
+      "question_family_refs": [
+        "FAM-VECTOR-MAGNITUDE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The magnitude and the vector are the same thing, so stating '5 m/s' fully answers a direction question.",
+          "diagnostic_prompt": "Two vectors, (3,4) and (4,3) m/s, have the same magnitude. Do they point the same way?",
+          "repair": "Recompute both magnitudes (both 5 m/s) then compare the signed components directly; equal magnitude does not mean equal vector."
+        },
+        {
+          "wrong_idea": "A negative component means the object is slow or the quantity is 'negative speed'.",
+          "diagnostic_prompt": "If the y-component is -4 m/s, is the speed negative?",
+          "repair": "Separate the signed component (direction information) from the magnitude (always taken nonnegative after squaring)."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A vector has components (-3, 4) m/s. State its magnitude and describe its direction in words.",
+        "source_ref": "SRC-AUTHOR-VEC",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Magnitude 5 m/s; the vector points into the quadrant that is left (negative x) and up (positive y).",
+          "reasoning": [
+            "Apply the right-triangle bridge: sqrt((-3)^2+4^2) = sqrt(25) = 5 m/s.",
+            "Keep the original signs for direction: negative x-component, positive y-component."
+          ],
+          "check": "Reversing both signs, (3,-4), would give the same magnitude but the opposite direction.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "SPEED_FROM_COMPONENTS",
+            "bindings": {
+              "vx": "DAT-W-X",
+              "vy": "DAT-W-Y"
+            }
+          }
+        }
+      },
+      "research_contribution": "CBSE Advanced motivates graphical vector operations; the component/magnitude distinction drill is author-created and needs scientific/pedagogical review.",
+      "prerequisite_refs": [
+        "CAP-SIGNED-PAIR-BRIDGE"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-SIGNED-COMPONENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Choosing axes and keeping components signed",
+      "bucket_id": "BUCKET-VECTOR-REPRESENTATION",
+      "primary_capability_ref": "CAP-VECTOR-VS-SCALAR",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Axis choice feels arbitrary to a new learner, so students often silently drop or flip a sign when the story changes.",
+      "entry_assumptions": [
+        "Can identify a vector's components once axes are declared."
+      ],
+      "inferential_jump": "Recognise that the axis choice is a free, declared decision, but once declared, every component's sign is fixed by it — not by the physical 'niceness' of the described motion.",
+      "teaching_path": [
+        {
+          "id": "SC-1",
+          "action": "Declare positive directions for both axes explicitly before reading any component.",
+          "why_valid": "A component's sign is only meaningful relative to a stated positive direction.",
+          "inputs": [],
+          "output": "e.g. 'east and north positive' stated once for the whole problem.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "SC-2",
+          "action": "Re-express the same vector under a reversed axis convention.",
+          "why_valid": "Reversing a declared positive direction negates every component measured along it, without changing the physical vector.",
+          "inputs": [],
+          "output": "w=(3,4) m/s under east/north-positive becomes (-3,4) m/s if x is redeclared west-positive.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "SC-3",
+          "action": "Confirm the magnitude is unchanged by the axis convention.",
+          "why_valid": "The right-triangle bridge only uses squared components, and squaring removes the sign flip.",
+          "inputs": [
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "output": "Both conventions give magnitude 5 m/s.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "representation_refs": [
+        "REP-VECTOR-COMPONENT"
+      ],
+      "question_family_refs": [
+        "FAM-VECTOR-MAGNITUDE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A component should be made positive because the object is 'moving forward'.",
+          "diagnostic_prompt": "If east is declared positive and the object moves west, is the x-component positive or negative?",
+          "repair": "The sign follows the declared axis only; 'forward' is not itself an axis direction unless it was declared as one."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Under 'north positive, east positive', a vector is (5,-2) m/s. State it again under 'south positive, east positive', and explain why the magnitude does not change.",
+        "source_ref": "SRC-AUTHOR-VEC",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "(5, 2) m/s under the new convention; magnitude stays sqrt(25+4) both times.",
+          "reasoning": [
+            "Only the axis whose positive direction was reversed changes sign; east stays as declared.",
+            "The right-triangle bridge squares both components, so a sign flip on one component does not change the magnitude."
+          ],
+          "check": "Re-declare the axis back to the original convention and confirm (5,-2) is recovered.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-VEC-EXIT-DATA"
+        }
+      },
+      "research_contribution": "Author-created axis-convention drill; independent scientific/pedagogical review pending.",
+      "prerequisite_refs": [
+        "MIC-VECTOR-VS-SCALAR"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-GRAPHICAL-SUBTRACTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-PLANE",
+        "SRC-PHET",
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Subtraction as addition of the reversed vector",
+      "bucket_id": "BUCKET-VECTOR-REPRESENTATION",
+      "primary_capability_ref": "CAP-GRAPHICAL-SUBTRACT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The reverse-then-add construction is a genuine model shift from ordinary addition, even though the component arithmetic looks similar.",
+      "entry_assumptions": [
+        "Can read signed components and knows a vector's magnitude is not its direction."
+      ],
+      "inferential_jump": "See P - Q as P + (-Q): reverse Q's arrowhead without changing its length, then apply tail-to-head addition.",
+      "teaching_path": [
+        {
+          "id": "GS-1",
+          "action": "Reverse Q.",
+          "why_valid": "Negating a vector keeps its length and flips both signed components.",
+          "inputs": [],
+          "output": "-Q has the same magnitude as Q and the opposite direction.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "GS-2",
+          "action": "Translate -Q to the head of P without rotating it.",
+          "why_valid": "A free vector's meaning depends only on length and direction, not on where it is drawn.",
+          "inputs": [],
+          "output": "-Q placed tail-to-head with P.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "GS-3",
+          "action": "Draw the resultant from the tail of P to the head of the translated -Q.",
+          "why_valid": "Tail-to-head addition gives the vector sum, here P + (-Q) = P - Q.",
+          "inputs": [],
+          "output": "Resultant vector P-Q.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "GS-4",
+          "action": "Reconcile the drawn resultant with the signed-component subtraction.",
+          "why_valid": "Both the graphical and component routes compute the same operation and must agree.",
+          "inputs": [],
+          "output": "Component check: (P-Q)_x = P_x-Q_x, (P-Q)_y = P_y-Q_y.",
+          "role": "VERIFY"
+        }
+      ],
+      "relation_refs": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "representation_refs": [
+        "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
+      ],
+      "question_family_refs": [
+        "FAM-VECTOR-MAGNITUDE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Vector subtraction means drawing both vectors from the same origin and connecting their two tips in whichever order looks right.",
+          "diagnostic_prompt": "Which endpoint does the subtraction arrow start from: the tip of P or the tip of Q?",
+          "repair": "Perform the explicit reverse-then-add construction (GS-1 to GS-3); the two-tips shortcut hides the observer order and is easy to reverse by mistake."
+        },
+        {
+          "wrong_idea": "Reversing a vector changes its magnitude.",
+          "diagnostic_prompt": "Does an arrow get longer or shorter when you flip it end for end?",
+          "repair": "Reversal only negates the signed components; the right-triangle bridge uses their squares, so the magnitude is unchanged."
+        }
+      ],
+      "exit_task": {
+        "prompt": "In a common east/north frame, P = (6,0) m/s and Q = (0,8) m/s. Construct P - Q graphically and state the resultant's components and magnitude.",
+        "source_ref": "SRC-AUTHOR-VEC",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "P-Q = (6,-8) m/s, magnitude 10 m/s.",
+          "reasoning": [
+            "Reverse Q to get -Q = (0,-8) m/s.",
+            "Add P and -Q tail-to-head: (6+0, 0+(-8)) = (6,-8) m/s.",
+            "Right-triangle bridge: sqrt(6^2+8^2) = sqrt(100) = 10 m/s."
+          ],
+          "check": "Component subtraction directly: (6-0, 0-8) = (6,-8) m/s, matching the graphical construction.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "SPEED_FROM_COMPONENTS",
+            "bindings": {
+              "vx": "DAT-PQ-X",
+              "vy": "DAT-PQ-Y"
+            }
+          }
+        }
+      },
+      "research_contribution": "NCERT motivates the graphical construction; PhET is a candidate exploration route, not executed evidence. The reverse-then-add teaching sequence itself is author-created pending scientific/pedagogical review. These exact component values (6,0) and (0,8) recur with physical meaning as A and B's velocities in MIC-COMMON-INTERVAL/MIC-GEOMETRIC-CHECK (BUCKET-RELATIVE-MOTION): this is a deliberate shared anchor rehearsing the same arithmetic before it carries physical meaning, not accidental duplication.",
+      "prerequisite_refs": [
+        "MIC-VECTOR-VS-SCALAR",
+        "MIC-SIGNED-COMPONENT"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-FRAME-QUALIFICATION-BOUNDARY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "When the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note)",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "primary_capability_ref": "CAP-VECTOR-CHECK",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying.",
+      "entry_assumptions": [
+        "Has completed MIC-GEOMETRIC-CHECK and accepts v_A/B = v_A - v_B for translating, nonrotating frames."
+      ],
+      "inferential_jump": "Recognise that the simple subtraction relation assumes both frames are nonrotating and non-relativistic; naming when it needs qualification is itself the (bounded) research task, not deriving the replacement mathematics.",
+      "teaching_path": [
+        {
+          "id": "FB-1",
+          "action": "Restate the two conditions already attached to REL-RELATIVE-VELOCITY: parallel nonrotating axes, classical (non-relativistic) speeds.",
+          "why_valid": "Those conditions were declared, not incidental, when the relation was derived.",
+          "inputs": [],
+          "output": "The relation is conditional, not universal.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "FB-2",
+          "action": "Name, without deriving, the two regimes where each condition can fail: a rotating reference frame (needs Coriolis/centrifugal terms) and speeds approaching light speed (needs relativistic velocity addition).",
+          "why_valid": "Naming the failure regime is a defensible research-boundary claim; deriving the replacement transformation is graduate-level and explicitly out of scope here.",
+          "inputs": [],
+          "output": "Two named boundaries, no new formula taught.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "FB-3",
+          "action": "State that this note is excluded from Grade 9 assessment claims and is not required for MIC-GEOMETRIC-CHECK's exit task.",
+          "why_valid": "Research-depth material is segregated from exam scope (TOPIC_WORKFLOW.md); a badge cannot be raised to smuggle in graduate prerequisites.",
+          "inputs": [],
+          "output": "Explicit non-assessment status.",
+          "role": "DECLARE"
+        }
+      ],
+      "relation_refs": [
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Since the school formula is 'wrong' in general, it should not be taught or trusted at all.",
+          "diagnostic_prompt": "Does a merry-go-round or a near-light-speed spacecraft appear anywhere in the Grade 9 assessment scope?",
+          "repair": "A model's stated domain of validity is what makes it correct within that domain; the Grade 9 translating-frame case is exactly where the taught relation applies."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Name (without deriving) one situation where v_A/B = v_A - v_B would need an additional term, and state whether that situation is in the Grade 9 assessment scope.",
+        "source_ref": "SRC-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A rotating reference frame (e.g. observations made from a spinning platform) needs an additional Coriolis-type term; this is outside the Grade 9 assessment scope.",
+          "reasoning": [
+            "The derivation in MIC-COMMON-INTERVAL assumed parallel, nonrotating axes at every instant.",
+            "A rotating frame violates that assumption, so the simple difference no longer accounts for the frame's own rotation."
+          ],
+          "check": "The excluded-topics list for this run already names 'Rotating frames and Coriolis terms' as out of scope, consistent with this boundary note.",
+          "acceptable_alternatives": [
+            "Relativistic velocity addition, for speeds approaching c, is also acceptable."
+          ],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "This microtopic states where the relation stops applying; its exit answer names two boundary conditions and asserts no computed value."
+        }
+      },
+      "research_contribution": "Implements the run's configured stress extension (stress.one_extension: 'a separate research-oriented model-boundary bucket on when simple relative-velocity subtraction needs frame qualifications'). Deliberately does not teach rotating-frame or relativistic mathematics; names the boundary only, per TOPIC_WORKFLOW.md's Research-depth Gravity precedent (a conceptual bridge may be authored while derivation-level release stays blocked).",
+      "prerequisite_refs": [
+        "MIC-GEOMETRIC-CHECK"
+      ],
+      "lineage": []
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-VECTOR-SUBTRACTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "P - Q = P + (-Q)",
+      "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+      "symbols": [
+        {
+          "symbol": "P",
+          "meaning": "First vector in a named common frame",
+          "unit_or_domain": "consistent SI unit; vector"
+        },
+        {
+          "symbol": "Q",
+          "meaning": "Second vector in the same frame",
+          "unit_or_domain": "consistent SI unit; vector"
+        },
+        {
+          "symbol": "-Q",
+          "meaning": "Q reversed: same magnitude, opposite direction",
+          "unit_or_domain": "consistent SI unit; vector"
+        }
+      ],
+      "conditions": [
+        "P and Q are expressed along the same declared axes.",
+        "Reversal preserves magnitude and negates every component.",
+        "Free vectors may be translated without rotation for the graphical construction."
+      ],
+      "derivation": [
+        {
+          "id": "VSub-1",
+          "action": "Define -Q as the vector with Q's magnitude and the opposite direction.",
+          "why_valid": "This is the definition of vector negation.",
+          "inputs": [],
+          "output": "-Q",
+          "role": "DECLARE"
+        },
+        {
+          "id": "VSub-2",
+          "action": "Define P - Q as P + (-Q).",
+          "why_valid": "Subtraction is defined as addition of the additive inverse, exactly as for signed numbers.",
+          "inputs": [],
+          "output": "P - Q = P + (-Q)",
+          "role": "TRANSFORM"
+        }
+      ],
+      "limits": [
+        "This is a general definition of vector subtraction; REL-RELATIVE-VELOCITY is its specialisation to two objects' velocities in a common frame."
+      ],
+      "checks": [
+        "P - P = 0 for any vector P.",
+        "Reversing the order negates the result: Q - P = -(P - Q)."
+      ],
+      "mathml": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>",
+      "gate_relation_ref": "REL-VEC-SUBTRACTION"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-VECTOR-COMPONENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR",
+      "purpose": "Show a single vector's signed components against declared axes and its nonnegative magnitude.",
+      "required_elements": [
+        "Named common frame/axes",
+        "Labelled vector with tail at the origin and arrowhead at the endpoint",
+        "Signed component readout along each axis"
+      ],
+      "relation_refs": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "read_order": [
+        "Identify the declared axes.",
+        "Read the signed endpoint coordinates.",
+        "Compute the nonnegative magnitude via the right-triangle bridge."
+      ],
+      "instance_constraints": [
+        "One length scale for both axes.",
+        "A zero vector has no assigned direction."
+      ],
+      "accessibility": [
+        "Use labels and line styles as well as colour.",
+        "Provide a verbal component/direction description."
+      ],
+      "misleading_alternatives": [
+        "An arrow drawn without labelled axes.",
+        "Correct magnitude paired with an unlabelled or ambiguous direction."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [
+        {
+          "id": "SI-VECTOR-COMPONENTS",
+          "cores": [
+            "CORE1A"
+          ],
+          "microtopic_ref": "MIC-SIGNED-COMPONENT",
+          "datum_refs": [
+            "DAT-W-X",
+            "DAT-W-Y"
+          ],
+          "scene": {
+            "kind": "VECTOR",
+            "symbol": "w",
+            "unit": "m/s",
+            "x_atom": "DAT-W-X",
+            "y_atom": "DAT-W-Y",
+            "x_label": "east (m/s)",
+            "y_label": "north (m/s)",
+            "frame": "One common east/north frame, equal scale on both axes.",
+            "caption": "w = (3, 4) m/s: the arrow's position is fixed by its two signed components, and its length is a consequence of them rather than a third independent number."
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "Labelled vector with tail at the origin and arrowhead at the endpoint",
+          "symbol": "P",
+          "in_words": "the arrow itself, whose length is the magnitude and whose slant is the direction"
+        }
+      ]
+    },
+    {
+      "id": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-PLANE",
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR_SUBTRACTION",
+      "purpose": "Show why subtracting Q means adding the reversed -Q, tail-to-head, distinct from the direct component-subtraction shortcut.",
+      "required_elements": [
+        "Named common frame",
+        "Labelled P, Q and -Q",
+        "Tail-to-head construction of P + (-Q)",
+        "Resultant labelled P-Q, with tail/head and scale"
+      ],
+      "relation_refs": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "read_order": [
+        "Identify P and Q.",
+        "Reverse Q without changing its length.",
+        "Place the reversed vector at the head of P without rotating it.",
+        "Draw the resultant and compare its components with direct subtraction."
+      ],
+      "instance_constraints": [
+        "One length scale for both axes and all instance vectors.",
+        "A zero resultant has no assigned direction."
+      ],
+      "accessibility": [
+        "Use labels and line styles as well as colour.",
+        "Provide a verbal component/direction description.",
+        "Inspect arrowheads and text at final size."
+      ],
+      "misleading_alternatives": [
+        "Two unrelated arrows with no subtraction construction.",
+        "Correct magnitude with the wrong observer/subtraction order."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [
+        {
+          "id": "SI-VECTOR-SUBTRACTION",
+          "cores": [
+            "CORE1",
+            "CORE1A"
+          ],
+          "microtopic_ref": "MIC-GRAPHICAL-SUBTRACTION",
+          "datum_refs": [
+            "DAT-P-X",
+            "DAT-P-Y",
+            "DAT-Q-X",
+            "DAT-Q-Y",
+            "DAT-PQ-X",
+            "DAT-PQ-Y"
+          ],
+          "scene": {
+            "kind": "VECTOR_SUBTRACTION",
+            "unit": "m/s",
+            "x_label": "east (m/s)",
+            "y_label": "north (m/s)",
+            "frame": "One common east/north frame, at one length scale for every vector drawn.",
+            "caption": "P - Q is built by reversing Q and placing it at the head of P. The resultant (6, -8) m/s is longer than either vector, which a component-subtraction shortcut gives without ever showing why.",
+            "minuend": {
+              "symbol": "P",
+              "x_atom": "DAT-P-X",
+              "y_atom": "DAT-P-Y"
+            },
+            "subtrahend": {
+              "symbol": "Q",
+              "x_atom": "DAT-Q-X",
+              "y_atom": "DAT-Q-Y"
+            },
+            "resultant": {
+              "symbol": "P-Q",
+              "x_atom": "DAT-PQ-X",
+              "y_atom": "DAT-PQ-Y"
+            }
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "Labelled P, Q and -Q",
+          "symbol": "P",
+          "in_words": "the vector being subtracted from, drawn from the frame's origin"
+        },
+        {
+          "element": "Labelled P, Q and -Q",
+          "symbol": "Q",
+          "in_words": "the vector being taken away, before it is turned around"
+        },
+        {
+          "element": "Labelled P, Q and -Q",
+          "symbol": "-Q",
+          "in_words": "the same arrow pointing the other way, the same length as before"
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-VECTOR-MAGNITUDE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Read, subtract or construct a vector from signed components",
+      "capability_refs": [
+        "CAP-VECTOR-VS-SCALAR",
+        "CAP-GRAPHICAL-SUBTRACT"
+      ],
+      "solution_structure": [
+        "Name the declared axes.",
+        "Read or subtract signed components in the declared order.",
+        "Apply the right-triangle bridge only if a magnitude is requested.",
+        "State direction from the signed components, not the magnitude."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Axis convention stated initially; later must be inferred or chosen by the learner.",
+        "representation_translation": "Words, vector construction and signed-component table.",
+        "reasoning_steps": "Axes -> components -> (optional) magnitude -> direction statement.",
+        "novelty": "Changing numbers or axis convention within the same construction is same-family practice."
+      },
+      "safe_variations": [
+        "Change magnitudes, cardinal directions or axis convention within declared assumptions."
+      ],
+      "transfer_boundaries": [
+        "A new physical context is transfer only if it changes a specified modelling or representation decision, not merely the cover story."
+      ],
+      "common_wrong_routes": [
+        "Report the magnitude as if it were the answer to a direction question.",
+        "Drop or flip a sign when the axis convention changes."
+      ],
+      "item_refs": []
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [
+    {
+      "id": "ISS-VEC-MATH-BRIDGE",
+      "affected_refs": [
+        "CAP-SIGNED-PAIR-BRIDGE",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The bridge_note fields on both capabilities are author-drafted explanations, not Mathematics-provider-reviewed capability records. Physics does not self-certify this external-domain readiness.",
+      "next_action": "Route to the Mathematics adapter for provider review once Physics evidence is accepted (V3B-Pending-Activity-Handover.md priority 9)."
+    },
+    {
+      "id": "ISS-VEC-SEED-REVIEW",
+      "affected_refs": [
+        "MIC-VECTOR-VS-SCALAR",
+        "MIC-SIGNED-COMPONENT",
+        "MIC-GRAPHICAL-SUBTRACTION",
+        "MIC-FRAME-QUALIFICATION-BOUNDARY"
+      ],
+      "classification": "SCIENTIFIC_REVIEW_REQUIRED",
+      "description": "Author-created teaching is not independently reviewed.",
+      "next_action": "Reconcile each scientific claim with precise sources and conduct independent scientific/pedagogical review, as for LIB-PHY-RELATIVE-MOTION-SEED."
+    },
+    {
+      "id": "ISS-VEC-EXIT-DATA",
+      "affected_refs": [
+        "MIC-SIGNED-COMPONENT"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The signed-component exit task uses a re-declared axis convention whose component values are not declared as data records, so the magnitude validator cannot be bound to its answer.",
+      "next_action": "Declare the re-declared-convention components as data and bind the magnitude validator to them."
+    }
+  ],
+  "extensions": {
+    "physics:model_regime": "CLASSICAL_PARALLEL_NONROTATING_AXES",
+    "library:local_question_banks": [],
+    "library:cross_package_refs": {
+      "note": "This package and LIB-PHY-RELATIVE-MOTION-SEED (V3B-Relative-Motion-Library-Seed.json) form one candidate library for the Grade 9 relative-motion run. IDs are unique across both files by construction; resource IDs SRC-CBSE-ADV/SRC-CBSE-STD/SRC-NCERT-PLANE/SRC-PHET/SRC-AUTHOR are defined in the relative-motion package and referenced here by id only."
+    }
+  },
+  "buckets": [
+    {
+      "id": "BUCKET-VECTOR-REPRESENTATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Vector representation and subtraction",
+      "topic": "Motion in two dimensions",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Component/magnitude confusion and axis-convention slips are common but each individually correctable with explicit construction.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Chapter 2 for background only; quantitative vector construction/subtraction is treated as extension",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "prerequisite_refs": [
+        "CAP-SIGNED-PAIR-BRIDGE"
+      ],
+      "primary_representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+      "conventions": [
+        {
+          "id": "CONV-VEC-AXES",
+          "statement": "Components are read against declared directions: x counts east and y counts north. Nothing in this bucket has a component until those directions are stated."
+        },
+        {
+          "id": "CONV-VEC-SIZE-AND-SIGN",
+          "statement": "A magnitude is written without a sign and a component is written with one. Both describe the same vector, and swapping them is the error this bucket exists to prevent."
+        }
+      ],
+      "scope": {
+        "covers": "Reading a vector as a signed component pair against declared axes, re-declaring those axes, and subtracting one vector from another by construction.",
+        "excluded": [
+          "Rotated axes. PHY-VEC-AXIS-CONVENTION holds axes perpendicular and non-rotating under a re-declaration, so a rotated-axis treatment sits outside this bucket.",
+          "The direction of a zero resultant. PHY-VEC-SUBTRACTION states that a zero resultant has none, so none is assigned here."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "data": [
+    {
+      "id": "DAT-W-X",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 3,
+      "meaning": "Intro vector w, east component",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "w_x"
+    },
+    {
+      "id": "DAT-W-Y",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 4,
+      "meaning": "Intro vector w, north component",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "w_y"
+    },
+    {
+      "id": "DAT-P-X",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 6,
+      "meaning": "Vector P, east component",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "P_x"
+    },
+    {
+      "id": "DAT-P-Y",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "meaning": "Vector P, north component",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "P_y"
+    },
+    {
+      "id": "DAT-Q-X",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "meaning": "Vector Q, east component",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "Q_x"
+    },
+    {
+      "id": "DAT-Q-Y",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 8,
+      "meaning": "Vector Q, north component",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "Q_y"
+    },
+    {
+      "id": "DAT-PQ-X",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 6,
+      "meaning": "P minus Q, east component (declared construction result)",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "(P-Q)_x"
+    },
+    {
+      "id": "DAT-PQ-Y",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": -8,
+      "meaning": "P minus Q, north component (declared construction result)",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "unit": "m/s",
+      "symbol": "(P-Q)_y"
+    },
+    {
+      "id": "EQ-VEC-SUBTRACTION-FORM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "EQUATION",
+      "value": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>",
+      "meaning": "Renderable form of the vector subtraction relation",
+      "locator": "Author-created for this package; no source measurement is claimed.",
+      "relation_ref": "REL-VECTOR-SUBTRACTION"
+    }
+  ]
+}

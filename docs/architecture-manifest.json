@@ -1,0 +1,968 @@
+{
+  "schema_version": "1.0.0",
+  "subjects": [
+    "adapter",
+    "adapter",
+    "adapter"
+  ],
+  "component_count": 62,
+  "relation_count": 102,
+  "components_by_role": {
+    "CONTRACT": 7,
+    "ENGINE": 10,
+    "GATES": 2,
+    "LIBRARY": 14,
+    "TEST": 6,
+    "TOOLING": 18,
+    "WEB": 5
+  },
+  "digest": "sha256:439f3623a9eb008ed18a807ceb6552e5d7bbae1655b3ffdc32b91179681c6cf9",
+  "components": [
+    {
+      "path": "Shared/gates/gate.schema.json",
+      "role": "GATES",
+      "role_description": "Technical gate schema and validator",
+      "bytes": 14931,
+      "sha256": "8465e8380f271f3390e24e4100ca2c5495d07b831d5def81cc8df1bf51c66245"
+    },
+    {
+      "path": "Shared/gates/validate.py",
+      "role": "GATES",
+      "role_description": "Technical gate schema and validator",
+      "bytes": 11003,
+      "sha256": "035c37db5d57e321869ce326c369984a31ac3433299ba3b2d805b40af046e05e"
+    },
+    {
+      "path": "Shared/library/authority.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 5208,
+      "sha256": "099a75ec8b56e2cde1efb9bc592530f4764074e13e970a654800f743d20c8b55"
+    },
+    {
+      "path": "Shared/library/compile_inputs.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 42760,
+      "sha256": "6ce145c17629efc8f650536560f1d1abf3f3cf8a2be9b13852c719e96dfb6e31"
+    },
+    {
+      "path": "Shared/library/depiction.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 12493,
+      "sha256": "983c00ac1d87bb71f7e9687a8a5702e3dca43bb45ba451ad817986d4d4533d31"
+    },
+    {
+      "path": "Shared/library/differentiation.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 6165,
+      "sha256": "8a66e6f338996f7c4b849d380776f2dc620b4b6dff091e7c6b5a1d49d6a89f42"
+    },
+    {
+      "path": "Shared/library/import_sil.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 12396,
+      "sha256": "64fad607b37d11fc911bf70e744715d3aeeffa4b4c8ba6654434bd34ab5b6fcf"
+    },
+    {
+      "path": "Shared/library/intake.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 12946,
+      "sha256": "4aa92363079ba2323f1cee9159ea4b83260dc327dbfa5eeb240d3b487f461054"
+    },
+    {
+      "path": "Shared/library/learner-profile.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 3285,
+      "sha256": "38b672866bc8542844e883e1a129436b92acb88a735e9917aad532a956159129"
+    },
+    {
+      "path": "Shared/library/matrix.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 9526,
+      "sha256": "b3d0022eed8a2265abe18b44bbac0362c734e288488bb36cb58b6441ebc54310"
+    },
+    {
+      "path": "Shared/library/observation.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 1562,
+      "sha256": "27b335cce8b36ca1170017b2415ad14c14ea2c4dd7cd018833fc76eb62dbfc0e"
+    },
+    {
+      "path": "Shared/library/package.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 69947,
+      "sha256": "9f6682c16e25c4363caa0d1944f0753326f97c97255c6c8b611b003221c372b5"
+    },
+    {
+      "path": "Shared/library/promote.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 4894,
+      "sha256": "649834b0ae1e35efe6acdede61eef32259041aeacbf2e699294aa5d19a0bc65b"
+    },
+    {
+      "path": "Shared/library/request.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 4025,
+      "sha256": "f90f9f91c6df1f974f4be00344aef921ae1a6f993728211d504fe8a0d86feb74"
+    },
+    {
+      "path": "Shared/library/resolve.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 10155,
+      "sha256": "4f3723cd7c856558afab995610b485e774d10e0998034be84a6f28834c5d171a"
+    },
+    {
+      "path": "Shared/library/substance.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 10681,
+      "sha256": "bcebe9d1c91f290045019c51dc252ff40f5267d9e6b6fb725c29f2bb76a73706"
+    },
+    {
+      "path": "Shared/publication_host/__init__.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 85,
+      "sha256": "7a570d99a08e7e0f8907f41350007c30d188de867d2a237b175c2f2c8a552798"
+    },
+    {
+      "path": "Shared/publication_host/adapter.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 6456,
+      "sha256": "e6209f78a92445bcdebe1d828abc70f60a20487458a3dd2a6cea3f9460cba446"
+    },
+    {
+      "path": "Shared/publication_host/audit.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 6182,
+      "sha256": "42db7d91eff9cb001b95b649d427b56cf5a28647e7ce7c929d6ee3941644d73b"
+    },
+    {
+      "path": "Shared/publication_host/cli.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 1467,
+      "sha256": "7b23f2206ad6dc7cbd7f657dcc4f20586a2525fb8f2af3970d98a17f0483d472"
+    },
+    {
+      "path": "Shared/publication_host/compose.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 12193,
+      "sha256": "5cf50fd9debabcdb812c07197295a03266de25c2cab88638b5bb2ab0fa854f65"
+    },
+    {
+      "path": "Shared/publication_host/drawing.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 4047,
+      "sha256": "ecef46d3df3b3ee9354c2d5f32f8e3b9f63764eee6882afcbc5df608313c0268"
+    },
+    {
+      "path": "Shared/publication_host/host.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 2419,
+      "sha256": "537c7337f4d2654fbd3dff220a265c000eeb2b9a44193df0186732e3dc31032d"
+    },
+    {
+      "path": "Shared/publication_host/inputs.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 13852,
+      "sha256": "6aa80a86d46be598a8f4855c2b47e5c2fa3fe379cb27163f4ad4fdbdd511c14a"
+    },
+    {
+      "path": "Shared/publication_host/science.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 6765,
+      "sha256": "202c5cad2428c640fb3da44cf64f57700ab213551042de8e1c740c80ba5f9578"
+    },
+    {
+      "path": "Shared/publication_host/storage.py",
+      "role": "ENGINE",
+      "role_description": "Subject-neutral publication engine",
+      "bytes": 2375,
+      "sha256": "deef788f71fd04c9dcfa9ad0b555a2bd7ef1f78743bfa65311a8fa3ed47be179"
+    },
+    {
+      "path": "Shared/roles/CORE1.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 3950,
+      "sha256": "e1c6a284c1b4b4b8ce766e66a7d535702846c991fbd2fc98dfd55b449cf6c665"
+    },
+    {
+      "path": "Shared/roles/CORE1A.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 4969,
+      "sha256": "91251d96eb5c01258ab524f52f2daa6d7d841e7bca37042fbb4371c4dfd7bda8"
+    },
+    {
+      "path": "Shared/roles/CORE1B.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 4699,
+      "sha256": "1b34e20227f1d397eda989f9456b73398061dd12f31afc4f033ab28b2e24461b"
+    },
+    {
+      "path": "Shared/roles/CORE2.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 3674,
+      "sha256": "315e83224fdc56c1ea07fe677a0e39f0f29a67e0a7bcf5542cb0d3e60c2b480b"
+    },
+    {
+      "path": "Shared/roles/CORE2A.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 3760,
+      "sha256": "bc4f52d085bf8b85bb7f67a7e6183f4f14431694aa19a30b14210105bfb69bc6"
+    },
+    {
+      "path": "Shared/roles/CORE2B.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 3719,
+      "sha256": "c33060392d4ada753cd7b5c66de4a6484de55004e9f22bca6a2d514963dd0b24"
+    },
+    {
+      "path": "Shared/roles/README.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 3502,
+      "sha256": "3e7801afd5cf91d68af9732454250cf86a8c78e97052e2c85e210805c565b01a"
+    },
+    {
+      "path": "Shared/tools/__init__.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Shared/tools/author_brief.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 16163,
+      "sha256": "ac47354121ff9c025ca08cc49a0bfe11fb7422e531455169657c54bc7216d411"
+    },
+    {
+      "path": "Shared/tools/build_manifest.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8185,
+      "sha256": "c79f0c2d6918870d1bd1c71539d2b310834d7f4ad0d41116ef59d1bdad750df4"
+    },
+    {
+      "path": "Shared/tools/build_web_data.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7595,
+      "sha256": "81982a37d6e7d4959338444ccb7c01a60d61d2e906065ea3ab28db50721ec0fe"
+    },
+    {
+      "path": "Shared/tools/capability_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5699,
+      "sha256": "69d194c94e48a1740b2cf8eda7587130d1af6f8002910a7e1a63a1bd735237f6"
+    },
+    {
+      "path": "Shared/tools/capability_collisions.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6877,
+      "sha256": "445bdd8ed4cb253598336012c23fc013e59fde531ce97563f5f5155b136e2116"
+    },
+    {
+      "path": "Shared/tools/ceiling_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7343,
+      "sha256": "4153577dbc8d1f0f5e54e176ed4bcaefc7c007cac53859f5ebf26c52101a5312"
+    },
+    {
+      "path": "Shared/tools/check_subjects.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 10674,
+      "sha256": "78746a5f22c1f04bcee72242dec44f8f128df715a3b6d4b7610294afefa2a242"
+    },
+    {
+      "path": "Shared/tools/learner_evidence.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5438,
+      "sha256": "86c329799fe8402e50cccbee2666812d94d3f76f1507d8855e7d5f35dee6db64"
+    },
+    {
+      "path": "Shared/tools/matrix_conformance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 9396,
+      "sha256": "4d6374db2c8692afe6d0691048b034202d58d916cf8728fa7f6d86ac9d5203d8"
+    },
+    {
+      "path": "Shared/tools/publication_provenance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8760,
+      "sha256": "e3b7a543639d51e3e1cd89535774d88a5ba37b06ba69140885d732b9bfdd9d02"
+    },
+    {
+      "path": "Shared/tools/reachability.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4500,
+      "sha256": "067c990d5caa34ffc7efeb6f698acf48108fea0ceacd1bd55a9792475fd348c4"
+    },
+    {
+      "path": "Shared/tools/republish.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4776,
+      "sha256": "fa2010628a474dee893dc9ffd8f72d3b650cc4b6b3f99062a96481b99b5f2d03"
+    },
+    {
+      "path": "Shared/tools/resolve_request.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 17684,
+      "sha256": "1b7fa1db8d3fb958d03434b15c79f5fcb55fed3a189b58d1329a5b6759890c25"
+    },
+    {
+      "path": "Shared/tools/spec_conformance.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 11088,
+      "sha256": "259304b41df86016cde0ea1f399fdd9652d137ea5b98913927dcb2de678ebecd"
+    },
+    {
+      "path": "Shared/tools/spec_delivery.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 9698,
+      "sha256": "80c6611233711872761a0858999fae72c043c323cce2ac1d0d82ac8a99ff9df2"
+    },
+    {
+      "path": "Shared/tools/topic_independence_allowlist.json",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 591,
+      "sha256": "5391b05ff48f572a97a7265484e51aa091fa637b58e89e1d190f88616c3c188b"
+    },
+    {
+      "path": "Shared/tools/topic_independence_guard.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 9828,
+      "sha256": "66be76054d03adfbb44b4d0ba4f334b652f8d125dcead6348d6c46c71d9f3db5"
+    },
+    {
+      "path": "tests/test_gates.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13798,
+      "sha256": "0b321793b498ac16d6480c8b7c538d9a61daa96aaf07918943d9617bedb1bbd8"
+    },
+    {
+      "path": "tests/test_import_sil.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13978,
+      "sha256": "2c9f3987e74913b14937f2a743b1a3fb73788e464d4ee9177bc19f80a3afc26c"
+    },
+    {
+      "path": "tests/test_library.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 80324,
+      "sha256": "1d015bf109e93d8e4e01b944948419695b0e6d7a8d2eae3081acfeae49315b21"
+    },
+    {
+      "path": "tests/test_mathematics.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 14849,
+      "sha256": "157c679b1920bfaab60806171a2edd1651ab16f33b2cc359152cc2d8f2988dcb"
+    },
+    {
+      "path": "tests/test_publication_engine.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 24889,
+      "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+    },
+    {
+      "path": "tests/test_tools.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 82098,
+      "sha256": "1cd104eb3e51b33316c8dbb5c0780a3a71bc557714dbaef9d9b761d3daddce34"
+    },
+    {
+      "path": "tools/app.css",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 3206,
+      "sha256": "2baa5c0b70ccfb51db90cdf0158e8433070f1e5b6c2777d665c879cb040c1c1c"
+    },
+    {
+      "path": "tools/data.js",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 272110,
+      "sha256": "380db270b2c702cd9dcd1bbac790431b3d93209709f5f0996340c1a5de2f5fed"
+    },
+    {
+      "path": "tools/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 3068,
+      "sha256": "2a6e27e15b449425810d04bcc3b7f31991263438f5af24e7cecf705f15f8d02d"
+    },
+    {
+      "path": "tools/library/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 10707,
+      "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
+    },
+    {
+      "path": "tools/run-builder/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 7041,
+      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
+    }
+  ],
+  "relations": [
+    {
+      "from": "Shared/gates/validate.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/authority.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/compile_inputs.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/compile_inputs.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/depiction.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/depiction.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/differentiation.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/differentiation.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/import_sil.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/import_sil.py",
+      "to": "Shared.library.substance",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/intake.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/intake.py",
+      "to": "Shared.library.substance",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/resolve.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/substance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/adapter.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/audit.py",
+      "to": "adapter",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/cli.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/compose.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/drawing.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/host.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/inputs.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/science.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/science.py",
+      "to": "adapter",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/publication_host/storage.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/author_brief.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/author_brief.py",
+      "to": "Shared.tools.spec_conformance",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_manifest.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/capability_audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/capability_audit.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/capability_collisions.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/ceiling_audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/ceiling_audit.py",
+      "to": "Shared.tools.author_brief",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.authority",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.depiction",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.differentiation",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.promote",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.tools.capability_audit",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/check_subjects.py",
+      "to": "Shared.tools.spec_delivery",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/learner_evidence.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/matrix_conformance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/publication_provenance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/reachability.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/republish.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/republish.py",
+      "to": "Shared.publication_host.audit",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/republish.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools.author_brief",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_conformance.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/spec_delivery.py",
+      "to": "Shared.tools.spec_conformance",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_gates.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_gates.py",
+      "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_import_sil.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_import_sil.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_import_sil.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.promote",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_mathematics.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_mathematics.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_mathematics.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_mathematics.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_mathematics.py",
+      "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.adapter",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.compose",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.publication_host.storage",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.tools.republish",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    }
+  ]
+}

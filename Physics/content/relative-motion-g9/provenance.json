@@ -1,0 +1,12 @@
+{
+  "run_id": "relative-motion-g9",
+  "basis": "AUTHORED_OUTSIDE_THE_LIBRARY",
+  "reason": "The plan carries hand-written prose in its own id space -- units U-1A-VEC and U-1A-REL, buckets B-VEC and B-REL, obligations OB-VEC-CONCEPT -- and references no record the Physics library declares. It was authored to prove the publication engine end to end before the library could feed it, and it did that. It is not a projection of the library and must not be read as one: no gate that governs the library governs these pages.",
+  "records": [],
+  "measured": {
+    "library_records_referenced_by_the_plan": 0,
+    "microtopics_the_library_teaches_for_these_buckets": 7,
+    "vocabulary_ceiling_words_used_by_the_published_pages": 14
+  },
+  "next_action": "Superseded for teaching purposes by Physics/content/relative-motion-library, which publishes the same bucket from the library and declares basis LIBRARY. This run is kept as the engine proof it was built to be; it is not a projection of the library and must not be read as one."
+}

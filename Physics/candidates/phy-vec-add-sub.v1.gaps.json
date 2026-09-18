@@ -1,0 +1,87 @@
+[
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "capabilities",
+    "detail": "the source declares no assessment capabilities, which are owned by the assessment layer and cannot be inferred from a teaching packet"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "data",
+    "detail": "the source states no quantitative values, so nothing can be machine-checked"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "microtopic.badge_reason",
+    "detail": "the source records no reason for a subtopic's difficulty"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "microtopic.exit_task",
+    "detail": "the source's TTU scaffolds are candidate input under the C5 layer mapping, not exit tasks, and carry no oracle; the field is left absent rather than filled with a scaffold that cannot be checked"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "microtopic.misconceptions[].diagnostic_prompt",
+    "detail": "the source pairs a flawed action with a repair, but asks the learner nothing"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "microtopic.research_contribution",
+    "detail": "the source records no provenance for its own claims"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "microtopic.teaching_path[].why_valid",
+    "detail": "the source states procedures without justifying them"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "relation.gate_relation_ref",
+    "detail": "subject truth is owned by an engineering gate, and the source names none"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "resources",
+    "detail": "the source cites no materials of its own"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "teaching_path.ATOM-VEC-03",
+    "detail": "carries an action with no justification and no output state"
+  },
+  {
+    "kind": "IMPORTER_INFERRED",
+    "field": "teaching_path.ATOM-VEC-03.role",
+    "detail": "read as VERIFY from the source atom type INVARIANT; the source declares no role, so this is the importer's reading and an author should confirm it"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "teaching_path.ATOM-VEC-04",
+    "detail": "carries an action with no justification and no output state"
+  },
+  {
+    "kind": "IMPORTER_INFERRED",
+    "field": "teaching_path.ATOM-VEC-04.role",
+    "detail": "read as TRANSFORM from the source atom type PROCEDURE; the source declares no role, so this is the importer's reading and an author should confirm it"
+  },
+  {
+    "kind": "SIL_FIELD_ABSENT",
+    "field": "teaching_path.ATOM-VEC-05",
+    "detail": "carries an action with no justification and no output state"
+  },
+  {
+    "kind": "IMPORTER_INFERRED",
+    "field": "teaching_path.ATOM-VEC-05.role",
+    "detail": "read as DECLARE from the source atom type STRATEGY; the source declares no role, so this is the importer's reading and an author should confirm it"
+  },
+  {
+    "kind": "TTU_CANDIDATE_NOT_PROMOTED",
+    "field": "TTU-VEC-01",
+    "detail": "held as candidate input; promoting a scaffold to an exit task needs an oracle the source does not carry"
+  },
+  {
+    "kind": "TTU_CANDIDATE_NOT_PROMOTED",
+    "field": "TTU-VEC-02",
+    "detail": "held as candidate input; promoting a scaffold to an exit task needs an oracle the source does not carry"
+  }
+]

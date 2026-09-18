@@ -1,0 +1,319 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "PHY-REL-MOTION-LIB",
+  "baseline_id": "BASE-BUCKET-RELATIVE-MOTION",
+  "selected_cores": [
+    "CORE1",
+    "CORE2",
+    "CORE1A",
+    "CORE1B",
+    "CORE2A"
+  ],
+  "sources": [
+    {
+      "id": "LIBRARY",
+      "path": "sources/source.json",
+      "sha256": "fb45fd0a9108d631f41ceff924e91300d245577224aa38307f65bcc745fccbc5"
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-RELATIVE-MOTION",
+      "badge": "HARD",
+      "prerequisites": [
+        "BUCKET-VECTOR-REPRESENTATION"
+      ]
+    },
+    {
+      "id": "BUCKET-VECTOR-REPRESENTATION",
+      "badge": "MEDIUM",
+      "prerequisites": []
+    }
+  ],
+  "obligations": [
+    {
+      "id": "OB-MIC-MEASURED-FROM",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "CONCEPT",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-MIC-SAME-TIME",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "CONCEPT",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-MIC-COMMON-INTERVAL",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "CONCEPT",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+        "EQ-RELATIVE-VELOCITY-FORM"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-MIC-GEOMETRIC-CHECK",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "CONCEPT",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+        "EQ-RELATIVE-VELOCITY-FORM"
+      ],
+      "required_cores": [
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-BUCKET-RELATIVE-MOTION-CONVENTIONS",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "BUCKET",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+        "EQ-RELATIVE-VELOCITY-FORM"
+      ],
+      "required_cores": [
+        "CORE1",
+        "CORE1A",
+        "CORE1B"
+      ],
+      "required_kinds": [
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-BUCKET-RELATIVE-MOTION-ORIENTATION",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "BUCKET",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+        "EQ-RELATIVE-VELOCITY-FORM"
+      ],
+      "required_cores": [
+        "CORE1"
+      ],
+      "required_kinds": [
+        "EQUATION",
+        "TEXT"
+      ]
+    },
+    {
+      "id": "OB-BUCKET-RELATIVE-MOTION-CUSTODY",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "BUCKET",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+        "EQ-RELATIVE-VELOCITY-FORM"
+      ],
+      "required_cores": [
+        "CORE2"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    },
+    {
+      "id": "OB-BUCKET-RELATIVE-MOTION-PRACTICE",
+      "bucket_id": "BUCKET-RELATIVE-MOTION",
+      "scope": "BUCKET",
+      "source_atom_ids": [
+        "DAT-KIN-ILLUSTRATIVE-PATH",
+        "DAT-NLM-ILLUSTRATIVE-SPEED",
+        "DAT-P-X",
+        "DAT-P-Y",
+        "DAT-PQ-X",
+        "DAT-PQ-Y",
+        "DAT-Q-X",
+        "DAT-Q-Y",
+        "DAT-VA-X",
+        "DAT-VA-Y",
+        "DAT-VAB-X",
+        "DAT-VAB-Y",
+        "DAT-VB-X",
+        "DAT-VB-Y",
+        "DAT-VBA-X",
+        "DAT-VBA-Y",
+        "DAT-VEC-ORDER-LENGTH",
+        "DAT-W-X",
+        "DAT-W-Y",
+        "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+        "EQ-RELATIVE-VELOCITY-FORM"
+      ],
+      "required_cores": [
+        "CORE2A"
+      ],
+      "required_kinds": [
+        "QUESTION"
+      ]
+    }
+  ],
+  "required_questions": [
+    {
+      "core": "CORE2A",
+      "source_id": "LIBRARY",
+      "question_id": "Q-AUTHOR-REL-01"
+    }
+  ]
+}

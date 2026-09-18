@@ -1,0 +1,345 @@
+{
+  "id": "AUTHOR",
+  "origin": "AUTHOR_CREATED",
+  "citation": "V3B relative-motion vertical slice; author-created candidate questions, not CBSE examination items (V3B-Stress-Test-Prompt-Template.md Sec.3: BUILD_REVIEW_CORPUS). Concept progression and arithmetic control adapted from V3B-Motion-Grade9-Example.md and the reviewed candidate microtopic library.",
+  "atoms": [
+    {
+      "id": "w_x",
+      "value": 3,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created intro vector w, x-component (east positive)"
+    },
+    {
+      "id": "w_y",
+      "value": 4,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created intro vector w, y-component (north positive)"
+    },
+    {
+      "id": "p_x",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created vector P, x-component"
+    },
+    {
+      "id": "p_y",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created vector P, y-component"
+    },
+    {
+      "id": "q_x",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created vector Q, x-component"
+    },
+    {
+      "id": "q_y",
+      "value": 8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created vector Q, y-component"
+    },
+    {
+      "id": "pq_x",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "P - Q, x-component (declared result of the graphical/component construction)"
+    },
+    {
+      "id": "pq_y",
+      "value": -8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "P - Q, y-component (declared result of the graphical/component construction)"
+    },
+    {
+      "id": "va_x",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of A, x-component, common east/north frame"
+    },
+    {
+      "id": "va_y",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of A, y-component, common east/north frame"
+    },
+    {
+      "id": "vb_x",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of B, x-component, common east/north frame"
+    },
+    {
+      "id": "vb_y",
+      "value": 8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of B, y-component, common east/north frame"
+    },
+    {
+      "id": "vab_x",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "A relative to B, x-component (declared subtraction result)"
+    },
+    {
+      "id": "vab_y",
+      "value": -8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "A relative to B, y-component (declared subtraction result)"
+    },
+    {
+      "id": "vba_x",
+      "value": -6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "B relative to A, x-component (reversed observer)"
+    },
+    {
+      "id": "vba_y",
+      "value": 8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "B relative to A, y-component (reversed observer)"
+    },
+    {
+      "id": "vm_x",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of M, x-component"
+    },
+    {
+      "id": "vm_y",
+      "value": 13,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of M, y-component"
+    },
+    {
+      "id": "vn_x",
+      "value": 5,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of N, x-component"
+    },
+    {
+      "id": "vn_y",
+      "value": 1,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Author-created velocity of N, y-component"
+    },
+    {
+      "id": "vmn_x",
+      "value": -5,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "M relative to N, x-component (declared subtraction result)"
+    },
+    {
+      "id": "vmn_y",
+      "value": 12,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "M relative to N, y-component (declared subtraction result)"
+    },
+    {
+      "id": "vnm_x",
+      "value": 5,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "N relative to M, x-component (reversed observer, transfer case)"
+    },
+    {
+      "id": "vnm_y",
+      "value": -12,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "N relative to M, y-component (reversed observer, transfer case)"
+    },
+    {
+      "id": "vboat_x",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Swimmer velocity relative to water, x-component"
+    },
+    {
+      "id": "vboat_y",
+      "value": 3,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Swimmer velocity relative to water, y-component (straight across)"
+    },
+    {
+      "id": "vcurrent_x",
+      "value": 4,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Water velocity relative to ground, x-component (current)"
+    },
+    {
+      "id": "vcurrent_y",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Water velocity relative to ground, y-component (current)"
+    },
+    {
+      "id": "vresult_x",
+      "value": 4,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Swimmer velocity relative to ground, x-component (declared composition result)"
+    },
+    {
+      "id": "vresult_y",
+      "value": 3,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Swimmer velocity relative to ground, y-component (declared composition result)"
+    },
+    {
+      "id": "eq_vec_subtract",
+      "value": "<math display=\"block\"><mrow><mi>P</mi><mo>-</mo><mi>Q</mi><mo>=</mo><mi>P</mi><mo>+</mo><mo>(</mo><mo>-</mo><mi>Q</mi><mo>)</mo></mrow></math>",
+      "kind": "EQUATION",
+      "locator": "REL-VECTOR-SUBTRACTION, V3B-Vector-Representation-Library-Seed.json"
+    },
+    {
+      "id": "eq_relv",
+      "value": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>",
+      "kind": "EQUATION",
+      "locator": "REL-RELATIVE-VELOCITY, V3B-Relative-Motion-Library-Seed.json"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-VEC-A1",
+      "original_number": "AUTHOR-VEC-01",
+      "stem": "A cyclist's velocity has components 3 m/s east and 4 m/s north in a common east/north frame. Find the cyclist's speed and describe the direction in words.",
+      "conditions": [
+        "Constant velocity; common east/north frame."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "w_x",
+          "vy": "w_y"
+        }
+      }
+    },
+    {
+      "id": "Q-VEC-A2",
+      "original_number": "AUTHOR-VEC-02",
+      "stem": "A vector P has components (6, 0) m/s in an east/north frame. State its x- and y-components and explain why the y-component is zero rather than undefined.",
+      "conditions": [
+        "Same east/north frame as Q-VEC-A1."
+      ]
+    },
+    {
+      "id": "Q-VEC-B1",
+      "original_number": "AUTHOR-VEC-03",
+      "stem": "In a common east/north frame, P = (6, 0) m/s and Q = (0, 8) m/s. Construct P - Q graphically (reverse Q, then add tail-to-head) and state the resultant's components and magnitude.",
+      "conditions": [
+        "Constant vectors; common east/north frame; free vectors may be translated without rotation."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "pq_x",
+          "vy": "pq_y"
+        }
+      }
+    },
+    {
+      "id": "Q-RELV-A1",
+      "original_number": "AUTHOR-REL-01",
+      "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+      "conditions": [
+        "Constant velocities; common time and parallel nonrotating axes."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "vab_x",
+          "vy": "vab_y"
+        }
+      }
+    },
+    {
+      "id": "Q-RELV-A2",
+      "original_number": "AUTHOR-REL-02",
+      "stem": "In a common east/north frame, M moves at (0,13) m/s and N moves at (5,1) m/s. Find the velocity of M relative to N. State its direction and magnitude.",
+      "conditions": [
+        "Constant velocities; common time and parallel nonrotating axes."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "vmn_x",
+          "vy": "vmn_y"
+        }
+      }
+    },
+    {
+      "id": "Q-RELV-A3",
+      "original_number": "AUTHOR-REL-03",
+      "stem": "Using the A/B result above (A relative to B is (6,-8) m/s), find the velocity of B relative to A. State how its magnitude and direction compare with A relative to B.",
+      "conditions": [
+        "Same frame and instant as AUTHOR-REL-01."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "vba_x",
+          "vy": "vba_y"
+        }
+      }
+    },
+    {
+      "id": "Q-RELV-B2",
+      "original_number": "AUTHOR-REL-04",
+      "stem": "A swimmer's velocity relative to the water is (0,3) m/s (straight across). The water's velocity relative to the ground (the current) is (4,0) m/s. Find the swimmer's velocity relative to the ground, and name which relation you used to combine the two given velocities.",
+      "conditions": [
+        "Constant velocities; common east/north frame; classical (non-relativistic) composition.",
+        "Labelled extension: three-object composition, beyond the two-object baseline scope."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "vresult_x",
+          "vy": "vresult_y"
+        }
+      }
+    },
+    {
+      "id": "Q-RELV-B3",
+      "original_number": "AUTHOR-REL-05",
+      "stem": "Using the M/N result above (M relative to N is (-5,12) m/s), find the velocity of N relative to M without recomputing from the original velocities of M and N.",
+      "conditions": [
+        "Same frame and instant as AUTHOR-REL-02."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "vnm_x",
+          "vy": "vnm_y"
+        }
+      }
+    }
+  ]
+}

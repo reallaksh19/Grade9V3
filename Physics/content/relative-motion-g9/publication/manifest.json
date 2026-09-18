@@ -1,0 +1,152 @@
+{
+  "basis_digest": "e27cbd273f502bb4af65dd448527fbfb14a06d7098ff2637928caa9fa8b7d546",
+  "runtime_digest": "755ed606607c6a340e5e6365400653e63d060c9ce170d2c03dee5ae1f87ee5f2",
+  "files": [
+    {
+      "path": "CORE1A.html",
+      "sha256": "79a3c67278f1f019895f6a26cf4c80d7d4b44b9049473a66c295e516cb0951af"
+    },
+    {
+      "path": "CORE1B.html",
+      "sha256": "48b78503540ea4b59d3a15bfa8a569801490e23de4679842c16d939e75886d11"
+    },
+    {
+      "path": "CORE2A.html",
+      "sha256": "36cc943ec38b230cc4a89300c6fe47678aa1f85b70522e93c7d542c8dfe8e6b5"
+    },
+    {
+      "path": "CORE2B.html",
+      "sha256": "daf39ee36e5fb306b49975597d7810628020c13678a8c06afacfda4d14722e75"
+    },
+    {
+      "path": "OWNER_BOARD.html",
+      "sha256": "f03909c6fbc0d0cfe80fd542a2db7d63bfaff9eab3179711e5a66abf44bf1e6a"
+    },
+    {
+      "path": "evidence.json",
+      "sha256": "77c4d25af3cf328848c9664bb24c0008dac6fb25f446d2d5107032c1f4762015"
+    },
+    {
+      "path": "figures/2ff565e79e90641416f20f16.svg",
+      "sha256": "3560018751c4adc6628d45e5ad502f3834d34b0c523ba6bf2adc14814153559c"
+    },
+    {
+      "path": "figures/3fa11ab0389090bb698432be.svg",
+      "sha256": "60830f15d31df0e3c867c7a0f526ec7542ba9edd6a3b950ac895567b83d62a5d"
+    },
+    {
+      "path": "figures/3ffc99676ad796731f54c9fa.svg",
+      "sha256": "79915886523d0d5d5d49d7b9d0b51998a4f8f32168c69e3764e722046dd51dd4"
+    },
+    {
+      "path": "figures/4bccaacbd71c4fbb2f805768.svg",
+      "sha256": "a0c6c3e6f2f266223df2dc6bffcf08b5ae0afb7dae263c287ec4fe48ee44e44f"
+    },
+    {
+      "path": "figures/9a178953c6e17a9d47eed5d0.svg",
+      "sha256": "e43111d0671a31d7fac3ed9c2ddf872aa5e0a77ab4c2b1343932a95732cd52eb"
+    },
+    {
+      "path": "figures/ac16c0233e1e76e4ebb673c4.svg",
+      "sha256": "d3bc554b4ed6287ece284bc0116994dc131dcac0e7ab1a87b4214a192631dfb4"
+    },
+    {
+      "path": "figures/b10876d10baea3d4d53fea65.svg",
+      "sha256": "be734ff00251e849376e19dbf1bf7b9fad16cb01559eba71af05e4216de86ee4"
+    },
+    {
+      "path": "figures/bb5b9dd0a7a1537d6c16bd07.svg",
+      "sha256": "f3e7bd5e43cc2877602cd5718122b51ab417b164ba2c67e37ee2cd2ad04509bb"
+    },
+    {
+      "path": "figures/ce68b2bc4e9b1e7d9d4463a8.svg",
+      "sha256": "50733dab139726f105780cc7ddb33e13fd344d01927bec085b67d8fc28338114"
+    },
+    {
+      "path": "figures/f05452aed8d8c8f20d814bd0.svg",
+      "sha256": "5d6a79b5f6f72d6856032abae77fd8df013470f2a94166084865be5464be511c"
+    },
+    {
+      "path": "inputs/baseline.json",
+      "sha256": "0c904174c9d8202dbdb5bbcaf1af8e8c8656ee3ba388028cc2255c65ebfd4712"
+    },
+    {
+      "path": "inputs/plan.json",
+      "sha256": "e40dfad00a62539ae0b52b34e132e1f0b1d83a5664df293c53f03f5149149aa5"
+    },
+    {
+      "path": "inputs/sources/sources/source.json",
+      "sha256": "43aa7a4b1b98f8dd71ecb20823e83a45c64cd4f637061ab3807ddae6d50ed0af"
+    },
+    {
+      "path": "runtime/Physics/adapter/CoreContracts.json",
+      "sha256": "a97b73b148c7976627ed2fc67f4b38bf32e600bf16c1a383ec971bb2b5bfd4b5"
+    },
+    {
+      "path": "runtime/Physics/adapter/__init__.py",
+      "sha256": "0e50fd85793966af4e4511985b1def2518abb1d324b28fe2cd100eec5507600b"
+    },
+    {
+      "path": "runtime/Physics/adapter/scenes.py",
+      "sha256": "c6c060b0bac30c4dc50e6ae6d7b510dfa589e1a389c3b3cf866329cc704d8e9d"
+    },
+    {
+      "path": "runtime/Physics/adapter/validator.py",
+      "sha256": "0187de6feb5133d24b80b89d48f9402fef4665072fa12dd97d94bd8748eea9a5"
+    },
+    {
+      "path": "runtime/Physics/run.py",
+      "sha256": "730788e29601deb8ec7adb169410f0ce0a1de3c72dc6b9b746e0bacc4ed973fa"
+    },
+    {
+      "path": "runtime/Shared/__init__.py",
+      "sha256": "2ff32a69efbfc9f352bf8c64a02b3da54f824a1f6eab618d2364c08b6a3fc232"
+    },
+    {
+      "path": "runtime/Shared/contracts.py",
+      "sha256": "694fdde7a725490741f380597596c908258f6c9195de7e83e16a30498a896b3d"
+    },
+    {
+      "path": "runtime/Shared/publication_host/__init__.py",
+      "sha256": "7a570d99a08e7e0f8907f41350007c30d188de867d2a237b175c2f2c8a552798"
+    },
+    {
+      "path": "runtime/Shared/publication_host/adapter.py",
+      "sha256": "e6209f78a92445bcdebe1d828abc70f60a20487458a3dd2a6cea3f9460cba446"
+    },
+    {
+      "path": "runtime/Shared/publication_host/audit.py",
+      "sha256": "42db7d91eff9cb001b95b649d427b56cf5a28647e7ce7c929d6ee3941644d73b"
+    },
+    {
+      "path": "runtime/Shared/publication_host/cli.py",
+      "sha256": "7b23f2206ad6dc7cbd7f657dcc4f20586a2525fb8f2af3970d98a17f0483d472"
+    },
+    {
+      "path": "runtime/Shared/publication_host/compose.py",
+      "sha256": "5cf50fd9debabcdb812c07197295a03266de25c2cab88638b5bb2ab0fa854f65"
+    },
+    {
+      "path": "runtime/Shared/publication_host/drawing.py",
+      "sha256": "ecef46d3df3b3ee9354c2d5f32f8e3b9f63764eee6882afcbc5df608313c0268"
+    },
+    {
+      "path": "runtime/Shared/publication_host/host.py",
+      "sha256": "537c7337f4d2654fbd3dff220a265c000eeb2b9a44193df0186732e3dc31032d"
+    },
+    {
+      "path": "runtime/Shared/publication_host/inputs.py",
+      "sha256": "6aa80a86d46be598a8f4855c2b47e5c2fa3fe379cb27163f4ad4fdbdd511c14a"
+    },
+    {
+      "path": "runtime/Shared/publication_host/science.py",
+      "sha256": "202c5cad2428c640fb3da44cf64f57700ab213551042de8e1c740c80ba5f9578"
+    },
+    {
+      "path": "runtime/Shared/publication_host/storage.py",
+      "sha256": "deef788f71fd04c9dcfa9ad0b555a2bd7ef1f78743bfa65311a8fa3ed47be179"
+    }
+  ],
+  "release_authorized": false,
+  "portable_scope": "EXACT_INPUTS_AND_PUBLISH_VERIFY_COMMANDS; NOT_QUALIFIED_AUTHORING_RESTART"
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-MAG-FIELD-LORENTZ-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Magnetism, Lorentz Force & Electromagnetic Induction. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-MAG-FIELD-LORENTZ",
+          "packet_digest": "fcec348accf64cca0547679cde4e872ff5941c5065493b382fa3aa8a7b18cee6",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Magnetism, Lorentz Force & Electromagnetic Induction",
+      "topic": "Magnetic Effects of Electric Current",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-MAG-FIELD-LORENTZ",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-MAG-FIELD-LORENTZ",
+          "packet_digest": "fcec348accf64cca0547679cde4e872ff5941c5065493b382fa3aa8a7b18cee6",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Magnetism, Lorentz Force & Electromagnetic Induction",
+      "bucket_id": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Magnetic Force Velocity Perpendicularity Invariant**: Magnetic force $\\vec{F}_B = q(\\vec{v} \\times \\vec{B})$ is strictly perpendicular to instantaneous velocity $\\vec{v}$. Consequently, the magnetic force does zero work ($W_B = \\int \\vec{F}_B \\cdot \\vec{v} dt = 0$) and cannot alter a particle's speed or kinetic energy in a pure magnetic field.",
+        "**Lenz's Law Energy Conservation Invariant**: Induced electromotive force $\\mathcal{E} = -\\frac{d\\Phi_B}{dt}$ opposes the change in magnetic flux that creates it. A positive sign would violate conservation of energy by creating self-amplifying currents without mechanical work."
+      ],
+      "inferential_jump": "Magnetic flux as surface integral: $\\Phi_B = \\int \\vec{B} \\cdot d\\vec{A} = B A \\cos\\theta$.",
+      "teaching_path": [
+        {
+          "id": "ATOM-MAG-03",
+          "role": "VERIFY",
+          "action": "Lorentz force law: $\\vec{F} = q(\\vec{E} + \\vec{v} \\times \\vec{B})$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-MAG-04",
+          "role": "TRANSFORM",
+          "action": "Determining direction of magnetic force and induced currents via Right Hand Rule and Lenz's Law.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-MAG-05",
+          "role": "DECLARE",
+          "action": "Motional EMF analysis across a moving conductor: $\\mathcal{E} = B l v$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Drawing magnetic field lines starting from North and terminating at South inside a magnet.",
+          "diagnostic_prompt": "",
+          "repair": "Magnetic field lines form continuous closed loops ($\\vec{\\nabla} \\cdot \\vec{B} = 0$, Gauss's law for magnetism). Inside the magnet, lines point from South to North."
+        },
+        {
+          "wrong_idea": "Calculating kinetic energy gain of an electron traveling through a uniform magnetic field.",
+          "diagnostic_prompt": "",
+          "repair": "$\\vec{F}_B \\perp \\vec{v} \\implies P = \\vec{F}_B \\cdot \\vec{v} = 0$. Pure magnetic fields change only the *direction* of velocity, never its magnitude."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-MAG-FIELD-LORENTZ",
+      "packet_digest": "fcec348accf64cca0547679cde4e872ff5941c5065493b382fa3aa8a7b18cee6",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

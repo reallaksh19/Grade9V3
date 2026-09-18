@@ -1,0 +1,149 @@
+{
+  "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-RELATIVE-MOTION",
+  "topic": "Motion in 2D",
+  "subtopic": "Relative motion",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate, and Core1A/Core1B may not consult one.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-MEASURED-FROM",
+      "ceiling": [
+        "frame",
+        "axis",
+        "axes",
+        "component",
+        "vector",
+        "coordinate"
+      ],
+      "must_contain": [
+        "Two situations carrying the same number that are not the same situation.",
+        "The direction said in words before any symbol or drawing appears."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "who is doing the measuring",
+          "hold": "the two objects, fixed in the room",
+          "notice": "the answer to \"where is A\" changes while nothing physical has moved"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 55,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-SAME-TIME",
+      "ceiling": [
+        "velocity",
+        "rate"
+      ],
+      "must_contain": [
+        "The journey origin to B to A traced before any subtraction is written."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the instant B is read",
+          "hold": "A's reading",
+          "notice": "a separation appears that never existed"
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 70,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-COMMON-INTERVAL",
+      "ceiling": [
+        "magnitude before components"
+      ],
+      "must_contain": [
+        "Relative position written at two instants before anything is divided."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the two directions to perpendicular",
+          "hold": "both speeds",
+          "notice": "nothing cancels; subtracting the speeds gives 1 where the answer is 5"
+        }
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 85,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-GEOMETRIC-CHECK",
+      "must_contain": [
+        "The reversed vector drawn from the head of the first, not the origin."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which object is the observer",
+          "hold": "the pair of motions",
+          "notice": "the arrow flips; the length does not"
+        },
+        {
+          "phase": 2,
+          "vary": "to head-on approach",
+          "hold": "both speeds at 20 m/s",
+          "notice": "the answer is 40 -- larger than anything present"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Identify the observer, subtract in that order, keep both signs, and take a magnitude only if the question asked for one.",
+    "difficult_move": "Deciding the subtraction order from the words \"A relative to B\", which is a reading decision rather than arithmetic.",
+    "independent_check": "Add the answer to the observer's velocity; it must return A's.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The observer is named, the axes are declared, and the subtraction order is stated."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The observer is named and the axes are declared."
+      },
+      {
+        "level": "low",
+        "handed_over": "The situation only."
+      },
+      {
+        "level": "minimum",
+        "handed_over": "The situation only, unlabelled -- not identified as belonging to this family."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Two objects on a rotating platform: decide whether the relation applies.",
+      "information_not_handed_over": "that a validity condition of the relation fails here",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Both objects given as position-time graphs; find the relative velocity.",
+      "information_not_handed_over": "the velocity vectors themselves",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A boat crossing a river: the same mathematics in an unfamiliar mapping.",
+      "information_not_handed_over": "which quantity plays the observer's role",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Chain relative velocity into the moment of closest approach.",
+      "information_not_handed_over": "that separation is least when relative velocity is perpendicular to separation",
+      "repair_to": "R5"
+    }
+  ]
+}

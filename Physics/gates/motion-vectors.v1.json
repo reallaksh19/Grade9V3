@@ -1,0 +1,1106 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHYSICS-GATES-MOTION-VECTORS-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "scope": "The vector-representation and relative-velocity gates required by the buckets currently authored in Physics/content. This is not the full grades 9-11 Physics registry.",
+    "deliberately_partial": "The V3B core system guide warns that building a large registry before proving its consumer risks another schema-only success. The machinery is proven here against real content; bulk authoring of the remaining grades 9-11 gates is production work, not a plan step.",
+    "adapted_from": "The 16-point gate contract in reallaksh19/Common PR #383, generalised to a subject-neutral schema. No gate data was copied; these are authored for the content in this repository.",
+    "review_status": "Author-created. No independent scientific or pedagogical review has occurred."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-VEC-SCALAR-VECTOR",
+      "title": "Magnitude, vector and signed component",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-VEC-MAGNITUDE-NONNEGATIVE",
+          "statement": "A magnitude is a nonnegative length; it carries no direction information."
+        },
+        {
+          "concept_id": "CON-VEC-COMPONENT-SIGNED",
+          "statement": "A component is a signed reading along a declared axis; its sign is direction information, not a defect."
+        },
+        {
+          "concept_id": "CON-VEC-TWO-DESCRIPTIONS",
+          "statement": "The signed component pair and the magnitude are two descriptions of one vector, not two separate quantities."
+        }
+      ],
+      "prerequisites": [],
+      "external_prerequisites": [
+        {
+          "capability_id": "MATH-SIGNED-COORDINATE",
+          "provider_subject": "Mathematics",
+          "statement": "Read and subtract signed coordinates on an axis, preserving the sign.",
+          "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+        },
+        {
+          "capability_id": "MATH-RIGHT-TRIANGLE",
+          "provider_subject": "Mathematics",
+          "statement": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+          "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-VEC-MAGNITUDE",
+          "expression": "|v| = sqrt(vx^2 + vy^2)",
+          "meaning": "The magnitude of a vector is the hypotenuse of the right triangle formed by its perpendicular components.",
+          "symbols": [
+            {
+              "symbol": "|v|",
+              "meaning": "Magnitude of the vector; nonnegative",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "vx",
+              "meaning": "Signed component along the declared x axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "vy",
+              "meaning": "Signed component along the declared y axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "The two axes are perpendicular.",
+            "Both components are expressed in the same frame and the same unit.",
+            "Squaring removes the component signs, so the magnitude alone cannot recover direction."
+          ]
+        }
+      ],
+      "representations": [
+        {
+          "representation_id": "REP-VEC-SINGLE",
+          "kind": "VECTOR",
+          "required_labels": [
+            {
+              "label": "declared frame and axis directions",
+              "satisfies": [
+                "frame",
+                "axis labels"
+              ]
+            },
+            {
+              "label": "axis units",
+              "satisfies": [
+                "unit"
+              ]
+            },
+            {
+              "label": "vector symbol",
+              "satisfies": [
+                "symbol"
+              ]
+            },
+            {
+              "label": "signed component readout",
+              "satisfies": []
+            },
+            {
+              "label": "equal coordinate scale on both axes",
+              "satisfies": [
+                "equal coordinate scale"
+              ]
+            }
+          ],
+          "verification_method": "Read the endpoint coordinates off the drawn axes and confirm they reproduce the stated signed components; confirm equal coordinate scale on both axes.",
+          "must_not_imply": [
+            "That arrow length alone communicates the numeric value without a stated scale.",
+            "That a vector drawn from a different origin is a different vector."
+          ],
+          "relation_bindings": [
+            "REL-VEC-MAGNITUDE"
+          ],
+          "concept_bindings": [
+            "CON-VEC-COMPONENT-SIGNED",
+            "CON-VEC-TWO-DESCRIPTIONS"
+          ]
+        }
+      ],
+      "validity_conditions": [
+        "A frame with declared positive directions exists before any component is read.",
+        "Classical kinematics; no relativistic composition."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-VEC-DECLARE",
+          "sequence": 1,
+          "action": "Declare the frame and the positive direction of each axis.",
+          "why_valid": "A signed component has no meaning without a declared positive direction."
+        },
+        {
+          "step_id": "RS-VEC-READ",
+          "sequence": 2,
+          "action": "Read each component with its sign.",
+          "why_valid": "The sign is the axis reading itself, not an adjustment applied afterwards.",
+          "depends_on": [
+            "RS-VEC-DECLARE"
+          ]
+        },
+        {
+          "step_id": "RS-VEC-MAGNITUDE",
+          "sequence": 3,
+          "action": "Apply the right-triangle relation to the component magnitudes.",
+          "why_valid": "Perpendicular components are the legs of a right triangle whose hypotenuse is the vector length.",
+          "depends_on": [
+            "RS-VEC-READ"
+          ]
+        },
+        {
+          "step_id": "RS-VEC-SEPARATE",
+          "sequence": 4,
+          "action": "Report the magnitude as nonnegative and retain the signed pair for direction.",
+          "why_valid": "Squaring erased the signs, so direction must come from the retained components.",
+          "depends_on": [
+            "RS-VEC-MAGNITUDE"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-VEC-RESOLVE",
+          "statement": "A vector may be replaced by its signed component pair along declared perpendicular axes, and reconstructed from them."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-VEC-MAGNITUDE-IS-VECTOR",
+          "wrong_idea": "Stating the magnitude fully answers a question about the vector.",
+          "counterexample": "(3,4) m/s and (4,3) m/s both have magnitude 5 m/s but point in different directions.",
+          "repair": "Compute both magnitudes, observe they agree, then compare the signed components directly to see the vectors differ."
+        },
+        {
+          "misconception_id": "MIS-VEC-NEGATIVE-SPEED",
+          "wrong_idea": "A negative component means a negative speed.",
+          "counterexample": "A velocity of (0,-4) m/s has speed 4 m/s, not -4 m/s.",
+          "repair": "Separate the signed component, which carries direction, from the magnitude, which is taken nonnegative after squaring."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-VEC-MAGNITUDE-DIRECTION",
+          "title": "Given signed components, state magnitude and direction",
+          "hidden_invariants": [
+            "The magnitude is invariant under reversing both components."
+          ],
+          "required_representation": "REP-VEC-SINGLE"
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 0,
+        "note": "Few steps, but the component/magnitude distinction is the failure point, not the arithmetic."
+      },
+      "badges": [
+        "VECTOR-FOUNDATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-VEC-NO-AXES",
+          "mutation": "Remove the declared axis directions from the representation's required labels.",
+          "expected_violation": "REPRESENTATION_REQUIRED_LABEL_MISSING"
+        },
+        {
+          "case_id": "FAL-VEC-SYMBOL-NO-UNIT",
+          "mutation": "Delete the unit field from a relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-VEC-AXIS-CONVENTION",
+      "title": "Axis choice is free, but once declared it fixes every sign",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-AXIS-FREE-CHOICE",
+          "statement": "The positive direction of each axis is a free declaration, not a property of the physical situation."
+        },
+        {
+          "concept_id": "CON-AXIS-BINDING",
+          "statement": "Once declared, the convention fixes the sign of every component measured along that axis."
+        }
+      ],
+      "prerequisites": [
+        "PHY-VEC-SCALAR-VECTOR"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-AXIS-REVERSAL",
+          "expression": "reversing a declared positive axis direction negates every component measured along it",
+          "meaning": "A change of convention changes the numbers describing the vector without changing the vector.",
+          "symbols": [
+            {
+              "symbol": "vx",
+              "meaning": "Component under the original convention",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "vx'",
+              "meaning": "Component of the same vector under the reversed convention",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "Only the axis whose positive direction was reversed changes sign.",
+            "The physical vector is unchanged; only its description changes."
+          ]
+        }
+      ],
+      "representations": [
+        {
+          "representation_id": "REP-AXIS-CONVENTION",
+          "kind": "VECTOR",
+          "required_labels": [
+            {
+              "label": "both axis positive directions named in words",
+              "satisfies": [
+                "frame",
+                "axis labels"
+              ]
+            },
+            {
+              "label": "axis units",
+              "satisfies": [
+                "unit"
+              ]
+            },
+            {
+              "label": "vector symbol",
+              "satisfies": [
+                "symbol"
+              ]
+            },
+            {
+              "label": "equal coordinate scale on both axes",
+              "satisfies": [
+                "equal coordinate scale"
+              ]
+            }
+          ],
+          "verification_method": "Re-declare one axis in the opposite direction and confirm the magnitude is unchanged while that axis's component changes sign.",
+          "must_not_imply": [
+            "That one convention is physically correct and another is wrong."
+          ],
+          "relation_bindings": [
+            "REL-AXIS-REVERSAL"
+          ],
+          "concept_bindings": [
+            "CON-AXIS-FREE-CHOICE",
+            "CON-AXIS-BINDING"
+          ]
+        }
+      ],
+      "validity_conditions": [
+        "Axes remain perpendicular and non-rotating under the re-declaration."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-AXIS-DECLARE",
+          "sequence": 1,
+          "action": "State both positive directions explicitly.",
+          "why_valid": "Component signs are only meaningful relative to a stated convention."
+        },
+        {
+          "step_id": "RS-AXIS-REEXPRESS",
+          "sequence": 2,
+          "action": "Re-express the same vector under a reversed convention.",
+          "why_valid": "Reversing a declared direction negates components measured along it.",
+          "depends_on": [
+            "RS-AXIS-DECLARE"
+          ]
+        },
+        {
+          "step_id": "RS-AXIS-INVARIANT",
+          "sequence": 3,
+          "action": "Confirm the magnitude is unchanged.",
+          "why_valid": "The magnitude relation squares both components, so a single sign flip does not change it.",
+          "depends_on": [
+            "RS-AXIS-REEXPRESS"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-AXIS-RELABEL",
+          "statement": "A declared axis reversal maps every component along that axis to its negative and leaves the magnitude fixed."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-AXIS-FORWARD-POSITIVE",
+          "wrong_idea": "A component should be made positive because the object is moving forward.",
+          "counterexample": "With east declared positive, an object moving west has a negative x component however natural its motion feels.",
+          "repair": "Return to the declared axis and read the sign from it; 'forward' is not an axis unless it was declared as one."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-AXIS-RESTATE",
+          "title": "Restate a vector under a different declared convention",
+          "hidden_invariants": [
+            "Magnitude is convention-independent."
+          ],
+          "required_representation": "REP-AXIS-CONVENTION"
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 3,
+        "prerequisite_depth": 1
+      },
+      "badges": [
+        "VECTOR-FOUNDATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-AXIS-CYCLE",
+          "mutation": "Add this gate to its own prerequisites.",
+          "expected_violation": "DEPENDENCY_CYCLE"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-VEC-SUBTRACTION",
+      "title": "Subtraction as addition of the reversed vector",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-SUB-AS-ADD-OPPOSITE",
+          "statement": "Subtracting a vector is defined as adding its reverse."
+        },
+        {
+          "concept_id": "CON-SUB-FREE-TRANSLATION",
+          "statement": "A free vector may be translated without rotation for a tail-to-head construction."
+        }
+      ],
+      "prerequisites": [
+        "PHY-VEC-SCALAR-VECTOR",
+        "PHY-VEC-AXIS-CONVENTION"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-VEC-SUBTRACTION",
+          "expression": "P - Q = P + (-Q)",
+          "meaning": "Component-wise, (P-Q)x = Px - Qx and (P-Q)y = Py - Qy; geometrically, reverse Q and add tail-to-head.",
+          "symbols": [
+            {
+              "symbol": "P",
+              "meaning": "First vector in the declared frame",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Q",
+              "meaning": "Second vector in the same frame",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "-Q",
+              "meaning": "Q reversed: equal magnitude, opposite direction",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "P and Q are expressed along the same declared axes.",
+            "Reversal preserves magnitude and negates every component."
+          ]
+        }
+      ],
+      "representations": [
+        {
+          "representation_id": "REP-SUB-CONSTRUCTION",
+          "kind": "VECTOR",
+          "required_labels": [
+            {
+              "label": "declared frame",
+              "satisfies": [
+                "frame"
+              ]
+            },
+            {
+              "label": "labelled P, Q and the resultant",
+              "satisfies": [
+                "symbol"
+              ]
+            },
+            {
+              "label": "common length scale",
+              "satisfies": [
+                "equal coordinate scale"
+              ]
+            },
+            {
+              "label": "axis units",
+              "satisfies": [
+                "unit"
+              ]
+            },
+            {
+              "label": "axis positive directions named",
+              "satisfies": [
+                "axis labels"
+              ]
+            }
+          ],
+          "verification_method": "Compare the drawn resultant's components against the direct component subtraction; both routes must agree.",
+          "must_not_imply": [
+            "That joining the two arrowheads in an arbitrary order gives the difference.",
+            "That reversal changes a vector's length."
+          ],
+          "relation_bindings": [
+            "REL-VEC-SUBTRACTION"
+          ],
+          "concept_bindings": [
+            "CON-SUB-AS-ADD-OPPOSITE",
+            "CON-SUB-FREE-TRANSLATION"
+          ]
+        }
+      ],
+      "validity_conditions": [
+        "Axes are parallel and non-rotating throughout the construction.",
+        "A zero resultant has no assigned direction."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-SUB-REVERSE",
+          "sequence": 1,
+          "action": "Reverse Q.",
+          "why_valid": "Negating a vector preserves its length and flips both signed components."
+        },
+        {
+          "step_id": "RS-SUB-TRANSLATE",
+          "sequence": 2,
+          "action": "Translate the reversed vector to the head of P without rotating it.",
+          "why_valid": "A free vector is defined by length and direction, not by where it is drawn.",
+          "depends_on": [
+            "RS-SUB-REVERSE"
+          ]
+        },
+        {
+          "step_id": "RS-SUB-RESULTANT",
+          "sequence": 3,
+          "action": "Draw the resultant from the tail of P to the head of the translated reverse.",
+          "why_valid": "Tail-to-head addition gives the vector sum, here P + (-Q).",
+          "depends_on": [
+            "RS-SUB-TRANSLATE"
+          ]
+        },
+        {
+          "step_id": "RS-SUB-RECONCILE",
+          "sequence": 4,
+          "action": "Reconcile against direct component subtraction.",
+          "why_valid": "The graphical and component routes compute the same operation and must agree.",
+          "depends_on": [
+            "RS-SUB-RESULTANT"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-SUB-ORDER",
+          "statement": "Reversing the operand order negates the result: Q - P = -(P - Q)."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-SUB-TWO-TIPS",
+          "wrong_idea": "Vector subtraction means joining the two arrowheads in whichever order looks convenient.",
+          "counterexample": "For P=(6,0) and Q=(0,8) m/s the two tip-joining orders give (6,-8) and (-6,8) m/s, which are opposite vectors.",
+          "repair": "Perform the explicit reverse-then-add construction; the shortcut hides which order was taken."
+        },
+        {
+          "misconception_id": "MIS-SUB-REVERSAL-LENGTH",
+          "wrong_idea": "Reversing a vector changes its magnitude.",
+          "counterexample": "(0,8) m/s and (0,-8) m/s both have magnitude 8 m/s.",
+          "repair": "Apply the magnitude relation to both; squaring the components makes the sign irrelevant to length."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-SUB-CONSTRUCT",
+          "title": "Construct a vector difference graphically and confirm by components",
+          "hidden_invariants": [
+            "The graphical and component routes must agree.",
+            "Order reversal negates the result."
+          ],
+          "required_representation": "REP-SUB-CONSTRUCTION"
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 2
+      },
+      "badges": [
+        "VECTOR-FOUNDATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-SUB-REP-UNDECLARED",
+          "mutation": "Change the representation kind to one the subject contract does not declare.",
+          "expected_violation": "REPRESENTATION_KIND_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-REL-POSITION",
+      "title": "Position measured from another object at the same instant",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-REL-SAME-INSTANT",
+          "statement": "Relative position compares two positions recorded at the same instant."
+        },
+        {
+          "concept_id": "CON-REL-PATH-IDENTITY",
+          "statement": "Following origin to B to A gives r_A = r_B + r_A/B, from which the subtraction order follows."
+        }
+      ],
+      "prerequisites": [
+        "PHY-VEC-SUBTRACTION"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-RELATIVE-POSITION",
+          "expression": "r_A/B = r_A - r_B",
+          "meaning": "The displacement from B to A, obtained by subtracting same-instant common-origin positions.",
+          "symbols": [
+            {
+              "symbol": "r_A",
+              "meaning": "Position of A in the common frame at the stated instant",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "r_B",
+              "meaning": "Position of B in the same frame at the same instant",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "r_A/B",
+              "meaning": "Position of A measured from B, with parallel axes",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Both positions are taken at the same instant.",
+            "Axes are parallel and non-rotating.",
+            "Positions at different instants do not define this quantity."
+          ]
+        }
+      ],
+      "representations": [
+        {
+          "representation_id": "REP-REL-POSITION",
+          "kind": "VECTOR",
+          "required_labels": [
+            {
+              "label": "declared frame",
+              "satisfies": [
+                "frame"
+              ]
+            },
+            {
+              "label": "both object positions",
+              "satisfies": [
+                "symbol"
+              ]
+            },
+            {
+              "label": "the displacement from B to A",
+              "satisfies": []
+            },
+            {
+              "label": "axis units",
+              "satisfies": [
+                "unit"
+              ]
+            },
+            {
+              "label": "axis positive directions named",
+              "satisfies": [
+                "axis labels"
+              ]
+            },
+            {
+              "label": "equal coordinate scale on both axes",
+              "satisfies": [
+                "equal coordinate scale"
+              ]
+            }
+          ],
+          "verification_method": "Add the drawn relative position to B's position and confirm A's position is recovered.",
+          "must_not_imply": [
+            "That the subtraction order is interchangeable.",
+            "That positions taken at different instants may be compared this way."
+          ],
+          "relation_bindings": [
+            "REL-RELATIVE-POSITION"
+          ],
+          "concept_bindings": [
+            "CON-REL-SAME-INSTANT",
+            "CON-REL-PATH-IDENTITY"
+          ]
+        }
+      ],
+      "validity_conditions": [
+        "Classical kinematics in a common, non-rotating frame."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-RELPOS-PATH",
+          "sequence": 1,
+          "action": "Follow the path origin to B to A.",
+          "why_valid": "Vector displacements add along consecutive paths."
+        },
+        {
+          "step_id": "RS-RELPOS-SUBTRACT",
+          "sequence": 2,
+          "action": "Subtract r_B from both sides of r_A = r_B + r_A/B.",
+          "why_valid": "The same vector operation applied to both sides preserves the equality.",
+          "depends_on": [
+            "RS-RELPOS-PATH"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-RELPOS-SWAP",
+          "statement": "Swapping the two objects negates the relative position."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-RELPOS-ORDER",
+          "wrong_idea": "Subtract whichever position is written first in the question.",
+          "counterexample": "With A at (7,2) m and B at (3,5) m, r_A/B is (4,-3) m but r_B/A is (-4,3) m: the two orders point opposite ways.",
+          "repair": "Reconstruct the path origin to B to A explicitly before subtracting."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-RELPOS-CONSTRUCT",
+          "title": "Construct a relative position from two same-instant positions",
+          "hidden_invariants": [
+            "Adding the result back to B recovers A."
+          ],
+          "required_representation": "REP-REL-POSITION"
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 3
+      },
+      "badges": [
+        "RELATIVE-MOTION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-RELPOS-NO-COUNTEREXAMPLE",
+          "mutation": "Empty the counterexample on the subtraction-order misconception.",
+          "expected_violation": "GATE_SCHEMA_VIOLATION"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-REL-VELOCITY",
+      "title": "Relative velocity in a plane",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-RELV-COMMON-INTERVAL",
+          "statement": "Relative velocity compares how one simultaneous separation changes over one shared time interval."
+        },
+        {
+          "concept_id": "CON-RELV-VECTOR-DIFFERENCE",
+          "statement": "For constant velocities the relative velocity is the vector difference of common-frame velocities."
+        }
+      ],
+      "prerequisites": [
+        "PHY-REL-POSITION"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-RELATIVE-VELOCITY",
+          "expression": "v_A/B = v_A - v_B",
+          "meaning": "The velocity of A as measured by an observer moving with B, for parallel non-rotating axes.",
+          "symbols": [
+            {
+              "symbol": "v_A",
+              "meaning": "Velocity of A in the common frame",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_B",
+              "meaning": "Velocity of B in the same frame at the same instant",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_A/B",
+              "meaning": "Velocity of A relative to B",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "Same observation times and one common interval.",
+            "Parallel, non-rotating Cartesian axes.",
+            "Classical speeds; relativistic velocity addition does not apply.",
+            "A finite-interval average is not automatically an instantaneous velocity when motion varies."
+          ]
+        }
+      ],
+      "representations": [
+        {
+          "representation_id": "REP-RELV-RESULTANT",
+          "kind": "VECTOR",
+          "required_labels": [
+            {
+              "label": "declared frame",
+              "satisfies": [
+                "frame"
+              ]
+            },
+            {
+              "label": "resultant labelled as the relative velocity",
+              "satisfies": [
+                "symbol"
+              ]
+            },
+            {
+              "label": "axis units",
+              "satisfies": [
+                "unit"
+              ]
+            },
+            {
+              "label": "common length scale",
+              "satisfies": [
+                "equal coordinate scale"
+              ]
+            },
+            {
+              "label": "axis positive directions named",
+              "satisfies": [
+                "axis labels"
+              ]
+            }
+          ],
+          "verification_method": "Confirm the drawn resultant's components equal the component-wise difference, and that a same-interval position change reproduces it.",
+          "must_not_imply": [
+            "That subtracting speeds gives the relative speed when directions differ.",
+            "That a correct magnitude certifies a correct direction."
+          ],
+          "relation_bindings": [
+            "REL-RELATIVE-VELOCITY"
+          ],
+          "concept_bindings": [
+            "CON-RELV-COMMON-INTERVAL",
+            "CON-RELV-VECTOR-DIFFERENCE"
+          ]
+        }
+      ],
+      "validity_conditions": [
+        "Parallel non-rotating axes; a rotating frame requires additional terms not covered by this gate.",
+        "Non-relativistic speeds."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-RELV-TWO-INSTANTS",
+          "sequence": 1,
+          "action": "Write the relative position at two instants.",
+          "why_valid": "The relative-position relation applies at each instant separately."
+        },
+        {
+          "step_id": "RS-RELV-GROUP",
+          "sequence": 2,
+          "action": "Subtract them and group the displacement changes.",
+          "why_valid": "Vector subtraction distributes across the two same-instant equations.",
+          "depends_on": [
+            "RS-RELV-TWO-INSTANTS"
+          ]
+        },
+        {
+          "step_id": "RS-RELV-DIVIDE",
+          "sequence": 3,
+          "action": "Divide every term by the same non-zero interval.",
+          "why_valid": "Each quotient is an average velocity over that shared interval.",
+          "depends_on": [
+            "RS-RELV-GROUP"
+          ]
+        },
+        {
+          "step_id": "RS-RELV-CONSTANT",
+          "sequence": 4,
+          "action": "For constant velocities, identify each average with the constant velocity.",
+          "why_valid": "No instantaneous limit is required when the velocity does not vary.",
+          "depends_on": [
+            "RS-RELV-DIVIDE"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-RELV-CHAIN",
+          "statement": "Relative velocities compose: v_A/C = v_A/B + v_B/C, which is why a three-object situation may require addition rather than subtraction."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-RELV-SUBTRACT-SPEEDS",
+          "wrong_idea": "Subtracting the two speeds always gives the relative speed.",
+          "counterexample": "A at (6,0) m/s and B at (0,8) m/s have speeds 6 and 8 m/s, yet the relative speed is 10 m/s, not 2 m/s.",
+          "repair": "Subtract signed components first, then take the magnitude only if a magnitude was asked for."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-RELV-TWO-BODY",
+          "title": "Two velocities in a common translating frame",
+          "hidden_invariants": [
+            "Equal velocities give zero relative velocity.",
+            "A stationary observer gives v_A/B = v_A."
+          ],
+          "required_representation": "REP-RELV-RESULTANT"
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 4,
+        "note": "The derivation is short but the common-interval justification is the step most often skipped."
+      },
+      "badges": [
+        "RELATIVE-MOTION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-RELV-STEP-ORDER",
+          "mutation": "Make the divide step depend on a later step.",
+          "expected_violation": "REASONING_DEPENDENCY_NOT_EARLIER"
+        },
+        {
+          "case_id": "FAL-RELV-DUPLICATE-ASSET",
+          "mutation": "Reuse REL-RELATIVE-VELOCITY as a relation id in another gate.",
+          "expected_violation": "GATE_DUPLICATE_ASSET_ID"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-REL-OBSERVER-REVERSAL",
+      "title": "Reversing the observer reverses the relative vector",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-REV-ANTISYMMETRY",
+          "statement": "The relative-velocity relation is antisymmetric in its two objects."
+        },
+        {
+          "concept_id": "CON-REV-MAGNITUDE-INVARIANT",
+          "statement": "Reversal changes direction but not magnitude."
+        }
+      ],
+      "prerequisites": [
+        "PHY-REL-VELOCITY"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-OBSERVER-REVERSAL",
+          "expression": "v_B/A = -(v_A/B)",
+          "meaning": "Swapping which object is the observer negates every component of the relative velocity.",
+          "symbols": [
+            {
+              "symbol": "v_A/B",
+              "meaning": "Velocity of A relative to B",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_B/A",
+              "meaning": "Velocity of B relative to A",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "Both are evaluated in the same frame at the same instant.",
+            "The magnitude relation squares components, so the magnitude is unchanged."
+          ]
+        }
+      ],
+      "representations": [
+        {
+          "representation_id": "REP-REV-PAIR",
+          "kind": "VECTOR",
+          "required_labels": [
+            {
+              "label": "declared frame",
+              "satisfies": [
+                "frame"
+              ]
+            },
+            {
+              "label": "named observer for the drawn vector",
+              "satisfies": []
+            },
+            {
+              "label": "axis units",
+              "satisfies": [
+                "unit"
+              ]
+            },
+            {
+              "label": "axis positive directions named",
+              "satisfies": [
+                "axis labels"
+              ]
+            },
+            {
+              "label": "vector symbol for each drawn vector",
+              "satisfies": [
+                "symbol"
+              ]
+            },
+            {
+              "label": "equal coordinate scale on both axes",
+              "satisfies": [
+                "equal coordinate scale"
+              ]
+            }
+          ],
+          "verification_method": "Add the two relative vectors and confirm the sum is exactly zero.",
+          "must_not_imply": [
+            "That a correct length establishes a correct observer order."
+          ],
+          "relation_bindings": [
+            "REL-OBSERVER-REVERSAL"
+          ],
+          "concept_bindings": [
+            "CON-REV-ANTISYMMETRY",
+            "CON-REV-MAGNITUDE-INVARIANT"
+          ]
+        }
+      ],
+      "validity_conditions": [
+        "Same conditions as the relative-velocity gate it depends on."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-REV-SWAP",
+          "sequence": 1,
+          "action": "Swap the subtraction order.",
+          "why_valid": "The relation is defined by that order, so swapping it negates the result."
+        },
+        {
+          "step_id": "RS-REV-CHECK",
+          "sequence": 2,
+          "action": "Add the two relative vectors and confirm zero.",
+          "why_valid": "A vector plus its negative is the zero vector.",
+          "depends_on": [
+            "RS-REV-SWAP"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-REV-SUM-ZERO",
+          "statement": "v_A/B + v_B/A = 0 for any pair of velocities in a common frame."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-REV-LENGTH-SUFFICES",
+          "wrong_idea": "A correct length is enough for a correct relative-velocity answer.",
+          "counterexample": "If v_A/B is (6,-8) m/s pointing southeast, an answer of (6,8) m/s has the same magnitude 10 m/s but points northeast, describing a different observation.",
+          "repair": "Name the observer, label both signed components, and inspect direction before taking any magnitude."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-REV-APPLY",
+          "title": "Obtain the reversed-observer vector from a known result",
+          "hidden_invariants": [
+            "The two relative vectors sum to zero.",
+            "Magnitude is preserved."
+          ],
+          "required_representation": "REP-REV-PAIR"
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 5
+      },
+      "badges": [
+        "RELATIVE-MOTION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-REV-PREREQ-UNKNOWN",
+          "mutation": "Point the prerequisite at a gate id that does not exist.",
+          "expected_violation": "GATE_PREREQUISITE_UNKNOWN"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+"""Canonical values, explicit failures and exact reference validation."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import re
+import unicodedata
+from pathlib import Path
+
+WORD = re.compile(r"[a-z0-9]+")
+PROSE_MIN_WORDS = 6
+SENTENCE_END = (".", "!", "?")
+
+
+class ContractError(ValueError):
+    def __init__(self, code: str, detail: str = ""):
+        self.code = code
+        self.detail = detail
+        super().__init__(f"{code}: {detail}" if detail else code)
+
+
+def require(condition: bool, code: str, detail: str = "") -> None:
+    if not condition:
+        raise ContractError(code, detail)
+
+
+def canonical(value: object) -> bytes:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"),
+                      ensure_ascii=False, allow_nan=False).encode("utf-8")
+
+
+def digest(value: object) -> str:
+    return hashlib.sha256(canonical(value)).hexdigest()
+
+
+def file_digest(path: Path) -> str:
+    with path.open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def load(path: str | Path) -> dict:
+    def reject_pairs(pairs):
+        result = {}
+        for key, value in pairs:
+            require(key not in result, "DUPLICATE_JSON_KEY", key)
+            result[key] = value
+        return result
+
+    with Path(path).open(encoding="utf-8") as stream:
+        return json.load(stream, object_pairs_hook=reject_pairs,
+                         parse_constant=lambda x: (_ for _ in ()).throw(
+                             ContractError("NONFINITE_JSON_NUMBER", x)))
+
+
+def unique(rows: list[dict], key: str, code: str) -> dict[str, dict]:
+    result = {}
+    for row in rows:
+        value = row.get(key)
+        require(isinstance(value, str) and bool(value.strip()), code, repr(value))
+        require(value not in result, code, value)
+        result[value] = row
+    return result
+
+
+def strings(values: object, code: str, *, allow_empty: bool = False) -> list[str]:
+    require(isinstance(values, list), code)
+    require(allow_empty or bool(values), code)
+    require(all(isinstance(x, str) and x.strip() for x in values), code)
+    require(len(values) == len(set(values)), code)
+    return values
+
+
+def text(value: object, code: str) -> str:
+    require(isinstance(value, str) and bool(value.strip()), code)
+    return value
+
+
+def sentence(value: str) -> str:
+    """End an authored fragment with exactly one terminator.
+
+    Authored fields arrive as fragments in some records and as whole sentences in
+    others, and no amount of schema can force one style without rewriting an author's
+    prose. Composing them by appending unconditionally published "integer ticks..",
+    so joining is done through here instead.
+    """
+    value = value.strip()
+    return value if value.endswith((".", "!", "?", ":")) else value + "."
+
+
+def normalise(text: str) -> str:
+    """Lowercase content words only, for comparing two pieces of authored text."""
+    return " ".join(WORD.findall(unicodedata.normalize("NFKC", str(text)).lower()))
+
+
+def is_prose(text: str) -> bool:
+    """Whether a value is a written sentence rather than a label.
+
+    Classification values repeat across records legitimately and in quantity -- every
+    packet in a corpus may be tagged "JEE Advanced" or "Grade 9-10" -- so treating any
+    value containing a space as prose drowned the real findings. A sentence is either
+    long enough to be one, or punctuated as one: that second clause is what keeps
+    "Governing relation." in scope, which is the phrase the substance gate exists to
+    catch.
+    """
+    stripped = str(text).strip()
+    return len(normalise(stripped).split()) >= PROSE_MIN_WORDS or stripped.endswith(SENTENCE_END)
+
+
+def join(lead: str, fragment: str) -> list[str]:
+    """Attach an authored field to a lead-in phrase: one line, or two.
+
+    A library field arrives as a fragment in some records and as a whole sentence in
+    others. "a*x = c - b" belongs inside its lead-in; "For x = 2: 3(2) + 2 = 8, and
+    the right side is 9" does not, and embedding it published "This gives For x = 2".
+
+    Lowercasing the embedded capital instead would have to tell a proper noun from a
+    symbol, which nothing here can do. So a sentence is given its own line and the
+    lead-in takes a colon, where a following capital is correct; only a fragment is
+    inlined. Lead-ins that already end in a colon never had the defect and do not
+    come through here.
+    """
+    lead, fragment = lead.rstrip().rstrip(".:"), str(fragment).strip()
+    if is_prose(fragment):
+        return [lead + ":", sentence(fragment)]
+    return [sentence(f"{lead} {fragment}")]
+
+
+def bound_path(root: Path, relative: str) -> Path:
+    require(isinstance(relative, str) and not Path(relative).is_absolute(),
+            "ARTIFACT_PATH_MUST_BE_RELATIVE", str(relative))
+    path = (root / relative).resolve()
+    require(path.is_relative_to(root.resolve()), "ARTIFACT_PATH_ESCAPES_ROOT", relative)
+    require(path.is_file(), "ARTIFACT_MISSING", relative)
+    return path
+
+
+def verify_file(root: Path, ref: dict) -> Path:
+    path = bound_path(root, ref.get("path", ""))
+    require(ref.get("sha256") == file_digest(path), "ARTIFACT_DIGEST_MISMATCH", str(path))
+    return path
+
+
+def validate_dag(rows: list[dict], key: str, dependency_key: str,
+                 external: set[str] | None = None) -> list[str]:
+    indexed = unique(rows, key, "DUPLICATE_GRAPH_NODE")
+    external = external or set()
+    done, active, order = set(), set(), []
+
+    def visit(node):
+        if node in done or node in external:
+            return
+        require(node in indexed, "UNKNOWN_DEPENDENCY", node)
+        require(node not in active, "DEPENDENCY_CYCLE", node)
+        active.add(node)
+        dependencies = strings(indexed[node].get(dependency_key, []),
+                               "INVALID_DEPENDENCIES", allow_empty=True)
+        for dep in dependencies:
+            visit(dep)
+        active.remove(node)
+        done.add(node)
+        order.append(node)
+
+    for node in indexed:
+        visit(node)
+    return order

@@ -1,0 +1,461 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-ELEC-CURRENT-OHM-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Author-created conceptual rungs for conserved steady charge flow and testing when a constant-resistance Ohmic model is supported. Drift, voltage-definition, equivalent-resistance, power and Kirchhoff equations remain unclaimed pending gate-owned relations.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track C authored current-conservation rung draft",
+      "origin": "AUTHORED",
+      "locator": "Track C / current electricity rung authoring",
+      "edition": "0.1.0",
+      "section": "Conceptual constructions for steady charge flow and evidence-based constant-resistance model choice",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external reproduction rights claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "MIC-ELEC-CURRENT-CONSERVATION",
+        "CAP-ELEC-CURRENT-CONSERVATION",
+        "MIC-ELEC-OHMIC-MODEL-TEST",
+        "CAP-ELEC-OHMIC-MODEL-TEST"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides author-created charge-conservation and model-validity constructions while leaving drift, voltage-definition, equivalent-resistance, power and Kirchhoff equations to upstream relation work.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Current electricity: charge-flow foundation",
+      "topic": "Electricity",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Charge conservation must be separated from energy-transfer language before circuit equations are introduced.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-ELEC-CURRENT-CONSERVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Track steady charge flow across the two boundaries of one unbranched circuit element.",
+      "success_criterion": "Explain why steady current entering and leaving the element must match when charge is not accumulating inside it.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-ELEC-OHMIC-MODEL-TEST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Test whether measured voltage-current pairs support one constant-resistance model under fixed conditions.",
+      "success_criterion": "From a small set of voltage-current pairs, decide whether the voltage-to-current ratio stays constant and state whether the constant-resistance model is supported.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-ELEC-CURRENT-CONSERVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Charge flow is not consumed by a component",
+      "bucket_id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "primary_capability_ref": "CAP-ELEC-CURRENT-CONSERVATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Everyday language about using electricity makes it easy to confuse energy transfer with disappearance of charge flow.",
+      "entry_assumptions": [
+        "Can count charge carriers or total charge crossing a point over a time interval."
+      ],
+      "inferential_jump": "Current is a rate of charge passing a boundary; charge is not used up by a resistor.",
+      "teaching_path": [
+        {
+          "id": "ELEC-R1-1",
+          "role": "DECLARE",
+          "action": "Mark an entry boundary and an exit boundary around one component, and compare charge passage over matching time windows.",
+          "why_valid": "Matching intervals make the two flow statements comparable; otherwise a difference could come only from observing for different lengths of time.",
+          "inputs": [],
+          "output": "entry boundary = one count window; exit boundary = the same count window"
+        },
+        {
+          "id": "ELEC-R1-2",
+          "role": "TRANSFORM",
+          "action": "Suppose the entry flow were persistently larger than the exit flow while the circuit stayed steady.",
+          "why_valid": "The difference would have to remain inside the component as accumulating charge, so a permanent mismatch contradicts the stated steady condition.",
+          "inputs": [],
+          "output": "more in than out -> charge pile-up; steady no-pile-up -> matching flow"
+        },
+        {
+          "id": "ELEC-R1-3",
+          "role": "VERIFY",
+          "action": "Repeat the boundary comparison after replacing the component with a different ordinary component while keeping a single unbranched path.",
+          "why_valid": "The conservation argument depends on the steady one-path condition, not on the component's particular construction.",
+          "inputs": [],
+          "output": "single steady path -> same flow at entry and exit"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Current gets smaller after charge passes through a resistor.",
+          "diagnostic_prompt": "One ampere enters a resistor in a single unbranched path. In steady operation, what current leaves it?",
+          "repair": "Track charge through the boundary: steady current cannot accumulate charge inside the resistor."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A steady single-path circuit carries charge through one component. Say whether the charge-flow rate can be persistently smaller at the exit than at the entry and justify the answer without appealing to what the component does with energy.",
+        "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It cannot be persistently smaller in the stated steady one-path case, because the missing charge would otherwise have to accumulate inside the component.",
+          "reasoning": [
+            "Compare entry and exit over the same time window so the two flow statements refer to the same interval.",
+            "A sustained excess entering over leaving would increase the charge stored inside the component.",
+            "The stated steady condition excludes continuing accumulation, so the entry and exit flow rates must match."
+          ],
+          "check": "Ask where the difference would physically go if the two steady flow rates were unequal; if no accumulating store is allowed, the mismatch is inconsistent.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer is a conservation argument about equality of steady flow, not a computation of a numerical electrical quantity."
+        }
+      },
+      "research_contribution": "This author-created boundary ledger isolates charge conservation from later energy and circuit-law relations so the low rung can be reviewed independently.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a lamp glows in a steady one-path circuit, should less charge per second leave the lamp than entered it?",
+          "defensible_answer": "No. A lasting difference would imply charge continuously collecting inside the lamp."
+        },
+        "attempt": {
+          "produces": "A boundary ledger showing what crosses into and out of one component during the same interval, plus a sentence accounting for any proposed mismatch.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The entry and exit observations use the same time interval.",
+              "evidence_of": "Making the two flow-rate claims comparable."
+            },
+            {
+              "criterion": "Any proposed mismatch is traced to charge accumulation inside the component.",
+              "evidence_of": "Using conservation rather than the vague claim that current stays the same."
+            }
+          ],
+          "accepted": [
+            "The ledger compares matching windows and says a persistent excess entering would pile charge up inside, so a steady case requires matching entry and exit flow."
+          ],
+          "rejected": [
+            "The response says the component uses some current and therefore less leaves, but names no place where the missing charge accumulates."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What two boundaries would you watch if you wanted to know whether charge disappeared inside the component?",
+              "why_this_ask": "It turns a vague flow idea into a closed accounting region.",
+              "from_step_ref": "ELEC-R1-1"
+            },
+            {
+              "ask": "If more charge keeps entering than leaving, what must happen inside that region over time?",
+              "why_this_ask": "The consequence of the misconception is easier to test than the rule itself.",
+              "from_step_ref": "ELEC-R1-2"
+            },
+            {
+              "ask": "Does changing the component remove that accounting requirement while the path remains single and steady?",
+              "why_this_ask": "It tests whether the learner attached the result to conservation rather than to one device.",
+              "from_step_ref": "ELEC-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path presents the boundary ledger; the elicitation route begins with the learner's own consumption prediction and makes them locate the supposedly missing charge."
+        },
+        "boundary_test": {
+          "prompt": "Could entry and exit flow differ briefly while charge is building up on part of a circuit?",
+          "answer": "Yes. The steady-state conclusion does not forbid a transient interval in which charge distribution is still changing.",
+          "confirms": "The conservation claim is tied to the stated steady condition rather than asserted as an exceptionless slogan."
+        }
+      }
+    },
+    {
+      "id": "MIC-ELEC-OHMIC-MODEL-TEST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Ohmic behavior is a tested model, not a permanent label",
+      "bucket_id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "primary_capability_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must separate a measured proportional pattern from the stronger claim that every device keeps one resistance under every operating condition.",
+      "entry_assumptions": [
+        "Can read paired voltage and current measurements for one device.",
+        "Can compare repeated ratios without treating a device name as evidence."
+      ],
+      "inferential_jump": "A constant-resistance Ohmic model is supported only when one device keeps the same voltage-to-current ratio across operating points while the relevant conditions are held fixed; changing the operating condition can make that model stop fitting.",
+      "teaching_path": [
+        {
+          "id": "ELEC-R4-1",
+          "role": "DECLARE",
+          "action": "Fix one device and one thermal condition, then place several measured voltage-current pairs in a table before naming any model.",
+          "why_valid": "The model is a claim about a repeatable relationship under stated conditions, so device identity and condition must be held fixed before the measurements can test it.",
+          "inputs": [],
+          "output": "same device + same thermal condition -> compare one V-I table"
+        },
+        {
+          "id": "ELEC-R4-2",
+          "role": "TRANSFORM",
+          "action": "For the first table, divide each voltage by its paired current and compare the results.",
+          "why_valid": "A single constant-resistance model predicts one unchanged proportionality across the measured operating points, so the repeated ratio is the direct test of that model.",
+          "inputs": [],
+          "output": "2/1 = 2 Ω; 4/2 = 2 Ω; 6/3 = 2 Ω -> one constant ratio"
+        },
+        {
+          "id": "ELEC-R4-3",
+          "role": "VERIFY",
+          "action": "Repeat the same ratio check for a second table in which the device condition has changed, and refuse to carry the first model across automatically.",
+          "why_valid": "Evidence collected under one condition does not authorize the same parameter under a changed condition; re-testing distinguishes a model from a permanent device label.",
+          "inputs": [],
+          "output": "condition A: one ratio pattern; condition B: changed ratio pattern -> re-test the model"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every electrical component has one fixed resistance, so a constant-resistance model always applies.",
+          "diagnostic_prompt": "If doubling the voltage more than doubles the current, is one constant ratio enough to describe the device over those measurements?",
+          "repair": "Use the measured voltage-current pattern first; keep one constant resistance only when the ratio stays unchanged under the stated fixed conditions."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two voltage-current tables come from devices tested under fixed conditions. In table A the voltage-to-current ratio stays the same across all measured points; in table B it changes. Decide which table supports one constant-resistance Ohmic model and state the evidence.",
+        "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Table A supports the constant-resistance model because its voltage-to-current ratio is unchanged across the measurements; table B does not because that ratio changes.",
+          "reasoning": [
+            "Treat each table as evidence rather than assuming a model from the device name.",
+            "Compare the voltage-to-current ratio across every operating point in the same table.",
+            "Keep the constant-resistance model only for the table whose ratio remains unchanged under the stated fixed conditions."
+          ],
+          "check": "A different pair from the same table should lead to the same model decision; if one pair changes the ratio pattern, the constant-resistance claim is not supported over the full set.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer classifies whether a constant-ratio model is supported; it reports no computed resistance value."
+        }
+      },
+      "research_contribution": "This author-created measurement-first construction isolates the model-validity distinction in the matrix without importing an ungated circuit equation as a library relation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A component is called a resistor. Before seeing any measurements, is that name enough to prove one constant resistance describes it at every operating point?",
+          "defensible_answer": "No. The constant-resistance claim must be tested against measured voltage-current pairs under stated conditions."
+        },
+        "attempt": {
+          "produces": "A model decision for each of two V-I tables, with the repeated-ratio evidence written beside the decision.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The decision is based on whether the voltage-to-current ratio stays constant across all listed pairs.",
+              "evidence_of": "Testing the model against the whole measured pattern rather than one convenient point."
+            },
+            {
+              "criterion": "The stated fixed condition is kept attached to the conclusion.",
+              "evidence_of": "Treating constant resistance as a conditional model rather than a permanent device property."
+            }
+          ],
+          "accepted": [
+            "Table A supports one constant resistance because the same ratio pattern persists at every measured point under the fixed condition; table B does not because its ratio pattern changes."
+          ],
+          "rejected": [
+            "Both tables are called Ohmic because each contains voltage and current values; no comparison across operating points is made."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What must stay fixed before measurements from different operating points can test one model?",
+              "why_this_ask": "It prevents a condition change from being mistaken for failure or success of the same model.",
+              "from_step_ref": "ELEC-R4-1"
+            },
+            {
+              "ask": "What comparison can you repeat for every voltage-current pair without assuming the answer first?",
+              "why_this_ask": "The learner discovers the proportionality test from the data rather than receiving a device label.",
+              "from_step_ref": "ELEC-R4-2"
+            },
+            {
+              "ask": "If that comparison is unchanged in one table and changes in another, which table supports one constant parameter?",
+              "why_this_ask": "This turns the numerical pattern into the model-choice claim the rung teaches."
+            },
+            {
+              "ask": "What should you do after the device temperature changes?",
+              "why_this_ask": "The final ask tests whether the learner understands the stated condition as part of the model.",
+              "from_step_ref": "ELEC-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path starts with a declared measurement condition and performs the ratio test; the elicitation route first challenges the device-label shortcut and makes the learner identify what evidence could justify the model."
+        },
+        "boundary_test": {
+          "prompt": "If only one voltage-current pair has been measured, can that single point establish that the ratio will remain constant as the operating point changes?",
+          "answer": "No. One point can be fitted by a constant parameter, but it cannot show that the same parameter persists across other operating points.",
+          "confirms": "The rung is about evidence for a relationship across conditions, not about attaching a resistance label from one measurement."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-ELEC-CORE1A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Completed charge-flow ledger",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-ELEC-CURRENT-CONSERVATION",
+        "MIC-ELEC-OHMIC-MODEL-TEST"
+      ],
+      "entry_needs": [
+        "Learners can count charge crossing a point during a stated interval."
+      ],
+      "learner_actions": [
+        "Read a completed entry-and-exit boundary ledger.",
+        "Explain the accumulation consequence of unequal steady flow.",
+        "Test a completed V-I data set for a constant ratio before accepting a constant-resistance model."
+      ],
+      "help_plan": [
+        "Keep the time windows matched.",
+        "Keep the accounting region visible around one component.",
+        "Keep the device condition attached to the ratio test so the model is not generalized beyond its evidence."
+      ],
+      "reveal_plan": "The study route reveals the completed conservation argument and its steady-state boundary.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+          "purpose": "Conceptual current foundation",
+          "reason": "The authored source supplies the boundary-ledger construction."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not extend this route into drift, voltage-definition, equivalent-resistance, power or loop equations without governed relations."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-ELEC-CORE1B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-ELEC-CURRENT-OHM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit the missing-charge contradiction",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-ELEC-CURRENT-CONSERVATION",
+        "MIC-ELEC-OHMIC-MODEL-TEST"
+      ],
+      "entry_needs": [
+        "Learners can make a prediction about what enters and leaves a component."
+      ],
+      "learner_actions": [
+        "Predict whether current is consumed.",
+        "Account for the missing charge if a mismatch is claimed.",
+        "Test the result against a transient boundary case.",
+        "Predict whether a device label alone justifies constant resistance, then reconstruct the repeated-ratio test from measurements."
+      ],
+      "help_plan": [
+        "Ask where missing charge would go before revealing conservation.",
+        "Offer the boundary ledger only after the learner commits.",
+        "Close with the steady-versus-transient distinction.",
+        "Ask what evidence would distinguish a model from a permanent device label before showing the ratio comparison."
+      ],
+      "reveal_plan": "The tutor lets the learner's consumption model create an accumulation contradiction before naming the repair.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+          "purpose": "Self-tutor current foundation",
+          "reason": "The authored resource holds the prompts and model closure."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn the elicitation into equivalent-resistance, power or Kirchhoff calculation practice without governed relations."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

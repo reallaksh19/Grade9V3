@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-OSC-SHM-WAVES-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Oscillations, Simple Harmonic Motion & Waves. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-OSC-SHM-WAVES",
+          "packet_digest": "c4e12f344d20437e12105ee4c91deca93bfe6cfb2abae2bdd61a9e055b9ebd63",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Oscillations, Simple Harmonic Motion & Waves",
+      "topic": "Oscillations",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-OSC-SHM-WAVES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-OSC-SHM-WAVES",
+          "packet_digest": "c4e12f344d20437e12105ee4c91deca93bfe6cfb2abae2bdd61a9e055b9ebd63",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Oscillations, Simple Harmonic Motion & Waves",
+      "bucket_id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Linear Restoring Force Invariant**: Simple harmonic motion occurs **if and only if** the restoring force is directly proportional to displacement from stable equilibrium: $F = -k x \\iff \\frac{d^2x}{dt^2} + \\omega^2 x = 0$. For a simple pendulum, this requires small angles ($\\sin\\theta \\approx \\theta$).",
+        "**Wave Propagation Invariant**: Wave speed $v = f\\lambda = \\frac{\\omega}{k}$ is determined solely by the mechanical properties of the medium ($v = \\sqrt{T/\\mu}$ for strings, $v = \\sqrt{B/\\rho}$ for fluids), independent of wave amplitude or frequency."
+      ],
+      "inferential_jump": "Kinematics of SHM: $x(t) = A\\cos(\\omega t + \\phi)$, $v(t) = -A\\omega\\sin(\\omega t + \\phi)$, $a(t) = -A\\omega^2\\cos(\\omega t + \\phi) = -\\omega^2 x(t)$.",
+      "teaching_path": [
+        {
+          "id": "ATOM-OSC-03",
+          "role": "VERIFY",
+          "action": "Time period of harmonic oscillator:\n  - Spring-mass: $T = 2\\pi\\sqrt{\\frac{m}{k}}$.\n  - Simple pendulum: $T = 2\\pi\\sqrt{\\frac{L}{g}}$ (for $\\theta \\ll 1\\text{ rad}$).",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-OSC-04",
+          "role": "TRANSFORM",
+          "action": "Energy oscillation frequency: potential and kinetic energy oscillate between 0 and $E$ at double the mechanical frequency ($f_E = 2f$).",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-OSC-05",
+          "role": "DECLARE",
+          "action": "Doppler effect frequency shift calculation: $f' = f \\left(\\frac{v \\pm v_o}{v \\mp v_s}\\right)$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Thinking a heavier pendulum bob or pulling it back 10 cm instead of 5 cm changes the period.",
+          "diagnostic_prompt": "",
+          "repair": "For small oscillations, $T = 2\\pi\\sqrt{L/g}$, which is completely independent of bob mass $m$ and amplitude $A$."
+        },
+        {
+          "wrong_idea": "Assuming sound moves slower in dense solid steel than in light airy gas.",
+          "diagnostic_prompt": "",
+          "repair": "Wave speed depends on elasticity over density ($v = \\sqrt{E/\\rho}$). Although steel is denser than air, its Young's modulus is over 10,000 times higher, making sound travel $\\approx 15$ times faster in steel ($\\approx 5000\\text{ m/s}$) than in air ($\\approx 343\\text{ m/s}$)."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-OSC-SHM-WAVES",
+      "packet_digest": "c4e12f344d20437e12105ee4c91deca93bfe6cfb2abae2bdd61a9e055b9ebd63",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

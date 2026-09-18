@@ -1,0 +1,816 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Authored qualitative rungs for work sign from force/path orientation, net-work versus kinetic-energy change, potential-energy eligibility, and the condition for mechanical-energy conservation. Power formulae remain registry-blocked.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-WEP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track A authored work-energy conceptual constructions",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-work-energy-power.v1.json",
+      "edition": "0.1.0",
+      "section": "R1-R4 conceptual rungs",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external curriculum or scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides qualitative energy-accounting decisions without inventing equations that lack engineering-gate owners.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Work, energy and power",
+      "topic": "Work and Energy",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficult decisions are directional work sign, which interactions may enter potential energy, and when the mechanical-energy account is closed.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-NLM-FIRST-LAW"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-WEP-SYSTEM-FIRST",
+          "statement": "Name the object or collection whose energy account is being discussed before classifying transfers."
+        },
+        {
+          "id": "CONV-WEP-PATH-FIRST",
+          "statement": "For work, compare the force direction with the actual displacement direction before assigning a sign."
+        }
+      ],
+      "scope": {
+        "covers": "Qualitative work sign and energy-accounting distinctions.",
+        "excluded": [
+          "Power-rate equations.",
+          "Numerical work, kinetic-energy, potential-energy, or conservation calculations that require ungated relations."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-WEP-WORK-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify work as positive, zero, or negative from force and displacement directions.",
+      "success_criterion": "Recognize perpendicular force as a zero-work case.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-NET-WORK-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate the sign of net work to the direction of kinetic-energy change.",
+      "success_criterion": "Map positive, zero, or negative net work to increase, no change, or decrease in kinetic energy.",
+      "prerequisite_refs": [
+        "CAP-WEP-WORK-DIRECTION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Decide whether an interaction may be represented by a potential-energy change.",
+      "success_criterion": "Reject kinetic friction as an endpoint-only potential-energy account.",
+      "prerequisite_refs": [
+        "CAP-WEP-NET-WORK-SIGN"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-WEP-MECH-ENERGY-CONDITION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Decide whether the mechanical-energy account can remain constant.",
+      "success_criterion": "Reject unchanged K plus U when frictional or external transfer is present.",
+      "prerequisite_refs": [
+        "CAP-WEP-POTENTIAL-ELIGIBILITY"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-WEP-WORK-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Only the along-path part of a force contributes to work",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-WORK-DIRECTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Force size alone feels decisive until a strong perpendicular force is contrasted with the actual displacement.",
+      "entry_assumptions": [
+        "Can identify the direction of a force on a chosen body and the direction of that body's displacement."
+      ],
+      "inferential_jump": "Work depends on how a force points relative to the actual displacement: along the motion gives positive work, opposite gives negative work, and a perpendicular force gives zero work.",
+      "teaching_path": [
+        {
+          "id": "WEP1-1",
+          "role": "DECLARE",
+          "action": "Draw one displacement direction and compare three force arrows: along it, perpendicular to it, and opposite it.",
+          "why_valid": "Holding the path fixed isolates orientation as the only thing changing.",
+          "inputs": [],
+          "output": "case A: force along path.  case B: force perpendicular to path.  case C: force opposite path."
+        },
+        {
+          "id": "WEP1-2",
+          "role": "TRANSFORM",
+          "action": "For each case, ask whether the force has a part that carries the object along the path direction.",
+          "why_valid": "Work records transfer through displacement, so only the force contribution along that displacement can change the work sign.",
+          "inputs": [],
+          "output": "along -> positive.  perpendicular -> zero.  opposite -> negative."
+        },
+        {
+          "id": "WEP1-3",
+          "role": "VERIFY",
+          "action": "Increase the size of the perpendicular force while keeping it exactly perpendicular to the same path.",
+          "why_valid": "If orientation, not force size alone, controls the zero-work case, enlarging a perpendicular force must leave the work classification unchanged.",
+          "inputs": [],
+          "output": "larger perpendicular force -> work still zero."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Any force acting on a moving object does positive work because the object moves.",
+          "diagnostic_prompt": "A mass moves in a circle while a force points toward the centre. Does that inward force do work along the instantaneous tangential displacement?",
+          "repair": "Compare the force direction with the actual displacement direction; only the along-path contribution can produce work."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Rightward force: positive work. Upward force: zero work. Leftward force: negative work.",
+          "reasoning": [
+            "The rightward force points with the displacement.",
+            "The upward force is perpendicular to the displacement.",
+            "The leftward force points against the displacement."
+          ],
+          "check": "Rotate the path instead of the force arrows; the classifications must follow the relative orientation, not page directions by themselves.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer classifies work sign only; it contains no computed work value."
+        }
+      },
+      "research_contribution": "Author-created directional classification that avoids asserting a quantitative work equation.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A strong force points exactly upward while an object moves exactly right. Before using any formula, should that force do positive work on the rightward displacement?",
+          "defensible_answer": "No. Because the force is perpendicular to the displacement, its work on that displacement is zero."
+        },
+        "attempt": {
+          "produces": "A positive/zero/negative classification for three force directions relative to one fixed displacement, plus a short reason for each.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The perpendicular case is classified as zero even when the force is large.",
+              "evidence_of": "Using orientation rather than force size alone."
+            },
+            {
+              "criterion": "Along and opposite cases receive opposite work signs.",
+              "evidence_of": "Tracking whether the force contribution aids or opposes the displacement."
+            }
+          ],
+          "accepted": [
+            "'Along: positive; perpendicular: zero; opposite: negative, because only the along-path contribution sets the sign.'"
+          ],
+          "rejected": [
+            "'All three are positive because a force acts while the object moves.' This ignores the force/path orientation."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which way does the object actually move during the interval?",
+              "why_this_ask": "The path direction must be fixed before the force can be compared with it.",
+              "from_step_ref": "WEP1-1"
+            },
+            {
+              "ask": "For the upward force, does any part of that arrow point along the rightward path?",
+              "why_this_ask": "The learner reaches the zero case geometrically before receiving a sign rule."
+            },
+            {
+              "ask": "What changes when the force is flipped to point left while the path stays rightward?",
+              "why_this_ask": "The opposite case makes the sign distinction visible.",
+              "from_step_ref": "WEP1-2"
+            },
+            {
+              "ask": "If the upward arrow gets longer but stays perpendicular, should the classification change?",
+              "why_this_ask": "The variation checks whether force size has been incorrectly substituted for orientation.",
+              "from_step_ref": "WEP1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states all three orientation cases. The learner route begins from the perpendicular counterexample, then reconstructs the sign pattern and tests it by changing force size."
+        },
+        "boundary_test": {
+          "prompt": "The object has no displacement during the interval. Can a force do work through that interval in this displacement-based account?",
+          "answer": "No. With no displacement, there is no along-path transfer to count as work in this account.",
+          "confirms": "Work here requires displacement as well as force orientation."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-WEP-NET-WORK-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Net work sign tracks kinetic-energy change",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-NET-WORK-SIGN",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners may attach energy change to one named force rather than to the combined work of all forces.",
+      "entry_assumptions": [
+        "Can classify the sign of each force's work from its direction relative to displacement."
+      ],
+      "inferential_jump": "The combined work of all acting forces determines the direction of kinetic-energy change: positive net work increases it, zero net work leaves it unchanged, and negative net work decreases it.",
+      "teaching_path": [
+        {
+          "id": "WEP2-1",
+          "role": "DECLARE",
+          "action": "Keep the same initial motion and compare three cases whose combined work is positive, zero, or negative.",
+          "why_valid": "Holding the initial state fixed isolates net-work sign as the changed condition.",
+          "inputs": [],
+          "output": "case A: net work positive.  case B: net work zero.  case C: net work negative."
+        },
+        {
+          "id": "WEP2-2",
+          "role": "TRANSFORM",
+          "action": "Match each net-work sign to whether the motion ends with greater, unchanged, or smaller kinetic energy.",
+          "why_valid": "Net work is the energy transfer associated with the change in kinetic energy; the sign fixes the direction of that change.",
+          "inputs": [],
+          "output": "positive -> kinetic energy increases.  zero -> unchanged.  negative -> decreases."
+        },
+        {
+          "id": "WEP2-3",
+          "role": "VERIFY",
+          "action": "Use a braking situation as a check: the braking contribution points opposite the motion and the object slows.",
+          "why_valid": "A familiar negative-work case should agree with a decrease in kinetic energy if the sign mapping is correct.",
+          "inputs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "output": "braking case: net work negative -> final kinetic energy lower than initial."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Only a positive force magnitude can increase kinetic energy; negative work cannot be represented physically.",
+          "diagnostic_prompt": "A braking force acts opposite the motion. What sign is its work, and what should happen to kinetic energy?",
+          "repair": "Combine the work of all acting forces to obtain net work, then match its sign to whether kinetic energy increases, stays unchanged, or decreases."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For three otherwise comparable motions, the net work is described as positive, zero, and negative. State the corresponding direction of kinetic-energy change without calculating any energy value.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Positive net work means kinetic energy increases; zero means no change; negative means kinetic energy decreases.",
+          "reasoning": [
+            "The comparison holds the starting motion fixed.",
+            "The sign of the combined work indicates the sign of the kinetic-energy change.",
+            "No individual force alone decides the result unless it is the only contributor."
+          ],
+          "check": "Use braking as the negative case: slowing must correspond to a decrease in kinetic energy.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer states only increase/no-change/decrease and contains no computed energy value."
+        }
+      },
+      "research_contribution": "Author-created sign mapping with no numerical work-energy equation.",
+      "prerequisite_refs": [
+        "CAP-WEP-WORK-DIRECTION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A moving object is braking. Before calculating anything, should the combined work over the braking interval correspond to increasing or decreasing kinetic energy?",
+          "defensible_answer": "Decreasing kinetic energy, so the net work over the interval is negative."
+        },
+        "attempt": {
+          "produces": "A three-row mapping from net-work sign to kinetic-energy change, with the braking case used as one check.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Positive, zero, and negative net work map to increase, no change, and decrease respectively.",
+              "evidence_of": "Separating sign from magnitude while preserving the energy-change direction."
+            },
+            {
+              "criterion": "The braking example is placed in the negative/decrease row.",
+              "evidence_of": "Connecting the abstract sign mapping to a physical check."
+            }
+          ],
+          "accepted": [
+            "'Positive -> increase; zero -> unchanged; negative -> decrease. Braking belongs in negative -> decrease.'"
+          ],
+          "rejected": [
+            "'Negative work means negative kinetic energy.' This confuses a change with the nonnegative energy quantity itself."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "During braking, is the force contribution along the motion or opposite it?",
+              "why_this_ask": "The prior rung supplies the sign without introducing a new equation.",
+              "from_step_ref": "WEP2-3"
+            },
+            {
+              "ask": "Does the object end the interval moving with more or less kinetic energy than it began?",
+              "why_this_ask": "The observable motion gives the direction of energy change."
+            },
+            {
+              "ask": "Which net-work sign belongs with that decrease?",
+              "why_this_ask": "The learner links sign to change rather than memorizing the three-row table.",
+              "from_step_ref": "WEP2-2"
+            },
+            {
+              "ask": "What should zero net work imply in the same comparison?",
+              "why_this_ask": "The zero case closes the mapping and tests that zero means no change rather than no energy."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path presents the sign mapping then checks braking. The learner route starts from braking, infers the negative/decrease connection, then generalizes to the complete mapping."
+        },
+        "boundary_test": {
+          "prompt": "An object has nonzero kinetic energy throughout an interval but the net work over that interval is zero. Must the kinetic energy itself be zero?",
+          "answer": "No. Zero net work means the kinetic energy does not change; it may remain nonzero.",
+          "confirms": "The rule concerns change in kinetic energy, not the existence of kinetic energy."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Potential energy belongs only to endpoint-determined interactions",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "It is tempting to hide every force inside an energy label, especially once gravitational potential energy is familiar.",
+      "entry_assumptions": [
+        "Can distinguish work contributions by sign and can reason about the net work over a path."
+      ],
+      "inferential_jump": "Potential energy can replace the work bookkeeping for an interaction only when the relevant energy change is fixed by the endpoints; path-dependent friction must remain an explicit transfer.",
+      "teaching_path": [
+        {
+          "id": "WEP3-1",
+          "role": "DECLARE",
+          "action": "Choose two routes between the same starting and ending heights and compare the gravitational energy change.",
+          "why_valid": "If the endpoint change is the same for both routes, the account does not need the detailed path to determine that interaction's energy change.",
+          "inputs": [],
+          "output": "route A: same start/end heights.  route B: same start/end heights.  gravitational potential-energy change: same."
+        },
+        {
+          "id": "WEP3-2",
+          "role": "TRANSFORM",
+          "action": "Now add kinetic friction and compare a short route with a longer route between comparable endpoints.",
+          "why_valid": "Friction acts along the travelled path, so changing path length changes its energy transfer even when endpoints are comparable.",
+          "inputs": [],
+          "output": "short path -> smaller friction transfer.  longer path -> larger friction transfer."
+        },
+        {
+          "id": "WEP3-3",
+          "role": "VERIFY",
+          "action": "Ask whether one endpoint-only energy label could predict both friction cases without knowing which path was taken.",
+          "why_valid": "If two paths with comparable endpoints give different friction transfers, endpoint information alone cannot represent that interaction.",
+          "inputs": [],
+          "output": "friction: path identity required; endpoint-only potential-energy replacement rejected."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every force can be assigned a potential energy so that its work can be hidden inside U.",
+          "diagnostic_prompt": "Can kinetic friction be represented by a single potential-energy difference that depends only on the start and finish positions?",
+          "repair": "Use potential energy only for interactions whose energy change is fixed by endpoints; keep path-dependent friction as an explicit transfer."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two routes share the same start and finish heights. Gravity gives the same potential-energy change on both, while friction removes more energy on the longer route. Which interaction is eligible for endpoint-only potential-energy bookkeeping?",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Gravity is eligible in this comparison; kinetic friction is not, because its transfer changes with the path.",
+          "reasoning": [
+            "The gravitational potential-energy change is fixed by the shared endpoints.",
+            "The frictional transfer changes when the route length changes.",
+            "An endpoint-only account cannot represent a path-dependent interaction."
+          ],
+          "check": "Change the route while keeping the endpoints fixed; an eligible endpoint-only contribution stays the same while the frictional transfer need not.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer classifies interactions by endpoint versus path dependence and computes no energy value."
+        }
+      },
+      "research_contribution": "Author-created path-dependence discrimination; no potential-energy formula is asserted.",
+      "prerequisite_refs": [
+        "CAP-WEP-NET-WORK-SIGN"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two paths start and end at the same heights, but one is much longer and rough. Before calculating, can one endpoint-only energy label represent the frictional transfer on both paths?",
+          "defensible_answer": "No. Friction depends on the travelled path, so comparable endpoints do not fix its transfer."
+        },
+        "attempt": {
+          "produces": "A two-column classification of gravity and kinetic friction as endpoint-determined or path-dependent, supported by the two-route comparison.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Gravity is classified as endpoint-determined for the stated height comparison.",
+              "evidence_of": "Using the unchanged start/end heights across routes."
+            },
+            {
+              "criterion": "Kinetic friction is classified as path-dependent.",
+              "evidence_of": "Recognizing that route length changes the frictional transfer."
+            }
+          ],
+          "accepted": [
+            "'Gravity: endpoint-determined here. Friction: path-dependent, so keep its transfer explicit.'"
+          ],
+          "rejected": [
+            "'Both get potential energy because both are forces.' This ignores the path test."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "If the start and finish heights are unchanged, what happens to the gravitational potential-energy change when the route bends?",
+              "why_this_ask": "It establishes the endpoint-only comparison using a familiar interaction.",
+              "from_step_ref": "WEP3-1"
+            },
+            {
+              "ask": "What changes for friction when the travelled route becomes longer?",
+              "why_this_ask": "The contrasting interaction exposes path dependence.",
+              "from_step_ref": "WEP3-2"
+            },
+            {
+              "ask": "Could one endpoint-only label distinguish the short and long friction routes?",
+              "why_this_ask": "The learner must test the proposed bookkeeping against two cases it would have to separate.",
+              "from_step_ref": "WEP3-3"
+            },
+            {
+              "ask": "Which interaction can therefore be replaced by an endpoint energy change in this comparison?",
+              "why_this_ask": "The classification is produced from the path test rather than memorized as a list."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path gives the two-route comparisons. The learner route first establishes one endpoint-determined case, then breaks the same idea with friction and derives the eligibility rule."
+        },
+        "boundary_test": {
+          "prompt": "Two different routes have the same start and finish but, by coincidence, friction removes the same amount of energy on both. Does that coincidence prove friction is endpoint-determined?",
+          "answer": "No. A single matching pair does not remove the path dependence; changing the path can still change the frictional transfer.",
+          "confirms": "Eligibility is about dependence on endpoints in general, not accidental equality in one example."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Mechanical energy is constant only when the account has no extra transfer",
+      "bucket_id": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "primary_capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "A familiar K-plus-U equality is easy to apply before checking whether friction or an outside agent changes the account.",
+      "entry_assumptions": [
+        "Can decide which interactions belong in potential energy and which transfers must remain explicit."
+      ],
+      "inferential_jump": "The mechanical-energy account K plus U stays constant only when no frictional or outside transfer changes that account; otherwise the extra transfer must be included rather than hidden.",
+      "teaching_path": [
+        {
+          "id": "WEP4-1",
+          "role": "DECLARE",
+          "action": "Compare a smooth descent with a rough descent between the same endpoints, using the same object-plus-gravity energy account.",
+          "why_valid": "The shared endpoints hold the gravitational change fixed while surface roughness changes an extra transfer.",
+          "inputs": [],
+          "output": "smooth case: no frictional transfer.  rough case: frictional transfer present."
+        },
+        {
+          "id": "WEP4-2",
+          "role": "TRANSFORM",
+          "action": "Track whether lost gravitational potential energy appears entirely as kinetic energy in each case.",
+          "why_valid": "With no extra transfer the mechanical account can stay constant; friction redirects part of the energy outside that mechanical account.",
+          "inputs": [],
+          "output": "smooth -> decrease in U matches increase in K.  rough -> increase in K is smaller because friction carries energy away from the mechanical account."
+        },
+        {
+          "id": "WEP4-3",
+          "role": "VERIFY",
+          "action": "Before writing any K-plus-U equality, ask whether friction or an outside moving support transfers energy across the chosen account.",
+          "why_valid": "The conservation decision must be made from the transfer inventory before the equality is used.",
+          "inputs": [
+            "CAP-WEP-POTENTIAL-ELIGIBILITY"
+          ],
+          "output": "no extra transfer -> K + U may stay constant.  extra transfer present -> include it explicitly."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Mechanical energy is always conserved, so one may write initial K plus U equal to final K plus U even when friction or a moving support transfers energy.",
+          "diagnostic_prompt": "A block slides down a rough ramp. If it starts from the same height as on a smooth ramp, must it reach the bottom with the same kinetic energy?",
+          "repair": "Check for frictional or outside transfer first; use an unchanged K-plus-U account only when those extra transfers vanish, otherwise include them explicitly."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A block descends from the same height on two tracks, one smooth and one rough. Without calculating a speed, decide whether the same unchanged K-plus-U account applies to both.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It applies to the smooth case if no other transfer occurs, but not to the rough case; friction must be included in the energy account.",
+          "reasoning": [
+            "Both cases share the same endpoint height change.",
+            "The rough track introduces an additional frictional transfer.",
+            "That extra transfer prevents the mechanical K-plus-U account from remaining unchanged by itself."
+          ],
+          "check": "Remove the roughness while keeping the endpoints fixed; the extra frictional transfer should disappear and the mechanical account can close again.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer decides whether a conservation form is applicable and computes no energy or speed."
+        }
+      },
+      "research_contribution": "Author-created conservation-condition distinction with no quantitative energy-balance equation.",
+      "prerequisite_refs": [
+        "CAP-WEP-POTENTIAL-ELIGIBILITY"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A block reaches the bottom of a rough track from the same starting height as on a smooth track. Before writing K plus U, should you expect the same final kinetic energy?",
+          "defensible_answer": "No. Friction transfers energy out of the mechanical K-plus-U account, so the rough case can end with less kinetic energy."
+        },
+        "attempt": {
+          "produces": "A smooth-versus-rough energy account that marks whether an extra transfer is present before deciding if K plus U stays constant.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The smooth case is allowed an unchanged K-plus-U account only after checking that no extra transfer is present.",
+              "evidence_of": "Making conservation conditional rather than automatic."
+            },
+            {
+              "criterion": "The rough case carries friction explicitly outside the K-plus-U-only account.",
+              "evidence_of": "Not hiding a path-dependent transfer inside the conservation statement."
+            }
+          ],
+          "accepted": [
+            "'Smooth: no extra transfer, so K + U can remain constant. Rough: friction transfers energy, so include that transfer explicitly.'"
+          ],
+          "rejected": [
+            "'K + U is conserved in both because energy is always conserved.' This confuses total energy conservation with the narrower mechanical account."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is held the same between the smooth and rough descents?",
+              "why_this_ask": "It fixes the endpoint energy change so roughness is the meaningful difference.",
+              "from_step_ref": "WEP4-1"
+            },
+            {
+              "ask": "What extra transfer exists only on the rough track?",
+              "why_this_ask": "The conservation decision depends on identifying what crosses the mechanical account."
+            },
+            {
+              "ask": "If that transfer removes part of the mechanical energy, can the same K-plus-U total stay unchanged by itself?",
+              "why_this_ask": "The learner must connect the transfer inventory to the conservation condition.",
+              "from_step_ref": "WEP4-2"
+            },
+            {
+              "ask": "What question should you ask before writing an unchanged K-plus-U statement in any new problem?",
+              "why_this_ask": "It turns the comparison into a reusable model-choice check.",
+              "from_step_ref": "WEP4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares smooth and rough accounts directly. The learner route first identifies the one changed transfer, then uses it to decide whether the mechanical account can close."
+        },
+        "boundary_test": {
+          "prompt": "A rough surface is present but the object does not move relative to it during the interval. Does the mere presence of friction automatically force a mechanical-energy loss?",
+          "answer": "No. The relevant question is whether an energy transfer through friction occurs in the stated interval; the label 'rough' alone is not enough.",
+          "confirms": "The condition is about actual transfer, not simply naming a force or surface."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-WEP-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal work-energy conceptual spine",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-WEP-WORK-DIRECTION",
+        "MIC-PHY-WEP-NET-WORK-SIGN",
+        "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+        "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "entry_needs": [
+        "Force ownership from the Newton/FBD prerequisite and qualitative motion descriptions."
+      ],
+      "learner_actions": [
+        "Classify work sign from geometry.",
+        "Map net-work sign to kinetic-energy change.",
+        "Test potential-energy eligibility with two paths.",
+        "Check extra transfers before using a mechanical-energy conservation statement."
+      ],
+      "help_plan": [
+        "Use perpendicular force as the zero-work counterexample.",
+        "Use braking as the negative-work check.",
+        "Use smooth versus rough paths for the energy-account boundary."
+      ],
+      "reveal_plan": "Completed qualitative constructions are visible; blocked quantitative formulae are not introduced.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-WEP",
+          "purpose": "Conceptual energy accounting",
+          "reason": "The rungs are author-created and no candidate packet is promoted."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to teach numerical power or energy equations that lack gate relations."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-WEP-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit work-energy conceptual spine",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-WEP-WORK-DIRECTION",
+        "MIC-PHY-WEP-NET-WORK-SIGN",
+        "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+        "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+      ],
+      "entry_needs": [
+        "Same intrinsic coverage as Core1A; no learner-estimate shortcut."
+      ],
+      "learner_actions": [
+        "Predict work sign before any reveal.",
+        "Use path comparisons to classify energy bookkeeping.",
+        "Decide whether the mechanical account closes before seeing the model answer."
+      ],
+      "help_plan": [
+        "Ask for force/path orientation first.",
+        "Ask what changes between two paths before naming potential energy.",
+        "Ask what transfer exists before discussing conservation."
+      ],
+      "reveal_plan": "Prediction and reconstruction precede the closed reveal for every authored rung.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-WEP",
+          "purpose": "Self-tutor elicitation",
+          "reason": "The elicitation cycles are authored specifically for the Track A energy rungs."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn the blocked power rung into a qualitative substitute."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1,
+      "unit": "m",
+      "symbol": "d_example",
+      "meaning": "Illustrative displacement length available to compiled study obligations; none of the qualitative exits depends on its numerical value.",
+      "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    }
+  ]
+}

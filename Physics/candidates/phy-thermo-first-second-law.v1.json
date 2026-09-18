@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-THERMO-FIRST-SECOND-LAW-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for Thermodynamics & Heat Engines. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-THERMO-FIRST-SECOND-LAW",
+          "packet_digest": "c41d24fe4a88a85b42cd355be81d3e76d83c583cb3da1df41eb1d2450d7738ee",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Thermodynamics & Heat Engines",
+      "topic": "Thermodynamics",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-THERMO-FIRST-SECOND-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-THERMO-FIRST-SECOND-LAW",
+          "packet_digest": "c41d24fe4a88a85b42cd355be81d3e76d83c583cb3da1df41eb1d2450d7738ee",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "Thermodynamics & Heat Engines",
+      "bucket_id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**First Law Sign Convention Precondition**: First Law $\\Delta U = Q - W$ where $W = \\int P dV$ is work done **by** the system. (Alternatively, IUPAC $\\Delta U = Q + W_{\\text{on}}$). Consistency in sign convention must be preserved throughout an entire derivation.",
+        "**Second Law & Carnot Efficiency Ceiling Invariant**: No heat engine operating between two thermal reservoirs at temperatures $T_H$ and $T_C$ can have an efficiency exceeding the reversible Carnot efficiency: $\\eta \\le \\eta_{\\text{Carnot}} = 1 - \\frac{T_C}{T_H}$."
+      ],
+      "inferential_jump": "Internal energy as state function: $U = \\frac{f}{2} n R T$; $\\Delta U$ depends only on initial and final states, not path.",
+      "teaching_path": [
+        {
+          "id": "ATOM-THE-03",
+          "role": "VERIFY",
+          "action": "Cyclic process invariant: $\\oint dU = 0 \\implies Q_{\\text{net}} = W_{\\text{net}} = \\text{Area inside } P\\text{-}V \\text{ loop}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-THE-04",
+          "role": "TRANSFORM",
+          "action": "Calculating efficiency of cyclic engine: $\\eta = \\frac{W_{\\text{net}}}{Q_{\\text{in}}} = 1 - \\frac{Q_{\\text{out}}}{Q_{\\text{in}}}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-THE-05",
+          "role": "DECLARE",
+          "action": "Identifying degrees of freedom $f$: monoatomic ($f=3, \\gamma=5/3$), diatomic ($f=5, \\gamma=7/5$).",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Saying a hot body \"contains more heat\" than a cold body.",
+          "diagnostic_prompt": "",
+          "repair": "Heat ($Q$) is energy in transit across a boundary due to temperature difference. A body contains *internal energy* ($U$), never heat."
+        },
+        {
+          "wrong_idea": "Assuming temperature remains constant in adiabatic expansion because $Q = 0$.",
+          "diagnostic_prompt": "",
+          "repair": "In adiabatic expansion, $W > 0$ and $Q = 0$. By First Law, $\\Delta U = -W < 0 \\implies n C_v \\Delta T < 0$. Temperature strictly drops during adiabatic expansion."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-THERMO-FIRST-SECOND-LAW",
+      "packet_digest": "c41d24fe4a88a85b42cd355be81d3e76d83c583cb3da1df41eb1d2450d7738ee",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}

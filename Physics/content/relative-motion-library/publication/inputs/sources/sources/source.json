@@ -1,0 +1,170 @@
+{
+  "id": "LIBRARY",
+  "origin": "AUTHOR_CREATED",
+  "citation": "Compiled from the Physics library for bucket BUCKET-RELATIVE-MOTION. Records are author-created candidates; no source measurement or official question provenance is claimed.",
+  "atoms": [
+    {
+      "id": "DAT-KIN-ILLUSTRATIVE-PATH",
+      "value": 5,
+      "unit": "m",
+      "kind": "DATUM",
+      "locator": "Illustrative path segment length available to compiled study obligations; no exit answer depends on its numerical value. -- Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-NLM-ILLUSTRATIVE-SPEED",
+      "value": 1,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Illustrative steady speed available to compiled study obligations; none of the authored exits depends on its numerical value. -- Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-P-X",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Vector P, east component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-P-Y",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Vector P, north component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-PQ-X",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "P minus Q, east component (declared construction result) -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-PQ-Y",
+      "value": -8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "P minus Q, north component (declared construction result) -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-Q-X",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Vector Q, east component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-Q-Y",
+      "value": 8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Vector Q, north component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VA-X",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Velocity of A, east component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VA-Y",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Velocity of A, north component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VAB-X",
+      "value": 6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "A relative to B, east component (declared subtraction result) -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VAB-Y",
+      "value": -8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "A relative to B, north component (declared subtraction result) -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VB-X",
+      "value": 0,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Velocity of B, east component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VB-Y",
+      "value": 8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Velocity of B, north component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VBA-X",
+      "value": -6,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "B relative to A, east component (reversed observer) -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VBA-Y",
+      "value": 8,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "B relative to A, north component (reversed observer) -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-VEC-ORDER-LENGTH",
+      "value": 5,
+      "unit": "diagram-unit",
+      "kind": "DATUM",
+      "locator": "Illustrative fixed arrow length used only to keep the qualitative operand-order comparison at one scale. -- Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-W-X",
+      "value": 3,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Intro vector w, east component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-W-Y",
+      "value": 4,
+      "unit": "m/s",
+      "kind": "DATUM",
+      "locator": "Intro vector w, north component -- Author-created for this package; no source measurement is claimed."
+    },
+    {
+      "id": "DAT-WEP-ILLUSTRATIVE-DISPLACEMENT",
+      "value": 1,
+      "unit": "m",
+      "kind": "DATUM",
+      "locator": "Illustrative displacement length available to compiled study obligations; none of the qualitative exits depends on its numerical value. -- Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "EQ-RELATIVE-VELOCITY-FORM",
+      "value": "<math display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>A</mi><mo>/</mo><mi>B</mi></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>A</mi></msub><mo>-</mo><msub><mi>v</mi><mi>B</mi></msub></mrow></math>",
+      "kind": "EQUATION",
+      "locator": "Renderable form of the relative velocity relation -- Author-created for this package; no source measurement is claimed."
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-AUTHOR-REL-01",
+      "original_number": "AUTHOR-REL-01",
+      "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B. State its direction and magnitude.",
+      "conditions": [
+        "Constant velocities; common time and parallel nonrotating axes."
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "DAT-VAB-X",
+          "vy": "DAT-VAB-Y"
+        }
+      }
+    }
+  ]
+}

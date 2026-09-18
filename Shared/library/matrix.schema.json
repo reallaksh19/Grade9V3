@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/matrix.schema.json",
+  "title": "Subtopic pedagogical matrix",
+  "description": "The human-authored half of the production pipeline: the ladder of rungs, each rung's vocabulary ceiling and controlled experience, the question family, and the transfer rows. It feeds the authoring brief and NEVER the product compiler, so it cannot become a second source of learner-facing truth. Where a rung has a record, the matrix references it and may not restate its jump, misconception or exit task.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "matrix_id",
+    "subject",
+    "bucket_id",
+    "topic",
+    "subtopic",
+    "rungs"
+  ],
+  "properties": {
+    "matrix_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier for this matrix."
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Owning subject."
+    },
+    "bucket_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The bucket this ladder is for."
+    },
+    "topic": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The topic the subtopic sits in."
+    },
+    "subtopic": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What a person calls this."
+    },
+    "axis_note": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional restatement that ladder_position is a curriculum coordinate rather than a learner estimate."
+    },
+    "rungs": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered by ladder_position. An absent rung is a row, not an omission: a hole in the ladder must be visible.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rung",
+          "ladder_position",
+          "provenance"
+        ],
+        "properties": {
+          "rung": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Short label, unique in this matrix."
+          },
+          "ladder_position": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "A curriculum coordinate. Never a learner estimate: teaching depth is intrinsic and may not shrink for a learner thought to know more."
+          },
+          "provenance": {
+            "enum": [
+              "SOURCE",
+              "AUTHORED",
+              "SYNTHESIS",
+              "ABSENT"
+            ],
+            "description": "What stands behind this row. Checked against the library, which decides -- a matrix may claim SOURCE for a rung nobody authored."
+          },
+          "microtopic_ref": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The record teaching this rung, where one exists."
+          },
+          "aha": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The inferential jump, for a rung with no record yet. Where a record exists this must be absent: the record owns it."
+          },
+          "learner_owns": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": null
+            },
+            "description": "Entry state, for a rung with no record."
+          },
+          "ceiling": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": null
+            },
+            "description": "Words the explanation may not use, because each presupposes what this rung teaches. A scope boundary excludes content; this excludes vocabulary, and they are different fences."
+          },
+          "must_contain": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "description": null
+            }
+          },
+          "misconception": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "wrong_idea",
+              "diagnostic_prompt",
+              "repair"
+            ],
+            "description": "Only for a rung with no record. Where a microtopic exists it owns its misconceptions.",
+            "properties": {
+              "wrong_idea": {
+                "type": "string",
+                "minLength": 1,
+                "description": null
+              },
+              "diagnostic_prompt": {
+                "type": "string",
+                "minLength": 1,
+                "description": null
+              },
+              "repair": {
+                "type": "string",
+                "minLength": 1,
+                "description": null
+              }
+            }
+          },
+          "closure": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The observable exit, for a rung with no record."
+          },
+          "controlled_variation": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Phased, because an experience whose invariant changes partway cannot be described by one hold.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "phase",
+                "vary",
+                "hold",
+                "notice"
+              ],
+              "properties": {
+                "phase": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "vary": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "What moves."
+                },
+                "hold": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The invariant, true throughout THIS phase."
+                },
+                "notice": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "What the learner is meant to see."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invariant_demand",
+        "difficult_move",
+        "independent_check"
+      ],
+      "description": "The Core2 canonical family: what every instance demands.",
+      "properties": {
+        "invariant_demand": {
+          "type": "string",
+          "minLength": 1,
+          "description": null
+        },
+        "difficult_move": {
+          "type": "string",
+          "minLength": 1,
+          "description": null
+        },
+        "independent_check": {
+          "type": "string",
+          "minLength": 1,
+          "description": null
+        },
+        "support_ladder": {
+          "type": "array",
+          "minItems": 1,
+          "description": "What is handed over at each support level, for THIS family. The levels are the purpose vocabulary's, so the repository keeps one spelling; what they hand over is a property of the subtopic and cannot live in the engine. All rows are the same product: removing help does not create transfer.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "handed_over"
+            ],
+            "properties": {
+              "level": {
+                "enum": [
+                  "high",
+                  "low",
+                  "medium",
+                  "minimum"
+                ],
+                "description": "A support level the purpose vocabulary declares."
+              },
+              "handed_over": {
+                "type": "string",
+                "minLength": 1,
+                "description": "What the learner is given at this level. It may never include the invariant demand: handing over the decision structure is the Core2A/Core2B collapse."
+              }
+            }
+          }
+        }
+      }
+    },
+    "transfer": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One row per changed demand. Core2B varies the decision structure while holding already-taught mathematics.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dimension",
+          "changed_demand",
+          "information_not_handed_over",
+          "repair_to"
+        ],
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A key of question_family.demand_dimensions, so the repository keeps one vocabulary for the four."
+          },
+          "changed_demand": {
+            "type": "string",
+            "minLength": 1,
+            "description": null
+          },
+          "information_not_handed_over": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What the learner must supply. This is what makes collapse mechanical: a hint disclosing it turns the task into Core2A."
+          },
+          "repair_to": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The rung a predictable failure routes back to."
+          }
+        }
+      }
+    }
+  }
+}

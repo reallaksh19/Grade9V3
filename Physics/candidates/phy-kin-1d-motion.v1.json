@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-KIN-1D-MOTION-IMPORTED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Imported candidate for 1D & 2D Kinematics & Projectile Motion. No authority is carried; every gap below must be authored before this can be admitted.",
+  "curriculum_mappings": [],
+  "resources": [],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-KIN-1D-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-KIN-1D-MOTION",
+          "packet_digest": "afc0550b7d33be6f955b01c6bad4f3ff9b6180cbbc2df3be6d52274d3a9c7f4e",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "1D & 2D Kinematics & Projectile Motion",
+      "topic": "Motion",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-KIN-1D-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "sil_import": {
+          "source_pr": "402",
+          "source_head": "efd5d47df8da",
+          "packet_id": "PHY-KIN-1D-MOTION",
+          "packet_digest": "afc0550b7d33be6f955b01c6bad4f3ff9b6180cbbc2df3be6d52274d3a9c7f4e",
+          "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+          "packet_authority": "NONE"
+        }
+      },
+      "title": "1D & 2D Kinematics & Projectile Motion",
+      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+      "primary_capability_ref": "",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "",
+      "entry_assumptions": [
+        "**Constant Acceleration Constraint**: The kinematic equations ($v = u + at$, $s = ut + \\frac{1}{2}at^2$, $v^2 = u^2 + 2as$) hold **if and only if** acceleration is strictly constant ($\\vec{a} = \\text{const}$). For time-varying or position-dependent acceleration, calculus definitions $v = \\frac{ds}{dt}$ and $a = v\\frac{dv}{ds}$ must be integrated.",
+        "**Independence of Orthogonal Motions**: In 2D projectile motion, the horizontal ($x$) and vertical ($y$) components are completely independent and coupled only by time parameter $t$."
+      ],
+      "inferential_jump": "Distinction between distance (scalar path length) and displacement (vector $\\Delta \\vec{r} = \\vec{r}_f - \\vec{r}_i$).",
+      "teaching_path": [
+        {
+          "id": "ATOM-KIN-03",
+          "role": "VERIFY",
+          "action": "Projectile trajectory equation in vacuum: $y = x\\tan\\theta - \\frac{g x^2}{2 u^2 \\cos^2\\theta} = x\\tan\\theta\\left(1 - \\frac{x}{R}\\right)$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-KIN-04",
+          "role": "TRANSFORM",
+          "action": "Derivation of projectile parameters: $T = \\frac{2u\\sin\\theta}{g}$, $H = \\frac{u^2\\sin^2\\theta}{2g}$, $R = \\frac{u^2\\sin 2\\theta}{g}$.",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        },
+        {
+          "id": "ATOM-KIN-05",
+          "role": "DECLARE",
+          "action": "Resolving relative motion in 2D: $\\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B$ (rain-umbrella, river-swimmer problems).",
+          "why_valid": "",
+          "inputs": [],
+          "output": ""
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Saying a ball thrown vertically upward has $a = 0$ at its highest point because $v = 0$.",
+          "diagnostic_prompt": "",
+          "repair": "At the peak, velocity is instantaneously zero ($v = 0$), but acceleration is constant and non-zero ($a = -g = -9.8\\text{ m/s}^2$)."
+        },
+        {
+          "wrong_idea": "Calculating average speed for round trip at speeds $v_1$ and $v_2$ as arithmetic mean $\\frac{v_1+v_2}{2}$.",
+          "diagnostic_prompt": "",
+          "repair": "Average speed is total distance over total time: $v_{\\text{avg}} = \\frac{2d}{d/v_1 + d/v_2} = \\frac{2v_1 v_2}{v_1 + v_2}$ (harmonic mean)."
+        }
+      ],
+      "research_contribution": "",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "sil_import": {
+      "source_pr": "402",
+      "source_head": "efd5d47df8da",
+      "packet_id": "PHY-KIN-1D-MOTION",
+      "packet_digest": "afc0550b7d33be6f955b01c6bad4f3ff9b6180cbbc2df3be6d52274d3a9c7f4e",
+      "import_mode": "DIGEST_PINNED_CANDIDATE_SOURCE_ONLY",
+      "packet_authority": "NONE"
+    }
+  },
+  "data": []
+}
