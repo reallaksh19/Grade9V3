@@ -13,8 +13,8 @@
       "track": "ADVANCED",
       "scope_class": "OWNER_EXTENSION",
       "source_ref": "SRC-CBSE-ADV",
-      "locator": "Chapter 2 for background only; quantitative vector relative velocity is treated as extension",
-      "mapping_status": "CANDIDATE"
+      "locator": "Chapter 2 §2.2; printed pp.10–11 explicitly establishes observer-dependent motion; quantitative vector relative-velocity treatment is a local extension",
+      "mapping_status": "VERIFIED"
     }
   ],
   "resources": [
@@ -173,11 +173,25 @@
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Read signed coordinates and subtract two coordinate pairs.",
       "success_criterion": "Preserve east/north signs and distinguish a point from a displacement.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PREREQUISITE_BRIDGE",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Mathematical prerequisite bridge for signed relative-motion components",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": "Mathematics",
       "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
     },
@@ -187,11 +201,25 @@
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Obtain the hypotenuse from two perpendicular component lengths.",
       "success_criterion": "Use the right-triangle relation with nonnegative lengths and distinguish magnitude from signed component.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PREREQUISITE_BRIDGE",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Mathematical prerequisite bridge for resultant magnitude in local quantitative extension",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": "Mathematics",
       "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
     },
@@ -201,7 +229,10 @@
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Construct the position of A relative to B at the same instant.",
       "success_criterion": "Explain why r_A/B = r_A - r_B using positions in one named frame.",
       "prerequisite_refs": [
@@ -215,8 +246,8 @@
           "track": "ADVANCED",
           "scope_class": "OWNER_EXTENSION",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector relative velocity is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §2.2 supplies observer-relative motion context; same-time quantitative comparison is a local extension",
+          "mapping_status": "VERIFIED"
         }
       ],
       "external_provider": null,
@@ -228,7 +259,10 @@
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Obtain relative velocity from same-time positions over one common interval.",
       "success_criterion": "Derive the subtraction order and state frame/time assumptions.",
       "prerequisite_refs": [
@@ -242,8 +276,8 @@
           "track": "ADVANCED",
           "scope_class": "OWNER_EXTENSION",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector relative velocity is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §2.2 supplies observer-relative motion context; vector relative-velocity equation is a local extension",
+          "mapping_status": "VERIFIED"
         }
       ],
       "external_provider": null,
@@ -255,7 +289,10 @@
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Reconcile a relative-velocity vector with components and limiting cases.",
       "success_criterion": "Draw the correct direction and distinguish magnitude from vector; reversal check succeeds.",
       "prerequisite_refs": [
@@ -269,8 +306,8 @@
           "track": "ADVANCED",
           "scope_class": "OWNER_EXTENSION",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector relative velocity is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §§2.2–2.4 supply observer and vector context; component/resultant check is a local extension",
+          "mapping_status": "VERIFIED"
         }
       ],
       "external_provider": null,
@@ -284,11 +321,25 @@
         "SRC-AUTHOR"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "State what a place was measured from before giving its number.",
       "success_criterion": "Decide whether two descriptions carrying the same number describe the same place.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "ADVANCED",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-ADV",
+          "locator": "Chapter 2 §2.2; printed pp.10–11 — frame of reference and motion relative to an observer",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     }
@@ -1508,7 +1559,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "grade9_track": "ADVANCED"
+        "grade9_track": "ADVANCED",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "Relative velocity in a plane",
       "topic": "Motion in two dimensions",
@@ -1523,8 +1575,8 @@
           "track": "ADVANCED",
           "scope_class": "OWNER_EXTENSION",
           "source_ref": "SRC-CBSE-ADV",
-          "locator": "Chapter 2 for background only; quantitative vector relative velocity is treated as extension",
-          "mapping_status": "CANDIDATE"
+          "locator": "Chapter 2 §2.2; printed pp.10–11 explicitly establishes observer-dependent motion; quantitative vector relative-velocity treatment is a local extension",
+          "mapping_status": "VERIFIED"
         }
       ],
       "prerequisite_refs": [
