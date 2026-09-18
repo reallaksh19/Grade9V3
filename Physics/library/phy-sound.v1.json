@@ -179,7 +179,7 @@
       "title": "Sound starts with vibration and travels through a material medium",
       "bucket_id": "BUCKET-PHY-SOUND",
       "primary_capability_ref": "CAP-SOUND-SOURCE-MEDIUM",
-      "intrinsic_badge": "LOW",
+      "intrinsic_badge": "EASY",
       "badge_reason": "The key distinction is between the vibrating source and the medium carrying the disturbance.",
       "entry_assumptions": [
         "Can identify repeated back-and-forth motion and can distinguish matter from empty space."
@@ -604,7 +604,7 @@
       "title": "Pitch follows frequency; loudness is a different perceptual dimension",
       "bucket_id": "BUCKET-PHY-SOUND",
       "primary_capability_ref": "CAP-SOUND-PERCEPTION",
-      "intrinsic_badge": "LOW",
+      "intrinsic_badge": "EASY",
       "badge_reason": "Pitch and loudness are everyday words that learners often swap with frequency and amplitude.",
       "entry_assumptions": [
         "Can distinguish frequency from amplitude and can compare two wave descriptions."
