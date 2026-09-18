@@ -124,22 +124,51 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
         for rid in caps:
             visit(rid, [])
 
-    def test_cross_topic_prerequisites_are_explicit(self):
-        deriv = self.records["CAP-WEP-ENERGY-DERIVATIONS"]
-        self.assertIn("CAP-NLM-SECOND-LAW", deriv["prerequisite_refs"])
-        self.assertIn("CAP-KIN-CONSTANT-ACCELERATION", deriv["prerequisite_refs"])
+    def test_prerequisite_edges_are_explicit_and_minimal(self):
+        self.assertEqual(
+            self.records["CAP-KIN-MOTION-GRAPHS"]["prerequisite_refs"],
+            ["CAP-KIN-AVERAGE-RATES"],
+        )
+        self.assertEqual(
+            self.records["CAP-KIN-CONSTANT-ACCELERATION"]["prerequisite_refs"],
+            ["CAP-KIN-MOTION-GRAPHS"],
+        )
+        self.assertEqual(
+            self.records["CAP-KIN-UNIFORM-CIRCULAR-MOTION"]["prerequisite_refs"],
+            [],
+        )
+        self.assertEqual(
+            self.records["CAP-NLM-FBD-BODY-OWNERSHIP"]["prerequisite_refs"],
+            [],
+        )
         for cap_id in ("CAP-NLM-FRICTION", "CAP-NLM-SECOND-LAW", "CAP-NLM-THIRD-LAW"):
             self.assertEqual(
                 self.records[cap_id]["prerequisite_refs"],
                 ["CAP-NLM-FBD-BODY-OWNERSHIP"],
             )
         self.assertEqual(
-            self.records["CAP-KIN-CONSTANT-ACCELERATION"]["prerequisite_refs"],
-            ["CAP-KIN-ZERO-V-NONZERO-A"],
+            self.records["CAP-WEP-WORK-DIRECTION"]["prerequisite_refs"],
+            [],
+        )
+        self.assertEqual(
+            self.records["CAP-WEP-POWER-RATES"]["prerequisite_refs"],
+            ["CAP-WEP-WORK-DIRECTION"],
+        )
+        self.assertEqual(
+            self.records["CAP-WEP-GRADE9-QUANT"]["prerequisite_refs"],
+            ["CAP-WEP-MECH-ENERGY-CONDITION"],
+        )
+        self.assertEqual(
+            self.records["CAP-WEP-ENERGY-DERIVATIONS"]["prerequisite_refs"],
+            [
+                "CAP-WEP-WORK-DIRECTION",
+                "CAP-NLM-SECOND-LAW",
+                "CAP-KIN-CONSTANT-ACCELERATION",
+            ],
         )
         self.assertEqual(
             self.records["CAP-MACHINE-TRADEOFF"]["prerequisite_refs"],
-            ["CAP-WEP-GRADE9-QUANT"],
+            ["CAP-WEP-WORK-DIRECTION"],
         )
 
     def test_questions_resolve_and_belong_to_bucket_through_primary_capability(self):
