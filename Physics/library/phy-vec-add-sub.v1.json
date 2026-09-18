@@ -128,7 +128,7 @@
           "inputs": [
             "CAP-GRAPHICAL-SUBTRACT"
           ],
-          "output": "A minus B: one completed arrow from the common start to the construction endpoint."
+          "output": "A - B -> one completed arrow from the common start to the construction endpoint."
         },
         {
           "id": "VEC3-3",
