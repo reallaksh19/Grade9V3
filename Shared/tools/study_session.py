@@ -41,6 +41,9 @@ NOT_READY = session_readiness.NOT_READY
 EXECUTE_WITH_FALLBACK = "EXECUTE_WITH_FALLBACK"
 OWNER_DECISION = "OWNER_DECISION"
 
+OWNER_LOCATION = "LOCATION"
+OWNER_EXTERNAL = "EXTERNAL"
+
 NONEXECUTABLE_RUNG_POINTS = {
     "READINESS_MICROTOPIC_MISSING",
     "READINESS_CAPABILITY_MISSING",
@@ -132,6 +135,78 @@ def resolve_estimates(subject: str, raw_values: list[str],
         })
 
     return estimates, findings
+
+
+def resolve_owner_choices(raw_values: list[str]) -> tuple[dict[str, dict], list[dict]]:
+    """Parse session-only owner resolutions without changing canonical records."""
+    choices: dict[str, dict] = {}
+    warnings: list[dict] = []
+    for raw in raw_values:
+        if "=" not in raw:
+            warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                "detail": f"{raw!r} must name a capability and a resolution",
+            })
+            continue
+        capability, payload = raw.split("=", 1)
+        capability = capability.strip()
+        payload = payload.strip()
+        if not capability or ":" not in payload:
+            warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                "capability_ref": capability or None,
+                "detail": "owner choice is missing a capability or resolution payload",
+            })
+            continue
+        if capability in choices:
+            warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_DUPLICATE",
+                "capability_ref": capability,
+                "detail": "only the first session owner choice for a capability is used",
+            })
+            continue
+
+        kind, rest = payload.split(":", 1)
+        kind = kind.strip().upper()
+        if kind == OWNER_EXTERNAL:
+            provider = rest.strip()
+            if not provider:
+                warnings.append({
+                    "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                    "capability_ref": capability,
+                    "detail": "EXTERNAL choice requires a provider label",
+                })
+                continue
+            choices[capability] = {
+                "kind": OWNER_EXTERNAL,
+                "provider": provider,
+                "scope": "SESSION_ONLY",
+            }
+            continue
+
+        if kind == OWNER_LOCATION:
+            parts = rest.split(":", 1)
+            if len(parts) != 2 or not all(part.strip() for part in parts):
+                warnings.append({
+                    "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                    "capability_ref": capability,
+                    "detail": "LOCATION choice requires MATRIX_ID:RUNG",
+                })
+                continue
+            choices[capability] = {
+                "kind": OWNER_LOCATION,
+                "matrix_id": parts[0].strip(),
+                "rung": parts[1].strip(),
+                "scope": "SESSION_ONLY",
+            }
+            continue
+
+        warnings.append({
+            "point": "STUDY_SESSION_OWNER_CHOICE_KIND_UNKNOWN",
+            "capability_ref": capability,
+            "detail": f"{kind!r} is not a supported session owner resolution",
+        })
+    return choices, warnings
 
 
 def _touched_matrix_ids(study_plan: dict) -> list[str]:
