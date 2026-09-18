@@ -5,32 +5,32 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 63,
-  "relation_count": 109,
+  "component_count": 64,
+  "relation_count": 110,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 19,
+    "TOOLING": 20,
     "WEB": 5
   },
-  "digest": "sha256:b4f9c8b18d5e5675149ddc2f03d7cb21f2d3cac992215bfdb52d295a274094e3",
+  "digest": "sha256:b9ccfffe3d1ae69ef2d4ca3983bd69e52ade87f6ff8802b32f262de353212314",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
       "role": "GATES",
       "role_description": "Technical gate schema and validator",
-      "bytes": 14931,
-      "sha256": "8465e8380f271f3390e24e4100ca2c5495d07b831d5def81cc8df1bf51c66245"
+      "bytes": 15404,
+      "sha256": "dfcebf943a550d815fa3f783f509d223cfa139699aecd4b86f2a61a1f92f522e"
     },
     {
       "path": "Shared/gates/validate.py",
       "role": "GATES",
       "role_description": "Technical gate schema and validator",
-      "bytes": 11003,
-      "sha256": "035c37db5d57e321869ce326c369984a31ac3433299ba3b2d805b40af046e05e"
+      "bytes": 11627,
+      "sha256": "83285ffd71213b3864d9c4d7d816d96c756eb6afdf5dd5486d80f670c7195487"
     },
     {
       "path": "Shared/library/authority.py",
@@ -85,8 +85,8 @@
       "path": "Shared/library/matrix.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 9526,
-      "sha256": "b3d0022eed8a2265abe18b44bbac0362c734e288488bb36cb58b6441ebc54310"
+      "bytes": 10904,
+      "sha256": "6e85db807e825a39d66f87a70fe8044015ee2a4a6fb3f972faab846c13cfe760"
     },
     {
       "path": "Shared/library/observation.schema.json",
@@ -306,6 +306,13 @@
       "sha256": "78746a5f22c1f04bcee72242dec44f8f128df715a3b6d4b7610294afefa2a242"
     },
     {
+      "path": "Shared/tools/engineering_readiness.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6401,
+      "sha256": "1a0ac06fa6e1e6a8fc2bb4e8a25795a84c68252f01bfb5b9f63074b7093a8b38"
+    },
+    {
       "path": "Shared/tools/learner_evidence.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -323,8 +330,8 @@
       "path": "Shared/tools/practice_readiness.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 6364,
-      "sha256": "0692dbb0017bc6c2d28a515ec47fc068babd647e470960bc3134b71786e543c5"
+      "bytes": 7266,
+      "sha256": "aeb6d939754892f8f78989ef0bbe1ead12c78549835f15633ff08516945fc737"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -386,8 +393,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13798,
-      "sha256": "0b321793b498ac16d6480c8b7c538d9a61daa96aaf07918943d9617bedb1bbd8"
+      "bytes": 17676,
+      "sha256": "cbed64f29404752bf19df771535fb40f5f637fc232ecff2c3c7f952f32b63215"
     },
     {
       "path": "tests/test_import_sil.py",
@@ -421,8 +428,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 88015,
-      "sha256": "037041ae5e8c2dd0358d9436ffae6b2cac2a36414d23da95fc07866c3239dd70"
+      "bytes": 91299,
+      "sha256": "5deb18b23049ed2d8f1a88bc276566fcff4e01b064f0e1b6c63a2ef4453e64fd"
     },
     {
       "path": "tools/app.css",
@@ -435,8 +442,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 272003,
-      "sha256": "c3e8a2158a7109da2e2be3c4a6a8fb75accf782e2cb493292a4ef01091f01c16"
+      "bytes": 353224,
+      "sha256": "c904b29502fe5d53f1488b399b122fa50f5c73dcfaf4d439e8bcb79c3d88f0f5"
     },
     {
       "path": "tools/index.html",
@@ -714,6 +721,11 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.tools.spec_delivery",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/engineering_readiness.py",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
