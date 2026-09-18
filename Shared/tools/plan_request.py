@@ -16,7 +16,7 @@ from Shared.contracts import ContractError, load
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.practice_inventory import coverage as practice_coverage
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import academic_readiness, capability_graph, resolve_request
+from Shared.tools import academic_readiness, capability_graph, resolve_request, source_receipts
 
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
@@ -208,19 +208,30 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                              "choices": ["PRACTICE", "REVISION", "COMPETITION", "NONE"]})
 
     source_basis = request.get("source_basis", [])
-    source_inspection = request.get("source_inspection", {})
-    source_state = source_inspection.get(
-        "status", "UNINSPECTED" if source_basis else "NOT_REQUESTED")
+    receipt = source_receipts.resolve(
+        request.get("source_receipt_ref"), request=request,
+        expected_bucket=board["bucket_id"], repo=repo,
+    )
+    if receipt["state"] in {"INVALID", "DANGLING"}:
+        findings.extend(receipt.get("findings", []))
+
     if any(c in SOURCE_PRODUCTS for c in requested) and not source_basis:
         owner_inputs.append({"id": "SOURCE_BASIS", "choices": ["supply source reference"]})
-    if source_state == "INGESTED_INSUFFICIENT" and not request.get("supplemental_question_policy"):
+
+    coverage = receipt.get("coverage", {}) if receipt.get("verified") else {}
+    insufficient_practice = any(
+        core in requested and (coverage.get(core) or {}).get("status") != "SUFFICIENT"
+        for core in PRACTICE
+    )
+    if (receipt.get("verified") and insufficient_practice
+            and not request.get("supplemental_question_policy")):
         owner_inputs.append({"id": "SUPPLEMENTAL_QUESTION_POLICY",
                              "choices": ["SOURCE_ONLY", "ALLOW_AUTHORED_CANDIDATES"]})
 
     actions = []
-    if source_basis and source_state == "UNINSPECTED":
+    if source_basis and receipt["state"] == "MISSING":
         actions.append({"id": "INSPECT_AND_INGEST_SOURCE_BASIS", "owner": "AGENT",
-                        "detail": "Inspect the supplied source before asking whether supplemental questions are allowed."})
+                        "detail": "Inspect the supplied source and write a verified source receipt before asking whether supplemental questions are allowed."})
     if learner_route.get("bridges"):
         actions.append({"id": "SCHEDULE_PREREQUISITE_BRIDGES", "owner": "AGENT",
                         "capabilities": learner_route["bridges"]})
@@ -231,20 +242,28 @@ def plan(request: dict, repo: Path = REPO) -> dict:
         state, reason = "READY", None
         if core not in ALL_CORES:
             state, reason = "BLOCKED", "UNKNOWN_CORE"
-        elif core not in supported:
-            state, reason = "BLOCKED_ASSET", "compiler/library does not support this product"
         elif topology_blocked and core in PERSONALISED_TEACHING:
             state, reason = "BLOCKED_TOPOLOGY", "ladder contradicts prerequisite topology"
         elif core in PERSONALISED_TEACHING and learner_route["state"] == "WAITING_FOR_OWNER_INPUT":
             state, reason = "WAITING_FOR_LEARNER_ENTRY", "learner entry has not been supplied"
         elif core in PERSONALISED_TEACHING and learner_route["state"] == "BLOCKED":
             state, reason = "BLOCKED_PREREQUISITE", "learner entry is not prerequisite-reachable"
-        elif core in SOURCE_PRODUCTS and source_basis and source_state == "UNINSPECTED":
-            state, reason = "WAITING_FOR_SOURCE_INGESTION", "supplied source has not been inspected and ingested"
+        elif core in SOURCE_PRODUCTS and source_basis and receipt["state"] == "MISSING":
+            state, reason = "WAITING_FOR_SOURCE_RECEIPT", "supplied source has no verified inspection receipt"
+        elif core in SOURCE_PRODUCTS and receipt["state"] in {"INVALID", "DANGLING"}:
+            state, reason = "BLOCKED_SOURCE_RECEIPT", "source inspection receipt is invalid or unresolved"
+        elif core == "CORE2" and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT":
+            state, reason = "BLOCKED_SOURCE_CUSTODY", "verified source receipt does not establish sufficient Core2 custody"
+        elif core in PRACTICE and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT" and not request.get("supplemental_question_policy"):
+            state, reason = "WAITING_FOR_SUPPLEMENT_POLICY", "verified source receipt does not establish source-derived coverage"
+        elif core in PRACTICE and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT" and request.get("supplemental_question_policy") == "SOURCE_ONLY":
+            state, reason = "BLOCKED_SOURCE_COVERAGE", "source-only policy forbids filling uncovered practice with authored candidates"
         elif core in PRACTICE and learner_route["state"] == "WAITING_FOR_OWNER_INPUT":
             state, reason = "WAITING_FOR_LEARNER_ENTRY", "practice routing requires learner evidence or an explicit owner decision"
         elif core in PRACTICE and learner_route["state"] == "BLOCKED":
             state, reason = "BLOCKED_PREREQUISITE", "learner practice route is not prerequisite-reachable"
+        elif core not in supported:
+            state, reason = "BLOCKED_ASSET", "compiler/library does not support this product"
         elif core == "CORE2A" and not intent.get(core, {}).get("purpose"):
             state, reason = "WAITING_FOR_PURPOSE", "support level is selected by purpose"
         elif core == "CORE2B" and not intent.get(core, {}).get("purpose"):
@@ -275,8 +294,15 @@ def plan(request: dict, repo: Path = REPO) -> dict:
         },
         "invariant": "READY_TO_BUILD != REACHABLE_TO_LEARN",
         "learner_route": learner_route,
-        "source": {"basis": source_basis, "status": source_state,
-                   "inspection": source_inspection or None},
+        "source": {
+            "basis": source_basis,
+            "receipt_ref": request.get("source_receipt_ref"),
+            "receipt_state": receipt.get("state"),
+            "receipt_digest": receipt.get("digest"),
+            "inspection": receipt.get("inspection"),
+            "coverage": coverage,
+            "resource_refs": receipt.get("resource_refs", []),
+        },
         "practice_inventory": practice,
         "compiler_supported": sorted(supported),
         "products": products,
