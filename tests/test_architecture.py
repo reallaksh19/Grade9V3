@@ -98,13 +98,9 @@ class ThirdAgentGoldenPath(unittest.TestCase):
         self.assertNotIn("SUPPLEMENTAL_QUESTION_POLICY",
                          [row["id"] for row in report["required_owner_inputs"]])
 
-    def test_source_permission_is_asked_only_after_inspection_finds_a_gap(self):
+    def test_source_permission_is_asked_only_after_verified_receipt_finds_a_gap(self):
         request = json.loads(self.FIXTURE.read_text(encoding="utf-8"))
-        request["source_inspection"] = {
-            "status": "INGESTED_INSUFFICIENT",
-            "note": "Source was inspected and does not cover every requested practice family.",
-            "covered_cores": ["CORE2", "CORE2A"],
-        }
+        request["source_receipt_ref"] = "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY"
         report = plan_request.plan(request)
         self.assertIn("SUPPLEMENTAL_QUESTION_POLICY",
                       [row["id"] for row in report["required_owner_inputs"]])
