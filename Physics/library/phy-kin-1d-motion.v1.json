@@ -200,8 +200,8 @@
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED"
       },
-      "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
-      "success_criterion": "Checks the constant-acceleration condition before selecting a relation and keeps one signed axis throughout.",
+      "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+      "success_criterion": "Uses graph slope for v = u + at, geometric area for s = ut + 0.5at^2, eliminates time graphically/algebraically for v^2 = u^2 + 2as, and rejects exact use when the velocity-time graph is curved.",
       "prerequisite_refs": [
         "CAP-KIN-ZERO-V-NONZERO-A"
       ],
@@ -213,7 +213,7 @@
           "track": "STANDARD",
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
-          "locator": "Motion; printed p.14; C-2.1 — constant-acceleration kinematic equations",
+          "locator": "Motion; printed p.14; C-2.1 — derive constant-acceleration kinematic equations by graphical method and use them to calculate unknowns",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -713,155 +713,179 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Constant-acceleration equations are conditional models",
+      "title": "Derive the constant-acceleration equations from one velocity-time graph",
       "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
       "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The algebra is elementary; the difficult decision is whether the constant-acceleration model applies.",
+      "badge_reason": "The algebra is elementary, but the learner must connect graph slope and geometric area to three equivalent kinematic equations while preserving the model condition.",
       "entry_assumptions": [
-        "Can distinguish velocity from acceleration and can read whether a velocity-time graph has constant slope."
+        "Can read a velocity-time graph, calculate a segment slope, and calculate rectangle, triangle and trapezoid areas.",
+        "Can distinguish a constant-slope velocity-time segment from a curved changing-acceleration segment."
       ],
-      "inferential_jump": "The standard kinematic equations are exact only on intervals with constant acceleration, so model checking comes before substitution.",
+      "inferential_jump": "One straight velocity-time segment carries all three Grade 9 kinematic equations: its slope gives v = u + at, its rectangle-plus-triangle area gives s = ut + 0.5at^2, and combining trapezoid area with the slope relation eliminates time to give v^2 = u^2 + 2as.",
       "teaching_path": [
         {
           "id": "KIN4-1",
           "role": "DECLARE",
-          "action": "Compare a straight velocity-time graph with a curved one and decide whether one acceleration value describes each whole interval.",
-          "why_valid": "Acceleration is the slope of a velocity-time graph; a constant slope gives constant acceleration.",
+          "action": "Read the straight velocity-time graph from (0,u) to (t,v) and identify one constant slope.",
+          "why_valid": "A straight velocity-time segment means one acceleration value describes the whole interval.",
           "inputs": [
-            "CAP-KIN-ZERO-V-NONZERO-A"
+            "CAP-KIN-MOTION-GRAPHS",
+            "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
           ],
-          "output": "straight v-t graph -> constant a; curved v-t graph -> changing a."
+          "output": "slope = (v-u)/t = a; graph area = signed displacement s."
         },
         {
           "id": "KIN4-2",
           "role": "TRANSFORM",
-          "action": "For the straight-graph case, use v = u + a t to update velocity and s = u t + 0.5 a t^2 to obtain signed displacement.",
-          "why_valid": "Both gate-owned relations apply to the same constant-acceleration interval.",
+          "action": "Rearrange the straight-line slope equation.",
+          "why_valid": "The graph slope is the constant acceleration for the interval.",
           "inputs": [
-            "REL-CONSTANT-ACCELERATION-VELOCITY",
-            "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
+            "REL-AVERAGE-ACCELERATION",
+            "REL-CONSTANT-ACCELERATION-VELOCITY"
           ],
-          "output": "v = u + a t; s = u t + 0.5 a t^2."
+          "output": "a = (v-u)/t -> a t = v-u -> v = u + a t."
         },
         {
           "id": "KIN4-3",
           "role": "TRANSFORM",
-          "action": "When time is not supplied, use v^2 = u^2 + 2 a s while keeping the velocity sign as a separate physical decision.",
-          "why_valid": "The no-time relation follows from the same constant-acceleration model but determines squared velocity.",
+          "action": "Split the graph area into the initial-velocity rectangle and the acceleration triangle, then substitute v-u = a t.",
+          "why_valid": "REL-CONSTANT-ACCELERATION-GRAPH-AREA owns the displacement area and the two regions exactly partition it.",
           "inputs": [
-            "REL-CONSTANT-ACCELERATION-NO-TIME"
+            "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+            "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
           ],
-          "output": "v^2 = u^2 + 2 a s; direction still comes from context."
+          "output": "s = u t + 0.5 (v-u)t -> s = u t + 0.5 (a t)t = u t + 0.5 a t^2."
         },
         {
           "id": "KIN4-4",
+          "role": "TRANSFORM",
+          "action": "Write the same graph area as a trapezoid, substitute t = (v-u)/a from the slope, and factor the difference of squares.",
+          "why_valid": "Both equations describe the same straight graph interval, so the common time variable can be eliminated.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+            "REL-CONSTANT-ACCELERATION-NO-TIME"
+          ],
+          "output": "s = 0.5(u+v)t; t=(v-u)/a -> 2as=(u+v)(v-u)=v^2-u^2 -> v^2=u^2+2as."
+        },
+        {
+          "id": "KIN4-5",
           "role": "VERIFY",
-          "action": "Reject the same equations as exact models on a visibly curved velocity-time interval.",
-          "why_valid": "A changing slope means acceleration is not constant across the interval.",
+          "action": "Replace the straight segment with a curved velocity-time trace and ask whether the same graphical derivation is exact over the whole interval.",
+          "why_valid": "A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.",
           "inputs": [],
-          "output": "curved v-t interval -> constant-a equations not exact over the whole interval."
+          "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval."
         }
       ],
       "relation_refs": [
+        "REL-AVERAGE-ACCELERATION",
+        "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
         "REL-CONSTANT-ACCELERATION-VELOCITY",
         "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
         "REL-CONSTANT-ACCELERATION-NO-TIME"
       ],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
+      ],
       "question_family_refs": [],
       "misconceptions": [
         {
-          "wrong_idea": "If a problem gives an acceleration value, the constant-acceleration equations are automatically exact.",
-          "diagnostic_prompt": "A velocity-time graph curves upward but one acceleration value is listed at the start. Does that make v = u + at exact for the whole interval?",
-          "repair": "Inspect the entire interval. One constant a must describe all of it before the equations are exact."
+          "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
+          "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
+          "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
         }
       ],
       "exit_task": {
-        "prompt": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+        "prompt": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
         "source_ref": "SRC-AUTHOR-KIN-1D",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope.",
+          "summary": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as.",
           "reasoning": [
-            "v = 5 + 2 x 3 = 11 m/s.",
-            "s = 5 x 3 + 0.5 x 2 x 3^2 = 24 m.",
-            "The stated constant acceleration is the model condition."
+            "Slope: a = (11-5)/3 = 2 m/s^2, so a = (v-u)/t rearranges to v = u + at.",
+            "Rectangle area: u t = 5 x 3 = 15 m.",
+            "Triangle area: 0.5(v-u)t = 0.5 x 6 x 3 = 9 m, so s = 24 m; substituting v-u = at gives s = ut + 0.5at^2.",
+            "The same area is s = 0.5(u+v)t. Substitute t=(v-u)/a: 2as=(u+v)(v-u)=v^2-u^2, hence v^2=u^2+2as."
           ],
-          "check": "Using v^2 = u^2 + 2as gives 121 = 25 + 96, consistent with v = 11 m/s.",
+          "check": "The direct displacement validator gives 24 m, and 11^2 = 5^2 + 2 x 2 x 24 = 121.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
           "verification": {
-            "validator_id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+            "validator_id": "CONSTANT_ACCELERATION_GRAPH_AREA",
             "bindings": {
               "u": "DAT-KIN-CA-U",
-              "a": "DAT-KIN-CA-A",
+              "v": "DAT-KIN-CA-V",
               "t": "DAT-KIN-CA-T"
             }
           }
         }
       },
-      "research_contribution": "Author-created Grade 9 constant-acceleration construction bound to gate-owned relations and validators.",
+      "research_contribution": "Author-created Grade 9 graphical derivation bound to a data-backed velocity-time representation, gate-owned graph-area relation, and executable validator.",
       "prerequisite_refs": [
-        "CAP-KIN-ZERO-V-NONZERO-A"
+        "CAP-KIN-MOTION-GRAPHS"
       ],
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Two velocity-time graphs begin and end at the same velocities over the same duration; one is straight and one curved. Can the same constant-acceleration equations be exact for both?",
-          "defensible_answer": "No. Only the straight graph has one constant slope, so only it has constant acceleration over the whole interval."
+          "prompt": "If a velocity-time graph is a straight rising line, which two graph features can generate equations before any formula is recalled?",
+          "defensible_answer": "Its slope gives acceleration and its signed area gives displacement."
         },
         "attempt": {
-          "produces": "A model-validity decision followed by one constant-acceleration calculation.",
+          "produces": "A slope derivation of v=u+at, a rectangle-plus-triangle derivation of s=ut+0.5at^2, and a trapezoid/elimination derivation of v^2=u^2+2as.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Checks constant acceleration before selecting equations.",
-              "evidence_of": "Treating the equations as a model with conditions."
+              "criterion": "Derives the velocity equation from graph slope.",
+              "evidence_of": "Writing a=(v-u)/t and rearranging rather than quoting v=u+at."
             },
             {
-              "criterion": "Keeps one sign convention through u, a, v and s.",
-              "evidence_of": "Maintaining directed one-dimensional quantities."
+              "criterion": "Derives the displacement equation from rectangle plus triangle area.",
+              "evidence_of": "Writing s=ut+0.5(v-u)t and substituting v-u=at."
+            },
+            {
+              "criterion": "Eliminates time using the trapezoid area and slope relation.",
+              "evidence_of": "Reaching 2as=(u+v)(v-u)=v^2-u^2 before the no-time equation."
             }
           ],
           "accepted": [
-            "Straight v-t graph -> constant a -> equations apply; curved graph -> reject exact use."
+            "slope -> v=u+at; graph area -> s=ut+0.5at^2; trapezoid plus slope -> v^2=u^2+2as."
           ],
           "rejected": [
-            "Use the equations on the curved graph merely because an acceleration value appears somewhere."
+            "Listing all three equations without connecting them to slope or graph area."
           ]
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "What graph feature tells you whether acceleration is constant?",
-              "why_this_ask": "It reconstructs the model condition.",
+              "ask": "What is the slope of the straight velocity-time segment?",
+              "why_this_ask": "It recovers the acceleration relation.",
               "from_step_ref": "KIN4-1"
             },
             {
-              "ask": "Which quantities belong to the same signed axis?",
-              "why_this_ask": "It protects sign consistency."
-            },
-            {
-              "ask": "Which equation avoids time if t is absent?",
-              "why_this_ask": "It distinguishes relation selection from rote substitution.",
+              "ask": "What two simple shapes partition the area below that segment?",
+              "why_this_ask": "It reconstructs displacement from geometry.",
               "from_step_ref": "KIN4-3"
             },
             {
-              "ask": "What would a curved v-t graph change about the model?",
-              "why_this_ask": "It tests the boundary rather than another calculation.",
+              "ask": "How can the whole area also be written as one trapezoid?",
+              "why_this_ask": "It supplies the form used to eliminate time.",
               "from_step_ref": "KIN4-4"
+            },
+            {
+              "ask": "What fails if the graph is curved?",
+              "why_this_ask": "It restores the constant-acceleration applicability condition.",
+              "from_step_ref": "KIN4-5"
             }
           ],
-          "differs_from_teaching_path": "The teaching path begins from graph shape; the learner route reconstructs model validity from the relation choice and then returns to the graph as a falsifier."
+          "differs_from_teaching_path": "The teaching path derives equations in order; the learner route starts from graph invariants—slope and area—and reconstructs why each algebraic form follows."
         },
         "boundary_test": {
-          "prompt": "If acceleration changes during the interval, are the three constant-acceleration equations exact for the whole interval?",
-          "answer": "No. They require one constant acceleration across the interval.",
-          "confirms": "The equations are conditional models, not universal motion identities."
+          "prompt": "Can this exact straight-line graphical derivation be used unchanged on a curved velocity-time graph?",
+          "answer": "No. A curved graph has changing slope, so one constant acceleration does not describe the whole interval.",
+          "confirms": "The equations are derived under the constant-acceleration model rather than treated as universal identities."
         }
       }
     },
@@ -1348,11 +1372,21 @@
       "derivation": [
         {
           "id": "KIN-R4-V1",
+          "role": "DECLARE",
+          "action": "Read the straight velocity-time segment from initial point (0,u) to final point (t,v).",
+          "why_valid": "Constant acceleration means the velocity-time graph has one constant slope over the interval.",
+          "inputs": [
+            "REL-AVERAGE-ACCELERATION"
+          ],
+          "output": "graph slope = (v-u)/t = a."
+        },
+        {
+          "id": "KIN-R4-V2",
           "role": "TRANSFORM",
-          "action": "Add the constant velocity change a t to the initial velocity.",
-          "why_valid": "Constant acceleration changes velocity by the same amount per unit time.",
+          "action": "Multiply the slope equation by t and add u.",
+          "why_valid": "This is an equivalent rearrangement of a = (v-u)/t for t >= 0.",
           "inputs": [],
-          "output": "v = u + a t."
+          "output": "a t = v-u -> v = u + a t."
         }
       ],
       "limits": [
@@ -1405,11 +1439,23 @@
       "derivation": [
         {
           "id": "KIN-R4-S1",
+          "role": "DECLARE",
+          "action": "Read displacement as the rectangle-plus-triangle area beneath the straight velocity-time segment.",
+          "why_valid": "REL-CONSTANT-ACCELERATION-GRAPH-AREA owns the geometric displacement statement.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-GRAPH-AREA"
+          ],
+          "output": "s = u t + 0.5 (v-u)t."
+        },
+        {
+          "id": "KIN-R4-S2",
           "role": "TRANSFORM",
-          "action": "Combine the initial-velocity displacement with the constant-acceleration contribution.",
-          "why_valid": "For constant acceleration the velocity-time graph is a straight line, and its signed area gives displacement.",
-          "inputs": [],
-          "output": "s = u t + 0.5 a t^2."
+          "action": "Replace the graph's velocity rise v-u with a t from the slope derivation.",
+          "why_valid": "For the same constant-acceleration interval, v-u = a t.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-VELOCITY"
+          ],
+          "output": "s = u t + 0.5 (a t)t = u t + 0.5 a t^2."
         }
       ],
       "limits": [
@@ -1461,14 +1507,22 @@
       "derivation": [
         {
           "id": "KIN-R4-N1",
-          "role": "TRANSFORM",
-          "action": "Eliminate time between the constant-acceleration velocity and displacement relations.",
-          "why_valid": "Both relations describe the same interval under the same constant acceleration.",
+          "role": "DECLARE",
+          "action": "Use the trapezoid form of the same velocity-time area and solve the slope relation for elapsed time.",
+          "why_valid": "Both statements come from the same straight velocity-time segment.",
           "inputs": [
-            "REL-CONSTANT-ACCELERATION-VELOCITY",
-            "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
+            "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+            "REL-CONSTANT-ACCELERATION-VELOCITY"
           ],
-          "output": "v^2 = u^2 + 2 a s."
+          "output": "s = 0.5 (u+v)t; t = (v-u)/a."
+        },
+        {
+          "id": "KIN-R4-N2",
+          "role": "TRANSFORM",
+          "action": "Substitute the graph-slope time into the trapezoid area and use difference of squares.",
+          "why_valid": "Eliminating the same interval time preserves the constant-acceleration relation.",
+          "inputs": [],
+          "output": "2 a s = (u+v)(v-u) = v^2-u^2 -> v^2 = u^2 + 2 a s."
         }
       ],
       "limits": [
@@ -1598,6 +1652,71 @@
         "Doubling period at fixed radius halves speed."
       ],
       "gate_relation_ref": "REL-UNIFORM-CIRCULAR-SPEED"
+    },
+    {
+      "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+      "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+      "symbols": [
+        {
+          "symbol": "s",
+          "meaning": "Signed displacement over the interval",
+          "unit_or_domain": "m; signed scalar"
+        },
+        {
+          "symbol": "u",
+          "meaning": "Initial velocity along the declared axis",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Final velocity along the declared axis",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Elapsed time",
+          "unit_or_domain": "s; nonnegative scalar"
+        }
+      ],
+      "conditions": [
+        "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+        "u, v and s use one declared one-dimensional sign convention.",
+        "t >= 0."
+      ],
+      "derivation": [
+        {
+          "id": "KIN-R4-AREA-1",
+          "role": "DECLARE",
+          "action": "Decompose the straight velocity-time trapezoid into a rectangle of height u and a triangle of height v-u over the same time base t.",
+          "why_valid": "Geometric area under the velocity-time segment represents signed displacement for this constant-acceleration graph.",
+          "inputs": [],
+          "output": "rectangle = u t; triangle = 0.5 (v-u) t."
+        },
+        {
+          "id": "KIN-R4-AREA-2",
+          "role": "TRANSFORM",
+          "action": "Add the two geometric contributions and factor the equivalent trapezoid form.",
+          "why_valid": "The two non-overlapping regions exactly partition the area under the straight segment.",
+          "inputs": [],
+          "output": "s = u t + 0.5 (v-u)t = 0.5 (u+v)t."
+        }
+      ],
+      "limits": [
+        "The rectangle-plus-triangle construction assumes the constant-acceleration velocity-time segment is straight over the chosen interval."
+      ],
+      "checks": [
+        "If v = u, the triangle vanishes and s = u t.",
+        "The trapezoid form and rectangle-plus-triangle form are algebraically identical."
+      ],
+      "gate_relation_ref": "REL-CONSTANT-ACCELERATION-GRAPH-AREA"
     }
   ],
   "representations": [
@@ -1801,6 +1920,148 @@
           "in_words": "Rise in velocity divided by run in time is the interval's average acceleration."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Carry the Grade 9 graphical derivation of the constant-acceleration equations from one straight velocity-time segment.",
+      "required_elements": [
+        "straight velocity-time segment",
+        "initial-velocity rectangle",
+        "acceleration triangle",
+        "elapsed-time base"
+      ],
+      "relation_refs": [
+        "REL-AVERAGE-ACCELERATION",
+        "REL-CONSTANT-ACCELERATION-GRAPH-AREA"
+      ],
+      "read_order": [
+        "Read the initial velocity u at t = 0 and final velocity v at elapsed time t.",
+        "Use the straight segment's slope to identify constant acceleration a = (v-u)/t.",
+        "Read the region below u as a rectangle with geometric contribution u t.",
+        "Read the region above u and below the straight segment as a triangle with contribution 0.5 (v-u)t."
+      ],
+      "instance_constraints": [
+        "The two endpoint times must increase from zero to a positive elapsed time.",
+        "The velocity-time segment must be straight because this scene represents constant acceleration.",
+        "Every polygon vertex in the rectangle and triangle must resolve to a declared source atom."
+      ],
+      "accessibility": [
+        "The caption states both endpoint velocities and elapsed time.",
+        "The rectangle and triangle carry text labels rather than relying on fill colour.",
+        "The derivation can be followed from slope and geometric area labels without visual colour discrimination."
+      ],
+      "misleading_alternatives": [
+        "Do not infer the equations from a curved velocity-time trace.",
+        "Do not treat rectangle or triangle area as literal spatial drawing area; their graph dimensions reduce to displacement."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [
+        {
+          "id": "SCENE-PHY-KIN-CONSTANT-A-DERIVATION-01",
+          "cores": [
+            "CORE1A",
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+          "datum_refs": [
+            "DAT-KIN-GRAPH-T0",
+            "DAT-KIN-CA-T",
+            "DAT-KIN-CA-U",
+            "DAT-KIN-CA-V",
+            "DAT-KIN-CA-VZERO"
+          ],
+          "scene": {
+            "kind": "GRAPH",
+            "frame": "velocity-time graph for one constant-acceleration interval",
+            "caption": "Constant acceleration: velocity rises linearly from 5 m/s at 0 s to 11 m/s at 3 s; the area is split into u t and 1/2 (v-u)t.",
+            "x_label": "time (s)",
+            "y_label": "velocity (m/s)",
+            "x_unit": "s",
+            "y_unit": "m/s",
+            "points": [
+              [
+                "DAT-KIN-GRAPH-T0",
+                "DAT-KIN-CA-U"
+              ],
+              [
+                "DAT-KIN-CA-T",
+                "DAT-KIN-CA-V"
+              ]
+            ],
+            "y_min_atom": "DAT-KIN-CA-VZERO",
+            "regions": [
+              {
+                "label": "u t",
+                "points": [
+                  [
+                    "DAT-KIN-GRAPH-T0",
+                    "DAT-KIN-CA-VZERO"
+                  ],
+                  [
+                    "DAT-KIN-CA-T",
+                    "DAT-KIN-CA-VZERO"
+                  ],
+                  [
+                    "DAT-KIN-CA-T",
+                    "DAT-KIN-CA-U"
+                  ],
+                  [
+                    "DAT-KIN-GRAPH-T0",
+                    "DAT-KIN-CA-U"
+                  ]
+                ]
+              },
+              {
+                "label": "1/2 (v-u)t",
+                "points": [
+                  [
+                    "DAT-KIN-GRAPH-T0",
+                    "DAT-KIN-CA-U"
+                  ],
+                  [
+                    "DAT-KIN-CA-T",
+                    "DAT-KIN-CA-U"
+                  ],
+                  [
+                    "DAT-KIN-CA-T",
+                    "DAT-KIN-CA-V"
+                  ]
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "straight velocity-time segment",
+          "symbol": "a_avg",
+          "in_words": "Its slope is (v-u)/t; under constant acceleration this interval average is the constant acceleration a."
+        },
+        {
+          "element": "initial-velocity rectangle",
+          "symbol": "u",
+          "in_words": "The rectangle has height u and base t, giving displacement contribution u t."
+        },
+        {
+          "element": "acceleration triangle",
+          "symbol": "v",
+          "in_words": "The triangle height is the velocity rise v-u and its base is t, giving 0.5 (v-u)t."
+        },
+        {
+          "element": "elapsed-time base",
+          "symbol": "t",
+          "in_words": "The common horizontal base t belongs to both geometric displacement regions."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -1825,7 +2086,8 @@
       "solution_structure": [
         "Mark a start point on a straight path and declare east as the positive direction.",
         "Trace a walk away from S and then back to S, counting every part of the route.",
-        "Compare that return trip with a one-way trip chosen to have the same total route length."
+        "Compare that return trip with a one-way trip chosen to have the same total route length.",
+        "For constant acceleration, derive the equations from velocity-time graph slope and geometric area before substituting numbers."
       ],
       "demand_dimensions": {
         "model_choice": "Decide whether the bucket's authored construction applies before using it.",
@@ -1837,7 +2099,8 @@
         "Change surface labels, orientation, or context while preserving the same authored decision structure."
       ],
       "transfer_boundaries": [
-        "The learner must translate position-time and velocity-time graph segments into the correct interval rate without confusing graph height with graph slope."
+        "The learner must translate position-time and velocity-time graph segments into the correct interval rate without confusing graph height with graph slope.",
+        "A constant-acceleration question may require reconstruction from velocity-time graph slope and area rather than hand over the kinematic equations."
       ],
       "common_wrong_routes": [
         "Distance travelled and displacement are always the same number."
@@ -2051,24 +2314,27 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-1D",
       "original_identifier": "AUTHOR-KIN-COVERAGE-03",
-      "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+      "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
       "subparts": [],
       "options": [],
       "conditions": [],
-      "figure_refs": [],
+      "figure_refs": [
+        "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
+      ],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope.",
+        "summary": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as.",
         "reasoning": [
-          "v = 5 + 2 x 3 = 11 m/s.",
-          "s = 5 x 3 + 0.5 x 2 x 3^2 = 24 m.",
-          "The stated constant acceleration is the model condition."
+          "Slope: a = (11-5)/3 = 2 m/s^2, so a = (v-u)/t rearranges to v = u + at.",
+          "Rectangle area: u t = 5 x 3 = 15 m.",
+          "Triangle area: 0.5(v-u)t = 0.5 x 6 x 3 = 9 m, so s = 24 m; substituting v-u = at gives s = ut + 0.5at^2.",
+          "The same area is s = 0.5(u+v)t. Substitute t=(v-u)/a: 2as=(u+v)(v-u)=v^2-u^2, hence v^2=u^2+2as."
         ],
-        "check": "Using v^2 = u^2 + 2as gives 121 = 25 + 96, consistent with v = 11 m/s.",
+        "check": "The direct displacement validator gives 24 m, and 11^2 = 5^2 + 2 x 2 x 24 = 121.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 0
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
       "secondary_capability_refs": [],
@@ -2083,19 +2349,19 @@
       ],
       "hints": [
         {
-          "text": "Start by asking: What graph feature tells you whether acceleration is constant?",
+          "text": "Start with the two graph invariants: slope is acceleration, and velocity-time area is displacement.",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Inspect the entire interval. One constant a must describe all of it before the equations are exact.",
+          "text": "Split the area into u t plus 1/2(v-u)t; then use the slope relation v-u=at.",
           "reveals": "METHOD"
         }
       ],
       "verification": {
-        "validator_id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+        "validator_id": "CONSTANT_ACCELERATION_GRAPH_AREA",
         "bindings": {
           "u": "DAT-KIN-CA-U",
-          "a": "DAT-KIN-CA-A",
+          "v": "DAT-KIN-CA-V",
           "t": "DAT-KIN-CA-T"
         }
       }
@@ -2628,6 +2894,38 @@
       "symbol": "T",
       "meaning": "One-revolution period in the authored uniform-circular-speed exit.",
       "locator": "Author-created exact Grade 9 Motion datum."
+    },
+    {
+      "id": "DAT-KIN-CA-V",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 11,
+      "unit": "m/s",
+      "symbol": "v",
+      "meaning": "Final velocity at t = 3 s in the authored constant-acceleration graph.",
+      "locator": "Author-created exact Grade 9 graphical-derivation datum."
+    },
+    {
+      "id": "DAT-KIN-CA-VZERO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "unit": "m/s",
+      "symbol": "v_axis",
+      "meaning": "Zero-velocity graph baseline for the authored area decomposition.",
+      "locator": "Author-created exact Grade 9 graphical-derivation datum."
     }
   ]
 }
