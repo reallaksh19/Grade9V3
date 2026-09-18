@@ -81,6 +81,11 @@
           "required": [
             "owner_estimate"
           ]
+        },
+        {
+          "required": [
+            "unknown"
+          ]
         }
       ],
       "properties": {
@@ -121,6 +126,23 @@
               "minimum": 0,
               "maximum": 100
             },
+            "by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "instruction": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "unknown": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "by"
+          ],
+          "properties": {
             "by": {
               "type": "string",
               "minLength": 1
