@@ -91,7 +91,8 @@
       "extensions": {
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "grade9_track": "STANDARD",
-        "curriculum_mapping_policy": "VERIFIED"
+        "curriculum_mapping_policy": "VERIFIED",
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
       },
       "title": "Sound",
       "topic": "Sound",
