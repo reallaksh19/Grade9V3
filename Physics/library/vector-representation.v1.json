@@ -231,7 +231,7 @@
           "action": "State the shared arrow length as one nonnegative magnitude for both arrows.",
           "why_valid": "Magnitude records size only, so equal-length arrows can share it.",
           "inputs": [],
-          "output": "Both arrows have the same magnitude."
+          "output": "With both arrows drawn to the same scale and the same length L: magnitude(A) = L and magnitude(B) = L, so magnitude(A) = magnitude(B)."
         },
         {
           "id": "VS-3",
