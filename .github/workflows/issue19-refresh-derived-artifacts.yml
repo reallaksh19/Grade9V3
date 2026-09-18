@@ -1,0 +1,41 @@
+name: issue19-refresh-derived-artifacts
+
+on:
+  pull_request:
+    branches:
+      - architecture/final-release-authority
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.head_ref == 'content/issue-19-physics-math-matrices'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/issue-19-physics-math-matrices
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Refresh frozen publications without learner-visible changes
+        run: |
+          python3 Shared/tools/republish.py --write
+          git diff --exit-code -- 'Physics/content/*/publication/*.html' 'Physics/content/*/publication/figures/*'
+
+      - name: Refresh architecture manifest and explorer data
+        run: python3 Shared/tools/build_manifest.py
+
+      - name: Commit exact generated artifacts
+        run: |
+          if git diff --quiet -- Physics/content docs/architecture-manifest.json tools/data.js; then
+            echo "generated artifacts already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Physics/content docs/architecture-manifest.json tools/data.js
+          git commit -m "Regenerate Issue 19 derived artifacts"
+          git push origin HEAD:content/issue-19-physics-math-matrices
