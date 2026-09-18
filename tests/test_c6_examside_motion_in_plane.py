@@ -14,15 +14,49 @@ from Shared.tools import feedback, study_session, worksheet_study_plan  # noqa: 
 
 class ExamSideMotionInPlanePilot(unittest.TestCase):
     FIXTURE = REPO / "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json"
+    LIVE_FIXTURE = REPO / "docs/pilots/relative-motion-live-01.worksheet.json"
 
     def mapping(self):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
+
+    def live_mapping(self):
+        return json.loads(self.LIVE_FIXTURE.read_text(encoding="utf-8"))
 
     def relative_only(self):
         mapping = self.mapping()
         mapping["worksheet_id"] = "EXAMSIDE-RELATIVE-MOTION-SESSION"
         mapping["questions"] = mapping["questions"][:2]
         return mapping
+
+    def test_live_pilot_packet_stops_at_real_bridge_without_invented_evidence(self):
+        report = study_session.plan(self.live_mapping())
+        self.assertTrue(report["valid"], report["findings"])
+        self.assertFalse(report["ready"])
+        self.assertEqual(report["status"], "SESSION_READY_WITH_BRIDGE")
+        self.assertEqual(report["next_step"]["action"], "BRIDGE")
+        self.assertEqual(
+            report["next_step"]["capability_ref"],
+            "CAP-SIGNED-PAIR",
+        )
+
+    def test_live_pilot_packet_becomes_ready_with_real_bridge_evidence(self):
+        profile = {
+            "profile_id": "PROFILE-LIVE-PILOT",
+            "provenance": "UNKNOWN",
+            "held": {"CAP-SIGNED-PAIR": "DEMONSTRATED"},
+            "observation_refs": [],
+        }
+        report = study_session.plan(self.live_mapping(), profile=profile)
+        self.assertTrue(report["valid"], report["findings"])
+        self.assertTrue(report["ready"], report["blockers"])
+        self.assertEqual(report["blockers"], [])
+        self.assertEqual(
+            {row["question_id"] for row in report["questions"]},
+            {
+                "EXAMSIDE-MIP-2026-01-21-RIVER",
+                "EXAMSIDE-MIP-2022-06-27-RAIN",
+            },
+        )
 
     def test_real_relative_motion_slice_runs_through_the_practical_session_runner(self):
         report = study_session.plan(
