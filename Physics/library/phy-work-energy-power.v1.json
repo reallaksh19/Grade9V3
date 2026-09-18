@@ -87,9 +87,7 @@
       "extensions": {},
       "action": "Classify work as positive, zero, or negative from force and displacement directions.",
       "success_criterion": "Recognize perpendicular force as a zero-work case.",
-      "prerequisite_refs": [
-        "CAP-NLM-FBD-BODY-OWNERSHIP"
-      ],
+      "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -163,7 +161,7 @@
       "action": "Distinguish total work from average power and decide when instantaneous power can be determined.",
       "success_criterion": "Uses W/Delta t for an interval average and requires same-instant force/velocity information for instantaneous power.",
       "prerequisite_refs": [
-        "CAP-WEP-MECH-ENERGY-CONDITION"
+        "CAP-WEP-WORK-DIRECTION"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -184,8 +182,7 @@
       "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
       "success_criterion": "Selects a relation only after declaring direction/reference and checking whether the mechanical-energy account is closed.",
       "prerequisite_refs": [
-        "CAP-WEP-MECH-ENERGY-CONDITION",
-        "CAP-WEP-ENERGY-DERIVATIONS"
+        "CAP-WEP-MECH-ENERGY-CONDITION"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -206,7 +203,7 @@
       "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
       "success_criterion": "Shows the relation chain and model assumptions for both derivations rather than presenting either expression as a memorized formula.",
       "prerequisite_refs": [
-        "CAP-WEP-MECH-ENERGY-CONDITION",
+        "CAP-WEP-WORK-DIRECTION",
         "CAP-NLM-SECOND-LAW",
         "CAP-KIN-CONSTANT-ACCELERATION"
       ],
@@ -291,9 +288,7 @@
         }
       },
       "research_contribution": "Author-created directional classification that avoids asserting a quantitative work equation.",
-      "prerequisite_refs": [
-        "CAP-NLM-FBD-BODY-OWNERSHIP"
-      ],
+      "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
         "predict": {
@@ -859,7 +854,7 @@
       },
       "research_contribution": "Author-created power-rate distinction bound to gate-owned average and instantaneous relations and Physics validators.",
       "prerequisite_refs": [
-        "CAP-WEP-MECH-ENERGY-CONDITION"
+        "CAP-WEP-WORK-DIRECTION"
       ],
       "lineage": [],
       "elicitation": {
@@ -1204,7 +1199,7 @@
       },
       "research_contribution": "Author-created Grade 9 derivation route for the two energy expressions explicitly required by the verified CBSE learning outcomes.",
       "prerequisite_refs": [
-        "CAP-WEP-MECH-ENERGY-CONDITION",
+        "CAP-WEP-WORK-DIRECTION",
         "CAP-NLM-SECOND-LAW",
         "CAP-KIN-CONSTANT-ACCELERATION"
       ],
