@@ -143,6 +143,57 @@ class StudySessionRunner(unittest.TestCase):
         self.assertIsNotNone(report["next_step"])
         self.assertTrue(report["fallback_reasons"])
 
+    def test_missing_teaching_path_requires_owner_decision_even_when_rung_is_needs_support(self):
+        partial = {
+            "subject": "Physics",
+            "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+            "subtopic": "Relative motion",
+            "status": session_readiness.NOT_READY,
+            "external_bridges": [],
+            "support_findings": [],
+            "academic_warnings": [],
+            "blocking_findings": [{
+                "point": "READINESS_TEACHING_PATH_MISSING",
+                "where": "R3",
+                "detail": "teaching path is absent",
+            }],
+            "rungs": [
+                {"rung": "R3", "state": "NEEDS_SUPPORT", "teaching": False, "verification": True},
+                {"rung": "R4", "state": "READY", "teaching": True, "verification": True},
+                {"rung": "R5", "state": "READY", "teaching": True, "verification": True},
+            ],
+            "passed": False,
+        }
+        profile = {
+            "profile_id": "PROFILE-TEACHING-GAP",
+            "provenance": "UNKNOWN",
+            "held": {"CAP-SIGNED-PAIR": "DEMONSTRATED"},
+            "observation_refs": [],
+        }
+        with patch.object(
+            study_session.session_readiness,
+            "audit",
+            return_value=partial,
+        ):
+            report = study_session.plan(
+                self.mapping(),
+                ["Relative motion=60"],
+                profile=profile,
+            )
+
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.OWNER_DECISION,
+        )
+        self.assertIsNone(report["next_step"])
+        points = {
+            point
+            for row in report["owner_decisions"]
+            for point in row.get("blocking_points", [])
+        }
+        self.assertIn("READINESS_TEACHING_PATH_MISSING", points)
+
     def test_blocked_demanded_rungs_require_owner_decision_not_global_failure(self):
         blocked = {
             "subject": "Physics",
@@ -426,6 +477,50 @@ class StudySessionRunner(unittest.TestCase):
         self.assertEqual(verification["kind"], "QUESTION")
         self.assertEqual(verification["question_ref"], "Q-AUTHOR-REL-01")
         self.assertNotEqual(verification["question_ref"], "SCHOOL-REL-Q1")
+
+    def test_independent_correct_attempt_without_verification_stays_uncertain(self):
+        limited = {
+            "subject": "Physics",
+            "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+            "subtopic": "Relative motion",
+            "status": session_readiness.NOT_READY,
+            "external_bridges": [],
+            "support_findings": [],
+            "academic_warnings": [],
+            "blocking_findings": [{
+                "point": "READINESS_VERIFICATION_MISSING",
+                "where": "R4",
+                "detail": "no canonical fresh verification path",
+            }],
+            "rungs": [
+                {"rung": "R3", "state": "READY", "teaching": True, "verification": True},
+                {"rung": "R4", "state": "NEEDS_SUPPORT", "teaching": True, "verification": False},
+                {"rung": "R5", "state": "READY", "teaching": True, "verification": True},
+            ],
+            "passed": False,
+        }
+        with patch.object(
+            study_session.session_readiness,
+            "audit",
+            return_value=limited,
+        ):
+            report = study_session.attempt(
+                self.mapping(),
+                "SCHOOL-REL-Q1",
+                result="CORRECT",
+                when="2026-09-18",
+                error_stage="UNKNOWN",
+                help_used="NONE",
+                response_summary="Solved independently.",
+            )
+
+        self.assertTrue(report["passed"], report.get("findings"))
+        self.assertEqual(report["observation_draft"]["help"], "NONE")
+        self.assertEqual(report["observation_draft"]["result"], "UNCERTAIN")
+        self.assertEqual(
+            report["evidence_limited"]["point"],
+            "STUDY_SESSION_VERIFICATION_UNAVAILABLE",
+        )
 
     def test_independent_correct_attempt_drafts_evidence_and_review_without_writing(self):
         report = study_session.attempt(
