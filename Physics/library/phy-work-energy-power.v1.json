@@ -60,7 +60,16 @@
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED",
-        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B",
+        "practical_coverage_policy": "PRESCRIBED_PRACTICALS",
+        "prescribed_practicals": [
+          {
+            "id": "CBSE-IX-2026-PHY-PRACTICAL-09",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Practicals item 9; printed p.19 — Verification of law of conservation of energy using a simple pendulum (Ch. 7).",
+            "capability_ref": "CAP-WEP-GRADE9-QUANT"
+          }
+        ]
       },
       "title": "Work, energy and power",
       "topic": "Work and Energy",
@@ -287,6 +296,16 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
           "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — quantitative work, kinetic/potential energy and conservation",
+          "mapping_status": "VERIFIED"
+        },
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Practicals item 9; printed p.19 — Verification of law of conservation of energy using a simple pendulum (Ch. 7).",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -1868,7 +1887,8 @@
         "Q-PHY-WEP-2A-COV-03",
         "Q-PHY-WEP-2A-COV-04",
         "Q-PHY-WEP-2A-COV-05",
-        "Q-PHY-WEP-2A-DERIV-01"
+        "Q-PHY-WEP-2A-DERIV-01",
+        "Q-PHY-WEP-PRACTICAL-09"
       ]
     }
   ],
@@ -2292,6 +2312,85 @@
         },
         {
           "text": "For potential energy, make the lift slow enough that the applied force balances weight.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-WEP-PRACTICAL-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-WEP"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "prescribed_practical_refs": [
+          "CBSE-IX-2026-PHY-PRACTICAL-09"
+        ]
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-WEP",
+      "original_identifier": "AUTHOR-WEP-PRACTICAL-09",
+      "stem": "Design a simple-pendulum investigation of mechanical-energy conservation. State what quantities you would compare between release and the lowest point, what ideal relation you expect, and how real losses would appear in the data.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use a small enough swing and a fixed pivot so the bob follows the same arc.",
+        "Choose one gravitational-potential reference consistently."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Measure release height relative to the lowest point and the bob’s speed at the lowest point, compare m g Delta h with 0.5 m v^2, repeat trials, and interpret a systematic shortfall in kinetic energy as evidence of friction/air losses rather than forcing exact equality.",
+        "reasoning": [
+          "At release from rest, the chosen mechanical account is mainly gravitational potential energy relative to the bottom.",
+          "At the lowest point, potential energy is minimum and kinetic energy is maximum.",
+          "Under the ideal no-loss model, m g Delta h should match 0.5 m v^2 within experimental uncertainty.",
+          "Use repeated trials and the same reference height and mass throughout.",
+          "If measured kinetic energy is consistently smaller, include pivot friction, air resistance or measurement error rather than claiming exact mechanical-energy conservation."
+        ],
+        "check": "The experiment tests a conditional conservation model; it should not erase observed losses to make K+U exactly constant.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 2,
+        "rubric": [
+          {
+            "criterion": "Chooses measurable release-height and lowest-point speed quantities tied to the same pendulum trial.",
+            "evidence_of": "A valid comparison between m g Delta h and 0.5 m v^2."
+          },
+          {
+            "criterion": "States the ideal conservation prediction with one consistent energy reference.",
+            "evidence_of": "Mechanical-energy equality is treated as a model prediction, not an assumption about every real trial."
+          },
+          {
+            "criterion": "Interprets deviations using losses/uncertainty rather than hiding them.",
+            "evidence_of": "Friction, air resistance and measurement limitations are acknowledged."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
+      "secondary_capability_refs": [
+        "CAP-WEP-MECH-ENERGY-CONDITION",
+        "CAP-WEP-ENERGY-DERIVATIONS"
+      ],
+      "family_ref": "FAM-PHY-WEP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Choose the bottom as a convenient height reference and compare release energy with energy at the lowest point.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "The ideal equality is m g Delta h = 0.5 m v^2; real data should be compared with it, not forced to match it.",
           "reveals": "METHOD"
         }
       ]
