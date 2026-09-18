@@ -165,6 +165,7 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
     owner_decisions = []
     fallback_reasons = []
     executable = 0
+    owner_required: set[str] = set()
 
     for row in study_plan.get("route", []):
         item = dict(row)
@@ -173,6 +174,25 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
 
         if action == "SKIP":
             item["execution_disposition"] = None
+            route.append(item)
+            continue
+
+        blocked_dependencies = [
+            ref for ref in item.get("depends_on", [])
+            if ref in owner_required
+        ]
+        if blocked_dependencies:
+            disposition = OWNER_DECISION
+            owner_required.add(item.get("capability_ref"))
+            owner_decisions.append({
+                "capability_ref": item.get("capability_ref"),
+                "depends_on": blocked_dependencies,
+                "reason": (
+                    "a prerequisite route requires an owner decision; dependent study "
+                    "cannot safely leap over that unresolved prerequisite"
+                ),
+            })
+            item["execution_disposition"] = disposition
             route.append(item)
             continue
 
@@ -185,6 +205,7 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
         locations = list(item.get("locations") or [])
         if item.get("state") != "RESOLVED" or len(locations) != 1:
             disposition = OWNER_DECISION
+            owner_required.add(item.get("capability_ref"))
             owner_decisions.append({
                 "capability_ref": item.get("capability_ref"),
                 "reason": "canonical teaching delivery is unresolved or ambiguous",
@@ -195,6 +216,7 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
             rung_state = _rung_state(readiness, location.get("rung"))
             if rung_state in {None, "BLOCKED"}:
                 disposition = OWNER_DECISION
+                owner_required.add(item.get("capability_ref"))
                 owner_decisions.append({
                     "capability_ref": item.get("capability_ref"),
                     "matrix_id": location.get("matrix_id"),
@@ -232,6 +254,75 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
     else:
         overall = None
     return route, owner_decisions, fallback_reasons, executable, overall
+
+
+def _question_execution(questions: list[dict], route: list[dict]) -> tuple[list[dict], list[str], list[str]]:
+    """Project route-level fallback onto worksheet questions without inventing new states."""
+    by_capability = {
+        row.get("capability_ref"): row
+        for row in route
+        if row.get("capability_ref")
+    }
+
+    def closure(capability_ref: str, seen: set[str] | None = None) -> list[dict]:
+        seen = set() if seen is None else seen
+        if capability_ref in seen:
+            return []
+        seen.add(capability_ref)
+        row = by_capability.get(capability_ref)
+        if row is None:
+            return []
+        out = [row]
+        for dependency in row.get("depends_on", []):
+            out.extend(closure(dependency, seen))
+        return out
+
+    annotated = []
+    executable_questions = []
+    owner_questions = []
+    for question in questions:
+        item = dict(question)
+        roots = [
+            question.get("primary_capability_ref"),
+            *list(question.get("secondary_capability_refs") or []),
+        ]
+        rows = []
+        seen_caps: set[str] = set()
+        for root in roots:
+            if not root:
+                continue
+            for row in closure(root):
+                capability = row.get("capability_ref")
+                if capability in seen_caps:
+                    continue
+                seen_caps.add(capability)
+                rows.append(row)
+
+        owner_caps = [
+            row.get("capability_ref")
+            for row in rows
+            if row.get("execution_disposition") == OWNER_DECISION
+        ]
+        fallback_caps = [
+            row.get("capability_ref")
+            for row in rows
+            if row.get("execution_disposition") == EXECUTE_WITH_FALLBACK
+        ]
+
+        if owner_caps:
+            item["execution_disposition"] = OWNER_DECISION
+            item["owner_decision_capabilities"] = owner_caps
+            owner_questions.append(item.get("question_id"))
+        elif fallback_caps:
+            item["execution_disposition"] = EXECUTE_WITH_FALLBACK
+            item["fallback_capabilities"] = fallback_caps
+            executable_questions.append(item.get("question_id"))
+        else:
+            item["execution_disposition"] = None
+            executable_questions.append(item.get("question_id"))
+        annotated.append(item)
+
+    return annotated, executable_questions, owner_questions
 
 
 def _next_step(study_plan: dict) -> dict | None:
@@ -301,6 +392,11 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
     elif decision_findings and not executable_count:
         disposition = OWNER_DECISION
 
+    questions, executable_question_ids, owner_decision_question_ids = _question_execution(
+        list(study_plan.get("questions", [])),
+        route,
+    )
+
     academic_warnings = [
         {
             "matrix_id": row.get("matrix_id"),
@@ -339,7 +435,9 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
             "support_findings": row.get("support_findings", []),
         } for row in readiness_rows],
         "next_step": _next_step({"route": route}) if valid and executable_count else None,
-        "questions": study_plan.get("questions", []),
+        "questions": questions,
+        "executable_question_ids": executable_question_ids,
+        "owner_decision_question_ids": owner_decision_question_ids,
         "route": route,
         "academic_warnings": academic_warnings,
         "findings": hard_findings,
@@ -347,6 +445,7 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "passed": valid,
         "rules": [
             "Matrix readiness remains truthful; execution may fall back only on demanded usable rungs.",
+            "An unresolved prerequisite propagates OWNER_DECISION to its dependent route; the runner never leaps over an unresolved dependency.",
             "Only EXECUTE_WITH_FALLBACK and OWNER_DECISION are added as exceptional execution dispositions.",
             "Owner percentages choose a local starting attempt; they are not mastery evidence.",
             "Worksheet questions remain transient demand unless separately promoted.",
@@ -617,9 +716,11 @@ def readable_plan(report: dict) -> str:
 
     out += ["", "## Worksheet questions", ""]
     for row in report.get("questions", []):
+        execution = row.get("execution_disposition")
+        suffix = f' / {execution}' if execution else ''
         out.append(
             f'- {row.get("question_id")}: {row.get("what_is_being_learned")} '
-            f'[{row.get("learner_state")}]'
+            f'[{row.get("learner_state")}{suffix}]'
         )
         out.append(f'  {row.get("why_extra_attention")}')
 
