@@ -101,6 +101,24 @@ spine:
 This material is carried as owner extension because the donor's verified curriculum
 mapping again relied on a non-canonical `SRC-CBSE-STD` binding.
 
+### Physics — Gravitation and vector practice anchors
+
+The post-#18 branch already carried the relevant canonical Gravitation and vector
+capabilities/microtopics, so PR #9 contributed practice rather than new conceptual truth.
+
+Retained Core2A anchors:
+
+- `Q-PHY-GRAV-2A-01` → `CAP-PHY-GRAV-R1` → `MIC-PHY-GRAV-R1`;
+- `Q-PHY-VECOPS-2A-01` → `CAP-VEC-SUB-ORDER` → `MIC-PHY-VEC-SUB-ORDER`;
+- `Q-PHY-VECREP-2A-01` → `CAP-VECTOR-VS-SCALAR` → `MIC-VECTOR-VS-SCALAR`.
+
+Their donor Core2B companions were intentionally not retained because the current
+compiler does not faithfully deliver the donor transfer/rubric payload. Relative Motion
+had only a donor Core2B addition, so no new Relative Motion question was imported.
+
+No conceptual rung, capability, curriculum mapping or source authority was added for
+these practice-only migrations.
+
 ## Mathematics added from current canonical content
 
 PR #9 contains no Mathematics matrix donor for the existing linear-equations package.
@@ -124,8 +142,10 @@ Added:
 The following PR #9 content is deliberately not imported merely because it exists:
 
 - PR #9 Shared/library, Shared/tools, Shared/roles or other framework changes;
-- additional vector/other Physics donor content not yet reviewed as the next coherent
-  slice;
+- higher-grade PR #9 deltas in electricity, fluids, magnetism, optics, SHM/waves,
+  rigid-body rotation and thermodynamics; their existing post-#18 canonical matrices
+  remain untouched in this Grade 9-focused slice unless a real worksheet/source later
+  justifies migration;
 - PR #9 curriculum mappings that rely on `SRC-CBSE-STD` where the canonical package
   does not itself carry verified source authority;
 - donor Core2B question records whose transfer/rubric payloads cannot currently survive
