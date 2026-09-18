@@ -103,6 +103,20 @@
           "hold": "the same v and B",
           "notice": "force direction reverses while magnitude stays the same"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-LORENTZ-MAGNETIC-FORCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "q(v x B) magnitude, sign and zero-force geometry need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "MAGNETIC_FORCE",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Quantitative magnetic-force items need an implemented validator."
+        }
       ]
     },
     {
@@ -170,6 +184,26 @@
           "hold": "the same signed rate of flux change",
           "notice": "the induced emf depends on flux change, not on which mechanism produced it"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-MAGNETIC-FLUX",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Flux must be gate-owned before change in flux can drive induction."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-FARADAY-LENZ",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Induced emf magnitude and opposition rule need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "FARADAY_EMF",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Quantitative induction items need an implemented validator."
+        }
       ]
     },
     {
@@ -207,6 +241,20 @@
           "vary": "rod orientation relative to v x B",
           "hold": "v and B perpendicular with fixed magnitudes",
           "notice": "end-to-end emf depends on whether magnetic force has a component along the rod"
+        }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-MOTIONAL-EMF",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The Blv special case and its perpendicular-geometry conditions need gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "MOTIONAL_EMF",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Numerical motional-emf exits need an implemented validator."
         }
       ]
     }
