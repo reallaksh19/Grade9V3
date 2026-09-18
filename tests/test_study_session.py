@@ -85,6 +85,20 @@ class StudySessionRunner(unittest.TestCase):
         route = {row["capability_ref"]: row for row in report["route"]}
         self.assertEqual(route["CAP-SIGNED-PAIR"]["recommended_action"], "SKIP")
 
+    def test_invalid_optional_estimate_warns_and_keeps_neutral_session(self):
+        report = study_session.plan(self.mapping(), ["not-a-subtopic=60"])
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["valid"])
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.EXECUTE_WITH_FALLBACK,
+        )
+        self.assertIn(
+            "STUDY_SESSION_ESTIMATE_TARGET_UNKNOWN",
+            [row["point"] for row in report["warnings"]],
+        )
+        self.assertIsNotNone(report["next_step"])
+
     def test_plan_keeps_academic_warnings_visible_without_blocking_family_pilot(self):
         report = study_session.plan(self.mapping(), ["Relative motion=60"])
         points = {row["point"] for row in report["academic_warnings"]}
@@ -94,7 +108,42 @@ class StudySessionRunner(unittest.TestCase):
         self.assertTrue(report["valid"])
         self.assertFalse(report["ready"])
 
-    def test_not_ready_matrix_blocks_session_instead_of_fabricating_one(self):
+    def test_not_ready_matrix_can_execute_usable_demanded_rungs_with_fallback(self):
+        partial = {
+            "subject": "Physics",
+            "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+            "subtopic": "Relative motion",
+            "status": session_readiness.NOT_READY,
+            "external_bridges": [],
+            "support_findings": [],
+            "academic_warnings": [],
+            "rungs": [
+                {"rung": "R3", "state": "READY"},
+                {"rung": "R4", "state": "READY"},
+                {"rung": "R5", "state": "READY"},
+                {"rung": "R99", "state": "BLOCKED"},
+            ],
+            "passed": False,
+        }
+        with patch.object(
+            study_session.session_readiness,
+            "audit",
+            return_value=partial,
+        ):
+            report = study_session.plan(self.mapping(), ["Relative motion=60"])
+
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready"])
+        self.assertEqual(report["status"], session_readiness.NOT_READY)
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.EXECUTE_WITH_FALLBACK,
+        )
+        self.assertIsNotNone(report["next_step"])
+        self.assertTrue(report["fallback_reasons"])
+
+    def test_blocked_demanded_rungs_require_owner_decision_not_global_failure(self):
         blocked = {
             "subject": "Physics",
             "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
@@ -103,22 +152,39 @@ class StudySessionRunner(unittest.TestCase):
             "external_bridges": [],
             "support_findings": [],
             "academic_warnings": [],
+            "rungs": [
+                {"rung": "R3", "state": "BLOCKED"},
+                {"rung": "R4", "state": "BLOCKED"},
+                {"rung": "R5", "state": "BLOCKED"},
+            ],
             "passed": False,
+        }
+        profile = {
+            "profile_id": "PROFILE-OWNER-DECISION",
+            "provenance": "UNKNOWN",
+            "held": {"CAP-SIGNED-PAIR": "DEMONSTRATED"},
+            "observation_refs": [],
         }
         with patch.object(
             study_session.session_readiness,
             "audit",
             return_value=blocked,
         ):
-            report = study_session.plan(self.mapping(), ["Relative motion=60"])
+            report = study_session.plan(
+                self.mapping(),
+                ["Relative motion=60"],
+                profile=profile,
+            )
 
-        self.assertFalse(report["passed"])
-        self.assertEqual(report["status"], session_readiness.NOT_READY)
-        self.assertIsNone(report["next_step"])
-        self.assertIn(
-            "STUDY_SESSION_TOPIC_NOT_READY",
-            [row["point"] for row in report["findings"]],
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready"])
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.OWNER_DECISION,
         )
+        self.assertIsNone(report["next_step"])
+        self.assertTrue(report["owner_decisions"])
 
     def test_wrong_external_question_diagnoses_without_inventing_a_hint(self):
         report = study_session.attempt(
@@ -180,8 +246,12 @@ class StudySessionRunner(unittest.TestCase):
             error_stage="EXECUTION",
             response_summary="Relative velocity was set up, but the right-triangle magnitude failed.",
         )
-        self.assertFalse(report["passed"])
-        self.assertEqual(report["next_action"], "STOP")
+        self.assertTrue(report["passed"])
+        self.assertEqual(report["next_action"], study_session.OWNER_DECISION)
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.OWNER_DECISION,
+        )
         self.assertIn(
             "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
             [row["point"] for row in report["findings"]],
@@ -200,8 +270,12 @@ class StudySessionRunner(unittest.TestCase):
             error_stage="UNKNOWN",
             response_summary="Final answer was wrong; failure point is not yet known.",
         )
-        self.assertFalse(report["passed"])
-        self.assertEqual(report["next_action"], "STOP")
+        self.assertTrue(report["passed"])
+        self.assertEqual(report["next_action"], study_session.OWNER_DECISION)
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.OWNER_DECISION,
+        )
         self.assertIn(
             "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
             [row["point"] for row in report["findings"]],
