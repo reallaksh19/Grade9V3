@@ -44,6 +44,17 @@ def audit(repo: Path = REPO) -> dict:
     ]
     findings: list[dict] = []
 
+    for row in rows:
+        if row.get("evidence_kind") == "DIRECT_ATTEMPT" and not row.get("provenance"):
+            findings.append({
+                "point": "EMPIRICAL_DIRECT_ATTEMPT_PROVENANCE_MISSING",
+                "observation_ref": row.get("observation_id") or "UNKNOWN",
+                "detail": (
+                    "committed direct-attempt evidence must say whether it is live, "
+                    "unreviewed, historical, or synthetic"
+                ),
+            })
+
     for row in live:
         oid = row.get("observation_id") or "UNKNOWN"
         if not row.get("session_ref"):
