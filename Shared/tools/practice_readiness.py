@@ -25,32 +25,10 @@ if __package__ in (None, ""):
 from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket  # noqa: E402
 from Shared.library.resolve import build_index, slice_for_bucket  # noqa: E402
+from Shared.library.practice import owned_questions  # noqa: E402
 from Shared.tools import resolve_request  # noqa: E402
 
 PRACTICE = ("CORE2A", "CORE2B")
-
-
-def _owned_question_records(records: dict, bucket_id: str) -> list[dict]:
-    """Questions whose primary capability is taught by this bucket, not a prerequisite.
-
-    The compiler intentionally carries prerequisite capabilities into a bucket slice,
-    which can make prerequisite questions reachable in a downstream product. Reachable
-    support is useful, but it is not local practice custody: a bucket is not practice-
-    complete merely because one of its prerequisites has a question.
-    """
-    owned_capabilities = {
-        record.get("primary_capability_ref")
-        for record in records.values()
-        if record.get("_collection") == "microtopics"
-        and record.get("bucket_id") == bucket_id
-        and record.get("primary_capability_ref")
-    }
-    return sorted(
-        (record for record in records.values()
-         if record.get("_collection") == "questions"
-         and record.get("primary_capability_ref") in owned_capabilities),
-        key=lambda record: record["id"],
-    )
 
 
 def _practice_coverage(records: dict, bucket_id: str, questions: list[dict]) -> dict:
@@ -129,7 +107,7 @@ def audit(subject: str, repo: Path = REPO) -> dict:
         except ContractError as error:
             compiler_error = {"code": error.code, "detail": error.detail}
 
-        questions = _owned_question_records(records, bucket_id)
+        questions = owned_questions(records, bucket_id)
         coverage = _practice_coverage(records, bucket_id, questions)
         if (coverage["policy"] == "ALL_PRIMARY_CAPABILITIES"
                 and coverage["missing_capabilities"]):
