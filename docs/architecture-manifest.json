@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 121,
-  "relation_count": 181,
+  "component_count": 123,
+  "relation_count": 184,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 32,
-    "TOOLING": 37,
+    "TEST": 33,
+    "TOOLING": 38,
     "WEB": 5
   },
-  "digest": "sha256:f6047705171c5de57bd8be181401d998580b3786f865f7c3ff66f5707e3e4b4f",
+  "digest": "sha256:c6eccde0840fa5f90a17314d0550a0962dbda83810529ad30b5214681eb100e1",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -579,6 +579,13 @@
       "sha256": "2fbfcdcd572554caac213a11c254fbedd9d42dd2bce45a1846a76c29f49c6cf7"
     },
     {
+      "path": "Shared/tools/study_session.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 18404,
+      "sha256": "06b0f386b41ec45177ad8de4f04eae6804c24e86e6f24fa35ed081aefc17f318"
+    },
+    {
       "path": "Shared/tools/study_start.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -808,6 +815,13 @@
       "role_description": "Executable checks",
       "bytes": 3669,
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
+    },
+    {
+      "path": "tests/test_study_session.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8111,
+      "sha256": "6c6a4b5176614057b27b57b730c05cc98144c9ca345b9d83c1209d178c12373f"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1428,6 +1442,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/study_session.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_session.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/study_start.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1724,6 +1748,11 @@
     },
     {
       "from": "tests/test_study_scope_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
