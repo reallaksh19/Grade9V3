@@ -14,7 +14,8 @@ VALIDATORS = {
     "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
     "NEWTON_SECOND_LAW", "WORK_CONSTANT_FORCE", "KINETIC_ENERGY",
     "GRAVITATIONAL_POTENTIAL_ENERGY", "MECHANICAL_ADVANTAGE",
-    "FREQUENCY_PERIOD", "ECHO_DISTANCE",
+    "FREQUENCY_PERIOD", "ECHO_DISTANCE", "AVERAGE_ACCELERATION",
+    "UNIFORM_CIRCULAR_SPEED",
 }
 
 
@@ -108,6 +109,17 @@ def recompute(case: dict):
         if speed <= 0 or echo_time < 0:
             raise ValueError("ECHO_DOMAIN_INVALID")
         return 0.5 * speed * echo_time
+    if kind == "AVERAGE_ACCELERATION":
+        dt = _number(case, "dt", "s")
+        if dt <= 0:
+            raise ValueError("AVERAGE_ACCELERATION_INTERVAL_INVALID")
+        return _number(case, "delta_v", "m/s") / dt
+    if kind == "UNIFORM_CIRCULAR_SPEED":
+        radius = _number(case, "radius", "m")
+        period = _number(case, "period", "s")
+        if radius <= 0 or period <= 0:
+            raise ValueError("UNIFORM_CIRCULAR_SPEED_DOMAIN_INVALID")
+        return 2.0 * math.pi * radius / period
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
