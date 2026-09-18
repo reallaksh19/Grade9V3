@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored Newton-law force reasoning with owner-extension friction, Second-Law and third-law capabilities, all sequenced after force-body ownership. No board-prescription authority is claimed by this package.",
+  "scope_summary": "Authored Grade-9 Force and Laws of Motion spine covering balanced/unbalanced force reasoning, friction, Newton's first/second/third laws and body-specific force ownership, with observer-frame/pseudo-force reasoning retained only as an explicit question-demand extension. Records remain CANDIDATE; no board-prescription authority is asserted by this package.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -52,7 +52,7 @@
       "title": "Newton's first law and free-body diagrams",
       "topic": "Laws of Motion",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Force ownership and force-sum reasoning are foundational; later rungs distinguish friction direction, quantitative net force, interaction pairs and observer-frame choice.",
+      "badge_reason": "Grade-9 force reasoning requires separating individual forces from their net effect, assigning forces to the correct body, and applying Newton's laws; accelerating-frame reasoning is retained only for explicit extension demand.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -69,8 +69,11 @@
         }
       ],
       "scope": {
-        "covers": "Authored net-force/force-ownership reasoning, friction from relative slip tendency, F_net = m a for one chosen body, Newton-third-law interaction pairs on different bodies, and observer-frame distinction.",
-        "excluded": [],
+        "covers": "Grade-9 Force and Laws of Motion: balanced/unbalanced force reasoning, friction, Newton's first law, F_net = m a, Newton-third-law interaction pairs, and body-specific force ownership. The existing observer-frame/pseudo-force rung is retained only as a question-demand extension.",
+        "excluded": [
+          "Momentum-conservation and collision algebra unless a verified syllabus or real question explicitly demands it.",
+          "Routine non-inertial-frame or pseudo-force treatment as ordinary Grade-9 Standard syllabus content."
+        ],
         "extension_refs": []
       }
     }
@@ -87,9 +90,7 @@
       "extensions": {},
       "action": "Relate zero net force to unchanged velocity.",
       "success_criterion": "Accept steady motion as compatible with zero net force.",
-      "prerequisite_refs": [
-        "CAP-KIN-ZERO-V-NONZERO-A"
-      ],
+      "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -239,9 +240,7 @@
           "role": "DECLARE",
           "action": "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
           "why_valid": "Motion and change of motion are different observations, and only the second identifies acceleration.",
-          "inputs": [
-            "CAP-KIN-ZERO-V-NONZERO-A"
-          ],
+          "inputs": [],
           "output": "state A: moving steadily.  state B: speeding up, slowing down, or turning."
         },
         {
@@ -292,9 +291,7 @@
         }
       },
       "research_contribution": "Author-created first-law contrast. It states no force equation and promotes no candidate-packet formula.",
-      "prerequisite_refs": [
-        "CAP-KIN-ZERO-V-NONZERO-A"
-      ],
+      "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
         "predict": {
@@ -1725,7 +1722,7 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "title": "Reveal Newton/FBD conceptual spine",
+      "title": "Reveal Grade-9 Newton-law spine with bounded frame extension",
       "cores": [
         "CORE1A"
       ],
@@ -1739,13 +1736,16 @@
         "MIC-PHY-NLM-FRAME-CHOICE"
       ],
       "entry_needs": [
-        "Velocity-versus-acceleration distinction from the kinematics prerequisite."
+        "Can tell whether an object's velocity is changing; the specific turning-point diagnostic from Motion is not a prerequisite."
       ],
       "learner_actions": [
-        "Separate motion from motion change.",
+        "Separate motion from change of motion.",
         "Keep individual forces distinct from their net result.",
-        "Assign forces to one chosen body.",
-        "Declare observer acceleration before using a pseudo-force convention."
+        "Assign each force to the body on which it acts.",
+        "Determine friction direction from relative slip tendency.",
+        "Use signed net external force with F_net = m a.",
+        "Keep Newton-third-law partner forces on different bodies.",
+        "Use observer-frame/pseudo-force reasoning only when an explicit extension question demands it."
       ],
       "help_plan": [
         "Use a released low-friction cart for the first-law contrast.",
@@ -1761,8 +1761,8 @@
         }
       ],
       "when_not_suitable": [
-        "Do not treat the absence of a FREE_BODY_DIAGRAM representation record as permission to invent one.",
-        "Do not turn these distinctions into a quantitative force-law lesson."
+        "Do not treat accelerating-frame/pseudo-force reasoning as ordinary Grade-9 Standard syllabus content.",
+        "Do not infer momentum-conservation or collision content from the presence of Newton's laws."
       ],
       "practice_profile_ref": null
     },
@@ -1778,7 +1778,7 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "title": "Elicit Newton/FBD conceptual spine",
+      "title": "Elicit Grade-9 Newton-law spine with bounded frame extension",
       "cores": [
         "CORE1B"
       ],
@@ -1792,12 +1792,15 @@
         "MIC-PHY-NLM-FRAME-CHOICE"
       ],
       "entry_needs": [
-        "Same intrinsic coverage as Core1A; no inferred learner mastery."
+        "Same intrinsic Grade-9 force-law coverage as Core1A; no inferred learner mastery and no turning-point prerequisite."
       ],
       "learner_actions": [
-        "Commit to motion and force predictions before reveal.",
-        "Build body-specific force inventories.",
-        "Contrast roadside and accelerating-observer accounts."
+        "Predict whether zero net force can coexist with steady motion.",
+        "Build body-specific force inventories before combining forces.",
+        "Predict friction direction from contact slip tendency.",
+        "Use the net force to predict acceleration.",
+        "Separate Newton-third-law partners by body.",
+        "Enter observer-frame reconstruction only for explicit extension demand."
       ],
       "help_plan": [
         "Ask which body receives each force before naming any pairing rule.",
@@ -1812,7 +1815,8 @@
         }
       ],
       "when_not_suitable": [
-        "Do not substitute a declarative diagram for the learner's body-ownership decision."
+        "Do not substitute a declarative diagram for the learner's body-ownership decision.",
+        "Do not present pseudo-force/frame-choice content as ordinary Grade-9 Standard syllabus material."
       ],
       "practice_profile_ref": null
     }

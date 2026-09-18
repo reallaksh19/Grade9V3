@@ -31,11 +31,11 @@ curriculum-mapping, supplied-syllabus and route-scope layers.
 | Slice | Status | Evidence |
 | --- | --- | --- |
 | G9-1 Motion | **AUDITED** | `docs/grade9/G9-1-MOTION-AUTHORING-AUDIT.md`; existing six-rung spine reused, broad Vector Add/Sub bucket prerequisite removed |
-| G9-2 Force and Laws of Motion | NEXT | not yet audited under the Grade-9 freeze |
-| G9-3 Gravitation | QUEUED | not yet audited under the Grade-9 freeze |
+| G9-2 Force and Laws of Motion | **AUDITED** | `docs/grade9/G9-2-FORCE-LAWS-AUTHORING-AUDIT.md`; existing seven-rung matrix reused, frame choice bounded to extension demand, false turning-point prerequisite removed |
+| G9-3 Gravitation | NEXT | not yet audited under the Grade-9 freeze |
 | G9-4 Work, Energy and Power | QUEUED | not yet audited under the Grade-9 freeze |
 | G9-5 Sound | QUEUED | not yet audited under the Grade-9 freeze |
-| G9-6 Simple Machines | PROVISIONAL | exact current curriculum/source binding to be checked in its turn |
+| G9-6 Simple Machines | SCOPE CONFIRMED; AUDIT QUEUED | current CBSE Class IX Science (2026-27), Standard explicitly includes simple machines and mechanical advantage; matrix audit remains deferred to G9-6 |
 
 ## Current Grade-9 Physics production order
 
@@ -48,7 +48,7 @@ Work in this order.
 | G9-3 | Gravitation | `MATRIX-PHY-GRAV-UNIVERSAL-LAW` | Core Grade-9 authoring target |
 | G9-4 | Work, Energy and Power | `MATRIX-PHY-WORK-ENERGY-POWER` | Core Grade-9 authoring target |
 | G9-5 | Sound | `MATRIX-PHY-SOUND` | Core Grade-9 authoring target |
-| G9-6 | Simple Machines | `MATRIX-PHY-SIMPLE-MACHINES` | Provisional / extension lane until exact curriculum binding is established |
+| G9-6 | Simple Machines | `MATRIX-PHY-SIMPLE-MACHINES` | Current Standard syllabus scope confirmed; detailed matrix audit remains sequenced after G9-5 |
 | support only | Vector representation / addition | `MATRIX-PHY-VECTOR-REPRESENTATION`, `MATRIX-PHY-VEC-ADD-SUB` | Include only as prerequisite, advanced-question demand or declared extension |
 | extension only | Relative motion | `MATRIX-PHY-RELATIVE-MOTION` | Question-demand / declared-extension route, not ordinary Grade-9 scope by default |
 | defer | Rotation, thermodynamics, SHM/waves, electricity, magnetism, optics, broad fluids/Bernoulli | existing matrices remain in repository | Do not author in this Grade-9 pass unless a verified current Grade-9 source or real worksheet demand justifies the exact slice |
