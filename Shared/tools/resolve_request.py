@@ -39,6 +39,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
+from Shared.library.resolve import build_index, slice_for_bucket  # noqa: E402
 from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/request.schema.json"
@@ -69,28 +70,33 @@ def ladder(subject: str, bucket_id: str, repo: Path = REPO) -> dict | None:
 
 def _library_has_exposure(subject: str, bucket_id: str, core: str,
                           repo: Path = REPO) -> bool:
-    """True if the library package that owns *bucket_id* holds a question exposed to *core*.
+    """True if the compiler would treat a question as exposed to *core* for *bucket_id*.
 
-    The plan must consult what the compiler consults: a product declared READY
-    here and refused by the compiler is a disagreement a stress run would hit.
-    Reading the exposure tags (not the content) is the same category of
-    dependency as reading the matrix.
-
-    Per-bucket, not per-subject: a question in one package does not satisfy a
-    different bucket's compiler.
+    Package ownership is not bucket ownership. A package may hold more than one bucket,
+    and a question in that package belongs to the bucket whose capability slice contains
+    its primary capability. The compiler makes exactly that distinction before deciding
+    whether a practice core is supported; the planner must use the same boundary.
     """
     library_dir = repo / subject / "library"
     if not library_dir.is_dir():
         return False
-    for path in sorted(library_dir.glob("*.v1.json")):
-        pkg = load(path)
-        pkg_buckets = {b["id"] for b in pkg.get("buckets", [])}
-        if bucket_id not in pkg_buckets:
-            continue
-        for question in pkg.get("questions", []):
-            if any(e.get("core") == core for e in question.get("exposure", [])):
-                return True
-    return False
+    packages = [load(path) for path in sorted(library_dir.glob("*.v1.json"))]
+    if not packages:
+        return False
+    try:
+        records = build_index(packages)
+        chosen = slice_for_bucket(records, bucket_id)
+    except Exception:
+        # Planning is a reporting layer: malformed or incomplete library state must not
+        # turn a request into a false READY merely because the ownership lookup failed.
+        return False
+    capabilities = {row["id"] for row in chosen["records"].get("capabilities", [])}
+    return any(
+        record.get("_collection") == "questions"
+        and record.get("primary_capability_ref") in capabilities
+        and any(exposure.get("core") == core for exposure in record.get("exposure", []))
+        for record in records.values()
+    )
 
 
 def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dict:
