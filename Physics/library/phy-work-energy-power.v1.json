@@ -5,7 +5,18 @@
   "status": "CANDIDATE",
   "subject": "Physics",
   "scope_summary": "Grade 9 work, energy and power: work sign and magnitude, kinetic and gravitational potential energy, work-energy theorem, conditional mechanical-energy conservation, and power.",
-  "curriculum_mappings": [],
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "STANDARD",
+      "scope_class": "PRESCRIBED",
+      "source_ref": "SRC-CBSE-STD",
+      "locator": "Unit III — Work, Energy and Simple Machines; printed p.16; C-2.5",
+      "mapping_status": "VERIFIED"
+    }
+  ],
   "resources": [
     {
       "id": "SRC-AUTHOR-WEP",
@@ -47,14 +58,26 @@
       "evidence_refs": [],
       "extensions": {
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
-        "grade9_track": "STANDARD"
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "Work, energy and power",
       "topic": "Work and Energy",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "The difficult decisions are directional work sign, which interactions may enter potential energy, and when the mechanical-energy account is closed.",
       "depth_overlay": "FOUNDATION",
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Unit III — Work, Energy and Simple Machines; printed p.16; C-2.5",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "prerequisite_refs": [
         "BUCKET-PHY-NLM-FIRST-LAW"
       ],
@@ -84,13 +107,27 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Classify work as positive, zero, or negative from force and displacement directions.",
       "success_criterion": "Recognize perpendicular force as a zero-work case.",
       "prerequisite_refs": [
         "CAP-NLM-FBD-BODY-OWNERSHIP"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — work by a constant force",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -102,13 +139,27 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Relate the sign of net work to the direction of kinetic-energy change.",
       "success_criterion": "Map positive, zero, or negative net work to increase, no change, or decrease in kinetic energy.",
       "prerequisite_refs": [
         "CAP-WEP-WORK-DIRECTION"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — work-energy theorem",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -120,13 +171,27 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Decide whether an interaction may be represented by a potential-energy change.",
       "success_criterion": "Reject kinetic friction as an endpoint-only potential-energy account.",
       "prerequisite_refs": [
         "CAP-WEP-NET-WORK-SIGN"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — mechanical/potential energy",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -138,13 +203,27 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Decide whether the mechanical-energy account can remain constant.",
       "success_criterion": "Reject unchanged K plus U when frictional or external transfer is present.",
       "prerequisite_refs": [
         "CAP-WEP-POTENTIAL-ELIGIBILITY"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — conservation of energy",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -156,13 +235,27 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Distinguish total work from average power and decide when instantaneous power can be determined.",
       "success_criterion": "Uses W/Delta t for an interval average and requires same-instant force/velocity information for instantaneous power.",
       "prerequisite_refs": [
         "CAP-WEP-MECH-ENERGY-CONDITION"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — power and mathematical expression",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -174,13 +267,27 @@
         "SRC-AUTHOR-WEP"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
       "success_criterion": "Selects a relation only after declaring direction/reference and checking whether the mechanical-energy account is closed.",
       "prerequisite_refs": [
         "CAP-WEP-MECH-ENERGY-CONDITION"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — quantitative work, kinetic/potential energy and conservation",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     }
