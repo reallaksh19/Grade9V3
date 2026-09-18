@@ -71,6 +71,41 @@
             "locator": "Practicals item 11; printed p.19 — Calculation of Mechanical Advantage of a lever using M.A. = Load / Effort (Ch. 7).",
             "capability_ref": "CAP-MACHINE-MA"
           }
+        ],
+        "curriculum_outcome_coverage_policy": "DECLARED_OUTCOMES",
+        "curriculum_outcomes": [
+          {
+            "id": "CBSE9-MACHINE-MA",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Work, Energy and Simple Machines; printed pp.16–17; C-2.6 — explain simple machines and define/calculate mechanical advantage",
+            "capability_refs": [
+              "CAP-MACHINE-TRADEOFF",
+              "CAP-MACHINE-MA"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-MACHINE-TRADEOFF",
+              "MIC-PHY-MACHINE-MA"
+            ],
+            "question_refs": [
+              "Q-PHY-MACHINE-2A-01",
+              "Q-PHY-MACHINE-PRACTICAL-11"
+            ]
+          },
+          {
+            "id": "CBSE9-MACHINE-TYPES",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Work, Energy and Simple Machines; printed pp.16–17; C-2.6 — pulley, inclined plane and lever",
+            "capability_refs": [
+              "CAP-MACHINE-COMPARE"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-MACHINE-COMPARE"
+            ],
+            "question_refs": [
+              "Q-PHY-MACHINE-2B-01",
+              "Q-PHY-MACHINE-PRACTICAL-11"
+            ]
+          }
         ]
       },
       "title": "Simple machines",
