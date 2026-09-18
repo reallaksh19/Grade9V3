@@ -69,6 +69,80 @@
             "locator": "Practicals item 9; printed p.19 — Verification of law of conservation of energy using a simple pendulum (Ch. 7).",
             "capability_ref": "CAP-WEP-GRADE9-QUANT"
           }
+        ],
+        "curriculum_outcome_coverage_policy": "DECLARED_OUTCOMES",
+        "curriculum_outcomes": [
+          {
+            "id": "CBSE9-WEP-WORK",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — work done by a constant force and its mathematical expression",
+            "capability_refs": [
+              "CAP-WEP-WORK-DIRECTION"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-WEP-WORK-DIRECTION"
+            ],
+            "question_refs": [
+              "Q-PHY-WEP-2A-01"
+            ]
+          },
+          {
+            "id": "CBSE9-WEP-WORK-ENERGY-KE",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — work-energy theorem; derive and calculate kinetic energy",
+            "capability_refs": [
+              "CAP-WEP-NET-WORK-SIGN",
+              "CAP-WEP-ENERGY-DERIVATIONS",
+              "CAP-WEP-GRADE9-QUANT"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-WEP-NET-WORK-SIGN",
+              "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "MIC-PHY-WEP-GRADE9-QUANT"
+            ],
+            "question_refs": [
+              "Q-PHY-WEP-2A-COV-02",
+              "Q-PHY-WEP-2A-DERIV-01",
+              "Q-PHY-WEP-2A-COV-05"
+            ]
+          },
+          {
+            "id": "CBSE9-WEP-POTENTIAL-CONSERVATION",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — derive raised-body potential energy, explain kinetic/potential interconversion and conservation of energy",
+            "capability_refs": [
+              "CAP-WEP-POTENTIAL-ELIGIBILITY",
+              "CAP-WEP-MECH-ENERGY-CONDITION",
+              "CAP-WEP-ENERGY-DERIVATIONS",
+              "CAP-WEP-GRADE9-QUANT"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+              "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+              "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "MIC-PHY-WEP-GRADE9-QUANT"
+            ],
+            "question_refs": [
+              "Q-PHY-WEP-2A-COV-03",
+              "Q-PHY-WEP-2B-01",
+              "Q-PHY-WEP-2A-DERIV-01",
+              "Q-PHY-WEP-PRACTICAL-09"
+            ]
+          },
+          {
+            "id": "CBSE9-WEP-POWER",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Work, Energy and Simple Machines; printed p.16; C-2.5 — define power and write/use its mathematical expression",
+            "capability_refs": [
+              "CAP-WEP-POWER-RATES"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-WEP-POWER-RATES"
+            ],
+            "question_refs": [
+              "Q-PHY-WEP-2A-COV-04"
+            ]
+          }
         ]
       },
       "title": "Work, energy and power",
