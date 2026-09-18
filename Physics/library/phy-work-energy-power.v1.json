@@ -589,7 +589,7 @@
           "action": "Track whether lost gravitational potential energy appears entirely as kinetic energy in each case.",
           "why_valid": "With no extra transfer the mechanical account can stay constant; friction redirects part of the energy outside that mechanical account.",
           "inputs": [],
-          "output": "smooth: decrease in U matches increase in K.  rough: increase in K is smaller because friction carries energy away from the mechanical account."
+          "output": "smooth -> decrease in U matches increase in K.  rough -> increase in K is smaller because friction carries energy away from the mechanical account."
         },
         {
           "id": "WEP4-3",
