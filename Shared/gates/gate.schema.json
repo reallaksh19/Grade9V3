@@ -231,6 +231,16 @@
                 "items": {
                   "$ref": "#/$defs/text"
                 }
+              },
+              "validator_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "description": "Subject validator catalogue entries that can recompute numerical instances of this relation. Omit when the relation has no implemented machine validator.",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Z0-9_]*$",
+                  "minLength": 2
+                }
               }
             }
           }
