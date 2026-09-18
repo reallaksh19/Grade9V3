@@ -1134,7 +1134,12 @@ class ResolveRequest(unittest.TestCase):
             return resolve_request.plan(request)
         low, high = at(20), at(70)
         self.assertEqual(low["segment"], ["R1", "R3", "R4", "R5"])
-        self.assertEqual(high["segment"], ["R4", "R5"])
+        # A coordinate is not evidence. Position 70 requests R4, but R3 is the earliest
+        # same-ladder prerequisite not demonstrated, so execution backtracks rather than
+        # pretending the estimate proves R3.
+        self.assertEqual(high["entry"]["requested_rung"], "R4")
+        self.assertEqual(high["entry"]["why"], "PREREQUISITE_BACKTRACK")
+        self.assertEqual(high["segment"], ["R3", "R4", "R5"])
         self.assertEqual(high["segment"], low["segment"][-len(high["segment"]):])
         tasks = {s["rung"]: s["task"] for s in self.core(low, "CORE1A")["segment"]}
         for step in self.core(high, "CORE1A")["segment"]:
@@ -1173,7 +1178,13 @@ class ResolveRequest(unittest.TestCase):
                         f'# Authoring brief -- {core["core"]}, Relative motion, '
                         f'rung {step["rung"]}', text)
         self.assertIn("## Purpose PRACTICE -- support medium", text)
-        self.assertIn("## Transfer -- 4 changed demands", text)
+        # Matrix transfer rows are an authoring description, not a question asset.
+        # With no bucket-owned CORE2B question the strict resolver blocks the product,
+        # so no transfer brief may be emitted.
+        self.assertNotIn("## Transfer -- 4 changed demands", text)
+        transfer = self.core(report, "CORE2B")
+        self.assertEqual(transfer["state"], "BLOCKED")
+        self.assertIn("bucket-owned question", transfer["reason"])
 
     def test_a_refused_request_yields_the_refusal_rather_than_briefs(self):
         request = self.request()
@@ -1202,14 +1213,24 @@ class ResolveRequest(unittest.TestCase):
             report = resolve_request.plan(request)
             teaching = self.core(report, "CORE1A").get("segment") or []
             taught = any(s["state"] == "PRESENT" for s in teaching)
+            records = resolve_request.library_records("Physics")
             for name in ("CORE2A", "CORE2B"):
                 with self.subTest(bucket=board["bucket_id"], core=name):
                     core = self.core(report, name)
-                    if taught:
-                        self.assertNotEqual(core["state"], "BLOCKED")
-                    else:
+                    exposed = resolve_request.questions_for_core(
+                        records, board["bucket_id"], name)
+                    purpose = request["practice"][name]["purpose"]
+                    routes = resolve_request.purposes()[purpose]["routes_transfer"]
+                    if not taught:
                         self.assertEqual(core["state"], "BLOCKED")
                         self.assertIn("no rung of this ladder has a record", core["reason"])
+                    elif name == "CORE2B" and not routes:
+                        self.assertEqual(core["state"], "WITHHELD")
+                    elif exposed:
+                        self.assertEqual(core["state"], "READY")
+                    else:
+                        self.assertEqual(core["state"], "BLOCKED")
+                        self.assertIn("bucket-owned question", core["reason"])
             checked += 1
         self.assertGreater(checked, 0, "no matrices, so this asserts nothing")
 
