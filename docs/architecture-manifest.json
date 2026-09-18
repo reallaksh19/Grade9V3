@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 74,
-  "relation_count": 125,
+  "component_count": 80,
+  "relation_count": 131,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 18,
-    "TEST": 9,
-    "TOOLING": 23,
+    "LIBRARY": 20,
+    "TEST": 12,
+    "TOOLING": 24,
     "WEB": 5
   },
-  "digest": "sha256:441dae6177ab07e44f865642af04fb6e7ae96fe605259fd3fe7be5b6dfc6c798",
+  "digest": "sha256:81c04e7ded87df5b3dd1b58fa3d7b289153dae7fc9763c6ef361e49ef9f37890",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -143,6 +143,20 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 10155,
       "sha256": "4f3723cd7c856558afab995610b485e774d10e0998034be84a6f28834c5d171a"
+    },
+    {
+      "path": "Shared/library/source-acquisition.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 1125,
+      "sha256": "04b3035bb62ad82ee4dc73a3ae1c70c156afa3b4a947980cf1b6b48d961b03d1"
+    },
+    {
+      "path": "Shared/library/source-custody-manifest.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 914,
+      "sha256": "ad8dad61d66c9d07e0ce8aa4788f71623739ea0c627e29409272cd6a94d4d763"
     },
     {
       "path": "Shared/library/source-inspection-receipt.schema.json",
@@ -404,11 +418,18 @@
       "sha256": "af86b67d8f3fa3ad5433ad8448924ad423a848d2c95576bf29bbd78455391f26"
     },
     {
+      "path": "Shared/tools/source_pipeline.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 16197,
+      "sha256": "d1394adc3f15e717e4cad6b8b5e45772be9b5555b3c3147ad737e673d682862d"
+    },
+    {
       "path": "Shared/tools/source_receipts.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8601,
-      "sha256": "96e824cbd91fdecb8d6a53a183eb70bea9a806e37743cfaaa179c76f316362a9"
+      "bytes": 11206,
+      "sha256": "1b620182ba34214f9dfd9821c44037b86595dbf7508b1db0a6a2696605af9c6c"
     },
     {
       "path": "Shared/tools/spec_conformance.py",
@@ -437,6 +458,20 @@
       "role_description": "Guardrails and generators",
       "bytes": 9828,
       "sha256": "66be76054d03adfbb44b4d0ba4f334b652f8d125dcead6348d6c46c71d9f3db5"
+    },
+    {
+      "path": "tests/fixtures/source_ingest/acquisition.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 585,
+      "sha256": "d3ae55ca1a1cf25a931bf5f98aa723be2a7cd499ab2c5d2620f74f76d7186cfc"
+    },
+    {
+      "path": "tests/fixtures/source_ingest/custody-manifest.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3452,
+      "sha256": "16ccd3a8e9a367374717886a441eb4be1ba46e1107731a7c01897ffefc2f8724"
     },
     {
       "path": "tests/test_architecture.py",
@@ -486,6 +521,13 @@
       "role_description": "Executable checks",
       "bytes": 24889,
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+    },
+    {
+      "path": "tests/test_source_pipeline.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5532,
+      "sha256": "edeca6b1c54e764ce9a2c10b041364a9e58c38d006df87db3af573403d2ada3d"
     },
     {
       "path": "tests/test_source_receipts.py",
@@ -924,6 +966,26 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/source_pipeline.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/source_pipeline.py",
+      "to": "Shared.library.intake",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/source_pipeline.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/source_pipeline.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/source_receipts.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1121,6 +1183,16 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.tools.republish",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_source_pipeline.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_source_pipeline.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
