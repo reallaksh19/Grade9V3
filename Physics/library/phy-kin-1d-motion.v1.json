@@ -46,7 +46,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "grade9_track": "STANDARD"
+        "grade9_track": "STANDARD",
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES"
       },
       "title": "One-dimensional motion",
       "topic": "Motion",
@@ -1180,7 +1181,10 @@
       "title": "One-dimensional motion interpretation practice",
       "capability_refs": [
         "CAP-KIN-DISTANCE-DISPLACEMENT",
-        "CAP-KIN-ZERO-V-NONZERO-A"
+        "CAP-KIN-ZERO-V-NONZERO-A",
+        "CAP-KIN-AVERAGE-RATES",
+        "CAP-KIN-CONSTANT-ACCELERATION",
+        "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
       ],
       "solution_structure": [
         "Mark a start point on a straight path and declare east as the positive direction.",
@@ -1204,7 +1208,10 @@
       ],
       "item_refs": [
         "Q-PHY-KIN-2A-01",
-        "Q-PHY-KIN-2B-01"
+        "Q-PHY-KIN-2B-01",
+        "Q-PHY-KIN-2A-COV-02",
+        "Q-PHY-KIN-2A-COV-03",
+        "Q-PHY-KIN-2A-COV-04"
       ]
     }
   ],
@@ -1333,6 +1340,181 @@
         ]
       },
       "repair_ref": "KIN3-2"
+    },
+    {
+      "id": "Q-PHY-KIN-2A-COV-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-COVERAGE-02",
+      "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Average speed is 6 m/s and average velocity is +2 m/s.",
+        "reasoning": [
+          "Average speed uses 120 m / 20 s = 6 m/s.",
+          "Average velocity uses the signed displacement +40 m / 20 s = +2 m/s.",
+          "The different numerators explain why the two averages differ."
+        ],
+        "check": "Both calculations use the same 20 s interval; only the path-versus-displacement numerator changes.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-KIN-AVERAGE-RATES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What total quantity keeps every travelled leg even if the direction reverses?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Build total distance and total time first. Only equal time weighting permits an unweighted arithmetic mean of speeds.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "AVERAGE_RATE",
+        "bindings": {
+          "distance": "DAT-KIN-AVG-DIST",
+          "displacement": "DAT-KIN-AVG-DISP",
+          "dt": "DAT-KIN-AVG-DT"
+        }
+      }
+    },
+    {
+      "id": "Q-PHY-KIN-2A-COV-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-COVERAGE-03",
+      "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope.",
+        "reasoning": [
+          "v = 5 + 2 x 3 = 11 m/s.",
+          "s = 5 x 3 + 0.5 x 2 x 3^2 = 24 m.",
+          "The stated constant acceleration is the model condition."
+        ],
+        "check": "Using v^2 = u^2 + 2as gives 121 = 25 + 96, consistent with v = 11 m/s.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What graph feature tells you whether acceleration is constant?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Inspect the entire interval. One constant a must describe all of it before the equations are exact.",
+          "reveals": "METHOD"
+        }
+      ],
+      "verification": {
+        "validator_id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+        "bindings": {
+          "u": "DAT-KIN-CA-U",
+          "a": "DAT-KIN-CA-A",
+          "t": "DAT-KIN-CA-T"
+        }
+      }
+    },
+    {
+      "id": "Q-PHY-KIN-2A-COV-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-COVERAGE-04",
+      "stem": "A runner moves around a circular track at constant speed. At the rightmost point, state the direction of velocity and the direction of acceleration qualitatively.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
+        "reasoning": [
+          "Instantaneous velocity follows the tangent to the path.",
+          "Constant speed removes any tangential speed-change requirement.",
+          "The continuing direction change requires inward acceleration."
+        ],
+        "check": "At the opposite side of the circle, both tangent velocity direction and inward acceleration direction change with the geometry.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: Has the speed changed?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare the tangent directions at different points: the direction changes, so velocity changes and acceleration is nonzero.",
+          "reveals": "METHOD"
+        }
+      ]
     }
   ],
   "teaching_routes": [
