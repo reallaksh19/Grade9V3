@@ -655,11 +655,11 @@
     },
     {
       "gate_id": "PHY-WAVE-SPEED",
-      "title": "Travelling-wave speed relation",
+      "title": "Grade 9 sound frequency, wavelength, speed and echo relations",
       "curriculum": {
         "board": "CBSE",
         "grade": 9,
-        "chapter": "Oscillations and Waves",
+        "chapter": "Sound",
         "scope_class": "OWNER_EXTENSION"
       },
       "tier": "NOT_IN_JEE",
@@ -668,6 +668,14 @@
         {
           "concept_id": "CON-WAVE-F-LAMBDA",
           "statement": "For one travelling-wave description, propagation speed is frequency times wavelength."
+        },
+        {
+          "concept_id": "CON-SOUND-PERIOD-FREQUENCY",
+          "statement": "Frequency and time period are reciprocals for one repeating vibration."
+        },
+        {
+          "concept_id": "CON-SOUND-ECHO-PATH",
+          "statement": "An echo delay covers an outward and return sound path, so one-way distance is half the total distance travelled by the sound."
         }
       ],
       "prerequisites": [],
@@ -703,12 +711,73 @@
           "validator_refs": [
             "WAVE_SPEED"
           ]
+        },
+        {
+          "relation_id": "REL-FREQUENCY-PERIOD",
+          "expression": "f = 1 / T",
+          "meaning": "For a repeating vibration, frequency is the reciprocal of time period.",
+          "symbols": [
+            {
+              "symbol": "f",
+              "meaning": "Frequency",
+              "unit": "Hz",
+              "dimension": "T^-1"
+            },
+            {
+              "symbol": "T",
+              "meaning": "Time period",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "T > 0.",
+            "f and T refer to the same repeating vibration."
+          ],
+          "validator_refs": [
+            "FREQUENCY_PERIOD"
+          ]
+        },
+        {
+          "relation_id": "REL-ECHO-DISTANCE",
+          "expression": "d = v t_echo / 2",
+          "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
+          "symbols": [
+            {
+              "symbol": "d",
+              "meaning": "One-way source-to-reflector distance",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Sound speed in the medium",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "t_echo",
+              "meaning": "Round-trip echo delay",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "v > 0.",
+            "t_echo >= 0.",
+            "The measured delay is for one outward-and-return path in the same medium."
+          ],
+          "validator_refs": [
+            "ECHO_DISTANCE"
+          ]
         }
       ],
       "representations": [],
       "validity_conditions": [
         "Frequency and wavelength refer to the same travelling wave.",
-        "Changing medium may change the propagation speed relation through the medium properties."
+        "Changing medium may change the propagation speed relation through the medium properties.",
+        "Period/frequency comparisons refer to one repeating vibration.",
+        "Echo distance uses a round-trip delay and therefore includes the factor one half."
       ],
       "reasoning_sequence": [
         {
