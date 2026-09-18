@@ -38,11 +38,7 @@
     {
       "rung": "R2",
       "ladder_position": 45,
-      "provenance": "SYNTHESIS",
-      "aha": "Average speed is total distance divided by total time, while average velocity uses displacement over the same time; neither is found by averaging listed speeds unless the time weighting makes that valid.",
-      "learner_owns": [
-        "Distance records how much path was travelled, while displacement records the signed change from start to finish; a long trip can have zero displacement."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "harmonic mean",
         "instantaneous velocity",
@@ -53,12 +49,6 @@
         "A round trip with unequal speeds on equal-distance legs.",
         "The total-distance-over-total-time construction written before any averaging shortcut."
       ],
-      "misconception": {
-        "wrong_idea": "For a trip with two speeds, average speed is always the arithmetic mean of those speeds.",
-        "diagnostic_prompt": "A vehicle covers equal distances at 60 km/h and 30 km/h. Is its average speed 45 km/h? Which leg takes longer?",
-        "repair": "Compute each leg's time, add total distance and total time, then divide; use displacement instead of distance only for average velocity."
-      },
-      "closure": "For a two-leg trip, calculate average speed from totals and separately state average velocity when the final position is known.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -86,7 +76,8 @@
           "required_for": "NUMERIC_EXIT",
           "reason": "Two-leg numerical average-rate exits need an implemented validator."
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-KIN-AVERAGE-RATES"
     },
     {
       "rung": "R3",
