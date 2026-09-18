@@ -305,6 +305,11 @@ def readable(report: dict) -> str:
         out += [f'## {question["question_id"]} -- {question["state"]}', ""]
         for cap in question.get("capabilities", []):
             out += [f'  {cap["role"]:9} {cap["capability_ref"]} -- {cap["state"]}']
+            if cap.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
+                out += [
+                    f'            bridge: {cap.get("provider")} '
+                    f'({cap.get("acceptance_status") or "UNSPECIFIED"})'
+                ]
             for loc in cap.get("locations", []):
                 out += [
                     f'            {loc["matrix_id"]} / {loc["rung"]} '
