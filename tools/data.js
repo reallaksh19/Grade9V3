@@ -731,6 +731,13 @@ window.GRADE9V3 = {
             "shape": "SCALAR_WITH_UNIT",
             "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
             "does_not_prove": "That the path is circular, speed is uniform, or the centripetal acceleration magnitude."
+          },
+          {
+            "id": "CONSTANT_ACCELERATION_GRAPH_AREA",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That acceleration is constant in the described motion or that the chosen endpoint velocities belong to the same interval."
           }
         ],
         "representation_kinds": [
@@ -891,7 +898,8 @@ window.GRADE9V3 = {
           "concepts": [
             "Constant-force work depends on the force component along displacement.",
             "Kinetic energy depends on speed and gravitational potential energy near Earth depends on height relative to a declared reference.",
-            "Mechanical energy is conserved only when no additional transfer crosses the chosen mechanical account."
+            "Mechanical energy is conserved only when no additional transfer crosses the chosen mechanical account.",
+            "The Grade 9 kinetic- and raised-body potential-energy expressions are consequences of the work ledger plus already-authored force/motion relations, not isolated formulas."
           ],
           "misconceptions": [
             "Any nonzero force on a moving body does positive work."
@@ -1191,7 +1199,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
@@ -1426,7 +1434,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -1660,7 +1668,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -1883,72 +1891,79 @@ window.GRADE9V3 = {
             },
             {
               "id": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
-              "title": "Constant-acceleration equations are conditional models",
+              "title": "Derive the constant-acceleration equations from one velocity-time graph",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "The algebra is elementary; the difficult decision is whether the constant-acceleration model applies.",
+              "badge_reason": "The algebra is elementary, but the learner must connect graph slope and geometric area to three equivalent kinematic equations while preserving the model condition.",
               "entry_assumptions": [
-                "Can distinguish velocity from acceleration and can read whether a velocity-time graph has constant slope."
+                "Can read a velocity-time graph, calculate a segment slope, and calculate rectangle, triangle and trapezoid areas.",
+                "Can distinguish a constant-slope velocity-time segment from a curved changing-acceleration segment."
               ],
-              "inferential_jump": "The standard kinematic equations are exact only on intervals with constant acceleration, so model checking comes before substitution.",
+              "inferential_jump": "One straight velocity-time segment carries all three Grade 9 kinematic equations: its slope gives v = u + at, its rectangle-plus-triangle area gives s = ut + 0.5at^2, and combining trapezoid area with the slope relation eliminates time to give v^2 = u^2 + 2as.",
               "teaching_path": [
                 {
-                  "action": "Compare a straight velocity-time graph with a curved one and decide whether one acceleration value describes each whole interval.",
-                  "why_valid": "Acceleration is the slope of a velocity-time graph; a constant slope gives constant acceleration.",
-                  "output": "straight v-t graph -> constant a; curved v-t graph -> changing a."
+                  "action": "Read the straight velocity-time graph from (0,u) to (t,v) and identify one constant slope.",
+                  "why_valid": "A straight velocity-time segment means one acceleration value describes the whole interval.",
+                  "output": "slope = (v-u)/t = a; graph area = signed displacement s."
                 },
                 {
-                  "action": "For the straight-graph case, use v = u + a t to update velocity and s = u t + 0.5 a t^2 to obtain signed displacement.",
-                  "why_valid": "Both gate-owned relations apply to the same constant-acceleration interval.",
-                  "output": "v = u + a t; s = u t + 0.5 a t^2."
+                  "action": "Rearrange the straight-line slope equation.",
+                  "why_valid": "The graph slope is the constant acceleration for the interval.",
+                  "output": "a = (v-u)/t -> a t = v-u -> v = u + a t."
                 },
                 {
-                  "action": "When time is not supplied, use v^2 = u^2 + 2 a s while keeping the velocity sign as a separate physical decision.",
-                  "why_valid": "The no-time relation follows from the same constant-acceleration model but determines squared velocity.",
-                  "output": "v^2 = u^2 + 2 a s; direction still comes from context."
+                  "action": "Split the graph area into the initial-velocity rectangle and the acceleration triangle, then substitute v-u = a t.",
+                  "why_valid": "REL-CONSTANT-ACCELERATION-GRAPH-AREA owns the displacement area and the two regions exactly partition it.",
+                  "output": "s = u t + 0.5 (v-u)t -> s = u t + 0.5 (a t)t = u t + 0.5 a t^2."
                 },
                 {
-                  "action": "Reject the same equations as exact models on a visibly curved velocity-time interval.",
-                  "why_valid": "A changing slope means acceleration is not constant across the interval.",
-                  "output": "curved v-t interval -> constant-a equations not exact over the whole interval."
+                  "action": "Write the same graph area as a trapezoid, substitute t = (v-u)/a from the slope, and factor the difference of squares.",
+                  "why_valid": "Both equations describe the same straight graph interval, so the common time variable can be eliminated.",
+                  "output": "s = 0.5(u+v)t; t=(v-u)/a -> 2as=(u+v)(v-u)=v^2-u^2 -> v^2=u^2+2as."
+                },
+                {
+                  "action": "Replace the straight segment with a curved velocity-time trace and ask whether the same graphical derivation is exact over the whole interval.",
+                  "why_valid": "A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.",
+                  "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval."
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "If a problem gives an acceleration value, the constant-acceleration equations are automatically exact.",
-                  "diagnostic_prompt": "A velocity-time graph curves upward but one acceleration value is listed at the start. Does that make v = u + at exact for the whole interval?",
-                  "repair": "Inspect the entire interval. One constant a must describe all of it before the equations are exact."
+                  "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
+                  "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
+                  "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
                 }
               ],
               "exit_task": {
-                "prompt": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+                "prompt": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
                 "source_ref": "SRC-AUTHOR-KIN-1D",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope.",
+                  "summary": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as.",
                   "reasoning": [
-                    "v = 5 + 2 x 3 = 11 m/s.",
-                    "s = 5 x 3 + 0.5 x 2 x 3^2 = 24 m.",
-                    "The stated constant acceleration is the model condition."
+                    "Slope: a = (11-5)/3 = 2 m/s^2, so a = (v-u)/t rearranges to v = u + at.",
+                    "Rectangle area: u t = 5 x 3 = 15 m.",
+                    "Triangle area: 0.5(v-u)t = 0.5 x 6 x 3 = 9 m, so s = 24 m; substituting v-u = at gives s = ut + 0.5at^2.",
+                    "The same area is s = 0.5(u+v)t. Substitute t=(v-u)/a: 2as=(u+v)(v-u)=v^2-u^2, hence v^2=u^2+2as."
                   ],
-                  "check": "Using v^2 = u^2 + 2as gives 121 = 25 + 96, consistent with v = 11 m/s.",
+                  "check": "The direct displacement validator gives 24 m, and 11^2 = 5^2 + 2 x 2 x 24 = 121.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
                   "verification": {
-                    "validator_id": "CONSTANT_ACCELERATION_DISPLACEMENT",
+                    "validator_id": "CONSTANT_ACCELERATION_GRAPH_AREA",
                     "bindings": {
                       "u": "DAT-KIN-CA-U",
-                      "a": "DAT-KIN-CA-A",
+                      "v": "DAT-KIN-CA-V",
                       "t": "DAT-KIN-CA-T"
                     }
                   }
                 }
               },
               "prerequisites": [
-                "CAP-KIN-ZERO-V-NONZERO-A"
+                "CAP-KIN-MOTION-GRAPHS"
               ]
             },
             {
@@ -2133,6 +2148,16 @@ window.GRADE9V3 = {
               ]
             },
             {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
               "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
               "expression": "v^2 = u^2 + 2 a s",
               "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
@@ -2177,9 +2202,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2A-COV-03",
-              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
               "origin": "AUTHORED",
-              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
             },
             {
               "id": "Q-PHY-KIN-2A-COV-04",
@@ -2209,7 +2234,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-KIN-CONSTANT-ACCELERATION",
-              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -2238,7 +2263,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 41,
+          "record_count": 47,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -2249,7 +2274,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 6,
             "obligations": 10,
             "authoring_requirements": [
@@ -2478,7 +2503,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 1,
             "obligations": 5,
             "authoring_requirements": [
@@ -2960,6 +2985,45 @@ window.GRADE9V3 = {
               ]
             },
             {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
               "id": "REL-NEWTON-SECOND-LAW",
               "expression": "F_net = m a",
               "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
@@ -2985,9 +3049,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2A-COV-03",
-              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
               "origin": "AUTHORED",
-              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
             },
             {
               "id": "Q-PHY-KIN-2A-COV-04",
@@ -3017,7 +3081,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-KIN-CONSTANT-ACCELERATION",
-              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -3088,7 +3152,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 49,
+          "record_count": 59,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3099,7 +3163,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 7,
             "obligations": 11,
             "authoring_requirements": [
@@ -3330,7 +3394,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -3500,7 +3564,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 1,
             "obligations": 4,
             "authoring_requirements": [
@@ -3802,7 +3866,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 6,
             "authoring_requirements": [
@@ -4047,6 +4111,45 @@ window.GRADE9V3 = {
               ]
             },
             {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
               "id": "REL-IDEAL-MACHINE-WORK",
               "expression": "F_effort d_effort = F_load d_load",
               "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
@@ -4082,9 +4185,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2A-COV-03",
-              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
               "origin": "AUTHORED",
-              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
             },
             {
               "id": "Q-PHY-KIN-2A-COV-04",
@@ -4126,7 +4229,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-KIN-CONSTANT-ACCELERATION",
-              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -4191,6 +4294,18 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-ENERGY-DERIVATIONS",
+              "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-WEP-GRADE9-QUANT",
               "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
               "provider": null,
@@ -4221,7 +4336,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 56,
+          "record_count": 68,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4232,7 +4347,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 7,
             "authoring_requirements": [
@@ -4614,6 +4729,45 @@ window.GRADE9V3 = {
               ]
             },
             {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
               "id": "REL-ECHO-DISTANCE",
               "expression": "d = v t_echo / 2",
               "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
@@ -4657,9 +4811,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2A-COV-03",
-              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
               "origin": "AUTHORED",
-              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
             },
             {
               "id": "Q-PHY-KIN-2A-COV-04",
@@ -4719,7 +4873,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-KIN-CONSTANT-ACCELERATION",
-              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -4778,7 +4932,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 76,
+          "record_count": 86,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4789,7 +4943,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 5,
             "obligations": 9,
             "authoring_requirements": [
@@ -5081,7 +5235,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 6,
             "authoring_requirements": [
@@ -5252,7 +5406,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
+            "atoms": 76,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
@@ -5671,6 +5825,80 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-WEP-MECH-ENERGY-CONDITION"
               ]
+            },
+            {
+              "id": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "title": "Derive kinetic and raised-body potential energy from the work ledger",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The endpoint formulae are simple; the harder work is maintaining one physical model through the force, motion and work substitutions.",
+              "entry_assumptions": [
+                "Can use F_net = m a for one chosen body in an inertial frame.",
+                "Can use v^2 = u^2 + 2 a s on a constant-acceleration interval.",
+                "Can calculate constant-force work from the signed force component along displacement."
+              ],
+              "inferential_jump": "The Grade 9 energy expressions follow from previously owned mechanics: constant-force work plus Newton/kinematics yields the change in kinetic energy, while a controlled lift against near-Earth weight yields the increase m g h in gravitational potential energy.",
+              "teaching_path": [
+                {
+                  "action": "For the kinetic-energy derivation, choose a body accelerated by a constant net force along its displacement from initial speed u to final speed v.",
+                  "why_valid": "This controlled case makes F_net = m a, W_net = F_net s and the constant-acceleration no-time relation valid on the same interval.",
+                  "output": "W_net = F_net s = m a s; v^2 - u^2 = 2 a s."
+                },
+                {
+                  "action": "Eliminate a s using the no-time kinematic relation and identify the net-work change as the kinetic-energy change.",
+                  "why_valid": "The two equations describe the same body and interval, and the work-energy theorem identifies net work with Delta K.",
+                  "output": "a s = (v^2-u^2)/2 -> W_net = 0.5 m(v^2-u^2) = Delta K; choosing K=0 at v=0 gives K = 0.5 m v^2."
+                },
+                {
+                  "action": "For the potential-energy derivation, raise the body slowly through vertical height h so acceleration is zero and the applied upward force balances the near-Earth weight.",
+                  "why_valid": "Zero acceleration makes the applied force magnitude equal the weight magnitude m g, while the displacement is along the applied force.",
+                  "output": "a = 0 -> F_applied = F_weight = m g; upward displacement = h."
+                },
+                {
+                  "action": "Calculate the external lifting work and identify it with the increase of gravitational potential energy in the controlled lift.",
+                  "why_valid": "With negligible kinetic-energy change in the slow lift, the work transferred into the object-gravity account appears as gravitational potential-energy increase.",
+                  "output": "W_applied = F_applied h = m g h -> Delta U_g = m g h."
+                },
+                {
+                  "action": "Check both derivations at their zero boundaries.",
+                  "why_valid": "At v=0 the chosen kinetic-energy expression must vanish, and at h=0 the gravitational potential-energy change must vanish.",
+                  "output": "v = 0 -> K = 0; h = 0 -> Delta U_g = 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "K = 0.5 m v^2 and m g h are definitions that cannot be connected to earlier mechanics.",
+                  "diagnostic_prompt": "Can you reach each expression using work plus previously learned force/motion relations without assuming the final formula?",
+                  "repair": "For K, combine W_net = F_net s, F_net = m a and v^2-u^2 = 2as. For raised-body U_g, use a slow lift where F_applied = m g and W_applied = F_applied h."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Derive the Grade 9 kinetic-energy expression for a body accelerated from rest by a constant net force, then derive the increase in gravitational potential energy when the same mass is raised slowly through height h near Earth's surface.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "From W_net = m a s and v^2 = 2 a s for motion from rest, W_net = 0.5 m v^2, so K = 0.5 m v^2 with K=0 at rest. For a slow lift, F_applied = m g and W_applied = m g h, so Delta U_g = m g h.",
+                  "reasoning": [
+                    "Constant-force work and Newton's second law give W_net = F_net s = m a s.",
+                    "For constant acceleration from rest, v^2 = 2 a s, hence a s = v^2/2 and W_net = 0.5 m v^2.",
+                    "By the work-energy theorem and the chosen zero at rest, K = 0.5 m v^2.",
+                    "For a slow vertical lift, zero acceleration requires F_applied = F_weight = m g.",
+                    "Work by that applied force through height h is m g h, which is stored as the increase in gravitational potential energy."
+                  ],
+                  "check": "The derived expressions satisfy the zero boundaries v=0 -> K=0 and h=0 -> Delta U_g=0.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit is a symbolic derivation using gate-owned relations; it makes no independent numerical claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-MECH-ENERGY-CONDITION",
+                "CAP-NLM-SECOND-LAW",
+                "CAP-KIN-CONSTANT-ACCELERATION"
+              ]
             }
           ],
           "relations": [
@@ -5699,6 +5927,45 @@ window.GRADE9V3 = {
               "conditions": [
                 "Delta t > 0.",
                 "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
               ]
             },
             {
@@ -5740,6 +6007,27 @@ window.GRADE9V3 = {
               ]
             },
             {
+              "id": "REL-NEWTON-SECOND-LAW",
+              "expression": "F_net = m a",
+              "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
+              "conditions": [
+                "m > 0.",
+                "F_net and a refer to the same chosen body.",
+                "All signed components use one declared axis."
+              ]
+            },
+            {
+              "id": "REL-WEIGHT-NEAR-EARTH",
+              "expression": "F_weight = m g",
+              "meaning": "Near Earth's surface in an approximately uniform gravitational field, the weight-force magnitude on mass m is m times gravitational acceleration magnitude g.",
+              "conditions": [
+                "m > 0.",
+                "g > 0.",
+                "Near-Earth field is treated as approximately uniform over the height range.",
+                "This relation gives the force magnitude; downward direction is supplied by the physical geometry."
+              ]
+            },
+            {
               "id": "REL-WORK-CONSTANT-FORCE",
               "expression": "W = F_parallel s",
               "meaning": "For a constant force component along a straight displacement, work equals the signed along-path component times displacement.",
@@ -5773,9 +6061,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2A-COV-03",
-              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
               "origin": "AUTHORED",
-              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
             },
             {
               "id": "Q-PHY-KIN-2A-COV-04",
@@ -5794,6 +6082,48 @@ window.GRADE9V3 = {
               "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
               "origin": "AUTHORED",
               "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-01",
+              "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
+              "origin": "AUTHORED",
+              "answer": "Rightward force: positive work. Upward force: zero work. Leftward force: negative work."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-02",
+              "stem": "For three otherwise comparable motions, the net work is described as positive, zero, and negative. State the corresponding direction of kinetic-energy change without calculating any energy value.",
+              "origin": "AUTHORED",
+              "answer": "Positive net work means kinetic energy increases; zero means no change; negative means kinetic energy decreases."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-03",
+              "stem": "Two routes share the same start and finish heights. Gravity gives the same potential-energy change on both, while friction removes more energy on the longer route. Which interaction is eligible for endpoint-only potential-energy bookkeeping?",
+              "origin": "AUTHORED",
+              "answer": "Gravity is eligible in this comparison; kinetic friction is not, because its transfer changes with the path."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-04",
+              "stem": "A machine transfers 120 J of work in 4 s. Find its average power. Then state whether that average alone is enough to know the instantaneous power halfway through the interval.",
+              "origin": "AUTHORED",
+              "answer": "Average power is 30 W. The average alone is not enough to determine the instantaneous power halfway through the interval."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-COV-05",
+              "stem": "A 2 kg object moves at 3 m/s. Find its translational kinetic energy. Then state what additional condition is required before using K_i + U_i = K_f + U_f for a later motion.",
+              "origin": "AUTHORED",
+              "answer": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account."
+            },
+            {
+              "id": "Q-PHY-WEP-2A-DERIV-01",
+              "stem": "Do not quote the final formula. Starting from constant-force work, Newton's second law and the constant-acceleration relation v^2-u^2=2as, derive the kinetic-energy expression for motion from rest. Then show why slowly raising the same mass through height h near Earth's surface gives a gravitational potential-energy increase mgh.",
+              "origin": "AUTHORED",
+              "answer": "The two required chains are W_net = mas = 0.5mv^2 -> K = 0.5mv^2 from rest, and slow lift F_applied = mg -> W_applied = mgh -> Delta U_g = mgh."
+            },
+            {
+              "id": "Q-PHY-WEP-2B-01",
+              "stem": "A problem shows a block descending between fixed endpoints on a rough track but never tells you which energy equation to use. Decide whether an unchanged K-plus-U mechanical-energy account is sufficient, and state what must be added to the bookkeeping.",
+              "origin": "AUTHORED",
+              "answer": "An unchanged K-plus-U-only account is not sufficient because friction transfers energy out of that mechanical account; the frictional transfer must be included explicitly."
             }
           ],
           "capabilities": [
@@ -5805,7 +6135,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-KIN-CONSTANT-ACCELERATION",
-              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -5852,6 +6182,18 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-ENERGY-DERIVATIONS",
+              "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-WEP-GRADE9-QUANT",
               "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
               "provider": null,
@@ -5888,7 +6230,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 57,
+          "record_count": 80,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5899,9 +6241,9 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 74,
-            "questions": 6,
-            "obligations": 9,
+            "atoms": 76,
+            "questions": 7,
+            "obligations": 11,
             "authoring_requirements": [
               {
                 "kind": "PROSE_AUTHORING",
@@ -6361,7 +6703,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 75,
+            "atoms": 77,
             "questions": 2,
             "obligations": 8,
             "authoring_requirements": [
@@ -6667,7 +7009,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 75,
+            "atoms": 77,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [

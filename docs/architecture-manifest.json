@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 67,
-  "relation_count": 115,
+  "component_count": 68,
+  "relation_count": 118,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 16,
     "TEST": 6,
-    "TOOLING": 21,
+    "TOOLING": 22,
     "WEB": 5
   },
-  "digest": "sha256:bb19c9e8a71d8e2c967f1b43b4709f793ceadbf68e031eabf0064606ee3d09bb",
+  "digest": "sha256:a7e159d21dd326fa0bee599339b1ebadfa2938dbf8c5c48fa32dfb84e8f1b034",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -397,6 +397,13 @@
       "sha256": "80c6611233711872761a0858999fae72c043c323cce2ac1d0d82ac8a99ff9df2"
     },
     {
+      "path": "Shared/tools/teaching_route_coverage.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4301,
+      "sha256": "d1694b639101a67b05121367881b3bdac656b49e62ec9fd558b10e6390bb9c27"
+    },
+    {
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -414,8 +421,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 18150,
-      "sha256": "8861a167acf2337b2aa4b7d1f7550569d277ea4dee04dc355d569554a2e6788a"
+      "bytes": 18354,
+      "sha256": "e55c80ea93e7e42560cc0ce61da548619e624ea54718196bf8b0a39fc29f556b"
     },
     {
       "path": "tests/test_import_sil.py",
@@ -442,15 +449,15 @@
       "path": "tests/test_publication_engine.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 24889,
-      "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+      "bytes": 26848,
+      "sha256": "0038100d2aca7464679f8633fa4efcd131a8c97b09cdd862602e636f6537bc5d"
     },
     {
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 95273,
-      "sha256": "254c49b1684b97603e5f509117e7c1b63c03020ad420a5efc80701096f9181a0"
+      "bytes": 100320,
+      "sha256": "68598b7a5bd69de1da39ad5a7b3b9f42d7878b5e19235ea617bb92bf030e6131"
     },
     {
       "path": "tools/app.css",
@@ -463,8 +470,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 389714,
-      "sha256": "72cfa62350e5ce1a37ee96215d06581785a39ee90db3d1dcfd2c93a8a636b942"
+      "bytes": 412802,
+      "sha256": "4d95bdbd664dc062cda325acd49825f57334b40ba9dfd08223688e687aaa5f14"
     },
     {
       "path": "tools/index.html",
@@ -875,6 +882,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/teaching_route_coverage.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/teaching_route_coverage.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_gates.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1052,6 +1069,11 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.teaching_route_coverage",
       "kind": "IMPORTS"
     },
     {

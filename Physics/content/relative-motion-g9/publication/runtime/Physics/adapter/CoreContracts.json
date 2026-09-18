@@ -531,6 +531,32 @@
       ],
       "proves": "Uniform circular speed follows from circumference divided by revolution period.",
       "does_not_prove": "That the path is circular, speed is uniform, or the centripetal acceleration magnitude."
+    },
+    {
+      "id": "CONSTANT_ACCELERATION_GRAPH_AREA",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "u",
+        "v",
+        "t"
+      ],
+      "input_units": {
+        "u": "m/s",
+        "v": "m/s",
+        "t": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "t >= 0",
+        "u and v use one signed one-dimensional axis",
+        "acceleration is constant so the velocity-time segment between the endpoint velocities is straight"
+      ],
+      "proves": "Signed displacement from the constant-acceleration velocity-time trapezoid equals one-half the sum of endpoint velocities times elapsed time.",
+      "does_not_prove": "That acceleration is constant in the described motion or that the chosen endpoint velocities belong to the same interval."
     }
   ],
   "representation_kinds": [

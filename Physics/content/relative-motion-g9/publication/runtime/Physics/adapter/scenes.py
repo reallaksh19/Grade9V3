@@ -51,7 +51,13 @@ def vector(ctx, block):
 
 
 def graph(ctx, block):
-    """Piecewise-linear plot of source-bound points; no curve is implied between them."""
+    """Piecewise-linear plot of source-bound points, with optional source-bound regions.
+
+    Regions are generic graph geometry rather than a kinematics feature: every polygon
+    vertex is read from declared source atoms using the graph's own axis units.  This
+    lets a subject show a geometric decomposition (for example, a rectangle plus a
+    triangle) without the renderer computing or inventing any learner-facing quantity.
+    """
     spec = block["scene"]
     _axis_labels(spec)
     pairs = spec["points"]
@@ -59,13 +65,43 @@ def graph(ctx, block):
     values = [(bound_atom(ctx, block, p[0], spec["x_unit"]),
                bound_atom(ctx, block, p[1], spec["y_unit"])) for p in pairs]
     require(all(b[0] > a[0] for a, b in zip(values, values[1:])), "GRAPH_DOMAIN_NOT_INCREASING")
-    box = bounds([p[0] for p in values], [p[1] for p in values])
+
+    regions = []
+    for position, region in enumerate(spec.get("regions", []), 1):
+        region_label = text(region.get("label"), "GRAPH_REGION_LABEL_REQUIRED")
+        refs = region.get("points")
+        require(isinstance(refs, list) and len(refs) >= 3, "GRAPH_REGION_POINTS_REQUIRED",
+                f"region {position}")
+        coords = [(bound_atom(ctx, block, pair[0], spec["x_unit"]),
+                   bound_atom(ctx, block, pair[1], spec["y_unit"])) for pair in refs]
+        regions.append((region_label, coords))
+
+    xs = [p[0] for p in values] + [p[0] for _, coords in regions for p in coords]
+    ys = [p[1] for p in values] + [p[1] for _, coords in regions for p in coords]
+    box = bounds(xs, ys)
     if "y_min_atom" in spec:
         ymin = bound_atom(ctx, block, spec["y_min_atom"], spec["y_unit"])
-        require(ymin <= min(p[1] for p in values) and ymin < box[3], "GRAPH_RANGE_CLIPS_DATA")
+        require(ymin <= min(ys) and ymin < box[3], "GRAPH_RANGE_CLIPS_DATA")
         box = (box[0], box[1], ymin, box[3])
     point, scales = mapping(box, equal=False)
-    rows = axes(spec, box, point)
+
+    rows = []
+    region_evidence = []
+    for region_label, coords in regions:
+        pixels_region = [point(*coord) for coord in coords]
+        points_attr = " ".join(f"{x:.6f},{y:.6f}" for x, y in pixels_region)
+        rows.append(
+            f'<polygon points="{points_attr}" fill="#dbeafe" fill-opacity="0.55" '
+            f'stroke="#7b96ab" stroke-width="1.2" '
+            f'data-graph-region="{escape(region_label, quote=True)}"/>'
+        )
+        cx = sum(p[0] for p in pixels_region) / len(pixels_region)
+        cy = sum(p[1] for p in pixels_region) / len(pixels_region)
+        rows.append(label(cx, cy, region_label))
+        region_evidence.append({"label": region_label, "points": coords,
+                                "pixels": pixels_region})
+
+    rows += axes(spec, box, point)
     pixels = [point(*v) for v in values]
     for a, b in zip(pixels, pixels[1:]):
         rows.append(line(a, b, stroke="#135b89", stroke_width="2.5", data_graph="segment"))
@@ -73,6 +109,7 @@ def graph(ctx, block):
         rows.append(f'<circle cx="{p[0]}" cy="{p[1]}" r="3" fill="#135b89"/>')
         rows.append(label(p[0], p[1] - 10, f'({v[0]:g}, {v[1]:g})'))
     return svg(block, rows, dict(kind="GRAPH", points=values, pixels=pixels,
+                                 regions=region_evidence,
                                  scale=list(scales), y_axis_min=box[2]))
 
 
