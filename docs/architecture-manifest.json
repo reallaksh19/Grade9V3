@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 121,
-  "relation_count": 179,
+  "component_count": 123,
+  "relation_count": 180,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 32,
+    "TEST": 34,
     "TOOLING": 37,
     "WEB": 5
   },
-  "digest": "sha256:ba9c4704ed5a6d4f78cbb9e4d1ba0f0d60f6e20276ea964c0ad0c9aa1f0f3a5a",
+  "digest": "sha256:06e982c32b6ac4ca20162ba5b7d8ce01a3aa076adb112562487e75a619719d18",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -607,6 +607,13 @@
       "sha256": "db0b37b23e1a6246ee41af03689e1a6feb3cbeb870d3dc44218f7c3e629576f2"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1996,
+      "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
+    },
+    {
       "path": "tests/fixtures/source_ingest/acquisition.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -654,6 +661,13 @@
       "role_description": "Executable checks",
       "bytes": 10334,
       "sha256": "16e736a3d347d17c500075e1d0fbeee1748d0cc5fb2bd92f267212cdd9676e3a"
+    },
+    {
+      "path": "tests/test_c6_examside_motion_in_plane.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7181,
+      "sha256": "d225d5bc7e831bbff33be2ad92f1e2624e4c2cbf2808ed60776f2e0b576ad68e"
     },
     {
       "path": "tests/test_capability_delivery.py",
@@ -1454,6 +1468,11 @@
     },
     {
       "from": "tests/test_authoring_run.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_c6_examside_motion_in_plane.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
