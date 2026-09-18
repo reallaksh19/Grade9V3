@@ -27,16 +27,50 @@ canonical capabilities without inventing new subject truth:
 This is intentionally a small representative slice. The goal is to exercise the real
 worksheet/question-set pipeline against external demand, not to transcribe all 93 questions.
 
-## First core routing gap exposed
+## First core routing gap exposed — now resolved narrowly
 
-The three routable question mappings themselves resolve, but the full study route currently
-stops on `CAP-SIGNED-PAIR`: it is a declared Mathematics external-provider prerequisite
-for relative motion and has no canonical teaching location in the combined repository.
+The first pilot run reached `CAP-SIGNED-PAIR`: a declared Mathematics
+`external_provider` prerequisite for relative motion with no local matrix/rung.
 
-This is a useful C6 result. The pilot must not silently mark that prerequisite as taught or
-invent a Physics lesson for it. The next core decision is therefore narrow and concrete:
-either represent external-provider prerequisites explicitly as bridge actions in the study
-route, or provide a genuine canonical teaching location from the owning subject.
+The core now represents this honestly as:
+
+```text
+CAP-SIGNED-PAIR
+state: EXTERNAL_BRIDGE
+action: BRIDGE
+provider: Mathematics
+acceptance_status: PROVIDER_REVIEW_REQUIRED
+```
+
+This does **not** mark the prerequisite demonstrated and does not fabricate a Physics
+lesson. It simply stops a declared provider boundary from being misreported as an
+unclassified missing-teaching error. If Mathematics later supplies a genuine canonical
+teaching location, the ordinary resolved route will replace the bridge naturally.
+
+The three-question relative-motion/reference-frame slice now produces a valid learner-facing
+study route with this bridge kept explicit.
+
+## Feedback loop exercised on a real external question
+
+The pilot now also runs the 2026 river/boat mapping through the feedback runtime without
+promoting the external question into the canonical question library.
+
+A simulated learner response that subtracts speeds as scalars and drops direction is handled
+as:
+
+```text
+real external question
+→ CAP-RELATIVE-V failure
+→ DIAGNOSE using the canonical relative-velocity misconception prompt
+→ MISCONCEPTION_REPAIR from MIC-COMMON-INTERVAL
+→ fresh verification on canonical Q-AUTHOR-REL-01
+→ direct-attempt observation draft
+→ next review date
+```
+
+The important boundary remains intact: the external question supplies real demand; canonical
+microtopics supply repair and verification. The runtime does not invent a hint ladder for a
+question that has none.
 
 ## Real gaps exposed by the same source
 
@@ -83,16 +117,28 @@ canonically. Mapping it only to WEP would understate the question demand.
 
 ## Pilot conclusion
 
-This source is sufficient to move C6 from "no real input supplied" to **real question-bank
-pilot in progress**.
+C6 has now moved beyond "real question-bank pilot started" for the routable slice.
 
-The current core can already produce a learner-facing study map for the routable relative-
-motion/reference-frame slice. The same real source also provides concrete justification for
-the next subject-content work, if the owner wants it:
+For the three retained real questions, the current system can now:
 
-1. projectile-motion capability/matrix;
-2. vector addition/decomposition capability;
-3. 2-D position/velocity and component-kinematics capability where needed.
+1. keep the questions transient rather than canonicalizing them;
+2. map them to existing capabilities;
+3. compute prerequisite order across matrices;
+4. surface a declared external-provider prerequisite as a visible bridge;
+5. produce the learner-facing study map;
+6. accept a real-question attempt outcome;
+7. diagnose a known misconception without guessing;
+8. route to existing canonical repair;
+9. select a fresh canonical verification item;
+10. draft learner evidence and a later review date.
 
-Those additions should be made only against these observed question demands, with the
-smallest canonical surface that supports them.
+The remaining gaps are now predominantly **subject-content gaps exposed by real demand**,
+not reasons to expand the core architecture:
+
+1. projectile-motion model selection / range-height-time structure;
+2. general vector addition and decomposition;
+3. 2-D position-vector → velocity and component kinematics;
+4. projectile-energy combinations where WEP alone understates the demand.
+
+Those should be added only when selected for study, and only at the smallest durable
+capability/matrix granularity needed by the real questions.
