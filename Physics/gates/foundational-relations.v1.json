@@ -354,9 +354,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-KIN-AVG-VALIDATOR",
-          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
-          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+          "case_id": "FAL-KIN-AVG-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     },
@@ -487,9 +487,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-POWER-RATES-VALIDATOR",
-          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
-          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+          "case_id": "FAL-POWER-RATES-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     },
@@ -593,9 +593,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-NLM2-VALIDATOR",
-          "mutation": "Replace the relation's validator reference with an undeclared id.",
-          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+          "case_id": "FAL-NLM2-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     },
@@ -866,9 +866,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-WEP9-VALIDATOR",
-          "mutation": "Replace the first relation's validator reference with an undeclared id.",
-          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+          "case_id": "FAL-WEP9-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     },
@@ -1033,9 +1033,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-WAVE-SPEED-VALIDATOR",
-          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
-          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+          "case_id": "FAL-WAVE-SPEED-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     },
@@ -1187,9 +1187,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-MACHINE-MA-VALIDATOR",
-          "mutation": "Replace the mechanical-advantage validator reference with an undeclared id.",
-          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+          "case_id": "FAL-MACHINE-MA-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     }
