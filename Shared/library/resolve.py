@@ -225,6 +225,24 @@ def validate_library(packages: list[dict]) -> dict:
         "; ".join(f"{source} -> {target}" for source, target in context_prerequisites[:5]),
     )
 
+    # A context reference must name a context, not merely any existing library id.
+    # Existence-only validation would let a capability or microtopic masquerade as a
+    # context and collapse the type boundary the schema is intended to create.
+    wrong_context_refs = [
+        (rid, target, records[target].get("_collection"))
+        for rid, record in records.items()
+        for target in record.get("context_refs", []) or []
+        if target in records and target not in context_ids
+    ]
+    require(
+        not wrong_context_refs,
+        "APPLICATION_CONTEXT_REFERENCE_WRONG_TYPE",
+        "; ".join(
+            f"{source}.context_refs -> {target} ({collection})"
+            for source, target, collection in wrong_context_refs[:5]
+        ),
+    )
+
     clashes = id_collisions(records)
     require(not clashes, "LIBRARY_NESTED_ID_COLLISION", "; ".join(clashes[:5]))
     nodes = [rid for rid, r in records.items()
