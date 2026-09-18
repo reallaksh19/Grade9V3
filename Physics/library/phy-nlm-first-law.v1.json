@@ -694,8 +694,176 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-NLM-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Newton-law and observer-frame practice",
+      "capability_refs": [
+        "CAP-NLM-NET-ZERO-MOTION",
+        "CAP-NLM-FORCES-SUM-ZERO",
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-FRAME-CHOICE"
+      ],
+      "solution_structure": [
+        "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
+        "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
+        "Compare the released moving cart with a cart that starts at rest under the same zero-net-force condition."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The observer frame is not handed over as inertial; the learner must choose a consistent frame treatment before building the force account."
+      ],
+      "common_wrong_routes": [
+        "A force must keep acting in the direction of motion or the object must stop."
+      ],
+      "item_refs": [
+        "Q-PHY-NLM-2A-01",
+        "Q-PHY-NLM-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-NLM-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-01",
+      "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
+        "reasoning": [
+          "Rest is a zero velocity that stays zero.",
+          "Steady straight motion is a nonzero velocity that stays unchanged.",
+          "The shared condition is no change of velocity, not no motion."
+        ],
+        "check": "Ask whether the motion description contains speeding up, slowing down, or turning. If none occurs, zero net force remains compatible.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-NET-ZERO-MOTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: After the hand leaves the cart, is the hand still exerting the forward push?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-01",
+      "stem": "A loose object is described from inside a train while the train accelerates forward. Choose one consistent analysis: either a roadside inertial description or the accelerating train description. State what force inventory that choice requires and why the two descriptions must not be mixed.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "A roadside inertial description uses the physical interaction forces only. An accelerating-train description uses the same physical interactions plus the appropriate backward pseudo-force convention.",
+        "reasoning": [
+          "First declare which observer is being used and whether that observer accelerates.",
+          "Changing observer does not create a new physical interaction.",
+          "If the accelerating train frame is used, the pseudo-force belongs to that modelling convention; if the roadside frame is used, it does not."
+        ],
+        "check": "Repeat the analysis after the train reaches constant velocity; the observer-acceleration reason for the pseudo-force should disappear.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Chooses one observer description and keeps its force inventory internally consistent.",
+            "evidence_of": "Making the frame choice before reasoning with forces."
+          },
+          {
+            "criterion": "Distinguishes the pseudo-force convention from a new physical interaction.",
+            "evidence_of": "Preserving the physical force inventory while changing observer description."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Name the observer before listing forces.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask whether the observer itself accelerates; that decides whether a pseudo-force convention is needed.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The observer frame is not handed over as inertial; the learner must choose a consistent frame treatment before building the force account.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-01",
+          "MIC-PHY-NLM-FRAME-CHOICE"
+        ]
+      },
+      "repair_ref": "NLM4-1"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-NLM-A",
