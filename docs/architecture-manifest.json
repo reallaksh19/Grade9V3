@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 111,
-  "relation_count": 168,
+  "component_count": 113,
+  "relation_count": 171,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 25,
-    "TOOLING": 34,
+    "TEST": 26,
+    "TOOLING": 35,
     "WEB": 5
   },
-  "digest": "sha256:5210256baab4dee4804e2622560e232e302d83d8ab17672a83764db8f8d8fcab",
+  "digest": "sha256:471e0697308104639cd5139693c25a9fa05433f2915727c3900d6d48ff50622f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -572,6 +572,13 @@
       "sha256": "caa749aad4fb325b0ad6ac8c2cff84b79e9f5c200e65beee364fe8bde5f34fe8"
     },
     {
+      "path": "Shared/tools/study_start.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 10528,
+      "sha256": "0e7df37efe718c676d8072dde05a2c37fa86958e9f938eb513f65c75609dcfba"
+    },
+    {
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -752,6 +759,13 @@
       "role_description": "Executable checks",
       "bytes": 3669,
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
+    },
+    {
+      "path": "tests/test_study_start.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6073,
+      "sha256": "03a5205166a003da1d18ee3846dddab3ce2c6e149d7359d883f5e2407992dc98"
     },
     {
       "path": "tests/test_tools.py",
@@ -1348,6 +1362,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/study_start.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_start.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_architecture.py",
       "to": "Shared.library",
       "kind": "IMPORTS"
@@ -1599,6 +1623,11 @@
     },
     {
       "from": "tests/test_study_scope_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_study_start.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
