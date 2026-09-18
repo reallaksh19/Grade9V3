@@ -90,5 +90,44 @@
         }
       ]
     }
+  ],
+  "family": {
+    "invariant_demand": "Interpret the equation as a constraint on the unknown, preserve the solution set through reversible operations, keep every non-zero divisor condition explicit, report the rational solution exactly, and verify it in the original equation.",
+    "difficult_move": "Choosing transformations because they preserve the solution set rather than because they look like symbolic cancellation, while keeping exact equality distinct from a decimal approximation.",
+    "independent_check": "Substitute the reported value into the original equation; both sides must agree exactly, and every division used in the solution must have had a known non-zero divisor.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The rational domain, the next reversible operation, and the need to verify in the original equation are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The rational domain and the requirement to justify each reversible operation are supplied."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the original equation and the request for an exact verified solution are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A proposed solution step divides by an expression that may be zero, and the learner must decide whether that transformation preserves the original solution set.",
+      "information_not_handed_over": "whether the proposed divisor is guaranteed to be non-zero",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "The exact rational solution and a nearby decimal approximation are both presented, and the learner must determine which one actually satisfies the original equation.",
+      "information_not_handed_over": "which representation is exact and which is only an approximation",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A multi-step linear equation requires the learner to choose and justify a sequence of reversible operations before verifying the final value in the original equation.",
+      "information_not_handed_over": "which reversible operation should be applied next",
+      "repair_to": "R2"
+    }
   ]
 }
