@@ -64,6 +64,8 @@ class StudySession(unittest.TestCase):
         self.assertEqual(action["microtopic_ref"], "MIC-MEASURED-FROM")
         self.assertEqual(action["learner_state"]["state"], "UNOBSERVED")
         self.assertTrue(action["verification"]["prompt"])
+        self.assertNotIn("answer", action["verification"])
+        self.assertNotIn("oracle", action["verification"])
         self.assertIn("without help first", action["reason"])
 
     def test_missing_capability_teaches_before_exit_attempt(self):
@@ -91,6 +93,16 @@ class StudySession(unittest.TestCase):
         self.assertTrue(action["attempt"])
         self.assertTrue(action["reconstruct"])
         self.assertTrue(action["boundary_test"])
+        self.assertNotIn("defensible_answer", action["predict"])
+        self.assertNotIn("accepted", action["attempt"])
+        self.assertNotIn("rejected", action["attempt"])
+        self.assertNotIn("answer", action["boundary_test"])
+        self.assertNotIn("confirms", action["boundary_test"])
+        self.assertTrue(all(
+            set(row) == {"ask"}
+            for row in action["reconstruct"]["route"]
+        ))
+        self.assertNotIn("answer", action["verification"])
         self.assertEqual(action["after"], "ATTEMPT_EXIT_TASK")
 
     def test_demonstrated_local_capability_gets_quick_check_not_reteach(self):
