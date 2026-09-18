@@ -107,6 +107,34 @@ class ThirdAgentGoldenPath(unittest.TestCase):
         self.assertNotIn("INSPECT_AND_INGEST_SOURCE_BASIS",
                          [row["id"] for row in report["agent_actions"]])
 
+    def test_verified_source_drift_is_an_owner_decision_before_supplement_policy(self):
+        request = json.loads(
+            (REPO / "Requests/relative-motion-six-core.ncert-current.plan-request.json")
+            .read_text(encoding="utf-8")
+        )
+        report = plan_request.plan(request)
+        ids = [row["id"] for row in report["required_owner_inputs"]]
+        self.assertIn("SOURCE_BASIS_DRIFT_DECISION", ids)
+        self.assertNotIn("SUPPLEMENTAL_QUESTION_POLICY", ids)
+        self.assertEqual(
+            report["source"]["basis_assessment"]["status"], "DRIFT")
+        for core in ("CORE2", "CORE2A", "CORE2B"):
+            product = next(row for row in report["products"] if row["core"] == core)
+            self.assertEqual(product["state"], "WAITING_FOR_SOURCE_BASIS_DECISION")
+
+    def test_acknowledged_source_drift_then_exposes_supplement_policy(self):
+        request = json.loads(
+            (REPO / "Requests/relative-motion-six-core.ncert-current.plan-request.json")
+            .read_text(encoding="utf-8")
+        )
+        request["source_basis_drift_acknowledgement"] = "KEEP_SUPPLIED_DESPITE_DRIFT"
+        report = plan_request.plan(request)
+        ids = [row["id"] for row in report["required_owner_inputs"]]
+        self.assertNotIn("SOURCE_BASIS_DRIFT_DECISION", ids)
+        self.assertIn("SUPPLEMENTAL_QUESTION_POLICY", ids)
+        core2 = next(row for row in report["products"] if row["core"] == "CORE2")
+        self.assertEqual(core2["state"], "BLOCKED_SOURCE_CUSTODY")
+
     def test_buildability_reachability_and_review_are_separate_axes(self):
         report = self.report()
         self.assertEqual(report["invariant"], "READY_TO_BUILD != REACHABLE_TO_LEARN")
