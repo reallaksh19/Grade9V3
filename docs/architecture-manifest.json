@@ -16,7 +16,7 @@
     "TOOLING": 38,
     "WEB": 5
   },
-  "digest": "sha256:c6eccde0840fa5f90a17314d0550a0962dbda83810529ad30b5214681eb100e1",
+  "digest": "sha256:ea852f38e9779bd3c0a92dbb3af1e6b3d45b2387485dd1cca01eb46b0c5cdfc5",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -582,8 +582,8 @@
       "path": "Shared/tools/study_session.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 18404,
-      "sha256": "06b0f386b41ec45177ad8de4f04eae6804c24e86e6f24fa35ed081aefc17f318"
+      "bytes": 19870,
+      "sha256": "058d20c79a8d9868d3f18098551b2d351afc13ac38dd73b5d950adb323414e61"
     },
     {
       "path": "Shared/tools/study_start.py",
@@ -820,8 +820,8 @@
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8111,
-      "sha256": "6c6a4b5176614057b27b57b730c05cc98144c9ca345b9d83c1209d178c12373f"
+      "bytes": 8713,
+      "sha256": "8bb7ad0e9db116232a4f18a0d320d8fcf945bc8819881a3149c35b1f4d354613"
     },
     {
       "path": "tests/test_study_start.py",
