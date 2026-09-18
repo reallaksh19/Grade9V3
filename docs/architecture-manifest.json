@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 139,
-  "relation_count": 195,
+  "component_count": 141,
+  "relation_count": 196,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 47,
+    "TEST": 49,
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:037f3b28347ece66cb5a49e92fae4d54a63f05bcdd476c089c3dcf0e2bfbfff2",
+  "digest": "sha256:b72f0e047b74059d54ea88514dc482d1a3153a0d117d63b42553c48df6b3ba5f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -628,6 +628,13 @@
       "sha256": "398965f0f5ca57a42334915cf5c62cb05ba936b544656e89437da55b300eb3ba"
     },
     {
+      "path": "tests/fixtures/agent_path_stress/cases.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7737,
+      "sha256": "109bee8d8179cdaeb8514e3069a66bcbb7287e8089b1d80848919f3d0e2285f7"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -682,6 +689,13 @@
       "role_description": "Executable checks",
       "bytes": 757,
       "sha256": "1de5cdfb36e32cc769ce6305788d80bdccaed0a4ccee9d4e91fe3c4c752f9bf9"
+    },
+    {
+      "path": "tests/test_agent_path_stress_prompts.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5085,
+      "sha256": "a0a481d359a38bac437bf2243723ec0112e0a1c32a6bee89b26ba68dcc642f85"
     },
     {
       "path": "tests/test_application_context_schema.py",
@@ -915,18 +929,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 29339,
-      "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
-    },
-    {
       "path": "tests/test_study_session_scenario_scan.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 26000,
       "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
+    },
+    {
+      "path": "tests/test_study_session.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 29339,
+      "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1090,12 +1104,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -1125,12 +1139,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -1594,6 +1608,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_agent_path_stress_prompts.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_application_context_schema.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1909,12 +1928,12 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

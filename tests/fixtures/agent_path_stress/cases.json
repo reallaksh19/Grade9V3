@@ -1,0 +1,214 @@
+{
+  "suite_id": "AGENT-PATH-STRESS-V1",
+  "purpose": "Frozen copy/paste prompts and semantic expectations for checking whether a future agent follows the intended Grade9V3 routing path. These are system stress fixtures, never learner evidence.",
+  "rules": [
+    "Owner knowledge percentage selects a conservative starting coordinate only; it is never mastery evidence.",
+    "CORE1A and CORE1B traverse the same canonical rung segment; agency changes, target/depth do not.",
+    "Practice support comes from purpose, not from learner percentage.",
+    "Missing source basis for source-backed practice must remain an explicit owner input; the agent must not invent source custody.",
+    "Prerequisites remain checks/bridges unless evidence demonstrates them.",
+    "The agent derives current matrix/library facts from the repository rather than relying on remembered content.",
+    "No fixture may create LIVE_LEARNER evidence."
+  ],
+  "cases": [
+    {
+      "case_id": "APSTRESS-REL-60-TEACH",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Relative Motion. Student knowledge estimate: 60%. Use it only to select the starting rung and check prerequisites. Use the current canonical matrix/library; do not treat the percentage as mastery evidence.",
+      "request": {
+        "request_id": "APSTRESS-REL-60-TEACH",
+        "subject": "Physics",
+        "subtopic": "Relative motion",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 60,
+            "by": "owner",
+            "instruction": "Use 60% only as a conservative starting-coordinate estimate; do not infer mastery."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R3",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-SIGNED-PAIR"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "mark prerequisite as DEMONSTRATED",
+          "dilute CORE1A/CORE1B depth to 40%",
+          "choose a different rung for CORE1B"
+        ]
+      }
+    },
+    {
+      "case_id": "APSTRESS-REL-0-FOUNDATION",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Relative Motion. Student knowledge estimate: 0%. Use it only as the starting-rung estimate; do not infer that any capability is mastered.",
+      "request": {
+        "request_id": "APSTRESS-REL-0-FOUNDATION",
+        "subject": "Physics",
+        "subtopic": "Relative motion",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 0,
+            "by": "owner",
+            "instruction": "Use 0% only as a routing coordinate; do not create learner evidence."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R1",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY",
+        "prerequisite_checks": [],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "invent a rung below R1",
+          "write MISSING mastery evidence from the 0% estimate"
+        ]
+      }
+    },
+    {
+      "case_id": "APSTRESS-REL-100-TEACH",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Relative Motion. Student knowledge estimate: 100%. Start from the highest conservative matrix coordinate but still check prerequisites; 100% is not proof of mastery.",
+      "request": {
+        "request_id": "APSTRESS-REL-100-TEACH",
+        "subject": "Physics",
+        "subtopic": "Relative motion",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 100,
+            "by": "owner",
+            "instruction": "Use 100% as the initial routing coordinate only; prerequisite mastery remains unverified."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R5",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-SIGNED-PAIR",
+          "CAP-SAME-TIME",
+          "CAP-RELATIVE-V"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "mark all earlier rungs DEMONSTRATED",
+          "skip prerequisite checks because estimate is 100%"
+        ]
+      }
+    },
+    {
+      "case_id": "APSTRESS-G9-NLM-70-PRACTICE",
+      "prompt": "Prepare CORE1A, CORE1B and CORE2A for Physics — Newton's first law and free-body diagrams. Student knowledge estimate: 70%. CORE2A purpose: PRACTICE. Use the percentage only for starting-rung selection, and do not invent a source basis if one was not supplied.",
+      "request": {
+        "request_id": "APSTRESS-G9-NLM-70-PRACTICE",
+        "subject": "Physics",
+        "subtopic": "Newton's first law and free-body diagrams",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B",
+          "CORE2A"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 70,
+            "by": "owner",
+            "instruction": "Use 70% only as a conservative starting coordinate."
+          }
+        },
+        "practice": {
+          "CORE2A": {
+            "purpose": "PRACTICE"
+          }
+        }
+      },
+      "expected": {
+        "entry": "R3",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY",
+        "prerequisite_checks": [],
+        "required_owner_inputs": [
+          "SOURCE_BASIS"
+        ],
+        "practice_support": {
+          "CORE2A": "medium"
+        },
+        "must_not": [
+          "derive practice support from 70%",
+          "invent source custody",
+          "ask again for learner entry"
+        ]
+      }
+    },
+    {
+      "case_id": "APSTRESS-G9-WEP-80-TRANSFER",
+      "prompt": "Prepare CORE1A, CORE1B, CORE2A and CORE2B for Physics — Work, energy and power. Student knowledge estimate: 80%. CORE2A purpose: REVISION. CORE2B purpose: COMPETITION. Use the estimate only to choose the initial rung; preserve prerequisite checks and report missing source basis instead of guessing.",
+      "request": {
+        "request_id": "APSTRESS-G9-WEP-80-TRANSFER",
+        "subject": "Physics",
+        "subtopic": "Work, energy and power",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B",
+          "CORE2A",
+          "CORE2B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 80,
+            "by": "owner",
+            "instruction": "Use 80% only as an owner routing estimate; do not infer mastery."
+          }
+        },
+        "practice": {
+          "CORE2A": {
+            "purpose": "REVISION"
+          },
+          "CORE2B": {
+            "purpose": "COMPETITION"
+          }
+        }
+      },
+      "expected": {
+        "entry": "R4",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-WEP-WORK-DIRECTION",
+          "CAP-WEP-NET-WORK-SIGN",
+          "CAP-WEP-POTENTIAL-ELIGIBILITY"
+        ],
+        "required_owner_inputs": [
+          "SOURCE_BASIS"
+        ],
+        "practice_support": {
+          "CORE2A": "low",
+          "CORE2B": "minimum"
+        },
+        "must_not": [
+          "use 80% as a support level",
+          "assume R1-R3 are mastered",
+          "invent source custody",
+          "turn CORE2B into CORE2A with fewer hints"
+        ]
+      }
+    }
+  ]
+}
