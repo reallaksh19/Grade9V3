@@ -1,0 +1,74 @@
+name: pr9-practice-finalize
+
+on:
+  push:
+    branches: ["fix/p0-plan-compiler-agreement"]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet jsonschema
+
+      - name: Model final tree without this one-shot workflow
+        run: git rm .github/workflows/pr9-practice-finalize.yml
+
+      - name: Regenerate derived artifacts
+        run: python3 Shared/tools/build_manifest.py
+
+      - name: Run exact guardrail commands
+        run: |
+          python3 Shared/tools/topic_independence_guard.py --selftest
+          python3 Shared/tools/topic_independence_guard.py
+          python3 Shared/tools/spec_conformance.py --enforce
+          python3 Shared/tools/learner_evidence.py --enforce
+          python3 Shared/tools/matrix_conformance.py --enforce
+          python3 Shared/tools/resolve_request.py --enforce
+          python3 Shared/tools/practice_readiness.py --enforce
+          python3 Shared/tools/engineering_readiness.py --enforce
+          python3 Shared/tools/ceiling_audit.py --enforce
+          python3 Shared/tools/publication_provenance.py --enforce
+          python3 Shared/tools/republish.py
+          python3 Shared/library/depiction.py --enforce
+          python3 Shared/tools/spec_delivery.py --enforce --summary
+          python3 Shared/tools/check_subjects.py
+          python3 Shared/tools/capability_audit.py --enforce
+          python3 Shared/tools/build_manifest.py --check
+          python3 -m unittest discover -s tests -p "test_*.py" -v
+          python3 - <<'PY'
+          import json, sys
+          from pathlib import Path
+          bad = []
+          for path in sorted(Path(".").rglob("*.json")):
+              if ".git" in path.parts:
+                  continue
+              try:
+                  json.loads(path.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  bad.append(f"{path}: {exc}")
+          if bad:
+              print("\n".join(bad))
+              sys.exit(1)
+          print("all JSON documents parse")
+          PY
+
+      - name: Commit tested practice-coverage tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Finalize Grade 9 practice coverage"
+          git push origin HEAD:fix/p0-plan-compiler-agreement
+
+      - name: Dispatch final guardrails
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run guardrails.yml --ref fix/p0-plan-compiler-agreement
