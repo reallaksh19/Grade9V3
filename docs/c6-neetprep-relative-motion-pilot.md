@@ -131,3 +131,31 @@ transient throughout diagnosis and repair.
 - Do not treat NEETPrep difficulty percentages as learner evidence.
 - Do not treat site labels such as Level 1/2/3 as our ladder coordinates.
 - Do not infer academic review/source custody from successful routing.
+
+
+## Post-modernization routing status
+
+The vector-foundation content repair now gives Q4/Q5 a canonical route without stretching
+Relative Motion itself.
+
+New reusable capabilities:
+
+```text
+CAP-VECTOR-SIGNED-COMPONENT
+→ CAP-VEC-COMPONENT-SUM
+→ CAP-VEC-RESULTANT-CONSTRAINT
+```
+
+The retained transient worksheet mapping now includes:
+
+| External item | Primary | Secondary |
+| --- | --- | --- |
+| Q4 | `CAP-VEC-RESULTANT-CONSTRAINT` | `CAP-RELATIVE-V` |
+| Q5 | `CAP-VEC-RESULTANT-CONSTRAINT` | `CAP-RELATIVE-V`, `CAP-RIGHT-TRIANGLE` |
+
+This does **not** claim full arbitrary-angle trigonometric decomposition. The active content
+teaches signed-component composition and an explicit resultant-component constraint. If an
+item requires deriving components from an angle using sine/cosine, that remains a separate
+provider/content gap rather than being hidden inside vector addition.
+
+The external NEETPrep questions remain transient demand evidence and are not canonicalized.

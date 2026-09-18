@@ -1,7 +1,7 @@
 {
   "worksheet_id": "NEETPREP-MQB-RELATIVE-MOTION-ROUTABLE-SLICE",
   "subject": "Physics",
-  "source_note": "External demand evidence from NEETPrep Mini Q Bank - Motion in a Plane, Relative Motion filter. Only the text-visible questions that map cleanly to existing canonical capabilities are included here. External questions remain transient and are not promoted to Core2/source custody.",
+  "source_note": "External demand evidence from NEETPrep Mini Q Bank - Motion in a Plane, Relative Motion filter. Text-visible questions that now map to canonical capabilities are included. External questions remain transient and are not promoted to Core2/source custody.",
   "questions": [
     {
       "question_id": "NEETPREP-MQB-REL-Q1",
@@ -41,6 +41,25 @@
       ],
       "mapping_basis": "AGENT_PROPOSAL",
       "note": "Perpendicular chase/intercept geometry; relative frame plus right-triangle relation is required to obtain catch time."
+    },
+    {
+      "question_id": "NEETPREP-MQB-REL-Q4",
+      "primary_capability_ref": "CAP-VEC-RESULTANT-CONSTRAINT",
+      "secondary_capability_refs": [
+        "CAP-RELATIVE-V"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "River crossing directly opposite: compose swimmer-relative-water and water-relative-ground velocities, choose the along-river swimmer component so the ground-relative along-river component cancels."
+    },
+    {
+      "question_id": "NEETPREP-MQB-REL-Q5",
+      "primary_capability_ref": "CAP-VEC-RESULTANT-CONSTRAINT",
+      "secondary_capability_refs": [
+        "CAP-RELATIVE-V",
+        "CAP-RIGHT-TRIANGLE"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Shortest-path river crossing: impose the perpendicular-resultant constraint, compose signed components, and use the right-triangle relation if a magnitude relation is requested."
     }
   ]
 }

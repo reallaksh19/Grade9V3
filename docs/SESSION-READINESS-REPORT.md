@@ -19,9 +19,9 @@ diagnosis, repair or verification support is incomplete.
 | Status | Count |
 | --- | ---: |
 | `SESSION_READY` | 5 |
-| `SESSION_READY_WITH_BRIDGE` | 1 |
-| `PILOT_READY` | 1 |
-| `NOT_READY` | 9 |
+| `SESSION_READY_WITH_BRIDGE` | 3 |
+| `PILOT_READY` | 0 |
+| `NOT_READY` | 8 |
 
 ### Mathematics
 
@@ -50,21 +50,15 @@ it is **not** a claim that the Mathematics syllabus is complete.
 - Relative motion
   - explicit prerequisite bridge: signed-coordinate capability → Mathematics
   - provider acceptance remains visible rather than assumed
-
-### PILOT_READY
-
 - Vector representation and subtraction
-
-The vector-representation matrix has teaching records but lacks complete Core1A/Core1B route
-coverage for its three current teaching microtopics:
-
-- `MIC-VECTOR-VS-SCALAR`
-- `MIC-SIGNED-COMPONENT`
-- `MIC-GRAPHICAL-SUBTRACTION`
-
-The audit also reports thin primary-practice/source custody and pending academic review. Those
-are warnings rather than structural blockers for a private pilot, but the missing Core1A /
-Core1B routing keeps the matrix below `SESSION_READY`.
+  - R1 vector-vs-magnitude and R2 signed-component reading now have distinct capabilities
+  - Core1A/Core1B reconstruction coverage exists for all three rungs
+  - the signed-coordinate prerequisite remains an explicit Mathematics bridge
+- Vector addition, subtraction and orientation
+  - active matrix now contains the demanded R1 component sum, R2 resultant constraint and
+    R3 subtraction-order rungs
+  - cross product is deferred rather than filled without demand
+  - transitive Mathematics bridges remain visible
 
 ### NOT_READY
 
@@ -76,26 +70,22 @@ Core1B routing keeps the matrix below `SESSION_READY`.
 - Oscillations, simple harmonic motion and waves
 - Rotational dynamics, angular momentum and rolling
 - Thermodynamics and heat engines
-- Vector addition, subtraction and orientation
-
 These should not be enabled in the practical session runner merely because a matrix file
 exists.
 
 ## High-value blocker detail
 
-### Vector addition, subtraction and orientation — NOT_READY
+### Vector foundations — repaired benchmark slice
 
-Current matrix state:
+The benchmark-named vector defects are now repaired without changing Shared delivery rules:
 
-- `R3 / CAP-VEC-SUB-ORDER` is ready.
-- Three other rungs have no canonical `microtopic_ref` yet.
-- The audit also detects a prerequisite that resolves to more than one canonical teaching
-  location.
-
-This is the clearest high-ROI content gap for later Motion-in-a-Plane work. The fix belongs
-in the subject-content stream: author the smallest reusable vector-addition/decomposition
-microtopics/capabilities and remove the prerequisite-location ambiguity. Do not weaken the
-readiness rule and do not add one capability per exam question.
+- `CAP-VECTOR-VS-SCALAR` has one R1 teaching location;
+- `CAP-VECTOR-SIGNED-COMPONENT` has one R2 teaching location;
+- graphical subtraction depends on the signed-component capability;
+- Vector Representation has Core1A/Core1B coverage for all three rungs;
+- Vector Add/Sub provides the minimum reusable component-composition and resultant-constraint
+  teaching justified by real NEETPrep Q4/Q5 demand;
+- arbitrary-angle trigonometric decomposition remains explicit as a content/provider gap.
 
 ### Universal gravitation — NOT_READY
 
@@ -131,13 +121,12 @@ Physics
   Sound
   Work / energy / power
   Relative motion          [with Mathematics bridge]
+  Vector representation     [with Mathematics bridge]
+  Vector add/sub            [with Mathematics bridge]
 
 Mathematics
   One-unknown linear equations
 ```
-
-Vector representation remains useful for controlled pilot work but should stay visibly
-`PILOT_READY` until its Core1A/Core1B route coverage is completed.
 
 ## Immediate use
 
@@ -171,13 +160,9 @@ session readiness
 
 If the next real worksheet stays within Relative Motion, no subject expansion is needed.
 
-If Motion in a Plane becomes the next target, the first subject-content priority is:
-
-```text
-general vector addition / decomposition
-→ resolve current vector matrix gaps
-→ projectile model selection
-→ minimum reusable component-kinematics chain
-```
+For Motion in a Plane, the vector foundation prerequisite is now available at the current
+component level. The next content expansion should remain demand-gated. In particular,
+arbitrary-angle trigonometric decomposition and projectile model selection should be added
+only when a selected question requires them.
 
 The core architecture does not need another subsystem for this work.

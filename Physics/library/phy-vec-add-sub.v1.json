@@ -49,7 +49,7 @@
       "title": "Vector addition, subtraction and orientation",
       "topic": "Vectors / Motion in a Plane",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Only the operand-order discrimination is authored here; the surrounding quantitative vector operations remain registry-blocked.",
+      "badge_reason": "The active slice now covers component-wise vector composition, explicit resultant-component constraints, and subtraction-order orientation; unrelated cross-product material remains deferred.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -62,17 +62,55 @@
         }
       ],
       "scope": {
-        "covers": "Qualitative operand-order orientation for vector subtraction.",
+        "covers": "Component-wise vector addition in declared axes, choosing an input component to satisfy a resultant-component constraint, and qualitative operand-order orientation for vector subtraction.",
         "excluded": [
-          "Unit-vector normalization and magnitude formulae.",
-          "Quantitative vector-addition resultant formulae.",
-          "Cross-product magnitude and axial-orientation formulae."
+          "Trigonometric decomposition from an arbitrary angle when component values are not otherwise available.",
+          "Dot-product calculations.",
+          "Cross-product magnitude and axial-orientation calculations."
         ],
         "extension_refs": []
       }
     }
   ],
   "capabilities": [
+    {
+      "id": "CAP-VEC-RESULTANT-CONSTRAINT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB",
+        "SRC-NCERT-PLANE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Choose or solve an input component so a specified resultant component is zero or another stated value.",
+      "success_criterion": "Write the relevant component-sum equation with signs, impose the stated resultant constraint, and solve the required input component before interpreting the physical direction.",
+      "prerequisite_refs": [
+        "CAP-VEC-COMPONENT-SUM"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-COMPONENT-SUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB",
+        "SRC-NCERT-PLANE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Combine vectors expressed in one declared axis system by adding corresponding signed components.",
+      "success_criterion": "Add x-components with x-components and y-components with y-components, preserve signs, and state the resultant component pair without replacing vector addition by magnitude addition.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
     {
       "id": "CAP-VEC-SUB-ORDER",
       "version": "0.1.0",
@@ -93,6 +131,291 @@
     }
   ],
   "microtopics": [
+    {
+      "id": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB",
+        "SRC-NCERT-PLANE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Impose a component constraint on a resultant",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-RESULTANT-CONSTRAINT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must reverse the usual direction of reasoning: instead of finding the resultant from inputs, one resultant component is specified and an input component must be chosen to make it true.",
+      "entry_assumptions": [
+        "Can add vectors component by component in a common axis system."
+      ],
+      "inferential_jump": "A requested resultant direction can be translated into a component condition, such as zero along one axis, and that condition can be solved before any magnitude or travel-time calculation.",
+      "teaching_path": [
+        {
+          "id": "VC-1",
+          "role": "DECLARE",
+          "action": "Translate the requested resultant direction into a component condition on the declared axes.",
+          "why_valid": "A resultant exactly perpendicular to one axis has zero component along that axis.",
+          "inputs": [],
+          "output": "For a direct-across resultant, the along-stream resultant component is set to zero."
+        },
+        {
+          "id": "VC-2",
+          "role": "TRANSFORM",
+          "action": "Write the component-sum equation for that axis using all contributing vectors with their signs.",
+          "why_valid": "The resultant component equals the sum of the input components on the same axis.",
+          "inputs": [
+            "CAP-VEC-COMPONENT-SUM"
+          ],
+          "output": "R_x=A_x+B_x, with the stated target substituted for R_x."
+        },
+        {
+          "id": "VC-3",
+          "role": "TRANSFORM",
+          "action": "Solve the signed input component required to satisfy the target.",
+          "why_valid": "The constraint equation determines the compensating component directly.",
+          "inputs": [],
+          "output": "If R_x=0, then the required compensating input is A_x=-B_x."
+        },
+        {
+          "id": "VC-4",
+          "role": "VERIFY",
+          "action": "Substitute the solved component back into the sum and confirm the constrained resultant component.",
+          "why_valid": "Direct substitution checks both sign and axis choice without relying on the story wording.",
+          "inputs": [],
+          "output": "The constrained component evaluates to the requested target."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "To make a resultant point directly across, each contributing vector must itself point directly across.",
+          "diagnostic_prompt": "Can one vector have an along-stream component if another vector has an equal opposite along-stream component?",
+          "repair": "Apply the condition to the resultant, not each input. Opposite signed components can cancel while the individual vectors remain angled."
+        },
+        {
+          "wrong_idea": "A zero resultant component means all motion or all vector magnitude is zero.",
+          "diagnostic_prompt": "If the resultant x-component is zero but the y-component is positive, is the resultant the zero vector?",
+          "repair": "A component constraint applies to one axis only. The resultant can still be nonzero on the perpendicular axis."
+        }
+      ],
+      "exit_task": {
+        "prompt": "In one frame, a current contributes +3 along the x-axis. Choose the swimmer's x-component so the combined velocity has x-component 0, and state the equation you used.",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The swimmer must contribute -3 along x, because 0=(-3)+3.",
+          "reasoning": [
+            "The target is a zero x-component for the resultant.",
+            "The resultant x-component is the signed sum of swimmer and current x-components.",
+            "Setting 0=v_swimmer,x+3 gives v_swimmer,x=-3."
+          ],
+          "check": "Substitute -3 back into the x-component sum and verify it equals zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is a signed one-axis constraint check; any later magnitude or angle calculation is deliberately outside this capability."
+        }
+      },
+      "research_contribution": "This constraint formulation is author-created to isolate a reusable vector-composition move exposed by real river-crossing demand; it does not promote the external question bank to curriculum authority.",
+      "prerequisite_refs": [
+        "MIC-PHY-VEC-COMPONENT-SUM"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A current contributes +3 along x. If the resultant must have no x-component, should the swimmer's x-component have the same sign or the opposite sign?",
+          "defensible_answer": "Opposite sign, so the two x-components can cancel."
+        },
+        "attempt": {
+          "produces": "A one-axis component equation with the target resultant value and the solved compensating input component.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Writes the resultant component as a signed sum of the input components.",
+              "evidence_of": "Applying vector composition to the constrained axis."
+            },
+            {
+              "criterion": "Solves the compensating component with the opposite sign.",
+              "evidence_of": "Using the target condition rather than forcing each input to zero."
+            }
+          ],
+          "accepted": [
+            "0=v_x+3, so v_x=-3."
+          ],
+          "rejected": [
+            "v_x=0 because the boat must go directly across; this incorrectly applies the resultant condition to one input vector."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which component of the resultant is specified by the direction requirement?",
+              "why_this_ask": "It turns the verbal direction into an axis condition.",
+              "from_step_ref": "VC-1"
+            },
+            {
+              "ask": "Which input components contribute on that same axis?",
+              "why_this_ask": "It prevents mixing the perpendicular component into the constraint.",
+              "from_step_ref": "VC-2"
+            },
+            {
+              "ask": "What signed input would make their sum equal the target?",
+              "why_this_ask": "The learner solves the cancellation rather than memorizing an upstream-heading rule.",
+              "from_step_ref": "VC-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path names the target component first. Reconstruction starts from the requested direction and asks the learner to discover which component equation carries that constraint."
+        },
+        "boundary_test": {
+          "prompt": "If the current's x-component were zero, what x-component would the swimmer need for a zero-x resultant?",
+          "answer": "Zero.",
+          "confirms": "The compensating component exists only to satisfy the resultant constraint; it is not an intrinsic river-crossing rule."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-VEC-COMPONENT-SUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB",
+        "SRC-NCERT-PLANE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Add vectors by corresponding signed components",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-COMPONENT-SUM",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The arithmetic is simple once the representation is correct, but learners often add magnitudes or mix unlike axes instead of combining corresponding signed components.",
+      "entry_assumptions": [
+        "Can read signed vector components against declared axes.",
+        "Can distinguish a vector from its magnitude."
+      ],
+      "inferential_jump": "Vector addition preserves direction information by combining each axis independently; magnitude-only addition is only valid in special collinear cases.",
+      "teaching_path": [
+        {
+          "id": "VA-1",
+          "role": "DECLARE",
+          "action": "Put both vectors in the same declared x-y axis system and write each as a signed component pair.",
+          "why_valid": "Corresponding components can only be combined when they refer to the same axes and positive directions.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "A=(A_x,A_y), B=(B_x,B_y) in one common axis system."
+        },
+        {
+          "id": "VA-2",
+          "role": "TRANSFORM",
+          "action": "Add corresponding signed components: x with x and y with y.",
+          "why_valid": "Vector addition is component-wise in a common basis, so each axis contribution combines independently.",
+          "inputs": [],
+          "output": "A+B=(A_x+B_x, A_y+B_y)."
+        },
+        {
+          "id": "VA-3",
+          "role": "VERIFY",
+          "action": "Check the resultant direction from the component signs and compare with the rough tail-to-head geometry.",
+          "why_valid": "The component pair and graphical resultant are two representations of the same vector and must agree in orientation.",
+          "inputs": [],
+          "output": "A signed resultant pair whose quadrant/direction agrees with the arrow construction."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The magnitude of A+B is always |A|+|B|.",
+          "diagnostic_prompt": "Two equal vectors point in opposite directions. Must their resultant magnitude equal the sum of their two magnitudes?",
+          "repair": "Keep the directions by using signed components or a tail-to-head diagram. Opposite components cancel instead of adding as positive sizes."
+        },
+        {
+          "wrong_idea": "Any two component numbers can be added if they come from the two vectors.",
+          "diagnostic_prompt": "Should an x-component from A ever be added directly to a y-component from B when the axes are unchanged?",
+          "repair": "Match axis with axis: x contributions combine only with x contributions, and y only with y."
+        }
+      ],
+      "exit_task": {
+        "prompt": "In one east-positive, north-positive frame, A=(3,4) and B=(-5,2). State A+B as signed components and describe the resultant's horizontal and vertical directions.",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A+B=(-2,6): the resultant points westward and northward in the declared frame.",
+          "reasoning": [
+            "Add horizontal components: 3+(-5)=-2.",
+            "Add vertical components: 4+2=6.",
+            "Negative x means west and positive y means north under the declared axes."
+          ],
+          "check": "A rough tail-to-head sketch should end left of and above the start.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "All component values are declared in the prompt; the task checks component-wise composition and sign interpretation."
+        }
+      },
+      "research_contribution": "The component-wise vector-addition rule is standard; this numerical teaching sequence is author-created and remains pending independent scientific/pedagogical review.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A points mostly northeast and B has a larger westward than eastward horizontal contribution. Before calculating, which horizontal sign do you expect for A+B?",
+          "defensible_answer": "Negative/westward, because the westward horizontal contribution is larger in magnitude."
+        },
+        "attempt": {
+          "produces": "One signed resultant component pair plus a short axis-by-axis addition.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Adds only corresponding components.",
+              "evidence_of": "Treating vector addition as axis-wise composition."
+            },
+            {
+              "criterion": "Preserves negative signs through the arithmetic.",
+              "evidence_of": "Retaining directional information rather than adding magnitudes."
+            }
+          ],
+          "accepted": [
+            "(-2,6), from 3+(-5) and 4+2."
+          ],
+          "rejected": [
+            "(8,6), which turns the westward component into a positive size before adding."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which numbers describe horizontal contributions in the common frame?",
+              "why_this_ask": "It restores axis matching before any arithmetic.",
+              "from_step_ref": "VA-1"
+            },
+            {
+              "ask": "What is the signed horizontal total? What is the signed vertical total?",
+              "why_this_ask": "It rebuilds the vector one axis at a time.",
+              "from_step_ref": "VA-2"
+            },
+            {
+              "ask": "Do those two signs agree with where a tail-to-head sketch should end?",
+              "why_this_ask": "The geometric check catches sign or axis swaps.",
+              "from_step_ref": "VA-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states the component rule directly. Reconstruction starts from the direction prediction and uses the sketch only as an independent check after the component sums are produced."
+        },
+        "boundary_test": {
+          "prompt": "If B=-A, what must A+B be?",
+          "answer": "The zero vector: every component cancels.",
+          "confirms": "Corresponding signed components, not magnitudes, are what combine in vector addition."
+        }
+      }
+    },
     {
       "id": "MIC-PHY-VEC-SUB-ORDER",
       "version": "0.1.0",
@@ -336,6 +659,97 @@
   ],
   "teaching_routes": [
     {
+      "id": "ROUTE-PHY-VEC-COMPOSE-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Predict and reconstruct component composition",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-COMPONENT-SUM",
+        "MIC-PHY-VEC-RESULTANT-CONSTRAINT"
+      ],
+      "entry_needs": [
+        "Same intrinsic prerequisites as Core1A; no learner-percentage assumption."
+      ],
+      "learner_actions": [
+        "Predict the resultant sign before arithmetic.",
+        "Reconstruct axis-wise addition.",
+        "Derive the compensating component from a stated resultant constraint."
+      ],
+      "help_plan": [
+        "Ask which terms belong to the same axis before showing an equation.",
+        "Ask which resultant component is constrained before revealing cancellation.",
+        "Require a substitution check."
+      ],
+      "reveal_plan": "Attempt first is recommended; the complete model answer remains available after the learner commits.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+          "purpose": "Candidate elicitation route",
+          "reason": "The reconstruction prompts are authored for this active content slice."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not infer an angle or magnitude relation that is not represented by the current capabilities."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-VEC-COMPOSE-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB",
+        "SRC-NCERT-PLANE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Completed component composition and resultant constraint",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-COMPONENT-SUM",
+        "MIC-PHY-VEC-RESULTANT-CONSTRAINT"
+      ],
+      "entry_needs": [
+        "Signed-component reading from the Vector Representation prerequisite is available."
+      ],
+      "learner_actions": [
+        "Add corresponding signed components in one common axis system.",
+        "Translate a requested resultant direction into a component condition and solve the required input component."
+      ],
+      "help_plan": [
+        "Keep one common axis convention visible.",
+        "Write the target resultant component before solving for an input.",
+        "Use a substitution check after solving the constraint."
+      ],
+      "reveal_plan": "Completed component equations and checks are visible in the declarative study product.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-NCERT-PLANE",
+          "purpose": "Vector composition semantics",
+          "reason": "Higher-grade source supports component-based vector reasoning used by the owner-extension content."
+        },
+        {
+          "resource_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+          "purpose": "Candidate self-study sequence",
+          "reason": "The exact teaching sequence is project-authored and remains pending independent review."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to teach missing trigonometric decomposition from an arbitrary angle."
+      ],
+      "practice_profile_ref": null
+    },
+    {
       "id": "ROUTE-PHY-VEC-ADD-SUB-A",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -418,7 +832,27 @@
   ],
   "practice_profiles": [],
   "evidence": [],
-  "known_issues": [],
+  "known_issues": [
+    {
+      "id": "ISS-VEC-CROSS-PRODUCT-DEFERRED",
+      "affected_refs": [
+        "MATRIX-PHY-VEC-ADD-SUB"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The previous synthesis matrix bundled an unimplemented cross-product rung with the active component-addition/subtraction slice. No current retained worksheet demand justifies teaching cross product in this self-study route.",
+      "next_action": "Keep cross product outside the active matrix until a real worksheet, syllabus requirement, or owner-approved extension supplies distinct demand and prerequisite support."
+    },
+    {
+      "id": "ISS-VEC-ANGLE-DECOMPOSITION-MATH",
+      "affected_refs": [
+        "CAP-VEC-COMPONENT-SUM",
+        "CAP-VEC-RESULTANT-CONSTRAINT"
+      ],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "The active slice composes already available signed components and solves component constraints. It does not yet teach trigonometric decomposition of a magnitude-and-angle vector into components.",
+      "next_action": "Add a provider-grounded trigonometric decomposition prerequisite only when a selected question genuinely requires that move."
+    }
+  ],
   "extensions": {},
   "data": [
     {

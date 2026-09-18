@@ -25,7 +25,7 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
         mapping = self.mapping()
         report = study_map.resolve(mapping)
         self.assertTrue(report["passed"], report["findings"])
-        self.assertEqual(len(report["questions"]), 4)
+        self.assertEqual(len(report["questions"]), 6)
 
         index = study_map.subject_index("Physics")
         canonical = index["canonical_questions"]
@@ -34,7 +34,7 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
                 self.assertEqual(row["mapping_basis"], "AGENT_PROPOSAL")
                 self.assertNotIn(row["question_id"], canonical)
 
-    def test_all_routable_questions_use_the_existing_relative_motion_family(self):
+    def test_routable_questions_use_existing_relative_motion_or_vector_foundation_capabilities(self):
         mapping = self.mapping()
         expected = {
             "NEETPREP-MQB-REL-Q1": (
@@ -48,6 +48,14 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
             "NEETPREP-MQB-REL-Q3": (
                 "CAP-RELATIVE-V",
                 {"CAP-VECTOR-CHECK", "CAP-RIGHT-TRIANGLE"},
+            ),
+            "NEETPREP-MQB-REL-Q4": (
+                "CAP-VEC-RESULTANT-CONSTRAINT",
+                {"CAP-RELATIVE-V"},
+            ),
+            "NEETPREP-MQB-REL-Q5": (
+                "CAP-VEC-RESULTANT-CONSTRAINT",
+                {"CAP-RELATIVE-V", "CAP-RIGHT-TRIANGLE"},
             ),
             "NEETPREP-MQB-REL-Q7": (
                 "CAP-RELATIVE-V",
@@ -122,10 +130,10 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
         self.assertEqual(verification["kind"], "QUESTION")
         self.assertEqual(verification["question_ref"], "Q-AUTHOR-REL-01")
 
-    def test_unmapped_source_items_are_not_smuggled_into_the_executable_fixture(self):
+    def test_figure_dependent_source_items_are_not_smuggled_into_the_executable_fixture(self):
         ids = {row["question_id"] for row in self.mapping()["questions"]}
-        self.assertNotIn("NEETPREP-MQB-REL-Q4", ids)
-        self.assertNotIn("NEETPREP-MQB-REL-Q5", ids)
+        self.assertIn("NEETPREP-MQB-REL-Q4", ids)
+        self.assertIn("NEETPREP-MQB-REL-Q5", ids)
         self.assertNotIn("NEETPREP-MQB-REL-Q6", ids)
         self.assertNotIn("NEETPREP-MQB-REL-Q8", ids)
 

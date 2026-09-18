@@ -139,9 +139,13 @@ granularity is wrong for self-study/evidence routing.
   NEETPrep Relative Motion bank already exposes this missing prerequisite in river-crossing
   questions Q4/Q5.
 - Fix PR:
-  FUTURE CONTENT PR — Vector Addition/Decomposition first.
+  PR #56 — Vector foundations modernization; the demand-justified Vector Add/Sub slice is
+  completed without filling unrelated matrices.
 - Re-benchmark result:
-  PENDING.
+  PARTIALLY RESOLVED — the active Vector Add/Sub matrix is now SESSION_READY_WITH_BRIDGE and
+  NEETPrep Q4/Q5 route through reusable component-composition/constraint capabilities.
+  Remaining GAP-QSM-0002 matrices stay demand-gated; arbitrary-angle trigonometric
+  decomposition remains explicit.
 
 ---
 
@@ -216,10 +220,11 @@ granularity is wrong for self-study/evidence routing.
 - Decision:
   Treat as a **content-model repair**, not a Shared runtime repair.
 - Fix PR:
-  FUTURE CONTENT-MODEL PR, preferably combined with GAP-QSM-0004 because both concern the
-  same legacy Vector Representation package.
+  PR #56 — combined with GAP-QSM-0004 as one Vector Representation modernization.
 - Re-benchmark result:
-  PENDING.
+  RESOLVED for the observed ambiguity — R1/R2 now have distinct primary capabilities,
+  each vector-foundation capability has one teaching location, and the Shared ambiguity
+  resolver remains unchanged.
 
 ---
 
@@ -269,9 +274,10 @@ granularity is wrong for self-study/evidence routing.
   Combine with GAP-QSM-0003 as one **Vector Representation modernization** PR so capability
   granularity and self-tutor routes are corrected together.
 - Fix PR:
-  FUTURE VECTOR REPRESENTATION MODERNIZATION PR.
+  PR #56 — Vector Representation modernization.
 - Re-benchmark result:
-  PENDING.
+  RESOLVED — all three active Vector Representation rungs now have Core1A/Core1B route
+  coverage, complete elicitation cycles, and readiness reports SESSION_READY_WITH_BRIDGE.
 
 ---
 
@@ -310,3 +316,18 @@ therefore protecting the architecture and should remain strict.
 
 The next repair should be a small, explicit Physics content-model migration, followed by a
 full benchmark rerun before any further repair.
+
+
+## Repair execution update
+
+PR #56 executes the first three steps of the fix-order decision without altering Shared
+resolver semantics:
+
+1. Vector Representation capability granularity is split and Core1A/Core1B routes are added.
+2. The minimum reusable Vector Addition/component-constraint slice justified by NEETPrep
+   Q4/Q5 is completed.
+3. A focused re-benchmark is recorded in
+   `benchmarks/question-study-map/REBENCHMARK-VECTOR-FOUNDATIONS.md`.
+
+The remaining GAP-QSM-0001 inventory work and unrelated GAP-QSM-0002 matrices remain
+deliberately demand-gated.
