@@ -170,9 +170,15 @@
         },
         {
           "kind": "VALIDATOR",
-          "ref": "POWER_RATE",
+          "ref": "AVERAGE_POWER",
           "required_for": "NUMERIC_EXIT",
-          "reason": "Average and instantaneous power calculations need an implemented validator."
+          "reason": "Average-power calculations need the implemented interval validator."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "INSTANTANEOUS_POWER",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Instantaneous force-velocity power calculations need the implemented same-instant validator."
         }
       ]
     }
