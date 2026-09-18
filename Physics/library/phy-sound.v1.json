@@ -47,7 +47,10 @@
         "SRC-AUTHOR-SOUND-G9"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
+        "grade9_track": "STANDARD"
+      },
       "title": "Sound",
       "topic": "Sound",
       "intrinsic_badge": "MEDIUM",
@@ -1091,7 +1094,9 @@
       ],
       "item_refs": [
         "Q-PHY-SOUND-2A-01",
-        "Q-PHY-SOUND-2B-01"
+        "Q-PHY-SOUND-2B-01",
+        "Q-PHY-SOUND-2A-COV-02",
+        "Q-PHY-SOUND-2A-COV-03"
       ]
     }
   ],
@@ -1239,6 +1244,112 @@
         ]
       },
       "repair_ref": "SOUND5-1"
+    },
+    {
+      "id": "Q-PHY-SOUND-2A-COV-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SOUND-G9",
+      "original_identifier": "AUTHOR-SOUND-COVERAGE-02",
+      "stem": "A bell rings inside a sealed chamber. Compare what happens to ordinary sound transmission as the air is gradually removed, while the bell itself can still vibrate.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The bell may still vibrate, but ordinary sound transmission through the chamber becomes weaker and tends toward none as the material medium is removed.",
+        "reasoning": [
+          "The source vibration can remain.",
+          "Sound propagation requires neighboring material particles to transmit the disturbance.",
+          "Removing the gas removes that propagation path."
+        ],
+        "check": "The claim distinguishes source vibration from sound transmission rather than saying the bell must stop moving.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-SOUND-SOURCE-MEDIUM",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-SOUND-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What object is vibrating?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Track one small region of air: particles oscillate locally while the disturbance passes from neighbor to neighbor.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-SOUND-2A-COV-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SOUND-G9",
+      "original_identifier": "AUTHOR-SOUND-COVERAGE-03",
+      "stem": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener.",
+        "reasoning": [
+          "The wave is longitudinal in the simple fluid model.",
+          "Particle displacement is mainly parallel to propagation.",
+          "The travelling feature is the compression/rarefaction pattern, not a parcel of air moving across the room."
+        ],
+        "check": "After many cycles the particle can still be near its original equilibrium region even though the sound disturbance has propagated far away.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-SOUND-LONGITUDINAL",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-SOUND-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking: What direction does the wave travel?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Track the marked particle: it oscillates around its local equilibrium while successive compressions/rarefactions travel onward.",
+          "reveals": "METHOD"
+        }
+      ]
     }
   ],
   "teaching_routes": [
@@ -1342,7 +1453,9 @@
   "practice_profiles": [],
   "evidence": [],
   "known_issues": [],
-  "extensions": {},
+  "extensions": {
+    "grade9_track": "STANDARD"
+  },
   "data": [
     {
       "id": "DAT-SOUND-PERIOD",
