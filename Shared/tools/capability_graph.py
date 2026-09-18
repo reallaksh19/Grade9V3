@@ -103,21 +103,26 @@ def resolve_entry(rows: list[dict], requested_rung: str, held: dict[str, str],
     closure = prerequisite_closure(target["capability"], caps)
     unmet = [p for p in closure if held.get(p) != "DEMONSTRATED"]
     same = [by_cap[p] for p in unmet if p in by_cap]
-    if same:
-        earliest = min(same, key=lambda row: row["position"])
-        return {"rung": earliest["rung"], "reason": "PREREQUISITE_BACKTRACK",
-                "requested_rung": requested_rung,
-                "requested_capability": target["capability"],
-                "capability": earliest["capability"],
-                "bridges": [], "unresolved": []}
+    selected = min(same, key=lambda row: row["position"]) if same else target
 
+    # Re-evaluate from the selected rung. If we backtracked from R4 to R3, R3's own
+    # external prerequisite is still required; backtracking must not erase it.
+    selected_closure = prerequisite_closure(selected["capability"], caps)
+    selected_unmet = [p for p in selected_closure if held.get(p) != "DEMONSTRATED"]
     cap_to_mic = {}
     for mic in mics.values():
         cap = mic.get("primary_capability_ref")
         if cap:
             cap_to_mic.setdefault(cap, mic["id"])
-    bridges = [p for p in unmet if p not in by_cap and p in cap_to_mic]
-    unresolved = [p for p in unmet if p not in by_cap and p not in cap_to_mic]
-    return {"rung": requested_rung, "reason": "REQUESTED_RUNG_REACHABLE",
-            "capability": target["capability"], "bridges": bridges,
+    external = [p for p in selected_unmet if p not in by_cap]
+    bridges = [
+        p for p in external
+        if p in cap_to_mic or bool(caps.get(p, {}).get("external_provider"))
+    ]
+    unresolved = [p for p in external if p not in bridges]
+    reason = "PREREQUISITE_BACKTRACK" if same else "REQUESTED_RUNG_REACHABLE"
+    return {"rung": selected["rung"], "reason": reason,
+            "requested_rung": requested_rung,
+            "requested_capability": target["capability"],
+            "capability": selected["capability"], "bridges": bridges,
             "unresolved": unresolved}
