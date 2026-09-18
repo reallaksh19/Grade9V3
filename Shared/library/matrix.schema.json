@@ -183,6 +183,46 @@
                 }
               }
             }
+          },
+          "engineering_dependencies": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Upstream engineering assets this rung needs before it can honestly move from backlog into authored teaching. Resolution is computed by Shared/tools/engineering_readiness.py; the matrix names the dependency but never grants authority.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "ref",
+                "required_for",
+                "reason"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "GATE_RELATION",
+                    "VALIDATOR",
+                    "GATE_REPRESENTATION",
+                    "REPRESENTATION_KIND"
+                  ]
+                },
+                "ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "required_for": {
+                  "enum": [
+                    "RUNG_AUTHORITY",
+                    "NUMERIC_EXIT",
+                    "LEARNER_REPRESENTATION"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
           }
         }
       }
