@@ -21,6 +21,7 @@ from Shared.tools import academic_readiness, capability_graph, resolve_request
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
 PRACTICE = ("CORE2A", "CORE2B")
+LEARNER_ROUTED = PERSONALISED_TEACHING + PRACTICE
 SOURCE_PRODUCTS = ("CORE2", "CORE2A", "CORE2B")
 SCHEMA = REPO / "Shared/library/authoring-request.schema.json"
 FIXTURE_GLOB = "*.plan-request.json"
@@ -132,22 +133,42 @@ def _rung_inventory(board: dict, mics: dict) -> list[dict]:
     return rows
 
 
-def execution_handoff(report: dict) -> dict:
-    """Plan and execute are different operations; execution refuses unresolved planning."""
-    blockers = []
-    blockers.extend(f["point"] for f in report.get("findings", []))
-    blockers.extend(row["id"] for row in report.get("required_owner_inputs", []))
-    blockers.extend(row["id"] for row in report.get("agent_actions", []))
-    blockers.extend(
+def lifecycle_handoff(report: dict) -> dict:
+    """Keep authoring, product build and learner release as distinct transitions.
+
+    Human academic review gates RELEASE, not AUTHORING. Otherwise a candidate could never
+    be written before it was reviewed. Build readiness remains stricter than authoring:
+    missing assets may be legitimate authoring work but they are not buildable products.
+    """
+    structural = [f["point"] for f in report.get("findings", [])]
+    owner = [row["id"] for row in report.get("required_owner_inputs", [])]
+    actions = [row["id"] for row in report.get("agent_actions", [])]
+    product_holds = [
         f'{row["core"]}:{row["state"]}' for row in report.get("products", [])
         if row["state"] not in {"READY", "WITHHELD"}
-    )
+    ]
+
+    authoring_blockers = sorted(set(structural + owner + actions))
+    build_blockers = sorted(set(authoring_blockers + product_holds))
+    release_blockers = list(build_blockers)
     if report.get("readiness", {}).get("ACADEMIC_REVIEW") != "REVIEWED":
-        blockers.append("ACADEMIC_REVIEW")
+        release_blockers.append("ACADEMIC_REVIEW")
+    release_blockers = sorted(set(release_blockers))
+
     return {
-        "state": "READY_FOR_EXECUTION" if not blockers else "BLOCKED",
-        "blockers": sorted(set(blockers)),
-        "rule": "Planning may wait; execution may not guess.",
+        "AUTHORING": {
+            "state": "READY_FOR_AUTHORING" if not authoring_blockers else "BLOCKED",
+            "blockers": authoring_blockers,
+        },
+        "BUILD": {
+            "state": "READY_FOR_BUILD" if not build_blockers else "BLOCKED",
+            "blockers": build_blockers,
+        },
+        "RELEASE": {
+            "state": "READY_FOR_RELEASE" if not release_blockers else "BLOCKED",
+            "blockers": release_blockers,
+        },
+        "rule": "Author candidates before review; build only supported products; release only reviewed ones.",
     }
 
 
@@ -172,7 +193,7 @@ def plan(request: dict, repo: Path = REPO) -> dict:
     purposes = resolve_request.purposes()
 
     owner_inputs = []
-    if any(c in PERSONALISED_TEACHING for c in requested) and not request.get("learner"):
+    if any(c in LEARNER_ROUTED for c in requested) and not request.get("learner"):
         owner_inputs.append({"id": "LEARNER_ENTRY", "choices": [
             "profile/diagnostic", "owner_entry", "owner_estimate", "unknown"]})
     intent = request.get("practice", {})
@@ -217,6 +238,10 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             state, reason = "BLOCKED_PREREQUISITE", "learner entry is not prerequisite-reachable"
         elif core in SOURCE_PRODUCTS and source_basis and source_state == "UNINSPECTED":
             state, reason = "WAITING_FOR_SOURCE_INGESTION", "supplied source has not been inspected and ingested"
+        elif core in PRACTICE and learner_route["state"] == "WAITING_FOR_OWNER_INPUT":
+            state, reason = "WAITING_FOR_LEARNER_ENTRY", "practice routing requires learner evidence or an explicit owner decision"
+        elif core in PRACTICE and learner_route["state"] == "BLOCKED":
+            state, reason = "BLOCKED_PREREQUISITE", "learner practice route is not prerequisite-reachable"
         elif core == "CORE2A" and not intent.get(core, {}).get("purpose"):
             state, reason = "WAITING_FOR_PURPOSE", "support level is selected by purpose"
         elif core == "CORE2B" and not intent.get(core, {}).get("purpose"):
@@ -265,7 +290,10 @@ def plan(request: dict, repo: Path = REPO) -> dict:
         "passed": not findings,
         "no_content_authored": True,
     }
-    report["execution"] = execution_handoff(report)
+    report["lifecycle"] = lifecycle_handoff(report)
+    # Compatibility surface for callers written against PR #10. It now means build,
+    # not authoring or learner release.
+    report["execution"] = report["lifecycle"]["BUILD"]
     return report
 
 
