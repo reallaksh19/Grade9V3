@@ -45,7 +45,7 @@ def _question_records(records: dict, bucket_id: str) -> list[dict]:
 def _request(subject: str, board: dict) -> dict:
     position = min(row["ladder_position"] for row in board.get("rungs", []))
     return {
-        "request_id": f'READINESS-{board["bucket_id"]}',
+        "request_id": f'readiness:{board["bucket_id"]}',
         "subject": subject,
         "bucket_id": board["bucket_id"],
         "cores": list(PRACTICE),
@@ -81,7 +81,7 @@ def audit(subject: str, repo: Path = REPO) -> dict:
         try:
             compiled = compile_bucket(
                 records, bucket_id,
-                topic_id="READINESS-AUDIT", title=board.get("subtopic", bucket_id),
+                topic_id="readiness-audit", title=board.get("subtopic", bucket_id),
                 subject=subject,
                 practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
             )
@@ -143,7 +143,7 @@ def audit(subject: str, repo: Path = REPO) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--subject", default="Physics")
+    parser.add_argument("--subject", required=True)
     parser.add_argument("--enforce", action="store_true")
     args = parser.parse_args()
     report = audit(args.subject)
