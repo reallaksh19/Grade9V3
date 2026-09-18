@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 101,
-  "relation_count": 155,
+  "component_count": 105,
+  "relation_count": 162,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 20,
-    "TOOLING": 29,
+    "TEST": 22,
+    "TOOLING": 31,
     "WEB": 5
   },
-  "digest": "sha256:0166a72a539c0bd21a1f18c98dee600d3f046ee4c725d0f8d8f7e9395f5d0787",
+  "digest": "sha256:78d3b5e24882ee5cd8e6607728f408dbe802c0d75f200cdb4bbcf23d24d56ecd",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -225,8 +225,8 @@
       "path": "Shared/library/worksheet-map.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 1845,
-      "sha256": "a9e938b53b176cf5046698e295c350d7710088c4a3321a21cd9ea34d375c31d4"
+      "bytes": 2888,
+      "sha256": "c94e4766ca0d07b35a621eb36dbad929a1337734cbd06fb585a10e78e38e8bff"
     },
     {
       "path": "Shared/publication_host/__init__.py",
@@ -407,8 +407,8 @@
       "path": "Shared/tools/capability_graph.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5272,
-      "sha256": "2aebb04bbda1735fb55508b308bbc143c3757aec1bc7ff569b9762656e330ef7"
+      "bytes": 7351,
+      "sha256": "731731527eb21252bae464d02d9036d8abca4d535f73d4c61d7b4c5528bfcc56"
     },
     {
       "path": "Shared/tools/ceiling_audit.py",
@@ -535,6 +535,20 @@
       "role_description": "Guardrails and generators",
       "bytes": 12784,
       "sha256": "2e5096fc0f567a9aad8b31b0d8213e903c783523749da114c8c7de5e0befa3e5"
+    },
+    {
+      "path": "Shared/tools/study_route.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 9744,
+      "sha256": "8b11376047faed92800aa5799693acff96ffb365d6058b98feb260be26405ffe"
+    },
+    {
+      "path": "Shared/tools/study_scope_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 3406,
+      "sha256": "caa749aad4fb325b0ad6ac8c2cff84b79e9f5c200e65beee364fe8bde5f34fe8"
     },
     {
       "path": "Shared/tools/topic_independence_allowlist.json",
@@ -682,6 +696,20 @@
       "role_description": "Executable checks",
       "bytes": 5490,
       "sha256": "6e6b098b34de917528eb3ac57e2c4f7ef10b15dd19c7811fd811488ccf16c431"
+    },
+    {
+      "path": "tests/test_study_route.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4651,
+      "sha256": "fa087967c9d8182dbb5cd9646b38a0228c4cd4d97abc48e85c795b3611df8ccf"
+    },
+    {
+      "path": "tests/test_study_scope_audit.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2067,
+      "sha256": "c80b67468f67853174b0f1814072565413d31f9723e885667a631934d58774f6"
     },
     {
       "path": "tests/test_tools.py",
@@ -1248,6 +1276,26 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/study_route.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_route.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_scope_audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_scope_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_architecture.py",
       "to": "Shared.library",
       "kind": "IMPORTS"
@@ -1464,6 +1512,21 @@
     },
     {
       "from": "tests/test_study_map.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_study_route.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_study_route.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_study_scope_audit.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
