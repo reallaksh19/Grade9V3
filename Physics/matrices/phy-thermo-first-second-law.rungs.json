@@ -9,23 +9,27 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "A system contains internal energy, while heat and work name energy transferred across its boundary; a body does not contain 'heat'.",
-      "learner_owns": ["Can identify a physical system and its surroundings and can distinguish stored energy from an energy-transfer event."],
-      "ceiling": ["first law", "enthalpy", "entropy", "Carnot", "adiabatic"],
+      "provenance": "SOURCE",
+      "ceiling": [
+        "first law",
+        "enthalpy",
+        "entropy",
+        "Carnot",
+        "adiabatic"
+      ],
       "must_contain": [
         "A system boundary with heat and work arrows crossing it while internal energy is labelled inside.",
         "Two states with the same temperature but different amounts of substance to separate temperature from total internal energy."
       ],
-      "misconception": {
-        "wrong_idea": "A hot object contains heat, and cooling means some of that heat remains stored inside it.",
-        "diagnostic_prompt": "When a hot block is isolated after heating stops, is 'heat' still a substance stored in the block?",
-        "repair": "Name the stored quantity internal energy; reserve heat for energy crossing the boundary because of temperature difference."
-      },
-      "closure": "Classify four statements as internal energy, heat transfer, or work transfer and explain one classification using the system boundary.",
       "controlled_variation": [
-        {"phase": 1, "vary": "direction of energy transfer across the boundary", "hold": "the same system and initial/final states", "notice": "heat or work can change sign as transfer direction reverses, while internal energy is a state quantity"}
-      ]
+        {
+          "phase": 1,
+          "vary": "direction of energy transfer across the boundary",
+          "hold": "the same system and initial/final states",
+          "notice": "heat or work can change sign as transfer direction reverses, while internal energy is a state quantity"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-THERMO-R1"
     },
     {
       "rung": "R2",
@@ -36,7 +40,13 @@
         "Internal energy is stored in the system while heat and work are boundary transfers.",
         "Can use signed quantities in an energy balance."
       ],
-      "ceiling": ["state function", "P-V area", "cycle", "entropy", "efficiency"],
+      "ceiling": [
+        "state function",
+        "P-V area",
+        "cycle",
+        "entropy",
+        "efficiency"
+      ],
       "must_contain": [
         "A boundary diagram paired with one explicit sign convention before any equation is used.",
         "Compression and expansion cases using the same convention."
@@ -48,84 +58,112 @@
       },
       "closure": "For two heating/compression scenarios, assign signs to Q and W under one declared convention and predict the sign of delta U before calculating magnitudes.",
       "controlled_variation": [
-        {"phase": 1, "vary": "process from expansion to compression", "hold": "the same sign convention and heat input", "notice": "the work term changes sign while the convention itself does not"},
-        {"phase": 2, "vary": "choice of convention from work-by-system to work-on-system", "hold": "the same physical process", "notice": "the algebraic form changes but the predicted physical delta U does not"}
+        {
+          "phase": 1,
+          "vary": "process from expansion to compression",
+          "hold": "the same sign convention and heat input",
+          "notice": "the work term changes sign while the convention itself does not"
+        },
+        {
+          "phase": 2,
+          "vary": "choice of convention from work-by-system to work-on-system",
+          "hold": "the same physical process",
+          "notice": "the algebraic form changes but the predicted physical delta U does not"
+        }
       ]
     },
     {
       "rung": "R3",
       "ladder_position": 50,
-      "provenance": "SYNTHESIS",
-      "aha": "Internal energy is a state function: its change depends only on endpoint states, while heat and work can differ between paths connecting the same endpoints.",
-      "learner_owns": [
-        "The first-law sign convention is declared and applied consistently.",
-        "Can distinguish an initial state from a process path and final state."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "cycle area",
+        "engine efficiency",
+        "entropy",
+        "reversible",
+        "Carnot"
       ],
-      "ceiling": ["cycle area", "engine efficiency", "entropy", "reversible", "Carnot"],
       "must_contain": [
         "Two distinct paths between the same endpoints on a Cartesian P-V plot.",
         "Different areas under the two paths paired with the same endpoint delta U."
       ],
-      "misconception": {
-        "wrong_idea": "If two processes start and finish at the same states, they must transfer the same heat and do the same work.",
-        "diagnostic_prompt": "Two P-V paths connect the same initial and final states but enclose different areas under the curves. Must W and Q be equal for both?",
-        "repair": "Keep delta U fixed by the endpoints; different path work is balanced by a different heat transfer through the first law."
-      },
-      "closure": "Given two P-V paths with the same endpoints, identify which quantities must match and which may differ, and justify using state versus path dependence.",
       "controlled_variation": [
-        {"phase": 1, "vary": "process path between fixed endpoints", "hold": "initial state, final state, and sign convention", "notice": "work changes with path while delta U stays fixed"},
-        {"phase": 2, "vary": "path shape on the P-V plot", "hold": "the same endpoints", "notice": "the area under the path changes even though the state-function change does not"}
-      ]
+        {
+          "phase": 1,
+          "vary": "process path between fixed endpoints",
+          "hold": "initial state, final state, and sign convention",
+          "notice": "work changes with path while delta U stays fixed"
+        },
+        {
+          "phase": 2,
+          "vary": "path shape on the P-V plot",
+          "hold": "the same endpoints",
+          "notice": "the area under the path changes even though the state-function change does not"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-THERMO-R3"
     },
     {
       "rung": "R4",
       "ladder_position": 65,
-      "provenance": "SYNTHESIS",
-      "aha": "Over a complete thermodynamic cycle the system returns to its initial state, so net internal-energy change is zero and net heat equals net work; on a P-V plot the signed loop area gives net work.",
-      "learner_owns": [
-        "Internal-energy change is fixed by endpoint states while heat and work depend on path.",
-        "Can interpret area on a Cartesian pressure-volume plot."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "entropy production",
+        "Carnot",
+        "reversibility",
+        "coefficient of performance",
+        "phase transition"
       ],
-      "ceiling": ["entropy production", "Carnot", "reversibility", "coefficient of performance", "phase transition"],
       "must_contain": [
         "A closed clockwise P-V loop with the enclosed area highlighted and each leg direction marked.",
         "The same loop traversed in the opposite direction to expose the sign of net work."
       ],
-      "misconception": {
-        "wrong_idea": "A cyclic engine must have zero heat transfer because its internal energy returns to the starting value.",
-        "diagnostic_prompt": "If delta U over one full cycle is zero but the loop encloses positive work area, what must be true of net heat?",
-        "repair": "Apply the first law to the whole cycle: zero delta U requires net heat and net work to match under the chosen convention."
-      },
-      "closure": "For a directed P-V loop, determine the sign of net work and net heat and explain why delta U is zero without evaluating every state variable.",
       "controlled_variation": [
-        {"phase": 1, "vary": "loop traversal direction", "hold": "the same geometric P-V loop", "notice": "the sign of net work reverses while the magnitude of the enclosed area is unchanged"},
-        {"phase": 2, "vary": "loop size", "hold": "the same qualitative cycle shape and direction", "notice": "larger enclosed area means larger magnitude of net work per cycle"}
-      ]
+        {
+          "phase": 1,
+          "vary": "loop traversal direction",
+          "hold": "the same geometric P-V loop",
+          "notice": "the sign of net work reverses while the magnitude of the enclosed area is unchanged"
+        },
+        {
+          "phase": 2,
+          "vary": "loop size",
+          "hold": "the same qualitative cycle shape and direction",
+          "notice": "larger enclosed area means larger magnitude of net work per cycle"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-THERMO-R4"
     },
     {
       "rung": "R5",
       "ladder_position": 80,
-      "provenance": "SYNTHESIS",
-      "aha": "A heat engine cannot convert all absorbed heat into work; efficiency is constrained by the second law, and even an ideal reversible engine is bounded by the reservoir temperatures.",
-      "learner_owns": [
-        "A complete cycle has zero net internal-energy change and net heat equals net work.",
-        "Can distinguish heat absorbed from a hot reservoir from heat rejected to a cold reservoir."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "entropy formula",
+        "Clausius inequality",
+        "exergy",
+        "regenerator",
+        "finite-time thermodynamics"
       ],
-      "ceiling": ["entropy formula", "Clausius inequality", "exergy", "regenerator", "finite-time thermodynamics"],
       "must_contain": [
         "An energy-flow diagram with Q_in from the hot reservoir, W_out, and Q_out to the cold reservoir.",
         "Two engines between the same reservoir temperatures, one claimed above the reversible temperature bound."
       ],
-      "misconception": {
-        "wrong_idea": "An ideal engine can reach 100% efficiency if friction and other mechanical losses are removed.",
-        "diagnostic_prompt": "An engine absorbs heat from a hot reservoir and rejects none to a colder reservoir. Is that allowed merely because the engine is otherwise frictionless?",
-        "repair": "The second-law limitation is not a mechanical-loss correction; some heat rejection is unavoidable for a cyclic heat engine between finite-temperature reservoirs."
-      },
-      "closure": "Given hot and cold reservoir temperatures and a claimed efficiency, decide whether the claim is below, at, or above the reversible temperature bound and explain the thermodynamic reason.",
       "controlled_variation": [
-        {"phase": 1, "vary": "cold-reservoir temperature", "hold": "hot-reservoir temperature and reversible-engine assumption", "notice": "the maximum efficiency changes with the reservoir-temperature ratio"},
-        {"phase": 2, "vary": "real engine versus reversible benchmark", "hold": "the same reservoir temperatures", "notice": "a real-engine efficiency may fall below the bound but cannot exceed it"}
-      ]
+        {
+          "phase": 1,
+          "vary": "cold-reservoir temperature",
+          "hold": "hot-reservoir temperature and reversible-engine assumption",
+          "notice": "the maximum efficiency changes with the reservoir-temperature ratio"
+        },
+        {
+          "phase": 2,
+          "vary": "real engine versus reversible benchmark",
+          "hold": "the same reservoir temperatures",
+          "notice": "a real-engine efficiency may fall below the bound but cannot exceed it"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-THERMO-R5"
     }
   ],
   "family": {
@@ -133,15 +171,44 @@
     "difficult_move": "Deciding what belongs to the state and what belongs to the path, while keeping one sign convention consistent through the entire process.",
     "independent_check": "Close the energy ledger and test a boundary case: a cycle must give delta U=0, reversed path work must change sign, and an engine efficiency must not exceed its reservoir-temperature bound.",
     "support_ladder": [
-      {"level": "high", "handed_over": "The system boundary, sign convention, and process type are stated; the learner completes the energy ledger and validity check."},
-      {"level": "medium", "handed_over": "The system boundary and initial/final states are marked, but the learner chooses the sign convention and process relation."},
-      {"level": "low", "handed_over": "Only the process description, state data, and requested quantity are given."}
+      {
+        "level": "high",
+        "handed_over": "The system boundary, sign convention, and process type are stated; the learner completes the energy ledger and validity check."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The system boundary and initial/final states are marked, but the learner chooses the sign convention and process relation."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the process description, state data, and requested quantity are given."
+      }
     ]
   },
   "transfer": [
-    {"dimension": "model_choice", "changed_demand": "A rapid expansion is described as insulated but not quasi-static; decide which ideal-process relations are justified beyond Q=0.", "information_not_handed_over": "whether reversibility or a quasi-static path may be assumed from the word 'adiabatic' alone", "repair_to": "R2"},
-    {"dimension": "representation_translation", "changed_demand": "A P-V loop is supplied without a process table; infer net work sign and magnitude relation from its direction and enclosed area.", "information_not_handed_over": "the mapping from loop orientation and area to signed net work", "repair_to": "R4"},
-    {"dimension": "reasoning_steps", "changed_demand": "Two different paths connect the same endpoints and one path's work is known; determine the other path's heat using endpoint data.", "information_not_handed_over": "that delta U is shared by both paths while work differs", "repair_to": "R3"},
-    {"dimension": "novelty", "changed_demand": "A refrigerator is presented instead of a heat engine; identify why a simple engine-efficiency ratio is no longer the requested performance measure.", "information_not_handed_over": "which energy transfer is the useful output in the reversed-cycle device", "repair_to": "R5"}
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A rapid expansion is described as insulated but not quasi-static; decide which ideal-process relations are justified beyond Q=0.",
+      "information_not_handed_over": "whether reversibility or a quasi-static path may be assumed from the word 'adiabatic' alone",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A P-V loop is supplied without a process table; infer net work sign and magnitude relation from its direction and enclosed area.",
+      "information_not_handed_over": "the mapping from loop orientation and area to signed net work",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Two different paths connect the same endpoints and one path's work is known; determine the other path's heat using endpoint data.",
+      "information_not_handed_over": "that delta U is shared by both paths while work differs",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A refrigerator is presented instead of a heat engine; identify why a simple engine-efficiency ratio is no longer the requested performance measure.",
+      "information_not_handed_over": "which energy transfer is the useful output in the reversed-cycle device",
+      "repair_to": "R5"
+    }
   ]
 }
