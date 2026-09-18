@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 68,
-  "relation_count": 117,
+  "component_count": 71,
+  "relation_count": 121,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 16,
-    "TEST": 7,
-    "TOOLING": 21,
+    "LIBRARY": 17,
+    "TEST": 8,
+    "TOOLING": 22,
     "WEB": 5
   },
-  "digest": "sha256:97bf4756275d2b455652f32e2aa698ad9df75ef06f0b48d99c24ec4194dc681a",
+  "digest": "sha256:580b203faefc41c7b781d3df20c7052b13d0885a307f68ba2e194dc291c22f81",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -66,6 +66,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 6165,
       "sha256": "8a66e6f338996f7c4b849d380776f2dc620b4b6dff091e7c6b5a1d49d6a89f42"
+    },
+    {
+      "path": "Shared/library/execution-packet.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 2997,
+      "sha256": "b35be0872054b8c15113d591249f12ed9fbb8e346b219323dad00b5f8062b3c0"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -334,6 +341,13 @@
       "sha256": "78746a5f22c1f04bcee72242dec44f8f128df715a3b6d4b7610294afefa2a242"
     },
     {
+      "path": "Shared/tools/compile_execution_packet.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 13168,
+      "sha256": "bf62dbe6f073b06a3048f0092baec2fa6d021b67e8d3b46b47e4bbb75943e7ae"
+    },
+    {
       "path": "Shared/tools/learner_evidence.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -351,8 +365,8 @@
       "path": "Shared/tools/plan_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 14449,
-      "sha256": "bde08e7e6e5e64e472d5793b4c6dae6b68cef97636f5a1470f2bcb3086084850"
+      "bytes": 16097,
+      "sha256": "48f81c5af6bbed06f1f3a8ef1493e54f91598f69684c7def1c9e309ac4ecee17"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -416,6 +430,13 @@
       "role_description": "Executable checks",
       "bytes": 7204,
       "sha256": "4cdec12a4278dc1625e5816048363bdc341d1cb73f04d179d2024d2d84d4a521"
+    },
+    {
+      "path": "tests/test_execution_packet.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6944,
+      "sha256": "47698c81b3f65886e22e72ca5ad60a55971133f80919b14e9531e30404f77f31"
     },
     {
       "path": "tests/test_gates.py",
@@ -772,6 +793,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/compile_execution_packet.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/compile_execution_packet.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/compile_execution_packet.py",
+      "to": "Shared.tools.spec_conformance",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/learner_evidence.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -898,6 +934,11 @@
     },
     {
       "from": "tests/test_architecture.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_execution_packet.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
