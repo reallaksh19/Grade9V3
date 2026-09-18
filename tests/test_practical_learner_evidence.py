@@ -152,6 +152,105 @@ class PracticalLearnerEvidence(unittest.TestCase):
         self.assertEqual(rows[0]["result"], "UNCERTAIN")
         self.assertEqual(rows[0]["help"], "UNKNOWN")
 
+    def test_prior_study_map_can_derive_a_single_mapped_capability(self):
+        payload = {
+            "study_map_id": "PT-3",
+            "rows": [{
+                "question_ref": "Q1",
+                "observed": "Could not state what changes.",
+                "suggested_state": "MISSING",
+            }],
+        }
+        worksheet_map = {
+            "worksheet_id": "WS-1",
+            "subject": "Physics",
+            "questions": [{
+                "question_id": "Q1",
+                "primary_capability_ref": "CAP-ONLY",
+                "secondary_capability_refs": [],
+                "mapping_basis": "MANUAL",
+            }],
+        }
+        rows = import_study_observations.convert(
+            payload, "2026-09-18", worksheet_map
+        )
+        self.assertEqual(rows[0]["capability_ref"], "CAP-ONLY")
+        self.assertEqual(rows[0]["question_ref"], "Q1")
+
+    def test_prior_study_map_refuses_to_guess_between_multiple_question_capabilities(self):
+        payload = {
+            "study_map_id": "PT-4",
+            "rows": [{
+                "question_ref": "Q1",
+                "observed": "The solution broke somewhere.",
+                "suggested_state": "UNCERTAIN",
+            }],
+        }
+        worksheet_map = {
+            "worksheet_id": "WS-2",
+            "subject": "Mathematics",
+            "questions": [{
+                "question_id": "Q1",
+                "primary_capability_ref": "CAP-A",
+                "secondary_capability_refs": ["CAP-B"],
+                "mapping_basis": "MANUAL",
+            }],
+        }
+        with self.assertRaisesRegex(ValueError, "multiple capabilities"):
+            import_study_observations.convert(
+                payload, "2026-09-18", worksheet_map
+            )
+
+    def test_prior_study_map_explicit_capability_must_agree_with_question_mapping(self):
+        payload = {
+            "study_map_id": "PT-5",
+            "rows": [{
+                "question_ref": "Q1",
+                "capability_ref": "CAP-C",
+                "observed": "A specific misconception was noted.",
+                "suggested_state": "MISSING",
+            }],
+        }
+        worksheet_map = {
+            "worksheet_id": "WS-3",
+            "subject": "Mathematics",
+            "questions": [{
+                "question_id": "Q1",
+                "primary_capability_ref": "CAP-A",
+                "secondary_capability_refs": ["CAP-B"],
+                "mapping_basis": "MANUAL",
+            }],
+        }
+        with self.assertRaisesRegex(ValueError, "not among the mapped capabilities"):
+            import_study_observations.convert(
+                payload, "2026-09-18", worksheet_map
+            )
+
+    def test_prior_study_map_can_disambiguate_a_multi_capability_question_explicitly(self):
+        payload = {
+            "study_map_id": "PT-6",
+            "rows": [{
+                "question_ref": "Q1",
+                "capability_ref": "CAP-B",
+                "observed": "Secondary skill was the observed weakness.",
+                "suggested_state": "MISSING",
+            }],
+        }
+        worksheet_map = {
+            "worksheet_id": "WS-4",
+            "subject": "Mathematics",
+            "questions": [{
+                "question_id": "Q1",
+                "primary_capability_ref": "CAP-A",
+                "secondary_capability_refs": ["CAP-B"],
+                "mapping_basis": "MANUAL",
+            }],
+        }
+        rows = import_study_observations.convert(
+            payload, "2026-09-18", worksheet_map
+        )
+        self.assertEqual(rows[0]["capability_ref"], "CAP-B")
+
     def test_diagnostic_profile_cannot_claim_demonstrated_from_solution_help(self):
         with self.temp_root() as tmp:
             root = Path(tmp)
