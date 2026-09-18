@@ -16,18 +16,25 @@
         "acoustic impedance"
       ],
       "must_contain": [
+        "Three distinct sound-production examples identifying the vibrating element: a stretched string, a stretched membrane, and an air column.",
         "A vibrating source distinguished from the surrounding material medium.",
         "A vacuum boundary showing that source vibration and sound propagation are different claims."
       ],
       "controlled_variation": [
         {
           "phase": 1,
+          "vary": "the sound-producing system from stretched string to stretched membrane to vibrating air column",
+          "hold": "the requirement that some physical source vibrates",
+          "notice": "the vibrating element changes, but vibration remains the common sound-production mechanism"
+        },
+        {
+          "phase": 2,
           "vary": "the material medium from gas to liquid to solid",
           "hold": "a vibrating mechanical source",
           "notice": "ordinary sound can propagate through different material media"
         },
         {
-          "phase": 2,
+          "phase": 3,
           "vary": "the amount of material medium toward vacuum",
           "hold": "the source can still vibrate",
           "notice": "ordinary sound propagation weakens as the mechanical transmission path is removed"
@@ -212,6 +219,37 @@
           "reason": "Numerical echo-range exits need the implemented Physics validator."
         }
       ]
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 100,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "Raman effect",
+        "optical scattering",
+        "architectural resonance calculation",
+        "room-mode calculation"
+      ],
+      "must_contain": [
+        "Gol Gumbaz named only as the curriculum's historical reflected-sound/echo context, without an invented architectural-acoustics mechanism.",
+        "At least two Raman Research Institute-supported acoustics themes such as bowed/struck strings, resonance/maintenance of vibrations, or mridangam/tabla acoustics.",
+        "An explicit separation between Raman's acoustics work relevant to this Sound context and the higher-grade optical Raman effect."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the context from Gol Gumbaz to a generic wall echo",
+          "hold": "the already-authored reflected-sound family",
+          "notice": "the historical example reuses reflection/echo ideas rather than introducing a new equation"
+        },
+        {
+          "phase": 2,
+          "vary": "the Raman acoustics example from strings to resonance to Indian musical drums",
+          "hold": "the RRI scientific-check source",
+          "notice": "multiple documented research themes connect Raman to sound and musical instruments"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-SOUND-HERITAGE"
     }
   ],
   "family": {
@@ -263,6 +301,12 @@
       "changed_demand": "A frequency just outside the approximate human audible band must be classified using the Grade 9 hearing-range model without treating 20 Hz and 20,000 Hz as exact personal hearing thresholds.",
       "information_not_handed_over": "that the quoted audible band is an approximate usual human-hearing model rather than a universal biological cutoff",
       "repair_to": "R4"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A historical/scientific context names Gol Gumbaz or C. V. Raman without handing over which already-taught Sound ideas are relevant.",
+      "information_not_handed_over": "that Gol Gumbaz is being used as a reflected-sound/echo context and that Raman had documented acoustics research distinct from the optical Raman effect",
+      "repair_to": "R6"
     }
   ]
 }
