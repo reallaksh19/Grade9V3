@@ -118,6 +118,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     """Return the generic route plus a per-capability learner start action."""
     route = study_route.resolve(mapping, repo)
     findings = list(route.get("findings", []))
+    warnings: list[dict] = []
     subject = mapping.get("subject")
     index = study_map.subject_index(subject, repo)
     boards = _boards(subject, repo)
@@ -127,26 +128,26 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     for estimate in owner_estimates or []:
         matrix_id, finding = _resolve_estimate_target(estimate, boards)
         if finding:
-            findings.append(finding)
+            warnings.append(finding)
             continue
 
         percentage = estimate.get("knowledge_percentage")
         if not isinstance(percentage, (int, float)) or isinstance(percentage, bool):
-            findings.append({
+            warnings.append({
                 "point": "STUDY_START_ESTIMATE_INVALID",
                 "matrix_id": matrix_id,
                 "detail": "knowledge_percentage must be a number from 0 to 100",
             })
             continue
         if percentage < 0 or percentage > 100:
-            findings.append({
+            warnings.append({
                 "point": "STUDY_START_ESTIMATE_OUT_OF_RANGE",
                 "matrix_id": matrix_id,
                 "detail": "knowledge_percentage must be between 0 and 100",
             })
             continue
         if matrix_id in decisions:
-            findings.append({
+            warnings.append({
                 "point": "STUDY_START_ESTIMATE_DUPLICATE",
                 "matrix_id": matrix_id,
                 "detail": "only one rough owner estimate may be supplied per matrix",
@@ -155,7 +156,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
 
         selected = _select_start(positions.get(matrix_id, []), percentage)
         if selected is None:
-            findings.append({
+            warnings.append({
                 "point": "STUDY_START_MATRIX_HAS_NO_TEACHING_LOCATION",
                 "matrix_id": matrix_id,
                 "detail": "the matrix has no canonical teaching location to start from",
@@ -226,6 +227,8 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         ],
         "route": learner_route,
         "findings": findings,
+        "warnings": warnings,
+        "execution_disposition": "EXECUTE_WITH_FALLBACK" if warnings and valid else None,
         "blockers": blockers,
         "valid": valid,
         "ready": valid and not blockers,
@@ -258,6 +261,12 @@ def readable(report: dict) -> str:
         out += [
             f'{row["order"]:>2}. {row["learner_action"]:11} '
             f'{row["capability_ref"]} [{row["scope"]}]'
+        ]
+    if report.get("warnings"):
+        out += ["", "## Fallback warnings", ""]
+        out += [
+            f'  {warning["point"]}: {warning.get("detail", "")}'
+            for warning in report["warnings"]
         ]
     if report.get("findings"):
         out += ["", "## Findings", ""]
