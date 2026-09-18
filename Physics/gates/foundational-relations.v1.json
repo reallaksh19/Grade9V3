@@ -1114,6 +1114,251 @@
           "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-WORK-ENERGY-GRADE9",
+      "title": "Grade 9 work, kinetic energy and gravitational potential energy",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Work, Energy and Simple Machines",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-WEP-WORK-TRANSFER",
+          "statement": "Constant-force work depends on the force component along displacement."
+        },
+        {
+          "concept_id": "CON-WEP-ENERGY-FORMS",
+          "statement": "Kinetic energy depends on speed and gravitational potential energy near Earth depends on height relative to a declared reference."
+        },
+        {
+          "concept_id": "CON-WEP-CONSERVATION",
+          "statement": "Mechanical energy is conserved only when no additional transfer crosses the chosen mechanical account."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-WORK-CONSTANT-FORCE",
+          "expression": "W = F_parallel s",
+          "meaning": "For a constant force component along a straight displacement, work equals the signed along-path force component times displacement.",
+          "symbols": [
+            {
+              "symbol": "W",
+              "meaning": "Work done by the force",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "F_parallel",
+              "meaning": "Signed force component along displacement",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "s",
+              "meaning": "Displacement magnitude along the path",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Force component is constant over the displacement.",
+            "F_parallel uses the displacement direction as positive.",
+            "s >= 0."
+          ],
+          "validator_refs": [
+            "WORK_CONSTANT_FORCE"
+          ]
+        },
+        {
+          "relation_id": "REL-KINETIC-ENERGY",
+          "expression": "K = 0.5 m v^2",
+          "meaning": "Translational kinetic energy of a body in the declared reference frame.",
+          "symbols": [
+            {
+              "symbol": "K",
+              "meaning": "Kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Speed in the declared frame",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "v >= 0.",
+            "One declared reference frame is used."
+          ],
+          "validator_refs": [
+            "KINETIC_ENERGY"
+          ]
+        },
+        {
+          "relation_id": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+          "expression": "Delta U_g = m g Delta h",
+          "meaning": "Near Earth's surface with approximately uniform g, gravitational potential-energy change equals mass times g times vertical height change.",
+          "symbols": [
+            {
+              "symbol": "Delta U_g",
+              "meaning": "Change in gravitational potential energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "Delta h",
+              "meaning": "Final height minus initial height",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "g is approximately uniform over the height change.",
+            "One height reference and positive-up convention are used."
+          ],
+          "validator_refs": [
+            "GRAVITATIONAL_POTENTIAL_ENERGY"
+          ]
+        },
+        {
+          "relation_id": "REL-WORK-ENERGY-THEOREM",
+          "expression": "W_net = Delta K",
+          "meaning": "Net work on a body equals its change in translational kinetic energy.",
+          "symbols": [
+            {
+              "symbol": "W_net",
+              "meaning": "Net work by external forces",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "Delta K",
+              "meaning": "Final kinetic energy minus initial kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            }
+          ],
+          "conditions": [
+            "The same body and reference frame are used for the force work and kinetic energies."
+          ]
+        },
+        {
+          "relation_id": "REL-MECHANICAL-ENERGY-CONSERVATION",
+          "expression": "K_i + U_i = K_f + U_f",
+          "meaning": "The chosen mechanical-energy account remains constant when no additional transfer crosses it.",
+          "symbols": [
+            {
+              "symbol": "K_i",
+              "meaning": "Initial kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "U_i",
+              "meaning": "Initial potential energy in the chosen interaction model",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "K_f",
+              "meaning": "Final kinetic energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            },
+            {
+              "symbol": "U_f",
+              "meaning": "Final potential energy",
+              "unit": "J",
+              "dimension": "M L^2 T^-2"
+            }
+          ],
+          "conditions": [
+            "No frictional or outside transfer changes the chosen mechanical-energy account.",
+            "Initial and final energies use the same potential-energy reference."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose the system/account before applying conservation.",
+        "Use the same reference frame and height reference consistently."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-WEP9-ACCOUNT",
+          "sequence": 1,
+          "action": "Choose the body/system, displacement direction and energy reference before selecting a relation.",
+          "why_valid": "Work sign and energy values depend on those declarations."
+        },
+        {
+          "step_id": "RS-WEP9-RELATION",
+          "sequence": 2,
+          "action": "Choose work, kinetic energy, potential-energy change, work-energy, or conservation according to the stated transfer and account.",
+          "why_valid": "Each relation answers a different bookkeeping question.",
+          "depends_on": [
+            "RS-WEP9-ACCOUNT"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-WEP9-ALL-FORCE-WORK",
+          "wrong_idea": "Any nonzero force on a moving body does positive work.",
+          "counterexample": "A force perpendicular to displacement has zero along-path component and does zero work.",
+          "repair": "Resolve force along displacement before multiplying."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-WEP9-ENERGY-LEDGER",
+          "title": "Grade 9 work and mechanical-energy ledgers",
+          "hidden_invariants": [
+            "One system/account and one reference convention are used throughout."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "WORK-ENERGY"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-WEP9-VALIDATOR",
+          "mutation": "Replace the first relation's validator reference with an undeclared id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
     }
   ]
 }
