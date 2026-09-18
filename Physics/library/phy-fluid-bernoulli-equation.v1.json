@@ -1,0 +1,610 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-FLUID-BERNOULLI-EQUATION-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Conceptual rung records for buoyancy, steady incompressible continuity, and qualitative Bernoulli reasoning; the hydrostatic entry equation and quantitative efflux/Venturi rung remain un-authored.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "SRC-AUTHOR-PHY-FLUID",
+      "title": "Track B authored fluids rung source",
+      "origin": "AUTHORED",
+      "locator": "docs/offload/physics-rungs-track-b.md + Physics/matrices/phy-fluid-bernoulli-equation.rungs.json",
+      "edition": "Track B authoring pass",
+      "section": "Fluids rungs R2, R3, R4",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created repository content",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides authored provenance for the conceptual fluid rungs while preserving the blocked quantitative entry and application rungs.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "title": "Fluid statics, buoyancy and Bernoulli flow",
+      "topic": "Mechanical Properties of Fluids",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The ladder begins with a blocked quantitative static-pressure rung before moving into conceptual buoyancy and flow distinctions.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-FLUID-R2",
+      "action": "Compare buoyant force from displaced-fluid volume.",
+      "success_criterion": "Identify which fully submerged object has the larger buoyant force from its displaced volume.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-FLUID-R3",
+      "action": "Infer flow-speed ordering from cross-sectional area in steady incompressible flow.",
+      "success_criterion": "Rank section speeds from the conserved volume flow.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-FLUID-R4",
+      "action": "Reason across pressure, motion and height contributions along one ideal-flow path.",
+      "success_criterion": "State when speed alone is insufficient to rank static pressure.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-FLUID-R2",
+      "title": "Buoyant force follows displaced fluid",
+      "bucket_id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "primary_capability_ref": "CAP-PHY-FLUID-R2",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The key distinction is between the object's own mass and the volume of fluid removed by the submerged part.",
+      "entry_assumptions": [
+        "Can reason that pressure forces on a submerged object come from the surrounding static fluid.",
+        "Can compare object volume with submerged volume qualitatively."
+      ],
+      "inferential_jump": "Buoyant force equals the weight of displaced fluid, so submerged volume and fluid density—not the object's mass by itself—set the buoyant force.",
+      "teaching_path": [
+        {
+          "id": "FLUID-R2-1",
+          "role": "DECLARE",
+          "action": "Submerge two equal-mass objects of different volume in the same fluid and outline the volume occupied by each submerged object.",
+          "why_valid": "For full submersion, the outlined object volume is exactly the volume of fluid displaced from that region.",
+          "inputs": [],
+          "output": "same object mass | object A: smaller submerged volume | object B: larger submerged volume"
+        },
+        {
+          "id": "FLUID-R2-2",
+          "role": "TRANSFORM",
+          "action": "Replace each object outline by an imagined parcel of the same fluid occupying the displaced region, then compare the parcel weights.",
+          "why_valid": "The upward buoyant effect is set by the surrounding pressure imbalance and equals the weight of the fluid that would occupy the displaced volume.",
+          "inputs": [],
+          "output": "smaller displaced volume -> lighter fluid parcel -> smaller buoyant force | larger displaced volume -> heavier fluid parcel -> larger buoyant force"
+        },
+        {
+          "id": "FLUID-R2-3",
+          "role": "VERIFY",
+          "action": "Keep the object's mass label unchanged while changing only how much of it is submerged.",
+          "why_valid": "If submerged volume decreases, the amount of displaced fluid decreases even though object mass has not changed, separating the controlling variables.",
+          "inputs": [],
+          "output": "same object mass; submerged fraction: full -> partial; displaced volume -> smaller; buoyant force -> smaller"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Objects with equal mass experience equal buoyant force in the same fluid.",
+          "diagnostic_prompt": "A 1 kg lead sphere and a 1 kg aluminium sphere are fully submerged in water. Must their buoyant forces be equal?",
+          "repair": "Compare displaced volumes: buoyant force follows the weight of displaced fluid, not the object's mass label."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two equal-mass objects with different volumes are fully submerged in the same fluid. Predict which experiences the larger buoyant force and explain the deciding quantity.",
+        "source_ref": "SRC-AUTHOR-PHY-FLUID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The larger-volume object experiences the larger buoyant force because full submersion makes it displace a larger volume of the same fluid.",
+          "reasoning": [
+            "Object mass is held equal, so it cannot explain a difference in buoyant force between the two cases.",
+            "Full submersion makes displaced volume match object volume.",
+            "In one fluid, the larger displaced volume corresponds to a larger weight of displaced fluid and therefore a larger buoyant force."
+          ],
+          "check": "Partly lift the larger object out of the fluid while leaving its mass unchanged; the buoyant force should decrease with its submerged volume.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer makes a qualitative comparison of buoyant force and displaced volume without asserting a computed force value."
+        }
+      },
+      "research_contribution": "Author-created buoyancy distinction from the matrix. The imported fluid packet remains source-only and no Archimedes equation is promoted as a gate-owned relation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A lead sphere and an aluminium sphere have the same mass and are fully submerged in the same water. Must the water push upward on them equally?",
+          "defensible_answer": "No. The object with the larger submerged volume displaces more water and therefore has the larger buoyant force."
+        },
+        "attempt": {
+          "produces": "A paired drawing that highlights each displaced-fluid region separately from the equal object-mass labels.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The displaced region is larger for the larger-volume object.",
+              "evidence_of": "The learner treats submerged volume as the fluid-side input."
+            },
+            {
+              "criterion": "Equal object mass is explicitly held fixed.",
+              "evidence_of": "The conclusion cannot be attributed to a mass difference between the objects."
+            }
+          ],
+          "accepted": [
+            "Both objects carry the same mass label, but the larger object has a visibly larger highlighted displaced-fluid region and is assigned the larger buoyant force."
+          ],
+          "rejected": [
+            "The response says the forces are equal solely because the object masses are equal, without considering displaced volume."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What quantity is guaranteed equal in this comparison?",
+              "why_this_ask": "It makes object mass a controlled variable rather than an automatic explanation.",
+              "from_step_ref": "FLUID-R2-1"
+            },
+            {
+              "ask": "Which object removes more fluid from the region it occupies?",
+              "why_this_ask": "It redirects attention from object mass to displaced volume."
+            },
+            {
+              "ask": "What imagined fluid parcel corresponds to each displaced region?",
+              "why_this_ask": "It constructs the fluid-weight interpretation before the force comparison.",
+              "from_step_ref": "FLUID-R2-2"
+            },
+            {
+              "ask": "What happens if one object emerges partly while its mass stays the same?",
+              "why_this_ask": "The boundary case tests whether submerged volume, not mass, controls the buoyant effect.",
+              "from_step_ref": "FLUID-R2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path replaces displaced regions with fluid parcels and then tests partial submersion; the elicitation first traps the equal-mass intuition and makes the learner identify the displaced region before any repair is shown."
+        },
+        "boundary_test": {
+          "prompt": "An object is lowered farther into the same fluid without changing its mass, but it is not yet fully submerged. Should the buoyant force stay fixed?",
+          "answer": "No. While the submerged volume is still increasing, the displaced-fluid volume and buoyant force increase too.",
+          "confirms": "The learner ties buoyant force to displaced fluid rather than to the object's fixed mass."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-FLUID-R3",
+      "title": "Steady incompressible flow speeds up in a narrower section",
+      "bucket_id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "primary_capability_ref": "CAP-PHY-FLUID-R3",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The rung requires a conserved through-flow picture rather than the everyday intuition that less room means slower motion.",
+      "entry_assumptions": [
+        "Can compare cross-sectional areas and interpret directional velocity arrows along one tube.",
+        "Can reason about equal volumes passing a section during equal time intervals."
+      ],
+      "inferential_jump": "For steady incompressible flow through one tube, the volume-flow rate is conserved, so smaller cross-sectional area requires larger flow speed.",
+      "teaching_path": [
+        {
+          "id": "FLUID-R3-1",
+          "role": "DECLARE",
+          "action": "Mark a wide section and a narrow section of one tube, then choose the same short time interval at both sections.",
+          "why_valid": "Steady flow is compared over one common time interval, so the amount passing each section can be meaningfully matched.",
+          "inputs": [],
+          "output": "one tube | wide section A | narrow section B | same time interval at A and B"
+        },
+        {
+          "id": "FLUID-R3-2",
+          "role": "TRANSFORM",
+          "action": "Draw equal volumes of incompressible fluid crossing the wide and narrow sections during that common interval.",
+          "why_valid": "In steady flow with no accumulation and no density change, the same fluid volume per time must pass every cross-section of the tube.",
+          "inputs": [],
+          "output": "equal volume per equal time; wide section -> shorter travel distance | narrow section -> longer travel distance"
+        },
+        {
+          "id": "FLUID-R3-3",
+          "role": "VERIFY",
+          "action": "Convert the travel-distance comparison into velocity-arrow lengths while leaving the section areas unchanged.",
+          "why_valid": "Over the same time interval, the longer travel distance corresponds to the larger average speed.",
+          "inputs": [],
+          "output": "wide section: shorter velocity arrow | narrow section: longer velocity arrow"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Water must slow down in a narrower pipe because there is less space available.",
+          "diagnostic_prompt": "In steady incompressible flow, if the pipe area halves, does the average speed halve or double?",
+          "repair": "Conserve volume flow rate: the same volume per time must pass every section, so area and average speed vary inversely."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A steady incompressible flow passes through three sections of one tube with different areas. Rank the flow speeds qualitatively and justify the ranking from equal volume crossing each section per equal time.",
+        "source_ref": "SRC-AUTHOR-PHY-FLUID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The narrowest section has the greatest average speed and the widest has the smallest because each section must pass the same fluid volume during the same time interval.",
+          "reasoning": [
+            "Steady incompressible flow prevents fluid from accumulating between the sections.",
+            "Therefore each section passes the same volume during a chosen common time interval.",
+            "A smaller area must carry that volume through a longer distance in the same time, which means a larger average speed."
+          ],
+          "check": "Make two sections equal in area; the predicted average speeds at those sections should become equal in the same steady incompressible flow.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response supplies a qualitative speed ranking from conserved volume flow and contains no computed speed."
+        }
+      },
+      "research_contribution": "Author-created continuity concept. It teaches the invariant through equal-volume motion without authoring a symbolic continuity equation as subject truth.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "The same steady water flow enters a narrower part of a pipe. Before using a formula, should the water there move faster or slower on average?",
+          "defensible_answer": "Faster, because the same volume must pass through the smaller cross-section during the same time."
+        },
+        "attempt": {
+          "produces": "A two-section flow sketch showing equal fluid volumes crossing a wide and a narrow section during one common time interval.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Equal crossing volumes are shown for the same time interval.",
+              "evidence_of": "The learner represents the steady-flow invariant rather than comparing unrelated snapshots."
+            },
+            {
+              "criterion": "The narrow section has the longer travel distance or velocity arrow.",
+              "evidence_of": "The learner links smaller area to greater speed through conserved volume flow."
+            }
+          ],
+          "accepted": [
+            "The sketch uses one common time interval, equal crossing volumes, and a longer motion arrow through the narrow section."
+          ],
+          "rejected": [
+            "The narrow section is assigned a shorter arrow because it has less room, while no conserved through-flow quantity is shown."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "If the flow is steady, can fluid keep piling up between the wide and narrow sections?",
+              "why_this_ask": "It removes accumulation as an escape from the conservation decision.",
+              "from_step_ref": "FLUID-R3-1"
+            },
+            {
+              "ask": "What must therefore be equal when you compare one common time interval?",
+              "why_this_ask": "The learner identifies the conserved crossing volume.",
+              "from_step_ref": "FLUID-R3-2"
+            },
+            {
+              "ask": "How can the narrower section pass that same volume in the same time?",
+              "why_this_ask": "It elicits the required travel-distance change before naming speed."
+            },
+            {
+              "ask": "What should the velocity arrows look like after that comparison?",
+              "why_this_ask": "It translates the constructed motion into the requested representation.",
+              "from_step_ref": "FLUID-R3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path fixes sections and time, demonstrates equal crossing volumes, then maps distance to speed; the learner route begins by ruling out accumulation and must supply the conserved quantity before seeing the arrow comparison."
+        },
+        "boundary_test": {
+          "prompt": "If the flow stops being steady and fluid temporarily accumulates between the sections, must the two section flow rates match at that instant?",
+          "answer": "No. The equal-through-flow conclusion used here depends on the steady-flow condition.",
+          "confirms": "The learner recognizes the conservation statement as conditional rather than as a rule about every pipe snapshot."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-FLUID-R4",
+      "title": "Pressure, speed and height trade along an ideal-flow path",
+      "bucket_id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "primary_capability_ref": "CAP-PHY-FLUID-R4",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The main failure is using a two-variable slogan when the energy ledger also contains height and model conditions.",
+      "entry_assumptions": [
+        "Can relate section area to flow speed for steady incompressible flow.",
+        "Can compare heights and distinguish static pressure from flow speed."
+      ],
+      "inferential_jump": "Along a streamline in steady ideal flow, pressure, kinetic, and gravitational energy-per-volume contributions trade; a speed increase alone does not determine the pressure change unless the other contributions are controlled.",
+      "teaching_path": [
+        {
+          "id": "FLUID-R4-1",
+          "role": "DECLARE",
+          "action": "Choose two marked points on the same ideal-flow path and list three ledger columns at each point: static pressure, motion contribution, and height contribution.",
+          "why_valid": "The comparison is only interpretable when both points belong to the same applicable flow path and all energy-per-volume contributions are kept visible.",
+          "inputs": [],
+          "output": "point 1: pressure | motion | height ; point 2: pressure | motion | height"
+        },
+        {
+          "id": "FLUID-R4-2",
+          "role": "TRANSFORM",
+          "action": "First narrow a horizontal section so speed rises while the two point heights remain equal.",
+          "why_valid": "With height fixed in this controlled case, the increased motion contribution must be balanced by a decrease in the static-pressure contribution along the ideal-flow path.",
+          "inputs": [],
+          "output": "horizontal narrowing: height = same; speed -> higher; static pressure -> lower"
+        },
+        {
+          "id": "FLUID-R4-3",
+          "role": "VERIFY",
+          "action": "Now move the faster point to a lower height and ask whether speed alone still fixes the pressure ordering.",
+          "why_valid": "Changing height adds another ledger change, so the earlier two-variable conclusion cannot be transferred without considering the full comparison.",
+          "inputs": [],
+          "output": "speed at point 2: higher | height at point 2: lower | pressure ordering: not decidable from speed alone"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Wherever fluid speed is higher, static pressure must be lower, regardless of height or losses.",
+          "diagnostic_prompt": "Point 2 has higher speed than point 1 but is also much lower. Can speed alone determine which point has higher pressure?",
+          "repair": "Use all Bernoulli terms between points on the same streamline and state the ideal-flow assumptions before drawing a pressure conclusion."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two points lie on one steady ideal-flow path. Point 2 has higher speed and lower height than point 1. Explain why speed alone is insufficient to rank the static pressures and identify what must be considered.",
+        "source_ref": "SRC-AUTHOR-PHY-FLUID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The static-pressure ordering cannot be inferred from speed alone because both the motion contribution and the height contribution change between the points; the complete ideal-flow energy ledger must be compared.",
+          "reasoning": [
+            "A higher speed increases the motion contribution at point 2.",
+            "A lower height decreases the gravitational contribution at point 2.",
+            "Those two changes act in different parts of the ledger, so static pressure must be determined from the whole balance rather than a slogan about speed."
+          ],
+          "check": "Return the two points to equal height while keeping the ideal-flow assumptions; only then does the controlled horizontal narrowing support the simpler higher-speed/lower-static-pressure comparison.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer identifies which qualitative energy contributions change and does not calculate a pressure value."
+        }
+      },
+      "research_contribution": "Author-created Bernoulli reasoning rung expressed as a qualitative ledger. No Bernoulli equation is authored as a library relation, preserving the engineering-gate authority boundary.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Point 2 on an ideal-flow path has higher speed than point 1, but it is also lower. Can you conclude immediately that its static pressure is lower?",
+          "defensible_answer": "No. Height changed too, so the full energy-per-volume ledger must be considered before ranking the pressures."
+        },
+        "attempt": {
+          "produces": "A two-point three-column ledger marking which of pressure, motion, and height contributions are known to rise, fall, or remain unknown.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The speed change is recorded in the motion column rather than turned directly into a pressure verdict.",
+              "evidence_of": "The learner keeps separate contributions separate."
+            },
+            {
+              "criterion": "The height change is recorded before pressure is ranked.",
+              "evidence_of": "The learner recognizes why the horizontal special case cannot be overgeneralized."
+            }
+          ],
+          "accepted": [
+            "The ledger marks motion higher and height lower at point 2, leaving static pressure to be determined from the complete balance rather than from speed alone."
+          ],
+          "rejected": [
+            "The response writes 'faster means lower pressure' immediately and ignores the changed height."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which three contributions must be kept visible at each comparison point?",
+              "why_this_ask": "It prevents the learner from reducing the situation to a pressure-speed slogan.",
+              "from_step_ref": "FLUID-R4-1"
+            },
+            {
+              "ask": "What does a horizontal narrowing show when height is deliberately held fixed?",
+              "why_this_ask": "It establishes the familiar special case under controlled conditions.",
+              "from_step_ref": "FLUID-R4-2"
+            },
+            {
+              "ask": "What extra contribution changes when the faster point is also lower?",
+              "why_this_ask": "It creates the reason the special-case inference can fail."
+            },
+            {
+              "ask": "Can speed alone still decide the pressure ordering?",
+              "why_this_ask": "The learner must withdraw the overgeneralization explicitly.",
+              "from_step_ref": "FLUID-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path builds a full ledger, demonstrates the horizontal special case, then breaks one held condition; the elicitation starts from the tempting pressure slogan and makes the learner discover which missing column blocks it."
+        },
+        "boundary_test": {
+          "prompt": "If the fluid has substantial dissipative loss between the two points, is this ideal-flow ledger sufficient by itself?",
+          "answer": "No. The rung's comparison assumes the stated ideal-flow model; appreciable loss means the model choice must be reconsidered.",
+          "confirms": "The learner treats the pressure-speed relation as conditional on both the full ledger and the model assumptions."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-FLUID-CORE1A",
+      "title": "Declarative fluids conceptual route",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-FLUID-R2",
+        "MIC-PHY-FLUID-R3",
+        "MIC-PHY-FLUID-R4"
+      ],
+      "entry_needs": [
+        "R1 is an explicit un-authored quantitative entry rung; this route must not be interpreted as making R2 the true entry."
+      ],
+      "learner_actions": [
+        "Follow displaced-volume, through-flow, and energy-ledger constructions.",
+        "State the held conditions before transferring a qualitative conclusion."
+      ],
+      "help_plan": [
+        "Highlight displaced fluid separately from object mass.",
+        "Use equal-time flow slices before velocity arrows.",
+        "Keep pressure, motion, and height in separate ledger columns."
+      ],
+      "reveal_plan": "Completed conceptual reasoning is shown while the blocked hydrostatic and application equations remain absent.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-FLUID",
+          "purpose": "Authored fluids explanation",
+          "reason": "The imported packet is non-authoritative candidate input."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not present this partial route as a complete learner-ready fluids sequence because R1 is blocked."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-FLUID"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-FLUID-CORE1B",
+      "title": "Elicited fluids conceptual route",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-FLUID-R2",
+        "MIC-PHY-FLUID-R3",
+        "MIC-PHY-FLUID-R4"
+      ],
+      "entry_needs": [
+        "Same partial conceptual coverage as Core1A, with the blocked R1 entry gap stated before use."
+      ],
+      "learner_actions": [
+        "Predict from a controlled comparison before receiving the principle.",
+        "Construct displaced-volume, equal-flow, or energy-ledger evidence for the prediction."
+      ],
+      "help_plan": [
+        "Ask which quantity is held before asking for a ranking.",
+        "Break the horizontal-flow special case by changing height only after the learner has used it."
+      ],
+      "reveal_plan": "Attempts precede model responses and rubrics; the route never supplies a missing equation as a hint.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-FLUID",
+          "purpose": "Self-tutor fluids prompts",
+          "reason": "The authored record provides closed qualitative tasks without external facilitation."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use the route to bypass the un-authored quantitative entry rung."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

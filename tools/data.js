@@ -948,6 +948,499 @@ window.GRADE9V3 = {
           }
         },
         {
+          "id": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+          "title": "Fluid statics, buoyancy and Bernoulli flow",
+          "topic": "Mechanical Properties of Fluids",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-FLUID-R2",
+              "title": "Buoyant force follows displaced fluid",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The key distinction is between the object's own mass and the volume of fluid removed by the submerged part.",
+              "entry_assumptions": [
+                "Can reason that pressure forces on a submerged object come from the surrounding static fluid.",
+                "Can compare object volume with submerged volume qualitatively."
+              ],
+              "inferential_jump": "Buoyant force equals the weight of displaced fluid, so submerged volume and fluid density—not the object's mass by itself—set the buoyant force.",
+              "teaching_path": [
+                {
+                  "action": "Submerge two equal-mass objects of different volume in the same fluid and outline the volume occupied by each submerged object.",
+                  "why_valid": "For full submersion, the outlined object volume is exactly the volume of fluid displaced from that region.",
+                  "output": "same object mass | object A: smaller submerged volume | object B: larger submerged volume"
+                },
+                {
+                  "action": "Replace each object outline by an imagined parcel of the same fluid occupying the displaced region, then compare the parcel weights.",
+                  "why_valid": "The upward buoyant effect is set by the surrounding pressure imbalance and equals the weight of the fluid that would occupy the displaced volume.",
+                  "output": "smaller displaced volume -> lighter fluid parcel -> smaller buoyant force | larger displaced volume -> heavier fluid parcel -> larger buoyant force"
+                },
+                {
+                  "action": "Keep the object's mass label unchanged while changing only how much of it is submerged.",
+                  "why_valid": "If submerged volume decreases, the amount of displaced fluid decreases even though object mass has not changed, separating the controlling variables.",
+                  "output": "same object mass; submerged fraction: full -> partial; displaced volume -> smaller; buoyant force -> smaller"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Objects with equal mass experience equal buoyant force in the same fluid.",
+                  "diagnostic_prompt": "A 1 kg lead sphere and a 1 kg aluminium sphere are fully submerged in water. Must their buoyant forces be equal?",
+                  "repair": "Compare displaced volumes: buoyant force follows the weight of displaced fluid, not the object's mass label."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two equal-mass objects with different volumes are fully submerged in the same fluid. Predict which experiences the larger buoyant force and explain the deciding quantity.",
+                "source_ref": "SRC-AUTHOR-PHY-FLUID",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The larger-volume object experiences the larger buoyant force because full submersion makes it displace a larger volume of the same fluid.",
+                  "reasoning": [
+                    "Object mass is held equal, so it cannot explain a difference in buoyant force between the two cases.",
+                    "Full submersion makes displaced volume match object volume.",
+                    "In one fluid, the larger displaced volume corresponds to a larger weight of displaced fluid and therefore a larger buoyant force."
+                  ],
+                  "check": "Partly lift the larger object out of the fluid while leaving its mass unchanged; the buoyant force should decrease with its submerged volume.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer makes a qualitative comparison of buoyant force and displaced volume without asserting a computed force value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-FLUID-R3",
+              "title": "Steady incompressible flow speeds up in a narrower section",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The rung requires a conserved through-flow picture rather than the everyday intuition that less room means slower motion.",
+              "entry_assumptions": [
+                "Can compare cross-sectional areas and interpret directional velocity arrows along one tube.",
+                "Can reason about equal volumes passing a section during equal time intervals."
+              ],
+              "inferential_jump": "For steady incompressible flow through one tube, the volume-flow rate is conserved, so smaller cross-sectional area requires larger flow speed.",
+              "teaching_path": [
+                {
+                  "action": "Mark a wide section and a narrow section of one tube, then choose the same short time interval at both sections.",
+                  "why_valid": "Steady flow is compared over one common time interval, so the amount passing each section can be meaningfully matched.",
+                  "output": "one tube | wide section A | narrow section B | same time interval at A and B"
+                },
+                {
+                  "action": "Draw equal volumes of incompressible fluid crossing the wide and narrow sections during that common interval.",
+                  "why_valid": "In steady flow with no accumulation and no density change, the same fluid volume per time must pass every cross-section of the tube.",
+                  "output": "equal volume per equal time; wide section -> shorter travel distance | narrow section -> longer travel distance"
+                },
+                {
+                  "action": "Convert the travel-distance comparison into velocity-arrow lengths while leaving the section areas unchanged.",
+                  "why_valid": "Over the same time interval, the longer travel distance corresponds to the larger average speed.",
+                  "output": "wide section: shorter velocity arrow | narrow section: longer velocity arrow"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Water must slow down in a narrower pipe because there is less space available.",
+                  "diagnostic_prompt": "In steady incompressible flow, if the pipe area halves, does the average speed halve or double?",
+                  "repair": "Conserve volume flow rate: the same volume per time must pass every section, so area and average speed vary inversely."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A steady incompressible flow passes through three sections of one tube with different areas. Rank the flow speeds qualitatively and justify the ranking from equal volume crossing each section per equal time.",
+                "source_ref": "SRC-AUTHOR-PHY-FLUID",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The narrowest section has the greatest average speed and the widest has the smallest because each section must pass the same fluid volume during the same time interval.",
+                  "reasoning": [
+                    "Steady incompressible flow prevents fluid from accumulating between the sections.",
+                    "Therefore each section passes the same volume during a chosen common time interval.",
+                    "A smaller area must carry that volume through a longer distance in the same time, which means a larger average speed."
+                  ],
+                  "check": "Make two sections equal in area; the predicted average speeds at those sections should become equal in the same steady incompressible flow.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response supplies a qualitative speed ranking from conserved volume flow and contains no computed speed."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-FLUID-R4",
+              "title": "Pressure, speed and height trade along an ideal-flow path",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The main failure is using a two-variable slogan when the energy ledger also contains height and model conditions.",
+              "entry_assumptions": [
+                "Can relate section area to flow speed for steady incompressible flow.",
+                "Can compare heights and distinguish static pressure from flow speed."
+              ],
+              "inferential_jump": "Along a streamline in steady ideal flow, pressure, kinetic, and gravitational energy-per-volume contributions trade; a speed increase alone does not determine the pressure change unless the other contributions are controlled.",
+              "teaching_path": [
+                {
+                  "action": "Choose two marked points on the same ideal-flow path and list three ledger columns at each point: static pressure, motion contribution, and height contribution.",
+                  "why_valid": "The comparison is only interpretable when both points belong to the same applicable flow path and all energy-per-volume contributions are kept visible.",
+                  "output": "point 1: pressure | motion | height ; point 2: pressure | motion | height"
+                },
+                {
+                  "action": "First narrow a horizontal section so speed rises while the two point heights remain equal.",
+                  "why_valid": "With height fixed in this controlled case, the increased motion contribution must be balanced by a decrease in the static-pressure contribution along the ideal-flow path.",
+                  "output": "horizontal narrowing: height = same; speed -> higher; static pressure -> lower"
+                },
+                {
+                  "action": "Now move the faster point to a lower height and ask whether speed alone still fixes the pressure ordering.",
+                  "why_valid": "Changing height adds another ledger change, so the earlier two-variable conclusion cannot be transferred without considering the full comparison.",
+                  "output": "speed at point 2: higher | height at point 2: lower | pressure ordering: not decidable from speed alone"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Wherever fluid speed is higher, static pressure must be lower, regardless of height or losses.",
+                  "diagnostic_prompt": "Point 2 has higher speed than point 1 but is also much lower. Can speed alone determine which point has higher pressure?",
+                  "repair": "Use all Bernoulli terms between points on the same streamline and state the ideal-flow assumptions before drawing a pressure conclusion."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two points lie on one steady ideal-flow path. Point 2 has higher speed and lower height than point 1. Explain why speed alone is insufficient to rank the static pressures and identify what must be considered.",
+                "source_ref": "SRC-AUTHOR-PHY-FLUID",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The static-pressure ordering cannot be inferred from speed alone because both the motion contribution and the height contribution change between the points; the complete ideal-flow energy ledger must be compared.",
+                  "reasoning": [
+                    "A higher speed increases the motion contribution at point 2.",
+                    "A lower height decreases the gravitational contribution at point 2.",
+                    "Those two changes act in different parts of the ledger, so static pressure must be determined from the whole balance rather than a slogan about speed."
+                  ],
+                  "check": "Return the two points to equal height while keeping the ideal-flow assumptions; only then does the controlled horizontal narrowing support the simpler higher-speed/lower-static-pressure comparison.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer identifies which qualitative energy contributions change and does not calculate a pressure value."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-PHY-FLUID-R2",
+              "action": "Compare buoyant force from displaced-fluid volume.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-FLUID-R3",
+              "action": "Infer flow-speed ordering from cross-sectional area in steady incompressible flow.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-FLUID-R4",
+              "action": "Reason across pressure, motion and height contributions along one ideal-flow path.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 8,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 3,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+          "title": "Universal gravitation, free fall and orbital motion",
+          "topic": "Gravitation",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-GRAV-R1",
+              "title": "Gravity is a mutual two-body interaction",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The rung must separate the interaction pair from the very different accelerations the two bodies may later have.",
+              "entry_assumptions": [
+                "Can identify two interacting bodies and describe a direction between their centres."
+              ],
+              "inferential_jump": "Gravitational interaction is mutual and points along the line joining the two bodies; neither body is the one-sided source of the interaction.",
+              "teaching_path": [
+                {
+                  "action": "Draw two separated bodies A and B and mark the straight line joining their centres before adding any interaction arrows.",
+                  "why_valid": "The direction of each gravitational force is fixed by the two centres, so the joining line is the reference the interaction needs.",
+                  "output": "A •----------------• B | centre-to-centre line marked"
+                },
+                {
+                  "action": "Place one force arrow on A pointing toward B and one on B pointing toward A.",
+                  "why_valid": "A gravitational interaction involves both bodies, with each force directed toward the other along the same joining line.",
+                  "output": "on A: -> toward B | on B: <- toward A | one interaction pair"
+                },
+                {
+                  "action": "Swap the labels A and B while leaving the physical pair in place, then check whether either force disappears.",
+                  "why_valid": "Relabelling cannot change the physical interaction; it only exchanges which body owns which arrow.",
+                  "output": "A <-> B labels swapped; both inward arrows remain paired and collinear"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A massive body pulls on a smaller body, but the smaller body does not pull back with an equal interaction.",
+                  "diagnostic_prompt": "Earth pulls on an apple. Does the apple pull on Earth too, and if so in which direction?",
+                  "repair": "Treat gravity as an interaction pair: each body experiences a force directed toward the other along the same line."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two separated bodies are shown with their centres marked. Draw the gravitational-force direction on each body and explain what changes if the body labels are exchanged.",
+                "source_ref": "SRC-AUTHOR-PHY-GRAV",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Each body has a gravitational-force arrow directed toward the other along the same centre-to-centre line; exchanging labels only exchanges ownership of the arrows.",
+                  "reasoning": [
+                    "The two centres determine the common line of action.",
+                    "The force on A points from A toward B.",
+                    "The force on B points from B toward A, so the interaction remains paired when labels swap."
+                  ],
+                  "check": "Rotate the entire drawing without changing the bodies or their separation; both force arrows should rotate with the joining line rather than stay tied to the page.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer is directional and relational; it asserts no computed force magnitude."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-GRAV-R4",
+              "title": "Gravitational binding uses a chosen zero of potential energy",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The rung must keep potential, kinetic, and total energy distinct while comparing bound motion with just-escape motion.",
+              "entry_assumptions": [
+                "Can distinguish kinetic energy from force and can use conservation of mechanical energy qualitatively.",
+                "Can describe a reference choice for an energy zero."
+              ],
+              "inferential_jump": "Gravitational potential energy is negative when zero is chosen at infinite separation, and changes in that energy trade with kinetic energy in orbital and escape problems.",
+              "teaching_path": [
+                {
+                  "action": "Choose infinite separation as the zero reference, then mark a finite separation as a bound configuration below that reference.",
+                  "why_valid": "Potential energy values require a reference choice; with zero at infinite separation, attraction makes finite-separation gravitational potential energy negative.",
+                  "output": "infinite separation: potential reference = 0 | finite bound separation: potential energy < 0"
+                },
+                {
+                  "action": "At one fixed radius, increase the object's speed while keeping the source mass and energy reference unchanged.",
+                  "why_valid": "At fixed separation the gravitational potential term is unchanged, so the energy change enters through kinetic energy.",
+                  "output": "same radius + faster motion -> same gravitational potential term + greater kinetic term"
+                },
+                {
+                  "action": "Compare circular bound motion with the limiting case that just reaches infinite separation with no speed left.",
+                  "why_valid": "The just-escape case must reach the chosen zero-potential reference without residual kinetic energy, so it requires more initial kinetic energy than a bound circular case at the same radius.",
+                  "output": "same launch radius | bound circular case: remains finite | just-escape case: reaches infinity with final speed = 0"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Negative gravitational potential energy means the object has negative total energy in every gravitational motion.",
+                  "diagnostic_prompt": "Can a moving satellite have negative potential energy but positive kinetic energy at the same instant?",
+                  "repair": "Keep potential, kinetic, and total energy separate; the sign of one term does not determine the sign of each other term."
+                }
+              ],
+              "exit_task": {
+                "prompt": "At one radius from a central mass, compare a bound circular case with a just-escape case. Explain why the escape case needs the greater initial speed without deriving a speed formula.",
+                "source_ref": "SRC-AUTHOR-PHY-GRAV",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The escape case needs greater initial kinetic energy because it must climb from negative gravitational potential energy to the zero reference at infinite separation while arriving with no kinetic energy left.",
+                  "reasoning": [
+                    "Both cases begin at the same radius, so they share the same gravitational potential energy initially.",
+                    "The chosen zero lies at infinite separation, above the finite-radius potential value.",
+                    "Just escape must supply enough kinetic energy to reach that zero-energy boundary, so it requires more initial kinetic energy than the bound circular case."
+                  ],
+                  "check": "Change the chosen numerical zero of potential energy while preserving all energy differences; the physical comparison between bound and just-escape cases must remain unchanged.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer compares energy signs and relative requirements without asserting a calculated speed or energy value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-GRAV-R5",
+              "title": "Central gravity conserves orbital angular momentum about the centre",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The rung is both an origin condition and an axial-direction distinction, so the orbital plane and viewing side must remain explicit.",
+              "entry_assumptions": [
+                "Can identify the line from a chosen centre to a moving body and the direction of its motion.",
+                "Can use an out-of-plane convention for an axial quantity."
+              ],
+              "inferential_jump": "A central gravitational force has zero torque about the source centre, so orbital angular momentum is conserved; its axial-vector direction is perpendicular to the orbital plane.",
+              "teaching_path": [
+                {
+                  "action": "Mark the source centre O, a satellite position, and its motion direction in one orbital plane.",
+                  "why_valid": "The angular-momentum statement needs a specified origin and the plane defined by position and motion.",
+                  "output": "origin O | position arrow: in orbital plane | motion arrow: in orbital plane"
+                },
+                {
+                  "action": "Draw the gravitational force back toward O at several satellite positions and compare its line with the position arrow each time.",
+                  "why_valid": "A central force is collinear with the position line from O, so it has no lever arm about O and cannot change total orbital angular momentum there.",
+                  "output": "position 1: force line through O -> zero turning effect | position 2: force line through O -> zero turning effect"
+                },
+                {
+                  "action": "View the same physical orbit from the opposite face and reapply the axial direction convention instead of relying on clockwise words alone.",
+                  "why_valid": "The physical angular-momentum direction is fixed by the cross-product orientation, while the viewer's page symbol changes when the viewing side reverses.",
+                  "output": "same physical orbit | front view: axial symbol one way | back view: page symbol reversed, physical axial direction unchanged"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Angular momentum points along the direction the satellite is moving around the orbit.",
+                  "diagnostic_prompt": "A satellite moves in the page. Is its angular momentum vector in the page or perpendicular to it?",
+                  "repair": "Use the cross-product orientation: position and momentum lie in the orbital plane; angular momentum is axial and normal to that plane."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A satellite's position and motion are drawn in an orbital plane around centre O. State the angular-momentum direction and explain why the central gravitational force does not change total angular momentum about O.",
+                "source_ref": "SRC-AUTHOR-PHY-GRAV",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Orbital angular momentum is perpendicular to the orbital plane, with its axial direction set by the position-to-motion orientation; central gravity acts along the position line through O, so it supplies no turning effect about O.",
+                  "reasoning": [
+                    "Position and motion lie in the orbital plane and define an oriented pair.",
+                    "The associated angular-momentum direction is normal to that plane rather than tangent to the path.",
+                    "Gravity points through O, leaving no lever arm about O, so total angular momentum about that centre remains unchanged."
+                  ],
+                  "check": "Reverse the viewing side but not the physical orbit; the page symbol may reverse, yet the physical axial direction and conservation statement must remain the same.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response identifies an axial direction and a conservation condition without computing angular momentum, torque, or orbital speed."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent gravity as a mutual two-body interaction.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R4",
+              "action": "Compare bound and just-escape states using a declared gravitational-energy reference.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R5",
+              "action": "Determine orbital angular-momentum direction for a central-force motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 8,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 3,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
           "id": "BUCKET-PHY-KIN-1D-MOTION",
           "title": "One-dimensional motion",
           "topic": "Motion",
@@ -1388,7 +1881,7 @@ window.GRADE9V3 = {
                 {
                   "action": "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
                   "why_valid": "Once the hand is gone, a continuing steady velocity can be observed without a continuing forward push.",
-                  "output": "after release: positions advance evenly in one direction; velocity stays unchanged."
+                  "output": "successive equal-time snapshots -> equal forward position advances; velocity unchanged."
                 },
                 {
                   "action": "Compare the released moving cart with a cart that starts at rest under the same zero-net-force condition.",
@@ -2096,6 +2589,624 @@ window.GRADE9V3 = {
           }
         },
         {
+          "id": "BUCKET-PHY-ROT-RIGID-BODY",
+          "title": "Rotational dynamics, angular momentum and rolling",
+          "topic": "System of Particles and Rotational Motion",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-ROT-R1",
+              "title": "Mass distribution sets rotational inertia about an axis",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The comparison is qualitative but only works if the axis stays explicit while the mass distribution changes.",
+              "entry_assumptions": [
+                "Can compare distances from a line or point and can describe rigid rotation about a chosen axis."
+              ],
+              "inferential_jump": "Rotational inertia depends on how mass is distributed relative to the chosen axis, not on total mass alone.",
+              "teaching_path": [
+                {
+                  "action": "Lay out two equal totals of identical mass pieces around one named axis: one cluster close to the axis and one spread farther away.",
+                  "why_valid": "The totals match and the axis is unchanged, so radial distribution is the only intended difference.",
+                  "output": "same total mass | same axis | arrangement A: pieces near | arrangement B: pieces far"
+                },
+                {
+                  "action": "Move the pieces of arrangement A outward without adding or removing any mass, then compare how the rotational response changes.",
+                  "why_valid": "Only the distances from the fixed axis were changed, isolating the effect of radial placement.",
+                  "output": "near placement -> farther placement; total mass = unchanged; rotational inertia -> larger"
+                },
+                {
+                  "action": "Compare a rim-loaded body with a centre-loaded body that has the same total mass and outer size.",
+                  "why_valid": "If total mass alone controlled the comparison the two would match; the different distribution supplies the discriminating case.",
+                  "output": "equal total mass + equal outer size; more mass farther from axis -> greater rotational inertia"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Objects with the same mass always have the same moment of inertia.",
+                  "diagnostic_prompt": "A ring and a solid disk have the same mass and radius about the same central axis. Must their moments of inertia be equal?",
+                  "repair": "Track how much mass lies far from the axis; the squared distance weighting makes distribution matter."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two equal-mass arrangements rotate about the same marked axis. One keeps most of its mass close to the axis; the other places more mass near the outside. Predict which has greater rotational inertia and name the feature that decides it.",
+                "source_ref": "SRC-AUTHOR-PHY-ROT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The outside-loaded arrangement has greater rotational inertia because more of the same mass lies farther from the chosen axis.",
+                  "reasoning": [
+                    "The comparison fixes total mass, so mass amount cannot explain the difference.",
+                    "The comparison fixes the axis, so the reference for all distances is common.",
+                    "Moving the same mass farther from that axis increases its contribution to rotational inertia."
+                  ],
+                  "check": "Swap only the radial distributions while keeping the axis fixed; the prediction must swap with the distribution rather than stay attached to an object label.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer makes a qualitative ordering only; it contains no computed value or asserted numerical magnitude."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-ROT-R3",
+              "title": "Angular momentum conservation belongs to a specified origin",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The central difficulty is keeping the turning-effect test and angular-momentum statement tied to the same origin while the body's distribution changes.",
+              "entry_assumptions": [
+                "Can identify an origin used for a turning-effect statement.",
+                "Can describe an axial direction for rotational quantities without changing the physical plane."
+              ],
+              "inferential_jump": "Angular momentum and torque must be taken about the same specified origin; zero net external torque about that origin makes total angular momentum there constant.",
+              "teaching_path": [
+                {
+                  "action": "Mark one origin O and write it beside both the external turning-effect check and the angular-momentum description.",
+                  "why_valid": "Changing the reference point can change the turning effect, so the conservation claim is meaningful only when both quantities use the same origin.",
+                  "output": "origin for external turning effect: O | origin for angular momentum: O"
+                },
+                {
+                  "action": "Move part of a rotating system inward while keeping the stated external turning effect about O absent.",
+                  "why_valid": "With the reference origin fixed and no external turning effect about it, the system can redistribute internally without changing total angular momentum about O.",
+                  "output": "mass distribution: outward -> inward; external turning effect about O = none; spin rate -> increases"
+                },
+                {
+                  "action": "Choose a different point P that the same external force does not pass through and ask whether the earlier conservation statement automatically transfers to P.",
+                  "why_valid": "The same force can have no turning effect about O but a nonzero one about P, exposing why origin matching is a condition rather than a label.",
+                  "output": "about O: external turning effect absent | about P: external turning effect present -> conservation claim must be rechecked"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If a system is isolated from external forces, angular momentum is automatically conserved about every origin.",
+                  "diagnostic_prompt": "A force passes through one origin but not another. Is angular momentum conserved about both origins?",
+                  "repair": "Test external torque about the same origin used for angular momentum; force isolation alone is not the criterion."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A rotating system pulls mass inward. The problem states that the net external turning effect about origin O is zero. Predict the spin-rate change and explain why the conservation claim must stay tied to O.",
+                "source_ref": "SRC-AUTHOR-PHY-ROT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The spin rate rises as the mass distribution moves inward, while total angular momentum about O remains constant under the stated zero-external-torque condition there.",
+                  "reasoning": [
+                    "The reference origin is fixed as O for both the condition and the conserved quantity.",
+                    "Moving mass inward changes how the rotating mass is distributed about O.",
+                    "With no net external turning effect about O, the redistribution changes spin rate rather than total angular momentum about O."
+                  ],
+                  "check": "Repeat the reasoning after naming another origin; if an external turning effect exists there, the conservation claim must be reconsidered instead of copied.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response predicts directions of change and a conservation condition without claiming a calculated angular momentum or angular speed."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-ROT-R4",
+              "title": "Pure rolling makes the contact point instantaneously at rest",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must combine translation with rotation at different points of one rigid body without treating every point as having the centre speed.",
+              "entry_assumptions": [
+                "Can distinguish centre-of-mass translation from rotation about the centre.",
+                "Can add two directed velocity contributions qualitatively."
+              ],
+              "inferential_jump": "Pure rolling couples translation and rotation so that the point touching a stationary surface is instantaneously at rest relative to that surface.",
+              "teaching_path": [
+                {
+                  "action": "Draw a wheel moving right and mark three points: top, centre, and the point touching the stationary ground.",
+                  "why_valid": "The rigid body is one object, but the three points occupy different places relative to the centre and therefore need not share one ground-frame velocity.",
+                  "output": "marked points: top | centre | contact; ground: stationary"
+                },
+                {
+                  "action": "At each marked point, place the rightward translation contribution beside the rotational contribution from turning about the centre.",
+                  "why_valid": "Ground-frame motion of a point on a rolling rigid body is obtained by combining the motion of the centre with motion about the centre.",
+                  "output": "contact: rightward + leftward -> rest | centre: rightward + none -> rightward | top: rightward + rightward -> faster rightward"
+                },
+                {
+                  "action": "Ask what would be observed at the contact point if the wheel were sliding instead of rolling purely.",
+                  "why_valid": "A nonzero ground-frame contact speed is the discriminating boundary: cancellation at contact is the defining no-slip feature used here.",
+                  "output": "pure rolling -> contact instantaneously at rest | sliding -> contact has nonzero ground-frame motion"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Every point on a rolling wheel moves forward with the centre-of-mass speed.",
+                  "diagnostic_prompt": "For a wheel rolling right without slipping, what is the instantaneous velocity of the point touching the ground?",
+                  "repair": "Add translational and rotational velocity contributions; at the contact point they cancel for pure rolling."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A wheel rolls right on stationary ground without slipping. Rank the instantaneous ground-frame motions of the top, centre, and contact point, and explain why the contact point is special.",
+                "source_ref": "SRC-AUTHOR-PHY-ROT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The contact point is instantaneously at rest, the centre moves forward, and the top moves forward faster than the centre because translation and rotation combine differently at those locations.",
+                  "reasoning": [
+                    "Every point shares the centre's translational motion.",
+                    "Rotation about the centre contributes different directions at the top and contact.",
+                    "At contact the two contributions oppose and cancel in pure rolling; at the top they reinforce."
+                  ],
+                  "check": "Change only the condition from pure rolling to sliding; the contact-point cancellation should no longer be asserted.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The model answer compares qualitative point motions and asserts no computed speed."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-ROT-R5",
+              "title": "Mass distribution changes ideal rolling acceleration",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The comparison is conceptual only if mass amount, radius, incline, and no-slip conditions are controlled while shape changes.",
+              "entry_assumptions": [
+                "Can separate translational motion from rotation in pure rolling.",
+                "Can reason that one energy input may be divided among different motion channels."
+              ],
+              "inferential_jump": "For bodies rolling without slipping, how mass is distributed relative to size controls how gravitational energy divides between translation and rotation, so total mass alone does not decide which body accelerates more.",
+              "teaching_path": [
+                {
+                  "action": "Release two equal-mass, equal-radius bodies from the same marked height on the same incline, differing only in how their mass is distributed.",
+                  "why_valid": "Holding mass, size, release height, and incline fixed makes distribution the intended cause of any difference in motion.",
+                  "output": "same mass | same radius | same start height | distribution A: centre-loaded | distribution B: rim-loaded"
+                },
+                {
+                  "action": "Track the fall in gravitational energy into two destinations: centre motion and rotation about the centre.",
+                  "why_valid": "Pure rolling has both translational and rotational kinetic energy, so a larger rotational share leaves a smaller share for centre-of-mass motion at the same height loss.",
+                  "output": "same energy drop -> translation share + rotation share; rim-loaded case -> larger rotation share -> smaller centre-motion share"
+                },
+                {
+                  "action": "Repeat the comparison with the same shape at two different total masses while preserving the mass distribution relative to size.",
+                  "why_valid": "If the distribution pattern is unchanged, changing total mass alone does not create the shape-dependent ordering being tested in the ideal model.",
+                  "output": "same shape pattern + different total mass -> same ideal acceleration ordering"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The heavier rolling object reaches the bottom first because gravity pulls harder on it.",
+                  "diagnostic_prompt": "Two same-shape cylinders of different masses roll without slipping down the same incline. Which reaches the bottom first in the ideal model?",
+                  "repair": "Mass cancels from the ideal rolling-acceleration expression; the controlling shape information is I/(MR^2)."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two equal-mass, equal-radius bodies roll without slipping from the same height. One is more rim-loaded. Predict which gains centre-of-mass speed more quickly and explain the role of mass distribution without calculating an acceleration.",
+                "source_ref": "SRC-AUTHOR-PHY-ROT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The more centre-loaded body gains centre-of-mass speed more quickly because less of the common energy drop is tied up in rotation for the same translational progress.",
+                  "reasoning": [
+                    "Both bodies begin with the same gravitational-energy change available over a given height loss.",
+                    "Pure rolling requires energy to appear in both centre motion and rotation.",
+                    "A distribution with greater rotational inertia demands a larger rotational share, leaving less for centre-of-mass motion."
+                  ],
+                  "check": "Compare two copies of the same shape at different masses; the ideal ordering should not reverse merely because one copy is heavier.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response gives a qualitative acceleration ordering and energy-partition explanation without computing a numerical acceleration."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-PHY-ROT-R1",
+              "action": "Compare rotational inertia by changing radial mass distribution about one named axis.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-ROT-R3",
+              "action": "Test an angular-momentum conservation claim about a specified origin.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-ROT-R4",
+              "action": "Construct point velocities for a wheel in pure rolling.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-ROT-R5",
+              "action": "Compare ideal rolling acceleration from mass distribution at fixed geometry conditions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 10,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 4,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+          "title": "Thermodynamics and heat engines",
+          "topic": "Thermodynamics",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-THERMO-R1",
+              "title": "Internal energy is stored; heat and work are transfers",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The entry distinction must be made with a system boundary before any energy-balance law is introduced.",
+              "entry_assumptions": [
+                "Can identify a physical system and its surroundings and can distinguish stored energy from an energy-transfer event."
+              ],
+              "inferential_jump": "A system contains internal energy, while heat and work name energy transferred across its boundary; a body does not contain 'heat'.",
+              "teaching_path": [
+                {
+                  "action": "Draw a boundary around one chosen system and label internal energy inside the boundary.",
+                  "why_valid": "Stored energy belongs to the state of the chosen system, so it must be located with the system before transfers are discussed.",
+                  "output": "inside boundary: internal energy | outside boundary: surroundings"
+                },
+                {
+                  "action": "Add one arrow crossing the boundary because of a temperature difference and a second arrow crossing because the surroundings mechanically compress the system.",
+                  "why_valid": "Both arrows represent energy crossing the system boundary, but they are classified by the transfer mechanism rather than stored as substances inside.",
+                  "output": "temperature-driven transfer -> heat crossing boundary | mechanical compression -> work crossing boundary"
+                },
+                {
+                  "action": "Stop both transfers and isolate the system after its state has changed, then ask which labels still describe something contained in the system.",
+                  "why_valid": "Once crossing stops, the stored internal energy remains a state property, whereas heat and work no longer name things sitting inside the isolated body.",
+                  "output": "isolated final system: internal energy remains a state label | current heat transfer = none | current work transfer = none"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A hot object contains heat, and cooling means some of that heat remains stored inside it.",
+                  "diagnostic_prompt": "When a hot block is isolated after heating stops, is 'heat' still a substance stored in the block?",
+                  "repair": "Name the stored quantity internal energy; reserve heat for energy crossing the boundary because of temperature difference."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A block has finished being heated and is now isolated. Classify 'internal energy', 'heat', and 'work' as stored in the system or as names for energy transfer, and justify the classification using the boundary.",
+                "source_ref": "SRC-AUTHOR-PHY-THERMO",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Internal energy is a state quantity stored in the system; heat and work describe energy transfers across the boundary and are not substances contained after the transfers stop.",
+                  "reasoning": [
+                    "The system boundary separates what belongs to the state from what crosses between system and surroundings.",
+                    "Internal energy describes the system's stored microscopic energy.",
+                    "Heat and work classify transfer mechanisms, so when no transfer is occurring they are not contents of the isolated system."
+                  ],
+                  "check": "Redraw the same physical object as part of a larger chosen system; the bookkeeping boundary changes, so every claimed transfer must be reconsidered relative to that boundary.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response is a classification of energy roles and includes no computed energy quantity."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-THERMO-R3",
+              "title": "Internal-energy change is fixed by endpoint states, not process path",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must read a Cartesian pressure-volume diagram as multiple paths between the same endpoints without turning path area into a state property.",
+              "entry_assumptions": [
+                "Can distinguish an initial state, a final state, and a process connecting them.",
+                "Can use a pressure-volume plot to trace alternative paths qualitatively."
+              ],
+              "inferential_jump": "Internal energy is a state function: its change depends only on endpoint states, while heat and work can differ between paths connecting the same endpoints.",
+              "teaching_path": [
+                {
+                  "action": "Mark one initial point A and one final point B on a pressure-volume plot, then draw two visibly different paths between the same points.",
+                  "why_valid": "Using identical endpoints isolates path choice from state choice, which is necessary to test state dependence.",
+                  "output": "same endpoints: A and B | path 1: upper route | path 2: lower route"
+                },
+                {
+                  "action": "Compare the geometric area under the two paths without moving A or B.",
+                  "why_valid": "Mechanical work in a pressure-volume process depends on the path traced, so different path shapes can produce different work while endpoints remain fixed.",
+                  "output": "A,B unchanged; area under path 1 != area under path 2 -> process work differs"
+                },
+                {
+                  "action": "Ask which quantity must remain the same for both processes solely because the initial and final states are identical.",
+                  "why_valid": "A state function is determined by the endpoint states, so its change cannot depend on which of the two process paths was taken.",
+                  "output": "endpoint states equal across paths -> internal-energy change equal | heat/work allocations may differ"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If two processes start and finish at the same states, they must transfer the same heat and do the same work.",
+                  "diagnostic_prompt": "Two P-V paths connect the same initial and final states but enclose different areas under the curves. Must W and Q be equal for both?",
+                  "repair": "Keep delta U fixed by the endpoints; different path work is balanced by a different heat transfer through the first law."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two different pressure-volume paths connect the same initial state A to the same final state B. State which energy change must match between the paths and which transfers may differ, explaining the distinction without calculating areas.",
+                "source_ref": "SRC-AUTHOR-PHY-THERMO",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The internal-energy change must be the same because the endpoints are the same, while heat and work may differ because they depend on the process path.",
+                  "reasoning": [
+                    "The initial and final thermodynamic states are identical for both processes.",
+                    "Internal energy is a state property, so its change is fixed by those endpoints.",
+                    "The paths differ geometrically, so the transfer history can differ even though the state change does not."
+                  ],
+                  "check": "Change the final endpoint while keeping one path shape visually similar; the internal-energy change must be reconsidered because the endpoint state has changed.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer compares state dependence with path dependence and contains no computed work, heat, or internal-energy value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-THERMO-R4",
+              "title": "A complete cycle returns the state while its loop records net work",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The rung depends on reading a directed closed pressure-volume loop while keeping state return separate from nonzero energy transfer over the cycle.",
+              "entry_assumptions": [
+                "Can distinguish state-function change from path-dependent transfers.",
+                "Can interpret direction and enclosed area on a pressure-volume plot."
+              ],
+              "inferential_jump": "Over a complete thermodynamic cycle the system returns to its initial state, so net internal-energy change is zero and net heat balances net work; the directed pressure-volume loop records the sign of net work.",
+              "teaching_path": [
+                {
+                  "action": "Trace a closed pressure-volume path until the system returns exactly to its starting state.",
+                  "why_valid": "A complete cycle has identical initial and final states by definition, so every state function returns to its initial value.",
+                  "output": "start state A -> path around loop -> final state A | state returned"
+                },
+                {
+                  "action": "Reverse the direction around the same geometric loop while leaving every plotted point unchanged.",
+                  "why_valid": "Reversing traversal changes the sign of process work while the enclosed geometric area keeps the same magnitude.",
+                  "output": "clockwise loop -> one work sign | same loop counter-clockwise -> opposite work sign | enclosed area magnitude = same"
+                },
+                {
+                  "action": "Use the returned state to check whether zero internal-energy change implies zero heat transfer for the full cycle.",
+                  "why_valid": "Returning the state only forces the net state-function change to vanish; if the cycle has nonzero net work, energy conservation requires a matching net heat transfer.",
+                  "output": "full cycle: internal-energy change = 0 | nonzero net work -> nonzero net heat with matching ledger balance"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A cyclic engine must have zero heat transfer because its internal energy returns to the starting value.",
+                  "diagnostic_prompt": "If delta U over one full cycle is zero but the loop encloses positive work area, what must be true of net heat?",
+                  "repair": "Apply the first law to the whole cycle: zero delta U requires net heat and net work to match under the chosen convention."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A directed closed pressure-volume loop returns to its starting state and encloses a nonzero area. Explain the internal-energy change over the cycle and how reversing loop direction changes the net work sign.",
+                "source_ref": "SRC-AUTHOR-PHY-THERMO",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The internal-energy change over the complete cycle is zero because the state returns to its start; reversing the loop reverses the net work sign while keeping the enclosed-area magnitude unchanged.",
+                  "reasoning": [
+                    "The final state equals the initial state, so the net change of the state function is zero.",
+                    "A directed pressure-volume loop can still represent nonzero net process work.",
+                    "Reversing the path direction reverses the sign of that work, so the corresponding net heat balance must reverse consistently under the same convention."
+                  ],
+                  "check": "Collapse the loop to a path retraced exactly forward and backward; the enclosed area disappears, so the net work should also disappear.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer interprets signs and state return qualitatively and does not compute a loop area or energy value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-THERMO-R5",
+              "title": "Heat engines require heat rejection and obey a reservoir-temperature ceiling",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The distinction is conceptual: removing mechanical losses does not remove the second-law need for a cold-reservoir heat flow.",
+              "entry_assumptions": [
+                "Can read a cyclic energy-flow diagram with heat entering, work leaving, and heat rejected.",
+                "Can compare hot- and cold-reservoir temperatures qualitatively."
+              ],
+              "inferential_jump": "A heat engine cannot convert all absorbed heat into work; even an ideal reversible engine between finite-temperature reservoirs has a maximum efficiency set by those reservoir temperatures.",
+              "teaching_path": [
+                {
+                  "action": "Draw a cyclic engine between one hot reservoir and one colder reservoir, with absorbed heat entering, work leaving, and rejected heat leaving toward the cold reservoir.",
+                  "why_valid": "A cyclic heat engine returns its working substance to its starting state, so sustained work output requires an energy-flow ledger across the cycle rather than storage inside the engine.",
+                  "output": "hot reservoir -> heat in -> engine -> work out + heat out -> cold reservoir"
+                },
+                {
+                  "action": "Imagine removing friction and other mechanical losses while keeping the same two finite-temperature reservoirs.",
+                  "why_valid": "Removing dissipative losses can improve performance, but it does not remove the thermodynamic requirement that a cyclic engine reject some heat to the colder reservoir.",
+                  "output": "mechanical losses: present -> removed; rejected heat: remains required; efficiency: improves but stays below complete conversion"
+                },
+                {
+                  "action": "Lower the cold-reservoir temperature while holding the hot-reservoir temperature fixed, then compare the reversible performance ceiling.",
+                  "why_valid": "The maximum reversible efficiency depends on the separation of the reservoir temperatures, so changing the cold reservoir changes the ceiling without changing mechanical friction.",
+                  "output": "hot reservoir fixed; cold temperature -> lower; reversible efficiency ceiling -> higher, still below complete conversion for finite temperatures"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "An ideal engine can reach 100% efficiency if friction and other mechanical losses are removed.",
+                  "diagnostic_prompt": "An engine absorbs heat from a hot reservoir and rejects none to a colder reservoir. Is that allowed merely because the engine is otherwise frictionless?",
+                  "repair": "The second-law limitation is not a mechanical-loss correction; some heat rejection is unavoidable for a cyclic heat engine between finite-temperature reservoirs."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A frictionless cyclic heat engine operates between finite hot and cold reservoirs. Explain why frictionlessness does not permit complete conversion of absorbed heat into work and how making the cold reservoir colder changes the ideal ceiling.",
+                "source_ref": "SRC-AUTHOR-PHY-THERMO",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Eliminating mechanical losses does not remove the need to reject some heat to the colder reservoir; lowering the cold-reservoir temperature raises the reversible efficiency ceiling but does not make a finite-temperature engine a complete heat-to-work converter.",
+                  "reasoning": [
+                    "Mechanical friction is one source of loss, but the second-law restriction is not caused by friction.",
+                    "A cyclic engine between finite reservoirs must reject heat to the colder reservoir.",
+                    "Increasing the temperature separation can raise the reversible ceiling, yet the existence of the cold-reservoir heat flow remains part of the cycle."
+                  ],
+                  "check": "Compare two real engines between the same reservoirs; neither may be justified as exceeding the reversible benchmark simply by claiming better bearings or less friction.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response compares qualitative efficiency limits and heat-flow requirements without calculating an efficiency percentage."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-PHY-THERMO-R1",
+              "action": "Classify internal energy as stored state and heat or work as boundary transfers.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-THERMO-R3",
+              "action": "Compare state-function change across different process paths with common endpoints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-THERMO-R4",
+              "action": "Interpret a directed pressure-volume cycle from state return and loop direction.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-THERMO-R5",
+              "action": "Distinguish the thermodynamic efficiency ceiling from mechanical friction losses.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 10,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 4,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
           "id": "BUCKET-PHY-VEC-ADD-SUB",
           "title": "Vector addition, subtraction and orientation",
           "topic": "Vectors / Motion in a Plane",
@@ -2125,7 +3236,7 @@ window.GRADE9V3 = {
                 {
                   "action": "For A minus B, follow A and then the reversed B arrow using the already-learned subtraction construction.",
                   "why_valid": "The prerequisite construction gives a directed result for the stated order without introducing a new rule.",
-                  "output": "A minus B: one completed arrow from the common start to the construction endpoint."
+                  "output": "A - B -> one completed arrow from the common start to the construction endpoint."
                 },
                 {
                   "action": "Repeat with the order swapped and place both completed arrows from the same start for comparison.",
@@ -2406,7 +3517,7 @@ window.GRADE9V3 = {
                 {
                   "action": "Now add kinetic friction and compare a short route with a longer route between comparable endpoints.",
                   "why_valid": "Friction acts along the travelled path, so changing path length changes its energy transfer even when endpoints are comparable.",
-                  "output": "short path: smaller friction transfer.  longer path: larger friction transfer."
+                  "output": "short path -> smaller friction transfer.  longer path -> larger friction transfer."
                 },
                 {
                   "action": "Ask whether one endpoint-only energy label could predict both friction cases without knowing which path was taken.",
@@ -2464,7 +3575,7 @@ window.GRADE9V3 = {
                 {
                   "action": "Track whether lost gravitational potential energy appears entirely as kinetic energy in each case.",
                   "why_valid": "With no extra transfer the mechanical account can stay constant; friction redirects part of the energy outside that mechanical account.",
-                  "output": "smooth: decrease in U matches increase in K.  rough: increase in K is smaller because friction carries energy away from the mechanical account."
+                  "output": "smooth -> decrease in U matches increase in K.  rough -> increase in K is smaller because friction carries energy away from the mechanical account."
                 },
                 {
                   "action": "Before writing any K-plus-U equality, ask whether friction or an outside moving support transfers energy across the chosen account.",
@@ -3435,6 +4546,16 @@ window.GRADE9V3 = {
           "admitted": true
         },
         {
+          "package_id": "LIB-PHY-FLUID-BERNOULLI-EQUATION-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-GRAV-UNIVERSAL-LAW-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
           "package_id": "LIB-PHY-KIN-1D-MOTION-AUTHORED",
           "status": "CANDIDATE",
           "admitted": true
@@ -3456,6 +4577,16 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-OSC-SHM-WAVES-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-ROT-RIGID-BODY-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-THERMO-FIRST-SECOND-LAW-AUTHORED",
           "status": "CANDIDATE",
           "admitted": true
         },

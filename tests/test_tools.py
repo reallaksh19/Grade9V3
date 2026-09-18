@@ -1343,7 +1343,11 @@ class CeilingAudit(unittest.TestCase):
                     self.assertTrue(ceiling_audit.says(
                         word, ceiling_audit.learner_text(rows[rung])))
                 checked += 1
-        self.assertGreater(checked, 0, "nothing reported, so this asserts nothing")
+        # Non-vacuity is about the audit having done work, not about a defect existing:
+        # the tracks cleared the last two reported findings and this guard then demanded
+        # one be present. What must never be zero is the ceiling words examined.
+        self.assertGreater(report["ceiling_words"], 0, "no ceilings, so this asserts nothing")
+        self.assertEqual(report["blocking"], 0)
 
 
 class RelativeMotionEntryRung(unittest.TestCase):

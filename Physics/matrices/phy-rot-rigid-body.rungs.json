@@ -9,23 +9,27 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "Rotational inertia depends on how mass is distributed relative to the chosen axis, not on total mass alone.",
-      "learner_owns": ["Can compare distances from a line or point and can describe rigid rotation about a chosen axis."],
-      "ceiling": ["torque", "angular momentum", "rolling", "parallel-axis theorem", "perpendicular-axis theorem"],
+      "provenance": "SOURCE",
+      "ceiling": [
+        "torque",
+        "angular momentum",
+        "rolling",
+        "parallel-axis theorem",
+        "perpendicular-axis theorem"
+      ],
       "must_contain": [
         "Two bodies with the same total mass but different radial mass distributions about the same axis.",
         "The axis drawn and named before any moment-of-inertia comparison."
       ],
-      "misconception": {
-        "wrong_idea": "Objects with the same mass always have the same moment of inertia.",
-        "diagnostic_prompt": "A ring and a solid disk have the same mass and radius about the same central axis. Must their moments of inertia be equal?",
-        "repair": "Track how much mass lies far from the axis; the squared distance weighting makes distribution matter."
-      },
-      "closure": "Given two equal-mass arrangements around the same axis, predict which has larger rotational inertia and identify the decisive mass distribution.",
       "controlled_variation": [
-        {"phase": 1, "vary": "radial placement of equal mass pieces", "hold": "total mass and rotation axis", "notice": "moving mass farther from the axis increases rotational inertia"}
-      ]
+        {
+          "phase": 1,
+          "vary": "radial placement of equal mass pieces",
+          "hold": "total mass and rotation axis",
+          "notice": "moving mass farther from the axis increases rotational inertia"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-ROT-R1"
     },
     {
       "rung": "R2",
@@ -36,7 +40,13 @@
         "Rotational inertia is defined relative to a chosen axis.",
         "Can identify a force direction and the line from an origin to its point of application."
       ],
-      "ceiling": ["angular momentum conservation", "rolling constraint", "precession", "couple moment", "gyroscope"],
+      "ceiling": [
+        "angular momentum conservation",
+        "rolling constraint",
+        "precession",
+        "couple moment",
+        "gyroscope"
+      ],
       "must_contain": [
         "An in-plane position arrow and force arrow together with an out-of-plane axial torque arrow.",
         "A right-hand orientation check using the same physical push viewed from opposite sides of the plane."
@@ -48,82 +58,100 @@
       },
       "closure": "For a drawn pivot, application point, and force, state whether the torque is into or out of the page and whether its magnitude is zero or non-zero.",
       "controlled_variation": [
-        {"phase": 1, "vary": "force direction around a fixed application point", "hold": "origin, lever-arm length, and force magnitude", "notice": "the turning sense and axial-vector direction change even when the force magnitude does not"},
-        {"phase": 2, "vary": "viewpoint from one face of the rotation plane to the other", "hold": "the physical origin, force, and turning sense", "notice": "the page symbol for the axial direction changes with the view, not with the physical torque"}
+        {
+          "phase": 1,
+          "vary": "force direction around a fixed application point",
+          "hold": "origin, lever-arm length, and force magnitude",
+          "notice": "the turning sense and axial-vector direction change even when the force magnitude does not"
+        },
+        {
+          "phase": 2,
+          "vary": "viewpoint from one face of the rotation plane to the other",
+          "hold": "the physical origin, force, and turning sense",
+          "notice": "the page symbol for the axial direction changes with the view, not with the physical torque"
+        }
       ]
     },
     {
       "rung": "R3",
       "ladder_position": 50,
-      "provenance": "SYNTHESIS",
-      "aha": "Angular momentum and torque must be taken about the same specified origin; zero net external torque about that origin makes total angular momentum there constant.",
-      "learner_owns": [
-        "Torque has an axial direction about a specified origin.",
-        "Can identify rotational inertia and angular speed for a rigid body."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "rolling without slipping",
+        "static friction",
+        "incline acceleration",
+        "precession",
+        "collision impulse"
       ],
-      "ceiling": ["rolling without slipping", "static friction", "incline acceleration", "precession", "collision impulse"],
       "must_contain": [
         "The chosen origin repeated on both the torque and angular-momentum descriptions.",
         "A before/after change in moment of inertia with no external torque, showing angular speed adjusts while angular momentum is held."
       ],
-      "misconception": {
-        "wrong_idea": "If a system is isolated from external forces, angular momentum is automatically conserved about every origin.",
-        "diagnostic_prompt": "A force passes through one origin but not another. Is angular momentum conserved about both origins?",
-        "repair": "Test external torque about the same origin used for angular momentum; force isolation alone is not the criterion."
-      },
-      "closure": "Given a shrinking rotating system and a stated zero-torque origin, predict the direction of angular-speed change and name the conserved quantity.",
       "controlled_variation": [
-        {"phase": 1, "vary": "moment of inertia by moving mass inward or outward", "hold": "net external torque at zero about the chosen origin", "notice": "angular speed changes inversely while angular momentum remains fixed"}
-      ]
+        {
+          "phase": 1,
+          "vary": "moment of inertia by moving mass inward or outward",
+          "hold": "net external torque at zero about the chosen origin",
+          "notice": "angular speed changes inversely while angular momentum remains fixed"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-ROT-R3"
     },
     {
       "rung": "R4",
       "ladder_position": 65,
-      "provenance": "SYNTHESIS",
-      "aha": "Pure rolling couples translation and rotation through the no-slip condition: the contact point is instantaneously at rest relative to the stationary surface.",
-      "learner_owns": [
-        "Angular momentum conservation is conditional on zero external torque about the chosen origin.",
-        "Can distinguish centre-of-mass translation from rotation about the centre."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "rolling energy",
+        "incline acceleration",
+        "traction limit",
+        "kinetic friction",
+        "slip ratio"
       ],
-      "ceiling": ["rolling energy", "incline acceleration", "traction limit", "kinetic friction", "slip ratio"],
       "must_contain": [
         "A velocity-arrow field on top, centre, and contact points of a rolling wheel.",
         "Translation and rotation contributions shown separately before they are combined at the contact point."
       ],
-      "misconception": {
-        "wrong_idea": "Every point on a rolling wheel moves forward with the centre-of-mass speed.",
-        "diagnostic_prompt": "For a wheel rolling right without slipping, what is the instantaneous velocity of the point touching the ground?",
-        "repair": "Add translational and rotational velocity contributions; at the contact point they cancel for pure rolling."
-      },
-      "closure": "Given a rolling wheel diagram, rank the instantaneous speeds of the top, centre, and contact point and justify the contact-point value.",
       "controlled_variation": [
-        {"phase": 1, "vary": "point chosen on the rim", "hold": "centre-of-mass speed and angular speed satisfying v_cm=omega R", "notice": "different points have different ground-frame velocities even though the body is rigid"}
-      ]
+        {
+          "phase": 1,
+          "vary": "point chosen on the rim",
+          "hold": "centre-of-mass speed and angular speed satisfying v_cm=omega R",
+          "notice": "different points have different ground-frame velocities even though the body is rigid"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-ROT-R4"
     },
     {
       "rung": "R5",
       "ladder_position": 80,
-      "provenance": "SYNTHESIS",
-      "aha": "For rolling motion, the same gravitational energy can split differently between translation and rotation, so acceleration depends on the dimensionless inertia ratio I/(MR^2), not on mass alone.",
-      "learner_owns": [
-        "Pure rolling requires the contact point to be instantaneously at rest relative to the stationary surface.",
-        "Can write translational and rotational kinetic-energy terms separately."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "rolling resistance",
+        "deformation loss",
+        "air drag",
+        "bearing loss",
+        "slip"
       ],
-      "ceiling": ["rolling resistance", "deformation loss", "air drag", "bearing loss", "slip"],
       "must_contain": [
         "Two rolling bodies released from the same incline height with equal mass and radius but different moments of inertia.",
         "An energy ledger containing gravitational, translational, and rotational terms without assuming equal shares."
       ],
-      "misconception": {
-        "wrong_idea": "The heavier rolling object reaches the bottom first because gravity pulls harder on it.",
-        "diagnostic_prompt": "Two same-shape cylinders of different masses roll without slipping down the same incline. Which reaches the bottom first in the ideal model?",
-        "repair": "Mass cancels from the ideal rolling-acceleration expression; the controlling shape information is I/(MR^2)."
-      },
-      "closure": "Compare two ideal rolling bodies on the same incline and predict which accelerates more from their inertia ratios, not from their masses.",
       "controlled_variation": [
-        {"phase": 1, "vary": "mass while shape and radius are scaled to keep the same inertia ratio", "hold": "incline angle, gravity, and no-slip condition", "notice": "ideal rolling acceleration is unchanged by mass"},
-        {"phase": 2, "vary": "mass distribution at fixed mass and radius", "hold": "incline angle, gravity, and no-slip condition", "notice": "larger rotational inertia diverts more energy into rotation and reduces centre-of-mass acceleration"}
-      ]
+        {
+          "phase": 1,
+          "vary": "mass while shape and radius are scaled to keep the same inertia ratio",
+          "hold": "incline angle, gravity, and no-slip condition",
+          "notice": "ideal rolling acceleration is unchanged by mass"
+        },
+        {
+          "phase": 2,
+          "vary": "mass distribution at fixed mass and radius",
+          "hold": "incline angle, gravity, and no-slip condition",
+          "notice": "larger rotational inertia diverts more energy into rotation and reduces centre-of-mass acceleration"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-ROT-R5"
     }
   ],
   "family": {
@@ -131,15 +159,44 @@
     "difficult_move": "Choosing the correct origin/axis and deciding whether torque, angular momentum, or the no-slip constraint is the controlling statement before calculating.",
     "independent_check": "Reverse the viewing direction or alter mass distribution conceptually: axial signs must transform consistently and inertia-dependent results must follow the expected limiting trend.",
     "support_ladder": [
-      {"level": "high", "handed_over": "The origin or axis and the applicable invariant or rolling constraint are named; the learner still sets directions, computes, and checks."},
-      {"level": "medium", "handed_over": "The origin or axis is marked and the requested rotational quantity is named."},
-      {"level": "low", "handed_over": "Only the physical setup, dimensions, and requested quantity are given."}
+      {
+        "level": "high",
+        "handed_over": "The origin or axis and the applicable invariant or rolling constraint are named; the learner still sets directions, computes, and checks."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The origin or axis is marked and the requested rotational quantity is named."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical setup, dimensions, and requested quantity are given."
+      }
     ]
   },
   "transfer": [
-    {"dimension": "model_choice", "changed_demand": "A rolling wheel begins to slip on a low-friction patch: decide which parts of the pure-rolling analysis remain valid.", "information_not_handed_over": "whether the no-slip condition v_cm=omega R can still be imposed", "repair_to": "R4"},
-    {"dimension": "representation_translation", "changed_demand": "Torque and angular momentum are shown only with dot/cross out-of-plane symbols; reconstruct the corresponding turning sense and in-plane force geometry.", "information_not_handed_over": "the axial-vector orientation encoded by each dot/cross symbol", "repair_to": "R2"},
-    {"dimension": "reasoning_steps", "changed_demand": "A person on a turntable pulls masses inward while a small external brake also acts; determine the angular-speed change.", "information_not_handed_over": "whether angular momentum is conserved once the brake torque is included", "repair_to": "R3"},
-    {"dimension": "novelty", "changed_demand": "A spool pulled by a string can roll toward or away from the pull depending on geometry; predict the direction.", "information_not_handed_over": "the sign of the torque about the instantaneous contact or chosen origin", "repair_to": "R2"}
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A rolling wheel begins to slip on a low-friction patch: decide which parts of the pure-rolling analysis remain valid.",
+      "information_not_handed_over": "whether the no-slip condition v_cm=omega R can still be imposed",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Torque and angular momentum are shown only with dot/cross out-of-plane symbols; reconstruct the corresponding turning sense and in-plane force geometry.",
+      "information_not_handed_over": "the axial-vector orientation encoded by each dot/cross symbol",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A person on a turntable pulls masses inward while a small external brake also acts; determine the angular-speed change.",
+      "information_not_handed_over": "whether angular momentum is conserved once the brake torque is included",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A spool pulled by a string can roll toward or away from the pull depending on geometry; predict the direction.",
+      "information_not_handed_over": "the sign of the torque about the instantaneous contact or chosen origin",
+      "repair_to": "R2"
+    }
   ]
 }

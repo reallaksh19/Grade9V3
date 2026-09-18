@@ -16,7 +16,7 @@
     "TOOLING": 17,
     "WEB": 5
   },
-  "digest": "sha256:29548b9139e45f2f460dcb4105f8757ef64336a50174cdf7bd78dfdbbd2d92d9",
+  "digest": "sha256:3e386926d0d60066ba16b113047d8b04b02fcdbbbe39e9b039dec93ccdb0a177",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -407,8 +407,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 80424,
-      "sha256": "931aaaa0f1a1034436ffc6eae0352491c8b95371b39aef03123999c62b8a22de"
+      "bytes": 80741,
+      "sha256": "a4c7e06078f3a584ce9a6609e4d1f2822b7d7077cd38cff8fd358f255846fa83"
     },
     {
       "path": "tools/app.css",
@@ -421,8 +421,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 181949,
-      "sha256": "2e70f90880f92a0d8ee3ebe1e76150a6adb5329f7ff8cdaaea4a16bbdbc7d545"
+      "bytes": 256748,
+      "sha256": "8de8c8d3b3b2e9e2ac89ef6f18e709e42b71e31c7f10626b090b6f8f81a30118"
     },
     {
       "path": "tools/index.html",

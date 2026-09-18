@@ -102,19 +102,19 @@
       ],
       "must_contain": [
         "A frictionless descent compared with an otherwise identical rough descent.",
-        "An explicit system boundary and every external/non-conservative work term before K + U is compared."
+        "An explicit energy-account boundary and every transfer from friction or an outside agent before K + U is compared."
       ],
       "controlled_variation": [
         {
           "phase": 1,
           "vary": "the starting height on a frictionless track",
-          "hold": "the same system boundary and no non-conservative work",
+          "hold": "the same chosen energy account and no frictional or outside transfer",
           "notice": "lost potential energy reappears as kinetic energy and K + U stays constant"
         },
         {
           "phase": 2,
           "vary": "the surface from frictionless to rough",
-          "hold": "the endpoints and system boundary",
+          "hold": "the endpoints and chosen energy account",
           "notice": "K + U for the mechanical degrees of freedom decreases by the negative friction work"
         }
       ],

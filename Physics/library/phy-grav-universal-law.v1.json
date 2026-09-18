@@ -1,0 +1,608 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-GRAV-UNIVERSAL-LAW-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Conceptual rung records for mutual gravitation, gravitational-energy reference reasoning, and central-force angular momentum; inverse-square force and free-fall acceleration equations remain un-authored.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "SRC-AUTHOR-PHY-GRAV",
+      "title": "Track B authored gravitation rung source",
+      "origin": "AUTHORED",
+      "locator": "docs/offload/physics-rungs-track-b.md + Physics/matrices/phy-grav-universal-law.rungs.json",
+      "edition": "Track B authoring pass",
+      "section": "Gravitation rungs R1, R4, R5",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created repository content",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides authored provenance for conceptual gravitation records while leaving gate-owned quantitative laws outside this package.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "title": "Universal gravitation, free fall and orbital motion",
+      "topic": "Gravitation",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The conceptual spine crosses interaction pairs, reference-dependent energy, and axial orbital reasoning while quantitative laws remain separate.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-GRAV-R1",
+      "action": "Represent gravity as a mutual two-body interaction.",
+      "success_criterion": "Draw the paired gravitational-force directions on the two bodies.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-GRAV-R4",
+      "action": "Compare bound and just-escape states using a declared gravitational-energy reference.",
+      "success_criterion": "Explain why the just-escape case requires greater initial kinetic energy at one radius.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-GRAV-R5",
+      "action": "Determine orbital angular-momentum direction for a central-force motion.",
+      "success_criterion": "State the axial direction normal to the orbital plane.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-GRAV-R1",
+      "title": "Gravity is a mutual two-body interaction",
+      "bucket_id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "primary_capability_ref": "CAP-PHY-GRAV-R1",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The rung must separate the interaction pair from the very different accelerations the two bodies may later have.",
+      "entry_assumptions": [
+        "Can identify two interacting bodies and describe a direction between their centres."
+      ],
+      "inferential_jump": "Gravitational interaction is mutual and points along the line joining the two bodies; neither body is the one-sided source of the interaction.",
+      "teaching_path": [
+        {
+          "id": "GRAV-R1-1",
+          "role": "DECLARE",
+          "action": "Draw two separated bodies A and B and mark the straight line joining their centres before adding any interaction arrows.",
+          "why_valid": "The direction of each gravitational force is fixed by the two centres, so the joining line is the reference the interaction needs.",
+          "inputs": [],
+          "output": "A •----------------• B | centre-to-centre line marked"
+        },
+        {
+          "id": "GRAV-R1-2",
+          "role": "TRANSFORM",
+          "action": "Place one force arrow on A pointing toward B and one on B pointing toward A.",
+          "why_valid": "A gravitational interaction involves both bodies, with each force directed toward the other along the same joining line.",
+          "inputs": [],
+          "output": "on A: -> toward B | on B: <- toward A | one interaction pair"
+        },
+        {
+          "id": "GRAV-R1-3",
+          "role": "VERIFY",
+          "action": "Swap the labels A and B while leaving the physical pair in place, then check whether either force disappears.",
+          "why_valid": "Relabelling cannot change the physical interaction; it only exchanges which body owns which arrow.",
+          "inputs": [],
+          "output": "A <-> B labels swapped; both inward arrows remain paired and collinear"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A massive body pulls on a smaller body, but the smaller body does not pull back with an equal interaction.",
+          "diagnostic_prompt": "Earth pulls on an apple. Does the apple pull on Earth too, and if so in which direction?",
+          "repair": "Treat gravity as an interaction pair: each body experiences a force directed toward the other along the same line."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two separated bodies are shown with their centres marked. Draw the gravitational-force direction on each body and explain what changes if the body labels are exchanged.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Each body has a gravitational-force arrow directed toward the other along the same centre-to-centre line; exchanging labels only exchanges ownership of the arrows.",
+          "reasoning": [
+            "The two centres determine the common line of action.",
+            "The force on A points from A toward B.",
+            "The force on B points from B toward A, so the interaction remains paired when labels swap."
+          ],
+          "check": "Rotate the entire drawing without changing the bodies or their separation; both force arrows should rotate with the joining line rather than stay tied to the page.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer is directional and relational; it asserts no computed force magnitude."
+        }
+      },
+      "research_contribution": "Author-created entry distinction based on the Track B matrix. The imported gravitation packet remains non-authoritative candidate input and is not promoted by this record.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Earth pulls an apple downward. Before reading further, does the apple exert a gravitational force on Earth too?",
+          "defensible_answer": "Yes. The apple exerts a gravitational force on Earth directed toward the apple along the same joining line."
+        },
+        "attempt": {
+          "produces": "A two-body interaction sketch with one arrow owned by each body and both arrows lying on the centre-to-centre line.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each body owns one inward-directed arrow.",
+              "evidence_of": "The learner represents gravity as a mutual interaction rather than a one-sided action."
+            },
+            {
+              "criterion": "Both arrows are collinear with the two centres.",
+              "evidence_of": "The learner ties direction to the bodies rather than to page-up or page-down."
+            }
+          ],
+          "accepted": [
+            "Both bodies have arrows toward the other on the same joining line, with the body labels attached to the correct arrows."
+          ],
+          "rejected": [
+            "Only the smaller body has an arrow because the larger body is treated as the sole source; the interaction pair has been lost."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What line is fixed by the positions of the two body centres?",
+              "why_this_ask": "It establishes the only direction the pair can share before any force is drawn.",
+              "from_step_ref": "GRAV-R1-1"
+            },
+            {
+              "ask": "If A is pulled toward B, what interaction partner must B have?",
+              "why_this_ask": "It makes the second force a consequence of the pair rather than an added rule.",
+              "from_step_ref": "GRAV-R1-2"
+            },
+            {
+              "ask": "Which way must B's force point if it is gravitational attraction?",
+              "why_this_ask": "The learner completes the paired direction from the same joining line."
+            },
+            {
+              "ask": "Would swapping the letters make one force disappear?",
+              "why_this_ask": "The relabelling test removes the idea that one named body uniquely 'does the pulling'.",
+              "from_step_ref": "GRAV-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path draws the interaction pair directly; the learner route begins with one familiar force and requires the second force and its direction to be inferred before the completed pair is shown."
+        },
+        "boundary_test": {
+          "prompt": "If the two bodies have very different masses, is it still correct to draw one gravitational-force arrow on each?",
+          "answer": "Yes. The interaction remains mutual even though later acceleration responses can be very different.",
+          "confirms": "The learner keeps mutual force interaction separate from the separate question of how strongly each body accelerates."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-GRAV-R4",
+      "title": "Gravitational binding uses a chosen zero of potential energy",
+      "bucket_id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "primary_capability_ref": "CAP-PHY-GRAV-R4",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The rung must keep potential, kinetic, and total energy distinct while comparing bound motion with just-escape motion.",
+      "entry_assumptions": [
+        "Can distinguish kinetic energy from force and can use conservation of mechanical energy qualitatively.",
+        "Can describe a reference choice for an energy zero."
+      ],
+      "inferential_jump": "Gravitational potential energy is negative when zero is chosen at infinite separation, and changes in that energy trade with kinetic energy in orbital and escape problems.",
+      "teaching_path": [
+        {
+          "id": "GRAV-R4-1",
+          "role": "DECLARE",
+          "action": "Choose infinite separation as the zero reference, then mark a finite separation as a bound configuration below that reference.",
+          "why_valid": "Potential energy values require a reference choice; with zero at infinite separation, attraction makes finite-separation gravitational potential energy negative.",
+          "inputs": [],
+          "output": "infinite separation: potential reference = 0 | finite bound separation: potential energy < 0"
+        },
+        {
+          "id": "GRAV-R4-2",
+          "role": "TRANSFORM",
+          "action": "At one fixed radius, increase the object's speed while keeping the source mass and energy reference unchanged.",
+          "why_valid": "At fixed separation the gravitational potential term is unchanged, so the energy change enters through kinetic energy.",
+          "inputs": [],
+          "output": "same radius + faster motion -> same gravitational potential term + greater kinetic term"
+        },
+        {
+          "id": "GRAV-R4-3",
+          "role": "VERIFY",
+          "action": "Compare circular bound motion with the limiting case that just reaches infinite separation with no speed left.",
+          "why_valid": "The just-escape case must reach the chosen zero-potential reference without residual kinetic energy, so it requires more initial kinetic energy than a bound circular case at the same radius.",
+          "inputs": [],
+          "output": "same launch radius | bound circular case: remains finite | just-escape case: reaches infinity with final speed = 0"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Negative gravitational potential energy means the object has negative total energy in every gravitational motion.",
+          "diagnostic_prompt": "Can a moving satellite have negative potential energy but positive kinetic energy at the same instant?",
+          "repair": "Keep potential, kinetic, and total energy separate; the sign of one term does not determine the sign of each other term."
+        }
+      ],
+      "exit_task": {
+        "prompt": "At one radius from a central mass, compare a bound circular case with a just-escape case. Explain why the escape case needs the greater initial speed without deriving a speed formula.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The escape case needs greater initial kinetic energy because it must climb from negative gravitational potential energy to the zero reference at infinite separation while arriving with no kinetic energy left.",
+          "reasoning": [
+            "Both cases begin at the same radius, so they share the same gravitational potential energy initially.",
+            "The chosen zero lies at infinite separation, above the finite-radius potential value.",
+            "Just escape must supply enough kinetic energy to reach that zero-energy boundary, so it requires more initial kinetic energy than the bound circular case."
+          ],
+          "check": "Change the chosen numerical zero of potential energy while preserving all energy differences; the physical comparison between bound and just-escape cases must remain unchanged.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer compares energy signs and relative requirements without asserting a calculated speed or energy value."
+        }
+      },
+      "research_contribution": "Author-created conceptual energy rung. It avoids introducing the blocked potential-energy and escape-speed equations as library relations while preserving the matrix's qualitative distinction.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A satellite at one radius has negative gravitational potential energy. Does that force its kinetic energy to be negative too?",
+          "defensible_answer": "No. Kinetic energy can be positive at the same instant; the terms must be tracked separately."
+        },
+        "attempt": {
+          "produces": "A qualitative energy ledger for a bound case and a just-escape case at the same starting radius.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both cases use the same potential-energy zero.",
+              "evidence_of": "The sign comparison is made against one declared reference."
+            },
+            {
+              "criterion": "The escape case is assigned the larger initial kinetic contribution.",
+              "evidence_of": "The learner connects escape to reaching the zero-energy boundary rather than to a memorized speed formula."
+            }
+          ],
+          "accepted": [
+            "The ledger marks finite-radius potential energy below zero, positive kinetic energy, and a larger initial kinetic contribution for the just-escape case."
+          ],
+          "rejected": [
+            "The response says 'potential is negative, therefore all energy is negative' and never separates the kinetic contribution."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where has the potential-energy zero been chosen?",
+              "why_this_ask": "A sign has no meaning until its reference is fixed.",
+              "from_step_ref": "GRAV-R4-1"
+            },
+            {
+              "ask": "At the same radius, which energy contribution changes when only speed changes?",
+              "why_this_ask": "It separates the state set by position from the motion term.",
+              "from_step_ref": "GRAV-R4-2"
+            },
+            {
+              "ask": "What must be true at infinity in the just-escape boundary case?",
+              "why_this_ask": "The learner constructs the target state used to compare required starting energy.",
+              "from_step_ref": "GRAV-R4-3"
+            },
+            {
+              "ask": "Why does that boundary require more initial kinetic energy than remaining bound?",
+              "why_this_ask": "It elicits the qualitative energy trade rather than an equation."
+            }
+          ],
+          "differs_from_teaching_path": "The declarative construction fixes the zero and walks through a speed change before naming the escape boundary; the elicitation begins by challenging the sign misconception and makes the learner build the reference-state comparison themselves."
+        },
+        "boundary_test": {
+          "prompt": "If the potential-energy zero were shifted to a different reference, would the required physical escape speed change?",
+          "answer": "No. Shifting the zero changes assigned potential values but not the energy differences that govern the motion.",
+          "confirms": "The learner distinguishes a chosen potential-energy reference from the physical energy change needed for escape."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-GRAV-R5",
+      "title": "Central gravity conserves orbital angular momentum about the centre",
+      "bucket_id": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "primary_capability_ref": "CAP-PHY-GRAV-R5",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The rung is both an origin condition and an axial-direction distinction, so the orbital plane and viewing side must remain explicit.",
+      "entry_assumptions": [
+        "Can identify the line from a chosen centre to a moving body and the direction of its motion.",
+        "Can use an out-of-plane convention for an axial quantity."
+      ],
+      "inferential_jump": "A central gravitational force has zero torque about the source centre, so orbital angular momentum is conserved; its axial-vector direction is perpendicular to the orbital plane.",
+      "teaching_path": [
+        {
+          "id": "GRAV-R5-1",
+          "role": "DECLARE",
+          "action": "Mark the source centre O, a satellite position, and its motion direction in one orbital plane.",
+          "why_valid": "The angular-momentum statement needs a specified origin and the plane defined by position and motion.",
+          "inputs": [],
+          "output": "origin O | position arrow: in orbital plane | motion arrow: in orbital plane"
+        },
+        {
+          "id": "GRAV-R5-2",
+          "role": "TRANSFORM",
+          "action": "Draw the gravitational force back toward O at several satellite positions and compare its line with the position arrow each time.",
+          "why_valid": "A central force is collinear with the position line from O, so it has no lever arm about O and cannot change total orbital angular momentum there.",
+          "inputs": [],
+          "output": "position 1: force line through O -> zero turning effect | position 2: force line through O -> zero turning effect"
+        },
+        {
+          "id": "GRAV-R5-3",
+          "role": "VERIFY",
+          "action": "View the same physical orbit from the opposite face and reapply the axial direction convention instead of relying on clockwise words alone.",
+          "why_valid": "The physical angular-momentum direction is fixed by the cross-product orientation, while the viewer's page symbol changes when the viewing side reverses.",
+          "inputs": [],
+          "output": "same physical orbit | front view: axial symbol one way | back view: page symbol reversed, physical axial direction unchanged"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Angular momentum points along the direction the satellite is moving around the orbit.",
+          "diagnostic_prompt": "A satellite moves in the page. Is its angular momentum vector in the page or perpendicular to it?",
+          "repair": "Use the cross-product orientation: position and momentum lie in the orbital plane; angular momentum is axial and normal to that plane."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A satellite's position and motion are drawn in an orbital plane around centre O. State the angular-momentum direction and explain why the central gravitational force does not change total angular momentum about O.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Orbital angular momentum is perpendicular to the orbital plane, with its axial direction set by the position-to-motion orientation; central gravity acts along the position line through O, so it supplies no turning effect about O.",
+          "reasoning": [
+            "Position and motion lie in the orbital plane and define an oriented pair.",
+            "The associated angular-momentum direction is normal to that plane rather than tangent to the path.",
+            "Gravity points through O, leaving no lever arm about O, so total angular momentum about that centre remains unchanged."
+          ],
+          "check": "Reverse the viewing side but not the physical orbit; the page symbol may reverse, yet the physical axial direction and conservation statement must remain the same.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response identifies an axial direction and a conservation condition without computing angular momentum, torque, or orbital speed."
+        }
+      },
+      "research_contribution": "Author-created central-force and axial-direction rung. It deliberately avoids adding a quantitative orbital relation and uses the out-of-plane convention as the key representation check.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A satellite moves counter-clockwise as seen from one side of its orbital plane. Does its angular momentum point along the tangent direction of motion?",
+          "defensible_answer": "No. Its angular momentum is axial and perpendicular to the orbital plane, with direction determined from the position and motion orientation."
+        },
+        "attempt": {
+          "produces": "An orbital-plane sketch with in-plane position and motion arrows plus one normal axial-direction marker tied to a named viewing side.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The angular-momentum marker is normal to the orbital plane.",
+              "evidence_of": "The learner distinguishes an axial quantity from the in-plane polar vectors."
+            },
+            {
+              "criterion": "The central force is drawn through the source centre.",
+              "evidence_of": "The conservation claim is justified from zero turning effect about the same origin."
+            }
+          ],
+          "accepted": [
+            "The diagram keeps position and motion in the plane, places angular momentum normal to it, and shows each gravitational-force line passing through O."
+          ],
+          "rejected": [
+            "Angular momentum is drawn tangent to the orbit because it is confused with the satellite's motion direction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which two directions lie in the orbital plane at the satellite's current position?",
+              "why_this_ask": "It identifies the pair whose orientation determines the axial quantity.",
+              "from_step_ref": "GRAV-R5-1"
+            },
+            {
+              "ask": "Where does the gravitational-force line pass relative to O?",
+              "why_this_ask": "It exposes the central-force geometry before conservation is named.",
+              "from_step_ref": "GRAV-R5-2"
+            },
+            {
+              "ask": "What direction is left for an axial quantity built from two in-plane directions?",
+              "why_this_ask": "The learner supplies the out-of-plane distinction rather than copying an arrow."
+            },
+            {
+              "ask": "What changes in the page symbol when you look from the opposite side?",
+              "why_this_ask": "It tests the convention against viewpoint reversal.",
+              "from_step_ref": "GRAV-R5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path establishes the plane, demonstrates the central-force geometry, then checks viewpoint reversal; the learner route withholds the axial direction until the in-plane pair and origin geometry have been identified."
+        },
+        "boundary_test": {
+          "prompt": "If a small non-central thrust acts on the satellite, may the same angular-momentum conservation claim about O be assumed?",
+          "answer": "No. A force not directed through O can provide a turning effect about O, so the conservation condition must be checked again.",
+          "confirms": "The learner ties conservation to central-force geometry about the named origin rather than to orbital motion in general."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-GRAV-CORE1A",
+      "title": "Declarative gravitation conceptual route",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-GRAV-R1",
+        "MIC-PHY-GRAV-R4",
+        "MIC-PHY-GRAV-R5"
+      ],
+      "entry_needs": [
+        "Preserve the visible R2 and R3 quantitative gaps in the ladder; do not treat R4 as an entry point."
+      ],
+      "learner_actions": [
+        "Follow paired-force, energy-reference, and central-force constructions.",
+        "Use each boundary case to separate a conceptual condition from a memorized formula."
+      ],
+      "help_plan": [
+        "Keep the named centre or energy reference on the page.",
+        "For the orbital rung, keep the viewing side explicit when marking the axial direction."
+      ],
+      "reveal_plan": "Completed conceptual reasoning is visible, while the missing force and acceleration equations are not supplied.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-GRAV",
+          "purpose": "Authored gravitation explanation",
+          "reason": "The imported candidate has no authority and is not used as a normative source."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to publish inverse-square force or free-fall acceleration equations."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-GRAV"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-GRAV-CORE1B",
+      "title": "Elicited gravitation conceptual route",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-GRAV-R1",
+        "MIC-PHY-GRAV-R4",
+        "MIC-PHY-GRAV-R5"
+      ],
+      "entry_needs": [
+        "Same conceptual scope as Core1A with learner commitments before each model response."
+      ],
+      "learner_actions": [
+        "Commit to interaction, energy, and axial-direction predictions.",
+        "Construct the relevant diagram or ledger before viewing the authored closure."
+      ],
+      "help_plan": [
+        "Ask for the shared line or reference before asking for the conclusion.",
+        "Use relabelling, zero-reference shifts, and viewpoint reversal as self-checks."
+      ],
+      "reveal_plan": "Each elicitation attempt closes with a model response or rubric; no teacher intervention is required.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-GRAV",
+          "purpose": "Self-tutor gravitation prompts",
+          "reason": "The authored source supplies the complete closure needed for independent study."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn a blocked quantitative rung into a hint by giving its equation."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}
