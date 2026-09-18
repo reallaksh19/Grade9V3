@@ -1,10 +1,10 @@
 {
   "schema_version": "0.1.0",
   "package_id": "LIB-PHY-VECTOR-REPRESENTATION-SEED",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Vector representation and subtraction prerequisite content for the Grade 9 relative-motion/self-study route. This revision separates vector/magnitude distinction from signed-component reading and adds the current Core1A/Core1B self-tutor routes. Records remain CANDIDATE; no review or source authority is implied by this migration.",
+  "scope_summary": "Vector-representation-and-subtraction microtopic candidates (MEDIUM), authored as the prerequisite bucket for LIB-PHY-RELATIVE-MOTION-SEED during the Grade 9 relative-motion vertical slice. No learner products or curated acceptance supplied by this record alone.",
   "curriculum_mappings": [
     {
       "board": "CBSE",
@@ -110,15 +110,15 @@
     },
     {
       "id": "CAP-VECTOR-VS-SCALAR",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC"
       ],
       "evidence_refs": [],
       "extensions": {},
-      "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
-      "success_criterion": "Given two directed arrows, state whether they can have the same nonnegative magnitude while still being different vectors because their directions differ.",
+      "action": "Distinguish vector information from magnitude-only scalar information.",
+      "success_criterion": "Given two directed quantities, state whether equal magnitude is sufficient to identify the same vector and name direction as additional information.",
       "prerequisite_refs": [],
       "curriculum_mappings": [
         {
@@ -144,8 +144,8 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
-      "success_criterion": "Declare the positive axes, assign the correct sign to each component, and predict which component signs change when one or both axis directions are redeclared while the physical vector remains unchanged.",
+      "action": "Read and transform a vector's signed components against declared positive axes.",
+      "success_criterion": "Assign component signs from declared axes and update exactly the components whose positive directions are reversed, without changing the physical vector.",
       "prerequisite_refs": [
         "CAP-VECTOR-VS-SCALAR",
         "CAP-SIGNED-PAIR-BRIDGE"
@@ -167,7 +167,7 @@
     },
     {
       "id": "CAP-GRAPHICAL-SUBTRACT",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC"
@@ -175,10 +175,9 @@
       "evidence_refs": [],
       "extensions": {},
       "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
-      "success_criterion": "Reverse the second vector without changing its length, translate it without rotating it, add tail-to-head, and reconcile the result with the signed-component subtraction.",
+      "success_criterion": "Reverse the second vector without changing its length, translate it without rotating it, add tail-to-head, and reconcile the result with signed-component subtraction.",
       "prerequisite_refs": [
-        "CAP-VECTOR-SIGNED-COMPONENT",
-        "CAP-RIGHT-TRIANGLE-BRIDGE"
+        "CAP-VECTOR-SIGNED-COMPONENT"
       ],
       "curriculum_mappings": [
         {
@@ -199,7 +198,7 @@
   "microtopics": [
     {
       "id": "MIC-VECTOR-VS-SCALAR",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-CBSE-ADV",
@@ -207,138 +206,130 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Vector direction is more than scalar magnitude",
+      "title": "Vector information versus magnitude-only information",
       "bucket_id": "BUCKET-VECTOR-REPRESENTATION",
       "primary_capability_ref": "CAP-VECTOR-VS-SCALAR",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The distinction is easy to state and easy to blur under time pressure, once negative components appear.",
+      "badge_reason": "The words are simple, but learners often treat equal length or equal speed as if it fully identifies a directed quantity.",
       "entry_assumptions": [
-        "Can compare the lengths and directions of two drawn arrows."
+        "Can compare ordinary nonnegative sizes and recognise that an arrow has an orientation."
       ],
-      "inferential_jump": "Recognise that magnitude answers only 'how large?', while a vector also carries direction; equal magnitudes therefore do not imply equal vectors.",
+      "inferential_jump": "Equal magnitude alone does not determine a vector because direction is part of the quantity.",
       "teaching_path": [
         {
           "id": "VS-1",
           "role": "DECLARE",
-          "action": "Place two arrows of the same drawn length side by side but point them in different directions.",
-          "why_valid": "Holding the length fixed isolates direction as the only change.",
+          "action": "Place two equal-length arrows from the same start, one pointing east and one west.",
+          "why_valid": "Holding the drawn length fixed isolates direction as the only changed feature.",
           "inputs": [],
-          "output": "Two arrows with equal size but different directions."
+          "output": "Two arrows with the same magnitude and opposite directions."
         },
         {
           "id": "VS-2",
           "role": "TRANSFORM",
-          "action": "State the shared arrow length as one nonnegative magnitude for both arrows.",
-          "why_valid": "Magnitude records size only, so equal-length arrows can share it.",
+          "action": "State the magnitude of each arrow, then state the direction of each arrow separately.",
+          "why_valid": "Magnitude answers only how large; the direction statement carries information the shared magnitude does not.",
           "inputs": [],
-          "output": "With both arrows drawn to the same scale and the same length L: magnitude(A) = L and magnitude(B) = L, so magnitude(A) = magnitude(B)."
+          "output": "Both magnitudes are equal, but the vectors are different because their directions differ."
         },
         {
           "id": "VS-3",
           "role": "VERIFY",
-          "action": "Ask whether the two directed quantities are nevertheless the same vector.",
-          "why_valid": "Different directions make the directed quantities different even when their magnitudes match.",
+          "action": "Reverse one arrow without changing its length and check which description changes.",
+          "why_valid": "A pure reversal preserves magnitude while changing the vector, directly testing whether magnitude alone identifies the directed quantity.",
           "inputs": [],
-          "output": "Same magnitude does not imply same vector."
+          "output": "Magnitude unchanged; vector changed."
         }
       ],
-      "relation_refs": [
-        "REL-VECTOR-SUBTRACTION"
-      ],
-      "representation_refs": [
-        "REP-VECTOR-COMPONENT"
-      ],
+      "relation_refs": [],
+      "representation_refs": [],
       "question_family_refs": [
         "FAM-VECTOR-MAGNITUDE"
       ],
       "misconceptions": [
         {
-          "wrong_idea": "The magnitude and the vector are the same thing, so two arrows with the same length represent the same vector.",
-          "diagnostic_prompt": "Two arrows have the same length; one points east and the other west. Are they the same vector?",
-          "repair": "Keep the common length fixed and compare direction. Magnitude answers only size; the vector changes when direction changes."
+          "wrong_idea": "Two directed quantities with the same magnitude are the same vector.",
+          "diagnostic_prompt": "Two arrows are both 5 units long, one east and one west. Are they the same vector?",
+          "repair": "Keep the length fixed and compare direction. Equal magnitude does not make two oppositely directed quantities the same vector."
         }
       ],
       "exit_task": {
-        "prompt": "Two arrows have equal length. One points east and one points north. State what is the same and what is different.",
+        "prompt": "Two arrows have equal length. One points north and the other south. State what is the same, what is different, and whether they are the same vector.",
         "source_ref": "SRC-AUTHOR-VEC",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "They have the same magnitude but are different vectors because their directions differ.",
+          "summary": "They have the same magnitude but opposite directions, so they are not the same vector.",
           "reasoning": [
-            "Equal drawn length gives the same nonnegative magnitude.",
-            "East and north are different directions, so the directed quantities are not the same vector."
+            "The equal arrow lengths represent equal magnitude.",
+            "North and south are different directions.",
+            "A vector is identified by magnitude together with direction, so equal magnitude alone is insufficient."
           ],
-          "check": "Rotate one arrow until both point the same way while preserving length; only then do both magnitude and direction match.",
+          "check": "Reverse the south-pointing arrow without changing its length; it can then match the north-pointing vector.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit task checks the conceptual distinction between magnitude and vector direction; it asserts no computed numerical value."
+          "no_numeric_claim": "The task checks the vector-versus-magnitude distinction without requiring component arithmetic."
         }
       },
-      "research_contribution": "CBSE Advanced motivates graphical vector operations; the component/magnitude distinction drill is author-created and needs scientific/pedagogical review.",
+      "research_contribution": "The vector-versus-magnitude distinction is standard; this equal-length opposite-arrow teaching sequence is author-created and pending independent scientific/pedagogical review.",
       "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Two arrows are exactly the same length, but one points east and one points west. Before reading on, are they the same vector?",
-          "defensible_answer": "No. Their magnitudes are equal, but their directions are opposite."
+          "prompt": "Two arrows have equal length but point in opposite directions. Before reading on, are they the same vector?",
+          "defensible_answer": "No. Equal length gives equal magnitude, but opposite directions make the vectors different."
         },
         "attempt": {
-          "produces": "A two-column note headed 'same' and 'different' for the two equal-length arrows, with one sentence explaining whether they are the same vector.",
+          "produces": "A one-sentence comparison naming what is shared and what differs.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Equal length is recorded as equal magnitude.",
-              "evidence_of": "Separating size from the full directed quantity."
+              "criterion": "Names equal magnitude as the shared property.",
+              "evidence_of": "Separating size from full vector identity."
             },
             {
-              "criterion": "Different directions are used to reject vector equality.",
-              "evidence_of": "Treating direction as essential vector information."
+              "criterion": "Names opposite direction as the difference.",
+              "evidence_of": "Treating direction as part of the vector."
             }
           ],
           "accepted": [
-            "Same: magnitude. Different: direction. Therefore the arrows are different vectors even though their sizes match."
+            "Same magnitude, opposite direction, therefore different vectors."
           ],
           "rejected": [
-            "They are the same vector because the arrow lengths match. This treats magnitude as the whole vector."
+            "They are the same because both arrows have the same length."
           ]
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "What did we deliberately keep unchanged between the two arrows?",
-              "why_this_ask": "It isolates magnitude as the controlled quantity.",
+              "ask": "What did we hold fixed when the two arrow lengths were made equal?",
+              "why_this_ask": "It isolates magnitude as the shared quantity.",
               "from_step_ref": "VS-1"
             },
             {
-              "ask": "What one thing did we change?",
-              "why_this_ask": "It makes direction the only candidate explanation for the different vector."
-            },
-            {
-              "ask": "If magnitude records only the shared size, what information is left to distinguish the arrows?",
-              "why_this_ask": "The learner names direction before receiving a rule.",
-              "from_step_ref": "VS-2"
-            },
-            {
-              "ask": "So can equal magnitude by itself prove two vectors are equal?",
-              "why_this_ask": "It closes the distinction as a decision the learner can reuse.",
+              "ask": "What changed when one arrow was reversed?",
+              "why_this_ask": "It makes direction the single distinguishing feature.",
               "from_step_ref": "VS-3"
+            },
+            {
+              "ask": "If the magnitude stayed fixed while the vector changed, what extra information must a vector contain?",
+              "why_this_ask": "The learner states the distinction rather than receiving it as a definition."
             }
           ],
-          "differs_from_teaching_path": "The teaching path demonstrates equal size and different direction directly. The learner route begins with an equality prediction, then isolates what stayed fixed and what changed before stating the rule."
+          "differs_from_teaching_path": "The teaching path states the two descriptions explicitly; reconstruction starts from the reversal test and asks the learner to infer what magnitude omits."
         },
         "boundary_test": {
-          "prompt": "A vector has zero magnitude. Is there a unique direction that must be reported?",
-          "answer": "No. The zero vector has no unique direction to recover from its magnitude.",
-          "confirms": "Magnitude and direction are distinct pieces of vector information, and magnitude alone cannot manufacture direction."
+          "prompt": "If two arrows have equal length and also point in the same direction, what else would have to differ for them not to represent the same free vector?",
+          "answer": "Nothing about the free vector itself; with the same magnitude and direction they represent the same free vector even if drawn in different places.",
+          "confirms": "Magnitude plus direction identifies the free vector; drawing location is not another vector property."
         }
       }
     },
     {
       "id": "MIC-SIGNED-COMPONENT",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC"
@@ -349,51 +340,43 @@
       "bucket_id": "BUCKET-VECTOR-REPRESENTATION",
       "primary_capability_ref": "CAP-VECTOR-SIGNED-COMPONENT",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Axis choice feels arbitrary to a new learner, so students often silently drop or flip a sign when the story changes.",
+      "badge_reason": "Axis choice is conventional, but once the positive directions are declared the component signs are fixed and cannot be chosen for convenience.",
       "entry_assumptions": [
-        "Can distinguish a vector from its magnitude.",
+        "Can distinguish vector information from magnitude-only information.",
         "Signed coordinate reading on one axis is available or bridged."
       ],
-      "inferential_jump": "Recognise that the axis choice is a free, declared decision, but once declared, every component's sign is fixed by it — not by the physical 'niceness' of the described motion.",
+      "inferential_jump": "The physical vector stays fixed when axes are redeclared; only the signed numerical description changes according to the declared positive directions.",
       "teaching_path": [
         {
           "id": "SC-1",
           "role": "DECLARE",
-          "action": "Declare positive directions for both axes explicitly before reading any component.",
-          "why_valid": "A component's sign is only meaningful relative to a stated positive direction.",
-          "inputs": [],
-          "output": "e.g. east and north positive stated once for the whole problem."
+          "action": "Declare positive directions for both axes before reading any component.",
+          "why_valid": "A component sign has meaning only relative to a stated positive axis direction.",
+          "inputs": [
+            "CAP-SIGNED-PAIR-BRIDGE"
+          ],
+          "output": "For example: east is +x and north is +y."
         },
         {
           "id": "SC-2",
           "role": "TRANSFORM",
-          "action": "Read the vector's two components with signs fixed by the declared axes.",
-          "why_valid": "The sign is the axis reading itself, not an adjustment made after the calculation.",
+          "action": "Read the component along each axis with the sign fixed by whether the arrow points with or against that positive direction.",
+          "why_valid": "The sign records orientation along the declared axis; it is not an after-the-fact label.",
           "inputs": [
             "CAP-SIGNED-PAIR-BRIDGE"
           ],
-          "output": "w=(3,4) m/s means positive east and positive north components under the declared convention."
+          "output": "A westward horizontal component is negative when east is declared positive."
         },
         {
           "id": "SC-3",
-          "role": "TRANSFORM",
-          "action": "Redeclare one positive axis in the opposite direction and re-express the same physical vector.",
-          "why_valid": "Changing the coordinate convention changes the signed reading along that axis without changing the physical vector.",
-          "inputs": [],
-          "output": "w=(3,4) under east/north-positive becomes (-3,4) if the horizontal positive direction is redeclared west."
-        },
-        {
-          "id": "SC-4",
           "role": "VERIFY",
-          "action": "Return to the original axis convention and check that the original component pair is recovered.",
-          "why_valid": "Reversing the declaration twice must restore the original signed representation if the physical vector never changed.",
+          "action": "Reverse one declared positive axis while keeping the physical arrow unchanged and update only the component on that axis.",
+          "why_valid": "Changing the coordinate convention changes the signed description, not the physical vector.",
           "inputs": [],
-          "output": "Returning to east-positive recovers (3,4)."
+          "output": "Exactly one component sign flips when exactly one positive axis is reversed."
         }
       ],
-      "relation_refs": [
-        "REL-VECTOR-SUBTRACTION"
-      ],
+      "relation_refs": [],
       "representation_refs": [
         "REP-VECTOR-COMPONENT"
       ],
@@ -402,96 +385,95 @@
       ],
       "misconceptions": [
         {
-          "wrong_idea": "A component should be made positive because the object is 'moving forward'.",
-          "diagnostic_prompt": "If east is declared positive and the object moves west, is the x-component positive or negative?",
-          "repair": "The sign follows the declared axis only; 'forward' is not itself an axis direction unless it was declared as one."
+          "wrong_idea": "A component should be made positive because the object is moving 'forward'.",
+          "diagnostic_prompt": "If east is declared positive and the vector points west, is the x-component positive or negative?",
+          "repair": "Use only the declared positive axis. A component pointing against it is negative regardless of the story's word 'forward'."
+        },
+        {
+          "wrong_idea": "Changing the axis convention changes the physical vector.",
+          "diagnostic_prompt": "If the positive x-direction is reversed while the arrow stays fixed, did the arrow itself reverse?",
+          "repair": "Keep the arrow fixed and change only the signed coordinate description. The convention changes; the physical vector does not."
         }
       ],
       "exit_task": {
-        "prompt": "Under east-positive and north-positive axes, a vector is (5,-2) m/s. Redeclare south as the positive vertical direction while keeping east positive. State the new signed component pair and explain which sign changed.",
+        "prompt": "Under east-positive and north-positive axes a vector is (5,-2). The x-axis stays the same, but south is now declared positive. State the new signed components and explain which sign changed.",
         "source_ref": "SRC-AUTHOR-VEC",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "The new pair is (5,2) m/s. The horizontal sign stays positive; the vertical sign flips because only the vertical positive direction was reversed.",
+          "summary": "The new components are (5,2). Only the vertical sign changes because only the vertical positive direction was reversed.",
           "reasoning": [
-            "The physical vector does not change.",
-            "East remains positive, so the horizontal component stays +5.",
-            "The positive vertical direction changes from north to south, so the same southward component changes from -2 to +2."
+            "The east-positive x-axis is unchanged, so the x-component remains +5.",
+            "South is now positive instead of north, so the same downward component is +2 rather than -2.",
+            "The physical vector was not changed; only its coordinate description was."
           ],
-          "check": "Redeclare north positive again; the pair must return to (5,-2) m/s.",
+          "check": "Restore north-positive and the vertical component returns to -2.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit task checks signed component representation under an axis-convention change; no derived physical magnitude is required."
+          "no_numeric_claim": "The numbers are declared in the prompt; the task checks sign transformation under an axis reversal rather than a derived magnitude."
         }
       },
       "research_contribution": "Author-created axis-convention drill; independent scientific/pedagogical review pending.",
       "prerequisite_refs": [
-        "CAP-VECTOR-VS-SCALAR",
-        "CAP-SIGNED-PAIR-BRIDGE"
+        "MIC-VECTOR-VS-SCALAR"
       ],
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "A vector is (5,-2) when east and north are positive. If only the vertical positive direction is changed from north to south, which component sign should change?",
-          "defensible_answer": "Only the vertical component changes sign, so the same vector becomes (5,2)."
+          "prompt": "A fixed arrow has components (5,-2) when north is positive. If only the vertical positive direction is reversed, which component sign should change?",
+          "defensible_answer": "Only the vertical component changes sign; the horizontal convention did not change."
         },
         "attempt": {
-          "produces": "A before/after component table for one unchanged physical vector under two declared axis conventions.",
+          "produces": "The transformed ordered pair plus one sentence tying each sign to the declared positive axes.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Only the component whose positive axis was reversed changes sign.",
-              "evidence_of": "Attaching sign to the declared axis rather than to the story wording."
+              "criterion": "Leaves the horizontal component unchanged.",
+              "evidence_of": "Tracking only the axis convention that changed."
             },
             {
-              "criterion": "The response states that the physical vector itself did not change.",
-              "evidence_of": "Separating representation from the represented quantity."
+              "criterion": "Flips the vertical component sign.",
+              "evidence_of": "Reading sign from the newly declared vertical positive direction."
             }
           ],
           "accepted": [
-            "east/north positive: (5,-2); east/south positive: (5,2). Same physical vector; only the vertical sign flips."
+            "(5,2), because east-positive stayed fixed and south-positive reverses the vertical sign."
           ],
           "rejected": [
-            "(5,-2) stays unchanged because the object did not change. This ignores that the coordinate convention changed."
+            "(-5,2), which flips both components even though only one axis convention changed."
           ]
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Which directions were declared positive before any components were read?",
-              "why_this_ask": "A sign cannot be interpreted until the convention is explicit.",
+              "ask": "Which physical arrow did we change?",
+              "why_this_ask": "The correct answer is none; this separates coordinate convention from physical motion.",
               "from_step_ref": "SC-1"
             },
             {
-              "ask": "Which one of those positive directions did we change?",
-              "why_this_ask": "It isolates the only component whose sign may change."
+              "ask": "Which positive axis direction changed?",
+              "why_this_ask": "It isolates the single coordinate rule that can affect the ordered pair."
             },
             {
-              "ask": "Did the physical arrow rotate, or did only our reading convention change?",
-              "why_this_ask": "It separates representation from the vector itself.",
+              "ask": "Which component lies on that axis, and what sign must it now have?",
+              "why_this_ask": "The learner performs the sign transformation from the declaration.",
               "from_step_ref": "SC-3"
-            },
-            {
-              "ask": "If you restore the original convention, what pair must return?",
-              "why_this_ask": "The round-trip check catches silent sign errors.",
-              "from_step_ref": "SC-4"
             }
           ],
-          "differs_from_teaching_path": "The teaching path declares and transforms the representation explicitly. The learner route starts from a predicted sign flip and then reconstructs the convention change that makes it necessary."
+          "differs_from_teaching_path": "The teaching path demonstrates the sign rule. Reconstruction begins by holding the physical arrow fixed and lets the learner identify the one convention change that can alter the representation."
         },
         "boundary_test": {
-          "prompt": "If both positive axes are reversed while the physical vector stays fixed, what happens to its two signed components?",
-          "answer": "Both component signs reverse; the physical vector is unchanged because only the coordinate convention changed.",
-          "confirms": "Each component sign is tied independently to its declared positive axis."
+          "prompt": "If both positive axis directions are reversed while the physical arrow stays fixed, what happens to the ordered pair?",
+          "answer": "Both component signs reverse.",
+          "confirms": "Component signs belong to the declared coordinate convention, not to an intrinsic positive/negative label on the vector."
         }
       }
     },
     {
       "id": "MIC-GRAPHICAL-SUBTRACTION",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-NCERT-PLANE",
@@ -506,7 +488,8 @@
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "The reverse-then-add construction is a genuine model shift from ordinary addition, even though the component arithmetic looks similar.",
       "entry_assumptions": [
-        "Can read signed components and knows a vector's magnitude is not its direction."
+        "Can read signed components under declared axes.",
+        "Can distinguish vector direction from magnitude."
       ],
       "inferential_jump": "See P - Q as P + (-Q): reverse Q's arrowhead without changing its length, then apply tail-to-head addition.",
       "teaching_path": [
@@ -536,10 +519,10 @@
         },
         {
           "id": "GS-4",
-          "action": "Reconcile the drawn resultant with the signed-component subtraction.",
-          "why_valid": "Both the graphical and component routes compute the same operation and must agree.",
+          "action": "Reconcile the drawn resultant with component-wise signed subtraction.",
+          "why_valid": "The graphical construction and component subtraction are two representations of the same vector operation and must agree.",
           "inputs": [],
-          "output": "Component check: (P-Q)_x = P_x-Q_x, (P-Q)_y = P_y-Q_y.",
+          "output": "Component check: (P-Q)_x = P_x-Q_x and (P-Q)_y = P_y-Q_y.",
           "role": "VERIFY"
         }
       ],
@@ -560,95 +543,84 @@
         },
         {
           "wrong_idea": "Reversing a vector changes its magnitude.",
-          "diagnostic_prompt": "Does an arrow get longer or shorter when you flip it end for end?",
-          "repair": "Reversal only negates the signed components; the right-triangle bridge uses their squares, so the magnitude is unchanged."
+          "diagnostic_prompt": "If an arrow is flipped end for end without changing its drawn length, did its magnitude change?",
+          "repair": "Reverse only the direction. Keep the arrow length fixed; vector negation changes orientation, not magnitude."
         }
       ],
       "exit_task": {
-        "prompt": "In a common east/north frame, P = (6,0) m/s and Q = (0,8) m/s. Construct P - Q graphically and state the resultant's components and magnitude.",
+        "prompt": "In one declared x-y frame, P=(6,0) and Q=(0,8). Construct P-Q as P+(-Q) and state the resultant signed components. Explain one check that confirms the subtraction order.",
         "source_ref": "SRC-AUTHOR-VEC",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "P-Q = (6,-8) m/s, magnitude 10 m/s.",
+          "summary": "P-Q=(6,-8). Reverse Q to (0,-8), add it tail-to-head to P, and verify that direct component subtraction gives the same ordered pair.",
           "reasoning": [
-            "Reverse Q to get -Q = (0,-8) m/s.",
-            "Add P and -Q tail-to-head: (6+0, 0+(-8)) = (6,-8) m/s.",
-            "Right-triangle bridge: sqrt(6^2+8^2) = sqrt(100) = 10 m/s."
+            "Negating Q reverses its direction without changing its length, giving -Q=(0,-8).",
+            "Tail-to-head addition of P and -Q produces a resultant with components (6,-8).",
+            "Direct subtraction gives (6-0,0-8)=(6,-8), confirming the construction and order."
           ],
-          "check": "Component subtraction directly: (6-0, 0-8) = (6,-8) m/s, matching the graphical construction.",
+          "check": "Swapping the order gives Q-P=(-6,8), the exact negative of P-Q.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "verification": {
-            "validator_id": "SPEED_FROM_COMPONENTS",
-            "bindings": {
-              "vx": "DAT-PQ-X",
-              "vy": "DAT-PQ-Y"
-            }
-          }
+          "no_numeric_claim": "The exit task checks construction, component subtraction, and operand-order reversal; it does not require a magnitude calculation."
         }
       },
       "research_contribution": "NCERT motivates the graphical construction; PhET is a candidate exploration route, not executed evidence. The reverse-then-add teaching sequence itself is author-created pending scientific/pedagogical review. These exact component values (6,0) and (0,8) recur with physical meaning as A and B's velocities in MIC-COMMON-INTERVAL/MIC-GEOMETRIC-CHECK (BUCKET-RELATIVE-MOTION): this is a deliberate shared anchor rehearsing the same arithmetic before it carries physical meaning, not accidental duplication.",
       "prerequisite_refs": [
-        "CAP-VECTOR-SIGNED-COMPONENT",
-        "CAP-RIGHT-TRIANGLE-BRIDGE"
+        "MIC-SIGNED-COMPONENT"
       ],
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "P=(6,0) and Q=(0,8) in east/north components. Before drawing, which general direction should P-Q point?",
-          "defensible_answer": "East and south, because the subtraction keeps P's east component and subtracts Q's north component, giving positive x and negative y."
+          "prompt": "Before drawing, if P-Q is rewritten as P+(-Q), what must happen to Q?",
+          "defensible_answer": "Q must be reversed without changing its length."
         },
         "attempt": {
-          "produces": "A reverse-then-add arrow construction for P-Q plus a signed-component check.",
+          "produces": "A reverse-then-add arrow construction plus the resultant signed components.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Q is reversed before it is translated tail-to-head with P.",
-              "evidence_of": "Representing subtraction as P + (-Q)."
+              "criterion": "Q is reversed before tail-to-head addition.",
+              "evidence_of": "Using subtraction as addition of the additive inverse."
             },
             {
-              "criterion": "The drawn result and signed-component subtraction agree.",
-              "evidence_of": "Reconciling the geometric and component representations."
+              "criterion": "The graphical resultant and signed-component subtraction agree.",
+              "evidence_of": "Reconciling two representations of the same operation."
             }
           ],
           "accepted": [
-            "Reverse Q to point south, place -Q at P's head, draw the resultant from P's tail, and check (6,0)-(0,8)=(6,-8)."
+            "Reverse Q, place -Q at the head of P, draw the resultant, and obtain the same ordered pair by subtracting components."
           ],
           "rejected": [
-            "Connect the two original tips without fixing the operand order. This can silently reverse the subtraction result."
+            "Connect the two arrow tips without fixing operand order; this can silently produce Q-P instead of P-Q."
           ]
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Which vector is second in the requested subtraction?",
-              "why_this_ask": "The second operand is the one that must be reversed.",
+              "ask": "Which vector is being subtracted, and what is its additive inverse?",
+              "why_this_ask": "It restores operand order before any drawing.",
               "from_step_ref": "GS-1"
             },
             {
-              "ask": "After reversing it, what operation remains?",
-              "why_this_ask": "It turns subtraction into the already-visible tail-to-head addition construction."
-            },
-            {
-              "ask": "Where must the reversed vector's tail be placed without rotating it?",
-              "why_this_ask": "It preserves the vector while applying the free-vector translation.",
+              "ask": "Where should the tail of the reversed vector be placed?",
+              "why_this_ask": "It reconstructs the tail-to-head sum rather than a memorized tip-to-tip shortcut.",
               "from_step_ref": "GS-2"
             },
             {
-              "ask": "Do the resulting signed components agree with direct component subtraction?",
-              "why_this_ask": "The second representation provides an independent check.",
+              "ask": "What signed components should the same result have?",
+              "why_this_ask": "The second representation provides an independent order check.",
               "from_step_ref": "GS-4"
             }
           ],
-          "differs_from_teaching_path": "The teaching path demonstrates reverse, translate, add and check. The learner route begins from operand order and reconstructs why each graphical move is necessary."
+          "differs_from_teaching_path": "The teaching path demonstrates reverse-then-add. Reconstruction withholds the construction and asks the learner to rebuild it from operand order, then check it component-wise."
         },
         "boundary_test": {
           "prompt": "If P and Q are identical vectors, what does P-Q produce?",
-          "answer": "The zero vector. Reversing Q and adding it to P cancels both components.",
-          "confirms": "The reverse-then-add construction handles the limiting case without inventing a direction for a zero result."
+          "answer": "The zero vector.",
+          "confirms": "Subtracting a vector from itself cancels both signed components and leaves no direction to preserve."
         }
       }
     },
@@ -973,7 +945,7 @@
   "question_families": [
     {
       "id": "FAM-VECTOR-MAGNITUDE",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC"
@@ -983,17 +955,17 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "title": "Read, subtract or construct a vector from signed components",
+      "title": "Distinguish, represent or subtract vectors",
       "capability_refs": [
         "CAP-VECTOR-VS-SCALAR",
         "CAP-VECTOR-SIGNED-COMPONENT",
         "CAP-GRAPHICAL-SUBTRACT"
       ],
       "solution_structure": [
-        "Decide whether the task is about magnitude, direction, signed components, or vector subtraction.",
-        "If signed components are needed, declare the positive axes before assigning signs.",
-        "For subtraction, reverse the second vector and add tail-to-head; reconcile with component subtraction.",
-        "Apply the right-triangle bridge only when the task explicitly asks for a magnitude."
+        "Name the declared axes.",
+        "Read or subtract signed components in the declared order.",
+        "Apply the right-triangle bridge only if a magnitude is requested.",
+        "State direction from the signed components, not the magnitude."
       ],
       "demand_dimensions": {
         "model_choice": "Axis convention stated initially; later must be inferred or chosen by the learner.",
@@ -1019,7 +991,7 @@
   "questions": [
     {
       "id": "Q-PHY-VECREP-2A-01",
-      "version": "0.2.0",
+      "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-VEC"
@@ -1032,20 +1004,20 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-VEC",
       "original_identifier": "AUTHOR-VECREP-2A-01",
-      "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+      "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
       "subparts": [],
       "options": [],
       "conditions": [],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction.",
+        "summary": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size.",
         "reasoning": [
-          "Magnitude records nonnegative size.",
+          "Magnitude records size and is nonnegative.",
           "Opposite arrows can therefore share the same magnitude.",
-          "Their directions differ, so they are different vectors despite equal size."
+          "Their signed components change sign and preserve the directional information that distinguishes the two vectors."
         ],
-        "check": "Reverse one nonzero arrow without changing its length. Its magnitude stays the same while its direction changes.",
+        "check": "Reverse every component sign of one nonzero vector. Its magnitude stays the same while its direction reverses.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -1068,7 +1040,7 @@
           "reveals": "CONCEPT"
         },
         {
-          "text": "Hold the arrow length fixed and compare only direction.",
+          "text": "Ask what happens to component signs when a vector is reversed.",
           "reveals": "METHOD"
         }
       ]
@@ -1076,7 +1048,7 @@
   ],
   "teaching_routes": [
     {
-      "id": "ROUTE-PHY-VECREP-A",
+      "id": "ROUTE-VECTOR-REP-A",
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
@@ -1084,7 +1056,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Reveal vector representation and subtraction",
+      "title": "Completed vector representation and subtraction construction",
       "cores": [
         "CORE1A"
       ],
@@ -1094,33 +1066,38 @@
         "MIC-GRAPHICAL-SUBTRACTION"
       ],
       "entry_needs": [
-        "Use the Mathematics bridges only where signed coordinates or a right-triangle magnitude are actually required."
+        "Declared Mathematics bridge is available where signed-coordinate reading is needed."
       ],
       "learner_actions": [
-        "Distinguish magnitude from direction.",
-        "Read signed components against declared axes.",
-        "Construct subtraction as addition of the reversed second vector."
+        "Separate magnitude-only information from full vector information.",
+        "Read component signs from declared axes.",
+        "Follow reverse-then-add subtraction and check it component-wise."
       ],
       "help_plan": [
-        "Hold arrow length fixed when isolating direction.",
-        "Declare axes before reading signs.",
-        "Name the second operand before reversing an arrow."
+        "Keep direction visible before introducing signed components.",
+        "State the axis convention before any component sign.",
+        "Keep subtraction order attached to the reverse-then-add construction."
       ],
-      "reveal_plan": "Completed reasoning is visible in the declarative study product; the capability split is preserved across the three rungs.",
+      "reveal_plan": "Completed teaching paths and verification checks are visible in the declarative study product.",
       "source_preferences": [
         {
-          "resource_ref": "SRC-AUTHOR-VEC",
-          "purpose": "Candidate vector representation teaching",
-          "reason": "The current matrix content is author-created and remains review-pending."
+          "resource_ref": "SRC-CBSE-ADV",
+          "purpose": "Accessible vector context",
+          "reason": "Provides owner-extension context without claiming prescribed Grade 9 quantitative vector coverage."
+        },
+        {
+          "resource_ref": "SRC-NCERT-PLANE",
+          "purpose": "Vector-operation checking",
+          "reason": "Supports higher-grade vector construction semantics."
         }
       ],
       "when_not_suitable": [
-        "Do not treat the Mathematics bridges as Physics-certified provider content."
+        "Do not present this as prescribed Standard Grade 9 quantitative vector content."
       ],
       "practice_profile_ref": null
     },
     {
-      "id": "ROUTE-PHY-VECREP-B",
+      "id": "ROUTE-VECTOR-REP-B",
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
@@ -1128,7 +1105,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Elicit vector representation and subtraction",
+      "title": "Predict and reconstruct vector representation choices",
       "cores": [
         "CORE1B"
       ],
@@ -1138,28 +1115,28 @@
         "MIC-GRAPHICAL-SUBTRACTION"
       ],
       "entry_needs": [
-        "Same intrinsic coverage as Core1A; bridges remain explicit and no learner-estimate shortcut is allowed."
+        "Same intrinsic prerequisites as Core1A; optional bridge help may be used before reconstruction."
       ],
       "learner_actions": [
-        "Predict whether equal magnitudes imply equal vectors.",
-        "Predict component sign changes under an axis redeclaration.",
-        "Reconstruct reverse-then-add subtraction and verify it with components."
+        "Predict whether equal magnitude implies equal vector.",
+        "Transform signed components after an axis redeclaration.",
+        "Reconstruct subtraction from operand order and verify it in components."
       ],
       "help_plan": [
-        "Ask what stayed fixed before naming the vector/magnitude distinction.",
-        "Ask which positive axis changed before correcting a sign.",
-        "Ask which operand is second before showing the subtraction construction."
+        "Ask what stayed fixed before naming the missing distinction.",
+        "Change one axis convention at a time.",
+        "Ask which operand is second before revealing a subtraction construction."
       ],
-      "reveal_plan": "Prediction and attempt precede reconstruction; misconception repair and exit tasks remain the closure.",
+      "reveal_plan": "Prediction and learner reconstruction precede the closed explanation; answers remain available for self-study after the attempt.",
       "source_preferences": [
         {
           "resource_ref": "SRC-AUTHOR-VEC",
-          "purpose": "Self-tutor elicitation",
-          "reason": "The elicitation cycles are authored specifically for the existing vector-representation rungs."
+          "purpose": "Candidate elicitation cycle",
+          "reason": "The reconstruction prompts are authored for this package and remain pending independent review."
         }
       ],
       "when_not_suitable": [
-        "Do not use an elicitation route as evidence of independent academic review."
+        "Do not treat elicitation success as academic review or source custody."
       ],
       "practice_profile_ref": null
     }

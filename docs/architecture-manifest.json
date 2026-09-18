@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 134,
-  "relation_count": 192,
+  "component_count": 135,
+  "relation_count": 193,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 42,
+    "TEST": 43,
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:8f2301b2861b7de8a72d2d6bd999d6eb8aab8950598ef425cba3cd9c5a36b031",
+  "digest": "sha256:06d6729d851b41d366ae1b9a80000d1e6b35f8d53e60d7c4673b9d0ca736e2dc",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -638,8 +638,8 @@
       "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 1882,
-      "sha256": "9930ca88099134beaefac6fd929b26994b592e96ad229fd982dc630d5541a676"
+      "bytes": 2759,
+      "sha256": "691ac37449d95f1156144d45a73c79a51dcead339c40b7e96b2f9db3bbcda8be"
     },
     {
       "path": "tests/fixtures/source_ingest/acquisition.json",
@@ -806,8 +806,8 @@
       "path": "tests/test_neetprep_relative_motion_pilot.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5494,
-      "sha256": "f4c90447856dd913b31398ad4b98701689094f66d93e314620984d4c2bd18d3a"
+      "bytes": 5809,
+      "sha256": "dcb6d0206c655f38e42dcaeb76c99f91679172471330448c3b9dafb963d376b7"
     },
     {
       "path": "tests/test_owner_decisions.py",
@@ -855,8 +855,8 @@
       "path": "tests/test_session_readiness.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11258,
-      "sha256": "fa6c42219401560281e335187b97e0c94ef22cf04400678c59a524e33751c8ed"
+      "bytes": 11776,
+      "sha256": "9e789e9d3a83deca847034ebaf3ef19a051ccc55da3108bcfea153a8c83fd684"
     },
     {
       "path": "tests/test_source_pipeline.py",
@@ -911,8 +911,15 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 84463,
-      "sha256": "a999911974fa6ed8668f038d4c92484fe692de0050a1cb644e2274c6a0c8cb93"
+      "bytes": 87027,
+      "sha256": "3c9d8c3f1f1ffe49e441de7f49ed90b8e03d722cf470f7db44fa0b59d92535a8"
+    },
+    {
+      "path": "tests/test_vector_foundations_modernization.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7036,
+      "sha256": "8e812422b78698e767e135e75a47d2c6ff0a12612cce7323b3d576b7397ca16c"
     },
     {
       "path": "tests/test_worksheet_study_plan.py",
@@ -932,8 +939,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 424515,
-      "sha256": "4e1129c70c1bbfb64d743c903154b6c6c179ec1e5aa7da00220fc3dd6f95049e"
+      "bytes": 432286,
+      "sha256": "fc36b59c129035a92d3f073cff829dfcd72b4fef338dbb679af88c06dd99f7b7"
     },
     {
       "path": "tools/index.html",
@@ -1911,6 +1918,11 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_vector_foundations_modernization.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {

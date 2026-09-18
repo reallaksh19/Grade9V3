@@ -2252,9 +2252,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -2301,12 +2301,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -2314,18 +2308,18 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 70,
+          "record_count": 74,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3144,9 +3138,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -3235,12 +3229,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -3248,18 +3236,18 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 81,
+          "record_count": 85,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4363,9 +4351,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -4430,12 +4418,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -4443,13 +4425,13 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -4460,7 +4442,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 82,
+          "record_count": 86,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4999,9 +4981,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -5048,12 +5030,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -5091,18 +5067,18 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 109,
+          "record_count": 113,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5455,6 +5431,136 @@ window.GRADE9V3 = {
           "curriculum": [],
           "microtopics": [
             {
+              "id": "MIC-PHY-VEC-COMPONENT-SUM",
+              "title": "Add vectors by corresponding signed components",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The arithmetic is simple once the representation is correct, but learners often add magnitudes or mix unlike axes instead of combining corresponding signed components.",
+              "entry_assumptions": [
+                "Can read signed vector components against declared axes.",
+                "Can distinguish a vector from its magnitude."
+              ],
+              "inferential_jump": "Vector addition preserves direction information by combining each axis independently; magnitude-only addition is only valid in special collinear cases.",
+              "teaching_path": [
+                {
+                  "action": "Put both vectors in the same declared x-y axis system and write each as a signed component pair.",
+                  "why_valid": "Corresponding components can only be combined when they refer to the same axes and positive directions.",
+                  "output": "A=(A_x,A_y), B=(B_x,B_y) in one common axis system."
+                },
+                {
+                  "action": "Add corresponding signed components: x with x and y with y.",
+                  "why_valid": "Vector addition is component-wise in a common basis, so each axis contribution combines independently.",
+                  "output": "A+B=(A_x+B_x, A_y+B_y)."
+                },
+                {
+                  "action": "Check the resultant direction from the component signs and compare with the rough tail-to-head geometry.",
+                  "why_valid": "The component pair and graphical resultant are two representations of the same vector and must agree in orientation.",
+                  "output": "A signed resultant pair whose quadrant/direction agrees with the arrow construction."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The magnitude of A+B is always |A|+|B|.",
+                  "diagnostic_prompt": "Two equal vectors point in opposite directions. Must their resultant magnitude equal the sum of their two magnitudes?",
+                  "repair": "Keep the directions by using signed components or a tail-to-head diagram. Opposite components cancel instead of adding as positive sizes."
+                },
+                {
+                  "wrong_idea": "Any two component numbers can be added if they come from the two vectors.",
+                  "diagnostic_prompt": "Should an x-component from A ever be added directly to a y-component from B when the axes are unchanged?",
+                  "repair": "Match axis with axis: x contributions combine only with x contributions, and y only with y."
+                }
+              ],
+              "exit_task": {
+                "prompt": "In one east-positive, north-positive frame, A=(3,4) and B=(-5,2). State A+B as signed components and describe the resultant's horizontal and vertical directions.",
+                "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "A+B=(-2,6): the resultant points westward and northward in the declared frame.",
+                  "reasoning": [
+                    "Add horizontal components: 3+(-5)=-2.",
+                    "Add vertical components: 4+2=6.",
+                    "Negative x means west and positive y means north under the declared axes."
+                  ],
+                  "check": "A rough tail-to-head sketch should end left of and above the start.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "All component values are declared in the prompt; the task checks component-wise composition and sign interpretation."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+              "title": "Impose a component constraint on a resultant",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must reverse the usual direction of reasoning: instead of finding the resultant from inputs, one resultant component is specified and an input component must be chosen to make it true.",
+              "entry_assumptions": [
+                "Can add vectors component by component in a common axis system."
+              ],
+              "inferential_jump": "A requested resultant direction can be translated into a component condition, such as zero along one axis, and that condition can be solved before any magnitude or travel-time calculation.",
+              "teaching_path": [
+                {
+                  "action": "Translate the requested resultant direction into a component condition on the declared axes.",
+                  "why_valid": "A resultant exactly perpendicular to one axis has zero component along that axis.",
+                  "output": "For a direct-across resultant, the along-stream resultant component is set to zero."
+                },
+                {
+                  "action": "Write the component-sum equation for that axis using all contributing vectors with their signs.",
+                  "why_valid": "The resultant component equals the sum of the input components on the same axis.",
+                  "output": "R_x=A_x+B_x, with the stated target substituted for R_x."
+                },
+                {
+                  "action": "Solve the signed input component required to satisfy the target.",
+                  "why_valid": "The constraint equation determines the compensating component directly.",
+                  "output": "If R_x=0, then the required compensating input is A_x=-B_x."
+                },
+                {
+                  "action": "Substitute the solved component back into the sum and confirm the constrained resultant component.",
+                  "why_valid": "Direct substitution checks both sign and axis choice without relying on the story wording.",
+                  "output": "The constrained component evaluates to the requested target."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "To make a resultant point directly across, each contributing vector must itself point directly across.",
+                  "diagnostic_prompt": "Can one vector have an along-stream component if another vector has an equal opposite along-stream component?",
+                  "repair": "Apply the condition to the resultant, not each input. Opposite signed components can cancel while the individual vectors remain angled."
+                },
+                {
+                  "wrong_idea": "A zero resultant component means all motion or all vector magnitude is zero.",
+                  "diagnostic_prompt": "If the resultant x-component is zero but the y-component is positive, is the resultant the zero vector?",
+                  "repair": "A component constraint applies to one axis only. The resultant can still be nonzero on the perpendicular axis."
+                }
+              ],
+              "exit_task": {
+                "prompt": "In one frame, a current contributes +3 along the x-axis. Choose the swimmer's x-component so the combined velocity has x-component 0, and state the equation you used.",
+                "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The swimmer must contribute -3 along x, because 0=(-3)+3.",
+                  "reasoning": [
+                    "The target is a zero x-component for the resultant.",
+                    "The resultant x-component is the signed sum of swimmer and current x-components.",
+                    "Setting 0=v_swimmer,x+3 gives v_swimmer,x=-3."
+                  ],
+                  "check": "Substitute -3 back into the x-component sum and verify it equals zero.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task is a signed one-axis constraint check; any later magnitude or angle calculation is deliberately outside this capability."
+                }
+              },
+              "prerequisites": [
+                "MIC-PHY-VEC-COMPONENT-SUM"
+              ]
+            },
+            {
               "id": "MIC-PHY-VEC-SUB-ORDER",
               "title": "Operand order reverses a subtraction result",
               "badge": "MEDIUM",
@@ -5528,9 +5634,9 @@ window.GRADE9V3 = {
           "questions": [
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -5541,16 +5647,22 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
               "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VEC-COMPONENT-SUM",
+              "action": "Combine vectors expressed in one declared axis system by adding corresponding signed components.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VEC-RESULTANT-CONSTRAINT",
+              "action": "Choose or solve an input component so a specified resultant component is zero or another stated value.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VEC-SUB-ORDER",
@@ -5560,18 +5672,18 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 26,
+          "record_count": 34,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5582,7 +5694,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 76,
             "questions": 1,
-            "obligations": 4,
+            "obligations": 6,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -6261,9 +6373,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             },
             {
               "id": "Q-PHY-WEP-2A-01",
@@ -6364,12 +6476,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -6377,13 +6483,13 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -6430,7 +6536,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 101,
+          "record_count": 105,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6817,9 +6923,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -6844,12 +6950,6 @@ window.GRADE9V3 = {
             {
               "id": "CAP-RIGHT-TRIANGLE",
               "action": "Obtain the hypotenuse from two perpendicular component lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
               "provider": "Mathematics",
               "acceptance": "PROVIDER_REVIEW_REQUIRED"
             },
@@ -6879,18 +6979,18 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 46,
+          "record_count": 50,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6946,55 +7046,56 @@ window.GRADE9V3 = {
           "microtopics": [
             {
               "id": "MIC-VECTOR-VS-SCALAR",
-              "title": "Vector direction is more than scalar magnitude",
+              "title": "Vector information versus magnitude-only information",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "The distinction is easy to state and easy to blur under time pressure, once negative components appear.",
+              "badge_reason": "The words are simple, but learners often treat equal length or equal speed as if it fully identifies a directed quantity.",
               "entry_assumptions": [
-                "Can compare the lengths and directions of two drawn arrows."
+                "Can compare ordinary nonnegative sizes and recognise that an arrow has an orientation."
               ],
-              "inferential_jump": "Recognise that magnitude answers only 'how large?', while a vector also carries direction; equal magnitudes therefore do not imply equal vectors.",
+              "inferential_jump": "Equal magnitude alone does not determine a vector because direction is part of the quantity.",
               "teaching_path": [
                 {
-                  "action": "Place two arrows of the same drawn length side by side but point them in different directions.",
-                  "why_valid": "Holding the length fixed isolates direction as the only change.",
-                  "output": "Two arrows with equal size but different directions."
+                  "action": "Place two equal-length arrows from the same start, one pointing east and one west.",
+                  "why_valid": "Holding the drawn length fixed isolates direction as the only changed feature.",
+                  "output": "Two arrows with the same magnitude and opposite directions."
                 },
                 {
-                  "action": "State the shared arrow length as one nonnegative magnitude for both arrows.",
-                  "why_valid": "Magnitude records size only, so equal-length arrows can share it.",
-                  "output": "With both arrows drawn to the same scale and the same length L: magnitude(A) = L and magnitude(B) = L, so magnitude(A) = magnitude(B)."
+                  "action": "State the magnitude of each arrow, then state the direction of each arrow separately.",
+                  "why_valid": "Magnitude answers only how large; the direction statement carries information the shared magnitude does not.",
+                  "output": "Both magnitudes are equal, but the vectors are different because their directions differ."
                 },
                 {
-                  "action": "Ask whether the two directed quantities are nevertheless the same vector.",
-                  "why_valid": "Different directions make the directed quantities different even when their magnitudes match.",
-                  "output": "Same magnitude does not imply same vector."
+                  "action": "Reverse one arrow without changing its length and check which description changes.",
+                  "why_valid": "A pure reversal preserves magnitude while changing the vector, directly testing whether magnitude alone identifies the directed quantity.",
+                  "output": "Magnitude unchanged; vector changed."
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "The magnitude and the vector are the same thing, so two arrows with the same length represent the same vector.",
-                  "diagnostic_prompt": "Two arrows have the same length; one points east and the other west. Are they the same vector?",
-                  "repair": "Keep the common length fixed and compare direction. Magnitude answers only size; the vector changes when direction changes."
+                  "wrong_idea": "Two directed quantities with the same magnitude are the same vector.",
+                  "diagnostic_prompt": "Two arrows are both 5 units long, one east and one west. Are they the same vector?",
+                  "repair": "Keep the length fixed and compare direction. Equal magnitude does not make two oppositely directed quantities the same vector."
                 }
               ],
               "exit_task": {
-                "prompt": "Two arrows have equal length. One points east and one points north. State what is the same and what is different.",
+                "prompt": "Two arrows have equal length. One points north and the other south. State what is the same, what is different, and whether they are the same vector.",
                 "source_ref": "SRC-AUTHOR-VEC",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "They have the same magnitude but are different vectors because their directions differ.",
+                  "summary": "They have the same magnitude but opposite directions, so they are not the same vector.",
                   "reasoning": [
-                    "Equal drawn length gives the same nonnegative magnitude.",
-                    "East and north are different directions, so the directed quantities are not the same vector."
+                    "The equal arrow lengths represent equal magnitude.",
+                    "North and south are different directions.",
+                    "A vector is identified by magnitude together with direction, so equal magnitude alone is insufficient."
                   ],
-                  "check": "Rotate one arrow until both point the same way while preserving length; only then do both magnitude and direction match.",
+                  "check": "Reverse the south-pointing arrow without changing its length; it can then match the north-pointing vector.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The exit task checks the conceptual distinction between magnitude and vector direction; it asserts no computed numerical value."
+                  "no_numeric_claim": "The task checks the vector-versus-magnitude distinction without requiring component arithmetic."
                 }
               },
               "prerequisites": []
@@ -7004,64 +7105,63 @@ window.GRADE9V3 = {
               "title": "Choosing axes and keeping components signed",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "Axis choice feels arbitrary to a new learner, so students often silently drop or flip a sign when the story changes.",
+              "badge_reason": "Axis choice is conventional, but once the positive directions are declared the component signs are fixed and cannot be chosen for convenience.",
               "entry_assumptions": [
-                "Can distinguish a vector from its magnitude.",
+                "Can distinguish vector information from magnitude-only information.",
                 "Signed coordinate reading on one axis is available or bridged."
               ],
-              "inferential_jump": "Recognise that the axis choice is a free, declared decision, but once declared, every component's sign is fixed by it — not by the physical 'niceness' of the described motion.",
+              "inferential_jump": "The physical vector stays fixed when axes are redeclared; only the signed numerical description changes according to the declared positive directions.",
               "teaching_path": [
                 {
-                  "action": "Declare positive directions for both axes explicitly before reading any component.",
-                  "why_valid": "A component's sign is only meaningful relative to a stated positive direction.",
-                  "output": "e.g. east and north positive stated once for the whole problem."
+                  "action": "Declare positive directions for both axes before reading any component.",
+                  "why_valid": "A component sign has meaning only relative to a stated positive axis direction.",
+                  "output": "For example: east is +x and north is +y."
                 },
                 {
-                  "action": "Read the vector's two components with signs fixed by the declared axes.",
-                  "why_valid": "The sign is the axis reading itself, not an adjustment made after the calculation.",
-                  "output": "w=(3,4) m/s means positive east and positive north components under the declared convention."
+                  "action": "Read the component along each axis with the sign fixed by whether the arrow points with or against that positive direction.",
+                  "why_valid": "The sign records orientation along the declared axis; it is not an after-the-fact label.",
+                  "output": "A westward horizontal component is negative when east is declared positive."
                 },
                 {
-                  "action": "Redeclare one positive axis in the opposite direction and re-express the same physical vector.",
-                  "why_valid": "Changing the coordinate convention changes the signed reading along that axis without changing the physical vector.",
-                  "output": "w=(3,4) under east/north-positive becomes (-3,4) if the horizontal positive direction is redeclared west."
-                },
-                {
-                  "action": "Return to the original axis convention and check that the original component pair is recovered.",
-                  "why_valid": "Reversing the declaration twice must restore the original signed representation if the physical vector never changed.",
-                  "output": "Returning to east-positive recovers (3,4)."
+                  "action": "Reverse one declared positive axis while keeping the physical arrow unchanged and update only the component on that axis.",
+                  "why_valid": "Changing the coordinate convention changes the signed description, not the physical vector.",
+                  "output": "Exactly one component sign flips when exactly one positive axis is reversed."
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "A component should be made positive because the object is 'moving forward'.",
-                  "diagnostic_prompt": "If east is declared positive and the object moves west, is the x-component positive or negative?",
-                  "repair": "The sign follows the declared axis only; 'forward' is not itself an axis direction unless it was declared as one."
+                  "wrong_idea": "A component should be made positive because the object is moving 'forward'.",
+                  "diagnostic_prompt": "If east is declared positive and the vector points west, is the x-component positive or negative?",
+                  "repair": "Use only the declared positive axis. A component pointing against it is negative regardless of the story's word 'forward'."
+                },
+                {
+                  "wrong_idea": "Changing the axis convention changes the physical vector.",
+                  "diagnostic_prompt": "If the positive x-direction is reversed while the arrow stays fixed, did the arrow itself reverse?",
+                  "repair": "Keep the arrow fixed and change only the signed coordinate description. The convention changes; the physical vector does not."
                 }
               ],
               "exit_task": {
-                "prompt": "Under east-positive and north-positive axes, a vector is (5,-2) m/s. Redeclare south as the positive vertical direction while keeping east positive. State the new signed component pair and explain which sign changed.",
+                "prompt": "Under east-positive and north-positive axes a vector is (5,-2). The x-axis stays the same, but south is now declared positive. State the new signed components and explain which sign changed.",
                 "source_ref": "SRC-AUTHOR-VEC",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "The new pair is (5,2) m/s. The horizontal sign stays positive; the vertical sign flips because only the vertical positive direction was reversed.",
+                  "summary": "The new components are (5,2). Only the vertical sign changes because only the vertical positive direction was reversed.",
                   "reasoning": [
-                    "The physical vector does not change.",
-                    "East remains positive, so the horizontal component stays +5.",
-                    "The positive vertical direction changes from north to south, so the same southward component changes from -2 to +2."
+                    "The east-positive x-axis is unchanged, so the x-component remains +5.",
+                    "South is now positive instead of north, so the same downward component is +2 rather than -2.",
+                    "The physical vector was not changed; only its coordinate description was."
                   ],
-                  "check": "Redeclare north positive again; the pair must return to (5,-2) m/s.",
+                  "check": "Restore north-positive and the vertical component returns to -2.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The exit task checks signed component representation under an axis-convention change; no derived physical magnitude is required."
+                  "no_numeric_claim": "The numbers are declared in the prompt; the task checks sign transformation under an axis reversal rather than a derived magnitude."
                 }
               },
               "prerequisites": [
-                "CAP-VECTOR-VS-SCALAR",
-                "CAP-SIGNED-PAIR-BRIDGE"
+                "MIC-VECTOR-VS-SCALAR"
               ]
             },
             {
@@ -7071,7 +7171,8 @@ window.GRADE9V3 = {
               "status": "CANDIDATE",
               "badge_reason": "The reverse-then-add construction is a genuine model shift from ordinary addition, even though the component arithmetic looks similar.",
               "entry_assumptions": [
-                "Can read signed components and knows a vector's magnitude is not its direction."
+                "Can read signed components under declared axes.",
+                "Can distinguish vector direction from magnitude."
               ],
               "inferential_jump": "See P - Q as P + (-Q): reverse Q's arrowhead without changing its length, then apply tail-to-head addition.",
               "teaching_path": [
@@ -7091,9 +7192,9 @@ window.GRADE9V3 = {
                   "output": "Resultant vector P-Q."
                 },
                 {
-                  "action": "Reconcile the drawn resultant with the signed-component subtraction.",
-                  "why_valid": "Both the graphical and component routes compute the same operation and must agree.",
-                  "output": "Component check: (P-Q)_x = P_x-Q_x, (P-Q)_y = P_y-Q_y."
+                  "action": "Reconcile the drawn resultant with component-wise signed subtraction.",
+                  "why_valid": "The graphical construction and component subtraction are two representations of the same vector operation and must agree.",
+                  "output": "Component check: (P-Q)_x = P_x-Q_x and (P-Q)_y = P_y-Q_y."
                 }
               ],
               "misconceptions": [
@@ -7104,39 +7205,32 @@ window.GRADE9V3 = {
                 },
                 {
                   "wrong_idea": "Reversing a vector changes its magnitude.",
-                  "diagnostic_prompt": "Does an arrow get longer or shorter when you flip it end for end?",
-                  "repair": "Reversal only negates the signed components; the right-triangle bridge uses their squares, so the magnitude is unchanged."
+                  "diagnostic_prompt": "If an arrow is flipped end for end without changing its drawn length, did its magnitude change?",
+                  "repair": "Reverse only the direction. Keep the arrow length fixed; vector negation changes orientation, not magnitude."
                 }
               ],
               "exit_task": {
-                "prompt": "In a common east/north frame, P = (6,0) m/s and Q = (0,8) m/s. Construct P - Q graphically and state the resultant's components and magnitude.",
+                "prompt": "In one declared x-y frame, P=(6,0) and Q=(0,8). Construct P-Q as P+(-Q) and state the resultant signed components. Explain one check that confirms the subtraction order.",
                 "source_ref": "SRC-AUTHOR-VEC",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "P-Q = (6,-8) m/s, magnitude 10 m/s.",
+                  "summary": "P-Q=(6,-8). Reverse Q to (0,-8), add it tail-to-head to P, and verify that direct component subtraction gives the same ordered pair.",
                   "reasoning": [
-                    "Reverse Q to get -Q = (0,-8) m/s.",
-                    "Add P and -Q tail-to-head: (6+0, 0+(-8)) = (6,-8) m/s.",
-                    "Right-triangle bridge: sqrt(6^2+8^2) = sqrt(100) = 10 m/s."
+                    "Negating Q reverses its direction without changing its length, giving -Q=(0,-8).",
+                    "Tail-to-head addition of P and -Q produces a resultant with components (6,-8).",
+                    "Direct subtraction gives (6-0,0-8)=(6,-8), confirming the construction and order."
                   ],
-                  "check": "Component subtraction directly: (6-0, 0-8) = (6,-8) m/s, matching the graphical construction.",
+                  "check": "Swapping the order gives Q-P=(-6,8), the exact negative of P-Q.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "verification": {
-                    "validator_id": "SPEED_FROM_COMPONENTS",
-                    "bindings": {
-                      "vx": "DAT-PQ-X",
-                      "vy": "DAT-PQ-Y"
-                    }
-                  }
+                  "no_numeric_claim": "The exit task checks construction, component subtraction, and operand-order reversal; it does not require a magnitude calculation."
                 }
               },
               "prerequisites": [
-                "CAP-VECTOR-SIGNED-COMPONENT",
-                "CAP-RIGHT-TRIANGLE-BRIDGE"
+                "MIC-SIGNED-COMPONENT"
               ]
             }
           ],
@@ -7155,9 +7249,9 @@ window.GRADE9V3 = {
           "questions": [
             {
               "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information magnitude does not preserve.",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; magnitude preserves size but not direction."
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
@@ -7168,12 +7262,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
-              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -7181,18 +7269,18 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and re-express a physical vector's signed components against explicitly declared positive axes.",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish a vector from its scalar magnitude without treating equal size as equal direction.",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 27,
+          "record_count": 26,
           "compile_preview": {
             "compilable": true,
             "supported_products": [

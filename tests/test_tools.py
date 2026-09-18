@@ -1270,12 +1270,89 @@ class CeilingAudit(unittest.TestCase):
         return json.loads((REPO / "Physics/matrices/vector-representation.rungs.json")
                           .read_text(encoding="utf-8"))
 
+    def synthetic(self):
+        """A stable falsifier independent of whichever Physics content happens to migrate."""
+        board = {
+            "rungs": [
+                {
+                    "rung": "R1",
+                    "ladder_position": 10,
+                    "provenance": "SOURCE",
+                    "microtopic_ref": "MIC-CEIL-R1",
+                    "ceiling": [],
+                    "must_contain": [],
+                    "controlled_variation": [],
+                },
+                {
+                    "rung": "R2",
+                    "ladder_position": 20,
+                    "provenance": "SOURCE",
+                    "microtopic_ref": "MIC-CEIL-R2",
+                    "ceiling": [],
+                    "must_contain": [],
+                    "controlled_variation": [],
+                },
+                {
+                    "rung": "R3",
+                    "ladder_position": 30,
+                    "provenance": "SOURCE",
+                    "microtopic_ref": "MIC-CEIL-R3",
+                    "ceiling": [],
+                    "must_contain": [],
+                    "controlled_variation": [],
+                },
+            ]
+        }
+        caps = {
+            "CAP-CEIL-R1": {
+                "id": "CAP-CEIL-R1",
+                "action": "Distinguish a magnitude from a pair of signed components.",
+                "success_criterion": "Name magnitude and components separately.",
+                "prerequisite_refs": [],
+            },
+            "CAP-CEIL-R2": {
+                "id": "CAP-CEIL-R2",
+                "action": "Read a declared representation.",
+                "success_criterion": "Read it.",
+                "prerequisite_refs": [],
+            },
+            "CAP-CEIL-R3": {
+                "id": "CAP-CEIL-R3",
+                "action": "Construct tail-to-head addition.",
+                "success_criterion": "Use the tail-to-head construction.",
+                "prerequisite_refs": [],
+            },
+        }
+        mics = {
+            "MIC-CEIL-R1": {
+                "id": "MIC-CEIL-R1",
+                "primary_capability_ref": "CAP-CEIL-R1",
+                "inferential_jump": "Separate magnitude from a pair of signed components.",
+                "teaching_path": [{
+                    "action": "Draw two perpendicular readings.",
+                    "why_valid": "Axes declare what each reading means.",
+                    "output": "A component pair.",
+                }],
+            },
+            "MIC-CEIL-R2": {
+                "id": "MIC-CEIL-R2",
+                "primary_capability_ref": "CAP-CEIL-R2",
+                "inferential_jump": "Read one declared representation.",
+                "teaching_path": [],
+            },
+            "MIC-CEIL-R3": {
+                "id": "MIC-CEIL-R3",
+                "primary_capability_ref": "CAP-CEIL-R3",
+                "inferential_jump": "Use a tail-to-head construction.",
+                "teaching_path": [],
+            },
+        }
+        return board, caps, mics
+
     def plant(self, mutate, index=0):
-        """Findings for ONE rung. Scoped deliberately: this board carries real findings of
-        its own, and a whole-board helper would fold them into every planted assertion."""
-        board = self.board()
+        """Return one planted finding from a synthetic rung, not mutable subject content."""
+        board, caps, mics = self.synthetic()
         mutate(board)
-        caps, mics = author_brief.capability_chain("Physics")
         return [f["point"] for f in
                 ceiling_audit.findings({"rungs": [board["rungs"][index]]}, caps, mics)]
 
@@ -1292,10 +1369,9 @@ class CeilingAudit(unittest.TestCase):
             [ceiling_audit.BLOCKING])
 
     def test_a_source_rungs_own_output_is_read_from_the_record(self):
-        # These rungs carry no `aha` -- the microtopic owns it. Reading only the matrix
-        # would let a ceiling forbid its own output wherever a record exists, which is
-        # most of them.
-        self.assertIsNone(self.board()["rungs"][0].get("aha"))
+        # SOURCE rungs carry no `aha` -- the microtopic owns the learner-facing jump.
+        board, _, _ = self.synthetic()
+        self.assertIsNone(board["rungs"][0].get("aha"))
         self.assertEqual(
             self.plant(lambda b: b["rungs"][0].update(ceiling=["tail-to-head"])), [])
         self.assertEqual(
@@ -1303,12 +1379,11 @@ class CeilingAudit(unittest.TestCase):
             [ceiling_audit.BLOCKING])
 
     def test_a_plural_in_the_jump_still_matches_the_ceiling_word(self):
-        # Keep this a planted rule test rather than coupling it to whichever real
-        # Vector Representation wording happens to be current.
-        def plant(board):
-            board["rungs"][0]["aha"] = "A pair of signed components is this rung's own output."
-            board["rungs"][0]["ceiling"] = ["component"]
-        self.assertEqual(self.plant(plant), [ceiling_audit.BLOCKING])
+        # The synthetic R1 says "a pair of signed components". This proves plural matching
+        # without freezing the test to one subject package.
+        self.assertEqual(
+            self.plant(lambda b: b["rungs"][0].update(ceiling=["component"])),
+            [ceiling_audit.BLOCKING])
 
     def test_a_ceiling_word_in_learner_text_is_reported_and_does_not_fail(self):
         def plant(board):
@@ -1334,20 +1409,10 @@ class CeilingAudit(unittest.TestCase):
                          [ceiling_audit.REPORTED])
 
     def test_the_ceiling_is_compared_to_the_record_a_learner_actually_reads(self):
-        # Plant the word in the bound microtopic explanation so this tests the rule,
-        # not a historical wording choice in one production record.
-        board = self.board()
-        board["rungs"][0]["ceiling"] = ["perpendicular"]
-        caps, mics = author_brief.capability_chain("Physics")
-        mics = json.loads(json.dumps(mics))
-        mic = mics[board["rungs"][0]["microtopic_ref"]]
-        mic["teaching_path"][0]["why_valid"] += " This planted explanation says perpendicular."
-        self.assertEqual(
-            [f["point"] for f in ceiling_audit.findings(
-                {"rungs": [board["rungs"][0]]}, caps, mics
-            )],
-            [ceiling_audit.AUTHORED],
-        )
+        # The matrix row is advice to an author; the record is the explanation. Nothing
+        # compared the ceiling to it until relative motion's entry rung was authored.
+        self.assertEqual(self.plant(lambda b: b["rungs"][0].update(ceiling=["perpendicular"])),
+                         [ceiling_audit.AUTHORED])
         self.assertEqual(self.plant(lambda b: b["rungs"][0].update(ceiling=["determinant"])),
                          [], "a word the record does not use is not a finding")
 
@@ -1357,13 +1422,23 @@ class CeilingAudit(unittest.TestCase):
                            "nothing measured, so this asserts nothing")
         self.assertTrue(report["passed"])
 
-    def test_vector_representation_modernization_clears_the_old_r1_ceiling_findings(self):
-        # The capability split deliberately moved axes/components out of R1. Keep a
-        # regression that the old authored-explanation findings do not return.
+    def test_vector_representation_benchmark_ceiling_failure_is_cleared(self):
+        # The old Vector Representation R1 explanation crossed its own vocabulary ceiling.
+        # After the content migration, the benchmark-named defect must stay cleared; the
+        # generic ceiling falsifiers above remain synthetic so future migrations do not
+        # require rewriting their expected findings.
         report = ceiling_audit.audit()
-        found = {f["where"] for b in report["boards"] for f in b["findings"]
-                 if f["point"] == ceiling_audit.AUTHORED and "vector-representation" in b["matrix"]}
-        self.assertEqual({w for w in found if w.startswith("R1.")}, set())
+        found = {
+            f["where"]
+            for b in report["boards"]
+            for f in b["findings"]
+            if f["point"] == ceiling_audit.AUTHORED
+            and "vector-representation" in b["matrix"]
+        }
+        self.assertEqual(
+            {w for w in found if w.startswith("R1.")},
+            set(),
+        )
 
     def test_every_reported_finding_is_a_true_positive(self):
         # This asserted a list of four. It has been wrong twice since -- once when rungs
