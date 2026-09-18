@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 62,
-  "relation_count": 104,
+  "component_count": 63,
+  "relation_count": 109,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 18,
+    "TOOLING": 19,
     "WEB": 5
   },
-  "digest": "sha256:99371a146c119be1aaac726b83f50b9b77d22e610aafc1943a559f73698a88e2",
+  "digest": "sha256:410c94a63878dcef32f12ae62b46f36a7b998a3b8f24c381b8a5a570c06bd5bc",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -320,6 +320,13 @@
       "sha256": "4d6374db2c8692afe6d0691048b034202d58d916cf8728fa7f6d86ac9d5203d8"
     },
     {
+      "path": "Shared/tools/practice_readiness.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6364,
+      "sha256": "0692dbb0017bc6c2d28a515ec47fc068babd647e470960bc3134b71786e543c5"
+    },
+    {
       "path": "Shared/tools/publication_provenance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -344,8 +351,8 @@
       "path": "Shared/tools/resolve_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 19746,
-      "sha256": "5132da25c8ae77aa455d6765ed132319db577ff50a25dd140afffcf5669a09f2"
+      "bytes": 20212,
+      "sha256": "30d9d7a366147c0bef91c104a9fdfe1dcd3574903bd62b622f143d1028b42991"
     },
     {
       "path": "Shared/tools/spec_conformance.py",
@@ -414,8 +421,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 85265,
-      "sha256": "11722373ad5d36e357b14763401dbd30675618326d4c7aeaebf43b06d94f3c9c"
+      "bytes": 88125,
+      "sha256": "321dec263b093cff6b62940d370d8a32daae660a300f163af3f525db9d0453a1"
     },
     {
       "path": "tools/app.css",
@@ -428,8 +435,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 276916,
-      "sha256": "6420140d7bfb034cf80fa003470e85b484eb386b1df1b344960de8f96ec49783"
+      "bytes": 272110,
+      "sha256": "380db270b2c702cd9dcd1bbac790431b3d93209709f5f0996340c1a5de2f5fed"
     },
     {
       "path": "tools/index.html",
@@ -720,6 +727,26 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/practice_readiness.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/practice_readiness.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/practice_readiness.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/practice_readiness.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/publication_provenance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -747,6 +774,11 @@
     {
       "from": "Shared/tools/resolve_request.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
