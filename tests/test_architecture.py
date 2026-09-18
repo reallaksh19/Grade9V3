@@ -135,12 +135,15 @@ class ThirdAgentGoldenPath(unittest.TestCase):
 
 
 class AcademicReviewBoundary(unittest.TestCase):
-    def test_relative_motion_is_mechanically_reviewable_but_not_human_reviewed(self):
+    def test_relative_motion_names_its_academic_review_gap_without_faking_approval(self):
         board = json.loads((REPO / "Physics/matrices/relative-motion.rungs.json")
                            .read_text(encoding="utf-8"))
         report = academic_readiness.board_report(board, "Physics")
-        self.assertEqual(report["mechanical_findings"], [])
-        self.assertTrue(report["mechanically_reviewable"])
+        self.assertEqual(
+            [(row["point"], row["where"]) for row in report["mechanical_findings"]],
+            [("VOCABULARY_CEILING_MISSING", "R5")],
+        )
+        self.assertFalse(report["mechanically_reviewable"])
         self.assertEqual(report["human_review"]["state"], "NOT_REVIEWED")
         self.assertFalse(report["learner_release_ready"])
 
