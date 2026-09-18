@@ -108,6 +108,51 @@ class WorksheetStudyMap(unittest.TestCase):
         self.assertIn(study_map.NO_TEACHING_LOCATION, points)
         self.assertNotIn(study_map.UNKNOWN_CAPABILITY, points)
 
+    def test_external_provider_without_local_matrix_is_a_bridge_not_a_missing_location(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [{
+                    "id": "CAP-EXTERNAL",
+                    "action": "Use an externally owned skill",
+                    "success_criterion": "The external skill is used correctly",
+                    "prerequisite_refs": [],
+                    "external_provider": "ProviderSubject",
+                    "acceptance_status": "PROVIDER_REVIEW_REQUIRED",
+                }],
+                "microtopics": [],
+                "questions": [],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-BRIDGE",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-EXTERNAL",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_map.resolve(mapping, root)
+
+        self.assertTrue(report["passed"], report["findings"])
+        row = report["questions"][0]["capabilities"][0]
+        self.assertEqual(row["state"], "EXTERNAL_BRIDGE")
+        self.assertEqual(row["delivery_state"], "EXTERNAL_BRIDGE")
+        self.assertEqual(row["provider"], "ProviderSubject")
+        self.assertNotIn(
+            study_map.NO_TEACHING_LOCATION,
+            [finding["point"] for finding in report["findings"]],
+        )
+
     def test_secondary_capability_is_not_expanded_into_prerequisites_here(self):
         report = study_map.resolve(self.physics())
         first = report["questions"][0]
