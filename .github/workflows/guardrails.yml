@@ -95,6 +95,27 @@ jobs:
       - name: Contract claims are backed by code
         run: python3 Shared/tools/capability_audit.py --enforce
 
+      # Render the expected architecture index as an artifact without modifying the
+      # checkout. This makes drift repair inspectable while the following --check remains
+      # read-only and still fails when the committed artifact is stale.
+      - name: Render architecture manifest preview
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from Shared.tools import build_manifest
+          Path("/tmp/architecture-manifest.json").write_text(
+              json.dumps(build_manifest.collect(), indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload architecture manifest preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-manifest-preview
+          path: /tmp/architecture-manifest.json
+
       # --check compares the generated data file and the manifest without writing
       # either, so it covers both artifacts and leaves the checkout untouched.
       - name: Generated artifacts have not drifted
