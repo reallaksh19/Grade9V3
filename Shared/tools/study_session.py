@@ -78,6 +78,7 @@ def _rung_rows(readiness: dict) -> list[dict]:
 
 
 def _verification(microtopic: dict) -> dict | None:
+    """Learner-safe exit task: never expose the answer/oracle before evaluation."""
     exit_task = microtopic.get("exit_task")
     if not exit_task:
         return None
@@ -87,8 +88,50 @@ def _verification(microtopic: dict) -> dict | None:
         "microtopic_ref": microtopic["id"],
         "prompt": exit_task.get("prompt"),
         "source_ref": exit_task.get("source_ref"),
-        "answer": exit_task.get("answer"),
         "status": microtopic.get("status"),
+    }
+
+
+def _learner_elicitation(microtopic: dict) -> dict:
+    """Strip tutor answers/rationales from Core1B material shown to the learner."""
+    elicitation = microtopic.get("elicitation") or {}
+    predict = elicitation.get("predict") or {}
+    attempt = elicitation.get("attempt") or {}
+    reconstruct = elicitation.get("reconstruct") or {}
+    boundary = elicitation.get("boundary_test") or {}
+    return {
+        "predict": (
+            {"prompt": predict.get("prompt")}
+            if predict.get("prompt") else None
+        ),
+        "attempt": (
+            {
+                "produces": attempt.get("produces"),
+                "closure": attempt.get("closure"),
+                "rubric": [
+                    {
+                        "criterion": row.get("criterion"),
+                        "evidence_of": row.get("evidence_of"),
+                    }
+                    for row in attempt.get("rubric", [])
+                ],
+            }
+            if attempt else None
+        ),
+        "reconstruct": (
+            {
+                "route": [
+                    {"ask": row.get("ask")}
+                    for row in reconstruct.get("route", [])
+                    if row.get("ask")
+                ],
+            }
+            if reconstruct else None
+        ),
+        "boundary_test": (
+            {"prompt": boundary.get("prompt")}
+            if boundary.get("prompt") else None
+        ),
     }
 
 
@@ -118,7 +161,7 @@ def _local_action(
             "reason": "Current learner evidence says MISSING.",
         }
 
-    elicitation = microtopic.get("elicitation") or {}
+    elicitation = _learner_elicitation(microtopic)
     if action == "RECONSTRUCT":
         return {
             **base,
