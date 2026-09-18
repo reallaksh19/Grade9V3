@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "In a fluid at rest, pressure is a scalar acting normal to surfaces and increases with depth because deeper points support more fluid above.",
-      "learner_owns": [
-        "Can distinguish force from area and can compare vertical depth below a free surface."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "buoyancy",
         "continuity",
@@ -25,12 +21,6 @@
         "A vessel with several differently oriented pressure arrows at the same depth, all normal to their local surfaces.",
         "Two points at different depths but in the same connected static fluid."
       ],
-      "misconception": {
-        "wrong_idea": "Pressure at a point in a fluid has one preferred direction, downward because of gravity.",
-        "diagnostic_prompt": "At one point in still water, would a tiny vertical surface and a tiny horizontal surface experience pressure in different directions relative to themselves?",
-        "repair": "Pressure is scalar; the force it produces on a surface is normal to that surface. Depth changes its magnitude, not a preferred pressure-vector direction."
-      },
-      "closure": "Given points at equal and unequal depths in a connected static fluid, rank their pressures and draw the force direction on differently oriented small surfaces.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -52,7 +42,8 @@
           "required_for": "RUNG_AUTHORITY",
           "reason": "Static-fluid pressure versus depth needs gate-owned conditions."
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-FLUID-R1"
     },
     {
       "rung": "R2",
