@@ -1,0 +1,37 @@
+rerun_id: "QSM-RERUN-a6842190-MATRIX-PHY-VEC-ADD-SUB"
+baseline_commit: "a6842190f4b9835c654ec110a5875c33ae8ca220"
+subject: "Physics"
+matrix_id: "MATRIX-PHY-VEC-ADD-SUB"
+subtopic: "Vector addition, subtraction and orientation"
+readiness: "SESSION_READY_WITH_BRIDGE"
+overall_status: "PASS"
+previous_full_rerun: "benchmarks/question-study-map/runs/4700abde/"
+semantic_cases:
+  direct_mapping_and_content: "PASS"
+  prerequisite_and_dependency_safety: "PASS"
+  unknown_learner: "PASS"
+  rough_owner_estimate: "PASS"
+  prior_learner_evidence: "PASS"
+  external_bridge_truthfulness: "PASS_OR_NOT_APPLICABLE"
+  feedback_and_repair: "PASS"
+  fresh_verification_boundary: "PASS"
+  helped_success_boundary: "PASS"
+  independent_success_boundary: "PASS"
+  owner_resolution_boundary: "PASS"
+owner_resolution:
+  supported_forms:
+    - "LOCATION:MATRIX_ID:RUNG"
+    - "EXTERNAL:PROVIDER"
+  scope: "SESSION_ONLY"
+  location_must_be_offered_by_canonical_route: true
+  external_provider_becomes_canonical: false
+  may_bypass_unresolved_prerequisite: false
+  mutates_learner_evidence: false
+  applied_choice_disposition: "EXECUTE_WITH_FALLBACK"
+notes:
+  - "PR #64 changes only session-level resolution of OWNER_DECISION; canonical capability/matrix/source/learner truth is unchanged."
+  - "Malformed, duplicate, unknown-target, or unnecessary owner choices remain visible warnings rather than silent canonical mutations."
+  - "The prior fallback/mastery boundary remains: no canonical fresh verification means independent correctness is capped at UNCERTAIN."
+boundary:
+  production_repairs_in_rerun: false
+  learner_episode_fabricated: false
