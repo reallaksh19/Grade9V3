@@ -71,11 +71,7 @@
       "scope": {
         "covers": "Authored work-sign and energy-account reasoning plus owner-extension power, kinetic/potential-energy derivations, and quantitative work-energy relation selection.",
         "excluded": [],
-        "extension_refs": [
-          "CAP-WEP-POWER-RATES",
-          "CAP-WEP-ENERGY-DERIVATIONS",
-          "CAP-WEP-GRADE9-QUANT"
-        ]
+        "extension_refs": []
       }
     }
   ],
@@ -1790,7 +1786,6 @@
       ],
       "item_refs": [
         "Q-PHY-WEP-2A-01",
-        "Q-PHY-WEP-2B-01",
         "Q-PHY-WEP-2A-COV-02",
         "Q-PHY-WEP-2A-COV-03",
         "Q-PHY-WEP-2A-COV-04",
@@ -1856,81 +1851,6 @@
           "reveals": "METHOD"
         }
       ]
-    },
-    {
-      "id": "Q-PHY-WEP-2B-01",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-WEP"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
-      },
-      "origin": "AUTHORED",
-      "origin_ref": "SRC-AUTHOR-WEP",
-      "original_identifier": "AUTHOR-WEP-2B-01",
-      "stem": "A problem shows a block descending between fixed endpoints on a rough track but never tells you which energy equation to use. Decide whether an unchanged K-plus-U mechanical-energy account is sufficient, and state what must be added to the bookkeeping.",
-      "subparts": [],
-      "options": [],
-      "conditions": [],
-      "figure_refs": [],
-      "answer": {
-        "kind": "RUBRIC",
-        "summary": "An unchanged K-plus-U-only account is not sufficient because friction transfers energy out of that mechanical account; the frictional transfer must be included explicitly.",
-        "reasoning": [
-          "The endpoints determine the same gravitational contribution that a smooth comparison would have.",
-          "The rough track introduces an additional frictional transfer.",
-          "Because that transfer crosses the chosen mechanical account, K plus U cannot remain unchanged by itself."
-        ],
-        "check": "Remove the roughness while keeping the same endpoints; the extra frictional transfer should disappear.",
-        "acceptable_alternatives": [],
-        "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 0,
-        "rubric": [
-          {
-            "criterion": "Rejects unchanged K-plus-U-only conservation for the rough-track case.",
-            "evidence_of": "Choosing the energy model from the transfer inventory."
-          },
-          {
-            "criterion": "Keeps the frictional transfer explicit rather than hiding it inside potential energy.",
-            "evidence_of": "Maintaining the authored boundary between conservative storage and dissipative transfer."
-          }
-        ]
-      },
-      "primary_capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
-      "secondary_capability_refs": [],
-      "family_ref": "FAM-PHY-WEP-PRACTICE",
-      "adaptation": null,
-      "exposure": [
-        {
-          "core": "CORE2B",
-          "role": "NEW_TRANSFER",
-          "artifact_ref": null
-        }
-      ],
-      "hints": [
-        {
-          "text": "Inventory transfers before choosing an energy equation.",
-          "reveals": "CONCEPT"
-        },
-        {
-          "text": "Ask whether friction or an outside agent moves energy across the chosen mechanical account.",
-          "reveals": "METHOD"
-        }
-      ],
-      "transfer": {
-        "dimension": "model_choice",
-        "statement": "The learner must choose whether mechanical-energy conservation applies instead of being told to use it.",
-        "builds_on": [
-          "Q-PHY-WEP-2A-01",
-          "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
-        ]
-      },
-      "repair_ref": "WEP4-3"
     },
     {
       "id": "Q-PHY-WEP-2A-COV-02",
@@ -2194,7 +2114,7 @@
       ],
       "figure_refs": [],
       "answer": {
-        "kind": "RUBRIC",
+        "kind": "MODEL_RESPONSE",
         "summary": "The two required chains are W_net = mas = 0.5mv^2 -> K = 0.5mv^2 from rest, and slow lift F_applied = mg -> W_applied = mgh -> Delta U_g = mgh.",
         "reasoning": [
           "Use W_net = F_net s and F_net = ma.",
@@ -2207,17 +2127,7 @@
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 1,
-        "rubric": [
-          {
-            "criterion": "Builds the kinetic-energy expression from the work/force/kinematics chain.",
-            "evidence_of": "Contains W_net = mas and substitution from v^2=2as before K=0.5mv^2."
-          },
-          {
-            "criterion": "Builds the potential-energy expression from a controlled lift against weight.",
-            "evidence_of": "Contains F_applied=mg and W_applied=mgh before identifying Delta U_g."
-          }
-        ]
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-WEP-ENERGY-DERIVATIONS",
       "secondary_capability_refs": [],
@@ -2269,7 +2179,7 @@
       ],
       "figure_refs": [],
       "answer": {
-        "kind": "RUBRIC",
+        "kind": "MODEL_RESPONSE",
         "summary": "Measure release height relative to the lowest point and the bob’s speed at the lowest point, compare m g Delta h with 0.5 m v^2, repeat trials, and interpret a systematic shortfall in kinetic energy as evidence of friction/air losses rather than forcing exact equality.",
         "reasoning": [
           "At release from rest, the chosen mechanical account is mainly gravitational potential energy relative to the bottom.",
@@ -2282,21 +2192,7 @@
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 2,
-        "rubric": [
-          {
-            "criterion": "Chooses measurable release-height and lowest-point speed quantities tied to the same pendulum trial.",
-            "evidence_of": "A valid comparison between m g Delta h and 0.5 m v^2."
-          },
-          {
-            "criterion": "States the ideal conservation prediction with one consistent energy reference.",
-            "evidence_of": "Mechanical-energy equality is treated as a model prediction, not an assumption about every real trial."
-          },
-          {
-            "criterion": "Interprets deviations using losses/uncertainty rather than hiding them.",
-            "evidence_of": "Friction, air resistance and measurement limitations are acknowledged."
-          }
-        ]
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-WEP-GRADE9-QUANT",
       "secondary_capability_refs": [
