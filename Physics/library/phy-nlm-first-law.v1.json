@@ -185,7 +185,7 @@
           "action": "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
           "why_valid": "Once the hand is gone, a continuing steady velocity can be observed without a continuing forward push.",
           "inputs": [],
-          "output": "after release: positions advance evenly in one direction; velocity stays unchanged."
+          "output": "successive equal-time snapshots -> equal forward position advances; velocity unchanged."
         },
         {
           "id": "NLM1-3",
