@@ -1,7 +1,6 @@
 """Application context is a schema layer, never a capability or prerequisite."""
 from __future__ import annotations
 
-import copy
 import json
 import sys
 import unittest
@@ -87,6 +86,70 @@ class ApplicationContextSchema(unittest.TestCase):
         question_refs = dict(resolve.references(records["Q-SYNTHETIC"]))
         self.assertIn("CTX-SYNTHETIC-APPLICATION", family_refs.values())
         self.assertIn("CTX-SYNTHETIC-APPLICATION", question_refs.values())
+
+    def test_context_ref_must_resolve_to_context_collection_not_just_any_id(self):
+        package = {
+            "package_id": "PKG-SYNTHETIC",
+            "application_contexts": [self.context()],
+            "capabilities": [{
+                "id": "CAP-SYNTHETIC",
+                "prerequisite_refs": [],
+            }],
+            "questions": [{
+                "id": "Q-SYNTHETIC",
+                "context_refs": ["CAP-SYNTHETIC"],
+            }],
+        }
+        with self.assertRaises(ContractError) as caught:
+            resolve.validate_library([package])
+        self.assertEqual(
+            caught.exception.code,
+            "APPLICATION_CONTEXT_REFERENCE_WRONG_TYPE",
+        )
+
+    def test_bucket_slice_carries_context_metadata_without_putting_it_in_topology(self):
+        package = {
+            "package_id": "PKG-SYNTHETIC",
+            "application_contexts": [self.context()],
+            "buckets": [{
+                "id": "BUCKET-SYNTHETIC",
+                "prerequisite_refs": [],
+            }],
+            "capabilities": [{
+                "id": "CAP-SYNTHETIC",
+                "prerequisite_refs": [],
+            }],
+            "microtopics": [{
+                "id": "MIC-SYNTHETIC",
+                "bucket_id": "BUCKET-SYNTHETIC",
+                "primary_capability_ref": "CAP-SYNTHETIC",
+                "prerequisite_refs": [],
+                "question_family_refs": ["FAM-SYNTHETIC"],
+            }],
+            "question_families": [{
+                "id": "FAM-SYNTHETIC",
+                "context_refs": ["CTX-SYNTHETIC-APPLICATION"],
+                "item_refs": ["Q-SYNTHETIC"],
+            }],
+            "questions": [{
+                "id": "Q-SYNTHETIC",
+                "context_refs": ["CTX-SYNTHETIC-APPLICATION"],
+                "primary_capability_ref": "CAP-SYNTHETIC",
+            }],
+        }
+        records = resolve.build_index([package])
+        resolve.validate_library([package])
+        chosen = resolve.slice_for_bucket(records, "BUCKET-SYNTHETIC")
+
+        context_ids = {
+            row["id"]
+            for row in chosen["records"]["application_contexts"]
+        }
+        self.assertEqual(context_ids, {"CTX-SYNTHETIC-APPLICATION"})
+        self.assertNotIn(
+            "CTX-SYNTHETIC-APPLICATION",
+            resolve.prerequisite_closure(records, ["MIC-SYNTHETIC"]),
+        )
 
     def test_context_cannot_be_used_as_a_prerequisite(self):
         package = {
