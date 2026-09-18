@@ -1,3 +1,7 @@
 Fixture source for deterministic acquisition tests.
 Question F1: In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B.
 Answer F1: (6,-8) m/s, southeast; magnitude 10 m/s.
+Working F1.1: Subtract (0,8) from (6,0).
+Working F1.2: The southward component is 8 m/s and eastward component 6 m/s.
+Working F1.3: Using a right triangle, magnitude is sqrt(36+64)=10 m/s.
+Check F1: Over one second the relative displacement changes by (6,-8) m; reversing the observer gives (-6,8) m/s.
