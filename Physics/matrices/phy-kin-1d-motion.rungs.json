@@ -110,6 +110,63 @@
       "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A"
     },
     {
+      "rung": "R4G",
+      "ladder_position": 82,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "derivative notation",
+        "integration",
+        "area-under-curve displacement",
+        "jerk"
+      ],
+      "must_contain": [
+        "A position-time graph with labelled time and position axes and at least two plotted points.",
+        "A velocity-time graph with labelled time and velocity axes and at least two plotted points.",
+        "An explicit distinction between graph height and graph slope."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the vertical-axis quantity from position to velocity",
+          "hold": "the same time axis and interval-reading procedure",
+          "notice": "segment slope changes meaning from average velocity to average acceleration"
+        },
+        {
+          "phase": 2,
+          "vary": "the segment from sloped to horizontal",
+          "hold": "the same graph type",
+          "notice": "the corresponding interval rate becomes zero when the numerator change is zero"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-AVERAGE-VELOCITY",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Position-time slope interpretation needs the gate-owned average-velocity relation."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-AVERAGE-ACCELERATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Velocity-time slope interpretation needs the gate-owned average-acceleration relation."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "AVERAGE_ACCELERATION",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "The authored velocity-time graph exit has a numerical acceleration claim."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "GRAPH",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "The Grade 9 curriculum explicitly requires plotting and interpreting motion graphs."
+        }
+      ]
+    },
+    {
       "rung": "R4",
       "ladder_position": 90,
       "provenance": "SOURCE",
@@ -184,12 +241,12 @@
       "ceiling": [
         "centripetal force formula",
         "angular velocity",
-        "radians",
         "calculus"
       ],
       "must_contain": [
         "Equal-length tangent velocity arrows at different points on one circle.",
-        "An inward acceleration arrow distinguished from the tangent velocity direction."
+        "An inward acceleration arrow distinguished from the tangent velocity direction.",
+        "A one-revolution path length 2 pi r divided by a positive revolution period T."
       ],
       "controlled_variation": [
         {
@@ -205,7 +262,21 @@
           "notice": "the turning acceleration shrinks toward zero as direction stops changing"
         }
       ],
-      "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
+      "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-UNIFORM-CIRCULAR-SPEED",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The Grade 9 expression for speed in uniform circular motion needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "UNIFORM_CIRCULAR_SPEED",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "The one-revolution numerical speed exit needs an implemented validator."
+        }
+      ]
     }
   ],
   "family": {
@@ -230,9 +301,9 @@
   "transfer": [
     {
       "dimension": "representation_translation",
-      "changed_demand": "A velocity-time graph must be translated into signed displacement and acceleration statements without a verbal motion story.",
-      "information_not_handed_over": "which graph features correspond to signed change and to acceleration",
-      "repair_to": "R3"
+      "changed_demand": "A position-time or velocity-time graph segment must be translated into the correct interval-rate statement without a verbal motion story.",
+      "information_not_handed_over": "whether the segment slope represents average velocity or average acceleration",
+      "repair_to": "R4G"
     },
     {
       "dimension": "model_choice",
@@ -250,6 +321,12 @@
       "dimension": "model_choice",
       "changed_demand": "A constant speed is maintained on a curved path, requiring the learner to decide whether acceleration can still be nonzero.",
       "information_not_handed_over": "whether changing direction alone counts as a change of velocity",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A complete circular revolution is described by radius and period, requiring the learner to construct circumference before computing the uniform speed.",
+      "information_not_handed_over": "that one revolution travels path length 2 pi r",
       "repair_to": "R5"
     }
   ]
