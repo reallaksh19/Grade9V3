@@ -51,6 +51,12 @@ jobs:
       - name: Requests resolve to a plan, or refuse with a reason
         run: python3 Shared/tools/resolve_request.py --enforce
 
+      # Source coverage is evidence, not a request field. A receipt may preserve an
+      # inspection fact while still reporting insufficient custody; authored questions
+      # can never establish Core2 source custody.
+      - name: Source inspection receipts prove their custody claims
+        run: python3 Shared/tools/source_receipts.py --audit --enforce
+
       # A short third-agent request is allowed to be incomplete: the plan must derive
       # what the repository owns and return only the owner decisions that remain.
       - name: Cold-agent authoring requests resolve without guessing
