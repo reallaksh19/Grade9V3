@@ -78,6 +78,16 @@ class SourcePipeline(unittest.TestCase):
         self.assertEqual(coverage["CORE2"]["status"], "INSUFFICIENT")
         self.assertIn("CAP-RELATIVE-V", coverage["CORE2"]["basis"])
 
+    def test_question_custody_requires_retained_source_bytes(self):
+        acquisition = self.acquisition()
+        acquisition["snapshot_ref"] = None
+        manifest = self.manifest()
+        manifest["resource"]["snapshot_ref"] = None
+        report = source_pipeline.plan_ingestion(
+            acquisition, manifest, self.package())
+        self.assertIn("SOURCE_INGEST_SNAPSHOT_REQUIRED",
+                      [row["point"] for row in report["findings"]])
+
     def test_ingestion_refuses_a_reviewed_question_from_the_same_operation(self):
         manifest = self.manifest()
         manifest["questions"][0]["status"] = "REVIEWED"
