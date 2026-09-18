@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Grade 9 motion: distance/displacement, average speed/velocity, position-time and velocity-time graphs, velocity/acceleration, constant-acceleration equations, and uniform circular motion including v = 2 pi r / T.",
+  "scope_summary": "Grade 9 motion spine covering distance/displacement, average rates, velocity versus acceleration, constant-acceleration equations, and elementary uniform circular motion.",
   "curriculum_mappings": [
     {
       "board": "CBSE",
@@ -64,7 +64,7 @@
       "title": "One-dimensional motion",
       "topic": "Motion",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Grade 9 motion requires several closely related but distinct quantities, graph readings and conditional equations.",
+      "badge_reason": "Two qualitative distinctions are authored; rate formulae and constant-acceleration equations remain upstream-blocked.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [
         {
@@ -86,11 +86,10 @@
         }
       ],
       "scope": {
-        "covers": "Grade 9 motion: distance/displacement, average speed/velocity, position-time and velocity-time graphs, velocity/acceleration, constant-acceleration equations, and uniform circular motion including v = 2 pi r / T.",
+        "covers": "Grade 9 motion: path and displacement, average speed/velocity, velocity and acceleration, constant-acceleration equations, and elementary uniform circular motion.",
         "excluded": [],
         "extension_refs": []
-      },
-      "primary_representation_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH"
+      }
     }
   ],
   "capabilities": [
@@ -232,8 +231,8 @@
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED"
       },
-      "action": "Explain direction change in uniform circular motion and derive its speed from circumference divided by period.",
-      "success_criterion": "Keeps tangent velocity and inward acceleration distinct and calculates v = 2 pi r / T for a fixed-radius uniform circle.",
+      "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously.",
+      "success_criterion": "Identifies changing direction as the velocity change and points the acceleration toward the circle centre.",
       "prerequisite_refs": [
         "CAP-KIN-ZERO-V-NONZERO-A"
       ],
@@ -246,38 +245,6 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
           "locator": "Motion; printed p.14; C-2.1 — elementary uniform circular motion",
-          "mapping_status": "VERIFIED"
-        }
-      ],
-      "external_provider": null,
-      "acceptance_status": "CANDIDATE"
-    },
-    {
-      "id": "CAP-KIN-MOTION-GRAPHS",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "grade9_track": "STANDARD",
-        "curriculum_mapping_policy": "VERIFIED"
-      },
-      "action": "Plot and interpret position-time and velocity-time graphs for one-dimensional motion.",
-      "success_criterion": "Reads average velocity from position change over time and average acceleration from velocity change over time, with axes, units and sign convention explicit.",
-      "prerequisite_refs": [
-        "CAP-KIN-AVERAGE-RATES"
-      ],
-      "curriculum_mappings": [
-        {
-          "board": "CBSE",
-          "grade": 9,
-          "academic_year": "2026-27",
-          "track": "STANDARD",
-          "scope_class": "PRESCRIBED",
-          "source_ref": "SRC-CBSE-STD",
-          "locator": "Motion; printed p.14; C-2.1 — plot/interpret position-time and velocity-time graphs and calculate average velocity/acceleration from them",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -881,7 +848,7 @@
       "entry_assumptions": [
         "Can distinguish speed from directed velocity and can recognize acceleration as a change of velocity."
       ],
-      "inferential_jump": "An object can keep constant speed while its velocity direction changes continuously; one revolution covers 2 pi r in one period T, so v = 2 pi r / T, while the acceleration direction is inward.",
+      "inferential_jump": "An object moving around a circle at constant speed is still accelerating because its velocity direction changes continuously; the acceleration points inward toward the centre.",
       "teaching_path": [
         {
           "id": "KIN5-1",
@@ -900,16 +867,6 @@
           "output": "Delta v is nonzero even though |v| is unchanged."
         },
         {
-          "id": "KIN5-2A",
-          "role": "TRANSFORM",
-          "action": "Use one complete revolution to convert the circular path length and period into speed.",
-          "why_valid": "One revolution covers circumference 2 pi r, and speed is path length divided by the period for that revolution.",
-          "inputs": [
-            "REL-UNIFORM-CIRCULAR-SPEED"
-          ],
-          "output": "v = 2 pi r / T; for r = 10 m and T = 20 s, v = pi m/s."
-        },
-        {
           "id": "KIN5-3",
           "role": "VERIFY",
           "action": "Use symmetry at opposite points to check that the required acceleration is directed toward the centre rather than along the tangent.",
@@ -918,13 +875,9 @@
           "output": "uniform circular motion -> acceleration inward; velocity tangent."
         }
       ],
-      "relation_refs": [
-        "REL-UNIFORM-CIRCULAR-SPEED"
-      ],
+      "relation_refs": [],
       "representation_refs": [],
-      "question_family_refs": [
-        "FAM-PHY-KIN-PRACTICE"
-      ],
+      "question_family_refs": [],
       "misconceptions": [
         {
           "wrong_idea": "Constant speed means zero acceleration.",
@@ -933,32 +886,26 @@
         }
       ],
       "exit_task": {
-        "prompt": "A runner moves uniformly on a circular track of radius 10 m and completes one revolution in 20 s. Find the speed, then state the directions of velocity and acceleration at any point.",
+        "prompt": "A runner moves around a circular track at constant speed. At the rightmost point, state the direction of velocity and the direction of acceleration qualitatively.",
         "source_ref": "SRC-AUTHOR-KIN-1D",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "The speed is pi m/s (about 3.14 m/s); velocity is tangent to the circle and acceleration points inward.",
+          "summary": "Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
           "reasoning": [
-            "One revolution covers 2 pi r = 20 pi m.",
-            "v = 20 pi m / 20 s = pi m/s.",
-            "Uniform speed does not make velocity constant because the tangent direction changes; the acceleration points toward the centre."
+            "Instantaneous velocity follows the tangent to the path.",
+            "Constant speed removes any tangential speed-change requirement.",
+            "The continuing direction change requires inward acceleration."
           ],
-          "check": "Halving the period at the same radius would double the speed while the velocity would still remain tangent and acceleration inward.",
+          "check": "At the opposite side of the circle, both tangent velocity direction and inward acceleration direction change with the geometry.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "verification": {
-            "validator_id": "UNIFORM_CIRCULAR_SPEED",
-            "bindings": {
-              "radius": "DAT-KIN-UCM-R",
-              "period": "DAT-KIN-UCM-T"
-            }
-          }
+          "no_numeric_claim": "The exit asserts only qualitative tangent and inward directions; no magnitude is computed."
         }
       },
-      "research_contribution": "Author-created Grade 9 uniform-circular-motion construction, upgraded to the prescribed circumference-over-period speed relation.",
+      "research_contribution": "Author-created Grade 9 uniform-circular-motion boundary.",
       "prerequisite_refs": [
         "CAP-KIN-ZERO-V-NONZERO-A"
       ],
@@ -1015,170 +962,6 @@
           "prompt": "If the path becomes straight while speed remains constant, what happens to the turning acceleration?",
           "answer": "It vanishes in the straight constant-velocity limit.",
           "confirms": "The acceleration in uniform circular motion is tied to continuous change of direction."
-        }
-      }
-    },
-    {
-      "id": "MIC-PHY-KIN-MOTION-GRAPHS",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "title": "Motion graphs turn axis changes into average rates",
-      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
-      "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
-      "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The arithmetic is simple, but learners must keep graph height, slope and physical quantity distinct.",
-      "entry_assumptions": [
-        "Can distinguish signed displacement from path length and can compute an interval average rate."
-      ],
-      "inferential_jump": "On a position-time graph the slope between two points is average velocity; on a velocity-time graph the slope between two points is average acceleration, so the axes determine what a graph's slope means.",
-      "teaching_path": [
-        {
-          "id": "KIN-GRAPH-1",
-          "role": "DECLARE",
-          "action": "Read both axis labels, units and the declared positive direction before interpreting any graph segment.",
-          "why_valid": "A graph coordinate has no physical meaning until each axis quantity and unit is known.",
-          "inputs": [
-            "CAP-KIN-AVERAGE-RATES"
-          ],
-          "output": "x-t graph: horizontal t, vertical signed x; v-t graph: horizontal t, vertical signed v."
-        },
-        {
-          "id": "KIN-GRAPH-2",
-          "role": "TRANSFORM",
-          "action": "Choose two position-time points and divide their signed vertical position change by the matching horizontal time interval.",
-          "why_valid": "REL-AVERAGE-VELOCITY converts the graph's Delta x and Delta t into interval average velocity.",
-          "inputs": [
-            "REL-AVERAGE-VELOCITY",
-            "REP-PHY-KIN-POSITION-TIME-GRAPH"
-          ],
-          "output": "v_avg = Delta x / Delta t = (8 m - 0 m) / (4 s - 0 s) = +2 m/s."
-        },
-        {
-          "id": "KIN-GRAPH-3",
-          "role": "TRANSFORM",
-          "action": "Choose two velocity-time points and divide their signed vertical velocity change by the matching horizontal time interval.",
-          "why_valid": "REL-AVERAGE-ACCELERATION converts the graph's Delta v and Delta t into interval average acceleration.",
-          "inputs": [
-            "REL-AVERAGE-ACCELERATION",
-            "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
-          ],
-          "output": "a_avg = Delta v / Delta t = (10 m/s - 2 m/s) / (4 s - 0 s) = +2 m/s^2."
-        },
-        {
-          "id": "KIN-GRAPH-4",
-          "role": "VERIFY",
-          "action": "Compare a horizontal position-time segment with a horizontal velocity-time segment.",
-          "why_valid": "Zero slope means zero average rate of the vertical-axis quantity, so the two graph types have different physical interpretations.",
-          "inputs": [],
-          "output": "horizontal x-t -> v_avg = 0; horizontal v-t -> a_avg = 0, while velocity itself can be nonzero."
-        }
-      ],
-      "relation_refs": [
-        "REL-AVERAGE-VELOCITY",
-        "REL-AVERAGE-ACCELERATION"
-      ],
-      "representation_refs": [
-        "REP-PHY-KIN-POSITION-TIME-GRAPH",
-        "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
-      ],
-      "question_family_refs": [
-        "FAM-PHY-KIN-PRACTICE"
-      ],
-      "misconceptions": [
-        {
-          "wrong_idea": "The height of a motion graph is always the object's speed.",
-          "diagnostic_prompt": "A velocity-time graph is horizontal at +5 m/s. Is its acceleration +5 m/s^2?",
-          "repair": "Read the vertical axis first. On a velocity-time graph height is velocity; acceleration comes from the slope."
-        }
-      ],
-      "exit_task": {
-        "prompt": "From 0 to 4 s, a position-time graph goes from 0 m to +8 m while a velocity-time graph goes from +2 m/s to +10 m/s. Find the average velocity from the first graph and average acceleration from the second.",
-        "source_ref": "SRC-AUTHOR-KIN-1D",
-        "answer": {
-          "kind": "MODEL_RESPONSE",
-          "summary": "Average velocity is +2 m/s and average acceleration is +2 m/s^2.",
-          "reasoning": [
-            "Position-time slope: (8 - 0) m / (4 - 0) s = +2 m/s.",
-            "Velocity-time slope: (10 - 2) m/s / (4 - 0) s = +2 m/s^2.",
-            "The same geometric operation has a different physical meaning because the vertical axes differ."
-          ],
-          "check": "A horizontal x-t graph would give zero velocity; a horizontal v-t graph could sit at nonzero velocity but would give zero acceleration.",
-          "acceptable_alternatives": [],
-          "subpart_answers": [],
-          "verification_status": "CHECKED_BY_AUTHOR"
-        },
-        "oracle": {
-          "verification": {
-            "validator_id": "AVERAGE_ACCELERATION",
-            "bindings": {
-              "delta_v": "DAT-KIN-GRAPH-DV",
-              "dt": "DAT-KIN-GRAPH-T4"
-            }
-          }
-        }
-      },
-      "research_contribution": "Author-created Grade 9 motion-graph construction using the generic GRAPH renderer and gate-owned average-rate relations.",
-      "prerequisite_refs": [
-        "CAP-KIN-AVERAGE-RATES"
-      ],
-      "lineage": [],
-      "elicitation": {
-        "predict": {
-          "prompt": "Two straight graph segments have the same visual slope, one on position-time axes and one on velocity-time axes. Do they represent the same physical quantity?",
-          "defensible_answer": "No. The first slope is velocity; the second slope is acceleration because the vertical axes differ."
-        },
-        "attempt": {
-          "produces": "Axis labels plus one rise-over-run calculation on each graph type.",
-          "closure": "RUBRIC",
-          "rubric": [
-            {
-              "criterion": "Names both graph axes before interpreting slope.",
-              "evidence_of": "Binding the geometry to the physical quantities."
-            },
-            {
-              "criterion": "Uses Delta x/Delta t for position-time and Delta v/Delta t for velocity-time.",
-              "evidence_of": "Distinguishing velocity from acceleration."
-            }
-          ],
-          "accepted": [
-            "x-t slope -> average velocity; v-t slope -> average acceleration."
-          ],
-          "rejected": [
-            "Graph height always gives speed or every graph slope gives velocity."
-          ]
-        },
-        "reconstruct": {
-          "route": [
-            {
-              "ask": "What physical quantity is on the vertical axis?",
-              "why_this_ask": "It determines what vertical change means.",
-              "from_step_ref": "KIN-GRAPH-1"
-            },
-            {
-              "ask": "What vertical change occurs between the selected endpoints?",
-              "why_this_ask": "It constructs Delta x or Delta v."
-            },
-            {
-              "ask": "What horizontal time interval matches those endpoints?",
-              "why_this_ask": "It keeps numerator and denominator on the same interval."
-            },
-            {
-              "ask": "What physical unit does the slope have?",
-              "why_this_ask": "Units independently distinguish velocity from acceleration.",
-              "from_step_ref": "KIN-GRAPH-3"
-            }
-          ],
-          "differs_from_teaching_path": "The teaching path reads axes then calculates; the learner route starts from the ambiguous visual slope and reconstructs its meaning from axes and units."
-        },
-        "boundary_test": {
-          "prompt": "A velocity-time graph is horizontal at +5 m/s for 4 s. What are the velocity and acceleration during the interval?",
-          "answer": "Velocity is +5 m/s while acceleration is zero.",
-          "confirms": "Graph height and graph slope represent different quantities."
         }
       }
     }
@@ -1475,325 +1258,9 @@
         "If a = 0, v^2 = u^2."
       ],
       "gate_relation_ref": "REL-CONSTANT-ACCELERATION-NO-TIME"
-    },
-    {
-      "id": "REL-AVERAGE-ACCELERATION",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "expression": "a_avg = Delta v / Delta t",
-      "meaning": "Average acceleration is signed velocity change divided by positive elapsed time.",
-      "symbols": [
-        {
-          "symbol": "a_avg",
-          "meaning": "Average acceleration along the declared axis",
-          "unit_or_domain": "m/s^2; signed scalar"
-        },
-        {
-          "symbol": "Delta v",
-          "meaning": "Final velocity minus initial velocity",
-          "unit_or_domain": "m/s; signed scalar"
-        },
-        {
-          "symbol": "Delta t",
-          "meaning": "Positive elapsed time",
-          "unit_or_domain": "s; positive scalar"
-        }
-      ],
-      "conditions": [
-        "Delta t > 0.",
-        "Delta v uses one declared velocity sign convention."
-      ],
-      "derivation": [
-        {
-          "id": "KIN-GRAPH-A-D1",
-          "role": "TRANSFORM",
-          "action": "Take the signed vertical velocity change over the matching horizontal time interval.",
-          "why_valid": "REL-AVERAGE-ACCELERATION defines average acceleration as velocity change per elapsed time.",
-          "inputs": [],
-          "output": "a_avg = Delta v / Delta t."
-        }
-      ],
-      "limits": [
-        "This interval average does not prove acceleration was constant between the endpoints."
-      ],
-      "checks": [
-        "A horizontal velocity-time segment gives Delta v = 0 and therefore zero average acceleration."
-      ],
-      "gate_relation_ref": "REL-AVERAGE-ACCELERATION"
-    },
-    {
-      "id": "REL-UNIFORM-CIRCULAR-SPEED",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "expression": "v = 2 pi r / T",
-      "meaning": "For uniform circular motion, speed equals one circumference divided by the period for one revolution.",
-      "symbols": [
-        {
-          "symbol": "v",
-          "meaning": "Constant speed around the circular path",
-          "unit_or_domain": "m/s; positive scalar"
-        },
-        {
-          "symbol": "r",
-          "meaning": "Circle radius",
-          "unit_or_domain": "m; positive scalar"
-        },
-        {
-          "symbol": "T",
-          "meaning": "Period for one complete revolution",
-          "unit_or_domain": "s; positive scalar"
-        }
-      ],
-      "conditions": [
-        "r > 0.",
-        "T > 0.",
-        "The path is a circle of fixed radius and the speed is constant."
-      ],
-      "derivation": [
-        {
-          "id": "KIN-UCM-D1",
-          "role": "DECLARE",
-          "action": "Use one complete revolution as the repeated distance interval.",
-          "why_valid": "One revolution of a circle of radius r has path length 2 pi r.",
-          "inputs": [],
-          "output": "distance_per_revolution = 2 pi r."
-        },
-        {
-          "id": "KIN-UCM-D2",
-          "role": "TRANSFORM",
-          "action": "Divide that circumference by the positive period for one revolution.",
-          "why_valid": "Speed is path length divided by elapsed time for the complete revolution.",
-          "inputs": [],
-          "output": "v = 2 pi r / T."
-        }
-      ],
-      "limits": [
-        "The relation gives speed only; it does not give centripetal acceleration or force."
-      ],
-      "checks": [
-        "At fixed r, halving T doubles v.",
-        "Units reduce from metres divided by seconds to m/s."
-      ],
-      "gate_relation_ref": "REL-UNIFORM-CIRCULAR-SPEED"
     }
   ],
-  "representations": [
-    {
-      "id": "REP-PHY-KIN-POSITION-TIME-GRAPH",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "GRAPH",
-      "purpose": "Show how a position-time graph encodes signed position change over elapsed time.",
-      "required_elements": [
-        "time axis",
-        "position axis",
-        "plotted position-time points",
-        "vertical position change",
-        "horizontal time interval",
-        "rise-over-run slope"
-      ],
-      "relation_refs": [
-        "REL-AVERAGE-VELOCITY"
-      ],
-      "read_order": [
-        "Read the time axis and unit.",
-        "Read the position axis and declared positive direction.",
-        "Choose two plotted points.",
-        "Form vertical position change over the matching horizontal time interval.",
-        "Interpret the ratio as average velocity."
-      ],
-      "instance_constraints": [
-        "Time values must increase strictly from left to right.",
-        "Every plotted value comes from a declared datum.",
-        "Connecting segments are piecewise linear and do not imply a smoother curve."
-      ],
-      "accessibility": [
-        "Caption states that the horizontal axis is time and vertical axis is signed position.",
-        "Point coordinates remain available as text metadata."
-      ],
-      "misleading_alternatives": [
-        "Do not read graph height alone as speed.",
-        "Do not treat a steep segment as a long travelled distance without using the position change and time interval."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [
-        {
-          "id": "SCENE-KIN-XT-01",
-          "cores": [
-            "CORE1A",
-            "CORE1B"
-          ],
-          "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
-          "datum_refs": [
-            "DAT-KIN-GRAPH-T0",
-            "DAT-KIN-GRAPH-T2",
-            "DAT-KIN-GRAPH-T4",
-            "DAT-KIN-GRAPH-X0",
-            "DAT-KIN-GRAPH-X2",
-            "DAT-KIN-GRAPH-X4"
-          ],
-          "scene": {
-            "kind": "GRAPH",
-            "frame": "one-dimensional motion; positive position direction declared",
-            "caption": "Position-time graph for a body moving from x = 0 m to x = 8 m in 4 s.",
-            "x_label": "time t (s)",
-            "y_label": "position x (m)",
-            "x_unit": "s",
-            "y_unit": "m",
-            "points": [
-              [
-                "DAT-KIN-GRAPH-T0",
-                "DAT-KIN-GRAPH-X0"
-              ],
-              [
-                "DAT-KIN-GRAPH-T2",
-                "DAT-KIN-GRAPH-X2"
-              ],
-              [
-                "DAT-KIN-GRAPH-T4",
-                "DAT-KIN-GRAPH-X4"
-              ]
-            ]
-          }
-        }
-      ],
-      "correspondence": [
-        {
-          "element": "horizontal time interval",
-          "symbol": "Delta t",
-          "in_words": "elapsed time between the chosen graph points"
-        },
-        {
-          "element": "vertical position change",
-          "symbol": "Delta x",
-          "in_words": "signed position change between the chosen graph points"
-        },
-        {
-          "element": "rise-over-run slope",
-          "symbol": "v_avg",
-          "in_words": "average velocity over that graph interval"
-        }
-      ]
-    },
-    {
-      "id": "REP-PHY-KIN-VELOCITY-TIME-GRAPH",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "GRAPH",
-      "purpose": "Show how a velocity-time graph encodes signed velocity change over elapsed time.",
-      "required_elements": [
-        "time axis",
-        "velocity axis",
-        "plotted velocity-time points",
-        "vertical velocity change",
-        "horizontal time interval",
-        "rise-over-run slope"
-      ],
-      "relation_refs": [
-        "REL-AVERAGE-ACCELERATION"
-      ],
-      "read_order": [
-        "Read the time axis and unit.",
-        "Read the signed velocity axis and unit.",
-        "Choose two plotted points.",
-        "Form vertical velocity change over the matching horizontal time interval.",
-        "Interpret the ratio as average acceleration."
-      ],
-      "instance_constraints": [
-        "Time values must increase strictly from left to right.",
-        "Every plotted value comes from a declared datum.",
-        "Connecting segments are piecewise linear and do not imply a smoother curve."
-      ],
-      "accessibility": [
-        "Caption states that the horizontal axis is time and vertical axis is signed velocity.",
-        "Point coordinates remain available as text metadata."
-      ],
-      "misleading_alternatives": [
-        "Do not read velocity graph height as acceleration.",
-        "Do not confuse the graph slope with the area beneath the graph."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [
-        {
-          "id": "SCENE-KIN-VT-01",
-          "cores": [
-            "CORE1A",
-            "CORE1B"
-          ],
-          "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
-          "datum_refs": [
-            "DAT-KIN-GRAPH-T0",
-            "DAT-KIN-GRAPH-T2",
-            "DAT-KIN-GRAPH-T4",
-            "DAT-KIN-GRAPH-V0",
-            "DAT-KIN-GRAPH-V2",
-            "DAT-KIN-GRAPH-V4"
-          ],
-          "scene": {
-            "kind": "GRAPH",
-            "frame": "one-dimensional velocity-time graph; same signed axis throughout",
-            "caption": "Velocity-time graph increasing from +2 m/s to +10 m/s over 4 s.",
-            "x_label": "time t (s)",
-            "y_label": "velocity v (m/s)",
-            "x_unit": "s",
-            "y_unit": "m/s",
-            "points": [
-              [
-                "DAT-KIN-GRAPH-T0",
-                "DAT-KIN-GRAPH-V0"
-              ],
-              [
-                "DAT-KIN-GRAPH-T2",
-                "DAT-KIN-GRAPH-V2"
-              ],
-              [
-                "DAT-KIN-GRAPH-T4",
-                "DAT-KIN-GRAPH-V4"
-              ]
-            ],
-            "y_min_atom": "DAT-KIN-GRAPH-V0"
-          }
-        }
-      ],
-      "correspondence": [
-        {
-          "element": "horizontal time interval",
-          "symbol": "Delta t",
-          "in_words": "elapsed time between the chosen graph points"
-        },
-        {
-          "element": "vertical velocity change",
-          "symbol": "Delta v",
-          "in_words": "signed velocity change between the chosen graph points"
-        },
-        {
-          "element": "rise-over-run slope",
-          "symbol": "a_avg",
-          "in_words": "average acceleration over that graph interval"
-        }
-      ]
-    }
-  ],
+  "representations": [],
   "question_families": [
     {
       "id": "FAM-PHY-KIN-PRACTICE",
@@ -1810,8 +1277,7 @@
         "CAP-KIN-ZERO-V-NONZERO-A",
         "CAP-KIN-AVERAGE-RATES",
         "CAP-KIN-CONSTANT-ACCELERATION",
-        "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
-        "CAP-KIN-MOTION-GRAPHS"
+        "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
       ],
       "solution_structure": [
         "Mark a start point on a straight path and declare east as the positive direction.",
@@ -1838,8 +1304,7 @@
         "Q-PHY-KIN-2B-01",
         "Q-PHY-KIN-2A-COV-02",
         "Q-PHY-KIN-2A-COV-03",
-        "Q-PHY-KIN-2A-COV-04",
-        "Q-PHY-KIN-2A-GRAPH-01"
+        "Q-PHY-KIN-2A-COV-04"
       ]
     }
   ],
@@ -2103,24 +1568,24 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-1D",
       "original_identifier": "AUTHOR-KIN-COVERAGE-04",
-      "stem": "A runner moves uniformly on a circular track of radius 10 m and completes one revolution in 20 s. Find the speed, then state the directions of velocity and acceleration at any point.",
+      "stem": "A runner moves around a circular track at constant speed. At the rightmost point, state the direction of velocity and the direction of acceleration qualitatively.",
       "subparts": [],
       "options": [],
       "conditions": [],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The speed is pi m/s (about 3.14 m/s); velocity is tangent to the circle and acceleration points inward.",
+        "summary": "Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
         "reasoning": [
-          "One revolution covers 2 pi r = 20 pi m.",
-          "v = 20 pi m / 20 s = pi m/s.",
-          "Uniform speed does not make velocity constant because the tangent direction changes; the acceleration points toward the centre."
+          "Instantaneous velocity follows the tangent to the path.",
+          "Constant speed removes any tangential speed-change requirement.",
+          "The continuing direction change requires inward acceleration."
         ],
-        "check": "Halving the period at the same radius would double the speed while the velocity would still remain tangent and acceleration inward.",
+        "check": "At the opposite side of the circle, both tangent velocity direction and inward acceleration direction change with the geometry.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 1
+        "difficult_move": 0
       },
       "primary_capability_ref": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
       "secondary_capability_refs": [],
@@ -2135,83 +1600,11 @@
       ],
       "hints": [
         {
-          "text": "One complete revolution travels one circumference, 2 pi r.",
+          "text": "Start by asking: Has the speed changed?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Divide that path length by the period for one revolution.",
-          "reveals": "METHOD"
-        }
-      ],
-      "verification": {
-        "validator_id": "UNIFORM_CIRCULAR_SPEED",
-        "bindings": {
-          "radius": "DAT-KIN-UCM-R",
-          "period": "DAT-KIN-UCM-T"
-        }
-      }
-    },
-    {
-      "id": "Q-PHY-KIN-2A-GRAPH-01",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "origin": "AUTHORED",
-      "origin_ref": "SRC-AUTHOR-KIN-1D",
-      "original_identifier": "AUTHOR-KIN-GRAPH-01",
-      "stem": "From 0 to 4 s, a position-time graph rises from 0 m to +8 m while a velocity-time graph rises from +2 m/s to +10 m/s. Find the average velocity from the first graph and average acceleration from the second, explaining why the same rise-over-run idea has different units.",
-      "subparts": [],
-      "options": [],
-      "conditions": [],
-      "figure_refs": [
-        "REP-PHY-KIN-POSITION-TIME-GRAPH",
-        "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
-      ],
-      "answer": {
-        "kind": "MODEL_RESPONSE",
-        "summary": "Average velocity is +2 m/s and average acceleration is +2 m/s^2.",
-        "reasoning": [
-          "On x-t axes, slope is Delta x / Delta t = 8/4 = +2 m/s.",
-          "On v-t axes, slope is Delta v / Delta t = 8/4 = +2 m/s^2.",
-          "The units differ because the vertical axes are position and velocity respectively."
-        ],
-        "check": "A horizontal velocity-time line can represent nonzero constant velocity but zero acceleration.",
-        "acceptable_alternatives": [],
-        "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 1
-      },
-      "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
-      "secondary_capability_refs": [
-        "CAP-KIN-AVERAGE-RATES"
-      ],
-      "family_ref": "FAM-PHY-KIN-PRACTICE",
-      "adaptation": null,
-      "exposure": [
-        {
-          "core": "CORE2A",
-          "role": "PRACTICE",
-          "artifact_ref": null
-        }
-      ],
-      "verification": {
-        "validator_id": "AVERAGE_ACCELERATION",
-        "bindings": {
-          "delta_v": "DAT-KIN-GRAPH-DV",
-          "dt": "DAT-KIN-GRAPH-T4"
-        }
-      },
-      "hints": [
-        {
-          "text": "Read the vertical axis before interpreting a slope.",
-          "reveals": "CONCEPT"
-        },
-        {
-          "text": "Use endpoint change divided by the matching elapsed time on each graph.",
+          "text": "Compare the tangent directions at different points: the direction changes, so velocity changes and acceleration is nonzero.",
           "reveals": "METHOD"
         }
       ]
@@ -2227,14 +1620,13 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Reveal the Grade 9 Motion spine",
+      "title": "Reveal the two kinematics distinctions",
       "cores": [
         "CORE1A"
       ],
       "microtopic_refs": [
         "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
         "MIC-PHY-KIN-AVERAGE-RATES",
-        "MIC-PHY-KIN-MOTION-GRAPHS",
         "MIC-PHY-KIN-ZERO-V-NONZERO-A",
         "MIC-PHY-KIN-CONSTANT-ACCELERATION",
         "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
@@ -2259,7 +1651,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not extend into calculus-based motion analysis or centripetal-force formulae that this Grade 9 bucket does not own."
+        "Do not use this route to teach average-rate formulae or constant-acceleration equations."
       ],
       "practice_profile_ref": null
     },
@@ -2272,14 +1664,13 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Elicit the Grade 9 Motion spine",
+      "title": "Elicit the two kinematics distinctions",
       "cores": [
         "CORE1B"
       ],
       "microtopic_refs": [
         "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
         "MIC-PHY-KIN-AVERAGE-RATES",
-        "MIC-PHY-KIN-MOTION-GRAPHS",
         "MIC-PHY-KIN-ZERO-V-NONZERO-A",
         "MIC-PHY-KIN-CONSTANT-ACCELERATION",
         "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
@@ -2304,7 +1695,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not extend into calculus-based motion analysis or centripetal-force formulae that this Grade 9 bucket does not own."
+        "Do not turn the blocked quantitative rungs into lighter qualitative substitutes."
       ],
       "practice_profile_ref": null
     }
@@ -2427,198 +1818,6 @@
       "symbol": "t",
       "meaning": "Elapsed time in the authored exit.",
       "locator": "Author-created exact practice datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-T0",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 0,
-      "unit": "s",
-      "symbol": "t0",
-      "meaning": "Graph time point.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-T2",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 2,
-      "unit": "s",
-      "symbol": "t2",
-      "meaning": "Graph time point.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-T4",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 4,
-      "unit": "s",
-      "symbol": "t4",
-      "meaning": "Graph time point and full interval duration.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-X0",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 0,
-      "unit": "m",
-      "symbol": "x0",
-      "meaning": "Position at t = 0 s.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-X2",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 4,
-      "unit": "m",
-      "symbol": "x2",
-      "meaning": "Position at t = 2 s.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-X4",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 8,
-      "unit": "m",
-      "symbol": "x4",
-      "meaning": "Position at t = 4 s.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-V0",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 2,
-      "unit": "m/s",
-      "symbol": "v0",
-      "meaning": "Velocity at t = 0 s.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-V2",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 6,
-      "unit": "m/s",
-      "symbol": "v2",
-      "meaning": "Velocity at t = 2 s.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-V4",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 10,
-      "unit": "m/s",
-      "symbol": "v4",
-      "meaning": "Velocity at t = 4 s.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-GRAPH-DV",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 8,
-      "unit": "m/s",
-      "symbol": "Delta v",
-      "meaning": "Velocity change over the full graph interval.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-UCM-R",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 10,
-      "unit": "m",
-      "symbol": "r",
-      "meaning": "Radius in the authored uniform-circular-speed exit.",
-      "locator": "Author-created exact teaching datum."
-    },
-    {
-      "id": "DAT-KIN-UCM-T",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-1D"
-      ],
-      "evidence_refs": [],
-      "extensions": {},
-      "kind": "DATUM",
-      "value": 20,
-      "unit": "s",
-      "symbol": "T",
-      "meaning": "Period in the authored uniform-circular-speed exit.",
-      "locator": "Author-created exact teaching datum."
     }
   ]
 }
