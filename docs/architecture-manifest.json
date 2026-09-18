@@ -16,7 +16,7 @@
     "TOOLING": 34,
     "WEB": 5
   },
-  "digest": "sha256:ae0f2895f679933c9b71cad764dead9c1bee201c7b7b4ae02700a38fadfbc468",
+  "digest": "sha256:04525ea95386367ba3a1ed05ca0beebcc22e6504d3dfbcf4c5c9d83336fe5122",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -603,8 +603,8 @@
       "path": "tests/fixtures/study_route/mathematics-cross-matrix.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 428,
-      "sha256": "31e82e9c615d11ba7ec640465bc1bc25764dd95a21f6fd0ed9ffc010eadf0668"
+      "bytes": 535,
+      "sha256": "a33fb6a80af20a3cfec65774997b9a0336e0ab7f7e9797790457fa2d8fd84b44"
     },
     {
       "path": "tests/fixtures/study_route/physics-cross-matrix.worksheet.json",
@@ -736,8 +736,8 @@
       "path": "tests/test_study_map.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5490,
-      "sha256": "6e6b098b34de917528eb3ac57e2c4f7ef10b15dd19c7811fd811488ccf16c431"
+      "bytes": 7068,
+      "sha256": "8cf672a860f3214c2ca7e6d2f767cbad1e221df9135e83dc57abd0241d30cda9"
     },
     {
       "path": "tests/test_study_route.py",
@@ -750,8 +750,8 @@
       "path": "tests/test_study_scope_audit.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 2067,
-      "sha256": "c80b67468f67853174b0f1814072565413d31f9723e885667a631934d58774f6"
+      "bytes": 3669,
+      "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
       "path": "tests/test_tools.py",
