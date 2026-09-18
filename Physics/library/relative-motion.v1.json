@@ -1439,7 +1439,25 @@
         "CAP-SIGNED-PAIR",
         "BUCKET-VECTOR-REPRESENTATION"
       ],
-      "primary_representation_ref": "REP-REL-VECTOR"
+      "primary_representation_ref": "REP-REL-VECTOR",
+      "conventions": [
+        {
+          "id": "CONV-REL-AXES",
+          "statement": "Every component in this bucket is signed against one pair of directions: x counts east and y counts north, so a negative x is west and a negative y is south."
+        },
+        {
+          "id": "CONV-REL-ORDER",
+          "statement": "A quantity written A/B is A measured from B. The order belongs to the quantity and is not a label attached afterwards."
+        }
+      ],
+      "scope": {
+        "covers": "Position and velocity of one object measured from another in a plane, at a single instant and over one common interval.",
+        "excluded": [
+          "Rotating frames. REL-RELATIVE-VELOCITY states that its axes are parallel and non-rotating, and the extra terms a rotating frame needs are not carried here.",
+          "Relativistic composition. Both relations state classical speeds as a condition."
+        ],
+        "extension_refs": []
+      }
     }
   ],
   "data": [

@@ -828,6 +828,1826 @@ window.GRADE9V3 = {
       ],
       "buckets": [
         {
+          "id": "BUCKET-PHY-ELEC-CURRENT-OHM",
+          "title": "Current electricity: charge-flow foundation",
+          "topic": "Electricity",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-ELEC-CURRENT-CONSERVATION",
+              "title": "Charge flow is not consumed by a component",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Everyday language about using electricity makes it easy to confuse energy transfer with disappearance of charge flow.",
+              "entry_assumptions": [
+                "Can count charge carriers or total charge crossing a point over a time interval."
+              ],
+              "inferential_jump": "Current is a rate of charge passing a boundary; charge is not used up by a resistor.",
+              "teaching_path": [
+                {
+                  "action": "Mark an entry boundary and an exit boundary around one component, and compare charge passage over matching time windows.",
+                  "why_valid": "Matching intervals make the two flow statements comparable; otherwise a difference could come only from observing for different lengths of time.",
+                  "output": "entry boundary = one count window; exit boundary = the same count window"
+                },
+                {
+                  "action": "Suppose the entry flow were persistently larger than the exit flow while the circuit stayed steady.",
+                  "why_valid": "The difference would have to remain inside the component as accumulating charge, so a permanent mismatch contradicts the stated steady condition.",
+                  "output": "more in than out -> charge pile-up; steady no-pile-up -> matching flow"
+                },
+                {
+                  "action": "Repeat the boundary comparison after replacing the component with a different ordinary component while keeping a single unbranched path.",
+                  "why_valid": "The conservation argument depends on the steady one-path condition, not on the component's particular construction.",
+                  "output": "single steady path -> same flow at entry and exit"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Current gets smaller after charge passes through a resistor.",
+                  "diagnostic_prompt": "One ampere enters a resistor in a single unbranched path. In steady operation, what current leaves it?",
+                  "repair": "Track charge through the boundary: steady current cannot accumulate charge inside the resistor."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A steady single-path circuit carries charge through one component. Say whether the charge-flow rate can be persistently smaller at the exit than at the entry and justify the answer without appealing to what the component does with energy.",
+                "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "It cannot be persistently smaller in the stated steady one-path case, because the missing charge would otherwise have to accumulate inside the component.",
+                  "reasoning": [
+                    "Compare entry and exit over the same time window so the two flow statements refer to the same interval.",
+                    "A sustained excess entering over leaving would increase the charge stored inside the component.",
+                    "The stated steady condition excludes continuing accumulation, so the entry and exit flow rates must match."
+                  ],
+                  "check": "Ask where the difference would physically go if the two steady flow rates were unequal; if no accumulating store is allowed, the mismatch is inconsistent.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer is a conservation argument about equality of steady flow, not a computation of a numerical electrical quantity."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-ELEC-CURRENT-CONSERVATION",
+              "action": "Track steady charge flow across the two boundaries of one unbranched circuit element.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 4,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 1,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-KIN-1D-MOTION",
+          "title": "One-dimensional motion",
+          "topic": "Motion",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-VEC-ADD-SUB"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+              "title": "Path travelled is not start-to-finish change",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Everyday language often uses distance for both ideas, so an out-and-back case is needed to force the distinction.",
+              "entry_assumptions": [
+                "Can trace a route from a marked start to a marked finish on a straight line."
+              ],
+              "inferential_jump": "Distance counts the whole route travelled, while displacement records only the directed change from start to finish; a return to the start leaves zero displacement after a nonzero journey.",
+              "teaching_path": [
+                {
+                  "action": "Mark a start point on a straight path and declare east as the positive direction.",
+                  "why_valid": "A directed change is only readable once the line has a stated positive way.",
+                  "output": "start: S.  east: positive.  west: opposite."
+                },
+                {
+                  "action": "Trace a walk away from S and then back to S, counting every part of the route.",
+                  "why_valid": "The route count accumulates what was travelled even though the final place can match the initial place.",
+                  "output": "route travelled: nonzero.  start-to-finish change: zero because finish = S."
+                },
+                {
+                  "action": "Compare that return trip with a one-way trip chosen to have the same total route length.",
+                  "why_valid": "Holding route length fixed while changing the finish isolates the information displacement carries.",
+                  "output": "same route length; different finish -> different displacement."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Distance travelled and displacement are always the same number.",
+                  "diagnostic_prompt": "A walker leaves a marker, turns around, and finishes back at the marker. Is the journey length zero just because the final change in position is zero?",
+                  "repair": "Count every part of the route for distance; compare only the start and finish for displacement, keeping the declared direction."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement.",
+                  "reasoning": [
+                    "Distance follows the whole route, so equal total travel can give equal distance.",
+                    "Displacement compares only the finish with the start.",
+                    "Returning to the marker erases the start-to-finish change, not the travelled route."
+                  ],
+                  "check": "Ignore the middle of each route and look only at the two endpoints; only Route A has matching endpoints.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response makes only qualitative zero/nonzero and same/different comparisons; it asserts no computed magnitude."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+              "title": "Zero velocity at an instant does not mean zero acceleration",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "A single still-looking instant invites learners to confuse the current velocity with how velocity is changing.",
+              "entry_assumptions": [
+                "Can distinguish the direction of motion just before and just after a turning point."
+              ],
+              "inferential_jump": "Velocity and acceleration answer different questions: velocity can be zero at one instant while a nonzero acceleration determines the change through that instant.",
+              "teaching_path": [
+                {
+                  "action": "Record three moments around a vertical turning point: just before the top, at the top, and just after.",
+                  "why_valid": "A single snapshot hides change; neighbouring moments reveal whether the zero-velocity state persists.",
+                  "output": "before: moving upward.  top: velocity zero.  after: moving downward."
+                },
+                {
+                  "action": "Compare the direction of the velocity change across those three moments.",
+                  "why_valid": "Going from upward through zero to downward requires the velocity to keep changing through the top instant.",
+                  "output": "velocity change through the top: downward, including at the zero-velocity instant."
+                },
+                {
+                  "action": "Contrast the turning point with an object that is simply resting on a shelf.",
+                  "why_valid": "Both can have zero velocity now, but only one immediately changes velocity, so zero velocity alone cannot determine acceleration.",
+                  "output": "turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If velocity is zero at an instant, acceleration must also be zero at that instant.",
+                  "diagnostic_prompt": "At the highest point of a vertically thrown object, velocity is momentarily zero. Does the next moment have the same velocity?",
+                  "repair": "Compare moments immediately before and after the top; the velocity changes from upward to downward, so acceleration remains nonzero through the zero-velocity instant."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two objects have zero velocity at one instant: one is at the top of a vertical flight, the other is resting on a shelf. What can you conclude about their accelerations from velocity alone?",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Nothing definite from the zero velocity alone. The turning object can have nonzero downward acceleration while the resting object can have zero acceleration in the stated comparison.",
+                  "reasoning": [
+                    "Velocity describes motion at the instant.",
+                    "Acceleration describes how velocity is changing through the instant.",
+                    "Neighbouring moments distinguish the turning point from sustained rest."
+                  ],
+                  "check": "Look immediately before and after the instant: a changing velocity signals nonzero acceleration even when the middle velocity is zero.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer distinguishes zero/nonzero acceleration qualitatively and gives no computed acceleration value."
+                }
+              },
+              "prerequisites": [
+                "CAP-KIN-DISTANCE-DISPLACEMENT"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 33,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 3,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+          "title": "Magnetic fields and orientation reasoning",
+          "topic": "Magnetic Effects of Electric Current",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-MAG-FIELD-DIRECTION",
+              "title": "One magnetic direction, several page marks",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must coordinate a three-dimensional axial direction with two-dimensional page marks before later magnetic rules are readable.",
+              "entry_assumptions": [
+                "Can distinguish a location in a diagram from a direction assigned at that location."
+              ],
+              "inferential_jump": "Magnetic field B is an axial vector: its direction is tied to an oriented rotation convention, and dot/cross marks encode out-of-page and into-page directions rather than particle paths.",
+              "teaching_path": [
+                {
+                  "action": "Fix the page convention before interpreting the drawing: a dot means toward the viewer and a cross means away from the viewer.",
+                  "why_valid": "The marks are projections of one directed quantity; declaring their viewing meaning first prevents a symbol from being mistaken for a physical object.",
+                  "output": "dot = toward viewer; cross = away from viewer"
+                },
+                {
+                  "action": "Turn the same physical setup so a direction that was drawn in the page now points toward the viewer, then redraw only its direction mark.",
+                  "why_valid": "Changing the viewpoint changes the page mark while leaving the physical direction fixed, so agreement across the two drawings tests interpretation rather than memorization.",
+                  "output": "same physical B: in-page arrow -> dot after the viewpoint turns"
+                },
+                {
+                  "action": "Trace one direction line around and through a bar magnet instead of stopping at a pole.",
+                  "why_valid": "A direction map must remain continuous; following the same line through the material exposes the error in treating the outside segment as an endpoint.",
+                  "output": "outside N -> S; inside S -> N; no endpoint"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Magnetic field lines begin at a north pole and end at a south pole everywhere.",
+                  "diagnostic_prompt": "Trace one magnetic field line through and around a bar magnet. Where can it stop?",
+                  "repair": "Treat field lines as a direction map: they continue in closed loops, including through the magnet."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A diagram shows one magnetic direction once as an arrow and once with a page mark after the view is changed. Explain how both can describe the same physical direction and say whether the associated direction line may terminate at a pole.",
+                "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The page mark changes with the view, but the physical magnetic direction does not; a field-direction line is continued through the magnet rather than terminated at a pole.",
+                  "reasoning": [
+                    "Bind every page mark to the declared viewing convention instead of reading dot or cross as an object.",
+                    "Compare the physical direction before and after the viewpoint change; only its two-dimensional depiction has changed.",
+                    "Continue the direction line through the magnet so the apparent outside endpoint is seen as part of a closed path."
+                  ],
+                  "check": "Rotate the imagined viewpoint back. The mark should recover the original arrow direction, and tracing the same line should never require an endpoint.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer makes a directional classification and continuity argument; it asserts no computed numerical value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAG-FLUX-ORIENTATION",
+              "title": "Through-going field depends on surface orientation",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The hard move is treating the surface as oriented and comparing how much field passes through it without changing either its size or the field.",
+              "entry_assumptions": [
+                "R1: magnetic field B is an axial directed quantity with explicit in-plane and out-of-plane representation conventions."
+              ],
+              "inferential_jump": "Magnetic flux measures the component of magnetic field through an oriented area; changing the surface orientation changes flux even when B and area size stay fixed.",
+              "teaching_path": [
+                {
+                  "action": "Attach a normal arrow to the surface before comparing orientations, so the face has an explicit through-direction.",
+                  "why_valid": "A flat surface alone has no preferred side; the normal supplies the orientation needed to distinguish with-through from against-through.",
+                  "output": "surface orientation = chosen normal direction"
+                },
+                {
+                  "action": "Rotate the same loop from face-on to tilted to edge-on while leaving its size and the surrounding field unchanged.",
+                  "why_valid": "Only orientation changes, so any change in through-going field is attributable to how the surface faces the field rather than to a stronger field or larger loop.",
+                  "output": "face-on -> most through; tilted -> less through; edge-on -> none through"
+                },
+                {
+                  "action": "Keep the physical surface fixed but reverse which normal arrow is declared positive.",
+                  "why_valid": "Changing the chosen orientation reverses the sign convention while leaving the physical setup unchanged, separating signed description from apparatus.",
+                  "output": "normal one way -> one sign; reversed normal -> opposite sign"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Flux is just magnetic-field strength times area, so orientation does not matter.",
+                  "diagnostic_prompt": "A loop with fixed area rotates from face-on to edge-on in a uniform field. What must happen to its flux?",
+                  "repair": "Project the oriented area along the field direction: the dot product selects the component through the surface."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Three identical loops sit in the same uniform magnetic field: one face-on, one tilted, and one edge-on. Rank the amount of field passing through them and explain the role of the chosen surface normal.",
+                "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The face-on loop has the greatest through-going field, the tilted loop has less, and the edge-on loop has none; the normal states which side counts as the positive orientation.",
+                  "reasoning": [
+                    "The field strength and loop area are held fixed, so orientation is the only changing feature.",
+                    "A face presented to the field admits the greatest through-going component, while an edge presented to it admits none.",
+                    "Reversing the named normal changes the sign convention but not the physical loop or field."
+                  ],
+                  "check": "Imagine rotating only the loop continuously from face-on to edge-on; the ranking should change smoothly without any appeal to a stronger or weaker field.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer ranks orientations and explains sign choice qualitatively; it contains no computed numerical result."
+                }
+              },
+              "prerequisites": [
+                "MIC-MAG-FIELD-DIRECTION"
+              ]
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-MAG-FIELD-DIRECTION",
+              "action": "Interpret magnetic-field direction from in-plane arrows and dot/cross page conventions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAG-FLUX-ORIENTATION",
+              "action": "Compare how strongly a magnetic field passes through differently oriented surfaces.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 6,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 2,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-NLM-FIRST-LAW",
+          "title": "Newton's first law and free-body diagrams",
+          "topic": "Laws of Motion",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-KIN-1D-MOTION"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-NLM-NET-ZERO-MOTION",
+              "title": "Zero net force allows steady motion",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Everyday friction makes continued motion look as if it needs a continuing push.",
+              "entry_assumptions": [
+                "Can tell whether an object's velocity is changing."
+              ],
+              "inferential_jump": "Zero net force does not mean zero motion; it means velocity does not change, so rest and steady motion are both compatible with the same condition.",
+              "teaching_path": [
+                {
+                  "action": "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
+                  "why_valid": "Motion and change of motion are different observations, and only the second identifies acceleration.",
+                  "output": "state A: moving steadily.  state B: speeding up, slowing down, or turning."
+                },
+                {
+                  "action": "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
+                  "why_valid": "Once the hand is gone, a continuing steady velocity can be observed without a continuing forward push.",
+                  "output": "after release: positions advance evenly in one direction; velocity stays unchanged."
+                },
+                {
+                  "action": "Compare the released moving cart with a cart that starts at rest under the same zero-net-force condition.",
+                  "why_valid": "If both keep their initial velocities, the rule is about unchanged velocity rather than about rest.",
+                  "output": "moving cart: stays steady.  resting cart: stays at rest.  both show no velocity change."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A force must keep acting in the direction of motion or the object must stop.",
+                  "diagnostic_prompt": "A low-friction cart is pushed and then released. After the hand loses contact, what horizontal force is required merely to keep it moving steadily?",
+                  "repair": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion."
+                }
+              ],
+              "exit_task": {
+                "prompt": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
+                  "reasoning": [
+                    "Rest is a zero velocity that stays zero.",
+                    "Steady straight motion is a nonzero velocity that stays unchanged.",
+                    "The shared condition is no change of velocity, not no motion."
+                  ],
+                  "check": "Ask whether the motion description contains speeding up, slowing down, or turning. If none occurs, zero net force remains compatible.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer classifies motion qualitatively and asserts no computed force or acceleration."
+                }
+              },
+              "prerequisites": [
+                "CAP-KIN-ZERO-V-NONZERO-A"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+              "title": "Nonzero forces can cancel",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often read a zero total as evidence that nothing is present instead of as cancellation among directed contributions.",
+              "entry_assumptions": [
+                "Can interpret zero net force as unchanged velocity."
+              ],
+              "inferential_jump": "Several nonzero forces can act on one body while their directed sum is zero; the motion responds to the net result rather than to the mere presence of forces.",
+              "teaching_path": [
+                {
+                  "action": "List two opposite pushes on the same object as separate contributions before combining them.",
+                  "why_valid": "Keeping the contributions visible prevents a zero total from being mistaken for no forces.",
+                  "output": "leftward push: present.  rightward push: present."
+                },
+                {
+                  "action": "Make the two opposite pushes equal in size and combine their directional effects.",
+                  "why_valid": "Equal opposite contributions cancel in the net result while each contribution still exists.",
+                  "output": "two nonzero opposite pushes -> net force: zero."
+                },
+                {
+                  "action": "Increase both opposite pushes together while keeping them equal.",
+                  "why_valid": "The individual forces change while the zero net result persists, directly separating the parts from their sum.",
+                  "output": "larger opposite pushes: still net force zero; individual forces remain nonzero."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If the net force is zero, no forces are acting.",
+                  "diagnostic_prompt": "A book rests on a table. Are there no forces on the book, or can nonzero forces add to zero?",
+                  "repair": "List every interaction force on the body, then combine their directions; cancellation belongs to the net result, not to the individual forces."
+                }
+              ],
+              "exit_task": {
+                "prompt": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.",
+                  "reasoning": [
+                    "Each force remains an actual interaction on the body.",
+                    "Opposite equal directional effects cancel only when combined.",
+                    "A zero net force is consistent with unchanged velocity."
+                  ],
+                  "check": "Increase both forces equally; the net remains zero even though neither individual force disappears.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The response uses only equality, opposition, and zero/nonzero classification; it asserts no computed force magnitude."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-NET-ZERO-MOTION"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+              "title": "A free-body diagram belongs to one chosen body",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Equal-and-opposite partner forces look like natural cancellations until the learner asks which body each arrow actually acts on.",
+              "entry_assumptions": [
+                "Can keep several forces visible even when their net effect is zero."
+              ],
+              "inferential_jump": "A free-body diagram contains forces acting on one chosen body only; the equal-and-opposite partner of an interaction acts on the other body and belongs on that other body's diagram.",
+              "teaching_path": [
+                {
+                  "action": "Choose the cart as the body to describe and require every arrow to answer 'who acts on the cart?'",
+                  "why_valid": "The ownership question gives one mechanical test for whether a force belongs on the chosen body's diagram.",
+                  "output": "chosen body: cart.  every listed arrow must be an agent -> cart force."
+                },
+                {
+                  "action": "For the horse-cart contact, place the horse-on-cart force on the cart diagram and place the cart-on-horse partner on a separate horse diagram.",
+                  "why_valid": "The two forces belong to one interaction but act on different bodies, so combining them on one body's diagram changes the question being asked.",
+                  "output": "cart diagram: horse -> cart.  horse diagram: cart -> horse."
+                },
+                {
+                  "action": "Switch the chosen body from cart to horse and rebuild the inventory from the ownership question.",
+                  "why_valid": "A correct diagram changes when the chosen body changes even though the physical interaction is the same.",
+                  "output": "switch body -> switch which contact-force arrow belongs in the diagram; partner arrows never cancel on one diagram."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Equal and opposite partner forces cancel each other on one body's free-body diagram.",
+                  "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
+                  "repair": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
+                  "reasoning": [
+                    "Choose the box first.",
+                    "Ask which member of the contact pair acts on the box.",
+                    "The partner acts on the person, so it cannot cancel the first force on the box diagram."
+                  ],
+                  "check": "Switch the chosen body to the person; the membership of the two partner arrows must switch with it.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer assigns force ownership qualitatively and contains no computed force value."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FORCES-SUM-ZERO"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-FRAME-CHOICE",
+              "title": "An accelerating observer needs a declared pseudo-force convention",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The same physical interactions can be described by observers with different accelerations, and the extra convention is easy to omit when the observer is inside the accelerating vehicle.",
+              "entry_assumptions": [
+                "Can build a force inventory for one chosen body."
+              ],
+              "inferential_jump": "A force-based account depends on the observer: a non-accelerating observer uses the physical interaction forces, while an accelerating observer must add the corresponding pseudo-force convention to describe the same observed motion consistently.",
+              "teaching_path": [
+                {
+                  "action": "Describe the same loose object first from the roadside and then from inside a bus, stating whether each observer is accelerating.",
+                  "why_valid": "The observer choice is part of the model; leaving it implicit makes two different descriptions look contradictory.",
+                  "output": "roadside: observer acceleration zero.  bus during start: observer acceleration forward."
+                },
+                {
+                  "action": "Keep the physical interactions unchanged and compare what the accelerating bus observer sees the loose object do relative to the bus.",
+                  "why_valid": "The apparent backward motion comes from the observer's changing motion, not from a newly discovered physical contact on the object.",
+                  "output": "bus accelerates forward -> loose object appears to shift backward relative to the bus."
+                },
+                {
+                  "action": "Add a backward pseudo-force only in the accelerating-observer description and compare it with the roadside account.",
+                  "why_valid": "The added convention compensates for the observer's acceleration without inventing a new physical interaction.",
+                  "output": "roadside account: physical forces only.  accelerating-bus account: same physical forces plus backward pseudo-force."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The same ordinary-force diagram can be used unchanged in any accelerating observer's frame.",
+                  "diagnostic_prompt": "A loose mass appears to accelerate backward inside a bus that starts forward. Can the bus observer use only the same physical-force inventory as the roadside observer?",
+                  "repair": "State the observer first. Use physical interactions alone for a non-accelerating observer; for an accelerating observer include the corresponding pseudo-force consistently."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A bus accelerates forward and a loose object appears to move backward relative to the bus. Compare the roadside and bus-observer force descriptions without calculating any magnitude.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The roadside description uses the physical interactions only. The accelerating bus description adds a backward pseudo-force convention to account for the observer's acceleration.",
+                  "reasoning": [
+                    "The physical interactions on the object do not change merely because the observer changes.",
+                    "The bus observer is accelerating relative to the roadside observer.",
+                    "The pseudo-force belongs to that accelerating-observer description rather than to a new physical agent."
+                  ],
+                  "check": "Repeat the comparison once the bus moves at steady speed; the extra pseudo-force should no longer be needed for the observer change alone.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer classifies observer descriptions and contains no computed pseudo-force or acceleration magnitude."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FORCES-SUM-ZERO",
+              "action": "Distinguish zero net force from the absence of individual forces.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FRAME-CHOICE",
+              "action": "Decide whether an observer description requires a pseudo-force.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-NET-ZERO-MOTION",
+              "action": "Relate zero net force to unchanged velocity.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 41,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 5,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+          "title": "Reflection and mirror-geometry foundations",
+          "topic": "Light - Reflection and Refraction",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-OPT-NORMAL-REFLECTION",
+              "title": "Measure reflection from the normal, not the surface",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "A familiar mirror picture becomes wrong immediately if the reference line for the angle is the surface instead of the normal.",
+              "entry_assumptions": [
+                "Can trace a directed straight path and identify where it meets a surface."
+              ],
+              "inferential_jump": "Angles in specular reflection are measured from the surface normal, and the reflected ray leaves with the same angle to that normal as the incident ray.",
+              "teaching_path": [
+                {
+                  "action": "At the point where the incoming light path meets the mirror, draw the line perpendicular to the surface before marking any angle.",
+                  "why_valid": "The reflection angle is defined relative to this perpendicular reference, so drawing it first fixes the reference instead of letting the page edge stand in for it.",
+                  "output": "mirror surface ⟂ normal at the contact point"
+                },
+                {
+                  "action": "Copy the incoming path's tilt from the normal to the opposite side of that normal to construct the outgoing path.",
+                  "why_valid": "Using the same reference line on both sides preserves the reflection rule while making the outgoing direction observable on the drawing.",
+                  "output": "incoming tilt from normal -> matching outgoing tilt on the other side"
+                },
+                {
+                  "action": "Rotate the entire drawing on the page and repeat the construction without changing the physical geometry.",
+                  "why_valid": "A page rotation changes how the paper is oriented but not perpendicularity or the pair of equal normal-referenced angles.",
+                  "output": "rotated page -> same normal-based construction"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The angle of incidence is measured from the mirror surface.",
+                  "diagnostic_prompt": "A ray makes 20 degrees with the mirror surface. Is its angle of incidence 20 degrees?",
+                  "repair": "Draw the normal first; incidence and reflection angles are defined from that line, not from the surface."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Given an incoming light path and a plane mirror drawn at an arbitrary page angle, construct the normal and the reflected path, and state which line the two reflection angles are measured from.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Draw the perpendicular normal at the contact point, then place the outgoing path on the other side with the same tilt to that normal; both angles are measured from the normal.",
+                  "reasoning": [
+                    "Locate the point where the incoming path meets the surface.",
+                    "Draw the perpendicular reference there before reading or copying any angle.",
+                    "Use the same reference on the opposite side to place the outgoing path."
+                  ],
+                  "check": "Rotate the page mentally. If the construction depends on the page edge rather than the normal, it will change; a correct construction will not.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task is a geometric construction and reference-line explanation, not a numerical angle calculation."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+              "title": "Real and virtual describe how light paths meet",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The everyday word virtual invites a false not-recordable interpretation unless image type is tied directly to ray geometry.",
+              "entry_assumptions": [
+                "R1: reflection direction is fixed by equal angles measured from the normal."
+              ],
+              "inferential_jump": "An image location is determined by where reflected rays actually meet or where their backward extensions appear to meet; virtual describes ray geometry, not whether a camera can record it.",
+              "teaching_path": [
+                {
+                  "action": "Trace at least two reflected light paths from the same object point and keep their physical forward portions solid.",
+                  "why_valid": "One path cannot locate an image point; two or more paths reveal whether the light itself converges.",
+                  "output": "two reflected paths -> enough geometry to test a meeting point"
+                },
+                {
+                  "action": "When the reflected paths diverge, extend them backward with a visibly different line style until the extensions meet.",
+                  "why_valid": "The extensions are a geometric inference about apparent origin, not additional light travelling behind the mirror, so changing the line style preserves that distinction.",
+                  "output": "solid paths diverge -> dashed backward extensions meet behind the mirror"
+                },
+                {
+                  "action": "Place an eye or camera where it can receive the reflected bundle and ask whether collecting those diverging paths changes where their backward extensions meet.",
+                  "why_valid": "A detector can refocus incoming light without converting the mirror's apparent-origin geometry into an actual meeting point at the mirror.",
+                  "output": "camera receives reflected bundle -> apparent mirror-image location remains virtual"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A virtual image is not a usable image and therefore cannot be photographed.",
+                  "diagnostic_prompt": "A camera points at a plane mirror and records your reflection. Does that make the mirror image real?",
+                  "repair": "Separate image geometry from recording: the mirror sends diverging rays that a camera lens can collect and refocus."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Given two reflected light paths from one object point, classify the image location from whether the physical paths meet or only their backward extensions meet, and explain why visibility or photography does not change that classification.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "An actual meeting of reflected light paths gives a real image point; a meeting only of backward extensions gives a virtual image point, and either ray bundle can still enter an eye or camera.",
+                  "reasoning": [
+                    "Use more than one reflected path so an intersection is a geometric fact rather than an assumption.",
+                    "Distinguish physical forward paths from backward extensions by line style and direction.",
+                    "Classify the image from which kind of intersection occurs, not from whether a detector can receive the light."
+                  ],
+                  "check": "Remove the observer or camera from the drawing. The path intersection or backward-extension intersection that defines the image should not move.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer classifies path geometry and detector independence; it asserts no computed distance or image size."
+                }
+              },
+              "prerequisites": [
+                "MIC-OPT-NORMAL-REFLECTION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-SIGN-CONVENTION",
+              "title": "Optical signs come from declared directions",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Memorized object-and-image sign tables fail as soon as the drawing is mirrored or a less familiar optical configuration is used.",
+              "entry_assumptions": [
+                "R2: image nature is determined by actual versus backward-extended ray intersection."
+              ],
+              "inferential_jump": "The Cartesian sign convention turns a mirror diagram into signed distances and heights; the signs come from declared directions, not from memorized object/image labels.",
+              "teaching_path": [
+                {
+                  "action": "Mark the pole as the distance origin, declare the direction of incident light as the positive horizontal direction, and declare upward from the principal axis as positive height.",
+                  "why_valid": "Signs can only be reproducible when the origin and positive directions are fixed before any object or image is classified.",
+                  "output": "pole = origin; incident-light direction = positive distance; upward = positive height"
+                },
+                {
+                  "action": "Take several marked points and assign each a distance sign from the pole and a height sign from the principal axis using only the declared directions.",
+                  "why_valid": "The same coordinate rule applies to every point, so the result cannot depend on whether a point is called object, image, center or another label.",
+                  "output": "with incident direction -> positive distance; against it -> negative distance; above axis -> positive height; below -> negative height"
+                },
+                {
+                  "action": "Redraw the same physical setup reversed left-to-right on the page, carrying the declared incident-light arrow with it, and assign the signs again.",
+                  "why_valid": "A correct convention follows the declared physical direction, so changing the page layout does not change the signs of the same physical quantities.",
+                  "output": "page reversed + direction declaration carried with setup -> physical sign assignments preserved"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Object distance is always negative and image distance is always positive.",
+                  "diagnostic_prompt": "Move the same object-and-mirror sketch so incident light travels the opposite page direction. Should the sign rule follow the page or the declared incident-light direction?",
+                  "repair": "Apply the coordinate convention from the pole every time; signs follow measurement direction and height orientation."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A mirror diagram declares its pole, incident-light direction and upward direction. Assign signs to the object distance, image distance, focal-location distance and image height from those declarations, and explain why an object-or-image sign table was unnecessary.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Each sign follows the declared coordinate direction from the pole or principal axis; the labels object and image do not determine signs by themselves.",
+                  "reasoning": [
+                    "Use the pole as the horizontal origin and compare every longitudinal position with the declared incident-light direction.",
+                    "Use the principal axis as the vertical reference and compare each height with the declared upward direction.",
+                    "Apply those two rules consistently to every named point instead of switching rules when the label changes."
+                  ],
+                  "check": "Mirror the whole drawing left-to-right while carrying the incident-light arrow with the physical setup; a convention-based answer should remain physically consistent.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer assigns qualitative signs from a declared coordinate convention and computes no numerical optical result."
+                }
+              },
+              "prerequisites": [
+                "MIC-OPT-REAL-VIRTUAL-IMAGE"
+              ]
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-OPT-NORMAL-REFLECTION",
+              "action": "Construct a reflected path by measuring both ray directions from the surface normal.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-REAL-VIRTUAL-IMAGE",
+              "action": "Classify an image point from actual reflected-path intersection versus backward-extension intersection.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-SIGN-CONVENTION",
+              "action": "Assign signs to mirror distances and heights from a declared pole, incident-light direction and vertical convention.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 8,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 3,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-OSC-SHM-WAVES",
+          "title": "Oscillation foundation: stable equilibrium",
+          "topic": "Oscillations",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-OSC-STABLE-EQUILIBRIUM",
+              "title": "Repetition is not enough: look for a stable equilibrium",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Repeated motion is visually salient, so learners can miss the stronger requirement that the system's response be organized around one stable equilibrium.",
+              "entry_assumptions": [
+                "Can identify a repeated back-and-forth motion and distinguish position from direction of motion."
+              ],
+              "inferential_jump": "An oscillation is organized around a stable equilibrium: when displaced, the system has a tendency that points back toward that equilibrium.",
+              "teaching_path": [
+                {
+                  "action": "Mark one position as the equilibrium and label displacements on opposite sides of it.",
+                  "why_valid": "A return tendency can only be judged relative to a named equilibrium; otherwise back has no fixed destination.",
+                  "output": "left displacement | equilibrium | right displacement"
+                },
+                {
+                  "action": "Move the same system first to the left of equilibrium and then to the right, recording the direction of its tendency each time.",
+                  "why_valid": "If the equilibrium is stable, the direction must reverse when the side of displacement reverses so that it points inward in both cases.",
+                  "output": "left side -> tendency right; right side -> tendency left"
+                },
+                {
+                  "action": "Compare that pattern with a motion that repeats around a circular track but has no single position toward which displacement produces a return tendency.",
+                  "why_valid": "The counterexample keeps repetition while removing the stable-equilibrium structure, showing that repetition alone is insufficient.",
+                  "output": "repeats -> yes; one return-directed equilibrium -> no"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Any motion that repeats is automatically simple harmonic motion.",
+                  "diagnostic_prompt": "A ball moves periodically around a circular track. Does repetition alone show a restoring tendency toward one equilibrium position?",
+                  "repair": "Separate periodicity from the restoring condition; repetition by itself does not identify simple harmonic motion."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Three motions repeat. For each, decide whether one stable equilibrium organizes the motion and justify the choice by what happens after a displacement to either side.",
+                "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "A qualifying motion has one equilibrium toward which the system tends to return from either side; repetition without that inward pattern is not enough.",
+                  "reasoning": [
+                    "Name the candidate equilibrium before judging the motion.",
+                    "Check the response after a displacement on one side and then the other side.",
+                    "Accept the classification only when the response reverses so that it points toward the same equilibrium from both sides."
+                  ],
+                  "check": "Swap the side of displacement. A stable equilibrium should make the return tendency swap direction as well; a merely repeating path need not.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task is a qualitative classification of restoring behavior and makes no computed period, frequency or amplitude claim."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-OSC-STABLE-EQUILIBRIUM",
+              "action": "Identify whether a displaced system has a tendency directed back toward one stable equilibrium.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 4,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 1,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-VEC-ADD-SUB",
+          "title": "Vector addition, subtraction and orientation",
+          "topic": "Vectors / Motion in a Plane",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-VECTOR-REPRESENTATION"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-VEC-SUB-ORDER",
+              "title": "Operand order reverses a subtraction result",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The construction may already be familiar, but learners can still preserve the same arrow direction after swapping the words.",
+              "entry_assumptions": [
+                "Can construct one graphical subtraction by reversing the second arrow before tail-to-head addition."
+              ],
+              "inferential_jump": "Swapping which directed quantity comes first in a subtraction reverses the result's direction while leaving its length unchanged.",
+              "teaching_path": [
+                {
+                  "action": "Write two ordered requests for the same pair: A minus B, then B minus A.",
+                  "why_valid": "Keeping the pair fixed isolates order as the only change.",
+                  "output": "case 1: A minus B.  case 2: B minus A."
+                },
+                {
+                  "action": "For A minus B, follow A and then the reversed B arrow using the already-learned subtraction construction.",
+                  "why_valid": "The prerequisite construction gives a directed result for the stated order without introducing a new rule.",
+                  "output": "A minus B: one completed arrow from the common start to the construction endpoint."
+                },
+                {
+                  "action": "Repeat with the order swapped and place both completed arrows from the same start for comparison.",
+                  "why_valid": "Only the order changed, so direct superposition exposes what order does to orientation.",
+                  "output": "B minus A: same drawn length as the first result, pointing exactly the opposite way."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Vector subtraction is commutative in the same way as vector addition.",
+                  "diagnostic_prompt": "If A minus B points east, must B minus A point east too?",
+                  "repair": "Keep the same two inputs, swap only their order, and compare the two completed arrows from one start; the second points opposite the first."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two labelled arrows A and B are shown, and a completed construction for A minus B points southeast. Without recalculating its length, describe the direction of B minus A and explain the check you used.",
+                "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "B minus A points northwest: exactly opposite to the shown result, with the same length.",
+                  "reasoning": [
+                    "The two requests use the same pair and differ only in order.",
+                    "Swapping the order swaps which arrow is reversed in the known construction.",
+                    "Placing both results from one start makes the second point opposite the first."
+                  ],
+                  "check": "Swap the labels again; the direction must return to southeast without changing the length.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer asserts no computed magnitude. It checks the qualitative reversal caused by swapping operand order."
+                }
+              },
+              "prerequisites": [
+                "CAP-GRAPHICAL-SUBTRACT"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VEC-SUB-ORDER",
+              "action": "Distinguish the orientation of A minus B from B minus A.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 29,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 2,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-WORK-ENERGY-POWER",
+          "title": "Work, energy and power",
+          "topic": "Work and Energy",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-NLM-FIRST-LAW"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-WEP-WORK-DIRECTION",
+              "title": "Only the along-path part of a force contributes to work",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Force size alone feels decisive until a strong perpendicular force is contrasted with the actual displacement.",
+              "entry_assumptions": [
+                "Can identify the direction of a force on a chosen body and the direction of that body's displacement."
+              ],
+              "inferential_jump": "Work depends on how a force points relative to the actual displacement: along the motion gives positive work, opposite gives negative work, and a perpendicular force gives zero work.",
+              "teaching_path": [
+                {
+                  "action": "Draw one displacement direction and compare three force arrows: along it, perpendicular to it, and opposite it.",
+                  "why_valid": "Holding the path fixed isolates orientation as the only thing changing.",
+                  "output": "case A: force along path.  case B: force perpendicular to path.  case C: force opposite path."
+                },
+                {
+                  "action": "For each case, ask whether the force has a part that carries the object along the path direction.",
+                  "why_valid": "Work records transfer through displacement, so only the force contribution along that displacement can change the work sign.",
+                  "output": "along -> positive.  perpendicular -> zero.  opposite -> negative."
+                },
+                {
+                  "action": "Increase the size of the perpendicular force while keeping it exactly perpendicular to the same path.",
+                  "why_valid": "If orientation, not force size alone, controls the zero-work case, enlarging a perpendicular force must leave the work classification unchanged.",
+                  "output": "larger perpendicular force -> work still zero."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Any force acting on a moving object does positive work because the object moves.",
+                  "diagnostic_prompt": "A mass moves in a circle while a force points toward the centre. Does that inward force do work along the instantaneous tangential displacement?",
+                  "repair": "Compare the force direction with the actual displacement direction; only the along-path contribution can produce work."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Rightward force: positive work. Upward force: zero work. Leftward force: negative work.",
+                  "reasoning": [
+                    "The rightward force points with the displacement.",
+                    "The upward force is perpendicular to the displacement.",
+                    "The leftward force points against the displacement."
+                  ],
+                  "check": "Rotate the path instead of the force arrows; the classifications must follow the relative orientation, not page directions by themselves.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer classifies work sign only; it contains no computed work value."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
+            },
+            {
+              "id": "MIC-PHY-WEP-NET-WORK-SIGN",
+              "title": "Net work sign tracks kinetic-energy change",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners may attach energy change to one named force rather than to the combined work of all forces.",
+              "entry_assumptions": [
+                "Can classify the sign of each force's work from its direction relative to displacement."
+              ],
+              "inferential_jump": "The combined work of all acting forces determines the direction of kinetic-energy change: positive net work increases it, zero net work leaves it unchanged, and negative net work decreases it.",
+              "teaching_path": [
+                {
+                  "action": "Keep the same initial motion and compare three cases whose combined work is positive, zero, or negative.",
+                  "why_valid": "Holding the initial state fixed isolates net-work sign as the changed condition.",
+                  "output": "case A: net work positive.  case B: net work zero.  case C: net work negative."
+                },
+                {
+                  "action": "Match each net-work sign to whether the motion ends with greater, unchanged, or smaller kinetic energy.",
+                  "why_valid": "Net work is the energy transfer associated with the change in kinetic energy; the sign fixes the direction of that change.",
+                  "output": "positive -> kinetic energy increases.  zero -> unchanged.  negative -> decreases."
+                },
+                {
+                  "action": "Use a braking situation as a check: the braking contribution points opposite the motion and the object slows.",
+                  "why_valid": "A familiar negative-work case should agree with a decrease in kinetic energy if the sign mapping is correct.",
+                  "output": "braking case: net work negative -> final kinetic energy lower than initial."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Only a positive force magnitude can increase kinetic energy; negative work cannot be represented physically.",
+                  "diagnostic_prompt": "A braking force acts opposite the motion. What sign is its work, and what should happen to kinetic energy?",
+                  "repair": "Combine the work of all acting forces to obtain net work, then match its sign to whether kinetic energy increases, stays unchanged, or decreases."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For three otherwise comparable motions, the net work is described as positive, zero, and negative. State the corresponding direction of kinetic-energy change without calculating any energy value.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Positive net work means kinetic energy increases; zero means no change; negative means kinetic energy decreases.",
+                  "reasoning": [
+                    "The comparison holds the starting motion fixed.",
+                    "The sign of the combined work indicates the sign of the kinetic-energy change.",
+                    "No individual force alone decides the result unless it is the only contributor."
+                  ],
+                  "check": "Use braking as the negative case: slowing must correspond to a decrease in kinetic energy.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer states only increase/no-change/decrease and contains no computed energy value."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-WORK-DIRECTION"
+              ]
+            },
+            {
+              "id": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+              "title": "Potential energy belongs only to endpoint-determined interactions",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "It is tempting to hide every force inside an energy label, especially once gravitational potential energy is familiar.",
+              "entry_assumptions": [
+                "Can distinguish work contributions by sign and can reason about the net work over a path."
+              ],
+              "inferential_jump": "Potential energy can replace the work bookkeeping for an interaction only when the relevant energy change is fixed by the endpoints; path-dependent friction must remain an explicit transfer.",
+              "teaching_path": [
+                {
+                  "action": "Choose two routes between the same starting and ending heights and compare the gravitational energy change.",
+                  "why_valid": "If the endpoint change is the same for both routes, the account does not need the detailed path to determine that interaction's energy change.",
+                  "output": "route A: same start/end heights.  route B: same start/end heights.  gravitational potential-energy change: same."
+                },
+                {
+                  "action": "Now add kinetic friction and compare a short route with a longer route between comparable endpoints.",
+                  "why_valid": "Friction acts along the travelled path, so changing path length changes its energy transfer even when endpoints are comparable.",
+                  "output": "short path: smaller friction transfer.  longer path: larger friction transfer."
+                },
+                {
+                  "action": "Ask whether one endpoint-only energy label could predict both friction cases without knowing which path was taken.",
+                  "why_valid": "If two paths with comparable endpoints give different friction transfers, endpoint information alone cannot represent that interaction.",
+                  "output": "friction: path identity required; endpoint-only potential-energy replacement rejected."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Every force can be assigned a potential energy so that its work can be hidden inside U.",
+                  "diagnostic_prompt": "Can kinetic friction be represented by a single potential-energy difference that depends only on the start and finish positions?",
+                  "repair": "Use potential energy only for interactions whose energy change is fixed by endpoints; keep path-dependent friction as an explicit transfer."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two routes share the same start and finish heights. Gravity gives the same potential-energy change on both, while friction removes more energy on the longer route. Which interaction is eligible for endpoint-only potential-energy bookkeeping?",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Gravity is eligible in this comparison; kinetic friction is not, because its transfer changes with the path.",
+                  "reasoning": [
+                    "The gravitational potential-energy change is fixed by the shared endpoints.",
+                    "The frictional transfer changes when the route length changes.",
+                    "An endpoint-only account cannot represent a path-dependent interaction."
+                  ],
+                  "check": "Change the route while keeping the endpoints fixed; an eligible endpoint-only contribution stays the same while the frictional transfer need not.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer classifies interactions by endpoint versus path dependence and computes no energy value."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-NET-WORK-SIGN"
+              ]
+            },
+            {
+              "id": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+              "title": "Mechanical energy is constant only when the account has no extra transfer",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "A familiar K-plus-U equality is easy to apply before checking whether friction or an outside agent changes the account.",
+              "entry_assumptions": [
+                "Can decide which interactions belong in potential energy and which transfers must remain explicit."
+              ],
+              "inferential_jump": "The mechanical-energy account K plus U stays constant only when no frictional or outside transfer changes that account; otherwise the extra transfer must be included rather than hidden.",
+              "teaching_path": [
+                {
+                  "action": "Compare a smooth descent with a rough descent between the same endpoints, using the same object-plus-gravity energy account.",
+                  "why_valid": "The shared endpoints hold the gravitational change fixed while surface roughness changes an extra transfer.",
+                  "output": "smooth case: no frictional transfer.  rough case: frictional transfer present."
+                },
+                {
+                  "action": "Track whether lost gravitational potential energy appears entirely as kinetic energy in each case.",
+                  "why_valid": "With no extra transfer the mechanical account can stay constant; friction redirects part of the energy outside that mechanical account.",
+                  "output": "smooth: decrease in U matches increase in K.  rough: increase in K is smaller because friction carries energy away from the mechanical account."
+                },
+                {
+                  "action": "Before writing any K-plus-U equality, ask whether friction or an outside moving support transfers energy across the chosen account.",
+                  "why_valid": "The conservation decision must be made from the transfer inventory before the equality is used.",
+                  "output": "no extra transfer -> K + U may stay constant.  extra transfer present -> include it explicitly."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Mechanical energy is always conserved, so one may write initial K plus U equal to final K plus U even when friction or a moving support transfers energy.",
+                  "diagnostic_prompt": "A block slides down a rough ramp. If it starts from the same height as on a smooth ramp, must it reach the bottom with the same kinetic energy?",
+                  "repair": "Check for frictional or outside transfer first; use an unchanged K-plus-U account only when those extra transfers vanish, otherwise include them explicitly."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A block descends from the same height on two tracks, one smooth and one rough. Without calculating a speed, decide whether the same unchanged K-plus-U account applies to both.",
+                "source_ref": "SRC-AUTHOR-WEP",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "It applies to the smooth case if no other transfer occurs, but not to the rough case; friction must be included in the energy account.",
+                  "reasoning": [
+                    "Both cases share the same endpoint height change.",
+                    "The rough track introduces an additional frictional transfer.",
+                    "That extra transfer prevents the mechanical K-plus-U account from remaining unchanged by itself."
+                  ],
+                  "check": "Remove the roughness while keeping the endpoints fixed; the extra frictional transfer should disappear and the mechanical account can close again.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer decides whether a conservation form is applicable and computes no energy or speed."
+                }
+              },
+              "prerequisites": [
+                "CAP-WEP-POTENTIAL-ELIGIBILITY"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FORCES-SUM-ZERO",
+              "action": "Distinguish zero net force from the absence of individual forces.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-NET-ZERO-MOTION",
+              "action": "Relate zero net force to unchanged velocity.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish a scalar magnitude from a vector, and read a vector's signed components along declared axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-MECH-ENERGY-CONDITION",
+              "action": "Decide whether the mechanical-energy account can remain constant.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-NET-WORK-SIGN",
+              "action": "Relate the sign of net work to the direction of kinetic-energy change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+              "action": "Decide whether an interaction may be represented by a potential-energy change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-WEP-WORK-DIRECTION",
+              "action": "Classify work as positive, zero, or negative from force and displacement directions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 46,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 20,
+            "questions": 0,
+            "obligations": 5,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "FIGURE_PRODUCT_UNSUPPORTED",
+                "core": "CORE1",
+                "representation": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+                "detail": "scene instance SI-VECTOR-SUBTRACTION targets a product this bucket does not support; it was not drawn"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
           "id": "BUCKET-RELATIVE-MOTION",
           "title": "Relative velocity in a plane",
           "topic": "Motion in two dimensions",
@@ -1253,9 +3073,9 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 17,
+            "atoms": 21,
             "questions": 1,
-            "obligations": 6,
+            "obligations": 7,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -1548,9 +3368,9 @@ window.GRADE9V3 = {
             "supported_products": [
               "CORE1"
             ],
-            "atoms": 17,
+            "atoms": 21,
             "questions": 0,
-            "obligations": 1,
+            "obligations": 2,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -1609,6 +3429,46 @@ window.GRADE9V3 = {
         }
       ],
       "packages": [
+        {
+          "package_id": "LIB-PHY-ELEC-CURRENT-OHM-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-KIN-1D-MOTION-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-MAG-FIELD-LORENTZ-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-OPTICS-REFLECTION-MIRRORS-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-OSC-SHM-WAVES-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-VEC-ADD-SUB-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
         {
           "package_id": "LIB-PHY-RELATIVE-MOTION-SEED",
           "status": "CANDIDATE",

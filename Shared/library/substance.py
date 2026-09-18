@@ -168,9 +168,25 @@ DEMONSTRATION = re.compile(r"[0-9=+\-*/^<>√×]")
 
 
 def step_findings(records: Mapping[str, Mapping]) -> list[dict]:
-    """Steps that claim to transform the state without showing it change."""
+    """Steps that claim to transform the state without showing it change.
+
+    "Showing it" is read as arithmetic, which is sound only where the rung has arithmetic
+    to show. The rule was written when every microtopic bound a relation; a rung that
+    states a distinction rather than a calculation binds none, and demanding an operator
+    of its output demands an equation the rung does not have. Measured when the first
+    conceptual rungs arrived: 20 TRANSFORM steps in relation-free microtopics, 16 passing
+    only because they happened to carry a digit and 4 failing for prose that showed two
+    states perfectly well -- "decrease in U matches increase in K" among them.
+
+    So the check applies where a relation is bound. Where none is, the output is NOT
+    checked here and that is a gap rather than a pass: what would make a relation-free
+    demonstration testable has not been designed, and pretending otherwise would put a
+    heuristic in the place of a rule.
+    """
     found = []
     for record_id, record in records.items():
+        if not record.get("relation_refs"):
+            continue
         for index, step in enumerate(record.get("teaching_path", []) or []):
             if not isinstance(step, Mapping) or step.get("role") != "TRANSFORM":
                 continue

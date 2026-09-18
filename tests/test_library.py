@@ -38,6 +38,18 @@ def packages():
     return [json.loads(p.read_text(encoding="utf-8")) for p in PACKAGES]
 
 
+def seed():
+    """The relative-motion package, by identity rather than by position.
+
+    These fixtures used seed(). That was relative motion for as long as it sorted
+    first, and stopped being so the moment a subtopic beginning with "phy-" was authored:
+    fourteen tests then failed on StopIteration looking for a microtopic in somebody
+    else's package. A fixture pinned to a position in a sorted glob is the same defect as
+    a rule pinned to one subtopic's state.
+    """
+    return next(p for p in packages() if p["package_id"] == "LIB-PHY-RELATIVE-MOTION-SEED")
+
+
 def microtopic(package, mid):
     return next(m for m in package["microtopics"] if m["id"] == mid)
 
@@ -49,21 +61,21 @@ class Intake(unittest.TestCase):
             self.assertTrue(report["admitted"], report["findings"])
 
     def test_a_microtopic_without_a_closing_exit_answer_is_refused(self):
-        package = packages()[0]
+        package = seed()
         microtopic(package, "MIC-SAME-TIME")["exit_task"]["answer"]["summary"] = ""
         report = check(package)
         self.assertFalse(report["admitted"])
         self.assertTrue(any(f["point"] == "EXIT" for f in report["findings"]))
 
     def test_a_teaching_step_that_asserts_without_justifying_is_refused(self):
-        package = packages()[0]
+        package = seed()
         microtopic(package, "MIC-SAME-TIME")["teaching_path"][0]["why_valid"] = "  "
         report = check(package)
         self.assertFalse(report["admitted"])
         self.assertTrue(any(f["point"] == "PATH" for f in report["findings"]))
 
     def test_a_microtopic_with_no_plausible_wrong_path_is_refused(self):
-        package = packages()[0]
+        package = seed()
         microtopic(package, "MIC-SAME-TIME")["misconceptions"] = []
         report = check(package)
         self.assertFalse(report["admitted"])
@@ -77,23 +89,31 @@ class Resolution(unittest.TestCase):
         self.assertEqual(report["prerequisite_graph"], "ACYCLIC")
 
     def test_duplicate_identity_across_packages_is_rejected(self):
-        first, second = packages()
+        # Two packages, named. It unpacked the whole library into a pair, which held only
+        # while the subject had exactly two.
+        first, second = seed(), next(p for p in packages()
+                                     if p["package_id"] != seed()["package_id"])
         second["capabilities"].append(copy.deepcopy(first["capabilities"][0]))
         with self.assertRaises(ContractError) as caught:
             build_index([first, second])
         self.assertEqual(caught.exception.code, "LIBRARY_DUPLICATE_ID")
 
     def test_a_dangling_reference_is_reported(self):
-        package = packages()[0]
+        package = seed()
         microtopic(package, "MIC-SAME-TIME")["relation_refs"] = ["REL-DOES-NOT-EXIST"]
         missing = unresolved(build_index([package]))
         self.assertTrue(any(m["target"] == "REL-DOES-NOT-EXIST" for m in missing))
 
     def test_a_prerequisite_cycle_is_rejected(self):
-        package = packages()[0]
+        package = seed()
         microtopic(package, "MIC-SAME-TIME")["prerequisite_refs"] = ["MIC-GEOMETRIC-CHECK"]
+        # The seed and the package it depends on, named: alone it cannot resolve its
+        # cross-package references, and with the whole library it meets another finding
+        # first. The pair is what this rule is about.
+        depends_on = next(p for p in packages()
+                          if p["package_id"] == "LIB-PHY-VECTOR-REPRESENTATION-SEED")
         with self.assertRaises(ContractError) as caught:
-            validate_library([package] + packages()[1:])
+            validate_library([package, depends_on])
         self.assertEqual(caught.exception.code, "LIBRARY_PREREQUISITE_CYCLE")
 
     def test_a_bucket_slice_pulls_in_its_cross_package_prerequisites(self):
@@ -146,7 +166,9 @@ class Promotion(unittest.TestCase):
 
     def test_a_curated_record_resting_on_a_candidate_dependency_is_caught(self):
         data = packages()
-        microtopic(data[0], "MIC-COMMON-INTERVAL")["status"] = "CURATED"
+        microtopic(next(p for p in data
+                        if p["package_id"] == seed()["package_id"]),
+                   "MIC-COMMON-INTERVAL")["status"] = "CURATED"
         report = audit(data)
         self.assertFalse(report["monotone"])
         self.assertTrue(any(v["record"] == "MIC-COMMON-INTERVAL" and v["dependency_status"] == "CANDIDATE"
@@ -210,7 +232,10 @@ class Compilation(unittest.TestCase):
         # questions, so neither carries a teaching path and neither is what this checks.
         plan = self.compile()["plan"]
         study = next(p for p in plan["products"] if p["core"] == "CORE1A")
-        text = study["units"][0]["blocks"][0]["text"]
+        # By the microtopic it teaches, not by position: the bucket's conventions are now
+        # a block and they come first, because a convention is declared before it is used.
+        text = next(b["text"] for b in study["units"][0]["blocks"]
+                    if "MIC-SAME-TIME" in b["id"])
         self.assertIn("r_A/B = r_A - r_B", text)
         self.assertIn("Vector displacements add along consecutive paths", text)
 
@@ -226,7 +251,7 @@ class Compilation(unittest.TestCase):
         quantities = next(b for b in blocks if b["id"] == "CORE1-QUANTITIES")["text"]
         self.assertIn("v_A/B,x", quantities, "the bucket's own symbols, with their meanings")
         demand = next(b for b in blocks if b["id"] == "CORE1-DEMAND")["text"]
-        badges = {m["intrinsic_badge"] for m in packages()[0]["microtopics"]}
+        badges = {m["intrinsic_badge"] for m in seed()["microtopics"]}
         self.assertTrue(badges & set(("EASY", "MEDIUM", "HARD")))
         for badge in badges:
             self.assertIn(badge, demand, "each demanding transition is named with its badge")
@@ -245,7 +270,8 @@ class Compilation(unittest.TestCase):
 
     def test_a_question_binding_an_unknown_datum_is_rejected(self):
         data = packages()
-        for question in data[0]["questions"]:
+        for question in next(p for p in data
+                             if p["package_id"] == seed()["package_id"])["questions"]:
             if question["id"] == "Q-AUTHOR-REL-01":
                 question["verification"]["bindings"]["vx"] = "DAT-NO-SUCH-VALUE"
         with self.assertRaises(ContractError) as caught:
@@ -363,7 +389,16 @@ class GateAuthorityOverSubjectTruth(unittest.TestCase):
         return REPO / name
 
     def _package(self, subject):
-        return json.loads(sorted((subject / "library").glob("*.v1.json"))[0].read_text(encoding="utf-8"))
+        """A package that actually binds a gate relation, chosen by that property.
+
+        This took [0] of a sorted glob, which was a gate-bound package only while one
+        happened to sort first. Authoring a subtopic beginning with "phy-" put a package
+        with no relations at the front and six tests began indexing an empty list."""
+        for path in sorted((subject / "library").glob("*.v1.json")):
+            package = json.loads(path.read_text(encoding="utf-8"))
+            if any(r.get("gate_relation_ref") for r in package.get("relations", [])):
+                return package
+        raise AssertionError(f"no gate-bound package in {subject}")
 
     def test_every_committed_package_agrees_with_the_gates(self):
         for subject in sorted(REPO.glob("*/adapter/CoreContracts.json")):
@@ -436,10 +471,25 @@ class StepsMustDemonstrate(unittest.TestCase):
     whose whole job is to fix the domain.
     """
 
-    def _step(self, role, output):
-        return {"MIC-A": {"_collection": "microtopics", "teaching_path": [
+    def _step(self, role, output, relation_refs=("REL-A",)):
+        return {"MIC-A": {"_collection": "microtopics",
+                          "relation_refs": list(relation_refs), "teaching_path": [
             {"id": "S-1", "role": role, "action": "Do something.", "why_valid": "Because.",
              "inputs": [], "output": output}]}}
+
+    def test_a_rung_that_binds_no_relation_is_not_asked_for_arithmetic(self):
+        # "Showing it" is read as arithmetic, which is sound only where the rung has
+        # arithmetic to show. A rung that states a distinction binds no relation, and
+        # demanding an operator of its output demands an equation it does not have.
+        self.assertEqual(
+            substance.step_findings(
+                self._step("TRANSFORM", "smooth: U falls as K rises.  rough: K rises less.",
+                           relation_refs=())),
+            [])
+        self.assertEqual(
+            [f["point"] for f in substance.step_findings(
+                self._step("TRANSFORM", "smooth: U falls as K rises.  rough: K rises less."))],
+            ["NAMED_WITHOUT_DEMONSTRATING"])
 
     def test_the_committed_packages_have_no_named_only_transforms(self):
         for path in sorted(REPO.glob("*/library/*.v1.json")):
@@ -1196,14 +1246,27 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
                 self.assertEqual([f for f in report["findings"]
                                   if f["point"].startswith("BUCKET_PRIMARY")], [])
 
+    DRAWABLE = {"B": {"_collection": "buckets"},
+                "MIC-B": {"_collection": "microtopics", "bucket_id": "B",
+                          "representation_refs": ["REP-X"]},
+                "REP-X": {"_collection": "representations", "kind": "VECTOR",
+                          "required_elements": [], "relation_refs": [],
+                          "scene_instances": [{"id": "SI-1"}]}}
+
     def test_a_bucket_that_names_none_is_a_finding_not_a_silent_omission(self):
-        records = {"B": {"_collection": "buckets"},
-                   "REP-X": {"_collection": "representations", "kind": "VECTOR",
-                             "required_elements": [], "relation_refs": [],
-                             "scene_instances": [{"id": "SI-1"}]}}
-        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        found = depiction.findings(copy.deepcopy(self.DRAWABLE), {"VECTOR": "IMPLEMENTED"})
         self.assertEqual([f["point"] for f in found],
                          ["BUCKET_PRIMARY_REPRESENTATION_UNDECLARED"])
+
+    def test_a_bucket_is_not_asked_to_name_a_figure_its_neighbour_holds(self):
+        # The drawable set was computed subject-wide, so one bucket holding a figure made
+        # every other bucket in the subject a finding -- and the message said "has
+        # drawable representations" of buckets that had none. Eight arrived at once the
+        # first time a subject gained buckets that carry no figures yet.
+        records = copy.deepcopy(self.DRAWABLE)
+        records["OTHER"] = {"_collection": "buckets"}
+        found = depiction.findings(records, {"VECTOR": "IMPLEMENTED"})
+        self.assertEqual([f["record"] for f in found], ["B"])
 
     def test_a_bucket_with_nothing_drawable_is_not_asked_to_name_one(self):
         # The rule bites where a figure exists to be the map. Demanding one from a bucket
@@ -1218,6 +1281,8 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
         for primary, point in (("REP-MISSING", "BUCKET_PRIMARY_REPRESENTATION_UNKNOWN"),
                                ("REP-BARE", "BUCKET_PRIMARY_REPRESENTATION_UNDRAWABLE")):
             records = {"B": {"_collection": "buckets", "primary_representation_ref": primary},
+                       "MIC-B": {"_collection": "microtopics", "bucket_id": "B",
+                                 "representation_refs": ["REP-X"]},
                        "REP-BARE": {"_collection": "representations", "kind": "VECTOR",
                                     "required_elements": [], "relation_refs": []},
                        "REP-X": {"_collection": "representations", "kind": "VECTOR",

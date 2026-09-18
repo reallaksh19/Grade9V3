@@ -236,6 +236,17 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
             obligations.append({"id": f'OB-{microtopic["id"]}', "bucket_id": bucket_id,
                                 "scope": CONCEPT, "source_atom_ids": sorted(set(relation_atoms)),
                                 "required_cores": study, "required_kinds": ["TEXT"]})
+    # Conventions are bucket-scoped and every teaching product needs them before it uses
+    # what they declare -- the role specs say "declared before any of it is used". They
+    # were authored and then dropped: the first buckets to carry conventions flipped six
+    # delivery rows from UNAUTHORED to NOT_DELIVERED, which is the compiler failing to
+    # carry a field rather than an author failing to write one.
+    conventions_obligation = f"OB-{bucket_id}-CONVENTIONS"
+    convention_cores = [c for c in supported if c == "CORE1" or c in ROUTED]
+    if bucket.get("conventions") and convention_cores:
+        obligations.append({"id": conventions_obligation, "bucket_id": bucket_id,
+                            "scope": BUCKET, "source_atom_ids": sorted({a["id"] for a in atoms}),
+                            "required_cores": convention_cores, "required_kinds": ["TEXT"]})
     orientation_obligation = f"OB-{bucket_id}-ORIENTATION"
     if "CORE1" in supported:
         obligations.append({"id": orientation_obligation, "bucket_id": bucket_id, "scope": BUCKET,
@@ -302,15 +313,19 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
         # with the questions in a practice product, with the map in the compact notes.
         figures = _figure_blocks(core, representations, obligations, atoms,
                                  orientation_obligation if core == "CORE1" else practice_obligation)
+        conventions = _conventions_blocks(core, bucket, conventions_obligation,
+                                          sorted({a["id"] for a in atoms}))
         if core == "CORE1":
-            blocks = _orientation_blocks(records, relation_ids, atoms, microtopics,
-                                         orientation_obligation, equations, bucket)
+            blocks = conventions + _orientation_blocks(
+                records, relation_ids, atoms, microtopics, orientation_obligation,
+                equations, bucket)
         elif core == "CORE2":
             # Custody covers every question the bucket holds, not only those a practice
             # product exposes: a question omitted here is a question with no record.
             blocks = [_question_block(core, record, custody_obligation, atoms)
                       for record in question_records]
         elif core in ROUTED:
+            blocks = list(conventions)
             for microtopic in microtopics:
                 obligation = f'OB-{microtopic["id"]}'
                 if not any(o["id"] == obligation and core in o["required_cores"] for o in obligations):
@@ -551,6 +566,35 @@ def _orientation_blocks(records: dict, relation_ids: set[str], atoms: list[dict]
                   for m in hard]
         blocks.append({"id": "CORE1-DEMAND", "kind": "TEXT", "obligation_ids": [obligation],
                        "source_atom_ids": bound, "text": "\n".join(lines)})
+    return blocks
+
+
+def _conventions_blocks(core: str, bucket: dict, obligation: str,
+                        bound: list[str]) -> list[dict]:
+    """The bucket's conventions, and for the map its scope. Empty when unauthored.
+
+    A bucket that declares none emits nothing, and the delivery gate reports the row
+    UNAUTHORED rather than NOT_DELIVERED -- the difference between nobody having written
+    it and the compiler having dropped what somebody wrote.
+    """
+    conventions = bucket.get("conventions") or []
+    blocks = []
+    if conventions:
+        lines = ["Read these before anything that uses them."]
+        lines += [sentence(row["statement"]) for row in conventions if row.get("statement")]
+        blocks.append({"id": f"{core}-CONVENTIONS", "kind": "TEXT",
+                       "obligation_ids": [obligation], "source_atom_ids": bound,
+                       "text": "\n".join(lines)})
+    scope = bucket.get("scope") or {}
+    if core == "CORE1" and (scope.get("covers") or scope.get("excluded")):
+        lines = []
+        if scope.get("covers"):
+            lines.append(sentence(f'This bucket covers {scope["covers"]}'))
+        for excluded in scope.get("excluded") or []:
+            lines.append(sentence(f"Deliberately excluded: {excluded}"))
+        blocks.append({"id": f"{core}-SCOPE", "kind": "TEXT",
+                       "obligation_ids": [obligation], "source_atom_ids": bound,
+                       "text": "\n".join(lines)})
     return blocks
 
 

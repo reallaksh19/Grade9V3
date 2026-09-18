@@ -123,14 +123,25 @@ def check_library(subject: Path) -> tuple[int, list[str]]:
     # subject depicts by, and a library representation may teach through one rather than
     # invent one. Checked here because a kind is otherwise only looked up when a scene
     # instance renders, which is the last possible moment and after the figure is drawn.
-    findings += [f'{f["point"]}: {f["record"]}: {f["detail"]}'
-                 for f in depiction_audit(subject)["findings"]]
+    # Everything from here needs one index over every package, and building it can fail
+    # on its own contract -- two packages declaring one id, say. That used to propagate
+    # out of the sweep and take the findings already collected with it, so a candidate
+    # smuggled into library/ was reported by nothing while CANDIDATE_IN_LIBRARY sat in a
+    # list that never returned. The failure is a finding like any other; what it costs is
+    # the checks below it, and saying so is part of the finding.
+    try:
+        findings += [f'{f["point"]}: {f["record"]}: {f["detail"]}'
+                     for f in depiction_audit(subject)["findings"]]
 
-    # Subject truth is the gate's. A library copy that disagrees with its owner is
-    # two authorities for one claim, so it is checked here rather than at publish time.
-    for row in authority_audit(subject)["packages"]:
-        findings += [f"{row['package']}: {f['point']}: {f['record']}: {f['detail']}"
-                     for f in row["findings"]]
+        # Subject truth is the gate's. A library copy that disagrees with its owner is
+        # two authorities for one claim, so it is checked here rather than at publish time.
+        for row in authority_audit(subject)["packages"]:
+            findings += [f"{row['package']}: {f['point']}: {f['record']}: {f['detail']}"
+                         for f in row["findings"]]
+    except ContractError as error:
+        findings.append(f"{error.code}: {error.detail}; the index-dependent checks below "
+                        "it did not run")
+        return len(packages), findings
     for stage in (validate_library, promotion_audit):
         try:
             stage(packages)

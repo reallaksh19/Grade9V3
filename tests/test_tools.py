@@ -1182,21 +1182,36 @@ class ResolveRequest(unittest.TestCase):
         self.assertIn("PRACTICE_CORE_WITHOUT_A_PURPOSE", text)
         self.assertNotIn("# Authoring brief", text)
 
-    def test_practice_is_blocked_where_no_rung_has_a_record(self):
+    def test_practice_is_blocked_exactly_where_no_rung_has_a_record(self):
         # Found by planning every bucket in the subject rather than the one with a library
         # behind it: twelve reported CORE2A and CORE2B READY while teaching nothing.
         # Practice varies instances of what teaching established; transfer holds truth
         # already taught. Neither survives an empty ladder.
-        request = self.request()
-        request["bucket_id"] = "BUCKET-PHY-NLM-FIRST-LAW"
-        report = resolve_request.plan(request)
-        self.assertEqual([s["state"] for s in self.core(report, "CORE1A")["segment"]],
-                         ["ABSENT"] * 4)
-        for name in ("CORE2A", "CORE2B"):
-            with self.subTest(core=name):
-                core = self.core(report, name)
-                self.assertEqual(core["state"], "BLOCKED")
-                self.assertIn("no rung of this ladder has a record", core["reason"])
+        #
+        # Stated as the rule over every bucket, not against one named subtopic: that
+        # bucket was BUCKET-PHY-NLM-FIRST-LAW, and it stopped being empty the day its
+        # rungs were authored.
+        import glob
+        checked = 0
+        for path in sorted(glob.glob(str(REPO / "Physics/matrices/*.rungs.json"))):
+            board = json.loads(Path(path).read_text(encoding="utf-8"))
+            request = self.request()
+            request["bucket_id"] = board["bucket_id"]
+            request["learner"]["owner_estimate"]["knowledge_percentage"] = min(
+                r["ladder_position"] for r in board["rungs"])
+            report = resolve_request.plan(request)
+            teaching = self.core(report, "CORE1A").get("segment") or []
+            taught = any(s["state"] == "PRESENT" for s in teaching)
+            for name in ("CORE2A", "CORE2B"):
+                with self.subTest(bucket=board["bucket_id"], core=name):
+                    core = self.core(report, name)
+                    if taught:
+                        self.assertNotEqual(core["state"], "BLOCKED")
+                    else:
+                        self.assertEqual(core["state"], "BLOCKED")
+                        self.assertIn("no rung of this ladder has a record", core["reason"])
+            checked += 1
+        self.assertGreater(checked, 0, "no matrices, so this asserts nothing")
 
     def test_practice_is_ready_where_the_ladder_is_taught(self):
         report = resolve_request.plan(self.request())
@@ -1310,12 +1325,25 @@ class CeilingAudit(unittest.TestCase):
         self.assertEqual({w for w in found if w.startswith("R1.")},
                          {"R1.frame", "R1.axes", "R1.perpendicular", "R1.right-triangle"})
 
-    def test_the_committed_tree_reports_exactly_the_known_four(self):
+    def test_every_reported_finding_is_a_true_positive(self):
+        # This asserted a list of four. It has been wrong twice since -- once when rungs
+        # gained records and their text moved, once when eight subtopics were authored --
+        # and each time the fix was to retype the list, which tests nothing. The rule is
+        # that a reported word really is a ceiling word this rung's own text uses.
         report = ceiling_audit.audit()
-        reported = sorted(f["where"] for b in report["boards"] for f in b["findings"]
-                          if f["point"] == ceiling_audit.REPORTED)
-        self.assertEqual(reported, ["R1.simple harmonic", "R3.interaction pair",
-                                    "R4.inertial frame", "R4.non-conservative work"])
+        checked = 0
+        for board in report["boards"]:
+            rows = {r["rung"]: r for r in matrix_conformance.load(REPO / board["matrix"])["rungs"]}
+            for finding in board["findings"]:
+                if finding["point"] != ceiling_audit.REPORTED:
+                    continue
+                rung, word = finding["where"].split(".", 1)
+                with self.subTest(matrix=board["matrix"], where=finding["where"]):
+                    self.assertIn(word, rows[rung]["ceiling"])
+                    self.assertTrue(ceiling_audit.says(
+                        word, ceiling_audit.learner_text(rows[rung])))
+                checked += 1
+        self.assertGreater(checked, 0, "nothing reported, so this asserts nothing")
 
 
 class RelativeMotionEntryRung(unittest.TestCase):

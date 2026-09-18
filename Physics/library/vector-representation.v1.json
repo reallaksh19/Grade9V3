@@ -903,7 +903,25 @@
       "prerequisite_refs": [
         "CAP-SIGNED-PAIR-BRIDGE"
       ],
-      "primary_representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
+      "primary_representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+      "conventions": [
+        {
+          "id": "CONV-VEC-AXES",
+          "statement": "Components are read against declared directions: x counts east and y counts north. Nothing in this bucket has a component until those directions are stated."
+        },
+        {
+          "id": "CONV-VEC-SIZE-AND-SIGN",
+          "statement": "A magnitude is written without a sign and a component is written with one. Both describe the same vector, and swapping them is the error this bucket exists to prevent."
+        }
+      ],
+      "scope": {
+        "covers": "Reading a vector as a signed component pair against declared axes, re-declaring those axes, and subtracting one vector from another by construction.",
+        "excluded": [
+          "Rotated axes. PHY-VEC-AXIS-CONVENTION holds axes perpendicular and non-rotating under a re-declaration, so a rotated-axis treatment sits outside this bucket.",
+          "The direction of a zero resultant. PHY-VEC-SUBTRACTION states that a zero resultant has none, so none is assigned here."
+        ],
+        "extension_refs": []
+      }
     }
   ],
   "data": [

@@ -70,8 +70,19 @@ def findings(records: dict, kinds: dict[str, str]) -> list[dict]:
 
     drawable = {rid for rid, r in records.items()
                 if r.get("_collection") == "representations" and r.get("scene_instances")}
+    # Per bucket, not subject-wide. The set was global, so once ANY bucket in a subject
+    # held a drawable figure every other bucket was told to name one -- and the finding
+    # said "has drawable representations" of buckets that had none. Eight arrived at once
+    # the first time a subject gained buckets that carry no figures yet.
+    bucket_drawable: dict[str, set] = {}
+    for record in records.values():
+        if record.get("_collection") != "microtopics":
+            continue
+        mine = {ref for ref in record.get("representation_refs", []) if ref in drawable}
+        if mine:
+            bucket_drawable.setdefault(record.get("bucket_id"), set()).update(mine)
     for rid, record in sorted(records.items()):
-        if record.get("_collection") == "buckets" and drawable:
+        if record.get("_collection") == "buckets" and bucket_drawable.get(rid):
             # Core1 is the map of the bucket, and a map with no picture asks a learner to
             # hold its geometry in their head before any of it is taught. Which figure is
             # the map is the bucket's to say: choosing the first representation, or the
