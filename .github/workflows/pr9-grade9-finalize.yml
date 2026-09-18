@@ -64,14 +64,14 @@ jobs:
       - name: Representation authority
         run: python3 Shared/library/depiction.py --enforce
 
-      - name: Compiler delivery
-        run: python3 Shared/tools/compile_delivery.py --enforce
+      - name: Requirements survive compilation
+        run: python3 Shared/tools/spec_delivery.py --enforce --summary
 
       - name: Subject sweep
         run: python3 Shared/tools/check_subjects.py
 
-      - name: Contract implementation
-        run: python3 Shared/tools/contract_implementation.py --enforce
+      - name: Contract claims are backed by code
+        run: python3 Shared/tools/capability_audit.py --enforce
 
       - name: Generated artifacts check
         run: python3 Shared/tools/build_manifest.py --check
