@@ -16,7 +16,7 @@
     "TOOLING": 36,
     "WEB": 5
   },
-  "digest": "sha256:cca28f90afe0e4f8d32b53737798d19814170733ccb8ac0a754725fd523924d8",
+  "digest": "sha256:aecb3f5b2487646f706fbbb4371e8812c4a75ef17a81b2edac058eaef5dad023",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -778,8 +778,8 @@
       "path": "tests/test_study_route.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4651,
-      "sha256": "fa087967c9d8182dbb5cd9646b38a0228c4cd4d97abc48e85c795b3611df8ccf"
+      "bytes": 6641,
+      "sha256": "0fd6ecc072668ba7a5d957e4337ca272e4501286e3f073d2a7b08d69b56e6d14"
     },
     {
       "path": "tests/test_study_scope_audit.py",
@@ -792,8 +792,8 @@
       "path": "tests/test_study_start.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 6073,
-      "sha256": "03a5205166a003da1d18ee3846dddab3ce2c6e149d7359d883f5e2407992dc98"
+      "bytes": 8342,
+      "sha256": "a3f44efc083400b1b3df939249f508e59411e1fcc3fba4313d11842d966d490e"
     },
     {
       "path": "tests/test_tools.py",
