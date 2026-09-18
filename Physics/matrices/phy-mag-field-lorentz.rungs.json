@@ -108,11 +108,7 @@
     {
       "rung": "R4",
       "ladder_position": 55,
-      "provenance": "SYNTHESIS",
-      "aha": "A pure magnetic force can bend a charged particle without changing its speed because the force is perpendicular to instantaneous velocity and does zero work.",
-      "learner_owns": [
-        "R3: magnetic-force direction follows q(v x B) and is perpendicular to velocity."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "induced emf",
         "flux change",
@@ -122,12 +118,6 @@
         "A velocity arrow before and after a short time step with equal lengths.",
         "A work or power check using F dot v."
       ],
-      "misconception": {
-        "wrong_idea": "A magnetic field makes a charged particle speed up because a force acts on it.",
-        "diagnostic_prompt": "An electron curves in a uniform magnetic field. If its speed rises, where did the extra kinetic energy come from?",
-        "repair": "Compare force with velocity: perpendicular force redirects motion, while zero F dot v means no magnetic work."
-      },
-      "closure": "Given a particle trajectory in a uniform pure magnetic field, distinguish what can change (direction) from what cannot (speed and kinetic energy).",
       "controlled_variation": [
         {
           "phase": 1,
@@ -141,7 +131,8 @@
           "hold": "particle charge and initial speed, with v perpendicular to B",
           "notice": "the curvature changes but the speed does not"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-MAG-REDIRECT-NOT-SPEED"
     },
     {
       "rung": "R5",
