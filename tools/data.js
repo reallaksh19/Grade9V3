@@ -891,6 +891,63 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": []
+            },
+            {
+              "id": "MIC-ELEC-OHMIC-MODEL-TEST",
+              "title": "Ohmic behavior is a tested model, not a permanent label",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must separate a measured proportional pattern from the stronger claim that every device keeps one resistance under every operating condition.",
+              "entry_assumptions": [
+                "Can read paired voltage and current measurements for one device.",
+                "Can compare repeated ratios without treating a device name as evidence."
+              ],
+              "inferential_jump": "A constant-resistance Ohmic model is supported only when one device keeps the same voltage-to-current ratio across operating points while the relevant conditions are held fixed; changing the operating condition can make that model stop fitting.",
+              "teaching_path": [
+                {
+                  "action": "Fix one device and one thermal condition, then place several measured voltage-current pairs in a table before naming any model.",
+                  "why_valid": "The model is a claim about a repeatable relationship under stated conditions, so device identity and condition must be held fixed before the measurements can test it.",
+                  "output": "same device + same thermal condition -> compare one V-I table"
+                },
+                {
+                  "action": "For the first table, divide each voltage by its paired current and compare the results.",
+                  "why_valid": "A single constant-resistance model predicts one unchanged proportionality across the measured operating points, so the repeated ratio is the direct test of that model.",
+                  "output": "2/1 = 2 Ω; 4/2 = 2 Ω; 6/3 = 2 Ω -> one constant ratio"
+                },
+                {
+                  "action": "Repeat the same ratio check for a second table in which the device condition has changed, and refuse to carry the first model across automatically.",
+                  "why_valid": "Evidence collected under one condition does not authorize the same parameter under a changed condition; re-testing distinguishes a model from a permanent device label.",
+                  "output": "condition A: one ratio pattern; condition B: changed ratio pattern -> re-test the model"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Every electrical component has one fixed resistance, so a constant-resistance model always applies.",
+                  "diagnostic_prompt": "If doubling the voltage more than doubles the current, is one constant ratio enough to describe the device over those measurements?",
+                  "repair": "Use the measured voltage-current pattern first; keep one constant resistance only when the ratio stays unchanged under the stated fixed conditions."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two voltage-current tables come from devices tested under fixed conditions. In table A the voltage-to-current ratio stays the same across all measured points; in table B it changes. Decide which table supports one constant-resistance Ohmic model and state the evidence.",
+                "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Table A supports the constant-resistance model because its voltage-to-current ratio is unchanged across the measurements; table B does not because that ratio changes.",
+                  "reasoning": [
+                    "Treat each table as evidence rather than assuming a model from the device name.",
+                    "Compare the voltage-to-current ratio across every operating point in the same table.",
+                    "Keep the constant-resistance model only for the table whose ratio remains unchanged under the stated fixed conditions."
+                  ],
+                  "check": "A different pair from the same table should lead to the same model decision; if one pair changes the ratio pattern, the constant-resistance claim is not supported over the full set.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer classifies whether a constant-ratio model is supported; it reports no computed resistance value."
+                }
+              },
+              "prerequisites": []
             }
           ],
           "relations": [],
@@ -901,9 +958,15 @@ window.GRADE9V3 = {
               "action": "Track steady charge flow across the two boundaries of one unbranched circuit element.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-ELEC-OHMIC-MODEL-TEST",
+              "action": "Test whether measured voltage-current pairs support one constant-resistance model under fixed conditions.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 4,
+          "record_count": 6,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -912,7 +975,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 20,
             "questions": 0,
-            "obligations": 1,
+            "obligations": 2,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -1789,6 +1852,63 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "MIC-MAG-FIELD-DIRECTION"
               ]
+            },
+            {
+              "id": "MIC-MAG-REDIRECT-NOT-SPEED",
+              "title": "A perpendicular magnetic force redirects without speeding up",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often transfer the everyday rule 'force means speeding up' to a case where force is everywhere sideways to the instantaneous motion.",
+              "entry_assumptions": [
+                "Can distinguish a velocity arrow's direction from its length.",
+                "Can recognize perpendicular directions and interpret a zero dot product geometrically."
+              ],
+              "inferential_jump": "When the magnetic force is perpendicular to the instantaneous velocity, it can continually turn the velocity arrow without lengthening or shortening it; the magnetic interaction redirects motion without supplying kinetic energy.",
+              "teaching_path": [
+                {
+                  "action": "At one instant, draw the velocity arrow tangent to the path and the magnetic-force arrow perpendicular to it.",
+                  "why_valid": "The rung's claim applies to a pure magnetic interaction in the stated perpendicular case, so the local force-versus-velocity geometry must be fixed before any conclusion about speed is made.",
+                  "output": "instant 1: v -> ; F ⟂ v"
+                },
+                {
+                  "action": "Advance a short time step and redraw the velocity with a changed direction but the same arrow length, while keeping the force sideways to the new velocity.",
+                  "why_valid": "A sideways change alters direction while preserving the magnitude represented by arrow length; repeating that local update builds a curved path without a speed increase.",
+                  "output": "|v₁| = |v₂| ; direction(v₁) ≠ direction(v₂)"
+                },
+                {
+                  "action": "Use the dot-product check on the force and instantaneous velocity at each snapshot.",
+                  "why_valid": "Perpendicular vectors have zero dot product, so the magnetic force has no component along the motion to supply or remove kinetic energy.",
+                  "output": "F ⟂ v -> F·v = 0 -> magnetic contribution to speed change = 0"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A magnetic field makes a charged particle speed up simply because a force acts on it.",
+                  "diagnostic_prompt": "A particle curves in a uniform pure magnetic field. If its speed rises, what interaction supplied the extra kinetic energy?",
+                  "repair": "Compare the force with the instantaneous velocity: a perpendicular magnetic force turns the motion, while its zero dot product with velocity means it does not add kinetic energy."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A particle moves through a region where the only force is magnetic and is perpendicular to its instantaneous velocity. State what may change about the velocity and what must remain unchanged, and justify the answer with the force-velocity geometry.",
+                "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The velocity direction may change, so the path can curve, but the speed and kinetic energy remain unchanged because the magnetic force has no component along the instantaneous motion.",
+                  "reasoning": [
+                    "Read speed from the length of the velocity arrow and direction from where that arrow points.",
+                    "A force perpendicular to the velocity changes the direction of the arrow rather than its length in the ideal pure-magnetic case.",
+                    "The perpendicular force-velocity dot product is zero, which is the work-or-power check that no kinetic energy is transferred by the magnetic force."
+                  ],
+                  "check": "Compare two nearby snapshots: the tangent direction should rotate while the velocity-arrow length stays fixed and the force remains perpendicular to the local tangent.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit answer distinguishes direction, speed, and kinetic-energy changes qualitatively; it computes no magnetic-force magnitude or trajectory radius."
+                }
+              },
+              "prerequisites": []
             }
           ],
           "relations": [],
@@ -1805,9 +1925,15 @@ window.GRADE9V3 = {
               "action": "Compare how strongly a magnetic field passes through differently oriented surfaces.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAG-REDIRECT-NOT-SPEED",
+              "action": "Distinguish a change in velocity direction from a change in speed for motion under a purely perpendicular magnetic force.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 6,
+          "record_count": 8,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -1816,7 +1942,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 20,
             "questions": 0,
-            "obligations": 2,
+            "obligations": 3,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -2532,11 +2658,74 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": []
+            },
+            {
+              "id": "MIC-OSC-ENERGY-EXCHANGE",
+              "title": "Energy trades twice during one displacement cycle",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The position cycle repeats once while the energy pattern repeats at both center crossings, so learners must coordinate two time patterns without confusing sign with stored energy.",
+              "entry_assumptions": [
+                "Can identify turning points and equilibrium crossings in a repeated back-and-forth motion.",
+                "Can read a quantity as nonnegative even when position lies on the negative side of equilibrium."
+              ],
+              "inferential_jump": "In an ideal oscillator, energy shifts between motion and displacement storage while the total stays fixed; the energy state is the same at equal-magnitude displacements on opposite sides, so the kinetic-potential pattern repeats twice during one full displacement cycle.",
+              "teaching_path": [
+                {
+                  "action": "Mark five ordered checkpoints for one full displacement cycle: positive turning point, center crossing, negative turning point, second center crossing, and return to the positive turning point.",
+                  "why_valid": "The energy pattern can only be counted against a complete position cycle if the cycle's repeated geometric checkpoints are fixed first.",
+                  "output": "+turn -> center -> -turn -> center -> +turn"
+                },
+                {
+                  "action": "Assign the dominant energy form at each checkpoint while keeping the same total mechanical-energy level across the row.",
+                  "why_valid": "At turning points the instantaneous motion is absent while displacement storage is greatest; at center crossings the displacement storage is least while motion is greatest.",
+                  "output": "turn: KE low / PE high ; center: KE high / PE low ; turn: KE low / PE high ; center: KE high / PE low"
+                },
+                {
+                  "action": "Compare the positive and negative turning points, then count the center crossings before the displacement pattern returns to its start.",
+                  "why_valid": "Opposite equal-magnitude displacements produce the same energy state, so sign reversal does not make stored energy negative; two center crossings give two kinetic-energy maxima per position cycle.",
+                  "output": "+turn energy state = -turn energy state ; 1 displacement cycle -> 2 KE maxima"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Potential energy becomes negative whenever displacement is on the negative side of equilibrium.",
+                  "diagnostic_prompt": "At equal distances on opposite sides of equilibrium, should the ideal oscillator have different stored-energy amounts just because one position has a negative sign?",
+                  "repair": "Treat the side of equilibrium and the stored-energy amount separately: opposite equal-magnitude displacements have the same potential-energy state."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Follow one ideal oscillation from a positive turning point back to the same turning point. How many times does kinetic energy reach a maximum, and why does the total mechanical energy not rise and fall with those maxima?",
+                "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Kinetic energy reaches a maximum twice, once at each equilibrium crossing, while the total mechanical energy stays constant because kinetic and potential energy exchange rather than being created or destroyed.",
+                  "reasoning": [
+                    "One full displacement cycle crosses equilibrium twice before returning to the starting turning point.",
+                    "Each center crossing is the state of greatest motion and least displacement storage, so kinetic energy peaks at both crossings.",
+                    "At the turning points the balance reverses; the changing shares add to the same total throughout the ideal cycle."
+                  ],
+                  "check": "Lay the energy sequence under the five position checkpoints; the first and last energy states must match, and the two center checkpoints must carry the two kinetic-energy maxima.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer gives a qualitative cycle count and conservation explanation; it computes no energy value, frequency, or oscillator parameter."
+                }
+              },
+              "prerequisites": []
             }
           ],
           "relations": [],
           "questions": [],
           "capabilities": [
+            {
+              "id": "CAP-OSC-ENERGY-EXCHANGE",
+              "action": "Track how kinetic and potential energy trade through one ideal oscillation cycle while total mechanical energy stays fixed.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
             {
               "id": "CAP-OSC-STABLE-EQUILIBRIUM",
               "action": "Identify whether a displaced system has a tendency directed back toward one stable equilibrium.",
@@ -2544,7 +2733,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 4,
+          "record_count": 6,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -2553,7 +2742,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 20,
             "questions": 0,
-            "obligations": 1,
+            "obligations": 2,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
