@@ -1,0 +1,241 @@
+{
+  "matrix_id": "MATRIX-PHY-SOUND",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-SOUND",
+  "topic": "Sound",
+  "subtopic": "Production, propagation, wave quantities and reflection",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 15,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "electromagnetic wave",
+        "quantum",
+        "acoustic impedance"
+      ],
+      "must_contain": [
+        "A vibrating source distinguished from the surrounding material medium.",
+        "A vacuum boundary showing that source vibration and sound propagation are different claims."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the material medium from gas to liquid to solid",
+          "hold": "a vibrating mechanical source",
+          "notice": "ordinary sound can propagate through different material media"
+        },
+        {
+          "phase": 2,
+          "vary": "the amount of material medium toward vacuum",
+          "hold": "the source can still vibrate",
+          "notice": "ordinary sound propagation weakens as the mechanical transmission path is removed"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM"
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 35,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "pressure differential equation",
+        "acoustic impedance",
+        "transverse polarization"
+      ],
+      "must_contain": [
+        "Compressions and rarefactions moving along one propagation axis.",
+        "One marked particle oscillating locally while the disturbance travels much farther."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the position of the compression pattern",
+          "hold": "one marked particle's equilibrium region",
+          "notice": "the pattern propagates while the particle oscillates locally"
+        },
+        {
+          "phase": 2,
+          "vary": "particle displacement from forward to backward",
+          "hold": "the same propagation direction",
+          "notice": "longitudinal particle motion is parallel to the propagation axis"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-SOUND-LONGITUDINAL"
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "angular frequency",
+        "phase constant",
+        "wave equation PDE"
+      ],
+      "must_contain": [
+        "Period, frequency, wavelength and amplitude explicitly separated by what each measures.",
+        "Both f = 1/T and v = f lambda applied only to quantities from one wave/medium."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "period",
+          "hold": "the same wave description",
+          "notice": "frequency changes reciprocally"
+        },
+        {
+          "phase": 2,
+          "vary": "frequency in the same medium",
+          "hold": "propagation speed",
+          "notice": "wavelength changes inversely"
+        },
+        {
+          "phase": 3,
+          "vary": "amplitude",
+          "hold": "frequency and wavelength",
+          "notice": "disturbance size can change without changing repetition rate"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-FREQUENCY-PERIOD",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Grade 9 frequency-period conversion needs gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WAVE-SPEED",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Grade 9 sound speed, frequency and wavelength relation needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "FREQUENCY_PERIOD",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Period-to-frequency exits need the implemented Physics validator."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "WAVE_SPEED",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Wave-speed exits need the implemented Physics validator."
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 78,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "phon",
+        "decibel logarithm",
+        "equal-loudness contour"
+      ],
+      "must_contain": [
+        "A matched-amplitude frequency comparison for pitch.",
+        "A matched-frequency sound-strength comparison for loudness."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "frequency",
+          "hold": "comparable sound strength",
+          "notice": "higher frequency gives higher pitch"
+        },
+        {
+          "phase": 2,
+          "vary": "sound strength/amplitude",
+          "hold": "frequency",
+          "notice": "loudness can change while pitch stays the same"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-SOUND-PERCEPTION"
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 95,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "Doppler effect",
+        "interference",
+        "room-mode calculation"
+      ],
+      "must_contain": [
+        "An outward-and-return reflected path before echo distance is calculated.",
+        "A distinction between a separate echo and overlapping reverberation.",
+        "An echolocation example using return timing as a range cue."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "reflector distance",
+          "hold": "sound speed in the same medium",
+          "notice": "round-trip echo delay changes in direct proportion"
+        },
+        {
+          "phase": 2,
+          "vary": "reflection delay spacing",
+          "hold": "the same source event",
+          "notice": "a distinct delayed return can be heard as echo while dense returns merge into reverberation"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-SOUND-REFLECTION",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-ECHO-DISTANCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "One-way range from round-trip echo timing needs gate ownership."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "ECHO_DISTANCE",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Numerical echo-range exits need the implemented Physics validator."
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Identify source and medium, keep particle motion separate from wave propagation, distinguish the wave quantities, and trace reflection paths before calculating.",
+    "difficult_move": "Knowing which quantity the words describe—particle displacement, amplitude, period, frequency, wavelength, wave speed, pitch, loudness or round-trip delay—before selecting a relation.",
+    "independent_check": "Units and boundary cases must agree: fT=1, v=f lambda for one wave, and echo one-way range is half the round-trip path.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Source, medium, axes and the target quantity are labelled."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Source/medium or the reflection path is labelled."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the real-world sound description is supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A compression/rarefaction description must be translated into local particle motion and propagation direction without drawing particles travelling with the wave.",
+      "information_not_handed_over": "which motion belongs to particles and which belongs to the disturbance",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Frequency, amplitude and wavelength are all changed in a comparison, requiring separate pitch, loudness and speed reasoning rather than one 'bigger wave' judgment.",
+      "information_not_handed_over": "which physical quantity controls each percept/propagation relation",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A cave-mapping or animal echolocation problem must be recognized as an ordinary reflected-sound round-trip timing problem.",
+      "information_not_handed_over": "that the measured delay contains both outward and return paths",
+      "repair_to": "R5"
+    }
+  ]
+}
