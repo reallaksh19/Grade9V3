@@ -51,6 +51,12 @@ jobs:
       - name: Requests resolve to a plan, or refuse with a reason
         run: python3 Shared/tools/resolve_request.py --enforce
 
+      # Acquisition metadata is content-addressed. External availability is not part of
+      # CI: committed acquisitions must verify against their pinned local snapshot when
+      # one is retained, while URL fetching itself stays an explicit runtime action.
+      - name: Source acquisitions remain digest-pinned
+        run: python3 Shared/tools/source_pipeline.py audit --enforce
+
       # Source coverage is evidence, not a request field. A receipt may preserve an
       # inspection fact while still reporting insufficient custody; authored questions
       # can never establish Core2 source custody.
