@@ -26,6 +26,17 @@ Do not add `grade`, `grade_level`, `class`, `syllabus_status`, or a similar fiel
 `Shared/library/matrix.schema.json`. Curriculum/grade claims belong in the existing source,
 curriculum-mapping, supplied-syllabus and route-scope layers.
 
+## Grade-9 authoring progress
+
+| Slice | Status | Evidence |
+| --- | --- | --- |
+| G9-1 Motion | **AUDITED** | `docs/grade9/G9-1-MOTION-AUTHORING-AUDIT.md`; existing six-rung spine reused, broad Vector Add/Sub bucket prerequisite removed |
+| G9-2 Force and Laws of Motion | NEXT | not yet audited under the Grade-9 freeze |
+| G9-3 Gravitation | QUEUED | not yet audited under the Grade-9 freeze |
+| G9-4 Work, Energy and Power | QUEUED | not yet audited under the Grade-9 freeze |
+| G9-5 Sound | QUEUED | not yet audited under the Grade-9 freeze |
+| G9-6 Simple Machines | PROVISIONAL | exact current curriculum/source binding to be checked in its turn |
+
 ## Current Grade-9 Physics production order
 
 Work in this order.
