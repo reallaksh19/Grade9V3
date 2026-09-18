@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -142,6 +143,92 @@ class WorksheetStudyPlan(unittest.TestCase):
             q1["why_extra_attention"],
             "Concept — treated zero velocity at the turning point as zero acceleration",
         )
+
+    def test_external_bridge_is_a_blocker_until_learner_evidence_satisfies_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Example/matrices").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [
+                    {
+                        "id": "CAP-BRIDGE",
+                        "action": "Use provider-owned prior knowledge",
+                        "success_criterion": "Provider-owned prior knowledge is used correctly",
+                        "prerequisite_refs": [],
+                        "external_provider": "ProviderSubject",
+                        "acceptance_status": "PROVIDER_REVIEW_REQUIRED",
+                    },
+                    {
+                        "id": "CAP-TARGET",
+                        "action": "Use the local target skill",
+                        "success_criterion": "The local target skill is demonstrated",
+                        "prerequisite_refs": ["CAP-BRIDGE"],
+                        "external_provider": None,
+                        "acceptance_status": "CANDIDATE",
+                    },
+                ],
+                "microtopics": [{
+                    "id": "MIC-TARGET",
+                    "title": "Local target lesson",
+                    "primary_capability_ref": "CAP-TARGET",
+                }],
+                "questions": [],
+            }), encoding="utf-8")
+            (root / "Example/matrices/example.rungs.json").write_text(json.dumps({
+                "matrix_id": "MATRIX-EXAMPLE",
+                "bucket_id": "BUCKET-EXAMPLE",
+                "topic": "Synthetic",
+                "subtopic": "Provider bridge",
+                "rungs": [{
+                    "rung": "R1",
+                    "ladder_position": 20,
+                    "microtopic_ref": "MIC-TARGET",
+                }],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-BRIDGE",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-TARGET",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+
+            unobserved = worksheet_study_plan.resolve(mapping, repo=root)
+            self.assertTrue(unobserved["valid"], unobserved["findings"])
+            self.assertTrue(unobserved["passed"], unobserved["findings"])
+            self.assertFalse(unobserved["ready"])
+            rows = self.by_capability(unobserved)
+            self.assertEqual(rows["CAP-BRIDGE"]["recommended_action"], "BRIDGE")
+            self.assertEqual(rows["CAP-BRIDGE"]["provider"], "ProviderSubject")
+            self.assertEqual(
+                [row["capability"] for row in unobserved["blockers"]],
+                ["CAP-BRIDGE"],
+            )
+
+            profile = {
+                "profile_id": "PROFILE-BRIDGE",
+                "provenance": "UNKNOWN",
+                "held": {"CAP-BRIDGE": "DEMONSTRATED"},
+                "observation_refs": [],
+            }
+            demonstrated = worksheet_study_plan.resolve(mapping, profile=profile, repo=root)
+            self.assertTrue(demonstrated["valid"], demonstrated["findings"])
+            self.assertTrue(demonstrated["ready"], demonstrated["blockers"])
+            self.assertEqual(demonstrated["blockers"], [])
+            rows = self.by_capability(demonstrated)
+            self.assertEqual(rows["CAP-BRIDGE"]["recommended_action"], "SKIP")
+            self.assertIn("bridge is not needed", rows["CAP-BRIDGE"]["action_reason"])
 
     def test_synthetic_profile_is_refused_for_real_routing(self):
         profile = {

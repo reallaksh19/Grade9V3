@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -105,6 +106,146 @@ class CrossMatrixStudyRoute(unittest.TestCase):
         )
         self.assertLess(prerequisite["order"], dependant["order"])
         self.assertEqual(dependant["depends_on"], ["CAP-PREREQUISITE"])
+
+    def test_external_provider_is_a_valid_but_not_ready_bridge(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Example/matrices").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [
+                    {
+                        "id": "CAP-BRIDGE",
+                        "action": "Use provider-owned prior knowledge",
+                        "success_criterion": "Provider-owned prior knowledge is used correctly",
+                        "prerequisite_refs": [],
+                        "external_provider": "ProviderSubject",
+                        "acceptance_status": "PROVIDER_REVIEW_REQUIRED",
+                    },
+                    {
+                        "id": "CAP-TARGET",
+                        "action": "Use the local target skill",
+                        "success_criterion": "The local target skill is demonstrated",
+                        "prerequisite_refs": ["CAP-BRIDGE"],
+                        "external_provider": None,
+                        "acceptance_status": "CANDIDATE",
+                    },
+                ],
+                "microtopics": [{
+                    "id": "MIC-TARGET",
+                    "primary_capability_ref": "CAP-TARGET",
+                }],
+                "questions": [],
+            }), encoding="utf-8")
+            (root / "Example/matrices/example.rungs.json").write_text(json.dumps({
+                "matrix_id": "MATRIX-EXAMPLE",
+                "bucket_id": "BUCKET-EXAMPLE",
+                "topic": "Synthetic",
+                "subtopic": "Bridge routing",
+                "rungs": [{
+                    "rung": "R1",
+                    "ladder_position": 20,
+                    "microtopic_ref": "MIC-TARGET",
+                }],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-BRIDGE",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-TARGET",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_route.resolve(mapping, root)
+
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready"])
+        self.assertEqual(
+            [row["point"] for row in report["blockers"]],
+            [study_route.EXTERNAL_BRIDGE_REQUIRED],
+        )
+        rows = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(rows["CAP-BRIDGE"]["delivery_state"], "EXTERNAL_BRIDGE")
+        self.assertEqual(rows["CAP-BRIDGE"]["provider"], "ProviderSubject")
+        self.assertLess(rows["CAP-BRIDGE"]["order"], rows["CAP-TARGET"]["order"])
+
+    def test_same_missing_location_without_provider_is_invalid(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Example/matrices").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [
+                    {
+                        "id": "CAP-MISSING",
+                        "action": "Use unavailable prior knowledge",
+                        "success_criterion": "Unavailable prior knowledge is used correctly",
+                        "prerequisite_refs": [],
+                        "external_provider": None,
+                        "acceptance_status": "CANDIDATE",
+                    },
+                    {
+                        "id": "CAP-TARGET",
+                        "action": "Use the local target skill",
+                        "success_criterion": "The local target skill is demonstrated",
+                        "prerequisite_refs": ["CAP-MISSING"],
+                        "external_provider": None,
+                        "acceptance_status": "CANDIDATE",
+                    },
+                ],
+                "microtopics": [{
+                    "id": "MIC-TARGET",
+                    "primary_capability_ref": "CAP-TARGET",
+                }],
+                "questions": [],
+            }), encoding="utf-8")
+            (root / "Example/matrices/example.rungs.json").write_text(json.dumps({
+                "matrix_id": "MATRIX-EXAMPLE",
+                "bucket_id": "BUCKET-EXAMPLE",
+                "topic": "Synthetic",
+                "subtopic": "Missing routing",
+                "rungs": [{
+                    "rung": "R1",
+                    "ladder_position": 20,
+                    "microtopic_ref": "MIC-TARGET",
+                }],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-MISSING",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-TARGET",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_route.resolve(mapping, root)
+
+        self.assertFalse(report["passed"])
+        self.assertFalse(report["valid"])
+        self.assertFalse(report["ready"])
+        self.assertIn(
+            study_route.NO_TEACHING_LOCATION,
+            [row["point"] for row in report["findings"]],
+        )
 
     def test_question_secondary_is_demand_but_not_magic_prerequisite(self):
         report = study_route.resolve(self.mapping())

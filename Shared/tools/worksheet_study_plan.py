@@ -25,7 +25,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import learner_evidence, study_map, study_start  # noqa: E402
+from Shared.tools import capability_delivery, learner_evidence, study_map, study_start  # noqa: E402
 
 STATE_PRIORITY = {
     "MISSING": 40,
@@ -113,17 +113,43 @@ def _attention_for(capabilities: list[dict], observations: dict[str, dict]) -> t
 
 
 def _route_action(row: dict, learner_state: dict) -> tuple[str, str]:
-    """Let real evidence override an estimate; otherwise preserve study_start's action."""
-    if row.get("state") == "EXTERNAL_BRIDGE":
-        provider = row.get("external_provider") or "external provider"
-        status = row.get("acceptance_status")
-        suffix = f" ({status})" if status else ""
-        return "BRIDGE", f"Use/check the declared provider: {provider}{suffix}."
-    if row.get("state") != "RESOLVED":
-        return "UNRESOLVED", "Canonical teaching location is unresolved."
-
+    """Let evidence resolve bridge need before falling back to local start hints."""
     state = learner_state["state"]
     scope = row.get("scope")
+    delivery = row.get("delivery_state")
+
+    if delivery == capability_delivery.EXTERNAL_BRIDGE:
+        provider = row.get("provider") or "declared provider"
+        if state == "DEMONSTRATED":
+            if scope in {"QUESTION_ONLY", "QUESTION_AND_SYLLABUS"}:
+                return (
+                    "QUICK_CHECK",
+                    f"Already demonstrated; confirm briefly on the worksheet demand before "
+                    f"invoking the {provider} bridge.",
+                )
+            return (
+                "SKIP",
+                f"Prerequisite is already demonstrated; the {provider} bridge is not needed.",
+            )
+        if state == "UNCERTAIN":
+            return (
+                "BRIDGE",
+                f"Current learner evidence says UNCERTAIN; use the {provider} bridge to repair.",
+            )
+        if state == "MISSING":
+            return (
+                "BRIDGE",
+                f"Current learner evidence says MISSING; use the {provider} bridge to teach it.",
+            )
+        return (
+            "BRIDGE",
+            f"No learner evidence yet; the {provider} bridge should verify the capability "
+            "before teaching more than necessary.",
+        )
+
+    if row.get("state") != "RESOLVED":
+        return "UNRESOLVED", "Canonical capability delivery is unresolved."
+
     if state == "MISSING":
         return "TEACH", "Current learner evidence says MISSING."
     if state == "UNCERTAIN":
@@ -170,6 +196,9 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "route": [],
             "start_decisions": started.get("start_decisions", []),
             "findings": findings,
+            "blockers": list(started.get("blockers", [])),
+            "valid": False,
+            "ready": False,
             "passed": False,
         }
 
@@ -189,10 +218,10 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             capability_rows.append({
                 "role": cap.get("role"),
                 "capability_ref": capability_ref,
-                "state": cap.get("state"),
                 "action": cap.get("action"),
                 "success_criterion": cap.get("success_criterion"),
-                "external_provider": cap.get("external_provider"),
+                "delivery_state": cap.get("delivery_state"),
+                "provider": cap.get("provider"),
                 "acceptance_status": cap.get("acceptance_status"),
                 "learner_state": state,
                 "lessons": lessons,
@@ -213,11 +242,12 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             for cap in capability_rows
             for lesson in cap.get("lessons", [])
         ]
-        lesson_labels += [
-            f'External bridge: {cap.get("external_provider")}'
-            for cap in capability_rows
-            if cap.get("state") == "EXTERNAL_BRIDGE"
-        ]
+        if (
+            not lesson_labels
+            and primary
+            and primary.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE
+        ):
+            lesson_labels = [f'Bridge: {primary.get("provider") or "external provider"}']
         question_state, attention = _attention_for(capability_rows, observations)
         question_rows.append({
             "question_id": qid,
@@ -246,6 +276,23 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         })
 
     findings = list(started.get("findings", []))
+    blockers = []
+    for row in route_rows:
+        if row.get("delivery_state") != capability_delivery.EXTERNAL_BRIDGE:
+            continue
+        if row["learner_state"]["state"] == "DEMONSTRATED":
+            continue
+        blockers.append({
+            "point": "WORKSHEET_STUDY_PLAN_EXTERNAL_BRIDGE_REQUIRED",
+            "capability": row["capability_ref"],
+            "provider": row.get("provider"),
+            "acceptance_status": row.get("acceptance_status"),
+            "detail": (
+                "learner evidence does not yet satisfy this externally provided capability; "
+                "verify or repair it through the declared provider boundary"
+            ),
+        })
+    valid = not findings
     return {
         "worksheet_id": mapping.get("worksheet_id"),
         "subject": subject,
@@ -254,12 +301,17 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         "route": route_rows,
         "start_decisions": started.get("start_decisions", []),
         "findings": findings,
-        "passed": not findings,
+        "blockers": blockers,
+        "valid": valid,
+        "ready": valid and not blockers,
+        "passed": valid,
         "rules": [
             "Worksheet mappings describe demand; canonical subject records remain academic truth.",
             "Cross-matrix study order comes only from capability prerequisites.",
             "Owner estimates choose a local starting attempt and never create mastery evidence.",
             "Observed learner state overrides owner estimates but never mutates subject content.",
+            "External-provider prerequisites remain explicit bridge actions; they are not "
+            "misreported as missing local teaching.",
         ],
     }
 
@@ -300,8 +352,8 @@ def readable(report: dict) -> str:
     ]
     for row in report.get("route", []):
         lesson = " + ".join(item["label"] for item in row.get("lessons", []))
-        if not lesson and row.get("state") == "EXTERNAL_BRIDGE":
-            lesson = f'External bridge: {row.get("external_provider")}'
+        if not lesson and row.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
+            lesson = f'Bridge: {row.get("provider") or "external provider"}'
         out.append(
             "| " + " | ".join([
                 _md(row.get("order")),
@@ -312,6 +364,14 @@ def readable(report: dict) -> str:
                 _md(row.get("action_reason")),
             ]) + " |"
         )
+
+    if report.get("blockers"):
+        out += ["", "## Bridge blockers", ""]
+        for blocker in report["blockers"]:
+            out.append(
+                f'- {_md(blocker.get("point"))}: {_md(blocker.get("capability"))} '
+                f'via {_md(blocker.get("provider"))}'
+            )
 
     if report.get("findings"):
         out += ["", "## Findings", ""]
