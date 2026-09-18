@@ -154,6 +154,11 @@
     "source_receipt_ref": {
       "type": "string",
       "minLength": 1
+    },
+    "source_basis_drift_acknowledgement": {
+      "enum": [
+        "KEEP_SUPPLIED_DESPITE_DRIFT"
+      ]
     }
   },
   "$defs": {
