@@ -9,7 +9,7 @@
   "gates": [
     {
       "gate_id": "PHY-KIN-AVERAGE-RATES",
-      "title": "Average speed and average velocity over one interval",
+      "title": "Grade 9 kinematics rates and constant-acceleration relations",
       "curriculum": {
         "board": "CBSE",
         "grade": 9,
@@ -22,6 +22,10 @@
         {
           "concept_id": "CON-KIN-TOTALS-FIRST",
           "statement": "Average rates are formed from total path or displacement over the same total elapsed time, not by blindly averaging listed speeds."
+        },
+        {
+          "concept_id": "CON-KIN-CONSTANT-ACCELERATION-MODEL",
+          "statement": "The familiar kinematic equations are exact only on an interval where acceleration is constant."
         }
       ],
       "prerequisites": [],
@@ -89,12 +93,129 @@
           "validator_refs": [
             "AVERAGE_RATE"
           ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+          "expression": "v = u + a t",
+          "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Final velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Constant acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval.",
+            "u, v and a use one declared one-dimensional sign convention.",
+            "t >= 0."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_VELOCITY"
+          ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+          "expression": "s = u t + 0.5 a t^2",
+          "meaning": "For constant acceleration, signed displacement equals initial-velocity contribution plus the acceleration contribution over the interval.",
+          "symbols": [
+            {
+              "symbol": "s",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Constant acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Positive elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval.",
+            "s, u and a use one declared one-dimensional sign convention.",
+            "t >= 0."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_DISPLACEMENT"
+          ]
+        },
+        {
+          "relation_id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "expression": "v^2 = u^2 + 2 a s",
+          "meaning": "For constant acceleration, the squared velocities and signed displacement satisfy the no-time kinematic relation.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Final velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Initial velocity along the declared axis",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Constant acceleration along the declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "s",
+              "meaning": "Signed displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Acceleration is constant over the whole interval.",
+            "u, v, a and s use one declared one-dimensional sign convention."
+          ],
+          "validator_refs": [
+            "CONSTANT_ACCELERATION_NO_TIME"
+          ]
         }
       ],
       "representations": [],
       "validity_conditions": [
         "One finite interval with a positive elapsed time.",
-        "Average velocity requires a declared signed displacement convention."
+        "Average velocity requires a declared signed displacement convention.",
+        "Constant-acceleration relations are used only on intervals where one acceleration value describes the whole interval."
       ],
       "reasoning_sequence": [
         {
