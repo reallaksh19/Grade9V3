@@ -27,6 +27,17 @@ canonical capabilities without inventing new subject truth:
 This is intentionally a small representative slice. The goal is to exercise the real
 worksheet/question-set pipeline against external demand, not to transcribe all 93 questions.
 
+## First core routing gap exposed
+
+The three routable question mappings themselves resolve, but the full study route currently
+stops on `CAP-SIGNED-PAIR`: it is a declared Mathematics external-provider prerequisite
+for relative motion and has no canonical teaching location in the combined repository.
+
+This is a useful C6 result. The pilot must not silently mark that prerequisite as taught or
+invent a Physics lesson for it. The next core decision is therefore narrow and concrete:
+either represent external-provider prerequisites explicitly as bridge actions in the study
+route, or provide a genuine canonical teaching location from the owning subject.
+
 ## Real gaps exposed by the same source
 
 The page also contains question types that the current canonical subject layer cannot yet
