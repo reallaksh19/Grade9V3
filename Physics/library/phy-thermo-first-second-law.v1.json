@@ -54,13 +54,7 @@
       "badge_reason": "The conceptual ladder turns on system boundaries, state/path distinctions, cycle plots, and reservoir limits rather than vector reasoning.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
-      "prerequisite_refs": [],
-      "scope": {
-        "covers": "Conceptual thermodynamics rungs R1, R3, R4 and R5 using scalar and Cartesian pressure-volume reasoning.",
-        "excluded": [
-          "R2 quantitative first-law sign convention and work relation remain blocked on an engineering gate relation."
-        ]
-      }
+      "prerequisite_refs": []
     }
   ],
   "capabilities": [
