@@ -131,7 +131,10 @@ The donor content was adapted rather than copied mechanically:
    PR #9 gate-relation `validator_refs` are not legal in the post-#18 gate schema.
    Relation authority remains in `Physics/gates/`; executable validator support is
    declared in `Physics/adapter/CoreContracts.json` and implemented in
-   `Physics/adapter/validator.py`.
+   `Physics/adapter/validator.py`. Donor falsifiers that tried to mutate the removed
+   `validator_refs` field were replaced by executable post-#18 falsifiers that remove a
+   Physics-required symbol unit and must raise `SYMBOL_FIELD_MISSING`; validator
+   implementation itself is checked separately by the Issue #19 Physics tests.
 
 4. **Compiler delivery**
    Donor Core2B transfer/rubric records that the current compiler cannot faithfully
