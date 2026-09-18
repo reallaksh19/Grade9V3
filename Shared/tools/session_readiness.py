@@ -10,7 +10,7 @@ A matrix is SESSION_READY when every rung has:
 - a Core1A and Core1B teaching route;
 - misconception diagnosis + repair;
 - a fresh verification path (microtopic exit task or same-capability question);
-- prerequisite closure that is either locally/upstream taught or explicitly bridged.
+- prerequisite closure whose delivery is resolved by the shared capability-delivery resolver.
 
 Explicit external providers do not make the matrix fail. They produce
 SESSION_READY_WITH_BRIDGE and remain visible to the parent/learner.
@@ -32,7 +32,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import capability_graph, study_map  # noqa: E402
+from Shared.tools import capability_delivery, capability_graph, study_map  # noqa: E402
 
 READY = "SESSION_READY"
 READY_WITH_BRIDGE = "SESSION_READY_WITH_BRIDGE"
@@ -46,6 +46,7 @@ BLOCKING_POINTS = {
     "READINESS_VERIFICATION_MISSING",
     "READINESS_PREREQUISITE_UNKNOWN",
     "READINESS_PREREQUISITE_UNTAUGHT",
+    "READINESS_PREREQUISITE_AMBIGUOUS",
 }
 
 SUPPORT_POINTS = {
@@ -296,26 +297,37 @@ def audit_matrix(subject: str, matrix: dict, repo: Path = REPO) -> dict:
         cap = caps.get(prerequisite)
         if cap is None:
             continue
-        locs = locations.get(prerequisite, [])
-        if locs:
+        delivery = capability_delivery.resolve(
+            cap,
+            list(locations.get(prerequisite, [])),
+        )
+        if delivery["state"] == capability_delivery.LOCAL:
             upstream.append({
                 "capability_ref": prerequisite,
-                "locations": locs,
+                "locations": delivery["locations"],
             })
             continue
-        provider = cap.get("external_provider")
-        if provider:
+        if delivery["state"] == capability_delivery.EXTERNAL_BRIDGE:
             bridges.append({
                 "capability_ref": prerequisite,
-                "external_provider": provider,
-                "acceptance_status": cap.get("acceptance_status"),
+                "external_provider": delivery["provider"],
+                "acceptance_status": delivery["acceptance_status"],
             })
             continue
         unresolved.append(prerequisite)
+        if delivery["state"] == capability_delivery.AMBIGUOUS:
+            finding(
+                "READINESS_PREREQUISITE_AMBIGUOUS",
+                prerequisite,
+                "prerequisite resolves to more than one canonical teaching location",
+                capability=prerequisite,
+                locations=delivery["locations"],
+            )
+            continue
         finding(
             "READINESS_PREREQUISITE_UNTAUGHT",
             prerequisite,
-            "prerequisite has no teaching location and no declared external provider",
+            "prerequisite has neither a local teaching location nor a declared external provider",
             capability=prerequisite,
         )
 
