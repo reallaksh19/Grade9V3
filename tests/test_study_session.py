@@ -36,6 +36,8 @@ class StudySessionRunner(unittest.TestCase):
             ["Relative motion=60"],
         )
         self.assertTrue(report["passed"], report["findings"])
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready"])
         self.assertEqual(report["status"], session_readiness.READY_WITH_BRIDGE)
         self.assertEqual(len(report["readiness"]), 1)
         self.assertEqual(
@@ -59,12 +61,38 @@ class StudySessionRunner(unittest.TestCase):
             "Mathematics",
         )
 
+    def test_demonstrated_external_prerequisite_clears_execution_blocker(self):
+        profile = {
+            "profile_id": "PROFILE-SESSION-BRIDGE",
+            "provenance": "UNKNOWN",
+            "held": {"CAP-SIGNED-PAIR": "DEMONSTRATED"},
+            "observation_refs": [],
+        }
+        report = study_session.plan(
+            self.mapping(),
+            ["Relative motion=60"],
+            profile=profile,
+        )
+        self.assertTrue(report["valid"], report["findings"])
+        self.assertTrue(report["ready"], report["blockers"])
+        self.assertEqual(report["blockers"], [])
+        self.assertEqual(report["status"], session_readiness.READY_WITH_BRIDGE)
+        self.assertEqual(report["next_step"]["action"], "START_HERE")
+        self.assertEqual(
+            report["next_step"]["capability_ref"],
+            "CAP-SAME-TIME",
+        )
+        route = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(route["CAP-SIGNED-PAIR"]["recommended_action"], "SKIP")
+
     def test_plan_keeps_academic_warnings_visible_without_blocking_family_pilot(self):
         report = study_session.plan(self.mapping(), ["Relative motion=60"])
         points = {row["point"] for row in report["academic_warnings"]}
         self.assertIn("READINESS_ACADEMIC_REVIEW_PENDING", points)
         self.assertIn("READINESS_SOURCE_QUESTION_COVERAGE_ABSENT", points)
         self.assertTrue(report["passed"])
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready"])
 
     def test_not_ready_matrix_blocks_session_instead_of_fabricating_one(self):
         blocked = {
