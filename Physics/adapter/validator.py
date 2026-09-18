@@ -11,6 +11,7 @@ VALIDATORS = {
     "AVERAGE_RATE", "UNIVERSAL_GRAVITATION", "GRAVITATIONAL_ACCELERATION",
     "HYDROSTATIC_PRESSURE_DIFFERENCE", "THERMODYNAMIC_FIRST_LAW", "WAVE_SPEED",
     "AVERAGE_POWER", "INSTANTANEOUS_POWER", "ELECTRIC_POWER",
+    "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
 }
 
 
@@ -81,6 +82,16 @@ def recompute(case: dict):
         return _number(case, "force_parallel", "N") * speed
     if kind == "ELECTRIC_POWER":
         return _number(case, "voltage", "V") * _number(case, "current", "A")
+    if kind == "CONSTANT_ACCELERATION_DISPLACEMENT":
+        t = _number(case, "t", "s")
+        if t < 0:
+            raise ValueError("TIME_NEGATIVE")
+        return _number(case, "u", "m/s") * t + 0.5 * _number(case, "a", "m/s^2") * t * t
+    if kind == "CONSTANT_ACCELERATION_NO_TIME":
+        u = _number(case, "u", "m/s")
+        a = _number(case, "a", "m/s^2")
+        s = _number(case, "s", "m")
+        return {"v_squared_m2_s2": u * u + 2 * a * s}
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
