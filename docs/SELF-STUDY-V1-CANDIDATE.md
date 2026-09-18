@@ -55,3 +55,15 @@ session. Future core changes should be justified by observed problems such as:
 - awkward or insufficient learner-evidence capture.
 
 Do not extend the architecture merely to increase feature coverage.
+
+
+### One delivery resolver
+
+The consolidated candidate now uses one Shared capability-delivery resolver across worksheet
+mapping, study routing, session readiness and the practical runner. A prerequisite with no
+local rung is classified as `LOCAL`, `EXTERNAL_BRIDGE`, `UNRESOLVED` or `AMBIGUOUS`
+by the same core rule everywhere.
+
+The learner-facing plan also distinguishes structural validity from execution readiness.
+An explicit provider bridge does not make the route invalid, but it keeps `ready=false`
+until learner evidence demonstrates the prerequisite or the provider bridge is completed.
