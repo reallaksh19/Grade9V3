@@ -242,8 +242,22 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
     }
 
 
-def _question_readiness(mapping: dict, question: dict, repo: Path) -> tuple[list[dict], list[dict]]:
-    """Return readiness rows and blockers for matrices directly teaching one question."""
+def _question_readiness(
+    mapping: dict,
+    question: dict,
+    repo: Path,
+    *,
+    result: str | None = None,
+    failed_capability_ref: str | None = None,
+) -> tuple[list[dict], list[dict], list[dict]]:
+    """Return local readiness, blockers and explicit external bridges for one question.
+
+    An external secondary capability should not prevent a local repair when the caller has
+    already attributed the failure to a different locally taught capability. It *must*
+    still block when the external capability itself is the failed capability, or when an
+    incorrect/undecidable attempt has not been attributed and the external dependency could
+    be the actual failure.
+    """
     subject = mapping.get("subject")
     mapped = [
         question.get("primary_capability_ref"),
@@ -255,6 +269,7 @@ def _question_readiness(mapping: dict, question: dict, repo: Path) -> tuple[list
     index = study_map.subject_index(subject, repo)
     matrix_ids = []
     blockers = []
+    external_bridges = []
 
     for capability in mapped:
         locations = list(index.get("locations", {}).get(capability, []))
@@ -269,15 +284,29 @@ def _question_readiness(mapping: dict, question: dict, repo: Path) -> tuple[list
 
         delivery = capability_delivery.resolve(cap_record, locations)
         if delivery["state"] == capability_delivery.EXTERNAL_BRIDGE:
-            blockers.append({
-                "point": "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
+            bridge = {
                 "capability_ref": capability,
                 "external_provider": delivery["provider"],
-                "detail": (
-                    "this mapped question capability is an external bridge; "
-                    "the local feedback runtime has no canonical repair lesson for it"
-                ),
-            })
+                "acceptance_status": delivery.get("acceptance_status"),
+            }
+            external_bridges.append(bridge)
+            bridge_can_be_failure = (
+                result in {"INCORRECT", "UNDECIDABLE"}
+                and (
+                    failed_capability_ref is None
+                    or failed_capability_ref == capability
+                )
+            )
+            if bridge_can_be_failure:
+                blockers.append({
+                    "point": "STUDY_SESSION_QUESTION_EXTERNAL_ONLY",
+                    **bridge,
+                    "detail": (
+                        "the attempt cannot be repaired locally because the failed "
+                        "capability is external, or the failure is not yet attributed "
+                        "well enough to exclude the external dependency"
+                    ),
+                })
             continue
         if delivery["state"] == capability_delivery.UNRESOLVED:
             blockers.append({
@@ -311,7 +340,7 @@ def _question_readiness(mapping: dict, question: dict, repo: Path) -> tuple[list
                 "detail": "question feedback is blocked because its teaching matrix is not ready",
             })
 
-    return readiness_rows, blockers
+    return readiness_rows, blockers, external_bridges
 
 
 def attempt(mapping: dict, question_id: str, *, result: str,
@@ -339,12 +368,19 @@ def attempt(mapping: dict, question_id: str, *, result: str,
             "passed": False,
         }
 
-    readiness_rows, blockers = _question_readiness(mapping, question, repo)
+    readiness_rows, blockers, external_bridges = _question_readiness(
+        mapping,
+        question,
+        repo,
+        result=result,
+        failed_capability_ref=failed_capability_ref,
+    )
     if blockers:
         return {
             "question_ref": question_id,
             "next_action": "STOP",
             "readiness": readiness_rows,
+            "external_bridges": external_bridges,
             "findings": blockers,
             "passed": False,
         }
@@ -377,6 +413,7 @@ def attempt(mapping: dict, question_id: str, *, result: str,
     return {
         **report,
         "readiness": readiness_rows,
+        "external_bridges": external_bridges,
         "persistence": "NOT_WRITTEN",
     }
 
