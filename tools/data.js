@@ -1191,7 +1191,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
@@ -1426,7 +1426,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -1660,7 +1660,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -2249,7 +2249,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 6,
             "obligations": 10,
             "authoring_requirements": [
@@ -2478,7 +2478,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 1,
             "obligations": 5,
             "authoring_requirements": [
@@ -3099,7 +3099,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 7,
             "obligations": 11,
             "authoring_requirements": [
@@ -3330,7 +3330,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -3500,7 +3500,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 1,
             "obligations": 4,
             "authoring_requirements": [
@@ -3802,7 +3802,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 6,
             "authoring_requirements": [
@@ -4232,7 +4232,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 7,
             "authoring_requirements": [
@@ -4387,34 +4387,34 @@ window.GRADE9V3 = {
             },
             {
               "id": "MIC-PHY-SOUND-WAVE-QUANTITIES",
-              "title": "Frequency, period, wavelength and speed describe different wave features",
+              "title": "Sound graphs separate amplitude, wavelength, period, frequency and speed",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
               "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common.",
               "entry_assumptions": [
-                "Can identify repeating cycles and can measure time and distance intervals."
+                "Can distinguish a spatial snapshot from a time trace and can measure horizontal and vertical coordinate differences."
               ],
-              "inferential_jump": "Period measures time per cycle, frequency counts cycles per second, wavelength measures spatial repeat distance, amplitude measures disturbance size, and propagation speed links frequency and wavelength through v = f lambda.",
+              "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, frequency is 1/T, and a travelling pattern advances one wavelength in one period so v = lambda/T = f lambda.",
               "teaching_path": [
                 {
-                  "action": "Separate one time-cycle measurement T from one spatial repeat distance lambda and from amplitude.",
-                  "why_valid": "These quantities measure different axes/features and must not be inferred from one another without a relation.",
-                  "output": "T: s/cycle; lambda: m/cycle; amplitude: disturbance size."
+                  "action": "Compare the sampled spatial snapshot with the sampled time trace and read each horizontal-axis label before naming a repeat interval.",
+                  "why_valid": "Repeat distance on a position axis is wavelength, while repeat time on a time axis is period; the axis determines the physical meaning.",
+                  "output": "spatial repeat: lambda = 1.7 m; temporal repeat: T = 0.005 s; vertical amplitude = 1 cm."
                 },
                 {
-                  "action": "Take the reciprocal of positive period to obtain frequency.",
-                  "why_valid": "REL-FREQUENCY-PERIOD owns the one-cycle time/count relation.",
-                  "output": "f = 1 / T."
+                  "action": "Take the reciprocal of the positive period read from the temporal graph.",
+                  "why_valid": "REL-FREQUENCY-PERIOD owns the conversion from time per cycle to cycles per second.",
+                  "output": "f = 1/T = 1/0.005 s = 200 Hz."
                 },
                 {
-                  "action": "Multiply frequency by wavelength for values belonging to the same wave in the same medium.",
-                  "why_valid": "REL-WAVE-SPEED owns the propagation-speed relation.",
-                  "output": "v = f lambda."
+                  "action": "Follow one repeated phase: in one period T the travelling pattern advances one wavelength lambda, then replace 1/T with f.",
+                  "why_valid": "Speed is distance per time for the same pattern, and the gate-owned relations bind T and f for the same wave.",
+                  "output": "v = lambda/T = f lambda = 200 Hz × 1.7 m = 340 m/s."
                 },
                 {
-                  "action": "For the same medium speed, raise frequency and ask what must happen to wavelength.",
-                  "why_valid": "Holding v fixed in v = f lambda requires inverse change between f and lambda.",
-                  "output": "same medium speed: higher f -> shorter lambda."
+                  "action": "Change only the plotted vertical amplitude while holding repeat spacing fixed.",
+                  "why_valid": "Amplitude measures disturbance size, whereas period/frequency and wavelength measure repeat spacing on different axes.",
+                  "output": "amplitude can change from 1 cm to 2 cm while T = 0.005 s, f = 200 Hz, and lambda = 1.7 m remain unchanged."
                 }
               ],
               "misconceptions": [
@@ -4425,26 +4425,29 @@ window.GRADE9V3 = {
                 }
               ],
               "exit_task": {
-                "prompt": "A repeating sound vibration has period 0.005 s and wavelength 1.7 m in one medium. Find its frequency and wave speed.",
+                "prompt": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
                 "source_ref": "SRC-AUTHOR-SOUND-G9",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "f = 200 Hz and v = 340 m/s.",
+                  "summary": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s.",
                   "reasoning": [
-                    "f = 1/0.005 s = 200 Hz.",
-                    "v = f lambda = 200 x 1.7 = 340 m/s.",
-                    "The period, frequency and wavelength all describe the same wave in the same medium."
+                    "The spatial repeat distance gives wavelength: lambda = 1.7 m.",
+                    "The temporal repeat interval gives period: T = 0.005 s.",
+                    "The vertical extreme gives amplitude: 1 cm.",
+                    "f = 1/T = 200 Hz.",
+                    "One wavelength advances in one period, so v = lambda/T = f lambda = 340 m/s."
                   ],
-                  "check": "A 200 Hz wave has 200 cycles per second, so one cycle lasts 1/200 s = 0.005 s.",
+                  "check": "The units confirm Hz × m = m/s, and changing amplitude alone would not alter the repeat spacings.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
                   "verification": {
-                    "validator_id": "FREQUENCY_PERIOD",
+                    "validator_id": "WAVE_SPEED",
                     "bindings": {
-                      "period": "DAT-SOUND-PERIOD"
+                      "frequency": "DAT-SOUND-FREQUENCY",
+                      "wavelength": "DAT-SOUND-LAMBDA"
                     }
                   }
                 }
@@ -4455,14 +4458,14 @@ window.GRADE9V3 = {
             },
             {
               "id": "MIC-PHY-SOUND-PERCEPTION",
-              "title": "Pitch follows frequency; loudness is a different perceptual dimension",
+              "title": "Pitch, loudness and the approximate human audible range are different questions",
               "badge": "EASY",
               "status": "CANDIDATE",
               "badge_reason": "Pitch and loudness are everyday words that learners often swap with frequency and amplitude.",
               "entry_assumptions": [
                 "Can distinguish frequency from amplitude and can compare two wave descriptions."
               ],
-              "inferential_jump": "Higher frequency corresponds to higher perceived pitch under comparable conditions, while louder sound is associated with greater sound intensity and typically larger disturbance amplitude; changing one does not automatically change the other.",
+              "inferential_jump": "Frequency controls pitch for heard tones, sound strength/intensity is a different loudness dimension, and humans usually hear only a finite frequency band—approximately 20 Hz to 20,000 Hz for typical young hearing—whose limits vary between people and with age.",
               "teaching_path": [
                 {
                   "action": "Compare two waves with different frequencies but matched amplitudes.",
@@ -4478,6 +4481,11 @@ window.GRADE9V3 = {
                   "action": "Change frequency and amplitude in opposite directions and require two separate predictions.",
                   "why_valid": "The mixed case tests whether pitch and loudness have been collapsed into one idea.",
                   "output": "pitch prediction from f; loudness prediction from sound strength/intensity information."
+                },
+                {
+                  "action": "Compare example frequencies with the approximate usual human audible band from the scientific-check source.",
+                  "why_valid": "The current curriculum asks learners to explain audible range, while the separate source supplies the approximate numerical bounds rather than the curriculum mapping inventing them.",
+                  "output": "usual human audible band ≈ 20 Hz to 20,000 Hz; 10 Hz lies below it, 1,000 Hz lies within it, and 25,000 Hz lies above it."
                 }
               ],
               "misconceptions": [
@@ -4485,26 +4493,31 @@ window.GRADE9V3 = {
                   "wrong_idea": "A louder sound must have a higher pitch.",
                   "diagnostic_prompt": "Can a low-pitched drum sound be louder than a high-pitched whistle?",
                   "repair": "Yes. Use frequency for pitch and sound strength/intensity for loudness; they are separate dimensions."
+                },
+                {
+                  "wrong_idea": "The 20 Hz and 20,000 Hz figures are exact universal hearing cutoffs for every person.",
+                  "diagnostic_prompt": "Would every person of every age necessarily hear a 19,999 Hz tone but fail to hear a 20,001 Hz tone?",
+                  "repair": "No. Treat 20 Hz–20 kHz as an approximate usual range; individual hearing limits vary, especially with age and hearing condition."
                 }
               ],
               "exit_task": {
-                "prompt": "Sound A has higher frequency than Sound B but lower amplitude/intensity under otherwise comparable conditions. Compare their pitch and likely loudness.",
-                "source_ref": "SRC-AUTHOR-SOUND-G9",
+                "prompt": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+                "source_ref": "SRC-CBSE-ESSENTIAL-SOUND-RANGE",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "Sound A has the higher pitch, while Sound B can be louder because its sound strength is greater.",
+                  "summary": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions.",
                   "reasoning": [
-                    "Pitch follows frequency, so A is higher-pitched.",
-                    "Loudness is tied to sound intensity/amplitude rather than frequency alone.",
-                    "The two perceptual comparisons therefore point in different directions."
+                    "The approximate usual human range is about 20 Hz to 20,000 Hz.",
+                    "10 Hz is below the lower bound; 1,000 Hz lies between the bounds; 25,000 Hz is above the upper bound.",
+                    "Pitch comparisons use frequency, not amplitude or loudness."
                   ],
-                  "check": "A loud bass sound and a quiet high whistle provide the same qualitative separation.",
+                  "check": "The range is approximate and varies among people; the classification is a Grade 9 model, not a personal hearing diagnosis.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The exit makes qualitative pitch/loudness comparisons without a numerical psychoacoustic formula."
+                  "no_numeric_claim": "The numerical boundary values are source-backed classification thresholds rather than a computed formula claim."
                 }
               },
               "prerequisites": [
@@ -4668,9 +4681,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-SOUND-2A-01",
-              "stem": "A sound vibration has period 0.005 s. Find its frequency and state whether doubling amplitude at the same period changes that frequency.",
+              "stem": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
               "origin": "AUTHORED",
-              "answer": "The frequency is 200 Hz. Doubling amplitude at the same period does not change the frequency in this simple description."
+              "answer": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s."
             },
             {
               "id": "Q-PHY-SOUND-2A-COV-02",
@@ -4683,6 +4696,12 @@ window.GRADE9V3 = {
               "stem": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
               "origin": "AUTHORED",
               "answer": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener."
+            },
+            {
+              "id": "Q-PHY-SOUND-2A-COV-04",
+              "stem": "Classify 10 Hz, 1,000 Hz and 25,000 Hz relative to the approximate usual human audible range, then state which physical quantity mainly tracks pitch for an audible tone.",
+              "origin": "AUTHORED",
+              "answer": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions."
             },
             {
               "id": "Q-PHY-SOUND-2B-01",
@@ -4736,7 +4755,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-SOUND-PERCEPTION",
-              "action": "Connect higher frequency with higher pitch and distinguish amplitude/intensity from pitch.",
+              "action": "Connect frequency with pitch, distinguish sound strength/intensity from pitch, and classify frequencies relative to the approximate human audible range.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -4754,12 +4773,12 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-SOUND-WAVE-QUANTITIES",
-              "action": "Relate period, frequency, wavelength and wave speed for one sound wave and keep amplitude as a separate measure.",
+              "action": "Analyse spatial and temporal sound-wave graphs, relate period, frequency, wavelength, amplitude and speed, and derive v = lambda/T = f lambda for one wave in one medium.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 51,
+          "record_count": 76,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4770,8 +4789,8 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
-            "questions": 4,
+            "atoms": 74,
+            "questions": 5,
             "obligations": 9,
             "authoring_requirements": [
               {
@@ -5062,7 +5081,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 6,
             "authoring_requirements": [
@@ -5233,7 +5252,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
@@ -5880,7 +5899,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 50,
+            "atoms": 74,
             "questions": 6,
             "obligations": 9,
             "authoring_requirements": [
@@ -6342,7 +6361,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 51,
+            "atoms": 75,
             "questions": 2,
             "obligations": 8,
             "authoring_requirements": [
@@ -6648,7 +6667,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 51,
+            "atoms": 75,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
