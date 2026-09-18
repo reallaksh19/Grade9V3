@@ -5,7 +5,18 @@
   "status": "CANDIDATE",
   "subject": "Physics",
   "scope_summary": "Grade 9 motion spine covering distance/displacement, average rates, velocity versus acceleration, constant-acceleration equations, and elementary uniform circular motion.",
-  "curriculum_mappings": [],
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "STANDARD",
+      "scope_class": "PRESCRIBED",
+      "source_ref": "SRC-CBSE-STD",
+      "locator": "Unit III — Motion; printed p.14; C-2.1",
+      "mapping_status": "VERIFIED"
+    }
+  ],
   "resources": [
     {
       "id": "SRC-AUTHOR-KIN-1D",
@@ -47,14 +58,26 @@
       "evidence_refs": [],
       "extensions": {
         "grade9_track": "STANDARD",
-        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES"
+        "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "One-dimensional motion",
       "topic": "Motion",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "Two qualitative distinctions are authored; rate formulae and constant-acceleration equations remain upstream-blocked.",
       "depth_overlay": "FOUNDATION",
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Unit III — Motion; printed p.14; C-2.1",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "prerequisite_refs": [],
       "conventions": [
         {
@@ -78,11 +101,25 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Distinguish travelled path length from the directed start-to-finish change.",
       "success_criterion": "Classify an out-and-back trip as nonzero distance with zero displacement.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Motion; printed p.14; C-2.1 — distance/displacement and speed/velocity",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -94,13 +131,27 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
       "success_criterion": "State that zero instantaneous velocity does not imply zero acceleration.",
       "prerequisite_refs": [
         "CAP-KIN-DISTANCE-DISPLACEMENT"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Motion; printed p.14; C-2.1 — velocity and acceleration",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -112,13 +163,27 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
       "success_criterion": "Uses totals before division and keeps path length distinct from signed endpoint change.",
       "prerequisite_refs": [
         "CAP-KIN-DISTANCE-DISPLACEMENT"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Motion; printed p.14; C-2.1 — motion graphs and average velocity/acceleration",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -130,13 +195,27 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
       "success_criterion": "Checks the constant-acceleration condition before selecting a relation and keeps one signed axis throughout.",
       "prerequisite_refs": [
         "CAP-KIN-ZERO-V-NONZERO-A"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Motion; printed p.14; C-2.1 — constant-acceleration kinematic equations",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -148,13 +227,27 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously.",
       "success_criterion": "Identifies changing direction as the velocity change and points the acceleration toward the circle centre.",
       "prerequisite_refs": [
         "CAP-KIN-ZERO-V-NONZERO-A"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Motion; printed p.14; C-2.1 — elementary uniform circular motion",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     }
