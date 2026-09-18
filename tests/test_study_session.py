@@ -362,6 +362,185 @@ class StudySessionRunner(unittest.TestCase):
             ["Q-BLOCKED-BRANCH"],
         )
 
+    def test_owner_can_supply_session_external_bridge_without_mutating_canonical_route(self):
+        synthetic_plan = {
+            "worksheet_id": "SYNTHETIC-OWNER-BRIDGE",
+            "subject": "Physics",
+            "profile_id": None,
+            "findings": [{
+                "point": "STUDY_ROUTE_CAPABILITY_HAS_NO_TEACHING_LOCATION",
+                "capability": "CAP-A",
+                "detail": "no canonical delivery",
+            }],
+            "warnings": [],
+            "blockers": [],
+            "valid": False,
+            "ready": False,
+            "questions": [{
+                "question_id": "Q-B",
+                "primary_capability_ref": "CAP-B",
+                "secondary_capability_refs": [],
+            }],
+            "route": [
+                {
+                    "order": 1,
+                    "capability_ref": "CAP-A",
+                    "depends_on": [],
+                    "state": "UNRESOLVED",
+                    "delivery_state": "UNRESOLVED",
+                    "recommended_action": "UNRESOLVED",
+                    "action_reason": "no canonical delivery",
+                    "locations": [],
+                    "lessons": [],
+                },
+                {
+                    "order": 2,
+                    "capability_ref": "CAP-B",
+                    "depends_on": ["CAP-A"],
+                    "state": "RESOLVED",
+                    "delivery_state": "LOCAL",
+                    "recommended_action": "STUDY",
+                    "action_reason": "question demand",
+                    "locations": [{"matrix_id": "M-B", "rung": "R1"}],
+                    "lessons": [{"matrix_id": "M-B", "rung": "R1", "label": "B / R1"}],
+                },
+            ],
+        }
+        ready = {
+            "matrix_id": "M-B",
+            "subtopic": "B",
+            "status": session_readiness.READY,
+            "rungs": [{"rung": "R1", "state": "READY", "teaching": True, "verification": True}],
+            "blocking_findings": [],
+            "external_bridges": [],
+            "support_findings": [],
+            "academic_warnings": [],
+        }
+        with patch.object(
+            study_session.worksheet_study_plan,
+            "resolve",
+            return_value=synthetic_plan,
+        ), patch.object(
+            study_session.session_readiness,
+            "audit",
+            return_value=ready,
+        ):
+            report = study_session.plan(
+                self.mapping(),
+                owner_choice_specs=["CAP-A=EXTERNAL:Owner-selected tutor"],
+            )
+
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["owner_decisions"], [])
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.EXECUTE_WITH_FALLBACK,
+        )
+        self.assertEqual(report["next_step"]["action"], "BRIDGE")
+        self.assertEqual(
+            report["next_step"]["external_provider"],
+            "Owner-selected tutor",
+        )
+        self.assertEqual(report["executable_question_ids"], ["Q-B"])
+        self.assertEqual(report["owner_decision_question_ids"], [])
+        self.assertEqual(len(report["applied_owner_choices"]), 1)
+        self.assertEqual(len(report["owner_resolved_findings"]), 1)
+        self.assertEqual(
+            report["route"][0]["owner_choice"]["scope"],
+            "SESSION_ONLY",
+        )
+
+    def test_owner_can_select_one_offered_location_for_session_only(self):
+        synthetic_plan = {
+            "worksheet_id": "SYNTHETIC-OWNER-LOCATION",
+            "subject": "Physics",
+            "profile_id": None,
+            "findings": [{
+                "point": "STUDY_ROUTE_CAPABILITY_AMBIGUOUS_LOCATION",
+                "capability": "CAP-A",
+                "detail": "two canonical locations exist",
+            }],
+            "warnings": [],
+            "blockers": [],
+            "valid": False,
+            "ready": False,
+            "questions": [{
+                "question_id": "Q-A",
+                "primary_capability_ref": "CAP-A",
+                "secondary_capability_refs": [],
+            }],
+            "route": [{
+                "order": 1,
+                "capability_ref": "CAP-A",
+                "depends_on": [],
+                "state": "AMBIGUOUS",
+                "delivery_state": "AMBIGUOUS",
+                "recommended_action": "UNRESOLVED",
+                "action_reason": "ambiguous delivery",
+                "locations": [
+                    {"matrix_id": "M-A", "rung": "R1"},
+                    {"matrix_id": "M-X", "rung": "R2"},
+                ],
+                "lessons": [
+                    {"matrix_id": "M-A", "rung": "R1", "label": "A / R1"},
+                    {"matrix_id": "M-X", "rung": "R2", "label": "X / R2"},
+                ],
+            }],
+        }
+        readiness = {
+            "M-A": {
+                "matrix_id": "M-A",
+                "subtopic": "A",
+                "status": session_readiness.READY,
+                "rungs": [{"rung": "R1", "state": "READY", "teaching": True, "verification": True}],
+                "blocking_findings": [],
+                "external_bridges": [],
+                "support_findings": [],
+                "academic_warnings": [],
+            },
+            "M-X": {
+                "matrix_id": "M-X",
+                "subtopic": "X",
+                "status": session_readiness.READY,
+                "rungs": [{"rung": "R2", "state": "READY", "teaching": True, "verification": True}],
+                "blocking_findings": [],
+                "external_bridges": [],
+                "support_findings": [],
+                "academic_warnings": [],
+            },
+        }
+
+        def audit(_subject, matrix_id=None, **_kwargs):
+            return readiness[matrix_id]
+
+        with patch.object(
+            study_session.worksheet_study_plan,
+            "resolve",
+            return_value=synthetic_plan,
+        ), patch.object(
+            study_session.session_readiness,
+            "audit",
+            side_effect=audit,
+        ):
+            report = study_session.plan(
+                self.mapping(),
+                owner_choice_specs=["CAP-A=LOCATION:M-X:R2"],
+            )
+
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["owner_decisions"], [])
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.EXECUTE_WITH_FALLBACK,
+        )
+        self.assertEqual(report["route"][0]["locations"], [{"matrix_id": "M-X", "rung": "R2"}])
+        self.assertEqual(report["next_step"]["lesson"]["matrix_id"], "M-X")
+        self.assertEqual(report["next_step"]["lesson"]["rung"], "R2")
+        self.assertEqual(
+            report["route"][0]["owner_choice"]["scope"],
+            "SESSION_ONLY",
+        )
+
     def test_wrong_external_question_diagnoses_without_inventing_a_hint(self):
         report = study_session.attempt(
             self.mapping(),
