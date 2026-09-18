@@ -50,6 +50,10 @@ def validate(registry: dict, adapter, bindings: dict | None = None) -> dict:
 
     contract = adapter.contract
     declared_kinds = {k["id"] for k in contract.get("representation_kinds", [])}
+    # What the subject says every figure of a kind must carry. The gate names the labels;
+    # this is what decides whether those labels cover the kind's own requirements.
+    kind_requires = {k["id"]: list(k.get("requires", []))
+                     for k in contract.get("representation_kinds", [])}
     required_symbol_fields = set(contract.get("required_symbol_fields", []))
     allowed_grades = set(contract.get("curriculum", {}).get("grades", []))
     allowed_tiers = set(contract.get("curriculum", {}).get("tiers", []))
@@ -66,6 +70,22 @@ def validate(registry: dict, adapter, bindings: dict | None = None) -> dict:
         for rep in gate["representations"]:
             require(rep["kind"] in declared_kinds, "REPRESENTATION_KIND_UNDECLARED",
                     f"{gid}:{rep['representation_id']} uses {rep['kind']}")
+            # required_labels was declared by every gate and read by nothing: its content
+            # could be replaced with one nonsense string and the registry still passed,
+            # while a falsification case claimed a violation code the validator could not
+            # raise. A label now names which of the kind's requirements it satisfies, and
+            # the kind's requirements must all be covered.
+            wanted = kind_requires.get(rep["kind"], [])
+            covered = {name for entry in rep["required_labels"]
+                       for name in entry.get("satisfies", [])}
+            for name in covered:
+                require(name in wanted, "REPRESENTATION_REQUIREMENT_UNKNOWN",
+                        f"{gid}:{rep['representation_id']} claims to satisfy {name!r}, "
+                        f"which {registry['subject']} does not require of a {rep['kind']}")
+            missing = [name for name in wanted if name not in covered]
+            require(not missing, "REPRESENTATION_REQUIRED_LABEL_MISSING",
+                    f"{gid}:{rep['representation_id']} is a {rep['kind']} and no label "
+                    f"satisfies {missing}")
 
         concept_ids = {c["concept_id"] for c in gate["canonical_concepts"]}
         relation_ids = {r["relation_id"] for r in gate["relations"]}

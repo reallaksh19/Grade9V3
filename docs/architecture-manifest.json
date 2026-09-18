@@ -16,21 +16,21 @@
     "TOOLING": 17,
     "WEB": 5
   },
-  "digest": "sha256:28490deaa240ca20da4a2188574892ace3871d6c60124691468b97ca940c95ac",
+  "digest": "sha256:9f2b12a3c67c816e0e5411ec9b3b8ddd65d0abc75490373e93aa0519979d3175",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
       "role": "GATES",
       "role_description": "Technical gate schema and validator",
-      "bytes": 9037,
-      "sha256": "0bac4798085eca933042cbdff73d0235ee8c9dc1c705770e73d7f87a2cbecafe"
+      "bytes": 14931,
+      "sha256": "8465e8380f271f3390e24e4100ca2c5495d07b831d5def81cc8df1bf51c66245"
     },
     {
       "path": "Shared/gates/validate.py",
       "role": "GATES",
       "role_description": "Technical gate schema and validator",
-      "bytes": 9530,
-      "sha256": "d7212459a5c37d11a04e685488b4ab5ee50f5076eebb897445012be92e26efcf"
+      "bytes": 11003,
+      "sha256": "035c37db5d57e321869ce326c369984a31ac3433299ba3b2d805b40af046e05e"
     },
     {
       "path": "Shared/library/authority.py",
@@ -372,8 +372,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7289,
-      "sha256": "eb1e041ea47b12c9f951e7af0165f45533f1612ef9a3f2160fbe8b0e5c6a5157"
+      "bytes": 13798,
+      "sha256": "0b321793b498ac16d6480c8b7c538d9a61daa96aaf07918943d9617bedb1bbd8"
     },
     {
       "path": "tests/test_import_sil.py",

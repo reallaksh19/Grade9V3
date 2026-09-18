@@ -106,6 +106,45 @@ garbage on purpose.
 
 ---
 
+## S5 · The authority layer declared falsifiers that never ran
+
+Measured before authoring 22 gate-registry entries, because multiplying a broken pattern
+by 22 is the expensive way to find it.
+
+**13 declared falsification cases across two subjects. Zero bound to an executing
+mutation.** Seven matched a test by code coincidence; five were in a registry the gate
+tests never loaded; and two declared an outcome that could not occur at all:
+
+| | |
+|---|---|
+| `FAL-VEC-NO-AXES` | `REPRESENTATION_REQUIRED_LABEL_MISSING` — a code the validator had no line to raise |
+| `FAL-EQ-PRESCRIBED-NO-BINDING` | `"HELD_INSUFFICIENT_AUTHORITY in the curriculum report"` — a sentence, which no comparison can satisfy |
+
+And the field the first one guards was decorative. `required_labels` was declared by every
+gate representation and read by nothing: replacing its contents with one nonsense string
+left the registry passing. Meanwhile the subject contract already declared what each kind
+requires — `VECTOR`: frame, axis labels, unit, symbol, equal coordinate scale — and nothing
+compared the two.
+
+**Fix, and the reason it is not a string comparison.** A label now declares which of the
+kind's requirements it satisfies. Comparing a label's prose to a requirement's prose is a
+heuristic across two layers of authoring and would be wrong as often as right, so the
+correspondence is declared and checked exactly: every requirement covered, and no label
+claiming one the subject does not have.
+
+Migrating the nine existing representations needed **12 labels added** for requirements the
+gates had never named — every Physics `VECTOR` was missing *equal coordinate scale*, and
+every Mathematics `NUMBER_LINE` was missing *declared direction*. A vector figure without
+equal scale misrepresents direction; that was unstated in six gates.
+
+**The binding is execution-derived.** A case is covered only when a mutation registered
+under its id is applied and the outcome it names is the outcome observed — so a table that
+agrees with itself cannot pass. The module docstring had claimed since it was written that
+"every gate declares the mutations that should break it; these tests apply them". It is
+true now.
+
+---
+
 ## S4 · What the stress test did not break
 
 - **68 rungs, 14 matrices, 0 findings** against `matrix_conformance --enforce`.

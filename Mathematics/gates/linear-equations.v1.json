@@ -13,12 +13,23 @@
     {
       "gate_id": "MATH-EQ-CONSTRAINT",
       "title": "An equation is a constraint, not an instruction to compute",
-      "curriculum": {"board": "CBSE", "grade": 9, "chapter": "Linear Equations", "scope_class": "OWNER_EXTENSION"},
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Linear Equations",
+        "scope_class": "OWNER_EXTENSION"
+      },
       "tier": "NOT_IN_JEE",
       "scope_state": "ACTIVE",
       "canonical_concepts": [
-        {"concept_id": "CON-EQ-TRUTH-SET", "statement": "An equation in one unknown is a statement that is true for some values of the unknown and false for others; solving means finding exactly those values."},
-        {"concept_id": "CON-EQ-NOT-A-RECIPE", "statement": "The equals sign asserts that two expressions have the same value; it does not mean 'compute the left side'."}
+        {
+          "concept_id": "CON-EQ-TRUTH-SET",
+          "statement": "An equation in one unknown is a statement that is true for some values of the unknown and false for others; solving means finding exactly those values."
+        },
+        {
+          "concept_id": "CON-EQ-NOT-A-RECIPE",
+          "statement": "The equals sign asserts that two expressions have the same value; it does not mean 'compute the left side'."
+        }
       ],
       "prerequisites": [],
       "external_prerequisites": [],
@@ -28,63 +39,158 @@
           "expression": "S = { x in Q : a*x + b = c }",
           "meaning": "The solution set is the collection of admissible values making the statement true.",
           "symbols": [
-            {"symbol": "x", "meaning": "The unknown", "domain": "Q, the rationals"},
-            {"symbol": "S", "meaning": "The solution set", "domain": "a subset of Q"},
-            {"symbol": "a, b, c", "meaning": "Given rational coefficients", "domain": "Q"}
+            {
+              "symbol": "x",
+              "meaning": "The unknown",
+              "domain": "Q, the rationals"
+            },
+            {
+              "symbol": "S",
+              "meaning": "The solution set",
+              "domain": "a subset of Q"
+            },
+            {
+              "symbol": "a, b, c",
+              "meaning": "Given rational coefficients",
+              "domain": "Q"
+            }
           ],
-          "conditions": ["The domain of the unknown is declared before the set is described.",
-                          "A different declared domain can change the solution set."]
+          "conditions": [
+            "The domain of the unknown is declared before the set is described.",
+            "A different declared domain can change the solution set."
+          ]
         }
       ],
       "representations": [
         {
           "representation_id": "REP-EQ-SOLUTION-ON-LINE",
           "kind": "NUMBER_LINE",
-          "required_labels": ["declared domain", "the marked solution", "whether an endpoint is included"],
+          "required_labels": [
+            {
+              "label": "declared domain",
+              "satisfies": []
+            },
+            {
+              "label": "the marked solution",
+              "satisfies": []
+            },
+            {
+              "label": "whether an endpoint is included",
+              "satisfies": [
+                "open versus closed endpoints"
+              ]
+            },
+            {
+              "label": "declared positive direction along the line",
+              "satisfies": [
+                "declared direction"
+              ]
+            }
+          ],
           "verification_method": "Substitute the marked value back into the original statement and confirm both sides agree exactly.",
-          "must_not_imply": ["That a solution drawn between two ticks is approximately equal to either of them.",
-                              "That every equation has exactly one solution."],
-          "relation_bindings": ["REL-EQ-SOLUTION-SET"],
-          "concept_bindings": ["CON-EQ-TRUTH-SET"]
+          "must_not_imply": [
+            "That a solution drawn between two ticks is approximately equal to either of them.",
+            "That every equation has exactly one solution."
+          ],
+          "relation_bindings": [
+            "REL-EQ-SOLUTION-SET"
+          ],
+          "concept_bindings": [
+            "CON-EQ-TRUTH-SET"
+          ]
         }
       ],
-      "validity_conditions": ["The domain of the unknown is declared.", "Coefficients are rational."],
+      "validity_conditions": [
+        "The domain of the unknown is declared.",
+        "Coefficients are rational."
+      ],
       "reasoning_sequence": [
-        {"step_id": "RS-EQ-DECLARE-DOMAIN", "sequence": 1, "action": "Declare the domain the unknown ranges over.", "why_valid": "A solution set has no meaning until the admissible values are fixed."},
-        {"step_id": "RS-EQ-TEST-A-VALUE", "sequence": 2, "action": "Substitute a candidate and check whether the statement becomes true.", "why_valid": "Membership of the solution set is decided by substitution, which is the definition.", "depends_on": ["RS-EQ-DECLARE-DOMAIN"]}
+        {
+          "step_id": "RS-EQ-DECLARE-DOMAIN",
+          "sequence": 1,
+          "action": "Declare the domain the unknown ranges over.",
+          "why_valid": "A solution set has no meaning until the admissible values are fixed."
+        },
+        {
+          "step_id": "RS-EQ-TEST-A-VALUE",
+          "sequence": 2,
+          "action": "Substitute a candidate and check whether the statement becomes true.",
+          "why_valid": "Membership of the solution set is decided by substitution, which is the definition.",
+          "depends_on": [
+            "RS-EQ-DECLARE-DOMAIN"
+          ]
+        }
       ],
       "transformations": [
-        {"transformation_id": "TRF-EQ-SUBSTITUTE", "statement": "Substituting a value turns an equation into a numerical statement that is simply true or false."}
+        {
+          "transformation_id": "TRF-EQ-SUBSTITUTE",
+          "statement": "Substituting a value turns an equation into a numerical statement that is simply true or false."
+        }
       ],
       "misconceptions": [
-        {"misconception_id": "MIS-EQ-COMPUTE-LEFT", "wrong_idea": "The equals sign means 'work out the left-hand side and write the result on the right'.",
-         "counterexample": "In 3x + 2 = 9 there is nothing to work out on the left until x is known; the statement constrains x instead.",
-         "repair": "Read the statement aloud as 'three times the unknown, plus two, is nine' and test a value by substitution before manipulating anything."}
+        {
+          "misconception_id": "MIS-EQ-COMPUTE-LEFT",
+          "wrong_idea": "The equals sign means 'work out the left-hand side and write the result on the right'.",
+          "counterexample": "In 3x + 2 = 9 there is nothing to work out on the left until x is known; the statement constrains x instead.",
+          "repair": "Read the statement aloud as 'three times the unknown, plus two, is nine' and test a value by substitution before manipulating anything."
+        }
       ],
       "problem_families": [
-        {"family_id": "FAM-EQ-MEMBERSHIP", "title": "Decide whether a given value satisfies an equation",
-         "hidden_invariants": ["Substitution decides membership; rearrangement is not required."],
-         "required_representation": "REP-EQ-SOLUTION-ON-LINE"}
+        {
+          "family_id": "FAM-EQ-MEMBERSHIP",
+          "title": "Decide whether a given value satisfies an equation",
+          "hidden_invariants": [
+            "Substitution decides membership; rearrangement is not required."
+          ],
+          "required_representation": "REP-EQ-SOLUTION-ON-LINE"
+        }
       ],
-      "difficulty": {"maturity": "ENGINEERING", "analytical_steps": 2, "prerequisite_depth": 0,
-                     "note": "Conceptually foundational and frequently skipped, which is why later sign and division errors are so hard to diagnose."},
-      "badges": ["EQUATION-FOUNDATION"],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0,
+        "note": "Conceptually foundational and frequently skipped, which is why later sign and division errors are so hard to diagnose."
+      },
+      "badges": [
+        "EQUATION-FOUNDATION"
+      ],
       "falsification_cases": [
-        {"case_id": "FAL-EQ-SYMBOL-NO-DOMAIN", "mutation": "Remove the domain field from a relation symbol.", "expected_violation": "SYMBOL_FIELD_MISSING"},
-        {"case_id": "FAL-EQ-REP-UNDECLARED", "mutation": "Cite a representation kind the Mathematics contract does not declare.", "expected_violation": "REPRESENTATION_KIND_UNDECLARED"}
+        {
+          "case_id": "FAL-EQ-SYMBOL-NO-DOMAIN",
+          "mutation": "Remove the domain field from a relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        },
+        {
+          "case_id": "FAL-EQ-REP-UNDECLARED",
+          "mutation": "Cite a representation kind the Mathematics contract does not declare.",
+          "expected_violation": "REPRESENTATION_KIND_UNDECLARED"
+        }
       ]
     },
     {
       "gate_id": "MATH-EQ-EQUIVALENT-OPERATIONS",
       "title": "Which operations preserve the solution set",
-      "curriculum": {"board": "CBSE", "grade": 9, "chapter": "Linear Equations", "scope_class": "OWNER_EXTENSION"},
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Linear Equations",
+        "scope_class": "OWNER_EXTENSION"
+      },
       "tier": "NOT_IN_JEE",
       "scope_state": "ACTIVE",
       "canonical_concepts": [
-        {"concept_id": "CON-EQ-SAME-TO-BOTH", "statement": "Adding the same quantity to both sides, or multiplying both sides by a non-zero quantity, leaves the solution set unchanged."},
-        {"concept_id": "CON-EQ-ZERO-MULTIPLY", "statement": "Multiplying both sides by zero destroys information: every value then satisfies the result."}
+        {
+          "concept_id": "CON-EQ-SAME-TO-BOTH",
+          "statement": "Adding the same quantity to both sides, or multiplying both sides by a non-zero quantity, leaves the solution set unchanged."
+        },
+        {
+          "concept_id": "CON-EQ-ZERO-MULTIPLY",
+          "statement": "Multiplying both sides by zero destroys information: every value then satisfies the result."
+        }
       ],
-      "prerequisites": ["MATH-EQ-CONSTRAINT"],
+      "prerequisites": [
+        "MATH-EQ-CONSTRAINT"
+      ],
       "external_prerequisites": [],
       "relations": [
         {
@@ -92,62 +198,166 @@
           "expression": "a*x + b = c  =>  x = (c - b)/a,  a != 0",
           "meaning": "Subtracting b from both sides and dividing both sides by a non-zero a isolates the unknown without changing which values satisfy the statement.",
           "symbols": [
-            {"symbol": "a", "meaning": "Coefficient of the unknown; must not be zero", "domain": "Q \\ {0}"},
-            {"symbol": "b", "meaning": "Constant added on the left", "domain": "Q"},
-            {"symbol": "c", "meaning": "Value the left side must equal", "domain": "Q"},
-            {"symbol": "x", "meaning": "The unknown", "domain": "Q"}
+            {
+              "symbol": "a",
+              "meaning": "Coefficient of the unknown; must not be zero",
+              "domain": "Q \\ {0}"
+            },
+            {
+              "symbol": "b",
+              "meaning": "Constant added on the left",
+              "domain": "Q"
+            },
+            {
+              "symbol": "c",
+              "meaning": "Value the left side must equal",
+              "domain": "Q"
+            },
+            {
+              "symbol": "x",
+              "meaning": "The unknown",
+              "domain": "Q"
+            }
           ],
-          "conditions": ["a is non-zero; if a = 0 the statement is either never true or always true.",
-                          "Both operations are reversible, which is why the solution set is preserved."]
+          "conditions": [
+            "a is non-zero; if a = 0 the statement is either never true or always true.",
+            "Both operations are reversible, which is why the solution set is preserved."
+          ]
         }
       ],
       "representations": [
         {
           "representation_id": "REP-EQ-BALANCE-STEPS",
           "kind": "NUMBER_LINE",
-          "required_labels": ["declared domain", "the solution after isolation", "whether the endpoint is included"],
+          "required_labels": [
+            {
+              "label": "declared domain",
+              "satisfies": []
+            },
+            {
+              "label": "the solution after isolation",
+              "satisfies": []
+            },
+            {
+              "label": "whether the endpoint is included",
+              "satisfies": [
+                "open versus closed endpoints"
+              ]
+            },
+            {
+              "label": "declared positive direction along the line",
+              "satisfies": [
+                "declared direction"
+              ]
+            }
+          ],
           "verification_method": "Substitute the isolated value into the original statement, not into an intermediate line.",
-          "must_not_imply": ["That every rearrangement preserves the solution set."],
-          "relation_bindings": ["REL-EQ-LINEAR-SOLUTION"],
-          "concept_bindings": ["CON-EQ-SAME-TO-BOTH"]
+          "must_not_imply": [
+            "That every rearrangement preserves the solution set."
+          ],
+          "relation_bindings": [
+            "REL-EQ-LINEAR-SOLUTION"
+          ],
+          "concept_bindings": [
+            "CON-EQ-SAME-TO-BOTH"
+          ]
         }
       ],
-      "validity_conditions": ["a is non-zero.", "Coefficients and the unknown share the declared rational domain."],
+      "validity_conditions": [
+        "a is non-zero.",
+        "Coefficients and the unknown share the declared rational domain."
+      ],
       "reasoning_sequence": [
-        {"step_id": "RS-EQ-ISOLATE-TERM", "sequence": 1, "action": "Subtract b from both sides.", "why_valid": "Adding the same quantity to both sides is reversible, so no solution is gained or lost."},
-        {"step_id": "RS-EQ-DIVIDE", "sequence": 2, "action": "Divide both sides by a, having checked a is non-zero.", "why_valid": "Dividing by a non-zero quantity is reversible; dividing by zero is undefined.", "depends_on": ["RS-EQ-ISOLATE-TERM"]},
-        {"step_id": "RS-EQ-VERIFY", "sequence": 3, "action": "Substitute the result into the original statement.", "why_valid": "Verification against the original catches an error made in any intermediate line.", "depends_on": ["RS-EQ-DIVIDE"]}
+        {
+          "step_id": "RS-EQ-ISOLATE-TERM",
+          "sequence": 1,
+          "action": "Subtract b from both sides.",
+          "why_valid": "Adding the same quantity to both sides is reversible, so no solution is gained or lost."
+        },
+        {
+          "step_id": "RS-EQ-DIVIDE",
+          "sequence": 2,
+          "action": "Divide both sides by a, having checked a is non-zero.",
+          "why_valid": "Dividing by a non-zero quantity is reversible; dividing by zero is undefined.",
+          "depends_on": [
+            "RS-EQ-ISOLATE-TERM"
+          ]
+        },
+        {
+          "step_id": "RS-EQ-VERIFY",
+          "sequence": 3,
+          "action": "Substitute the result into the original statement.",
+          "why_valid": "Verification against the original catches an error made in any intermediate line.",
+          "depends_on": [
+            "RS-EQ-DIVIDE"
+          ]
+        }
       ],
       "transformations": [
-        {"transformation_id": "TRF-EQ-REVERSIBLE", "statement": "An operation preserves the solution set exactly when it can be undone on both sides."}
+        {
+          "transformation_id": "TRF-EQ-REVERSIBLE",
+          "statement": "An operation preserves the solution set exactly when it can be undone on both sides."
+        }
       ],
       "misconceptions": [
-        {"misconception_id": "MIS-EQ-DIVIDE-BY-UNKNOWN", "wrong_idea": "You may divide both sides by any expression, including one containing the unknown.",
-         "counterexample": "From x*x = x, dividing both sides by x gives x = 1 and loses the solution x = 0.",
-         "repair": "Before dividing, state that the divisor is non-zero; if it might be zero, treat that case separately instead of dividing."}
+        {
+          "misconception_id": "MIS-EQ-DIVIDE-BY-UNKNOWN",
+          "wrong_idea": "You may divide both sides by any expression, including one containing the unknown.",
+          "counterexample": "From x*x = x, dividing both sides by x gives x = 1 and loses the solution x = 0.",
+          "repair": "Before dividing, state that the divisor is non-zero; if it might be zero, treat that case separately instead of dividing."
+        }
       ],
       "problem_families": [
-        {"family_id": "FAM-EQ-ISOLATE", "title": "Isolate the unknown in a one-step or two-step linear equation",
-         "hidden_invariants": ["Each step must be reversible.", "Verification uses the original statement."],
-         "required_representation": null}
+        {
+          "family_id": "FAM-EQ-ISOLATE",
+          "title": "Isolate the unknown in a one-step or two-step linear equation",
+          "hidden_invariants": [
+            "Each step must be reversible.",
+            "Verification uses the original statement."
+          ],
+          "required_representation": null
+        }
       ],
-      "difficulty": {"maturity": "ENGINEERING", "analytical_steps": 3, "prerequisite_depth": 1},
-      "badges": ["EQUATION-FOUNDATION"],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 3,
+        "prerequisite_depth": 1
+      },
+      "badges": [
+        "EQUATION-FOUNDATION"
+      ],
       "falsification_cases": [
-        {"case_id": "FAL-EQ-BACKWARD-STEP", "mutation": "Make the isolate step depend on the verify step.", "expected_violation": "REASONING_DEPENDENCY_NOT_EARLIER"}
+        {
+          "case_id": "FAL-EQ-BACKWARD-STEP",
+          "mutation": "Make the isolate step depend on the verify step.",
+          "expected_violation": "REASONING_DEPENDENCY_NOT_EARLIER"
+        }
       ]
     },
     {
       "gate_id": "MATH-EQ-EXACT-SOLUTION",
       "title": "An exact solution and its decimal approximation are different objects",
-      "curriculum": {"board": "CBSE", "grade": 9, "chapter": "Linear Equations", "scope_class": "OWNER_EXTENSION"},
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Linear Equations",
+        "scope_class": "OWNER_EXTENSION"
+      },
       "tier": "NOT_IN_JEE",
       "scope_state": "ACTIVE",
       "canonical_concepts": [
-        {"concept_id": "CON-EQ-EXACT-VALUE", "statement": "A rational solution is a single exact number; writing it as a fraction is not an unfinished answer."},
-        {"concept_id": "CON-EQ-APPROX-IS-DIFFERENT", "statement": "A truncated decimal is a different number from the exact rational it approximates, however many digits are kept."}
+        {
+          "concept_id": "CON-EQ-EXACT-VALUE",
+          "statement": "A rational solution is a single exact number; writing it as a fraction is not an unfinished answer."
+        },
+        {
+          "concept_id": "CON-EQ-APPROX-IS-DIFFERENT",
+          "statement": "A truncated decimal is a different number from the exact rational it approximates, however many digits are kept."
+        }
       ],
-      "prerequisites": ["MATH-EQ-EQUIVALENT-OPERATIONS"],
+      "prerequisites": [
+        "MATH-EQ-EQUIVALENT-OPERATIONS"
+      ],
       "external_prerequisites": [],
       "relations": [
         {
@@ -155,51 +365,138 @@
           "expression": "x exact  =>  a*x + b = c holds exactly",
           "meaning": "Only the exact value reproduces the original statement without residue; a truncated decimal leaves a small discrepancy.",
           "symbols": [
-            {"symbol": "x", "meaning": "The exact rational solution", "domain": "Q"},
-            {"symbol": "x~", "meaning": "A decimal approximation of that solution", "domain": "the terminating decimals, a proper subset of Q"}
+            {
+              "symbol": "x",
+              "meaning": "The exact rational solution",
+              "domain": "Q"
+            },
+            {
+              "symbol": "x~",
+              "meaning": "A decimal approximation of that solution",
+              "domain": "the terminating decimals, a proper subset of Q"
+            }
           ],
-          "conditions": ["Substituting a truncated decimal does not satisfy the statement exactly.",
-                          "Rounding is a presentation choice made after the mathematics, never during it."]
+          "conditions": [
+            "Substituting a truncated decimal does not satisfy the statement exactly.",
+            "Rounding is a presentation choice made after the mathematics, never during it."
+          ]
         }
       ],
       "representations": [
         {
           "representation_id": "REP-EQ-EXACT-ON-LINE",
           "kind": "NUMBER_LINE",
-          "required_labels": ["the exact solution", "the bracketing integers", "whether endpoints are included"],
+          "required_labels": [
+            {
+              "label": "the exact solution",
+              "satisfies": []
+            },
+            {
+              "label": "the bracketing integers",
+              "satisfies": []
+            },
+            {
+              "label": "whether endpoints are included",
+              "satisfies": [
+                "open versus closed endpoints"
+              ]
+            },
+            {
+              "label": "declared positive direction along the line",
+              "satisfies": [
+                "declared direction"
+              ]
+            }
+          ],
           "verification_method": "Show the exact value strictly between two integers and confirm neither integer satisfies the equation.",
-          "must_not_imply": ["That a value between two ticks equals the nearer tick.",
-                              "That a fraction is a less finished answer than a decimal."],
-          "relation_bindings": ["REL-EQ-EXACT-VERIFICATION"],
-          "concept_bindings": ["CON-EQ-EXACT-VALUE", "CON-EQ-APPROX-IS-DIFFERENT"]
+          "must_not_imply": [
+            "That a value between two ticks equals the nearer tick.",
+            "That a fraction is a less finished answer than a decimal."
+          ],
+          "relation_bindings": [
+            "REL-EQ-EXACT-VERIFICATION"
+          ],
+          "concept_bindings": [
+            "CON-EQ-EXACT-VALUE",
+            "CON-EQ-APPROX-IS-DIFFERENT"
+          ]
         }
       ],
-      "validity_conditions": ["The declared domain is the rationals.",
-                               "Exactness claims concern the value, not its written form."],
+      "validity_conditions": [
+        "The declared domain is the rationals.",
+        "Exactness claims concern the value, not its written form."
+      ],
       "reasoning_sequence": [
-        {"step_id": "RS-EQ-KEEP-FRACTION", "sequence": 1, "action": "Record the solution as an exact fraction in lowest terms.", "why_valid": "The division that produced it need not terminate as a decimal."},
-        {"step_id": "RS-EQ-SUBSTITUTE-EXACT", "sequence": 2, "action": "Verify by substituting the exact fraction.", "why_valid": "Exact substitution reproduces the original statement with no residue.", "depends_on": ["RS-EQ-KEEP-FRACTION"]},
-        {"step_id": "RS-EQ-CONTRAST-DECIMAL", "sequence": 3, "action": "Substitute a truncated decimal and observe the discrepancy.", "why_valid": "Seeing the residue is what distinguishes the two objects.", "depends_on": ["RS-EQ-SUBSTITUTE-EXACT"]}
+        {
+          "step_id": "RS-EQ-KEEP-FRACTION",
+          "sequence": 1,
+          "action": "Record the solution as an exact fraction in lowest terms.",
+          "why_valid": "The division that produced it need not terminate as a decimal."
+        },
+        {
+          "step_id": "RS-EQ-SUBSTITUTE-EXACT",
+          "sequence": 2,
+          "action": "Verify by substituting the exact fraction.",
+          "why_valid": "Exact substitution reproduces the original statement with no residue.",
+          "depends_on": [
+            "RS-EQ-KEEP-FRACTION"
+          ]
+        },
+        {
+          "step_id": "RS-EQ-CONTRAST-DECIMAL",
+          "sequence": 3,
+          "action": "Substitute a truncated decimal and observe the discrepancy.",
+          "why_valid": "Seeing the residue is what distinguishes the two objects.",
+          "depends_on": [
+            "RS-EQ-SUBSTITUTE-EXACT"
+          ]
+        }
       ],
       "transformations": [
-        {"transformation_id": "TRF-EQ-LOWEST-TERMS", "statement": "Reducing a fraction to lowest terms changes its written form, not the number it names."}
+        {
+          "transformation_id": "TRF-EQ-LOWEST-TERMS",
+          "statement": "Reducing a fraction to lowest terms changes its written form, not the number it names."
+        }
       ],
       "misconceptions": [
-        {"misconception_id": "MIS-EQ-DECIMAL-IS-ANSWER", "wrong_idea": "A fraction should be converted to a decimal to give the real answer.",
-         "counterexample": "For 3x + 2 = 9 the solution is 7/3; substituting 2.333333333333 gives 8.999999999999, not 9.",
-         "repair": "Substitute both the fraction and the truncated decimal into the original statement and compare the two results exactly."}
+        {
+          "misconception_id": "MIS-EQ-DECIMAL-IS-ANSWER",
+          "wrong_idea": "A fraction should be converted to a decimal to give the real answer.",
+          "counterexample": "For 3x + 2 = 9 the solution is 7/3; substituting 2.333333333333 gives 8.999999999999, not 9.",
+          "repair": "Substitute both the fraction and the truncated decimal into the original statement and compare the two results exactly."
+        }
       ],
       "problem_families": [
-        {"family_id": "FAM-EQ-EXACT-RATIONAL", "title": "Solve a linear equation whose solution is not a terminating decimal",
-         "hidden_invariants": ["The exact value verifies; the truncation does not."],
-         "required_representation": "REP-EQ-EXACT-ON-LINE"}
+        {
+          "family_id": "FAM-EQ-EXACT-RATIONAL",
+          "title": "Solve a linear equation whose solution is not a terminating decimal",
+          "hidden_invariants": [
+            "The exact value verifies; the truncation does not."
+          ],
+          "required_representation": "REP-EQ-EXACT-ON-LINE"
+        }
       ],
-      "difficulty": {"maturity": "ENGINEERING", "analytical_steps": 3, "prerequisite_depth": 2,
-                     "note": "The arithmetic is easy; distinguishing the two objects is the actual content."},
-      "badges": ["EQUATION-FOUNDATION", "EXACTNESS"],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 3,
+        "prerequisite_depth": 2,
+        "note": "The arithmetic is easy; distinguishing the two objects is the actual content."
+      },
+      "badges": [
+        "EQUATION-FOUNDATION",
+        "EXACTNESS"
+      ],
       "falsification_cases": [
-        {"case_id": "FAL-EQ-DUPLICATE-ASSET", "mutation": "Reuse REL-EQ-LINEAR-SOLUTION as a relation id in this gate.", "expected_violation": "GATE_DUPLICATE_ASSET_ID"},
-        {"case_id": "FAL-EQ-PRESCRIBED-NO-BINDING", "mutation": "Change scope_class to PRESCRIBED with no curriculum binding.", "expected_violation": "HELD_INSUFFICIENT_AUTHORITY in the curriculum report"}
+        {
+          "case_id": "FAL-EQ-DUPLICATE-ASSET",
+          "mutation": "Reuse REL-EQ-LINEAR-SOLUTION as a relation id in this gate.",
+          "expected_violation": "GATE_DUPLICATE_ASSET_ID"
+        },
+        {
+          "case_id": "FAL-EQ-PRESCRIBED-NO-BINDING",
+          "mutation": "Change scope_class to PRESCRIBED with no curriculum binding.",
+          "expected_report": "held_insufficient_authority"
+        }
       ]
     }
   ]
