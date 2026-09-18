@@ -203,13 +203,19 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
                 })
             else:
                 executable += 1
-                if rung_state == "NEEDS_SUPPORT":
+                if (
+                    rung_state == "NEEDS_SUPPORT"
+                    or readiness.get("status") in {PILOT_READY, NOT_READY}
+                ):
                     disposition = EXECUTE_WITH_FALLBACK
                     fallback_reasons.append({
                         "capability_ref": item.get("capability_ref"),
                         "matrix_id": location.get("matrix_id"),
                         "rung": location.get("rung"),
-                        "reason": "the demanded rung is usable but self-study support is incomplete",
+                        "reason": (
+                            "the demanded rung is usable, but the surrounding matrix has "
+                            "support/content gaps that remain visible"
+                        ),
                     })
 
         item["execution_disposition"] = disposition
