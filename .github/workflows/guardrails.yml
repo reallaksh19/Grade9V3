@@ -68,6 +68,12 @@ jobs:
       - name: Opt-in teaching routes cover every owned microtopic
         run: python3 Shared/tools/teaching_route_coverage.py --enforce
 
+      # Prescribed practicals are curriculum obligations, not optional examples.
+      # Every declared practical must resolve to an inspected curriculum source and
+      # have bucket-owned practice on the capability it is meant to exercise.
+      - name: Prescribed practicals have explicit practice custody
+        run: python3 Shared/tools/prescribed_practical_coverage.py --enforce
+
       # Engineering dependencies are declared by matrices but resolved only against
       # subject gates/contracts. Missing assets on backlog rows are reported; missing
       # assets on authored rows are contradictions.
