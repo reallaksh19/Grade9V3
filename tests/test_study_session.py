@@ -186,6 +186,131 @@ class StudySessionRunner(unittest.TestCase):
         self.assertIsNone(report["next_step"])
         self.assertTrue(report["owner_decisions"])
 
+    def test_owner_decision_propagates_to_dependents_but_not_unrelated_branch(self):
+        synthetic_plan = {
+            "worksheet_id": "SYNTHETIC-FALLBACK",
+            "subject": "Physics",
+            "profile_id": None,
+            "findings": [],
+            "warnings": [],
+            "blockers": [],
+            "valid": True,
+            "ready": True,
+            "questions": [
+                {
+                    "question_id": "Q-BLOCKED-BRANCH",
+                    "primary_capability_ref": "CAP-B",
+                    "secondary_capability_refs": [],
+                },
+                {
+                    "question_id": "Q-INDEPENDENT",
+                    "primary_capability_ref": "CAP-C",
+                    "secondary_capability_refs": [],
+                },
+            ],
+            "route": [
+                {
+                    "order": 1,
+                    "capability_ref": "CAP-A",
+                    "depends_on": [],
+                    "state": "RESOLVED",
+                    "delivery_state": "LOCAL",
+                    "recommended_action": "STUDY",
+                    "action_reason": "prerequisite",
+                    "locations": [{"matrix_id": "M-A", "rung": "R1"}],
+                    "lessons": [],
+                },
+                {
+                    "order": 2,
+                    "capability_ref": "CAP-B",
+                    "depends_on": ["CAP-A"],
+                    "state": "RESOLVED",
+                    "delivery_state": "LOCAL",
+                    "recommended_action": "STUDY",
+                    "action_reason": "question demand",
+                    "locations": [{"matrix_id": "M-B", "rung": "R1"}],
+                    "lessons": [],
+                },
+                {
+                    "order": 3,
+                    "capability_ref": "CAP-C",
+                    "depends_on": [],
+                    "state": "RESOLVED",
+                    "delivery_state": "LOCAL",
+                    "recommended_action": "STUDY",
+                    "action_reason": "independent question demand",
+                    "locations": [{"matrix_id": "M-C", "rung": "R1"}],
+                    "lessons": [],
+                },
+            ],
+        }
+
+        readiness = {
+            "M-A": {
+                "matrix_id": "M-A",
+                "subtopic": "A",
+                "status": session_readiness.NOT_READY,
+                "rungs": [{"rung": "R1", "state": "BLOCKED"}],
+                "external_bridges": [],
+                "support_findings": [],
+                "academic_warnings": [],
+            },
+            "M-B": {
+                "matrix_id": "M-B",
+                "subtopic": "B",
+                "status": session_readiness.READY,
+                "rungs": [{"rung": "R1", "state": "READY"}],
+                "external_bridges": [],
+                "support_findings": [],
+                "academic_warnings": [],
+            },
+            "M-C": {
+                "matrix_id": "M-C",
+                "subtopic": "C",
+                "status": session_readiness.READY,
+                "rungs": [{"rung": "R1", "state": "READY"}],
+                "external_bridges": [],
+                "support_findings": [],
+                "academic_warnings": [],
+            },
+        }
+
+        def audit(_subject, matrix_id=None, **_kwargs):
+            return readiness[matrix_id]
+
+        with patch.object(
+            study_session.worksheet_study_plan,
+            "resolve",
+            return_value=synthetic_plan,
+        ), patch.object(
+            study_session.session_readiness,
+            "audit",
+            side_effect=audit,
+        ):
+            report = study_session.plan(self.mapping())
+
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(
+            report["execution_disposition"],
+            study_session.EXECUTE_WITH_FALLBACK,
+        )
+        route = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(
+            route["CAP-A"]["execution_disposition"],
+            study_session.OWNER_DECISION,
+        )
+        self.assertEqual(
+            route["CAP-B"]["execution_disposition"],
+            study_session.OWNER_DECISION,
+        )
+        self.assertIsNone(route["CAP-C"]["execution_disposition"])
+        self.assertEqual(report["next_step"]["capability_ref"], "CAP-C")
+        self.assertEqual(report["executable_question_ids"], ["Q-INDEPENDENT"])
+        self.assertEqual(
+            report["owner_decision_question_ids"],
+            ["Q-BLOCKED-BRANCH"],
+        )
+
     def test_wrong_external_question_diagnoses_without_inventing_a_hint(self):
         report = study_session.attempt(
             self.mapping(),

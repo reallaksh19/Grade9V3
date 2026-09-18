@@ -97,6 +97,9 @@ observation draft, and a review date.
 - If the demanded delivery/rung cannot be selected safely, return `OWNER_DECISION` rather
   than guessing. These are the only two exceptional execution dispositions added by the
   fallback-first policy.
+- `OWNER_DECISION` propagates through prerequisite dependencies: a dependent capability is
+  not allowed to leap over an unresolved prerequisite. Unrelated worksheet branches may
+  still continue.
 - `PILOT_READY` remains visibly weaker than `SESSION_READY`, and `NOT_READY` remains a
   truthful matrix-level readiness statement.
 - External worksheet questions remain transient demand; they are not automatically promoted
