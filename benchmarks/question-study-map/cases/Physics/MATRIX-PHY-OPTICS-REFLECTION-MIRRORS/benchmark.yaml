@@ -1,0 +1,117 @@
+benchmark_id: "QSM-MATRIX-PHY-OPTICS-REFLECTION-MIRRORS"
+subject: "Physics"
+matrix_id: "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS"
+subtopic: "Reflection and spherical mirrors"
+baseline_commit: "e6f9ccce4a2ecbba8764bfa5cd5e877830afa56d"
+readiness_snapshot: "NOT_READY"
+measurement_basis: "Frozen canonical records + current readiness report + generic runtime contracts already covered by repository tests; no learner episode fabricated."
+overall_status: PARTIAL
+source_files:
+  - "Physics/matrices/phy-optics-reflection-mirrors.rungs.json"
+  - "Physics/library/phy-optics-reflection-mirrors.v1.json"
+cases:
+  - case: direct_mapping
+    title: "Direct-ready question"
+    input_kind: synthetic_falsifier
+    status: PARTIAL
+    expected: "A representative question demand should resolve to one clear primary capability and a usable canonical teaching destination."
+    observed: "The matrix has mapped teaching (3/6 rungs), but its package contains no canonical question. A structural/synthetic mapping can be checked, not a retained real/canonical question-demand mapping."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json: questions=[]; Physics/matrices/phy-optics-reflection-mirrors.rungs.json"
+  - case: prerequisite_route
+    title: "Prerequisite route"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Prerequisite order should follow capability prerequisite_refs, including cross-matrix dependencies, never cross-matrix rung-number comparison."
+    observed: "Declared prerequisite edges are explicit and can be ordered without comparing ladder_position across matrices."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json; docs/SESSION-READINESS-REPORT.md"
+  - case: multi_capability
+    title: "Multi-capability question"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "Primary ownership must remain distinct from meaningful secondary capabilities; transitive prerequisites must not be copied into secondary demand."
+    observed: "No retained question in this package provides a genuine multi-capability case; none was manufactured."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json"
+  - case: repeated_demand
+    title: "Repeated demand"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "Multiple questions reusing one capability should consolidate teaching rather than duplicate it."
+    observed: "No genuine repeated-primary question pair exists in the retained inventory; none was manufactured."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json"
+  - case: unknown_learner
+    title: "Unknown learner"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "No learner estimate/evidence must not create invented mastery; the route should remain conservative."
+    observed: "Unknown learner state does not alter canonical truth. For NOT_READY, the plan may study/check/stop, but no mastery is invented."
+    evidence: "Shared/tools/learner_evidence.py; Shared/tools/study_start.py; Shared/tools/worksheet_study_plan.py"
+  - case: rough_owner_estimate
+    title: "Rough owner estimate"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "A rough percentage may select a starting coordinate but must never create DEMONSTRATED evidence."
+    observed: "The owner-estimate contract selects an existing local rung/starting coordinate and leaves prerequisite checks/evidence distinct from mastery."
+    evidence: "Shared/tools/study_start.py; tests/test_study_start.py"
+  - case: prior_learner_evidence
+    title: "Prior learner evidence"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Direct/diagnostic evidence should override a rough owner estimate when both exist."
+    observed: "The current learner-evidence contract gives direct/diagnostic observations precedence over rough estimates."
+    evidence: "Shared/tools/learner_evidence.py; tests/test_practical_learner_evidence.py"
+  - case: external_bridge
+    title: "External provider bridge"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "Declared external-provider prerequisites must stay visible as bridges and must not become fake local teaching or fake mastery."
+    observed: "No external_provider prerequisite is declared for this matrix slice; no bridge case was manufactured."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json"
+  - case: content_gap
+    title: "Content gap"
+    input_kind: synthetic_falsifier
+    status: PARTIAL
+    expected: "A missing canonical teaching location must remain explicit; the system must not fabricate a microtopic or mark the matrix ready."
+    observed: "3 of 6 matrix rungs lack canonical microtopic_ref (R4, R5, R6). The current readiness status is NOT_READY; the gap remains visible instead of being fabricated away."
+    evidence: "Physics/matrices/phy-optics-reflection-mirrors.rungs.json; docs/SESSION-READINESS-REPORT.md"
+  - case: incomplete_source
+    title: "Incomplete source"
+    input_kind: synthetic_falsifier
+    status: NOT_APPLICABLE
+    expected: "A question requiring missing figure/table/source information must remain unresolved rather than guessed."
+    observed: "No genuine figure/table/source-insufficiency case is retained for this matrix benchmark; none was invented."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json"
+  - case: feedback_diagnosis
+    title: "Feedback diagnosis"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "For a represented capability, a wrong attempt may identify the first supported failure using canonical misconception/diagnostic evidence; ambiguous failure must not be guessed."
+    observed: "Every represented microtopic in this matrix slice contains misconception/diagnostic/repair data; the generic feedback contract also refuses unsupported ambiguous attribution."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json; Shared/tools/feedback.py; tests/test_feedback.py"
+  - case: repair
+    title: "Repair"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Repair should target the failed capability/misconception and use existing teaching/reconstruction content rather than restart an unrelated topic."
+    observed: "Represented microtopics provide repair text and a teaching path; the feedback runtime can route a supported failed capability to canonical repair rather than inventing new content."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json; Shared/tools/feedback.py"
+  - case: fresh_verification
+    title: "Fresh verification"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "After repair, verification should use a fresh same-capability question or exit task rather than the already-solved external question."
+    observed: "Represented microtopics provide exit tasks; the generic feedback contract selects a fresh same-capability question when available or an exit task fallback."
+    evidence: "Physics/library/phy-optics-reflection-mirrors.v1.json; Shared/tools/feedback.py; tests/test_feedback.py"
+  - case: helped_success
+    title: "Help-dependent success"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Correct work after help must remain non-independent evidence and must not be promoted to DEMONSTRATED."
+    observed: "The shared evidence contract treats helped success conservatively and does not create independent DEMONSTRATED evidence."
+    evidence: "Shared/tools/learner_evidence.py; tests/test_practical_learner_evidence.py"
+  - case: independent_success
+    title: "Independent success"
+    input_kind: synthetic_falsifier
+    status: PASS
+    expected: "Independent correct verification may draft DEMONSTRATED evidence and a later review date; persistence remains explicit."
+    observed: "Independent correct work may draft DEMONSTRATED evidence; review scheduling is deterministic and learner-state persistence remains explicit."
+    evidence: "Shared/tools/feedback.py; Shared/tools/review_schedule.py; tests/test_feedback.py; tests/test_review_schedule.py"
