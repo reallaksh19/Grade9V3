@@ -1,0 +1,767 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-ROT-RIGID-BODY-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Conceptual rung records for rotational inertia, origin-specific angular momentum, pure rolling kinematics, and qualitative rolling-energy partition; the quantitative torque rung remains un-authored.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "SRC-AUTHOR-PHY-ROT",
+      "title": "Track B authored rotation rung source",
+      "origin": "AUTHORED",
+      "locator": "docs/offload/physics-rungs-track-b.md + Physics/matrices/phy-rot-rigid-body.rungs.json",
+      "edition": "Track B authoring pass",
+      "section": "Rotation rungs R1, R3, R4, R5",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created repository content",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides provenance for the authored conceptual teaching in this package without elevating the imported candidate to subject authority.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "title": "Rotational dynamics, angular momentum and rolling",
+      "topic": "System of Particles and Rotational Motion",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Multiple reference choices and coupled translation/rotation require explicit controlled comparisons.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "scope": {
+        "covers": "Conceptual rotation rungs R1, R3, R4 and R5; the torque equation rung R2 is intentionally not authored.",
+        "excluded": [
+          "Quantitative torque relation and its magnitude law remain blocked on an engineering gate relation."
+        ]
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-ROT-R1",
+      "action": "Compare rotational inertia by changing radial mass distribution about one named axis.",
+      "success_criterion": "Identify the arrangement with greater rotational inertia from radial mass distribution.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-ROT-R3",
+      "action": "Test an angular-momentum conservation claim about a specified origin.",
+      "success_criterion": "State whether angular momentum is conserved about the named origin.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-ROT-R4",
+      "action": "Construct point velocities for a wheel in pure rolling.",
+      "success_criterion": "Identify the contact point as instantaneously at rest in the ground frame.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-PHY-ROT-R5",
+      "action": "Compare ideal rolling acceleration from mass distribution at fixed geometry conditions.",
+      "success_criterion": "Order rolling bodies by the distribution-dependent rotational demand.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-ROT-R1",
+      "title": "Mass distribution sets rotational inertia about an axis",
+      "bucket_id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "primary_capability_ref": "CAP-PHY-ROT-R1",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The comparison is qualitative but only works if the axis stays explicit while the mass distribution changes.",
+      "entry_assumptions": [
+        "Can compare distances from a line or point and can describe rigid rotation about a chosen axis."
+      ],
+      "inferential_jump": "Rotational inertia depends on how mass is distributed relative to the chosen axis, not on total mass alone.",
+      "teaching_path": [
+        {
+          "id": "ROT-R1-1",
+          "role": "DECLARE",
+          "action": "Lay out two equal totals of identical mass pieces around one named axis: one cluster close to the axis and one spread farther away.",
+          "why_valid": "The totals match and the axis is unchanged, so radial distribution is the only intended difference.",
+          "inputs": [],
+          "output": "same total mass | same axis | arrangement A: pieces near | arrangement B: pieces far"
+        },
+        {
+          "id": "ROT-R1-2",
+          "role": "TRANSFORM",
+          "action": "Move the pieces of arrangement A outward without adding or removing any mass, then compare how the rotational response changes.",
+          "why_valid": "Only the distances from the fixed axis were changed, isolating the effect of radial placement.",
+          "inputs": [],
+          "output": "near placement -> farther placement; total mass = unchanged; rotational inertia -> larger"
+        },
+        {
+          "id": "ROT-R1-3",
+          "role": "VERIFY",
+          "action": "Compare a rim-loaded body with a centre-loaded body that has the same total mass and outer size.",
+          "why_valid": "If total mass alone controlled the comparison the two would match; the different distribution supplies the discriminating case.",
+          "inputs": [],
+          "output": "equal total mass + equal outer size; more mass farther from axis -> greater rotational inertia"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Objects with the same mass always have the same moment of inertia.",
+          "diagnostic_prompt": "A ring and a solid disk have the same mass and radius about the same central axis. Must their moments of inertia be equal?",
+          "repair": "Track how much mass lies far from the axis; the squared distance weighting makes distribution matter."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two equal-mass arrangements rotate about the same marked axis. One keeps most of its mass close to the axis; the other places more mass near the outside. Predict which has greater rotational inertia and name the feature that decides it.",
+        "source_ref": "SRC-AUTHOR-PHY-ROT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The outside-loaded arrangement has greater rotational inertia because more of the same mass lies farther from the chosen axis.",
+          "reasoning": [
+            "The comparison fixes total mass, so mass amount cannot explain the difference.",
+            "The comparison fixes the axis, so the reference for all distances is common.",
+            "Moving the same mass farther from that axis increases its contribution to rotational inertia."
+          ],
+          "check": "Swap only the radial distributions while keeping the axis fixed; the prediction must swap with the distribution rather than stay attached to an object label.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer makes a qualitative ordering only; it contains no computed value or asserted numerical magnitude."
+        }
+      },
+      "research_contribution": "Author-created conceptual rung derived from the matrix distinction. The imported packet was consulted only as non-authoritative input; scientific and pedagogical review are still required.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two bodies have the same total mass and outer size, but one carries more mass near the outside. Must they be equally hard to change in rotation about the same axis?",
+          "defensible_answer": "No. The body with more mass farther from the axis has greater rotational inertia."
+        },
+        "attempt": {
+          "produces": "A side-by-side sketch that keeps the same axis and total mass while relocating the mass pieces radially.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The same axis is marked in both arrangements.",
+              "evidence_of": "The comparison is about distribution relative to one reference axis."
+            },
+            {
+              "criterion": "The mass pieces are redistributed without changing their total.",
+              "evidence_of": "Total mass is held fixed while radial placement is isolated."
+            }
+          ],
+          "accepted": [
+            "Both sketches show the same axis and same number of equal pieces, with one set visibly farther from the axis; the explanation ties the ordering to radial placement."
+          ],
+          "rejected": [
+            "The second sketch adds more pieces or changes the axis, so the comparison cannot distinguish distribution from total mass or reference choice."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What must stay fixed if you want to test whether distribution matters rather than total mass?",
+              "why_this_ask": "It forces the comparison to isolate one variable before any conclusion is offered.",
+              "from_step_ref": "ROT-R1-1"
+            },
+            {
+              "ask": "If no mass is added, what single change can make the two arrangements different?",
+              "why_this_ask": "It directs attention to distance from the common axis.",
+              "from_step_ref": "ROT-R1-2"
+            },
+            {
+              "ask": "Which arrangement places more of the same mass farther from the axis?",
+              "why_this_ask": "The learner identifies the physically relevant distribution instead of recalling a named object."
+            },
+            {
+              "ask": "What prediction follows if radial placement, not total mass, is the deciding feature?",
+              "why_this_ask": "It makes the learner state the inferential jump after constructing the controlled comparison.",
+              "from_step_ref": "ROT-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path supplies a controlled redistribution and its comparison; the learner route first chooses what must be held fixed, then constructs the comparison before naming the deciding feature."
+        },
+        "boundary_test": {
+          "prompt": "If every mass piece is moved to the same radial distance in both arrangements while total mass and axis remain fixed, should the distribution-based difference remain?",
+          "answer": "No. Once the radial distributions match, this particular reason for different rotational inertia disappears.",
+          "confirms": "The learner attributes the difference to radial distribution about the stated axis rather than to an object name."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-ROT-R3",
+      "title": "Angular momentum conservation belongs to a specified origin",
+      "bucket_id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "primary_capability_ref": "CAP-PHY-ROT-R3",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The central difficulty is keeping the turning-effect test and angular-momentum statement tied to the same origin while the body's distribution changes.",
+      "entry_assumptions": [
+        "Can identify an origin used for a turning-effect statement.",
+        "Can describe an axial direction for rotational quantities without changing the physical plane."
+      ],
+      "inferential_jump": "Angular momentum and torque must be taken about the same specified origin; zero net external torque about that origin makes total angular momentum there constant.",
+      "teaching_path": [
+        {
+          "id": "ROT-R3-1",
+          "role": "DECLARE",
+          "action": "Mark one origin O and write it beside both the external turning-effect check and the angular-momentum description.",
+          "why_valid": "Changing the reference point can change the turning effect, so the conservation claim is meaningful only when both quantities use the same origin.",
+          "inputs": [],
+          "output": "origin for external turning effect: O | origin for angular momentum: O"
+        },
+        {
+          "id": "ROT-R3-2",
+          "role": "TRANSFORM",
+          "action": "Move part of a rotating system inward while keeping the stated external turning effect about O absent.",
+          "why_valid": "With the reference origin fixed and no external turning effect about it, the system can redistribute internally without changing total angular momentum about O.",
+          "inputs": [],
+          "output": "mass distribution: outward -> inward; external turning effect about O = none; spin rate -> increases"
+        },
+        {
+          "id": "ROT-R3-3",
+          "role": "VERIFY",
+          "action": "Choose a different point P that the same external force does not pass through and ask whether the earlier conservation statement automatically transfers to P.",
+          "why_valid": "The same force can have no turning effect about O but a nonzero one about P, exposing why origin matching is a condition rather than a label.",
+          "inputs": [],
+          "output": "about O: external turning effect absent | about P: external turning effect present -> conservation claim must be rechecked"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If a system is isolated from external forces, angular momentum is automatically conserved about every origin.",
+          "diagnostic_prompt": "A force passes through one origin but not another. Is angular momentum conserved about both origins?",
+          "repair": "Test external torque about the same origin used for angular momentum; force isolation alone is not the criterion."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A rotating system pulls mass inward. The problem states that the net external turning effect about origin O is zero. Predict the spin-rate change and explain why the conservation claim must stay tied to O.",
+        "source_ref": "SRC-AUTHOR-PHY-ROT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The spin rate rises as the mass distribution moves inward, while total angular momentum about O remains constant under the stated zero-external-torque condition there.",
+          "reasoning": [
+            "The reference origin is fixed as O for both the condition and the conserved quantity.",
+            "Moving mass inward changes how the rotating mass is distributed about O.",
+            "With no net external turning effect about O, the redistribution changes spin rate rather than total angular momentum about O."
+          ],
+          "check": "Repeat the reasoning after naming another origin; if an external turning effect exists there, the conservation claim must be reconsidered instead of copied.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response predicts directions of change and a conservation condition without claiming a calculated angular momentum or angular speed."
+        }
+      },
+      "research_contribution": "Author-created origin-discipline rung. It intentionally does not author the missing quantitative torque relation from R2 and therefore treats that prior rung as an explicit conceptual dependency gap.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A force line passes through origin O but misses point P. Can one angular-momentum conservation statement be copied unchanged from O to P?",
+          "defensible_answer": "No. The external turning effect must be checked about the same origin used for angular momentum; the answer can differ between O and P."
+        },
+        "attempt": {
+          "produces": "A two-origin diagram showing the same force line together with a separate conservation decision for O and for P.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The same physical force is shown relative to both origins.",
+              "evidence_of": "The changed conclusion comes from reference choice rather than from changing the interaction."
+            },
+            {
+              "criterion": "Each conservation statement names its own origin.",
+              "evidence_of": "The learner keeps the condition and conserved quantity paired to one reference point."
+            }
+          ],
+          "accepted": [
+            "The force line passes through O but not P, with the note 'check about O' kept separate from 'check about P'; the response refuses to transfer the conclusion automatically."
+          ],
+          "rejected": [
+            "The response writes 'angular momentum conserved' once with no origin, which hides the condition the rung is meant to establish."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which point is being used to judge the external turning effect?",
+              "why_this_ask": "It makes the reference explicit before any conservation language appears.",
+              "from_step_ref": "ROT-R3-1"
+            },
+            {
+              "ask": "If the same system pulls mass inward with that condition unchanged, what changes visibly?",
+              "why_this_ask": "It separates redistribution from loss of the conserved quantity.",
+              "from_step_ref": "ROT-R3-2"
+            },
+            {
+              "ask": "Does the force line have the same relation to a second point P?",
+              "why_this_ask": "It creates the counterexample that makes the origin condition necessary.",
+              "from_step_ref": "ROT-R3-3"
+            },
+            {
+              "ask": "What must be named every time you claim conservation here?",
+              "why_this_ask": "The learner states the origin-matching rule rather than merely accepting the example."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states one origin, changes the distribution, then probes a second origin; the elicitation instead begins by withholding the conservation verdict and makes the learner decide separately for each reference point."
+        },
+        "boundary_test": {
+          "prompt": "If the net external turning effect is zero about both O and P for a particular isolated system, may conservation be stated about both?",
+          "answer": "Yes, but as two separately justified statements, each tied to the origin for which the zero-turning-effect condition has been checked.",
+          "confirms": "The learner understands that the origin condition is local to the conservation statement rather than an arbitrary notation choice."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-ROT-R4",
+      "title": "Pure rolling makes the contact point instantaneously at rest",
+      "bucket_id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "primary_capability_ref": "CAP-PHY-ROT-R4",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must combine translation with rotation at different points of one rigid body without treating every point as having the centre speed.",
+      "entry_assumptions": [
+        "Can distinguish centre-of-mass translation from rotation about the centre.",
+        "Can add two directed velocity contributions qualitatively."
+      ],
+      "inferential_jump": "Pure rolling couples translation and rotation so that the point touching a stationary surface is instantaneously at rest relative to that surface.",
+      "teaching_path": [
+        {
+          "id": "ROT-R4-1",
+          "role": "DECLARE",
+          "action": "Draw a wheel moving right and mark three points: top, centre, and the point touching the stationary ground.",
+          "why_valid": "The rigid body is one object, but the three points occupy different places relative to the centre and therefore need not share one ground-frame velocity.",
+          "inputs": [],
+          "output": "marked points: top | centre | contact; ground: stationary"
+        },
+        {
+          "id": "ROT-R4-2",
+          "role": "TRANSFORM",
+          "action": "At each marked point, place the rightward translation contribution beside the rotational contribution from turning about the centre.",
+          "why_valid": "Ground-frame motion of a point on a rolling rigid body is obtained by combining the motion of the centre with motion about the centre.",
+          "inputs": [],
+          "output": "contact: rightward + leftward -> rest | centre: rightward + none -> rightward | top: rightward + rightward -> faster rightward"
+        },
+        {
+          "id": "ROT-R4-3",
+          "role": "VERIFY",
+          "action": "Ask what would be observed at the contact point if the wheel were sliding instead of rolling purely.",
+          "why_valid": "A nonzero ground-frame contact speed is the discriminating boundary: cancellation at contact is the defining no-slip feature used here.",
+          "inputs": [],
+          "output": "pure rolling -> contact instantaneously at rest | sliding -> contact has nonzero ground-frame motion"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every point on a rolling wheel moves forward with the centre-of-mass speed.",
+          "diagnostic_prompt": "For a wheel rolling right without slipping, what is the instantaneous velocity of the point touching the ground?",
+          "repair": "Add translational and rotational velocity contributions; at the contact point they cancel for pure rolling."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A wheel rolls right on stationary ground without slipping. Rank the instantaneous ground-frame motions of the top, centre, and contact point, and explain why the contact point is special.",
+        "source_ref": "SRC-AUTHOR-PHY-ROT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The contact point is instantaneously at rest, the centre moves forward, and the top moves forward faster than the centre because translation and rotation combine differently at those locations.",
+          "reasoning": [
+            "Every point shares the centre's translational motion.",
+            "Rotation about the centre contributes different directions at the top and contact.",
+            "At contact the two contributions oppose and cancel in pure rolling; at the top they reinforce."
+          ],
+          "check": "Change only the condition from pure rolling to sliding; the contact-point cancellation should no longer be asserted.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The model answer compares qualitative point motions and asserts no computed speed."
+        }
+      },
+      "research_contribution": "Author-created kinematic rolling rung. It uses no rolling-energy equation and no quantitative no-slip formula; the contact-point condition is taught through velocity composition.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A wheel rolls right without slipping. Is the point touching the ground moving right at the same instant?",
+          "defensible_answer": "No. In the ground frame that contact point is instantaneously at rest even though the wheel's centre is moving right."
+        },
+        "attempt": {
+          "produces": "A three-point velocity sketch for the top, centre, and contact point with translation and rotation contributions shown separately.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The contact point receives opposite translation and rotation contributions.",
+              "evidence_of": "The learner constructs the no-slip cancellation rather than memorizing a point-speed list."
+            },
+            {
+              "criterion": "The top point receives reinforcing forward contributions.",
+              "evidence_of": "The learner applies the same composition rule consistently around the wheel."
+            }
+          ],
+          "accepted": [
+            "The sketch shows cancellation at contact, one forward contribution at the centre, and reinforcement at the top, with the ground explicitly stationary."
+          ],
+          "rejected": [
+            "All three points are assigned the same forward arrow because the body is rigid; rigidity constrains distances, not equality of ground-frame velocities."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which motion contribution is shared by every point because the centre is translating?",
+              "why_this_ask": "It establishes the common part before adding the location-dependent part.",
+              "from_step_ref": "ROT-R4-1"
+            },
+            {
+              "ask": "At the bottom point, which way does rotation about the centre move that point relative to the centre?",
+              "why_this_ask": "The bottom contribution is the one needed to expose cancellation.",
+              "from_step_ref": "ROT-R4-2"
+            },
+            {
+              "ask": "What ground-frame motion remains when the two contact-point contributions are combined?",
+              "why_this_ask": "The learner performs the decisive composition instead of receiving the result."
+            },
+            {
+              "ask": "What changes first if the wheel begins to slide?",
+              "why_this_ask": "It checks that zero contact motion is tied to the no-slip condition rather than to wheels in general.",
+              "from_step_ref": "ROT-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative route labels all three point motions before testing sliding; the elicitation withholds the contact result and makes the learner construct it from two directional contributions."
+        },
+        "boundary_test": {
+          "prompt": "A locked wheel skids right without turning. Is the point touching the ground instantaneously at rest?",
+          "answer": "No. Without the rotational contribution that cancels translation in pure rolling, the contact point slides right relative to the ground.",
+          "confirms": "The learner associates instantaneous contact rest with the no-slip composition rather than with mere contact between wheel and ground."
+        }
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-PHY-ROT-R5",
+      "title": "Mass distribution changes ideal rolling acceleration",
+      "bucket_id": "BUCKET-PHY-ROT-RIGID-BODY",
+      "primary_capability_ref": "CAP-PHY-ROT-R5",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The comparison is conceptual only if mass amount, radius, incline, and no-slip conditions are controlled while shape changes.",
+      "entry_assumptions": [
+        "Can separate translational motion from rotation in pure rolling.",
+        "Can reason that one energy input may be divided among different motion channels."
+      ],
+      "inferential_jump": "For bodies rolling without slipping, how mass is distributed relative to size controls how gravitational energy divides between translation and rotation, so total mass alone does not decide which body accelerates more.",
+      "teaching_path": [
+        {
+          "id": "ROT-R5-1",
+          "role": "DECLARE",
+          "action": "Release two equal-mass, equal-radius bodies from the same marked height on the same incline, differing only in how their mass is distributed.",
+          "why_valid": "Holding mass, size, release height, and incline fixed makes distribution the intended cause of any difference in motion.",
+          "inputs": [],
+          "output": "same mass | same radius | same start height | distribution A: centre-loaded | distribution B: rim-loaded"
+        },
+        {
+          "id": "ROT-R5-2",
+          "role": "TRANSFORM",
+          "action": "Track the fall in gravitational energy into two destinations: centre motion and rotation about the centre.",
+          "why_valid": "Pure rolling has both translational and rotational kinetic energy, so a larger rotational share leaves a smaller share for centre-of-mass motion at the same height loss.",
+          "inputs": [],
+          "output": "same energy drop -> translation share + rotation share; rim-loaded case -> larger rotation share -> smaller centre-motion share"
+        },
+        {
+          "id": "ROT-R5-3",
+          "role": "VERIFY",
+          "action": "Repeat the comparison with the same shape at two different total masses while preserving the mass distribution relative to size.",
+          "why_valid": "If the distribution pattern is unchanged, changing total mass alone does not create the shape-dependent ordering being tested in the ideal model.",
+          "inputs": [],
+          "output": "same shape pattern + different total mass -> same ideal acceleration ordering"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The heavier rolling object reaches the bottom first because gravity pulls harder on it.",
+          "diagnostic_prompt": "Two same-shape cylinders of different masses roll without slipping down the same incline. Which reaches the bottom first in the ideal model?",
+          "repair": "Mass cancels from the ideal rolling-acceleration expression; the controlling shape information is I/(MR^2)."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two equal-mass, equal-radius bodies roll without slipping from the same height. One is more rim-loaded. Predict which gains centre-of-mass speed more quickly and explain the role of mass distribution without calculating an acceleration.",
+        "source_ref": "SRC-AUTHOR-PHY-ROT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The more centre-loaded body gains centre-of-mass speed more quickly because less of the common energy drop is tied up in rotation for the same translational progress.",
+          "reasoning": [
+            "Both bodies begin with the same gravitational-energy change available over a given height loss.",
+            "Pure rolling requires energy to appear in both centre motion and rotation.",
+            "A distribution with greater rotational inertia demands a larger rotational share, leaving less for centre-of-mass motion."
+          ],
+          "check": "Compare two copies of the same shape at different masses; the ideal ordering should not reverse merely because one copy is heavier.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response gives a qualitative acceleration ordering and energy-partition explanation without computing a numerical acceleration."
+        }
+      },
+      "research_contribution": "Author-created qualitative rolling-energy comparison. The record deliberately avoids authoring the blocked acceleration equation or any gate-owned quantitative relation.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two bodies have the same mass and radius and start together down one incline without slipping. One keeps more mass near the rim. Must they arrive together?",
+          "defensible_answer": "No. In the ideal model the rim-loaded body devotes more of the energy change to rotation, so its centre speeds up less quickly."
+        },
+        "attempt": {
+          "produces": "An energy-allocation diagram for two same-mass bodies showing a common input split differently between centre motion and rotation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The energy input is held common before the split is compared.",
+              "evidence_of": "The response isolates partition rather than changing the starting conditions."
+            },
+            {
+              "criterion": "The rim-loaded case assigns a larger share to rotation.",
+              "evidence_of": "The learner connects distribution to rotational demand without blaming total mass."
+            }
+          ],
+          "accepted": [
+            "Both cases start from the same height and show the same total energy drop; the rim-loaded case allocates more to rotation and less to centre motion."
+          ],
+          "rejected": [
+            "The heavier-looking or visually larger object is declared faster without controlling mass, radius, and starting height, so no distribution effect has been isolated."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What conditions must match before shape can be the reason one body accelerates differently?",
+              "why_this_ask": "It prevents total mass or release height from becoming an uncontrolled explanation.",
+              "from_step_ref": "ROT-R5-1"
+            },
+            {
+              "ask": "Into what two motion forms can the common gravitational-energy decrease appear during pure rolling?",
+              "why_this_ask": "It creates the partition the later comparison needs.",
+              "from_step_ref": "ROT-R5-2"
+            },
+            {
+              "ask": "Which distribution demands more rotational participation for the same overall motion?",
+              "why_this_ask": "The learner connects radial distribution to the rotation share."
+            },
+            {
+              "ask": "What should happen if only total mass changes while shape stays similar?",
+              "why_this_ask": "This boundary removes the tempting 'heavier is faster' explanation.",
+              "from_step_ref": "ROT-R5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path presents the two energy shares then checks mass scaling; the learner route first designs the fair comparison and only then decides how the common energy change is divided."
+        },
+        "boundary_test": {
+          "prompt": "Two geometrically similar solid cylinders have different masses but roll ideally down the same incline from the same height. Should mass alone make one accelerate more?",
+          "answer": "No. With the same shape pattern in the ideal no-slip model, changing total mass alone does not create a different acceleration.",
+          "confirms": "The learner attributes the ideal acceleration difference to distribution relative to size, not to the magnitude of the gravitational force by itself."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-ROT-CORE1A",
+      "title": "Declarative rotation conceptual route",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-ROT-R1",
+        "MIC-PHY-ROT-R3",
+        "MIC-PHY-ROT-R4",
+        "MIC-PHY-ROT-R5"
+      ],
+      "entry_needs": [
+        "Use the matrix ladder and preserve the explicit R2 gap rather than treating R3 as an entry rung."
+      ],
+      "learner_actions": [
+        "Read each controlled construction and explain the invariant being held.",
+        "Use the exit checks to distinguish distribution, origin choice, point velocity, and energy partition."
+      ],
+      "help_plan": [
+        "Keep each named reference axis or origin visible.",
+        "Show translation and rotation contributions separately before combining them."
+      ],
+      "reveal_plan": "The completed conceptual construction is visible; no quantitative torque equation is supplied.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-ROT",
+          "purpose": "Authored conceptual teaching",
+          "reason": "The imported packet is source-only and cannot be promoted as authority."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to claim R2 or any quantitative torque law has been authored."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-PHY-ROT-CORE1B",
+      "title": "Elicited rotation conceptual route",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-ROT-R1",
+        "MIC-PHY-ROT-R3",
+        "MIC-PHY-ROT-R4",
+        "MIC-PHY-ROT-R5"
+      ],
+      "entry_needs": [
+        "The same conceptual coverage as Core1A, with learner decisions elicited before the model construction is shown."
+      ],
+      "learner_actions": [
+        "Predict which controlled change matters in each rung.",
+        "Construct the comparison or diagram before reading the completed explanation.",
+        "Use the boundary test to revise an overgeneralized rule."
+      ],
+      "help_plan": [
+        "Ask for the reference axis or origin before asking for a conclusion.",
+        "For rolling, ask for separate contributions before revealing the combined point motion."
+      ],
+      "reveal_plan": "Predictions and attempts come first; complete model responses remain available for self-study closure.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-PHY-ROT",
+          "purpose": "Self-tutor prompts and closure",
+          "reason": "The authored record supplies complete learner-facing closure without relying on an external tutor."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not bridge the missing quantitative torque rung by inserting an equation into a hint."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}
