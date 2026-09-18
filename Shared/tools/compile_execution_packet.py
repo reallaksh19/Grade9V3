@@ -97,6 +97,14 @@ def _action(request: dict, product: dict, blockers: list[str]) -> tuple[str, str
         return "WAIT", "Resolve the listed owner or agent inputs before authoring this Core."
     if state == "READY":
         return "BUILD_FROM_CANONICAL", "All currently required inputs/assets for this Core are present."
+    if state == "BLOCKED_SOURCE_CUSTODY" and core == "CORE2":
+        return "HOLD_SOURCE_CUSTODY", (
+            "Verified inspection does not establish source question custody; authored generation cannot close Core2."
+        )
+    if state == "BLOCKED_SOURCE_COVERAGE":
+        return "HOLD_ASSET", (
+            "The verified source receipt is insufficient and SOURCE_ONLY forbids authored supplementation."
+        )
     if state == "BLOCKED_ASSET":
         if core == "CORE2":
             return "HOLD_SOURCE_CUSTODY", (
