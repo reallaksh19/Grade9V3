@@ -92,7 +92,16 @@
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED",
-        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B"
+        "teaching_route_coverage_policy": "ALL_MICROTOPICS_CORE1A_CORE1B",
+        "practical_coverage_policy": "PRESCRIBED_PRACTICALS",
+        "prescribed_practicals": [
+          {
+            "id": "CBSE-IX-2026-PHY-PRACTICAL-10",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Practicals item 10; printed p.19 — Determination of speed of a pulse propagated through a stretched string/slinky (Ch. 10).",
+            "capability_ref": "CAP-SOUND-WAVE-QUANTITIES"
+          }
+        ]
       },
       "title": "Sound",
       "topic": "Sound",
@@ -223,6 +232,16 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-STD",
           "locator": "Sound; printed pp.17–18; C-2.7 — graphical representation, analyse sound graphs, relate period/frequency, derive and calculate wave speed",
+          "mapping_status": "VERIFIED"
+        },
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Practicals item 10; printed p.19 — Determination of speed of a pulse propagated through a stretched string/slinky (Ch. 10).",
           "mapping_status": "VERIFIED"
         }
       ],
@@ -1509,7 +1528,8 @@
         "Q-PHY-SOUND-2B-01",
         "Q-PHY-SOUND-2A-COV-02",
         "Q-PHY-SOUND-2A-COV-03",
-        "Q-PHY-SOUND-2A-COV-04"
+        "Q-PHY-SOUND-2A-COV-04",
+        "Q-PHY-SOUND-PRACTICAL-10"
       ]
     }
   ],
@@ -1822,6 +1842,81 @@
         },
         {
           "text": "Pitch follows frequency for an audible tone; loudness is a separate sound-strength perception.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-SOUND-PRACTICAL-10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-SOUND-G9"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "prescribed_practical_refs": [
+          "CBSE-IX-2026-PHY-PRACTICAL-10"
+        ]
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-SOUND-G9",
+      "original_identifier": "AUTHOR-SOUND-PRACTICAL-10",
+      "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Keep the same string/slinky condition and tension while comparing repeated trials."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Measure a known propagation distance L along the stretched medium and the travel time Delta t for the pulse over that path, calculate v = L/Delta t, repeat several trials under the same tension, and average or use a longer timed path to reduce reaction-time error.",
+        "reasoning": [
+          "Mark a known propagation distance along the stretched string/slinky.",
+          "Generate a clear pulse and measure the time for the same identifiable pulse feature to travel between the marks.",
+          "Calculate pulse speed from travelled path divided by elapsed time.",
+          "Keep tension and medium setup fixed during repeated trials.",
+          "Repeat measurements or increase the timed path to reduce the relative effect of start/stop timing uncertainty."
+        ],
+        "check": "If a round-trip timing method is used instead, the travelled path must be counted as twice the one-way separation; path length and measured time must describe the same journey.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1,
+        "rubric": [
+          {
+            "criterion": "Measures a path length and elapsed time belonging to the same pulse journey.",
+            "evidence_of": "A valid v = distance/time measurement."
+          },
+          {
+            "criterion": "Keeps the medium/tension condition controlled across repeated trials.",
+            "evidence_of": "Changes in speed are not confounded with a changed setup."
+          },
+          {
+            "criterion": "Uses repetition or a longer path to reduce timing uncertainty.",
+            "evidence_of": "Experimental method addresses reaction-time/random error."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-SOUND-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The distance and time must describe the same pulse path.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Repeat trials under the same tension, or time a longer path, to reduce the fraction of the result dominated by reaction time.",
           "reveals": "METHOD"
         }
       ]
