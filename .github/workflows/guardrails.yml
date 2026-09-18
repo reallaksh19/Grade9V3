@@ -42,6 +42,15 @@ jobs:
       - name: Learner claims are backed by evidence or a waiver
         run: python3 Shared/tools/learner_evidence.py --enforce
 
+      # Regression and empirical acceptance are deliberately separate evidence layers.
+      # The blueprint test is enforcing; the empirical audit treats missing live evidence
+      # as PENDING and fails only malformed evidence that claims LIVE_LEARNER provenance.
+      - name: Blueprint architecture regression
+        run: python3 -m unittest tests.test_blueprint_regression -v
+
+      - name: Empirical learner acceptance status
+        run: python3 Shared/tools/empirical_acceptance.py --enforce
+
       # A matrix may reference the library and may not restate or outrank it. Enforcing
       # from the start: it has no backlog, because the schema and the gate landed before
       # any matrix data did.
