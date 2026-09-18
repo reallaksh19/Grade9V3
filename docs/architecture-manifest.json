@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 65,
-  "relation_count": 112,
+  "component_count": 67,
+  "relation_count": 115,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 14,
+    "LIBRARY": 16,
     "TEST": 6,
     "TOOLING": 21,
     "WEB": 5
   },
-  "digest": "sha256:2f0b6e80ebf39ecc75aad35fa32199bde0e6a724f32fe5f4b32d563ed974c0cf",
+  "digest": "sha256:643ad319893caa721a7ae57d512a8d88e4e894b469a3a318b0114120a79bb3a9",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -43,8 +43,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 44999,
-      "sha256": "2f86513e6960453e8625533c8225a32ef13c193d0e78ff14e62ff93630473a38"
+      "bytes": 44806,
+      "sha256": "978878bfc84c0291fd5f0842a008c3197d7bbde4f041ac4eeed6ad064d7789ab"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -75,6 +75,13 @@
       "sha256": "4aa92363079ba2323f1cee9159ea4b83260dc327dbfa5eeb240d3b487f461054"
     },
     {
+      "path": "Shared/library/ladder.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 5813,
+      "sha256": "469def79a3a161059542b7259a6f1495f3fd60ef43852b4b0c71639b8fe05c9c"
+    },
+    {
       "path": "Shared/library/learner-profile.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
@@ -101,6 +108,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 69947,
       "sha256": "9f6682c16e25c4363caa0d1944f0753326f97c97255c6c8b611b003221c372b5"
+    },
+    {
+      "path": "Shared/library/practice.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 1637,
+      "sha256": "f57f357385a8322a050599ef4af00098bdb6c0ac4426641bde53ca55da0d046c"
     },
     {
       "path": "Shared/library/promote.py",
@@ -330,15 +344,15 @@
       "path": "Shared/tools/matrix_conformance.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9396,
-      "sha256": "4d6374db2c8692afe6d0691048b034202d58d916cf8728fa7f6d86ac9d5203d8"
+      "bytes": 11909,
+      "sha256": "2eab76c6a91899125f7dc603755be059a21c1bda83e1027f47ae147feac0746b"
     },
     {
       "path": "Shared/tools/practice_readiness.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9120,
-      "sha256": "69ac0f5be839770013906c8101190be925b38be8679f46fa1074783d039e4c3d"
+      "bytes": 8167,
+      "sha256": "bdba017eb28eabb528a15d353556713c81a368ec8b203b5f44d7d7c36e029d7e"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -365,8 +379,8 @@
       "path": "Shared/tools/resolve_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20212,
-      "sha256": "30d9d7a366147c0bef91c104a9fdfe1dcd3574903bd62b622f143d1028b42991"
+      "bytes": 19543,
+      "sha256": "aca754b5b5ae78dc43fb8ab6b9b6b9a05f562cc91a19348d9731f2b9d540a942"
     },
     {
       "path": "Shared/tools/spec_conformance.py",
@@ -400,8 +414,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 17676,
-      "sha256": "cbed64f29404752bf19df771535fb40f5f637fc232ecff2c3c7f952f32b63215"
+      "bytes": 18150,
+      "sha256": "8861a167acf2337b2aa4b7d1f7550569d277ea4dee04dc355d569554a2e6788a"
     },
     {
       "path": "tests/test_import_sil.py",
@@ -449,8 +463,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 356617,
-      "sha256": "e91f357a87e44d01dde02148fa0b33aaa776e86b089e4627af8c814b70b2075c"
+      "bytes": 386891,
+      "sha256": "20e0a9d0c601a7dc2052a47b51cbc08c03f1e1863d9f65c7760a7e48a565bf93"
     },
     {
       "path": "tools/index.html",
@@ -488,6 +502,11 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/compile_inputs.py",
+      "to": "Shared.library.practice",
       "kind": "IMPORTS"
     },
     {
@@ -767,6 +786,11 @@
     },
     {
       "from": "Shared/tools/practice_readiness.py",
+      "to": "Shared.library.practice",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/practice_readiness.py",
       "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
@@ -803,6 +827,11 @@
     {
       "from": "Shared/tools/resolve_request.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.library.practice",
       "kind": "IMPORTS"
     },
     {

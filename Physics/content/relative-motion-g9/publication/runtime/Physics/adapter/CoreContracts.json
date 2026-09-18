@@ -482,6 +482,55 @@
       ],
       "proves": "One-way reflector distance follows from speed times round-trip delay divided by two.",
       "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
+    },
+    {
+      "id": "AVERAGE_ACCELERATION",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "v_initial",
+        "v_final",
+        "dt"
+      ],
+      "input_units": {
+        "v_initial": "m/s",
+        "v_final": "m/s",
+        "dt": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s^2",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "dt > 0",
+        "both velocities use the same signed one-dimensional axis"
+      ],
+      "proves": "Average acceleration follows from signed velocity change divided by a positive elapsed interval.",
+      "does_not_prove": "That acceleration is constant within the interval."
+    },
+    {
+      "id": "UNIFORM_CIRCULAR_SPEED",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "radius",
+        "period"
+      ],
+      "input_units": {
+        "radius": "m",
+        "period": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m/s",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "radius > 0",
+        "period > 0",
+        "the motion completes one uniform circular revolution in the supplied period"
+      ],
+      "proves": "Uniform circular speed follows from circumference divided by revolution period.",
+      "does_not_prove": "That the path is circular, speed is uniform, or the centripetal acceleration magnitude."
     }
   ],
   "representation_kinds": [

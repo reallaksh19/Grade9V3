@@ -717,6 +717,20 @@ window.GRADE9V3 = {
             "shape": "SCALAR_WITH_UNIT",
             "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
             "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
+          },
+          {
+            "id": "AVERAGE_ACCELERATION",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That acceleration is constant within the interval."
+          },
+          {
+            "id": "UNIFORM_CIRCULAR_SPEED",
+            "status": "IMPLEMENTED",
+            "shape": "SCALAR_WITH_UNIT",
+            "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9",
+            "does_not_prove": "That the path is circular, speed is uniform, or the centripetal acceleration magnitude."
           }
         ],
         "representation_kinds": [
@@ -793,7 +807,7 @@ window.GRADE9V3 = {
       "gates": [
         {
           "gate_id": "PHY-KIN-AVERAGE-RATES",
-          "title": "Grade 9 kinematics rates and constant-acceleration relations",
+          "title": "Grade 9 motion rates, graphs, constant acceleration and circular speed",
           "grade": 9,
           "chapter": "Motion",
           "scope_class": "OWNER_EXTENSION",
@@ -803,7 +817,9 @@ window.GRADE9V3 = {
           "external_prerequisites": [],
           "concepts": [
             "Average rates are formed from total path or displacement over the same total elapsed time, not by blindly averaging listed speeds.",
-            "The familiar kinematic equations are exact only on an interval where acceleration is constant."
+            "The familiar kinematic equations are exact only on an interval where acceleration is constant.",
+            "On a position-time graph, interval slope gives average velocity; on a velocity-time graph, interval slope gives average acceleration.",
+            "Uniform circular motion has constant speed v = 2 pi r / T while its velocity direction changes continuously."
           ],
           "misconceptions": [
             "Average speed is always the arithmetic mean of the listed speeds."
@@ -1175,7 +1191,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
@@ -1410,7 +1426,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -1644,7 +1660,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -1944,7 +1960,7 @@ window.GRADE9V3 = {
               "entry_assumptions": [
                 "Can distinguish speed from directed velocity and can recognize acceleration as a change of velocity."
               ],
-              "inferential_jump": "An object moving around a circle at constant speed is still accelerating because its velocity direction changes continuously; the acceleration points inward toward the centre.",
+              "inferential_jump": "An object moving around a circle at constant speed is still accelerating because velocity direction changes continuously; velocity is tangent, acceleration points inward, and the constant speed for one revolution is circumference divided by period: v = 2 pi r / T.",
               "teaching_path": [
                 {
                   "action": "Mark equal-length velocity arrows tangent to a circle at several positions.",
@@ -1954,12 +1970,17 @@ window.GRADE9V3 = {
                 {
                   "action": "Compare successive velocity arrows and identify the change in velocity direction.",
                   "why_valid": "Velocity changes whenever either its magnitude or direction changes.",
-                  "output": "Delta v is nonzero even though |v| is unchanged."
+                  "output": "At two different points A and B: |v_A| = |v_B| = v, but v_A and v_B point in different tangent directions, so Delta v = v_B - v_A is nonzero."
                 },
                 {
                   "action": "Use symmetry at opposite points to check that the required acceleration is directed toward the centre rather than along the tangent.",
                   "why_valid": "A tangential acceleration would change speed, while inward turning changes direction while preserving speed in the ideal uniform case.",
                   "output": "uniform circular motion -> acceleration inward; velocity tangent."
+                },
+                {
+                  "action": "For one complete uniform revolution, divide the circumference 2 pi r by the positive revolution period T.",
+                  "why_valid": "REL-UNIFORM-CIRCULAR-SPEED is the gate-owned Grade 9 speed expression.",
+                  "output": "v = 2 pi r / T; for r = 7 m and T = 14 s, v = pi m/s ≈ 3.14 m/s."
                 }
               ],
               "misconceptions": [
@@ -1970,31 +1991,119 @@ window.GRADE9V3 = {
                 }
               ],
               "exit_task": {
-                "prompt": "A runner moves around a circular track at constant speed. At the rightmost point, state the direction of velocity and the direction of acceleration qualitatively.",
+                "prompt": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
                 "source_ref": "SRC-AUTHOR-KIN-1D",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
+                  "summary": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
                   "reasoning": [
-                    "Instantaneous velocity follows the tangent to the path.",
-                    "Constant speed removes any tangential speed-change requirement.",
-                    "The continuing direction change requires inward acceleration."
+                    "One revolution covers circumference 2 pi r = 14 pi m.",
+                    "v = 14 pi m / 14 s = pi m/s ≈ 3.14 m/s.",
+                    "Constant speed does not make velocity constant because its direction changes.",
+                    "The velocity is tangent and the turning acceleration is inward."
                   ],
-                  "check": "At the opposite side of the circle, both tangent velocity direction and inward acceleration direction change with the geometry.",
+                  "check": "Doubling the period at the same radius would halve the speed, while the tangent/inward direction distinction remains.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The exit asserts only qualitative tangent and inward directions; no magnitude is computed."
+                  "verification": {
+                    "validator_id": "UNIFORM_CIRCULAR_SPEED",
+                    "bindings": {
+                      "radius": "DAT-KIN-CIRC-R",
+                      "period": "DAT-KIN-CIRC-T"
+                    }
+                  }
                 }
               },
               "prerequisites": [
                 "CAP-KIN-ZERO-V-NONZERO-A"
               ]
+            },
+            {
+              "id": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "title": "Motion graphs turn coordinate change into rate",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The arithmetic is simple, but graph height, slope, and physical motion are easily confused.",
+              "entry_assumptions": [
+                "Can distinguish position, velocity and acceleration and can compute an interval average rate from two values."
+              ],
+              "inferential_jump": "On a position-time graph, segment slope is average velocity over that interval; on a velocity-time graph, segment slope is average acceleration. Graph height and graph slope answer different physical questions.",
+              "teaching_path": [
+                {
+                  "action": "Read the axis names, units and two plotted coordinates before describing the motion.",
+                  "why_valid": "A graph only acquires physical meaning through its labelled quantities and coordinate values.",
+                  "output": "position-time graph: horizontal t in s, vertical x in m; velocity-time graph: horizontal t in s, vertical v in m/s."
+                },
+                {
+                  "action": "On the position-time graph, subtract two position coordinates and divide by their time separation.",
+                  "why_valid": "REL-AVERAGE-VELOCITY is the gate-owned interval relation and the graph supplies Delta x and Delta t.",
+                  "output": "between (2 s, 4 m) and (4 s, 8 m): v_avg = (8 - 4)/(4 - 2) = +2 m/s."
+                },
+                {
+                  "action": "On the velocity-time graph, subtract two velocity coordinates and divide by their time separation.",
+                  "why_valid": "REL-AVERAGE-ACCELERATION is the gate-owned interval relation and the graph supplies Delta v and Delta t.",
+                  "output": "between (2 s, 3 m/s) and (4 s, 5 m/s): a_avg = (5 - 3)/(4 - 2) = +1 m/s^2."
+                },
+                {
+                  "action": "Use horizontal segments as boundary checks.",
+                  "why_valid": "A horizontal position-time segment has zero position change, while a horizontal velocity-time segment has zero velocity change.",
+                  "output": "horizontal x-t -> v_avg = 0; horizontal v-t -> a_avg = 0."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A higher point on a motion graph always means the object is moving faster.",
+                  "diagnostic_prompt": "Two position-time graph points are high on the page but connected by a horizontal segment. Is the object moving quickly during that interval?",
+                  "repair": "Read slope, not page height, for rate: a horizontal position-time segment has zero average velocity."
+                }
+              ],
+              "exit_task": {
+                "prompt": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+                "source_ref": "SRC-AUTHOR-KIN-1D",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval.",
+                  "reasoning": [
+                    "Delta v = +5 - (+3) = +2 m/s.",
+                    "Delta t = 4 - 2 = 2 s.",
+                    "a_avg = Delta v / Delta t = +1 m/s^2.",
+                    "A horizontal velocity-time segment has Delta v = 0, so its average acceleration is zero."
+                  ],
+                  "check": "The result matches the positive slope of the displayed velocity-time segment.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "verification": {
+                    "validator_id": "AVERAGE_ACCELERATION",
+                    "bindings": {
+                      "v_initial": "DAT-KIN-GRAPH-V1",
+                      "v_final": "DAT-KIN-GRAPH-V2",
+                      "dt": "DAT-KIN-GRAPH-T1"
+                    }
+                  }
+                }
+              },
+              "prerequisites": [
+                "CAP-KIN-AVERAGE-RATES",
+                "CAP-KIN-ZERO-V-NONZERO-A"
+              ]
             }
           ],
           "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
             {
               "id": "REL-AVERAGE-SPEED",
               "expression": "speed_avg = distance_total / Delta t",
@@ -2041,9 +2150,56 @@ window.GRADE9V3 = {
                 "u, v and a use one declared one-dimensional sign convention.",
                 "t >= 0."
               ]
+            },
+            {
+              "id": "REL-UNIFORM-CIRCULAR-SPEED",
+              "expression": "v = 2 pi r / T",
+              "meaning": "For one complete uniform circular revolution, speed equals circumference divided by the positive period.",
+              "conditions": [
+                "r > 0.",
+                "T > 0.",
+                "Motion is uniform and the path is circular over the measured revolution."
+              ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "origin": "AUTHORED",
+              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-2B-01",
+              "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            }
+          ],
           "capabilities": [
             {
               "id": "CAP-KIN-AVERAGE-RATES",
@@ -2064,8 +2220,14 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
-              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously.",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -2076,7 +2238,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 18,
+          "record_count": 41,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -2087,9 +2249,9 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
-            "questions": 5,
-            "obligations": 9,
+            "atoms": 50,
+            "questions": 6,
+            "obligations": 10,
             "authoring_requirements": [
               {
                 "kind": "PROSE_AUTHORING",
@@ -2316,7 +2478,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 1,
             "obligations": 5,
             "authoring_requirements": [
@@ -2780,6 +2942,24 @@ window.GRADE9V3 = {
           ],
           "relations": [
             {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
               "id": "REL-NEWTON-SECOND-LAW",
               "expression": "F_net = m a",
               "meaning": "The vector net external force on a chosen body equals its mass times its acceleration.",
@@ -2790,11 +2970,72 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "origin": "AUTHORED",
+              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-2B-01",
+              "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            }
+          ],
           "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
             {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
               "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -2847,7 +3088,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 23,
+          "record_count": 49,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -2858,8 +3099,8 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
-            "questions": 9,
+            "atoms": 50,
+            "questions": 7,
             "obligations": 11,
             "authoring_requirements": [
               {
@@ -3089,7 +3330,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 2,
             "obligations": 5,
             "authoring_requirements": [
@@ -3259,7 +3500,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 1,
             "obligations": 4,
             "authoring_requirements": [
@@ -3561,7 +3802,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 2,
             "obligations": 6,
             "authoring_requirements": [
@@ -3788,6 +4029,24 @@ window.GRADE9V3 = {
           ],
           "relations": [
             {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
               "id": "REL-IDEAL-MACHINE-WORK",
               "expression": "F_effort d_effort = F_load d_load",
               "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
@@ -3810,6 +4069,42 @@ window.GRADE9V3 = {
           ],
           "questions": [
             {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "origin": "AUTHORED",
+              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-2B-01",
+              "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            },
+            {
               "id": "Q-PHY-MACHINE-2A-01",
               "stem": "A simple machine supports a 150 N load with a 50 N effort. Find the mechanical advantage and state what that number does not tell you.",
               "origin": "AUTHORED",
@@ -3824,8 +4119,32 @@ window.GRADE9V3 = {
           ],
           "capabilities": [
             {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
               "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -3902,7 +4221,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 30,
+          "record_count": 56,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3913,8 +4232,8 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
-            "questions": 12,
+            "atoms": 50,
+            "questions": 2,
             "obligations": 7,
             "authoring_requirements": [
               {
@@ -4264,6 +4583,24 @@ window.GRADE9V3 = {
           ],
           "relations": [
             {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
               "id": "REL-ECHO-DISTANCE",
               "expression": "d = v t_echo / 2",
               "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
@@ -4294,6 +4631,42 @@ window.GRADE9V3 = {
           ],
           "questions": [
             {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "origin": "AUTHORED",
+              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-2B-01",
+              "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            },
+            {
               "id": "Q-PHY-SOUND-2A-01",
               "stem": "A sound vibration has period 0.005 s. Find its frequency and state whether doubling amplitude at the same period changes that frequency.",
               "origin": "AUTHORED",
@@ -4319,6 +4692,42 @@ window.GRADE9V3 = {
             }
           ],
           "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
             {
               "id": "CAP-SOUND-LONGITUDINAL",
               "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
@@ -4350,7 +4759,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 23,
+          "record_count": 51,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4361,7 +4770,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 4,
             "obligations": 9,
             "authoring_requirements": [
@@ -4653,7 +5062,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
+            "atoms": 50,
             "questions": 2,
             "obligations": 6,
             "authoring_requirements": [
@@ -4824,8 +5233,8 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
-            "questions": 4,
+            "atoms": 50,
+            "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
               {
@@ -5247,12 +5656,30 @@ window.GRADE9V3 = {
           ],
           "relations": [
             {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
               "id": "REL-AVERAGE-POWER",
               "expression": "P_avg = W / Delta t",
               "meaning": "Average power is work transferred over a positive elapsed interval.",
               "conditions": [
                 "Delta t > 0.",
                 "W is the net work assigned to the chosen system over that same interval."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
               ]
             },
             {
@@ -5312,11 +5739,72 @@ window.GRADE9V3 = {
               ]
             }
           ],
-          "questions": [],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A body has u = +5 m/s and constant a = +2 m/s^2 for 3 s. Find final velocity and signed displacement, then state what graph feature made these equations legitimate.",
+              "origin": "AUTHORED",
+              "answer": "v = 11 m/s and s = 24 m. The equations are legitimate because acceleration is constant, so the velocity-time graph has constant slope."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-2B-01",
+              "stem": "A velocity-time graph is a straight line sloping downward through the time axis. At the instant where the graph crosses zero velocity, decide whether the acceleration is zero, nonzero positive, or nonzero negative, and justify the choice from the graph.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration is nonzero and negative at the zero-velocity crossing because the velocity-time graph still has a negative slope there."
+            }
+          ],
           "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Choose and apply constant-acceleration kinematic relations only when one acceleration value describes the whole interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
             {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
               "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -5381,7 +5869,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 31,
+          "record_count": 57,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5392,8 +5880,8 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 38,
-            "questions": 11,
+            "atoms": 50,
+            "questions": 6,
             "obligations": 9,
             "authoring_requirements": [
               {
@@ -5854,8 +6342,8 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 39,
-            "questions": 4,
+            "atoms": 51,
+            "questions": 2,
             "obligations": 8,
             "authoring_requirements": [
               {
@@ -6160,7 +6648,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 39,
+            "atoms": 51,
             "questions": 2,
             "obligations": 4,
             "authoring_requirements": [
