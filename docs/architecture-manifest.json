@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 132,
-  "relation_count": 191,
+  "component_count": 134,
+  "relation_count": 192,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 40,
+    "TEST": 42,
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:c2333897bc4189ec0980c32092b2e0e00aa08584ac534646ead195abb8b6fec6",
+  "digest": "sha256:94a0990677dce4b0d45185ed32e34ff6438bed9e706c5cf948580a76de9168a8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -635,6 +635,13 @@
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
     },
     {
+      "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1882,
+      "sha256": "9930ca88099134beaefac6fd929b26994b592e96ad229fd982dc630d5541a676"
+    },
+    {
       "path": "tests/fixtures/source_ingest/acquisition.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -794,6 +801,13 @@
       "role_description": "Executable checks",
       "bytes": 14849,
       "sha256": "157c679b1920bfaab60806171a2edd1651ab16f33b2cc359152cc2d8f2988dcb"
+    },
+    {
+      "path": "tests/test_neetprep_relative_motion_pilot.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5494,
+      "sha256": "f4c90447856dd913b31398ad4b98701689094f66d93e314620984d4c2bd18d3a"
     },
     {
       "path": "tests/test_owner_decisions.py",
@@ -1707,6 +1721,11 @@
     {
       "from": "tests/test_mathematics.py",
       "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_neetprep_relative_motion_pilot.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
