@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored one-dimensional motion conceptual spine plus deliberate owner-extension rungs for average rates, motion graphs, constant acceleration, and elementary uniform circular motion. No board-prescription authority is claimed by this package.",
+  "scope_summary": "Authored Grade-9 Motion learning spine covering distance/displacement, average speed/velocity, velocity-versus-acceleration distinction, motion graphs, constant-acceleration equations and elementary uniform circular motion. Records remain CANDIDATE; no board-prescription authority is asserted until the repository's exact curriculum-binding mechanism is completed.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -52,12 +52,10 @@
       "title": "One-dimensional motion",
       "topic": "Motion",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "Authored conceptual distinctions plus owner-extension quantitative/model-choice rungs; prerequisite and source authority remain explicit rather than inferred.",
+      "badge_reason": "Grade-9 Motion combines signed one-dimensional reasoning, graph interpretation and model-choice checks; source authority remains separate from the authored teaching records.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
-      "prerequisite_refs": [
-        "BUCKET-PHY-VEC-ADD-SUB"
-      ],
+      "prerequisite_refs": [],
       "conventions": [
         {
           "id": "CONV-KIN-POSITIVE-DIRECTION",
@@ -65,8 +63,12 @@
         }
       ],
       "scope": {
-        "covers": "Authored 1D-motion concepts plus owner-extension average speed/velocity, graph-slope interpretation, constant-acceleration relations/graph derivation, and elementary uniform circular motion.",
-        "excluded": [],
+        "covers": "Grade-9 Motion foundations: distance/displacement, average speed/velocity, velocity/acceleration distinction, position-time and velocity-time graphs, constant-acceleration equations by graphical reasoning, and elementary uniform circular motion.",
+        "excluded": [
+          "General two-dimensional vector addition or component decomposition unless a real question explicitly demands it.",
+          "Projectile motion and higher-grade kinematics.",
+          "Calculus-based kinematics."
+        ],
         "extension_refs": []
       },
       "primary_representation_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH"

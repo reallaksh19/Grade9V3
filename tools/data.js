@@ -1724,9 +1724,7 @@ window.GRADE9V3 = {
           "topic": "Motion",
           "badge": "MEDIUM",
           "status": "CANDIDATE",
-          "prerequisites": [
-            "BUCKET-PHY-VEC-ADD-SUB"
-          ],
+          "prerequisites": [],
           "curriculum": [],
           "microtopics": [
             {
@@ -2201,16 +2199,6 @@ window.GRADE9V3 = {
                 "T > 0.",
                 "Motion is uniform and the path is circular over the measured revolution."
               ]
-            },
-            {
-              "id": "REL-VECTOR-SUBTRACTION",
-              "expression": "P - Q = P + (-Q)",
-              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
-              "conditions": [
-                "P and Q are expressed along the same declared axes.",
-                "Reversal preserves magnitude and negates every component.",
-                "Free vectors may be translated without rotation for the graphical construction."
-              ]
             }
           ],
           "questions": [
@@ -2249,21 +2237,9 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
-            },
-            {
-              "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
-              "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
-            {
-              "id": "CAP-GRAPHICAL-SUBTRACT",
-              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
             {
               "id": "CAP-KIN-AVERAGE-RATES",
               "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
@@ -2299,27 +2275,9 @@ window.GRADE9V3 = {
               "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
               "provider": null,
               "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-SIGNED-PAIR-BRIDGE",
-              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
-              "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and transform a vector's signed components against declared positive axes.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish vector information from magnitude-only scalar information.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 74,
+          "record_count": 46,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3087,16 +3045,6 @@ window.GRADE9V3 = {
                 "F_net and a refer to the same chosen body.",
                 "All signed components use one declared axis."
               ]
-            },
-            {
-              "id": "REL-VECTOR-SUBTRACTION",
-              "expression": "P - Q = P + (-Q)",
-              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
-              "conditions": [
-                "P and Q are expressed along the same declared axes.",
-                "Reversal preserves magnitude and negates every component.",
-                "Free vectors may be translated without rotation for the graphical construction."
-              ]
             }
           ],
           "questions": [
@@ -3135,21 +3083,9 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
-            },
-            {
-              "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
-              "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
-            {
-              "id": "CAP-GRAPHICAL-SUBTRACT",
-              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
             {
               "id": "CAP-KIN-AVERAGE-RATES",
               "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
@@ -3227,27 +3163,9 @@ window.GRADE9V3 = {
               "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
               "provider": null,
               "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-SIGNED-PAIR-BRIDGE",
-              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
-              "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and transform a vector's signed components against declared positive axes.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish vector information from magnitude-only scalar information.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 85,
+          "record_count": 57,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4288,16 +4206,6 @@ window.GRADE9V3 = {
                 "F_effort > 0.",
                 "Load and effort magnitudes refer to the same machine state."
               ]
-            },
-            {
-              "id": "REL-VECTOR-SUBTRACTION",
-              "expression": "P - Q = P + (-Q)",
-              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
-              "conditions": [
-                "P and Q are expressed along the same declared axes.",
-                "Reversal preserves magnitude and negates every component.",
-                "Free vectors may be translated without rotation for the graphical construction."
-              ]
             }
           ],
           "questions": [
@@ -4348,21 +4256,9 @@ window.GRADE9V3 = {
               "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
               "origin": "AUTHORED",
               "answer": "Measure the load-force magnitude and the effort-force magnitude for the same steady lever state, calculate M.A. = Load/Effort, repeat for controlled settings, and keep the load and measurement method consistent when comparing how the setup changes the required effort."
-            },
-            {
-              "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
-              "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
-            {
-              "id": "CAP-GRAPHICAL-SUBTRACT",
-              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
             {
               "id": "CAP-KIN-AVERAGE-RATES",
               "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
@@ -4418,31 +4314,13 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-SIGNED-PAIR-BRIDGE",
-              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
-              "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and transform a vector's signed components against declared positive axes.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish vector information from magnitude-only scalar information.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
               "id": "CAP-WEP-WORK-DIRECTION",
               "action": "Classify work as positive, zero, or negative from force and displacement directions.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 86,
+          "record_count": 58,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4893,16 +4771,6 @@ window.GRADE9V3 = {
               ]
             },
             {
-              "id": "REL-VECTOR-SUBTRACTION",
-              "expression": "P - Q = P + (-Q)",
-              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
-              "conditions": [
-                "P and Q are expressed along the same declared axes.",
-                "Reversal preserves magnitude and negates every component.",
-                "Free vectors may be translated without rotation for the graphical construction."
-              ]
-            },
-            {
               "id": "REL-WAVE-SPEED",
               "expression": "v = f lambda",
               "meaning": "Wave propagation speed equals temporal frequency times spatial wavelength.",
@@ -4978,21 +4846,9 @@ window.GRADE9V3 = {
               "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
               "origin": "AUTHORED",
               "answer": "Measure a known propagation distance L along the stretched medium and the travel time Delta t for the pulse over that path, calculate v = L/Delta t, repeat several trials under the same tension, and average or use a longer timed path to reduce reaction-time error."
-            },
-            {
-              "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
-              "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
             }
           ],
           "capabilities": [
-            {
-              "id": "CAP-GRAPHICAL-SUBTRACT",
-              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
             {
               "id": "CAP-KIN-AVERAGE-RATES",
               "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
@@ -5030,12 +4886,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-SIGNED-PAIR-BRIDGE",
-              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
               "id": "CAP-SOUND-LONGITUDINAL",
               "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
               "provider": null,
@@ -5064,21 +4914,9 @@ window.GRADE9V3 = {
               "action": "Analyse spatial and temporal sound-wave graphs, relate period, frequency, wavelength, amplitude and speed, and derive v = lambda/T = f lambda for one wave in one medium.",
               "provider": null,
               "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and transform a vector's signed components against declared positive axes.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish vector information from magnitude-only scalar information.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 113,
+          "record_count": 85,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6295,16 +6133,6 @@ window.GRADE9V3 = {
               ]
             },
             {
-              "id": "REL-VECTOR-SUBTRACTION",
-              "expression": "P - Q = P + (-Q)",
-              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
-              "conditions": [
-                "P and Q are expressed along the same declared axes.",
-                "Reversal preserves magnitude and negates every component.",
-                "Free vectors may be translated without rotation for the graphical construction."
-              ]
-            },
-            {
               "id": "REL-WEIGHT-NEAR-EARTH",
               "expression": "F_weight = m g",
               "meaning": "Near Earth's surface in an approximately uniform gravitational field, the weight-force magnitude on mass m is m times gravitational acceleration magnitude g.",
@@ -6372,12 +6200,6 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
-              "id": "Q-PHY-VECREP-2A-01",
-              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
-              "origin": "AUTHORED",
-              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
-            },
-            {
               "id": "Q-PHY-WEP-2A-01",
               "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
               "origin": "AUTHORED",
@@ -6421,12 +6243,6 @@ window.GRADE9V3 = {
             }
           ],
           "capabilities": [
-            {
-              "id": "CAP-GRAPHICAL-SUBTRACT",
-              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
             {
               "id": "CAP-KIN-AVERAGE-RATES",
               "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
@@ -6476,24 +6292,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-SIGNED-PAIR-BRIDGE",
-              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
-              "provider": "Mathematics",
-              "acceptance": "PROVIDER_REVIEW_REQUIRED"
-            },
-            {
-              "id": "CAP-VECTOR-SIGNED-COMPONENT",
-              "action": "Read and transform a vector's signed components against declared positive axes.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-VECTOR-VS-SCALAR",
-              "action": "Distinguish vector information from magnitude-only scalar information.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
               "id": "CAP-WEP-ENERGY-DERIVATIONS",
               "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
               "provider": null,
@@ -6536,7 +6334,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 105,
+          "record_count": 77,
           "compile_preview": {
             "compilable": true,
             "supported_products": [

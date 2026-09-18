@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 137,
+  "component_count": 138,
   "relation_count": 195,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 45,
+    "TEST": 46,
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:73d9ab4aacdc7c40a9ab0b04eb668fdef70e13852b727d9944e9c38a813bbcab",
+  "digest": "sha256:12e5e045bc7c107c9f690a76f3765f8bfa587e5da6470dd0849c10d51ad0ac89",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -761,18 +761,25 @@
       "sha256": "368ab5c9a89a8009e5ecc05bafd22ef779acf0ae1e02cebe553cb86a18312b63"
     },
     {
-      "path": "tests/test_high_likelihood_scenario_matrix_contract.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 4981,
-      "sha256": "d63c9062d0c722b66e3626bffac79c3054a5c20dfa8de946ce77f21fe8cb997e"
-    },
-    {
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 14811,
       "sha256": "a6040975d63fc60744c647964f9d4dc156884a9ded9569891e0fa0609e84c099"
+    },
+    {
+      "path": "tests/test_grade9_motion_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2109,
+      "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
+    },
+    {
+      "path": "tests/test_high_likelihood_scenario_matrix_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4981,
+      "sha256": "d63c9062d0c722b66e3626bffac79c3054a5c20dfa8de946ce77f21fe8cb997e"
     },
     {
       "path": "tests/test_import_sil.py",
@@ -953,8 +960,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 432286,
-      "sha256": "fc36b59c129035a92d3f073cff829dfcd72b4fef338dbb679af88c06dd99f7b7"
+      "bytes": 421446,
+      "sha256": "d23ce44ded8c2a8b8e4b00f7a18a8f1be23da16a992bdf1dcfbee67c7ba7be1c"
     },
     {
       "path": "tools/index.html",
@@ -1655,11 +1662,6 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_high_likelihood_scenario_matrix_contract.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
       "from": "tests/test_gates.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1667,6 +1669,11 @@
     {
       "from": "tests/test_gates.py",
       "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_high_likelihood_scenario_matrix_contract.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
