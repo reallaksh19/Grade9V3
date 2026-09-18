@@ -42,6 +42,7 @@ if __package__ in (None, ""):
 
 from Shared.contracts import digest, join, load, require, sentence
 from Shared.library.resolve import build_index, load_packages, slice_for_bucket
+from Shared.library.practice import owned_questions
 
 # Core1 and Core2 sit outside the teaching-route mechanism. A route says which product
 # teaches a microtopic; these two do not teach it. Core1 is the bucket's map -- its
@@ -139,12 +140,7 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                           "kind": "DATUM", "locator": f'{record["meaning"]} -- {record["locator"]}'})
 
     questions, question_records = [], []
-    for record in records.values():
-        if record["_collection"] != "questions":
-            continue
-        if record.get("primary_capability_ref") not in {c["id"] for c in
-                                                        chosen["records"].get("capabilities", [])}:
-            continue
+    for record in owned_questions(records, bucket_id):
         row = {"id": record["id"], "original_number": record["original_identifier"],
                "stem": record["stem"], "conditions": record.get("conditions", [])}
         if record.get("verification"):
