@@ -1242,6 +1242,52 @@ class ResolveRequest(unittest.TestCase):
         # The purpose is valid -- the block is about the library, not the purpose.
         self.assertEqual(core["purpose"], "COMPETITION")
 
+    def test_library_exposure_is_owned_by_bucket_capability_not_package(self):
+        """A question for a sibling bucket in the same package must not make this one READY."""
+        with tempfile.TemporaryDirectory() as temp:
+            repo = Path(temp)
+            library = repo / "Physics/library"
+            library.mkdir(parents=True)
+            package = {
+                "package_id": "LIB-TEST-MULTI-BUCKET",
+                "buckets": [
+                    {"id": "BUCKET-TEST-A"},
+                    {"id": "BUCKET-TEST-B"},
+                ],
+                "capabilities": [
+                    {"id": "CAP-TEST-A", "prerequisite_refs": []},
+                    {"id": "CAP-TEST-B", "prerequisite_refs": []},
+                ],
+                "microtopics": [
+                    {
+                        "id": "MIC-TEST-A",
+                        "bucket_id": "BUCKET-TEST-A",
+                        "primary_capability_ref": "CAP-TEST-A",
+                        "prerequisite_refs": [],
+                    },
+                    {
+                        "id": "MIC-TEST-B",
+                        "bucket_id": "BUCKET-TEST-B",
+                        "primary_capability_ref": "CAP-TEST-B",
+                        "prerequisite_refs": [],
+                    },
+                ],
+                "questions": [
+                    {
+                        "id": "Q-TEST-B",
+                        "primary_capability_ref": "CAP-TEST-B",
+                        "exposure": [{"core": "CORE2A"}],
+                    }
+                ],
+            }
+            (library / "multi.v1.json").write_text(
+                json.dumps(package), encoding="utf-8")
+
+            self.assertFalse(resolve_request._library_has_exposure(
+                "Physics", "BUCKET-TEST-A", "CORE2A", repo))
+            self.assertTrue(resolve_request._library_has_exposure(
+                "Physics", "BUCKET-TEST-B", "CORE2A", repo))
+
     def test_plan_and_compiler_agree_on_supported_cores(self):
         """If the plan says READY, the compiler must not refuse.  The P0 fix."""
         from Shared.library.compile_inputs import compile_bucket
