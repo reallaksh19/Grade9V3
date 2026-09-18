@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -65,8 +66,43 @@ class WorksheetStudyMap(unittest.TestCase):
         self.assertEqual(primary["locations"], [])
 
     def test_existing_capability_without_a_matrix_is_an_explicit_gap(self):
-        mapping = json.loads(self.MATH.read_text(encoding="utf-8"))
-        report = study_map.resolve(mapping)
+        # Keep the falsifier independent of the subject-content workstream. Mathematics
+        # may gain its matrix in PR #23; this rule must still be true for any capability
+        # that exists before a teaching location is authored.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [{
+                    "id": "CAP-EXAMPLE",
+                    "action": "Do the thing",
+                    "success_criterion": "The thing is done",
+                    "prerequisite_refs": [],
+                }],
+                "microtopics": [{
+                    "id": "MIC-EXAMPLE",
+                    "primary_capability_ref": "CAP-EXAMPLE",
+                }],
+                "questions": [],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "EXAMPLE-GAP",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-EXAMPLE",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_map.resolve(mapping, root)
         self.assertFalse(report["passed"])
         points = [row["point"] for row in report["findings"]]
         self.assertIn(study_map.NO_TEACHING_LOCATION, points)
