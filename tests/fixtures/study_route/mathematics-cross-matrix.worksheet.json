@@ -1,0 +1,13 @@
+{
+  "worksheet_id": "MATH-MAPPING-GAP-DEMO",
+  "subject": "Mathematics",
+  "source_note": "Intentional current-state fixture: canonical capabilities exist before Mathematics matrices are added by the content workstream.",
+  "questions": [
+    {
+      "question_id": "Q1",
+      "primary_capability_ref": "CAP-MATH-ISOLATE",
+      "secondary_capability_refs": ["CAP-MATH-SUBSTITUTE"],
+      "mapping_basis": "MANUAL"
+    }
+  ]
+}
