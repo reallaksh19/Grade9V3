@@ -1,0 +1,111 @@
+{
+  "manifest_id": "FIXTURE-RELATIVE-MOTION-SOURCE",
+  "version": "1.0.0",
+  "acquisition_ref": "ACQ-C1C64A00E3D28DA787D6",
+  "target_package": "Physics/library/relative-motion.v1.json",
+  "inspector_id": "tests/source-pipeline-fixture",
+  "inspection_sections": [
+    "Question F1"
+  ],
+  "access_status": "FULL_ITEM_INSPECTED",
+  "resource": {
+    "id": "SRC-TEST-FIXTURE-REL",
+    "version": "0.1.0",
+    "status": "CANDIDATE",
+    "source_refs": [],
+    "evidence_refs": [],
+    "extensions": {
+      "fixture": true
+    },
+    "title": "Deterministic Relative Motion source fixture",
+    "origin": "LOCAL",
+    "locator": "fixture://relative-motion-source",
+    "edition": "test-fixture",
+    "section": "Question F1",
+    "last_checked": "2026-09-18",
+    "access_status": "FULL_ITEM_INSPECTED",
+    "rights_status": "Test fixture authored for repository validation",
+    "snapshot_ref": "tests/fixtures/source_ingest/relative-motion-source.txt",
+    "snapshot_digest": "c1c64a00e3d28da787d6413789fb53b668aa1f98eee7589b65cc67f42b5b1d5d",
+    "role": [
+      "QUESTION_BANK"
+    ],
+    "supports_claims": [],
+    "entry_capabilities": [],
+    "depth": [],
+    "selection_reason": "Exercise source acquisition and custody ingestion without network access.",
+    "fallback": []
+  },
+  "questions": [
+    {
+      "id": "Q-TEST-FIXTURE-REL-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-FIXTURE-REL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "source_custody": {
+          "acquisition_ref": "ACQ-C1C64A00E3D28DA787D6",
+          "section": "Question F1"
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-TEST-FIXTURE-REL",
+      "original_identifier": "F1",
+      "stem": "In a common east/north frame, A moves at (6,0) m/s and B at (0,8) m/s. Find the velocity of A relative to B.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Constant velocities; common time and parallel nonrotating axes."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(6,-8) m/s, southeast; magnitude 10 m/s.",
+        "reasoning": [
+          "Subtract (0,8) from (6,0).",
+          "The southward component is 8 m/s and eastward component 6 m/s.",
+          "Using a right triangle, magnitude is sqrt(36+64)=10 m/s."
+        ],
+        "check": "Over one second the relative displacement changes by (6,-8) m; reversing the observer gives (-6,8) m/s.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "numeric": {
+          "value": 10,
+          "unit": "m/s"
+        },
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK",
+        "CAP-RIGHT-TRIANGLE"
+      ],
+      "family_ref": "FAM-RELATIVE-V",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE_CUSTODY_CANDIDATE",
+          "artifact_ref": null
+        },
+        {
+          "core": "CORE2A",
+          "role": "SOURCE_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "verification": {
+        "validator_id": "SPEED_FROM_COMPONENTS",
+        "bindings": {
+          "vx": "DAT-VAB-X",
+          "vy": "DAT-VAB-Y"
+        }
+      },
+      "hints": []
+    }
+  ]
+}
