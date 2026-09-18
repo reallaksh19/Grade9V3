@@ -2051,9 +2051,7 @@ window.GRADE9V3 = {
                   }
                 }
               },
-              "prerequisites": [
-                "CAP-KIN-ZERO-V-NONZERO-A"
-              ]
+              "prerequisites": []
             },
             {
               "id": "MIC-PHY-KIN-MOTION-GRAPHS",
@@ -2123,8 +2121,7 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": [
-                "CAP-KIN-AVERAGE-RATES",
-                "CAP-KIN-ZERO-V-NONZERO-A"
+                "CAP-KIN-AVERAGE-RATES"
               ]
             }
           ],
@@ -2782,9 +2779,7 @@ window.GRADE9V3 = {
                   "no_numeric_claim": "The answer assigns force ownership qualitatively and contains no computed force value."
                 }
               },
-              "prerequisites": [
-                "CAP-NLM-FORCES-SUM-ZERO"
-              ]
+              "prerequisites": []
             },
             {
               "id": "MIC-PHY-NLM-FRAME-CHOICE",
@@ -4042,7 +4037,7 @@ window.GRADE9V3 = {
               "status": "CANDIDATE",
               "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
               "entry_assumptions": [
-                "Can distinguish force from work and can compare input/output energy transfers."
+                "Can distinguish force from work and identify work as a force acting through displacement."
               ],
               "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
               "teaching_path": [
@@ -4090,7 +4085,7 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": [
-                "CAP-WEP-GRADE9-QUANT"
+                "CAP-WEP-WORK-DIRECTION"
               ]
             },
             {
@@ -4423,30 +4418,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
-              "action": "Assign each force arrow to the body on which that force acts.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-NLM-FORCES-SUM-ZERO",
-              "action": "Distinguish zero net force from the absence of individual forces.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-NLM-NET-ZERO-MOTION",
-              "action": "Relate zero net force to unchanged velocity.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-NLM-SECOND-LAW",
-              "action": "Relate signed net external force to acceleration with F_net = m a.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
               "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
               "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
               "provider": "Mathematics",
@@ -4465,43 +4436,13 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-WEP-ENERGY-DERIVATIONS",
-              "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-WEP-GRADE9-QUANT",
-              "action": "Calculate Grade 9 work, kinetic energy and near-Earth gravitational potential-energy changes and connect them with work-energy and conservation conditions.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-WEP-MECH-ENERGY-CONDITION",
-              "action": "Decide whether the mechanical-energy account can remain constant.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-WEP-NET-WORK-SIGN",
-              "action": "Relate the sign of net work to the direction of kinetic-energy change.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-WEP-POTENTIAL-ELIGIBILITY",
-              "action": "Decide whether an interaction may be represented by a potential-energy change.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
               "id": "CAP-WEP-WORK-DIRECTION",
               "action": "Classify work as positive, zero, or negative from force and displacement directions.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 95,
+          "record_count": 86,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5707,9 +5648,7 @@ window.GRADE9V3 = {
                   "no_numeric_claim": "The answer classifies work sign only; it contains no computed work value."
                 }
               },
-              "prerequisites": [
-                "CAP-NLM-FBD-BODY-OWNERSHIP"
-              ]
+              "prerequisites": []
             },
             {
               "id": "MIC-PHY-WEP-NET-WORK-SIGN",
@@ -5951,7 +5890,7 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": [
-                "CAP-WEP-MECH-ENERGY-CONDITION"
+                "CAP-WEP-WORK-DIRECTION"
               ]
             },
             {
@@ -6092,7 +6031,7 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": [
-                "CAP-WEP-MECH-ENERGY-CONDITION",
+                "CAP-WEP-WORK-DIRECTION",
                 "CAP-NLM-SECOND-LAW",
                 "CAP-KIN-CONSTANT-ACCELERATION"
               ]
@@ -6389,18 +6328,6 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
-              "id": "CAP-NLM-FORCES-SUM-ZERO",
-              "action": "Distinguish zero net force from the absence of individual forces.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
-              "id": "CAP-NLM-NET-ZERO-MOTION",
-              "action": "Relate zero net force to unchanged velocity.",
-              "provider": null,
-              "acceptance": "CANDIDATE"
-            },
-            {
               "id": "CAP-NLM-SECOND-LAW",
               "action": "Relate signed net external force to acceleration with F_net = m a.",
               "provider": null,
@@ -6467,7 +6394,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 107,
+          "record_count": 105,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
