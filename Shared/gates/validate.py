@@ -55,6 +55,7 @@ def validate(registry: dict, adapter, bindings: dict | None = None) -> dict:
     kind_requires = {k["id"]: list(k.get("requires", []))
                      for k in contract.get("representation_kinds", [])}
     required_symbol_fields = set(contract.get("required_symbol_fields", []))
+    validators = {row["id"]: row for row in contract.get("validator_catalogue", [])}
     allowed_grades = set(contract.get("curriculum", {}).get("grades", []))
     allowed_tiers = set(contract.get("curriculum", {}).get("tiers", []))
 
@@ -91,6 +92,13 @@ def validate(registry: dict, adapter, bindings: dict | None = None) -> dict:
         relation_ids = {r["relation_id"] for r in gate["relations"]}
         for relation in gate["relations"]:
             seen = set()
+            for validator_id in relation.get("validator_refs", []):
+                require(validator_id in validators, "RELATION_VALIDATOR_UNDECLARED",
+                        f"{gid}:{relation['relation_id']} names {validator_id}")
+                require(validators[validator_id].get("status") == "IMPLEMENTED",
+                        "RELATION_VALIDATOR_NOT_IMPLEMENTED",
+                        f"{gid}:{relation['relation_id']} names {validator_id} with status "
+                        f"{validators[validator_id].get('status')}")
             for symbol in relation["symbols"]:
                 missing = required_symbol_fields - set(symbol)
                 require(not missing, "SYMBOL_FIELD_MISSING",
