@@ -12,7 +12,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import capability_graph  # noqa: E402
+from Shared.tools import capability_graph, review_authority  # noqa: E402
 
 MECHANICAL_FIELDS = (
     ("entry_assumptions", "ENTRY_ASSUMPTIONS_MISSING"),
@@ -45,23 +45,57 @@ def findings(board: dict, mics: dict) -> list[dict]:
     return found
 
 
-def review_state(board: dict, mics: dict) -> dict:
+def _microtopic_package_paths(subject: str, repo: Path) -> dict[str, str]:
+    found = {}
+    for path in sorted((repo / subject / "library").glob("*.json")):
+        package = load(path)
+        for row in package.get("microtopics", []):
+            found[row["id"]] = str(path.relative_to(repo))
+    return found
+
+
+def review_state(board: dict, mics: dict, subject: str, repo: Path = REPO) -> dict:
     ids = [row.get("microtopic_ref") for row in board.get("rungs", []) if row.get("microtopic_ref")]
     records = [mics[rid] for rid in ids if rid in mics]
-    statuses = sorted({row.get("status", "UNKNOWN") for row in records})
+    paths = _microtopic_package_paths(subject, repo)
+    authorities = []
+    for record in records:
+        target = paths.get(record["id"])
+        if target:
+            authorities.append(
+                review_authority.authority_for_record(subject, target, record, repo)
+            )
+        else:
+            authorities.append({
+                "state": "NOT_REVIEWED", "record_status": record.get("status", "UNKNOWN"),
+                "verified": False, "receipt": None,
+                "findings": [{"point": "REVIEW_TARGET_PACKAGE_UNKNOWN",
+                              "where": record["id"],
+                              "detail": "microtopic package path could not be resolved"}],
+            })
+    effective = sorted({row["state"] for row in authorities})
+    release_backed = bool(records) and all(
+        row.get("verified") and row.get("state") in {"REVIEWED", "CURATED"}
+        for row in authorities
+    )
     return {
-        "state": "REVIEWED" if records and statuses == ["REVIEWED"] else "NOT_REVIEWED",
-        "record_statuses": statuses,
-        "reviewed_records": sum(1 for row in records if row.get("status") == "REVIEWED"),
+        "state": "REVIEWED" if release_backed else "NOT_REVIEWED",
+        "record_statuses": sorted({row.get("status", "UNKNOWN") for row in records}),
+        "effective_review_states": effective,
+        "reviewed_records": sum(
+            1 for row in authorities
+            if row.get("verified") and row.get("state") in {"REVIEWED", "CURATED"}
+        ),
         "records": len(records),
-        "claim": "Mechanical checks do not establish scientific or pedagogical correctness.",
+        "authorities": authorities,
+        "claim": "Mechanical checks do not establish scientific or pedagogical correctness; release review additionally requires digest-bound promotion receipts.",
     }
 
 
 def board_report(board: dict, subject: str, repo: Path = REPO) -> dict:
     _, mics = capability_graph.subject_graph(subject, repo)
     found = findings(board, mics)
-    review = review_state(board, mics)
+    review = review_state(board, mics, subject, repo)
     return {
         "bucket": board.get("bucket_id"),
         "mechanical_findings": found,
