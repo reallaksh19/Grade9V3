@@ -48,7 +48,6 @@
       "ladder_position": 60,
       "provenance": "SOURCE",
       "ceiling": [
-        "efficiency",
         "velocity ratio",
         "moment equation"
       ],
