@@ -123,9 +123,7 @@
       "extensions": {},
       "action": "Assign each force arrow to the body on which that force acts.",
       "success_criterion": "Place a partner force on the other body's diagram rather than the chosen body's diagram.",
-      "prerequisite_refs": [
-        "CAP-NLM-FORCES-SUM-ZERO"
-      ],
+      "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -563,9 +561,7 @@
         }
       },
       "research_contribution": "Author-created body-ownership construction. A drawable FREE_BODY_DIAGRAM representation is intentionally not authored in this track.",
-      "prerequisite_refs": [
-        "CAP-NLM-FORCES-SUM-ZERO"
-      ],
+      "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
         "predict": {

@@ -29,7 +29,7 @@
       ],
       "supports_claims": [],
       "entry_capabilities": [
-        "CAP-WEP-GRADE9-QUANT"
+        "CAP-WEP-WORK-DIRECTION"
       ],
       "depth": [
         "FOUNDATION"
@@ -96,7 +96,7 @@
       "action": "Explain how a simple machine trades effort force, direction or input distance without creating energy.",
       "success_criterion": "Rejects free-energy interpretations and identifies the compensating distance/direction tradeoff.",
       "prerequisite_refs": [
-        "CAP-WEP-GRADE9-QUANT"
+        "CAP-WEP-WORK-DIRECTION"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -168,7 +168,7 @@
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
       "entry_assumptions": [
-        "Can distinguish force from work and can compare input/output energy transfers."
+        "Can distinguish force from work and identify work as a force acting through displacement."
       ],
       "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
       "teaching_path": [
@@ -178,7 +178,7 @@
           "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
           "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
           "inputs": [
-            "CAP-WEP-GRADE9-QUANT"
+            "CAP-WEP-WORK-DIRECTION"
           ],
           "output": "input: F_effort, d_effort; output: F_load, d_load."
         },
@@ -237,7 +237,7 @@
       },
       "research_contribution": "Author-created simple-machine work-tradeoff construction bound to the gate-owned ideal machine relation.",
       "prerequisite_refs": [
-        "CAP-WEP-GRADE9-QUANT"
+        "CAP-WEP-WORK-DIRECTION"
       ],
       "lineage": [],
       "elicitation": {

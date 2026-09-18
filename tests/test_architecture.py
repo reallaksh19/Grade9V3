@@ -20,9 +20,9 @@ class CapabilityTopology(unittest.TestCase):
 
     def test_a_dependant_cannot_be_placed_before_its_prerequisite(self):
         board = self.nlm()
-        # Plant the exact failure class: FBD (R3) is made to occur before force
-        # cancellation (R2), although its capability depends on R2's capability.
-        board["rungs"][2]["ladder_position"] = 30
+        # Plant the exact failure class: friction (R5) is made to occur before FBD
+        # body ownership (R3), although friction genuinely depends on that capability.
+        board["rungs"][3]["ladder_position"] = 60
         caps, mics = capability_graph.subject_graph("Physics")
         points = [f["point"] for f in capability_graph.topology_findings(board, caps, mics)]
         self.assertIn(capability_graph.VIOLATION, points)

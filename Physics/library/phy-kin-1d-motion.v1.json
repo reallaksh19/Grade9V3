@@ -143,7 +143,7 @@
       "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
       "success_criterion": "Uses graph slope for v = u + at, geometric area for s = ut + 0.5at^2, eliminates time graphically/algebraically for v^2 = u^2 + 2as, and rejects exact use when the velocity-time graph is curved.",
       "prerequisite_refs": [
-        "CAP-KIN-ZERO-V-NONZERO-A"
+        "CAP-KIN-MOTION-GRAPHS"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -163,9 +163,7 @@
       },
       "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
       "success_criterion": "Identifies tangent velocity and inward acceleration qualitatively and uses v = 2 pi r / T for one complete uniform circular revolution.",
-      "prerequisite_refs": [
-        "CAP-KIN-ZERO-V-NONZERO-A"
-      ],
+      "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -185,8 +183,7 @@
       "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
       "success_criterion": "Reads axes and units first, uses two points from the same graph interval, and distinguishes position-time slope from velocity-time slope.",
       "prerequisite_refs": [
-        "CAP-KIN-AVERAGE-RATES",
-        "CAP-KIN-ZERO-V-NONZERO-A"
+        "CAP-KIN-AVERAGE-RATES"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -899,9 +896,7 @@
         }
       },
       "research_contribution": "Author-created Grade 9 uniform-circular-motion boundary.",
-      "prerequisite_refs": [
-        "CAP-KIN-ZERO-V-NONZERO-A"
-      ],
+      "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
         "predict": {
@@ -1069,8 +1064,7 @@
       },
       "research_contribution": "Author-created Grade 9 motion-graph bridge using the implemented GRAPH renderer and gate-owned interval relations.",
       "prerequisite_refs": [
-        "CAP-KIN-AVERAGE-RATES",
-        "CAP-KIN-ZERO-V-NONZERO-A"
+        "CAP-KIN-AVERAGE-RATES"
       ],
       "lineage": [],
       "elicitation": {

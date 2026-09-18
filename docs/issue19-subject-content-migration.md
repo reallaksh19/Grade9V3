@@ -93,7 +93,7 @@ Migrated the authored effort/load tradeoff, mechanical-advantage and machine-com
 spine:
 
 - three capabilities/microtopics/rungs;
-- explicit prerequisite `CAP-MACHINE-TRADEOFF → CAP-WEP-GRADE9-QUANT`;
+- explicit minimal prerequisite `CAP-MACHINE-TRADEOFF → CAP-WEP-WORK-DIRECTION`;
 - mechanical-advantage and ideal work-tradeoff relations;
 - two retained authored Core2A questions;
 - executable mechanical-advantage validation.
@@ -212,3 +212,29 @@ The donor content was adapted rather than copied mechanically:
 This note describes the current PR #23 slice. Additional Physics donor topics can be
 added as separate coherent slices on the same stack after the current guardrails are
 green.
+
+
+## Post-migration prerequisite minimality audit
+
+A human academic pass was added after the structural migration. The audit applies the
+Issue #19 rule that a prerequisite must be **true prior knowledge**, not merely useful
+sequencing or deeper enrichment.
+
+The resulting corrections keep the graph from over-routing a self-study learner:
+
+- motion-graph interpretation requires average-rate reasoning, while constant-acceleration
+  derivation requires motion-graph interpretation;
+- uniform circular motion is no longer forced through the unrelated
+  zero-velocity/non-zero-acceleration turning-point concept;
+- free-body force ownership is treated as a foundational capability rather than requiring
+  prior equilibrium/force-sum reasoning;
+- work-direction reasoning is foundational inside the WEP spine;
+- average power depends on work reasoning, not mechanical-energy conservation;
+- routine Grade 9 WEP calculation does not require prior derivation of the energy formulae;
+- the energy-derivation branch keeps only the work, Newton-II and constant-acceleration
+  capabilities actually used in the derivation;
+- simple-machine tradeoff depends on work-direction reasoning rather than the entire
+  Grade 9 WEP quantitative/derivation chain.
+
+The detailed counterfactual audit is recorded in
+`docs/issue19-prerequisite-audit.md`.

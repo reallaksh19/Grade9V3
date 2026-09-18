@@ -15,11 +15,11 @@ compared across matrices.
 | Question | Primary capability | Failure-relevant prerequisite(s) | Canonical teaching location |
 | --- | --- | --- | --- |
 | `Q-MATH-LINEAR-01` | `CAP-MATH-ISOLATE` — isolate the unknown with solution-preserving operations | `CAP-MATH-SUBSTITUTE` | Mathematics `MATRIX-MATH-LINEAR-EQUATIONS`, R2 → `MIC-MATH-EQUIVALENT-OPS` |
-| `Q-PHY-KIN-2A-COV-05` | `CAP-KIN-MOTION-GRAPHS` — interpret position-time / velocity-time graph information correctly | `CAP-KIN-AVERAGE-RATES`; `CAP-KIN-ZERO-V-NONZERO-A` | Physics `MATRIX-PHY-KIN-1D-MOTION`, R4G → `MIC-PHY-KIN-MOTION-GRAPHS` |
-| `Q-PHY-KIN-PRACTICAL-13` | `CAP-KIN-MOTION-GRAPHS` | `CAP-KIN-AVERAGE-RATES`; `CAP-KIN-ZERO-V-NONZERO-A` | Physics `MATRIX-PHY-KIN-1D-MOTION`, R4G → `MIC-PHY-KIN-MOTION-GRAPHS` |
+| `Q-PHY-KIN-2A-COV-05` | `CAP-KIN-MOTION-GRAPHS` — interpret position-time / velocity-time graph information correctly | `CAP-KIN-AVERAGE-RATES` | Physics `MATRIX-PHY-KIN-1D-MOTION`, R4G → `MIC-PHY-KIN-MOTION-GRAPHS` |
+| `Q-PHY-KIN-PRACTICAL-13` | `CAP-KIN-MOTION-GRAPHS` | `CAP-KIN-AVERAGE-RATES` | Physics `MATRIX-PHY-KIN-1D-MOTION`, R4G → `MIC-PHY-KIN-MOTION-GRAPHS` |
 | `Q-PHY-NLM-2A-COV-04` | `CAP-NLM-FRICTION` — infer friction direction from relative sliding / slip tendency | `CAP-NLM-FBD-BODY-OWNERSHIP` | Physics `MATRIX-PHY-NLM-FIRST-LAW`, R5 → `MIC-PHY-NLM-FRICTION` |
 | `Q-PHY-NLM-PRACTICAL-12` | `CAP-NLM-SECOND-LAW` — relate signed net external force to acceleration for one chosen body | `CAP-NLM-FBD-BODY-OWNERSHIP` | Physics `MATRIX-PHY-NLM-FIRST-LAW`, R6 → `MIC-PHY-NLM-SECOND-LAW` |
-| `Q-PHY-WEP-2A-DERIV-01` | `CAP-WEP-ENERGY-DERIVATIONS` — connect work/energy relations to prior mechanics rather than quote them as isolated formulas | `CAP-WEP-MECH-ENERGY-CONDITION`; `CAP-NLM-SECOND-LAW`; `CAP-KIN-CONSTANT-ACCELERATION` | Physics `MATRIX-PHY-WORK-ENERGY-POWER`, R5D → `MIC-PHY-WEP-ENERGY-DERIVATIONS` |
+| `Q-PHY-WEP-2A-DERIV-01` | `CAP-WEP-ENERGY-DERIVATIONS` — connect work/energy relations to prior mechanics rather than quote them as isolated formulas | `CAP-WEP-WORK-DIRECTION`; `CAP-NLM-SECOND-LAW`; `CAP-KIN-CONSTANT-ACCELERATION` | Physics `MATRIX-PHY-WORK-ENERGY-POWER`, R5D → `MIC-PHY-WEP-ENERGY-DERIVATIONS` |
 | `Q-PHY-WEP-PRACTICAL-09` | `CAP-WEP-GRADE9-QUANT` — choose and execute the appropriate quantitative work/energy relation | `CAP-WEP-MECH-ENERGY-CONDITION`; `CAP-WEP-ENERGY-DERIVATIONS` | Physics `MATRIX-PHY-WORK-ENERGY-POWER`, R6 → `MIC-PHY-WEP-GRADE9-QUANT` |
 | `Q-PHY-SOUND-2A-01` | `CAP-SOUND-WAVE-QUANTITIES` — distinguish and relate period, frequency, wavelength, amplitude and wave speed | `CAP-SOUND-LONGITUDINAL` | Physics `MATRIX-PHY-SOUND`, R3 → `MIC-PHY-SOUND-WAVE-QUANTITIES` |
 | `Q-PHY-MACHINE-2A-01` | `CAP-MACHINE-MA` — calculate mechanical advantage from load and effort | `CAP-MACHINE-TRADEOFF` | Physics `MATRIX-PHY-SIMPLE-MACHINES`, R2 → `MIC-PHY-MACHINE-MA` |
@@ -36,10 +36,13 @@ edges rather than rung percentages.
 ```text
 Q-PHY-WEP-2A-DERIV-01
   → CAP-WEP-ENERGY-DERIVATIONS
+      → CAP-WEP-WORK-DIRECTION
       → CAP-NLM-SECOND-LAW
           → CAP-NLM-FBD-BODY-OWNERSHIP
       → CAP-KIN-CONSTANT-ACCELERATION
-          → CAP-KIN-ZERO-V-NONZERO-A
+          → CAP-KIN-MOTION-GRAPHS
+              → CAP-KIN-AVERAGE-RATES
+                  → CAP-KIN-DISTANCE-DISPLACEMENT
 ```
 
 The Newton and Kinematics matrices have independent local ladder coordinates. The
@@ -52,9 +55,7 @@ dependencies.
 Q-PHY-MACHINE-2A-01
   → CAP-MACHINE-MA
       → CAP-MACHINE-TRADEOFF
-          → CAP-WEP-GRADE9-QUANT
-              → CAP-WEP-MECH-ENERGY-CONDITION
-              → CAP-WEP-ENERGY-DERIVATIONS
+          → CAP-WEP-WORK-DIRECTION
 ```
 
 Again, the path crosses matrices solely through capability prerequisites.
@@ -73,7 +74,7 @@ Examples:
 - `Q-PHY-WEP-PRACTICAL-09` has primary `CAP-WEP-GRADE9-QUANT` and secondaries
   `CAP-WEP-MECH-ENERGY-CONDITION` and `CAP-WEP-ENERGY-DERIVATIONS`.
 
-The graph remains responsible for all deeper prerequisite closure.
+The graph remains responsible for all deeper prerequisite closure. Prerequisite edges are intentionally minimal: a deeper derivation or related concept is not a prerequisite unless its absence would block learning or demonstrating the target capability.
 
 ## What this sample does not claim
 
