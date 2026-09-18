@@ -141,12 +141,31 @@ def audit(subject: str, repo: Path = REPO) -> dict:
     }
 
 
+def audit_all(repo: Path = REPO) -> dict:
+    subjects = sorted({
+        path.parent.parent.name
+        for path in repo.glob("*/matrices/*.rungs.json")
+        if (path.parent.parent / "library").is_dir()
+    })
+    reports = [audit(subject, repo) for subject in subjects]
+    findings = [
+        {**finding, "subject": report["subject"]}
+        for report in reports
+        for finding in report["findings"]
+    ]
+    return {
+        "subjects": reports,
+        "findings": findings,
+        "passed": not findings,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--subject", required=True)
+    parser.add_argument("--subject")
     parser.add_argument("--enforce", action="store_true")
     args = parser.parse_args()
-    report = audit(args.subject)
+    report = audit(args.subject) if args.subject else audit_all()
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 1 if args.enforce and not report["passed"] else 0
 
