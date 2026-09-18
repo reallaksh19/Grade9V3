@@ -9,7 +9,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import worksheet_study_plan  # noqa: E402
+from Shared.tools import feedback, worksheet_study_plan  # noqa: E402
 
 
 class ExamSideMotionInPlanePilot(unittest.TestCase):
@@ -39,17 +39,23 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
         self.assertIn("MATRIX-PHY-RELATIVE-MOTION", matrices)
         self.assertIn("MATRIX-PHY-NLM-FIRST-LAW", matrices)
 
-    def test_real_slice_exposes_external_prerequisite_without_fabricating_teaching(self):
+    def test_real_slice_routes_declared_external_prerequisite_as_explicit_bridge(self):
         report = worksheet_study_plan.resolve(self.mapping())
-        self.assertFalse(report["passed"])
-        gaps = [
-            row for row in report["findings"]
-            if row.get("point") == "STUDY_ROUTE_CAPABILITY_HAS_NO_TEACHING_LOCATION"
-        ]
+        self.assertTrue(report["passed"], report["findings"])
+        by_cap = {row["capability_ref"]: row for row in report["route"]}
+        bridge = by_cap["CAP-SIGNED-PAIR"]
+        self.assertEqual(bridge["state"], "EXTERNAL_BRIDGE")
+        self.assertEqual(bridge["recommended_action"], "BRIDGE")
+        self.assertEqual(bridge["external_provider"], "Mathematics")
         self.assertEqual(
-            [row["capability"] for row in gaps],
-            ["CAP-SIGNED-PAIR"],
+            bridge["acceptance_status"],
+            "PROVIDER_REVIEW_REQUIRED",
         )
+        self.assertFalse(any(
+            row.get("point") == "STUDY_ROUTE_CAPABILITY_HAS_NO_TEACHING_LOCATION"
+            and row.get("capability") == "CAP-SIGNED-PAIR"
+            for row in report["findings"]
+        ))
 
     def test_relative_motion_demand_keeps_reference_frame_support_explicit(self):
         report = worksheet_study_plan.resolve(self.mapping())
@@ -62,6 +68,66 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
             by_cap["CAP-NLM-FBD-BODY-OWNERSHIP"]["order"],
             by_cap["CAP-NLM-FRAME-CHOICE"]["order"],
         )
+
+    def test_real_external_question_enters_feedback_without_becoming_canonical(self):
+        mapping = self.mapping()
+        row = mapping["questions"][0]
+        report = feedback.run({
+            "subject": mapping["subject"],
+            "question_ref": row["question_id"],
+            "worksheet_question": row,
+            "attempt_number": 1,
+            "attempted_question_refs": [row["question_id"]],
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "session_ref": mapping["worksheet_id"],
+            "response_summary": "Subtracted the two speeds and ignored direction.",
+            "evaluation": {
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-RELATIVE-V",
+                "error_stage": "CONCEPT",
+            },
+        })
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["question_origin"], "WORKSHEET_MAPPING")
+        self.assertEqual(report["next_action"], "DIAGNOSE")
+        self.assertEqual(report["observation_draft"]["result"], "MISSING")
+        self.assertEqual(report["review"]["next_review"], "2026-09-19")
+        prompts = [
+            diagnostic["diagnostic_prompt"]
+            for option in report["diagnostic_options"]
+            for diagnostic in option["diagnostics"]
+        ]
+        self.assertTrue(any("directions" in prompt for prompt in prompts))
+
+    def test_diagnosed_real_question_repairs_then_uses_fresh_canonical_check(self):
+        mapping = self.mapping()
+        row = mapping["questions"][0]
+        report = feedback.run({
+            "subject": mapping["subject"],
+            "question_ref": row["question_id"],
+            "worksheet_question": row,
+            "attempt_number": 1,
+            "attempted_question_refs": [row["question_id"]],
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "session_ref": mapping["worksheet_id"],
+            "response_summary": "Subtracted the speeds as scalars.",
+            "evaluation": {
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-RELATIVE-V",
+                "error_stage": "CONCEPT",
+                "misconception_index": 0,
+            },
+        })
+        self.assertEqual(report["next_action"], "REPAIR")
+        self.assertEqual(report["repair"]["kind"], "MISCONCEPTION_REPAIR")
+        self.assertEqual(report["repair"]["microtopic_ref"], "MIC-COMMON-INTERVAL")
+        self.assertEqual(report["after_repair"]["next_action"], "VERIFY")
+        verification = report["after_repair"]["verification"]
+        self.assertEqual(verification["kind"], "QUESTION")
+        self.assertEqual(verification["question_ref"], "Q-AUTHOR-REL-01")
+        self.assertNotEqual(verification["question_ref"], row["question_id"])
 
     def test_first_use_is_diagnostic_without_inventing_weakness(self):
         report = worksheet_study_plan.resolve(self.mapping())
