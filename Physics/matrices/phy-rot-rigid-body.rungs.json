@@ -70,6 +70,20 @@
           "hold": "the physical origin, force, and turning sense",
           "notice": "the page symbol for the axial direction changes with the view, not with the physical torque"
         }
+      ],
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-TORQUE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Torque magnitude, origin dependence and axial direction need gate ownership."
+        },
+        {
+          "kind": "REPRESENTATION_KIND",
+          "ref": "AXIAL_VECTOR",
+          "required_for": "LEARNER_REPRESENTATION",
+          "reason": "The out-of-plane torque result needs an explicit axial-vector representation contract."
+        }
       ]
     },
     {
