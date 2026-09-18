@@ -196,6 +196,8 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "route": [],
             "start_decisions": started.get("start_decisions", []),
             "findings": findings,
+            "warnings": list(started.get("warnings", [])),
+            "execution_disposition": started.get("execution_disposition"),
             "blockers": list(started.get("blockers", [])),
             "valid": False,
             "ready": False,
@@ -277,6 +279,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         })
 
     findings = list(started.get("findings", []))
+    warnings = list(started.get("warnings", []))
     blockers = []
     for row in route_rows:
         if row.get("delivery_state") != capability_delivery.EXTERNAL_BRIDGE:
@@ -302,6 +305,8 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         "route": route_rows,
         "start_decisions": started.get("start_decisions", []),
         "findings": findings,
+        "warnings": warnings,
+        "execution_disposition": started.get("execution_disposition"),
         "blockers": blockers,
         "valid": valid,
         "ready": valid and not blockers,
@@ -372,6 +377,13 @@ def readable(report: dict) -> str:
             out.append(
                 f'- {_md(blocker.get("point"))}: {_md(blocker.get("capability"))} '
                 f'via {_md(blocker.get("provider"))}'
+            )
+
+    if report.get("warnings"):
+        out += ["", "## Fallback warnings", ""]
+        for warning in report["warnings"]:
+            out.append(
+                f'- {_md(warning.get("point"))}: {_md(warning.get("detail", ""))}'
             )
 
     if report.get("findings"):
