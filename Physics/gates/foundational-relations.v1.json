@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "registry_id": "PHY-ISSUE19-FIRST-SLICE-RELATIONS-V1",
+  "registry_id": "PHY-ISSUE19-SUBJECT-RELATIONS-V1",
   "subject": "Physics",
   "maturity": "ENGINEERING",
   "provenance": {
-    "purpose": "Issue #19 subject-content relations required by the first 1D Motion -> Newton Second Law -> Work/Energy/Power owner-extension slice.",
+    "purpose": "Issue #19 subject-content relations required by retained Physics owner-extension slices.",
     "donor": "PR #9 final subject artifact",
-    "authority": "OWNER_EXTENSION_ONLY; no board-prescription claim."
+    "authority": "OWNER_EXTENSION_ONLY unless a separate canonical binding proves otherwise."
   },
   "gates": [
     {
@@ -868,6 +868,327 @@
         {
           "case_id": "FAL-WEP9-VALIDATOR",
           "mutation": "Replace the first relation's validator reference with an undeclared id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-WAVE-SPEED",
+      "title": "Grade 9 sound frequency, wavelength, speed and echo relations",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Sound",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-WAVE-F-LAMBDA",
+          "statement": "For one travelling-wave description, propagation speed is frequency times wavelength."
+        },
+        {
+          "concept_id": "CON-SOUND-PERIOD-FREQUENCY",
+          "statement": "Frequency and time period are reciprocals for one repeating vibration."
+        },
+        {
+          "concept_id": "CON-SOUND-ECHO-PATH",
+          "statement": "An echo delay covers an outward and return sound path, so one-way distance is half the total distance travelled by the sound."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-WAVE-SPEED",
+          "expression": "v = f lambda",
+          "meaning": "Wave propagation speed equals temporal frequency times spatial wavelength.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "Wave propagation speed",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "f",
+              "meaning": "Frequency",
+              "unit": "Hz",
+              "dimension": "T^-1"
+            },
+            {
+              "symbol": "lambda",
+              "meaning": "Wavelength",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "f >= 0 and lambda >= 0.",
+            "All quantities describe the same wave mode in the same medium/state."
+          ]
+        },
+        {
+          "relation_id": "REL-FREQUENCY-PERIOD",
+          "expression": "f = 1 / T",
+          "meaning": "For a repeating vibration, frequency is the reciprocal of time period.",
+          "symbols": [
+            {
+              "symbol": "f",
+              "meaning": "Frequency",
+              "unit": "Hz",
+              "dimension": "T^-1"
+            },
+            {
+              "symbol": "T",
+              "meaning": "Time period",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "T > 0.",
+            "f and T refer to the same repeating vibration."
+          ]
+        },
+        {
+          "relation_id": "REL-ECHO-DISTANCE",
+          "expression": "d = v t_echo / 2",
+          "meaning": "For a single echo from a stationary reflecting surface, one-way source-to-reflector distance is half the sound speed times the measured round-trip echo delay.",
+          "symbols": [
+            {
+              "symbol": "d",
+              "meaning": "One-way source-to-reflector distance",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Sound speed in the medium",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "t_echo",
+              "meaning": "Round-trip echo delay",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "v > 0.",
+            "t_echo >= 0.",
+            "The measured delay is for one outward-and-return path in the same medium."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Frequency and wavelength refer to the same travelling wave.",
+        "Changing medium may change the propagation speed relation through the medium properties.",
+        "Period/frequency comparisons refer to one repeating vibration.",
+        "Echo distance uses a round-trip delay and therefore includes the factor one half."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-WAVE-PAIR",
+          "sequence": 1,
+          "action": "Identify one frequency and its corresponding wavelength for the same wave.",
+          "why_valid": "Mixing values from different waves breaks the relation."
+        },
+        {
+          "step_id": "RS-WAVE-MULTIPLY",
+          "sequence": 2,
+          "action": "Multiply frequency by wavelength to obtain propagation speed.",
+          "why_valid": "One cycle per period advances one wavelength in the travelling-wave description.",
+          "depends_on": [
+            "RS-WAVE-PAIR"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-WAVE-SOURCE-SPEED",
+          "wrong_idea": "Raising source frequency in the same medium must raise wave speed.",
+          "counterexample": "For a medium-set speed, higher frequency is accompanied by shorter wavelength.",
+          "repair": "Keep medium and mode fixed before deciding which quantity can change."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-WAVE-SAME-MEDIUM",
+          "title": "Frequency-wavelength comparisons in one medium",
+          "hidden_invariants": [
+            "If speed is fixed by the medium, frequency and wavelength vary inversely."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "WAVES"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-WAVE-SPEED-VALIDATOR",
+          "mutation": "Replace the first relation's implemented validator reference with an undeclared validator id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-SIMPLE-MACHINES-GRADE9",
+      "title": "Grade 9 simple machines and mechanical advantage",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Work, Energy and Simple Machines",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-MACHINE-TRADEOFF",
+          "statement": "A simple machine can trade force magnitude, direction or input distance; it does not create work or energy."
+        },
+        {
+          "concept_id": "CON-MACHINE-MA",
+          "statement": "Mechanical advantage compares load force with effort force for the same machine state."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-MECHANICAL-ADVANTAGE",
+          "expression": "MA = F_load / F_effort",
+          "meaning": "Mechanical advantage is the ratio of load force magnitude to effort force magnitude.",
+          "symbols": [
+            {
+              "symbol": "MA",
+              "meaning": "Mechanical advantage",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "F_load",
+              "meaning": "Load force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "F_effort",
+              "meaning": "Effort force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            }
+          ],
+          "conditions": [
+            "F_load >= 0.",
+            "F_effort > 0.",
+            "Load and effort magnitudes refer to the same machine state."
+          ]
+        },
+        {
+          "relation_id": "REL-IDEAL-MACHINE-WORK",
+          "expression": "F_effort d_effort = F_load d_load",
+          "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
+          "symbols": [
+            {
+              "symbol": "F_effort",
+              "meaning": "Effort force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "d_effort",
+              "meaning": "Distance moved at the effort point",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "F_load",
+              "meaning": "Load force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "d_load",
+              "meaning": "Distance moved by the load",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Ideal lossless model.",
+            "Each force magnitude is paired with displacement along its own line of action.",
+            "All distances are nonnegative magnitudes."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "State whether the machine is being treated as ideal before equating input and output work.",
+        "Mechanical advantage compares force magnitudes, not energies."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-MACHINE-FUNCTION",
+          "sequence": 1,
+          "action": "Identify what the machine changes: effort force, direction, or input distance.",
+          "why_valid": "A machine's benefit is a tradeoff, not new energy."
+        },
+        {
+          "step_id": "RS-MACHINE-MA",
+          "sequence": 2,
+          "action": "Compare load and effort forces through MA = F_load/F_effort.",
+          "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
+          "depends_on": [
+            "RS-MACHINE-FUNCTION"
+          ]
+        },
+        {
+          "step_id": "RS-MACHINE-WORK",
+          "sequence": 3,
+          "action": "For an ideal machine, connect reduced effort force to increased effort distance through equal input/output work.",
+          "why_valid": "REL-IDEAL-MACHINE-WORK owns the ideal work tradeoff.",
+          "depends_on": [
+            "RS-MACHINE-MA"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-MACHINE-FREE-ENERGY",
+          "wrong_idea": "A machine with mechanical advantage greater than one creates energy because the output force is larger.",
+          "counterexample": "An ideal machine that halves effort force requires a correspondingly larger effort distance for the same work.",
+          "repair": "Track both force and distance; mechanical advantage is a force tradeoff, not an energy gain."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-MACHINE-GRADE9",
+          "title": "Lever, pulley and inclined-plane force tradeoffs",
+          "hidden_invariants": [
+            "The same useful load work is compared with the effort work under an explicitly ideal or non-ideal model."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 3,
+        "prerequisite_depth": 1
+      },
+      "badges": [
+        "SIMPLE-MACHINES"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-MACHINE-MA-VALIDATOR",
+          "mutation": "Replace the mechanical-advantage validator reference with an undeclared id.",
           "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
         }
       ]
