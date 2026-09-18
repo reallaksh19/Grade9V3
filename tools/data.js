@@ -2621,9 +2621,7 @@ window.GRADE9V3 = {
                   "no_numeric_claim": "The answer classifies motion qualitatively and asserts no computed force or acceleration."
                 }
               },
-              "prerequisites": [
-                "CAP-KIN-ZERO-V-NONZERO-A"
-              ]
+              "prerequisites": []
             },
             {
               "id": "MIC-PHY-NLM-FORCES-SUM-ZERO",

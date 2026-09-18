@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 138,
+  "component_count": 139,
   "relation_count": 195,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 46,
+    "TEST": 47,
     "TOOLING": 40,
     "WEB": 5
   },
-  "digest": "sha256:3efa9a08aab0f6ba1e22fd983f83ac5a2906c899fd2bbe25b5540a3bc713f987",
+  "digest": "sha256:037f3b28347ece66cb5a49e92fae4d54a63f05bcdd476c089c3dcf0e2bfbfff2",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -768,6 +768,13 @@
       "sha256": "a6040975d63fc60744c647964f9d4dc156884a9ded9569891e0fa0609e84c099"
     },
     {
+      "path": "tests/test_grade9_force_laws_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3396,
+      "sha256": "500223086fd4c1366428808b6fc3b3391e0c091b6705a0e4ba0404d8db2bf552"
+    },
+    {
       "path": "tests/test_grade9_motion_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -960,8 +967,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 421446,
-      "sha256": "d23ce44ded8c2a8b8e4b00f7a18a8f1be23da16a992bdf1dcfbee67c7ba7be1c"
+      "bytes": 421388,
+      "sha256": "71990408c8e707ea9e2a5c54e2a07b0b2563e935bd27e5a7f081c965d863867f"
     },
     {
       "path": "tools/index.html",
