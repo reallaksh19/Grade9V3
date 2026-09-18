@@ -9,6 +9,7 @@ running the mutation rather than from a table that agrees with itself.
 """
 import copy
 import json
+import math
 import sys
 import unittest
 from pathlib import Path
@@ -199,6 +200,13 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         echo = physics_recompute(self.case(
             "ECHO_DISTANCE", {"speed": "m/s", "echo_time": "s"},
             speed=340, echo_time=0.4))
+        graph_acceleration = physics_recompute(self.case(
+            "AVERAGE_ACCELERATION",
+            {"v_initial": "m/s", "v_final": "m/s", "dt": "s"},
+            v_initial=3, v_final=5, dt=2))
+        circular_speed = physics_recompute(self.case(
+            "UNIFORM_CIRCULAR_SPEED",
+            {"radius": "m", "period": "s"}, radius=7, period=14))
         self.assertEqual(displacement, 24)
         self.assertEqual(no_time, {"v_squared_m2_s2": 121})
         self.assertEqual(force, 12)
@@ -208,6 +216,8 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         self.assertEqual(ma, 3)
         self.assertEqual(frequency, 200)
         self.assertEqual(echo, 68)
+        self.assertEqual(graph_acceleration, 1)
+        self.assertAlmostEqual(circular_speed, math.pi)
 
     def test_relative_velocity_gate_exists_for_the_authored_bucket(self):
         ids = {g["gate_id"] for g in registry()["gates"]}
