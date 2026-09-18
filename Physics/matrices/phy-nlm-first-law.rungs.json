@@ -84,8 +84,8 @@
         {
           "phase": 2,
           "vary": "an additional external horizontal force on one body",
-          "hold": "the interaction pair between the two bodies",
-          "notice": "the two bodies can have different net forces even though the interaction pair remains equal and opposite"
+          "hold": "the same contact between the two bodies",
+          "notice": "the two bodies can have different net forces even though the two partner forces remain equal and opposite"
         }
       ],
       "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
