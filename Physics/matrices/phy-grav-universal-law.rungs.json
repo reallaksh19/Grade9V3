@@ -40,7 +40,12 @@
     {
       "rung": "R2",
       "ladder_position": 35,
-      "provenance": "SOURCE",
+      "provenance": "SYNTHESIS",
+      "aha": "For fixed masses, gravitational-force magnitude falls with the square of centre-to-centre distance, while doubling either mass doubles the magnitude.",
+      "learner_owns": [
+        "Gravitational interaction is mutual and points along the line joining the two bodies.",
+        "Can compare products and square ratios."
+      ],
       "ceiling": [
         "field strength",
         "free fall",
@@ -52,6 +57,12 @@
         "The centre-to-centre distance, not surface gap, identified before substitution.",
         "A ratio comparison that changes distance while masses are held fixed, then changes one mass while distance is held fixed."
       ],
+      "misconception": {
+        "wrong_idea": "Doubling the separation halves the gravitational force.",
+        "diagnostic_prompt": "Two identical pairs are separated by r and 2r. Is the second force half, one quarter, or unchanged?",
+        "repair": "Use the inverse square on distance: a factor of two in separation produces a factor of four in the denominator."
+      },
+      "closure": "Predict the force-factor change for one mass doubled and separation tripled, and justify the two factors separately.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -73,13 +84,17 @@
           "required_for": "NUMERIC_EXIT",
           "reason": "Quantitative force-ratio work needs an implemented validator."
         }
-      ],
-      "microtopic_ref": "MIC-PHY-GRAV-R2"
+      ]
     },
     {
       "rung": "R3",
       "ladder_position": 50,
-      "provenance": "SOURCE",
+      "provenance": "SYNTHESIS",
+      "aha": "The gravitational acceleration produced by a source mass is independent of the falling object's mass because the same test mass appears in both gravitational force and inertia.",
+      "learner_owns": [
+        "The inverse-square force law can be used with centre-to-centre distance.",
+        "Can use F=ma as a relation between net force and acceleration."
+      ],
       "ceiling": [
         "potential energy",
         "escape speed",
@@ -91,6 +106,12 @@
         "The test mass shown once in the gravitational force and once in F=ma before cancellation.",
         "A same-location comparison of two different falling masses."
       ],
+      "misconception": {
+        "wrong_idea": "A heavier object has a larger gravitational force, so it must have a larger free-fall acceleration.",
+        "diagnostic_prompt": "At the same location, a 10 kg object feels twice the gravitational force of a 5 kg object. Does it accelerate twice as fast?",
+        "repair": "Carry the mass into F=ma; both force and inertia scale by the same factor, so the acceleration does not."
+      },
+      "closure": "Given two different test masses at the same radius from a planet, predict and compare their accelerations without using numerical values.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -106,8 +127,7 @@
           "required_for": "RUNG_AUTHORITY",
           "reason": "The cancellation of test mass into gravitational acceleration needs gate ownership."
         }
-      ],
-      "microtopic_ref": "MIC-PHY-GRAV-R3"
+      ]
     },
     {
       "rung": "R4",
