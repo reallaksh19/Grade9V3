@@ -430,5 +430,569 @@ class FeedbackRuntime(unittest.TestCase):
         )
 
 
+class LearningLoopScenarioScanner(unittest.TestCase):
+    """Exhaust the finite feedback-policy branch space without fabricating learner evidence."""
+
+    ALLOWED_ACTIONS = {
+        "STOP",
+        "DIAGNOSE",
+        "RETRY",
+        "REPAIR",
+        "VERIFY",
+        "VERIFICATION_ITEM_REQUIRED",
+        "CONTINUE",
+    }
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.repo = Path(self.tmp.name)
+        library = self.repo / "Example/library"
+        library.mkdir(parents=True)
+        (library / "example.v1.json").write_text(json.dumps({
+            "package_id": "PKG-SCANNER",
+            "capabilities": [
+                {"id": "CAP-A", "prerequisite_refs": []},
+                {"id": "CAP-B", "prerequisite_refs": []},
+            ],
+            "microtopics": [
+                {
+                    "id": "MIC-A",
+                    "primary_capability_ref": "CAP-A",
+                    "title": "Capability A",
+                    "misconceptions": [{
+                        "wrong_idea": "Uses the wrong structural rule.",
+                        "diagnostic_prompt": "Which relation must remain true?",
+                        "repair": "Rebuild the relation before calculating.",
+                    }],
+                    "teaching_path": [{
+                        "id": "STEP-A",
+                        "action": "Rebuild A.",
+                        "why_valid": "A determines the required relation.",
+                    }],
+                    "exit_task": {
+                        "prompt": "Fresh A check.",
+                        "source_ref": "AUTHORED-SCANNER",
+                    },
+                },
+                {
+                    "id": "MIC-B",
+                    "primary_capability_ref": "CAP-B",
+                    "title": "Capability B",
+                    "misconceptions": [{
+                        "wrong_idea": "Uses B in the wrong place.",
+                        "diagnostic_prompt": "Where does B enter?",
+                        "repair": "Place B only where its condition applies.",
+                    }],
+                    "teaching_path": [{
+                        "id": "STEP-B",
+                        "action": "Rebuild B.",
+                        "why_valid": "B is a separate learner action.",
+                    }],
+                },
+            ],
+            "questions": [
+                {
+                    "id": "Q-A",
+                    "primary_capability_ref": "CAP-A",
+                    "secondary_capability_refs": ["CAP-B"],
+                    "stem": "Solve A with B.",
+                    "hints": [
+                        {"text": "Name the governing relation.", "reveals": "CONCEPT"},
+                        {"text": "Apply the relation before calculating.", "reveals": "METHOD"},
+                        {"text": "The answer is 42.", "reveals": "ANSWER"},
+                    ],
+                    "answer": {"kind": "MODEL_RESPONSE"},
+                },
+                {
+                    "id": "Q-A-FRESH",
+                    "primary_capability_ref": "CAP-A",
+                    "secondary_capability_refs": [],
+                    "stem": "Fresh A question.",
+                    "hints": [],
+                    "answer": {"kind": "MODEL_RESPONSE"},
+                },
+                {
+                    "id": "Q-B",
+                    "primary_capability_ref": "CAP-B",
+                    "secondary_capability_refs": [],
+                    "stem": "Solve B.",
+                    "hints": [],
+                    "repair_ref": "STEP-B",
+                    "answer": {"kind": "MODEL_RESPONSE"},
+                },
+                {
+                    "id": "Q-TRANSFER",
+                    "primary_capability_ref": "CAP-A",
+                    "secondary_capability_refs": [],
+                    "stem": "Choose the model, then solve.",
+                    "hints": [
+                        {"text": "What remains invariant?", "reveals": "CONCEPT"},
+                        {"text": "Use model X.", "reveals": "METHOD"},
+                        {"text": "The answer is Y.", "reveals": "ANSWER"},
+                    ],
+                    "transfer": {
+                        "dimension": "model_choice",
+                        "statement": "Choose the model from structure.",
+                        "builds_on": ["MIC-A"],
+                    },
+                    "answer": {"kind": "MODEL_RESPONSE"},
+                },
+            ],
+        }), encoding="utf-8")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def request(self, **overrides):
+        request = {
+            "subject": "Example",
+            "question_ref": "Q-A",
+            "attempt_number": 1,
+            "shown_hint_indices": [],
+            "attempted_question_refs": ["Q-A"],
+            "help_used": "NONE",
+            "when": "2026-09-18",
+            "session_ref": "SESSION-SCANNER",
+            "response_summary": "Synthetic scanner response.",
+            "evaluation": {
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-A",
+                "error_stage": "CONCEPT",
+            },
+        }
+        for key, value in overrides.items():
+            if key == "evaluation":
+                request["evaluation"].update(value)
+            else:
+                request[key] = value
+        return request
+
+    def scan(self, **overrides):
+        return feedback.run(self.request(**overrides), self.repo)
+
+    def test_exhaustive_valid_result_help_stage_attempt_matrix(self):
+        """3 results × 5 help levels × 5 error stages × 3 attempts = 225 scans."""
+        scanned = 0
+        for result in sorted(feedback.RESULTS):
+            for help_used in sorted(feedback.HELP_LEVELS):
+                for error_stage in sorted(feedback.ERROR_STAGES):
+                    for attempt_number in (1, 2, 3):
+                        evaluation = {
+                            "result": result,
+                            "error_stage": error_stage,
+                        }
+                        if result == "INCORRECT":
+                            evaluation["failed_capability_ref"] = "CAP-A"
+                        else:
+                            evaluation["failed_capability_ref"] = None
+
+                        report = self.scan(
+                            help_used=help_used,
+                            attempt_number=attempt_number,
+                            evaluation=evaluation,
+                        )
+                        scanned += 1
+                        with self.subTest(
+                            result=result,
+                            help=help_used,
+                            stage=error_stage,
+                            attempt=attempt_number,
+                        ):
+                            self.assertTrue(report["passed"], report["findings"])
+                            self.assertIn(report["next_action"], self.ALLOWED_ACTIONS)
+
+                            observation = report.get("observation_draft")
+                            if result == "UNDECIDABLE":
+                                self.assertIsNone(observation)
+                                self.assertEqual(report["next_action"], "DIAGNOSE")
+                            elif result == "CORRECT":
+                                self.assertIsNotNone(observation)
+                                expected = (
+                                    "DEMONSTRATED"
+                                    if help_used == "NONE"
+                                    else "UNCERTAIN"
+                                )
+                                self.assertEqual(observation["result"], expected)
+                            else:
+                                self.assertIsNotNone(observation)
+                                expected = (
+                                    "MISSING"
+                                    if error_stage in {"CONCEPT", "SETUP"}
+                                    else "UNCERTAIN"
+                                )
+                                self.assertEqual(observation["result"], expected)
+
+                            hint = report.get("hint")
+                            if hint:
+                                self.assertNotEqual(hint.get("reveals"), "ANSWER")
+
+        self.assertEqual(scanned, 225)
+
+    def test_hint_history_scanner_never_reveals_answer(self):
+        """All eight shown-hint subsets preserve the no-answer invariant."""
+        for mask in range(8):
+            shown = [index for index in range(3) if mask & (1 << index)]
+            report = self.scan(
+                attempt_number=2,
+                shown_hint_indices=shown,
+                help_used="HINT" if shown else "NONE",
+            )
+            with self.subTest(shown=shown):
+                self.assertTrue(report["passed"], report["findings"])
+                hint = report.get("hint")
+                if hint:
+                    self.assertNotEqual(hint["reveals"], "ANSWER")
+                    self.assertNotEqual(hint["index"], 2)
+
+    def test_multi_capability_attribution_scanner(self):
+        cases = [
+            (None, "DIAGNOSE", None, None),
+            ("CAP-A", "RETRY", "CAP-A", None),
+            ("CAP-B", "RETRY", "CAP-B", None),
+            (
+                "CAP-NOT-REQUIRED",
+                "DIAGNOSE",
+                None,
+                "FEEDBACK_FAILED_CAPABILITY_NOT_REQUIRED",
+            ),
+        ]
+        for failed, action, expected_failed, finding in cases:
+            report = self.scan(
+                evaluation={
+                    "result": "INCORRECT",
+                    "failed_capability_ref": failed,
+                    "error_stage": "CONCEPT",
+                },
+            )
+            with self.subTest(failed=failed):
+                self.assertEqual(report["next_action"], action)
+                self.assertEqual(report["failed_capability_ref"], expected_failed)
+                points = [row["point"] for row in report["findings"]]
+                if finding:
+                    self.assertIn(finding, points)
+                    self.assertIsNone(report["observation_draft"])
+                else:
+                    self.assertNotIn(
+                        "FEEDBACK_FAILED_CAPABILITY_NOT_REQUIRED",
+                        points,
+                    )
+
+    def test_reachable_feedback_action_scanner(self):
+        """Every public feedback action is reached by at least one semantic scenario."""
+        reports = {}
+
+        reports["STOP"] = feedback.run({
+            "subject": "Example",
+            "question_ref": "Q-A",
+            "evaluation": {"result": "NOT-A-RESULT"},
+        }, self.repo)
+
+        reports["DIAGNOSE"] = self.scan(
+            evaluation={
+                "result": "UNDECIDABLE",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+
+        reports["RETRY"] = self.scan()
+
+        reports["REPAIR"] = self.scan(
+            attempt_number=3,
+            shown_hint_indices=[0, 1],
+            help_used="HINT",
+            evaluation={"misconception_index": 0},
+        )
+
+        reports["VERIFY"] = self.scan(
+            help_used="HINT",
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+
+        reports["VERIFICATION_ITEM_REQUIRED"] = self.scan(
+            question_ref="Q-B",
+            attempted_question_refs=["Q-B"],
+            help_used="HINT",
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+
+        reports["CONTINUE"] = self.scan(
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+
+        self.assertEqual(set(reports), self.ALLOWED_ACTIONS)
+        for expected, report in reports.items():
+            with self.subTest(expected=expected):
+                self.assertEqual(report["next_action"], expected)
+
+    def test_retry_repair_verify_sequence_is_explicit(self):
+        first = self.scan()
+        self.assertEqual(first["next_action"], "RETRY")
+        self.assertEqual(first["hint"]["reveals"], "CONCEPT")
+
+        second = self.scan(
+            attempt_number=2,
+            shown_hint_indices=[0],
+            help_used="HINT",
+        )
+        self.assertEqual(second["next_action"], "RETRY")
+        self.assertEqual(second["hint"]["reveals"], "METHOD")
+
+        third = self.scan(
+            attempt_number=3,
+            shown_hint_indices=[0, 1],
+            help_used="HINT",
+            evaluation={"misconception_index": 0},
+        )
+        self.assertEqual(third["next_action"], "REPAIR")
+        self.assertEqual(third["after_repair"]["next_action"], "VERIFY")
+        self.assertEqual(
+            third["after_repair"]["verification"]["question_ref"],
+            "Q-A-FRESH",
+        )
+
+    def test_model_choice_transfer_never_receives_method_or_answer_hint(self):
+        first = self.scan(
+            question_ref="Q-TRANSFER",
+            attempted_question_refs=["Q-TRANSFER"],
+            evaluation={
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-A",
+                "error_stage": "CONCEPT",
+            },
+        )
+        self.assertEqual(first["next_action"], "RETRY")
+        self.assertEqual(first["hint"]["reveals"], "CONCEPT")
+
+        second = self.scan(
+            question_ref="Q-TRANSFER",
+            attempted_question_refs=["Q-TRANSFER"],
+            attempt_number=2,
+            shown_hint_indices=[0],
+            help_used="HINT",
+            evaluation={
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-A",
+                "error_stage": "CONCEPT",
+                "misconception_index": 0,
+            },
+        )
+        self.assertEqual(second["next_action"], "REPAIR")
+        self.assertNotIn("hint", second)
+
+    def test_worksheet_mapping_scanner_diagnoses_before_repair(self):
+        worksheet = {
+            "question_id": "W-A",
+            "primary_capability_ref": "CAP-A",
+            "secondary_capability_refs": [],
+            "mapping_basis": "AGENT_PROPOSAL",
+        }
+        first = self.scan(
+            question_ref="W-A",
+            worksheet_question=worksheet,
+            attempted_question_refs=["W-A"],
+            evaluation={
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-A",
+                "error_stage": "CONCEPT",
+            },
+        )
+        self.assertEqual(first["next_action"], "DIAGNOSE")
+        self.assertNotIn("hint", first)
+
+        diagnosed = self.scan(
+            question_ref="W-A",
+            worksheet_question=worksheet,
+            attempted_question_refs=["W-A"],
+            evaluation={
+                "result": "INCORRECT",
+                "failed_capability_ref": "CAP-A",
+                "error_stage": "CONCEPT",
+                "misconception_index": 0,
+            },
+        )
+        self.assertEqual(diagnosed["next_action"], "REPAIR")
+        self.assertEqual(
+            diagnosed["repair"]["kind"],
+            "MISCONCEPTION_REPAIR",
+        )
+
+    def test_verification_fallback_scanner_covers_question_exit_and_missing(self):
+        fresh = self.scan(
+            help_used="HINT",
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+        self.assertEqual(fresh["verification"]["kind"], "QUESTION")
+        self.assertEqual(fresh["verification"]["question_ref"], "Q-A-FRESH")
+
+        exit_task = self.scan(
+            help_used="HINT",
+            attempted_question_refs=["Q-A", "Q-A-FRESH", "Q-TRANSFER"],
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+        self.assertEqual(exit_task["verification"]["kind"], "EXIT_TASK")
+
+        missing = self.scan(
+            question_ref="Q-B",
+            attempted_question_refs=["Q-B"],
+            help_used="HINT",
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+        self.assertEqual(
+            missing["next_action"],
+            "VERIFICATION_ITEM_REQUIRED",
+        )
+        self.assertIsNone(missing["verification"])
+
+    def test_help_normalisation_and_review_intervals(self):
+        cases = [
+            (
+                {"help_used": "NONE", "shown_hint_indices": []},
+                "DEMONSTRATED",
+                "NONE",
+                "CORRECT_INDEPENDENT",
+                "2026-09-25",
+            ),
+            (
+                {"help_used": "NONE", "shown_hint_indices": [0]},
+                "UNCERTAIN",
+                "HINT",
+                "CORRECT_WITH_HINT",
+                "2026-09-21",
+            ),
+            (
+                {"help_used": "WORKED_EXAMPLE", "shown_hint_indices": []},
+                "UNCERTAIN",
+                "WORKED_EXAMPLE",
+                "CORRECT_WITH_HINT",
+                "2026-09-21",
+            ),
+            (
+                {"help_used": "SOLUTION", "shown_hint_indices": []},
+                "UNCERTAIN",
+                "SOLUTION",
+                "CORRECT_WITH_HINT",
+                "2026-09-21",
+            ),
+            (
+                {"help_used": "NOT-A-LEVEL", "shown_hint_indices": []},
+                "UNCERTAIN",
+                "UNKNOWN",
+                "INCORRECT",
+                "2026-09-19",
+            ),
+        ]
+        for request_bits, state, help_value, outcome, next_review in cases:
+            report = self.scan(
+                **request_bits,
+                evaluation={
+                    "result": "CORRECT",
+                    "failed_capability_ref": None,
+                    "error_stage": "UNKNOWN",
+                },
+            )
+            with self.subTest(request_bits=request_bits):
+                self.assertEqual(report["observation_draft"]["result"], state)
+                self.assertEqual(report["observation_draft"]["help"], help_value)
+                self.assertEqual(report["review"]["outcome"], outcome)
+                self.assertEqual(report["review"]["next_review"], next_review)
+
+    def test_transfer_independent_success_uses_fourteen_day_review(self):
+        report = self.scan(
+            question_ref="Q-TRANSFER",
+            attempted_question_refs=["Q-TRANSFER"],
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+        self.assertEqual(report["next_action"], "CONTINUE")
+        self.assertEqual(report["observation_draft"]["result"], "DEMONSTRATED")
+        self.assertEqual(report["review"]["outcome"], "TRANSFER_INDEPENDENT")
+        self.assertEqual(report["review"]["next_review"], "2026-10-02")
+
+    def test_observation_is_always_draft_not_reviewed_live_evidence(self):
+        report = self.scan(
+            evaluation={
+                "result": "CORRECT",
+                "failed_capability_ref": None,
+                "error_stage": "UNKNOWN",
+            },
+        )
+        observation = report["observation_draft"]
+        self.assertEqual(
+            observation["provenance"],
+            "UNREVIEWED_SESSION_DRAFT",
+        )
+        self.assertEqual(observation["evidence_kind"], "DIRECT_ATTEMPT")
+        self.assertEqual(observation["session_ref"], "SESSION-SCANNER")
+
+    def test_invalid_or_unusable_inputs_fail_without_inventing_evidence(self):
+        cases = [
+            (
+                {"question_ref": "Q-NOT-REAL"},
+                "FEEDBACK_QUESTION_UNKNOWN",
+            ),
+            (
+                {
+                    "question_ref": "W-UNKNOWN",
+                    "worksheet_question": {
+                        "question_id": "W-UNKNOWN",
+                        "primary_capability_ref": "CAP-NOT-REAL",
+                        "secondary_capability_refs": [],
+                        "mapping_basis": "AGENT_PROPOSAL",
+                    },
+                },
+                "FEEDBACK_WORKSHEET_CAPABILITY_UNKNOWN",
+            ),
+            (
+                {
+                    "question_ref": "W-A",
+                    "worksheet_question": {
+                        "question_id": "W-DIFFERENT",
+                        "primary_capability_ref": "CAP-A",
+                        "secondary_capability_refs": [],
+                        "mapping_basis": "AGENT_PROPOSAL",
+                    },
+                },
+                "FEEDBACK_WORKSHEET_QUESTION_ID_MISMATCH",
+            ),
+        ]
+        for overrides, point in cases:
+            request = self.request(**overrides)
+            report = feedback.run(request, self.repo)
+            with self.subTest(point=point):
+                self.assertFalse(report["passed"])
+                self.assertEqual(report["next_action"], "STOP")
+                self.assertIn(point, [row["point"] for row in report["findings"]])
+                self.assertIsNone(report.get("observation_draft"))
+
+
+
 if __name__ == "__main__":
     unittest.main()
