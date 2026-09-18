@@ -8,6 +8,8 @@ Counts describe canonical records on the branch; they are not learner mastery me
 | Physics — One-dimensional motion | 6 | 6 | 6 | 6 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
 | Physics — Newton-law force reasoning | 5 | 5 | 5 | 1 retained authored Second-Law question | Human academic review pending; friction and third-law donor expansion intentionally deferred |
 | Physics — Work / Energy / Power | 7 | 7 | 7 | 7 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
+| Physics — Sound | 5 | 5 | 5 | 5 retained authored questions | Human academic review pending; heritage/curriculum-specific row held pending authoritative binding; no source-backed Core2 custody |
+| Physics — Simple Machines | 3 | 3 | 3 | 2 retained authored questions | Human academic review pending; no source-backed Core2 custody |
 | Mathematics — Linear equations in one unknown | 3 | 3 | 3 | 1 authored question | Human academic review pending; no authorised question corpus, so source-backed Core2 remains held |
 
 ## Physics — One-dimensional motion
@@ -56,6 +58,34 @@ positions across matrices is used.
 
 Representative retained questions cover supported practice/derivation/practical
 reasoning with primary capability ownership and only genuine secondary capabilities.
+
+## Physics — Sound
+
+Rung closure:
+
+- R1 → `MIC-PHY-SOUND-SOURCE-MEDIUM` → `CAP-SOUND-SOURCE-MEDIUM`;
+- R2 → `MIC-PHY-SOUND-LONGITUDINAL` → `CAP-SOUND-LONGITUDINAL`;
+- R3 → `MIC-PHY-SOUND-WAVE-QUANTITIES` → `CAP-SOUND-WAVE-QUANTITIES`;
+- R4 → `MIC-PHY-SOUND-PERCEPTION` → `CAP-SOUND-PERCEPTION`;
+- R5 → `MIC-PHY-SOUND-REFLECTION` → `CAP-SOUND-REFLECTION`.
+
+The donor heritage row was not migrated because its curriculum-specific authority was
+not canonical. The gap is visible in the package scope rather than being replaced with
+synthetic authority.
+
+## Physics — Simple Machines
+
+Rung closure:
+
+- R1 → `MIC-PHY-MACHINE-TRADEOFF` → `CAP-MACHINE-TRADEOFF`;
+- R2 → `MIC-PHY-MACHINE-MA` → `CAP-MACHINE-MA`;
+- R3 → `MIC-PHY-MACHINE-COMPARE` → `CAP-MACHINE-COMPARE`.
+
+The cross-matrix prerequisite is explicit:
+
+`CAP-MACHINE-TRADEOFF → CAP-WEP-GRADE9-QUANT`.
+
+No ladder position is compared with the WEP matrix.
 
 ## Mathematics — Linear equations in one unknown
 
