@@ -41,6 +41,9 @@ NOT_READY = session_readiness.NOT_READY
 EXECUTE_WITH_FALLBACK = "EXECUTE_WITH_FALLBACK"
 OWNER_DECISION = "OWNER_DECISION"
 
+OWNER_LOCATION = "LOCATION"
+OWNER_EXTERNAL = "EXTERNAL"
+
 NONEXECUTABLE_RUNG_POINTS = {
     "READINESS_MICROTOPIC_MISSING",
     "READINESS_CAPABILITY_MISSING",
@@ -134,6 +137,78 @@ def resolve_estimates(subject: str, raw_values: list[str],
     return estimates, findings
 
 
+def resolve_owner_choices(raw_values: list[str]) -> tuple[dict[str, dict], list[dict]]:
+    """Parse session-only owner resolutions without changing canonical records."""
+    choices: dict[str, dict] = {}
+    warnings: list[dict] = []
+    for raw in raw_values:
+        if "=" not in raw:
+            warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                "detail": f"{raw!r} must name a capability and a resolution",
+            })
+            continue
+        capability, payload = raw.split("=", 1)
+        capability = capability.strip()
+        payload = payload.strip()
+        if not capability or ":" not in payload:
+            warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                "capability_ref": capability or None,
+                "detail": "owner choice is missing a capability or resolution payload",
+            })
+            continue
+        if capability in choices:
+            warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_DUPLICATE",
+                "capability_ref": capability,
+                "detail": "only the first session owner choice for a capability is used",
+            })
+            continue
+
+        kind, rest = payload.split(":", 1)
+        kind = kind.strip().upper()
+        if kind == OWNER_EXTERNAL:
+            provider = rest.strip()
+            if not provider:
+                warnings.append({
+                    "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                    "capability_ref": capability,
+                    "detail": "EXTERNAL choice requires a provider label",
+                })
+                continue
+            choices[capability] = {
+                "kind": OWNER_EXTERNAL,
+                "provider": provider,
+                "scope": "SESSION_ONLY",
+            }
+            continue
+
+        if kind == OWNER_LOCATION:
+            parts = rest.split(":", 1)
+            if len(parts) != 2 or not all(part.strip() for part in parts):
+                warnings.append({
+                    "point": "STUDY_SESSION_OWNER_CHOICE_FORMAT",
+                    "capability_ref": capability,
+                    "detail": "LOCATION choice requires MATRIX_ID:RUNG",
+                })
+                continue
+            choices[capability] = {
+                "kind": OWNER_LOCATION,
+                "matrix_id": parts[0].strip(),
+                "rung": parts[1].strip(),
+                "scope": "SESSION_ONLY",
+            }
+            continue
+
+        warnings.append({
+            "point": "STUDY_SESSION_OWNER_CHOICE_KIND_UNKNOWN",
+            "capability_ref": capability,
+            "detail": f"{kind!r} is not a supported session owner resolution",
+        })
+    return choices, warnings
+
+
 def _touched_matrix_ids(study_plan: dict) -> list[str]:
     found = []
     for row in study_plan.get("route", []):
@@ -180,17 +255,51 @@ def _rung_execution_blockers(readiness: dict | None, rung: str | None) -> list[d
     ]
 
 
-def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: list[dict]):
-    """Annotate only exceptional execution states; normal route actions stay unchanged."""
+def _route_execution(
+    study_plan: dict,
+    readiness_rows: list[dict],
+    warnings: list[dict],
+    owner_choices: dict[str, dict] | None = None,
+):
+    """Annotate exceptional execution states and apply session-only owner choices."""
     by_matrix = {row.get("matrix_id"): row for row in readiness_rows}
+    choices = owner_choices or {}
     route = []
     owner_decisions = []
     fallback_reasons = []
+    applied_owner_choices = []
+    choice_warnings = []
     executable = 0
     owner_required: set[str] = set()
+    route_capabilities = {
+        row.get("capability_ref")
+        for row in study_plan.get("route", [])
+        if row.get("capability_ref")
+    }
+
+    def bridge(item: dict, capability: str, choice: dict) -> None:
+        provider = choice["provider"]
+        item["recommended_action"] = "BRIDGE"
+        item["action_reason"] = (
+            f"Session-only owner bridge via {provider}; canonical delivery is unchanged."
+        )
+        item["external_provider"] = provider
+        item["provider"] = provider
+        item["acceptance_status"] = "SESSION_OWNER_CHOICE"
+        item["locations"] = []
+        item["lessons"] = []
+        item["owner_choice"] = dict(choice)
+        item["execution_disposition"] = EXECUTE_WITH_FALLBACK
+        applied_owner_choices.append({"capability_ref": capability, **choice})
+        fallback_reasons.append({
+            "capability_ref": capability,
+            "reason": "session-only owner bridge; canonical teaching truth is unchanged",
+        })
 
     for row in study_plan.get("route", []):
         item = dict(row)
+        capability = item.get("capability_ref")
+        choice = choices.get(capability)
         action = item.get("recommended_action")
         disposition = None
 
@@ -205,13 +314,13 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
         ]
         if blocked_dependencies:
             disposition = OWNER_DECISION
-            owner_required.add(item.get("capability_ref"))
+            owner_required.add(capability)
             owner_decisions.append({
-                "capability_ref": item.get("capability_ref"),
+                "capability_ref": capability,
                 "depends_on": blocked_dependencies,
                 "reason": (
-                    "a prerequisite route requires an owner decision; dependent study "
-                    "cannot safely leap over that unresolved prerequisite"
+                    "a prerequisite requires an owner decision; dependent study cannot "
+                    "safely leap over that prerequisite"
                 ),
             })
             item["execution_disposition"] = disposition
@@ -225,12 +334,47 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
             continue
 
         locations = list(item.get("locations") or [])
-        if item.get("state") != "RESOLVED" or len(locations) != 1:
+        owner_selected_location = False
+        if choice and choice.get("kind") == OWNER_LOCATION:
+            matches = [
+                location for location in locations
+                if location.get("matrix_id") == choice.get("matrix_id")
+                and location.get("rung") == choice.get("rung")
+            ]
+            if len(matches) == 1 and (
+                item.get("state") != "RESOLVED" or len(locations) != 1
+            ):
+                selected = matches[0]
+                locations = [selected]
+                item["locations"] = [selected]
+                item["lessons"] = [
+                    lesson for lesson in item.get("lessons", [])
+                    if lesson.get("matrix_id") == selected.get("matrix_id")
+                    and lesson.get("rung") == selected.get("rung")
+                ]
+                item["owner_choice"] = dict(choice)
+                owner_selected_location = True
+                applied_owner_choices.append({"capability_ref": capability, **choice})
+
+        unresolved = (
+            item.get("state") != "RESOLVED" or len(locations) != 1
+        ) and not owner_selected_location
+
+        if unresolved:
+            if choice and choice.get("kind") == OWNER_EXTERNAL:
+                bridge(item, capability, choice)
+                executable += 1
+                route.append(item)
+                continue
             disposition = OWNER_DECISION
-            owner_required.add(item.get("capability_ref"))
+            owner_required.add(capability)
             owner_decisions.append({
-                "capability_ref": item.get("capability_ref"),
-                "reason": "canonical teaching delivery is unresolved or ambiguous",
+                "capability_ref": capability,
+                "reason": (
+                    "supplied location is not one of the offered canonical locations"
+                    if choice and choice.get("kind") == OWNER_LOCATION
+                    else "canonical teaching delivery is unresolved or ambiguous"
+                ),
             })
         else:
             location = locations[0]
@@ -238,37 +382,70 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
             rung_state = _rung_state(readiness, location.get("rung"))
             rung_blockers = _rung_execution_blockers(readiness, location.get("rung"))
             if rung_state in {None, "BLOCKED"} or rung_blockers:
+                if choice and choice.get("kind") == OWNER_EXTERNAL:
+                    bridge(item, capability, choice)
+                    executable += 1
+                    route.append(item)
+                    continue
                 disposition = OWNER_DECISION
-                owner_required.add(item.get("capability_ref"))
+                owner_required.add(capability)
                 owner_decisions.append({
-                    "capability_ref": item.get("capability_ref"),
+                    "capability_ref": capability,
                     "matrix_id": location.get("matrix_id"),
                     "rung": location.get("rung"),
                     "blocking_points": [row.get("point") for row in rung_blockers],
                     "reason": (
-                        "the demanded teaching rung has no safe executable teaching path; "
-                        "an owner choice or content repair is required"
+                        "the demanded rung has no safe teaching path; use an owner external "
+                        "bridge or repair the canonical content"
                     ),
                 })
             else:
                 executable += 1
-                if (
+                if owner_selected_location:
+                    disposition = EXECUTE_WITH_FALLBACK
+                    fallback_reasons.append({
+                        "capability_ref": capability,
+                        "matrix_id": location.get("matrix_id"),
+                        "rung": location.get("rung"),
+                        "reason": (
+                            "owner selected one offered canonical location for this session; "
+                            "canonical ambiguity remains visible"
+                        ),
+                    })
+                elif (
                     rung_state == "NEEDS_SUPPORT"
                     or readiness.get("status") in {PILOT_READY, NOT_READY}
                 ):
                     disposition = EXECUTE_WITH_FALLBACK
                     fallback_reasons.append({
-                        "capability_ref": item.get("capability_ref"),
+                        "capability_ref": capability,
                         "matrix_id": location.get("matrix_id"),
                         "rung": location.get("rung"),
                         "reason": (
-                            "the demanded rung is usable, but the surrounding matrix has "
-                            "support/content gaps that remain visible"
+                            "the demanded rung is usable, but surrounding support/content "
+                            "gaps remain visible"
                         ),
                     })
 
         item["execution_disposition"] = disposition
         route.append(item)
+
+    applied_caps = {row["capability_ref"] for row in applied_owner_choices}
+    for capability in choices:
+        if capability in applied_caps:
+            continue
+        if capability not in route_capabilities:
+            choice_warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_TARGET_UNKNOWN",
+                "capability_ref": capability,
+                "detail": "owner choice names no capability in the current route",
+            })
+        elif capability not in owner_required:
+            choice_warnings.append({
+                "point": "STUDY_SESSION_OWNER_CHOICE_NOT_REQUIRED",
+                "capability_ref": capability,
+                "detail": "canonical route is already executable; owner choice was ignored",
+            })
 
     if executable:
         overall = (
@@ -280,8 +457,16 @@ def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: lis
         overall = OWNER_DECISION
     else:
         overall = None
-    return route, owner_decisions, fallback_reasons, executable, overall
 
+    return (
+        route,
+        owner_decisions,
+        fallback_reasons,
+        executable,
+        overall,
+        applied_owner_choices,
+        choice_warnings,
+    )
 
 def _question_execution(questions: list[dict], route: list[dict]) -> tuple[list[dict], list[str], list[str]]:
     """Project route-level fallback onto worksheet questions without inventing new states."""
@@ -373,11 +558,15 @@ def _next_step(study_plan: dict) -> dict | None:
 
 
 def plan(mapping: dict, estimate_specs: list[str] | None = None,
-         profile: dict | None = None, repo: Path = REPO) -> dict:
+         profile: dict | None = None, repo: Path = REPO, *,
+         owner_choice_specs: list[str] | None = None) -> dict:
     """Compile a readiness-gated, learner-facing session plan."""
     subject = mapping.get("subject")
     estimates, estimate_findings = resolve_estimates(
         subject, estimate_specs or [], repo
+    )
+    owner_choices, owner_choice_parse_warnings = resolve_owner_choices(
+        owner_choice_specs or []
     )
     study_plan = worksheet_study_plan.resolve(
         mapping,
@@ -405,10 +594,26 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         *list(study_plan.get("warnings", [])),
     ]
 
-    route, owner_decisions, fallback_reasons, executable_count, disposition = _route_execution(
-        study_plan, readiness_rows, warnings
+    (
+        route,
+        owner_decisions,
+        fallback_reasons,
+        executable_count,
+        disposition,
+        applied_owner_choices,
+        owner_choice_warnings,
+    ) = _route_execution(
+        study_plan,
+        readiness_rows,
+        warnings,
+        owner_choices,
     )
+    applied_caps = {row["capability_ref"] for row in applied_owner_choices}
+    owner_resolved_findings = []
     for finding in decision_findings:
+        if finding.get("capability") in applied_caps:
+            owner_resolved_findings.append(finding)
+            continue
         owner_decisions.append({
             "point": finding.get("point"),
             "target": finding.get("where") or finding.get("capability"),
@@ -450,6 +655,13 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "ready": ready,
         "profile_id": study_plan.get("profile_id"),
         "owner_estimates": estimates,
+        "owner_choices": owner_choices,
+        "applied_owner_choices": applied_owner_choices,
+        "owner_choice_warnings": [
+            *owner_choice_parse_warnings,
+            *owner_choice_warnings,
+        ],
+        "owner_resolved_findings": owner_resolved_findings,
         "execution_disposition": disposition,
         "owner_decisions": owner_decisions,
         "fallback_reasons": fallback_reasons,
@@ -473,6 +685,7 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "rules": [
             "Matrix readiness remains truthful; execution may fall back only on demanded usable rungs.",
             "An unresolved prerequisite propagates OWNER_DECISION to its dependent route; the runner never leaps over an unresolved dependency.",
+            "Session owner choices may select an offered canonical location or supply an external bridge, but never mutate canonical truth.",
             "Only EXECUTE_WITH_FALLBACK and OWNER_DECISION are added as exceptional execution dispositions.",
             "Owner percentages choose a local starting attempt; they are not mastery evidence.",
             "Worksheet questions remain transient demand unless separately promoted.",
@@ -764,6 +977,22 @@ def readable_plan(report: dict) -> str:
         "",
     ]
 
+    if report.get("applied_owner_choices"):
+        out += ["## Applied session owner choices", ""]
+        for choice in report["applied_owner_choices"]:
+            if choice.get("kind") == OWNER_EXTERNAL:
+                detail = f'External bridge: {choice.get("provider")}'
+            else:
+                detail = f'{choice.get("matrix_id")} / {choice.get("rung")}'
+            out.append(f'- {choice.get("capability_ref")}: {detail}')
+        out += [""]
+
+    if report.get("owner_choice_warnings"):
+        out += ["## Owner-choice warnings", ""]
+        for warning in report["owner_choice_warnings"]:
+            out.append(f'- {warning.get("point")}: {warning.get("detail", "")}')
+        out += [""]
+
     if report.get("owner_estimates"):
         out += ["## Rough starting estimates", ""]
         for estimate in report["owner_estimates"]:
@@ -925,6 +1154,13 @@ def main() -> int:
         metavar="TARGET=PERCENT",
         help="TARGET is matrix id, bucket id, or exact subtopic name; may repeat",
     )
+    p_plan.add_argument(
+        "--owner-choice",
+        action="append",
+        default=[],
+        metavar="CAPABILITY=LOCATION:MATRIX:RUNG|EXTERNAL:PROVIDER",
+        help="session-only owner resolution; may repeat",
+    )
     p_plan.add_argument("--readable", action="store_true")
     p_plan.add_argument("--enforce", action="store_true")
 
@@ -954,7 +1190,12 @@ def main() -> int:
 
     if args.command == "plan":
         profile = load(args.profile) if args.profile else None
-        report = plan(mapping, args.estimate, profile)
+        report = plan(
+            mapping,
+            args.estimate,
+            profile,
+            owner_choice_specs=args.owner_choice,
+        )
         print(readable_plan(report) if args.readable
               else json.dumps(report, indent=2, ensure_ascii=False))
         return 1 if args.enforce and not report["passed"] else 0
