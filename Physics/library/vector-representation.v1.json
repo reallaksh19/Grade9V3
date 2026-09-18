@@ -1000,7 +1000,8 @@
     "library:local_question_banks": [],
     "library:cross_package_refs": {
       "note": "This package and LIB-PHY-RELATIVE-MOTION-SEED (V3B-Relative-Motion-Library-Seed.json) form one candidate library for the Grade 9 relative-motion run. IDs are unique across both files by construction; resource IDs SRC-CBSE-ADV/SRC-CBSE-STD/SRC-NCERT-PLANE/SRC-PHET/SRC-AUTHOR are defined in the relative-motion package and referenced here by id only."
-    }
+    },
+    "grade9_track": "ADVANCED"
   },
   "buckets": [
     {
@@ -1011,7 +1012,9 @@
         "SRC-AUTHOR-VEC"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED"
+      },
       "title": "Vector representation and subtraction",
       "topic": "Motion in two dimensions",
       "intrinsic_badge": "MEDIUM",
