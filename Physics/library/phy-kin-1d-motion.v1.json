@@ -898,7 +898,7 @@
           "action": "Compare successive velocity arrows and identify the change in velocity direction.",
           "why_valid": "Velocity changes whenever either its magnitude or direction changes.",
           "inputs": [],
-          "output": "Delta v is nonzero even though |v| is unchanged."
+          "output": "At two different points A and B: |v_A| = |v_B| = v, but v_A and v_B point in different tangent directions, so Delta v = v_B - v_A is nonzero."
         },
         {
           "id": "KIN5-3",
@@ -1570,7 +1570,7 @@
       "conditions": [
         "r > 0.",
         "T > 0.",
-        "Motion is uniform and circular over the measured revolution."
+        "Motion is uniform and the path is circular over the measured revolution."
       ],
       "derivation": [
         {
@@ -1621,15 +1621,15 @@
         "REL-AVERAGE-VELOCITY"
       ],
       "read_order": [
-        "Read the horizontal time axis and units.",
-        "Read the vertical position axis and units.",
-        "Choose two plotted points from one interval.",
-        "Compare position change with elapsed time to interpret the segment slope."
+        "Read the position-time graph's horizontal time axis and its seconds unit.",
+        "Read the vertical position coordinate and its metre unit.",
+        "Choose two position-time points that bound one interval.",
+        "Compare the position rise with the elapsed-time run to interpret the segment slope."
       ],
       "instance_constraints": [
-        "Time coordinates must be strictly increasing.",
-        "Axes must carry explicit units.",
-        "The plotted polyline represents only straight interpolation between the declared points."
+        "Position-time samples must be ordered by strictly increasing time.",
+        "The position-time axes must label seconds horizontally and metres vertically.",
+        "The plotted polyline represents only straight interpolation between the declared position samples."
       ],
       "accessibility": [
         "Caption states that this is a position-time graph.",
@@ -1687,7 +1687,7 @@
         {
           "element": "time coordinates of plotted points",
           "symbol": "Delta t",
-          "in_words": "The horizontal separation between two plotted times is the elapsed interval."
+          "in_words": "On the position-time plot, the horizontal separation between the selected timestamps is Delta t."
         },
         {
           "element": "position coordinates of plotted points",
@@ -1721,15 +1721,15 @@
         "REL-AVERAGE-ACCELERATION"
       ],
       "read_order": [
-        "Read the horizontal time axis and units.",
-        "Read the signed vertical velocity axis and units.",
-        "Choose two plotted points from one interval.",
-        "Compare velocity change with elapsed time to interpret the segment slope."
+        "Read the velocity-time graph's horizontal time axis and its seconds unit.",
+        "Read the signed vertical velocity coordinate and its metres-per-second unit.",
+        "Choose two velocity-time points that bound one interval.",
+        "Compare the velocity rise with the elapsed-time run to interpret the segment slope."
       ],
       "instance_constraints": [
-        "Time coordinates must be strictly increasing.",
-        "Axes must carry explicit units.",
-        "Velocity sign uses the bucket's declared positive direction."
+        "Velocity-time samples must be ordered by strictly increasing time.",
+        "The velocity-time axes must label seconds horizontally and metres per second vertically.",
+        "Velocity sign follows the bucket's declared positive direction."
       ],
       "accessibility": [
         "Caption states that this is a velocity-time graph.",
@@ -1788,7 +1788,7 @@
         {
           "element": "time coordinates of plotted points",
           "symbol": "Delta t",
-          "in_words": "The horizontal separation between two plotted times is the elapsed interval."
+          "in_words": "On the velocity-time plot, the horizontal separation between the selected timestamps is Delta t."
         },
         {
           "element": "velocity coordinates of plotted points",
