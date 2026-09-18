@@ -1,0 +1,27 @@
+name: issue19-refresh-generated-manifest-data
+
+on:
+  pull_request:
+    branches:
+      - architecture/final-release-authority
+
+jobs:
+  refresh:
+    if: github.head_ref == 'content/issue-19-physics-math-matrices'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate architecture explorer data
+        run: |
+          python3 Shared/tools/build_manifest.py
+          git diff --exit-code docs/architecture-manifest.json
+          git status --short tools/data.js
+      - name: Upload generated explorer data
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue19-tools-data
+          path: tools/data.js
+          retention-days: 7
