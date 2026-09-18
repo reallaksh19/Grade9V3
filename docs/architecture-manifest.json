@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 105,
-  "relation_count": 160,
+  "relation_count": 162,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 31,
     "WEB": 5
   },
-  "digest": "sha256:f02bb01218149b476a3a8539c2b0ecbd6d4e948ba56a0ce867312457b99dfe34",
+  "digest": "sha256:70f7197f62c6b046720b649936eb052325c3430ec5438721b633e93f517eaefe",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -540,8 +540,8 @@
       "path": "Shared/tools/study_route.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9836,
-      "sha256": "5d04e968a462ac4de4f11389e469d2e99a0be33c7d8f76a2dd58664655cb3608"
+      "bytes": 9832,
+      "sha256": "8277b757cbfe156f89988668f46767463f0c416e6d9a3f5bd54ad5ec0a8cf482"
     },
     {
       "path": "Shared/tools/study_scope_audit.py",
@@ -1272,6 +1272,16 @@
     },
     {
       "from": "Shared/tools/study_map.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_route.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_route.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
