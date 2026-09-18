@@ -2909,6 +2909,122 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-NLM-FBD-BODY-OWNERSHIP"
               ]
+            },
+            {
+              "id": "MIC-PHY-NLM-FRICTION",
+              "title": "Friction opposes relative sliding at a contact",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Friction is often memorized as 'opposite motion', which fails for driven or rolling contacts.",
+              "entry_assumptions": [
+                "Can choose one body and identify external contact interactions acting on it."
+              ],
+              "inferential_jump": "Friction is a contact force along the surface that opposes relative sliding, or the tendency for relative sliding, between the contacting surfaces; it is not defined by the object's overall velocity alone.",
+              "teaching_path": [
+                {
+                  "action": "Choose the body and mark the contact surface before deciding a friction direction.",
+                  "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
+                  "output": "chosen body; named contact; tangent direction available."
+                },
+                {
+                  "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+                  "why_valid": "Contact friction resists relative sliding between the surfaces.",
+                  "output": "friction tangent to contact and opposite relative sliding/tendency."
+                },
+                {
+                  "action": "Check a conveyor-belt case where the belt can frictionally accelerate an object in the same direction as the object's motion.",
+                  "why_valid": "The counterexample falsifies the shortcut 'friction always points opposite velocity'.",
+                  "output": "friction direction follows contact slip tendency, not a universal page-direction rule."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Friction always points opposite the object's velocity.",
+                  "diagnostic_prompt": "A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box's motion?",
+                  "repair": "Decide the relative sliding tendency at the contact first; friction opposes that tendency."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The friction force on the box points to the right.",
+                  "reasoning": [
+                    "Relative to the belt, the box tends to slip left at the contact.",
+                    "Friction opposes that relative slip tendency.",
+                    "Therefore the belt's friction on the box points right and accelerates it."
+                  ],
+                  "check": "The answer is allowed to point with the box's motion because friction is defined by the contact slip tendency, not by the box's velocity alone.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit asserts only the contact-force direction in a qualitative conveyor-belt case."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-THIRD-LAW",
+              "title": "Third-law partner forces act on different bodies",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Equal-and-opposite wording invites learners to cancel a pair that belongs to two different bodies.",
+              "entry_assumptions": [
+                "Can assign force arrows to the body on which they act."
+              ],
+              "inferential_jump": "One interaction produces two partner forces of equal magnitude and opposite direction, but they act on different bodies and therefore do not cancel in a single body's net-force sum.",
+              "teaching_path": [
+                {
+                  "action": "Name the interaction as 'A on B' and 'B on A' before drawing arrows.",
+                  "why_valid": "The agent-target wording records which body owns each partner force.",
+                  "output": "force of A on B belongs to B; force of B on A belongs to A."
+                },
+                {
+                  "action": "Draw equal-length opposite arrows on the two different body diagrams.",
+                  "why_valid": "Newton's third-law partners are equal in magnitude and opposite in direction for the same interaction.",
+                  "output": "partner arrows: equal magnitude, opposite direction, different bodies."
+                },
+                {
+                  "action": "Ask whether either single body's force sum contains both partner arrows.",
+                  "why_valid": "A force diagram for one body includes only forces acting on that body.",
+                  "output": "third-law partners do not cancel inside one body's F_net unless another separate force happens to balance one."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Action and reaction cancel each other, so interacting bodies cannot accelerate.",
+                  "diagnostic_prompt": "When a person pushes a cart, do the person's force on the cart and the cart's force on the person both appear on the cart's free-body diagram?",
+                  "repair": "No. Put each partner on the body it acts on; only then sum forces for one body."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
+                  "reasoning": [
+                    "The interaction is swimmer-water contact.",
+                    "Swimmer on water acts on the water.",
+                    "Water on swimmer acts on the swimmer in the opposite direction."
+                  ],
+                  "check": "Only the water-on-swimmer force belongs on the swimmer's free-body diagram.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit identifies interaction partners, directions and body ownership without a computed magnitude."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP"
+              ]
             }
           ],
           "relations": [
@@ -3090,6 +3206,12 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-FRICTION",
+              "action": "Identify friction as a contact force that opposes relative sliding or the tendency to slide.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-NLM-NET-ZERO-MOTION",
               "action": "Relate zero net force to unchanged velocity.",
               "provider": null,
@@ -3098,6 +3220,12 @@ window.GRADE9V3 = {
             {
               "id": "CAP-NLM-SECOND-LAW",
               "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-THIRD-LAW",
+              "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -3120,7 +3248,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 80,
+          "record_count": 84,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3131,8 +3259,8 @@ window.GRADE9V3 = {
               "CORE2A"
             ],
             "atoms": 76,
-            "questions": 1,
-            "obligations": 9,
+            "questions": 7,
+            "obligations": 11,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
