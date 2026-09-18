@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -20,31 +21,98 @@ class CrossMatrixStudyRoute(unittest.TestCase):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
 
     def test_prerequisites_order_the_real_cross_matrix_fixture(self):
+        # The subject content may legitimately refine prerequisite edges over time.
+        # Assert the architecture invariant rather than freezing one historical topology:
+        # every known dependency in the resolved slice must appear before its dependant.
         report = study_route.resolve(self.mapping())
         self.assertTrue(report["passed"], report["findings"])
-        order = [row["capability_ref"] for row in report["route"]]
-        self.assertEqual(order, [
-            "CAP-KIN-DISTANCE-DISPLACEMENT",
-            "CAP-KIN-ZERO-V-NONZERO-A",
-            "CAP-NLM-NET-ZERO-MOTION",
-            "CAP-NLM-FORCES-SUM-ZERO",
-            "CAP-NLM-FBD-BODY-OWNERSHIP",
-            "CAP-WEP-WORK-DIRECTION",
-            "CAP-WEP-NET-WORK-SIGN",
-            "CAP-WEP-POTENTIAL-ELIGIBILITY",
-            "CAP-WEP-MECH-ENERGY-CONDITION",
-        ])
+        positions = {
+            row["capability_ref"]: row["order"]
+            for row in report["route"]
+        }
+        self.assertTrue(positions)
+        for row in report["route"]:
+            for dependency in row["depends_on"]:
+                with self.subTest(capability=row["capability_ref"], dependency=dependency):
+                    self.assertIn(dependency, positions)
+                    self.assertLess(positions[dependency], row["order"])
 
     def test_cross_matrix_ladder_positions_do_not_order_the_route(self):
-        report = study_route.resolve(self.mapping())
-        rows = {row["capability_ref"]: row for row in report["route"]}
-        fbd = rows["CAP-NLM-FBD-BODY-OWNERSHIP"]
-        work = rows["CAP-WEP-WORK-DIRECTION"]
+        # Architecture falsifier independent of current Physics pedagogy. Put prerequisite
+        # A at local position 90 in one matrix and dependant B at local position 10 in a
+        # different matrix. Global study order must still be A -> B.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Example/library").mkdir(parents=True)
+            (root / "Example/matrices").mkdir(parents=True)
+            (root / "Shared/library").mkdir(parents=True)
+            (root / "Shared/library/worksheet-map.schema.json").write_text(
+                (REPO / "Shared/library/worksheet-map.schema.json").read_text(
+                    encoding="utf-8"
+                ),
+                encoding="utf-8",
+            )
+            (root / "Example/library/example.json").write_text(json.dumps({
+                "capabilities": [
+                    {
+                        "id": "CAP-A",
+                        "action": "Do A",
+                        "success_criterion": "A is done",
+                        "prerequisite_refs": [],
+                    },
+                    {
+                        "id": "CAP-B",
+                        "action": "Do B",
+                        "success_criterion": "B is done",
+                        "prerequisite_refs": ["CAP-A"],
+                    },
+                ],
+                "microtopics": [
+                    {"id": "MIC-A", "primary_capability_ref": "CAP-A"},
+                    {"id": "MIC-B", "primary_capability_ref": "CAP-B"},
+                ],
+                "questions": [],
+            }), encoding="utf-8")
+            (root / "Example/matrices/a.rungs.json").write_text(json.dumps({
+                "matrix_id": "MATRIX-A",
+                "bucket_id": "BUCKET-A",
+                "topic": "Example",
+                "subtopic": "A",
+                "rungs": [{
+                    "rung": "R-A",
+                    "ladder_position": 90,
+                    "microtopic_ref": "MIC-A",
+                }],
+            }), encoding="utf-8")
+            (root / "Example/matrices/b.rungs.json").write_text(json.dumps({
+                "matrix_id": "MATRIX-B",
+                "bucket_id": "BUCKET-B",
+                "topic": "Example",
+                "subtopic": "B",
+                "rungs": [{
+                    "rung": "R-B",
+                    "ladder_position": 10,
+                    "microtopic_ref": "MIC-B",
+                }],
+            }), encoding="utf-8")
+            mapping = {
+                "worksheet_id": "CROSS-MATRIX-ORDER",
+                "subject": "Example",
+                "questions": [{
+                    "question_id": "Q1",
+                    "primary_capability_ref": "CAP-B",
+                    "secondary_capability_refs": [],
+                    "mapping_basis": "MANUAL",
+                }],
+            }
+            report = study_route.resolve(mapping, root)
 
-        self.assertEqual(fbd["locations"][0]["ladder_position"], 70)
-        self.assertEqual(work["locations"][0]["ladder_position"], 20)
-        self.assertLess(fbd["order"], work["order"])
-        self.assertIn("CAP-NLM-FBD-BODY-OWNERSHIP", work["depends_on"])
+        self.assertTrue(report["passed"], report["findings"])
+        rows = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(rows["CAP-A"]["locations"][0]["ladder_position"], 90)
+        self.assertEqual(rows["CAP-B"]["locations"][0]["ladder_position"], 10)
+        self.assertLess(rows["CAP-A"]["order"], rows["CAP-B"]["order"])
+        self.assertEqual(rows["CAP-B"]["depends_on"], ["CAP-A"])
 
     def test_question_secondary_is_demand_but_not_magic_prerequisite(self):
         report = study_route.resolve(self.mapping())
