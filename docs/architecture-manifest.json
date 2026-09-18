@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 71,
-  "relation_count": 121,
+  "component_count": 74,
+  "relation_count": 125,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 17,
-    "TEST": 8,
-    "TOOLING": 22,
+    "LIBRARY": 18,
+    "TEST": 9,
+    "TOOLING": 23,
     "WEB": 5
   },
-  "digest": "sha256:872d683516c3451c309e9e4ff72038cae0620ef1d2833a4df892aabfe3a22142",
+  "digest": "sha256:441dae6177ab07e44f865642af04fb6e7ae96fe605259fd3fe7be5b6dfc6c798",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -36,8 +36,8 @@
       "path": "Shared/library/authoring-request.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 3198,
-      "sha256": "00a71ad39cf216d06e38a5b26b22a5bafb18b02f41201ffe878e4193ef706ba6"
+      "bytes": 4105,
+      "sha256": "75a2af8c7d34c261db11e6f541c8733933d3c9b4d955a5fd145e0fdc46ba5a9e"
     },
     {
       "path": "Shared/library/authority.py",
@@ -71,8 +71,8 @@
       "path": "Shared/library/execution-packet.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 3030,
-      "sha256": "220ff6b5750f5938b80c08008186d84b91938dd10eafabcc96ce891366473956"
+      "bytes": 5118,
+      "sha256": "2484c3741e34e97ad9611e9cabaa1e4f113f1c00687862fd71a3293449a80c4a"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -143,6 +143,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 10155,
       "sha256": "4f3723cd7c856558afab995610b485e774d10e0998034be84a6f28834c5d171a"
+    },
+    {
+      "path": "Shared/library/source-inspection-receipt.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 2834,
+      "sha256": "a762d1a43b3361e1eec0d1e9e001d8582c42d99ea8769f9da53a087480804096"
     },
     {
       "path": "Shared/library/substance.py",
@@ -344,8 +351,8 @@
       "path": "Shared/tools/compile_execution_packet.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 13703,
-      "sha256": "2a875b2cd3caede06026722005688a08f97385df16586298d64dda408e31d6b9"
+      "bytes": 15203,
+      "sha256": "e2229201560b4672a954f98c3d07136f7970f0cff3f97bfd0f72d4d124810464"
     },
     {
       "path": "Shared/tools/learner_evidence.py",
@@ -365,8 +372,8 @@
       "path": "Shared/tools/plan_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 16097,
-      "sha256": "48f81c5af6bbed06f1f3a8ef1493e54f91598f69684c7def1c9e309ac4ecee17"
+      "bytes": 17779,
+      "sha256": "93ac73b0094848a7f83e5a4411203b025b4c7acb756b2c1d150fd4d79436fcad"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -395,6 +402,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 20108,
       "sha256": "af86b67d8f3fa3ad5433ad8448924ad423a848d2c95576bf29bbd78455391f26"
+    },
+    {
+      "path": "Shared/tools/source_receipts.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8601,
+      "sha256": "96e824cbd91fdecb8d6a53a183eb70bea9a806e37743cfaaa179c76f316362a9"
     },
     {
       "path": "Shared/tools/spec_conformance.py",
@@ -428,15 +442,15 @@
       "path": "tests/test_architecture.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7204,
-      "sha256": "4cdec12a4278dc1625e5816048363bdc341d1cb73f04d179d2024d2d84d4a521"
+      "bytes": 7052,
+      "sha256": "7b6c679ae781bad3640912686eb12f2cdee792f4411a542c3f1ca6a6bdba681c"
     },
     {
       "path": "tests/test_execution_packet.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 6944,
-      "sha256": "47698c81b3f65886e22e72ca5ad60a55971133f80919b14e9531e30404f77f31"
+      "bytes": 7822,
+      "sha256": "64051ed48b95fab6135ece43f96cfaf43f4b236dcdf6afc55a42696d3add21d0"
     },
     {
       "path": "tests/test_gates.py",
@@ -472,6 +486,13 @@
       "role_description": "Executable checks",
       "bytes": 24889,
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+    },
+    {
+      "path": "tests/test_source_receipts.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4841,
+      "sha256": "e9e4e347343368755b9c81dc41f7e60fc83e507fb4f8f812c5b2c6ff1cb6d517"
     },
     {
       "path": "tests/test_tools.py",
@@ -903,6 +924,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/source_receipts.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/source_receipts.py",
+      "to": "Shared.library.practice_inventory",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/source_receipts.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/spec_conformance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1085,6 +1121,11 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.tools.republish",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_source_receipts.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
