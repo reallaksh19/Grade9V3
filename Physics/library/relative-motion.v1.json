@@ -1485,7 +1485,8 @@
   ],
   "extensions": {
     "physics:model_regime": "CLASSICAL_PARALLEL_NONROTATING_AXES",
-    "library:local_question_banks": []
+    "library:local_question_banks": [],
+    "grade9_track": "ADVANCED"
   },
   "buckets": [
     {
@@ -1496,7 +1497,9 @@
         "SRC-AUTHOR"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "ADVANCED"
+      },
       "title": "Relative velocity in a plane",
       "topic": "Motion in two dimensions",
       "intrinsic_badge": "HARD",
