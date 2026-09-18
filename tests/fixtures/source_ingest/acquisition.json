@@ -1,0 +1,15 @@
+{
+  "acquisition_id": "ACQ-C1C64A00E3D28DA787D6",
+  "version": "1.0.0",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-RELATIVE-MOTION",
+  "resource_ref": "SRC-TEST-FIXTURE-REL",
+  "source_kind": "FILE",
+  "requested_locator": "fixture://relative-motion-source",
+  "resolved_locator": "tests/fixtures/source_ingest/relative-motion-source.txt",
+  "acquired_at": "2026-09-18",
+  "media_type": "text/plain",
+  "byte_length": 174,
+  "sha256": "c1c64a00e3d28da787d6413789fb53b668aa1f98eee7589b65cc67f42b5b1d5d",
+  "snapshot_ref": "tests/fixtures/source_ingest/relative-motion-source.txt"
+}
