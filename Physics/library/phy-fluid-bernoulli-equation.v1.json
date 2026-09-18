@@ -54,14 +54,7 @@
       "badge_reason": "The ladder begins with a blocked quantitative static-pressure rung before moving into conceptual buoyancy and flow distinctions.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
-      "prerequisite_refs": [],
-      "scope": {
-        "covers": "Conceptual fluids rungs R2, R3 and R4.",
-        "excluded": [
-          "R1 hydrostatic pressure equation remains the blocked entry rung.",
-          "R5 quantitative efflux and Venturi application requires gate-owned flow equations."
-        ]
-      }
+      "prerequisite_refs": []
     }
   ],
   "capabilities": [
