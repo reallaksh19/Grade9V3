@@ -104,6 +104,49 @@ sufficiency.
 
 This is a truthful migration artifact, not a new inspection of the NCERT PDF.
 
+## Source-basis drift
+
+A stable URL is not necessarily a stable source scope. A publisher may reuse a filename,
+move a chapter, rationalise a section, or replace an edition while leaving the locator
+shape plausible.
+
+Every receipt therefore carries a `basis_assessment`:
+
+- `MATCH` — the inspected source matches the requested basis and topic scope;
+- `DRIFT` — the locator is valid, but the current content no longer matches the scope the
+  request appears to rely on;
+- `UNKNOWN` — the inspection evidence is not strong enough to decide.
+
+`DRIFT` is an owner-decision boundary. The planner must ask
+`SOURCE_BASIS_DRIFT_DECISION` before it asks whether authored supplemental questions may
+fill coverage gaps.
+
+The owner may either keep the supplied basis despite the drift, in which case products are
+judged only against what that current source actually contains, or change the source basis
+to one of the receipt's replacement candidates and acquire/inspect that source separately.
+
+An agent may not silently substitute:
+
+- a historical copy that once occupied the same filename;
+- a mirror with similar content;
+- a newer chapter that looks closer to the intended topic;
+- a different official URL.
+
+### Current Relative Motion example
+
+On 2026-09-18 the supplied official `keph103.pdf` resolves to *Motion in a Plane*. Historical
+NCERT material used `keph103.pdf` for *Motion in a Straight Line*, which contained a
+Relative Velocity section. Current NCERT places *Motion in a Straight Line* at
+`keph102.pdf`.
+
+The current receipt therefore records `DRIFT`, identifies `keph102.pdf` only as a
+replacement candidate, and keeps all source-backed Relative Motion products waiting until
+the owner decides whether to keep or change the supplied basis.
+
+This is intentionally different from `INSUFFICIENT`: insufficiency means “this is the
+right source but it does not cover enough”; drift means “before discussing coverage, decide
+whether this is still the source you meant.”
+
 ## Execution packet pin
 
 When a request names a receipt, the execution packet pins the receipt digest.
