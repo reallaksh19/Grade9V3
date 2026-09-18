@@ -1332,6 +1332,55 @@ class PracticeReadiness(unittest.TestCase):
         self.assertTrue(report["passed"], report["findings"])
         self.assertGreater(len(report["buckets"]), 0)
 
+    def test_standard_grade9_buckets_cover_every_taught_primary_capability(self):
+        report = practice_readiness.audit("Physics")
+        standard = {
+            "BUCKET-PHY-KIN-1D-MOTION",
+            "BUCKET-PHY-NLM-FIRST-LAW",
+            "BUCKET-PHY-WORK-ENERGY-POWER",
+            "BUCKET-PHY-SIMPLE-MACHINES",
+            "BUCKET-PHY-SOUND",
+        }
+        rows = {row["bucket"]: row for row in report["buckets"]}
+        self.assertTrue(standard <= rows.keys())
+        for bucket_id in standard:
+            coverage = rows[bucket_id]["coverage"]
+            self.assertEqual(coverage["policy"], "ALL_PRIMARY_CAPABILITIES")
+            self.assertEqual(coverage["missing_capabilities"], [], bucket_id)
+            self.assertEqual(
+                coverage["taught_primary_capabilities"],
+                coverage["practice_covered_capabilities"],
+                bucket_id,
+            )
+
+    def test_coverage_can_be_satisfied_by_a_secondary_capability_but_not_unexposed_content(self):
+        records = {
+            "BUCKET-X": {
+                "id": "BUCKET-X", "_collection": "buckets",
+                "extensions": {"practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES"},
+            },
+            "MIC-X1": {
+                "id": "MIC-X1", "_collection": "microtopics",
+                "bucket_id": "BUCKET-X", "primary_capability_ref": "CAP-X1",
+            },
+            "MIC-X2": {
+                "id": "MIC-X2", "_collection": "microtopics",
+                "bucket_id": "BUCKET-X", "primary_capability_ref": "CAP-X2",
+            },
+        }
+        exposed = [{
+            "id": "Q-X", "_collection": "questions",
+            "primary_capability_ref": "CAP-X1",
+            "secondary_capability_refs": ["CAP-X2"],
+            "exposure": [{"core": "CORE2A"}],
+        }]
+        coverage = practice_readiness._practice_coverage(records, "BUCKET-X", exposed)
+        self.assertEqual(coverage["missing_capabilities"], [])
+
+        hidden = [{**exposed[0], "exposure": []}]
+        coverage = practice_readiness._practice_coverage(records, "BUCKET-X", hidden)
+        self.assertEqual(coverage["missing_capabilities"], ["CAP-X1", "CAP-X2"])
+
     def test_relative_motion_exposes_only_the_practice_core_its_question_supports(self):
         report = practice_readiness.audit("Physics")
         row = next(r for r in report["buckets"] if r["bucket"] == "BUCKET-RELATIVE-MOTION")
