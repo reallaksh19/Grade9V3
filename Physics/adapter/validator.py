@@ -15,7 +15,7 @@ VALIDATORS = {
     "NEWTON_SECOND_LAW", "WORK_CONSTANT_FORCE", "KINETIC_ENERGY",
     "GRAVITATIONAL_POTENTIAL_ENERGY", "MECHANICAL_ADVANTAGE",
     "FREQUENCY_PERIOD", "ECHO_DISTANCE", "AVERAGE_ACCELERATION",
-    "UNIFORM_CIRCULAR_SPEED",
+    "UNIFORM_CIRCULAR_SPEED", "CONSTANT_ACCELERATION_GRAPH_AREA",
 }
 
 
@@ -121,6 +121,13 @@ def recompute(case: dict):
         if radius <= 0 or period <= 0:
             raise ValueError("UNIFORM_CIRCULAR_SPEED_DOMAIN_INVALID")
         return 2.0 * math.pi * radius / period
+    if kind == "CONSTANT_ACCELERATION_GRAPH_AREA":
+        t = _number(case, "t", "s")
+        if t < 0:
+            raise ValueError("TIME_NEGATIVE")
+        u = _number(case, "u", "m/s")
+        v = _number(case, "v", "m/s")
+        return 0.5 * (u + v) * t
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
