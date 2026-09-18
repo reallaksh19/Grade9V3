@@ -34,6 +34,26 @@ Migrated only the prerequisite needed by the retained Work/Energy/Power derivati
 This is intentionally a narrow prerequisite migration, not a wholesale import of the
 PR #9 Newton-law package.
 
+### Physics — Newton friction and third-law completion
+
+Completed the remaining useful Newton-law donor slice:
+
+- `CAP-NLM-FRICTION` and `MIC-PHY-NLM-FRICTION`;
+- `CAP-NLM-THIRD-LAW` and `MIC-PHY-NLM-THIRD-LAW`;
+- retained authored Core2A questions for net-zero motion, force-sum reasoning, FBD
+  ownership, friction, Second Law, third law and the practical-style Second-Law task;
+- donor Core2B frame-choice question remains intentionally omitted because its
+  transfer/rubric payload is not faithfully delivered by the current compiler.
+
+The donor friction rung was **not** copied at position 60 because its prerequisite
+`CAP-NLM-FBD-BODY-OWNERSHIP` is taught at position 70 on the post-#18 matrix. The
+completed post-#18 order is therefore:
+
+`20 net-zero → 45 force-sum → 70 FBD ownership → 78 friction → 86 Second Law → 94 third law → 100 frame choice`.
+
+These positions are local to the Newton matrix only; cross-matrix order still comes
+from capability prerequisites.
+
 ### Physics — Work / Energy / Power
 
 Migrated the useful authored quantitative/model-choice slice around the existing
@@ -104,7 +124,6 @@ Added:
 The following PR #9 content is deliberately not imported merely because it exists:
 
 - PR #9 Shared/library, Shared/tools, Shared/roles or other framework changes;
-- friction and Newton's third-law donor material;
 - additional vector/other Physics donor content not yet reviewed as the next coherent
   slice;
 - PR #9 curriculum mappings that rely on `SRC-CBSE-STD` where the canonical package
