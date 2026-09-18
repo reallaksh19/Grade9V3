@@ -207,6 +207,29 @@ class PracticalLearnerEvidence(unittest.TestCase):
         self.assertEqual(route["requested_entry"], "R1")
         self.assertEqual(route["selected_by"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
         self.assertEqual(route["entry"], "R1")
+        self.assertEqual(route["prerequisite_checks"], [])
+
+    def test_higher_owner_estimate_starts_higher_and_keeps_prerequisites_unverified(self):
+        board = resolve_request.ladder("Physics", "BUCKET-RELATIVE-MOTION")
+        caps, mics = capability_graph.subject_graph("Physics")
+        request = {
+            "learner": {
+                "owner_estimate": {
+                    "knowledge_percentage": 70,
+                    "by": "owner",
+                    "instruction": "rough starting estimate",
+                }
+            }
+        }
+        route = plan_request._learner_route(request, board, caps, mics, REPO)
+        self.assertEqual(route["state"], "READY_WITH_CHECKS")
+        self.assertEqual(route["entry"], "R4")
+        self.assertEqual(route["selected_by"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
+        self.assertEqual(
+            route["prerequisite_checks"],
+            ["CAP-SIGNED-PAIR", "CAP-SAME-TIME"],
+        )
+        self.assertEqual(route["bridges"], [])
 
 
 if __name__ == "__main__":
