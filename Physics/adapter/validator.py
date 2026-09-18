@@ -13,7 +13,7 @@ VALIDATORS = {
     "AVERAGE_POWER", "INSTANTANEOUS_POWER", "ELECTRIC_POWER",
     "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
     "NEWTON_SECOND_LAW", "WORK_CONSTANT_FORCE", "KINETIC_ENERGY",
-    "GRAVITATIONAL_POTENTIAL_ENERGY",
+    "GRAVITATIONAL_POTENTIAL_ENERGY", "MECHANICAL_ADVANTAGE",
 }
 
 
@@ -116,6 +116,12 @@ def recompute(case: dict):
         if mass <= 0 or g <= 0:
             raise ValueError("GPE_DOMAIN_INVALID")
         return mass * g * _number(case, "delta_h", "m")
+    if kind == "MECHANICAL_ADVANTAGE":
+        load_force = _number(case, "load_force", "N")
+        effort_force = _number(case, "effort_force", "N")
+        if load_force < 0 or effort_force <= 0:
+            raise ValueError("MECHANICAL_ADVANTAGE_DOMAIN_INVALID")
+        return load_force / effort_force
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
