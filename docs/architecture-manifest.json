@@ -16,7 +16,7 @@
     "TOOLING": 34,
     "WEB": 5
   },
-  "digest": "sha256:f99f9e88f135d3fc300d6382b20a3d3ed721a9f6ab5bc3b1f3b2b2c28cbe7370",
+  "digest": "sha256:aea1936b4068e9e83e56635436dbc33f4f910c72c5e961fa11b53c0b3120198b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -470,8 +470,8 @@
       "path": "Shared/tools/plan_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 19106,
-      "sha256": "9ff41d690beb7b6857b0bc3b79e9d8b769f598bdc4e99df11ce7808fa7e133ec"
+      "bytes": 20241,
+      "sha256": "9530dc25031fe422feeaf91d420f9e5568e42835ba10c2e8f4eb577fe9ec56a7"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -505,8 +505,8 @@
       "path": "Shared/tools/resolve_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20713,
-      "sha256": "4966624fed92a7005fb571d89cf40d62c3e1e2949792391358daf0c0e3f1d042"
+      "bytes": 22931,
+      "sha256": "50049e04b44428e15be0e1d3c52f29cc0f3b3679defd6e216f6ca565ec87ca8b"
     },
     {
       "path": "Shared/tools/review_authority.py",
@@ -687,8 +687,8 @@
       "path": "tests/test_practical_learner_evidence.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8385,
-      "sha256": "e3915f38189144c66d19e1a1f06eca301a8a5e5fe0a9e0c3d59c056c49f67e27"
+      "bytes": 9389,
+      "sha256": "08f6e18202d3e70ef72bd96e370b68ef51cf7878e2a1f4a8df11ee0efc85ece7"
     },
     {
       "path": "tests/test_publication_engine.py",
@@ -757,8 +757,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 83993,
-      "sha256": "609e4175019e175bd9037c130384baa2e03384c32ba2a050ca2a8a89f8942566"
+      "bytes": 84106,
+      "sha256": "a83c975939b5c65a7d23160b0dff5b30a2308b1e156879876a666684f32a21cb"
     },
     {
       "path": "tools/app.css",
