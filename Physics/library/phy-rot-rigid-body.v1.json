@@ -662,8 +662,176 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-ROT-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Rigid-body rotation and rolling practice",
+      "capability_refs": [
+        "CAP-PHY-ROT-R1",
+        "CAP-PHY-ROT-R3",
+        "CAP-PHY-ROT-R4",
+        "CAP-PHY-ROT-R5"
+      ],
+      "solution_structure": [
+        "Lay out two equal totals of identical mass pieces around one named axis: one cluster close to the axis and one spread farther away.",
+        "Move the pieces of arrangement A outward without adding or removing any mass, then compare how the rotational response changes.",
+        "Compare a rim-loaded body with a centre-loaded body that has the same total mass and outer size."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must decide whether the pure-rolling model still applies after direct evidence of slipping appears."
+      ],
+      "common_wrong_routes": [
+        "Objects with the same mass always have the same moment of inertia."
+      ],
+      "item_refs": [
+        "Q-PHY-ROT-2A-01",
+        "Q-PHY-ROT-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-ROT-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-ROT",
+      "original_identifier": "AUTHOR-ROT-2A-01",
+      "stem": "Two equal-mass arrangements rotate about the same marked axis. One keeps most of its mass close to the axis; the other places more mass near the outside. Predict which has greater rotational inertia and name the feature that decides it.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The outside-loaded arrangement has greater rotational inertia because more of the same mass lies farther from the chosen axis.",
+        "reasoning": [
+          "The comparison fixes total mass, so mass amount cannot explain the difference.",
+          "The comparison fixes the axis, so the reference for all distances is common.",
+          "Moving the same mass farther from that axis increases its contribution to rotational inertia."
+        ],
+        "check": "Swap only the radial distributions while keeping the axis fixed; the prediction must swap with the distribution rather than stay attached to an object label.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-PHY-ROT-R1",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-ROT-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: What must stay fixed if you want to test whether distribution matters rather than total mass?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Track how much mass lies far from the axis; the squared distance weighting makes distribution matter.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-ROT-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-ROT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-PHY-ROT",
+      "original_identifier": "AUTHOR-ROT-2B-01",
+      "stem": "A wheel rolls onto a low-friction patch and the marked contact point is observed to slide relative to the ground. Decide whether the pure-rolling condition may still be imposed, and state which part of the previous point-velocity construction fails.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "The pure-rolling condition may not be imposed while the contact point slides. The translation and rotation contributions at contact no longer cancel to zero in the ground frame.",
+        "reasoning": [
+          "Pure rolling was identified by an instantaneously stationary contact point on stationary ground.",
+          "The observation states that the contact point now has nonzero motion relative to the ground.",
+          "That directly breaks the no-slip cancellation used in the pure-rolling construction."
+        ],
+        "check": "If the contact point again becomes instantaneously at rest relative to the ground, the defining no-slip boundary has been restored.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Rejects the pure-rolling condition while the contact point slides.",
+            "evidence_of": "Checking a model against its defining no-slip boundary."
+          },
+          {
+            "criterion": "Identifies failed cancellation at the contact point rather than changing every point velocity arbitrarily.",
+            "evidence_of": "Locating exactly which construction depended on pure rolling."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-PHY-ROT-R4",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-ROT-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Use the contact point, not the centre, as the quickest test of the no-slip condition.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare the observed contact-point motion with the boundary case used to distinguish rolling from sliding.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide whether the pure-rolling model still applies after direct evidence of slipping appears.",
+        "builds_on": [
+          "Q-PHY-ROT-2A-01",
+          "MIC-PHY-ROT-R4"
+        ]
+      },
+      "repair_ref": "ROT-R4-3"
+    }
+  ],
   "teaching_routes": [
     {
       "version": "0.1.0",
