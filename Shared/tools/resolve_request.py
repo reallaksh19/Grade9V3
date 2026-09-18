@@ -245,6 +245,8 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             if not exposed:
                 built.append({"core": core, "state": "BLOCKED",
                               "purpose": purpose["id"],
+                              "support": purpose["support"],
+                              "handed_over": handed.get(purpose["support"]),
                               "reason": "the library holds no bucket-owned question "
                                         "exposed to this product"})
                 continue
@@ -328,7 +330,7 @@ def readable(report: dict) -> str:
             out += [""]
         if core.get("purpose"):
             out += [f'  purpose      {core["purpose"]}',
-                    f'  support      {core["support"]}',
+                    f'  support      {core.get("support") or "NOT_RESOLVED"}',
                     f'  handed over  {core.get("handed_over") or "AUTHOR_REQUIRED"}']
             if core.get("rows") is not None:
                 out += [f'  transfer     {core["rows"]} rows available']
