@@ -19,3 +19,9 @@ jobs:
         run: python3 Shared/tools/session_readiness.py --subject Physics --all --readable
       - name: Mathematics readiness
         run: python3 Shared/tools/session_readiness.py --subject Mathematics --all --readable
+      - name: Vector representation detail
+        run: python3 Shared/tools/session_readiness.py --subject Physics --matrix-id MATRIX-PHY-VECTOR-REPRESENTATION --readable
+      - name: Vector add/sub detail
+        run: python3 Shared/tools/session_readiness.py --subject Physics --matrix-id MATRIX-PHY-VEC-ADD-SUB --readable
+      - name: Gravitation detail
+        run: python3 Shared/tools/session_readiness.py --subject Physics --matrix-id MATRIX-PHY-GRAV-UNIVERSAL-LAW --readable
