@@ -3,6 +3,7 @@
   "$id": "https://grade9v3.local/execution-packet.schema.json",
   "title": "Third-agent execution packet",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "schema_version", "packet_id", "request_id", "request_digest", "mode",
     "subject", "lifecycle", "pins", "canonical", "global_prohibitions",
