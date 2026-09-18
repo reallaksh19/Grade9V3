@@ -1,0 +1,48 @@
+name: acquire-ncert-relative-motion
+
+on:
+  pull_request:
+    branches:
+      - architecture/source-acquisition-ingestion
+
+jobs:
+  acquire:
+    if: github.head_ref == 'source/relative-motion-ncert-keph103'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Acquire exact NCERT bytes
+        run: |
+          mkdir -p /tmp/ncert
+          python3 Shared/tools/source_pipeline.py acquire \
+            --url https://ncert.nic.in/textbook/pdf/keph103.pdf \
+            --subject Physics \
+            --bucket BUCKET-RELATIVE-MOTION \
+            --resource-ref SRC-NCERT-PLANE \
+            --locator https://ncert.nic.in/textbook/pdf/keph103.pdf \
+            --acquired-at 2026-09-18 \
+            --snapshot-output /tmp/ncert/keph103.pdf \
+            --output /tmp/ncert/acquisition.json
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p = Path('/tmp/ncert/keph103.pdf')
+          a = json.loads(Path('/tmp/ncert/acquisition.json').read_text())
+          assert p.stat().st_size == a['byte_length']
+          assert hashlib.sha256(p.read_bytes()).hexdigest() == a['sha256']
+          print(json.dumps(a, indent=2))
+          PY
+
+      - name: Upload pinned source acquisition
+        uses: actions/upload-artifact@v4
+        with:
+          name: ncert-keph103-acquisition
+          path: |
+            /tmp/ncert/keph103.pdf
+            /tmp/ncert/acquisition.json
+          retention-days: 7
