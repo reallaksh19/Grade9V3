@@ -144,6 +144,72 @@ class FeedbackRuntime(unittest.TestCase):
             [row["point"] for row in report["findings"]],
         )
 
+    def test_explicit_prerequisite_failure_is_valid_attribution(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            library = root / "Example/library"
+            library.mkdir(parents=True)
+            (library / "example.v1.json").write_text(json.dumps({
+                "package_id": "PKG-EXAMPLE",
+                "capabilities": [
+                    {"id": "CAP-BASE", "prerequisite_refs": []},
+                    {"id": "CAP-TARGET", "prerequisite_refs": ["CAP-BASE"]},
+                ],
+                "microtopics": [
+                    {
+                        "id": "MIC-BASE",
+                        "primary_capability_ref": "CAP-BASE",
+                        "title": "Base capability",
+                        "misconceptions": [{
+                            "wrong_idea": "Base idea is missing.",
+                            "diagnostic_prompt": "Can you show the base move?",
+                            "repair": "Rebuild the base move first.",
+                        }],
+                        "teaching_path": [{
+                            "id": "STEP-BASE",
+                            "action": "Rebuild the base move.",
+                            "why_valid": "The target depends on it.",
+                        }],
+                    },
+                    {
+                        "id": "MIC-TARGET",
+                        "primary_capability_ref": "CAP-TARGET",
+                        "title": "Target capability",
+                        "misconceptions": [],
+                        "teaching_path": [],
+                    },
+                ],
+                "questions": [{
+                    "id": "Q-TARGET",
+                    "primary_capability_ref": "CAP-TARGET",
+                    "secondary_capability_refs": [],
+                    "stem": "Use the target capability.",
+                    "hints": [],
+                    "answer": {"kind": "MODEL_RESPONSE"},
+                }],
+            }), encoding="utf-8")
+            report = feedback.run({
+                "subject": "Example",
+                "question_ref": "Q-TARGET",
+                "attempt_number": 1,
+                "shown_hint_indices": [],
+                "attempted_question_refs": ["Q-TARGET"],
+                "help_used": "NONE",
+                "when": "2026-09-18",
+                "response_summary": "Work explicitly fails at the prerequisite move.",
+                "evaluation": {
+                    "result": "INCORRECT",
+                    "failed_capability_ref": "CAP-BASE",
+                    "error_stage": "CONCEPT",
+                },
+            }, root)
+            self.assertTrue(report["passed"], report["findings"])
+            self.assertEqual(report["failed_capability_ref"], "CAP-BASE")
+            self.assertEqual(report["observation_draft"]["capability_ref"], "CAP-BASE")
+            self.assertEqual(report["observation_draft"]["result"], "MISSING")
+            self.assertEqual(report["next_action"], "REPAIR")
+            self.assertEqual(report["repair"]["microtopic_ref"], "MIC-BASE")
+
     def test_unknown_question_stops_cleanly(self):
         request = self.request()
         request["question_ref"] = "Q-NOT-REAL"
