@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 119,
-  "relation_count": 178,
+  "component_count": 121,
+  "relation_count": 181,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 31,
-    "TOOLING": 36,
+    "TEST": 32,
+    "TOOLING": 37,
     "WEB": 5
   },
-  "digest": "sha256:3f51ec867707b56d4b78e085ca294ab60ad79f1296eda17f39b9ec03ea4550e8",
+  "digest": "sha256:56d1575e7c605397257a885c20d217e111424657716659477549517b31b78f2b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -523,6 +523,13 @@
       "sha256": "2e4e673c4833cb5ae80a7c94422cbb18302a15fac35f059fc10a303e0bac2d57"
     },
     {
+      "path": "Shared/tools/session_readiness.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 19422,
+      "sha256": "2dc2e99a9b09b3a28f4de3bd68adaf16dce1b5a4af533f857c25f1521c85b617"
+    },
+    {
       "path": "Shared/tools/source_pipeline.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -759,6 +766,13 @@
       "role_description": "Executable checks",
       "bytes": 3754,
       "sha256": "6ec63adf5303df20704c1079816baab85db81f1e7fefcac29d9c62f2cc5d629f"
+    },
+    {
+      "path": "tests/test_session_readiness.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7816,
+      "sha256": "2dd145d1bd0656907b31c59ee220ea1523a957169cda0f5dc5840f6ac392718e"
     },
     {
       "path": "tests/test_source_pipeline.py",
@@ -1309,6 +1323,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/session_readiness.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/session_readiness.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/source_pipeline.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1660,6 +1684,11 @@
     },
     {
       "from": "tests/test_review_schedule.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_session_readiness.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
