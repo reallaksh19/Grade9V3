@@ -1073,12 +1073,13 @@ class ResolveRequest(unittest.TestCase):
         report = resolve_request.plan(request)
         self.assertEqual(report["findings"], [])
         # 45 is a practical owner estimate, not a claim of mastery. It chooses the
-        # greatest declared coordinate not above it, then prerequisite safety may
-        # backtrack further if needed.
+        # greatest declared coordinate not above it and keeps earlier prerequisites as
+        # unverified checks instead of silently marking them demonstrated.
         self.assertEqual(report["entry"]["requested_position"], 45)
         self.assertEqual(report["entry"]["selected_position"], 20)
         self.assertEqual(report["entry"]["why"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
         self.assertEqual(report["entry"]["rung"], "R1")
+        self.assertEqual(report["entry"]["prerequisite_checks"], [])
 
     def test_a_dangling_profile_is_refused(self):
         self.assertEqual(
@@ -1132,22 +1133,24 @@ class ResolveRequest(unittest.TestCase):
             "ABOVE_THE_LADDER")
 
     def test_selection_not_dilution(self):
-        # The invariant the whole layer exists to protect. A higher entry teaches FEWER
-        # rungs, never shallower ones: the segment is a suffix and each rung's task is
-        # identical in both plans.
+        # A rough owner estimate is useful only if a higher estimate can actually start
+        # higher. It selects a suffix of the ladder; it never changes what a rung teaches
+        # and it never turns earlier prerequisites into demonstrated mastery.
         def at(position):
             request = self.request()
             request["learner"]["owner_estimate"]["knowledge_percentage"] = position
             return resolve_request.plan(request)
         low, high = at(20), at(70)
         self.assertEqual(low["segment"], ["R1", "R3", "R4", "R5"])
-        # A coordinate is not evidence. Position 70 requests R4, but R3 is the earliest
-        # same-ladder prerequisite not demonstrated, so execution backtracks rather than
-        # pretending the estimate proves R3.
-        self.assertEqual(high["entry"]["requested_rung"], "R4")
-        self.assertEqual(high["entry"]["why"], "PREREQUISITE_BACKTRACK")
-        self.assertEqual(high["segment"], ["R3", "R4", "R5"])
+        self.assertEqual(high["entry"]["rung"], "R4")
+        self.assertEqual(high["entry"]["why"], "OWNER_ESTIMATE_CONSERVATIVE_FLOOR")
+        self.assertEqual(high["segment"], ["R4", "R5"])
         self.assertEqual(high["segment"], low["segment"][-len(high["segment"]):])
+        self.assertEqual(
+            high["entry"]["prerequisite_checks"],
+            ["CAP-SIGNED-PAIR", "CAP-SAME-TIME"],
+        )
+        self.assertNotIn("held", high["entry"])
         tasks = {s["rung"]: s["task"] for s in self.core(low, "CORE1A")["segment"]}
         for step in self.core(high, "CORE1A")["segment"]:
             with self.subTest(rung=step["rung"]):
