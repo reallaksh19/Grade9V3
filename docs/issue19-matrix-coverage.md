@@ -28,8 +28,12 @@ Rung closure:
 
 Key owner-extension capabilities introduced by the migration include average rates,
 motion-graph interpretation, constant-acceleration model choice and elementary uniform
-circular motion. Their curriculum mappings are intentionally empty because the retained
-canonical authority is authored, not a verified board binding.
+circular motion. The prerequisite audit keeps these routes minimal: motion-graph
+interpretation depends on average-rate reasoning, constant-acceleration derivation then
+depends on motion-graph interpretation, and uniform circular motion is not forced through
+the unrelated zero-velocity/turning-point concept. Their curriculum mappings are
+intentionally empty because the retained canonical authority is authored, not a verified
+board binding.
 
 Representative question pattern includes a motion-graph question whose primary
 capability is graph interpretation and whose secondary capability is the distinct
@@ -57,11 +61,16 @@ The important cross-topic edge remains:
 
 ## Physics — Work / Energy / Power
 
-The matrix closes seven authored rungs. The retained quantitative/derivation capability
-has two explicit prerequisite branches:
+The matrix closes seven authored rungs. The retained derivation capability has three explicit prerequisite branches:
 
+- `CAP-WEP-ENERGY-DERIVATIONS → CAP-WEP-WORK-DIRECTION`;
 - `CAP-WEP-ENERGY-DERIVATIONS → CAP-NLM-SECOND-LAW`;
 - `CAP-WEP-ENERGY-DERIVATIONS → CAP-KIN-CONSTANT-ACCELERATION`.
+
+Routine Grade 9 quantitative use no longer requires the derivation capability; it keeps
+only the mechanical-energy-condition prerequisite needed by its own success criterion.
+Average power depends on work-direction reasoning rather than on mechanical-energy
+conservation.
 
 This is the required cross-matrix ordering mechanism. No comparison of Physics ladder
 positions across matrices is used.
@@ -104,9 +113,12 @@ Rung closure:
 - R2 → `MIC-PHY-MACHINE-MA` → `CAP-MACHINE-MA`;
 - R3 → `MIC-PHY-MACHINE-COMPARE` → `CAP-MACHINE-COMPARE`.
 
-The cross-matrix prerequisite is explicit:
+The cross-matrix prerequisite is explicit and deliberately narrow:
 
-`CAP-MACHINE-TRADEOFF → CAP-WEP-GRADE9-QUANT`.
+`CAP-MACHINE-TRADEOFF → CAP-WEP-WORK-DIRECTION`.
+
+The machine tradeoff teaches its own ideal force-distance work relation; it does not
+require prior kinetic-energy derivations or the full Grade 9 mechanical-energy ledger.
 
 No ladder position is compared with the WEP matrix.
 
