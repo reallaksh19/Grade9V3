@@ -11,8 +11,16 @@
       "ladder_position": 20,
       "provenance": "SYNTHESIS",
       "aha": "In a fluid at rest, pressure is a scalar acting normal to surfaces and increases with depth because deeper points support more fluid above.",
-      "learner_owns": ["Can distinguish force from area and can compare vertical depth below a free surface."],
-      "ceiling": ["buoyancy", "continuity", "Bernoulli", "streamline", "viscosity"],
+      "learner_owns": [
+        "Can distinguish force from area and can compare vertical depth below a free surface."
+      ],
+      "ceiling": [
+        "buoyancy",
+        "continuity",
+        "Bernoulli",
+        "streamline",
+        "viscosity"
+      ],
       "must_contain": [
         "A vessel with several differently oriented pressure arrows at the same depth, all normal to their local surfaces.",
         "Two points at different depths but in the same connected static fluid."
@@ -24,82 +32,100 @@
       },
       "closure": "Given points at equal and unequal depths in a connected static fluid, rank their pressures and draw the force direction on differently oriented small surfaces.",
       "controlled_variation": [
-        {"phase": 1, "vary": "surface orientation at one point", "hold": "fluid, depth, and pressure magnitude", "notice": "pressure magnitude is unchanged while the surface force stays normal to each surface"},
-        {"phase": 2, "vary": "depth", "hold": "fluid density, gravity, and surface pressure", "notice": "pressure increases with vertical depth regardless of container shape"}
+        {
+          "phase": 1,
+          "vary": "surface orientation at one point",
+          "hold": "fluid, depth, and pressure magnitude",
+          "notice": "pressure magnitude is unchanged while the surface force stays normal to each surface"
+        },
+        {
+          "phase": 2,
+          "vary": "depth",
+          "hold": "fluid density, gravity, and surface pressure",
+          "notice": "pressure increases with vertical depth regardless of container shape"
+        }
       ]
     },
     {
       "rung": "R2",
       "ladder_position": 35,
-      "provenance": "SYNTHESIS",
-      "aha": "Buoyant force equals the weight of displaced fluid, so submerged volume and fluid density—not the object's mass by itself—set the buoyant force.",
-      "learner_owns": [
-        "Static-fluid pressure increases with depth and acts through normal forces on surfaces.",
-        "Can compute weight from mass and gravitational acceleration."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "continuity",
+        "Bernoulli",
+        "streamline",
+        "drag",
+        "terminal speed"
       ],
-      "ceiling": ["continuity", "Bernoulli", "streamline", "drag", "terminal speed"],
       "must_contain": [
         "An object outline with the displaced-fluid volume highlighted separately from the object's total volume.",
         "Equal-mass objects of different volumes fully submerged in the same fluid."
       ],
-      "misconception": {
-        "wrong_idea": "Objects with equal mass experience equal buoyant force in the same fluid.",
-        "diagnostic_prompt": "A 1 kg lead sphere and a 1 kg aluminium sphere are fully submerged in water. Must their buoyant forces be equal?",
-        "repair": "Compare displaced volumes: buoyant force follows the weight of displaced fluid, not the object's mass label."
-      },
-      "closure": "For two fully submerged objects in the same fluid, predict which has larger buoyant force from their volumes and explain the choice.",
       "controlled_variation": [
-        {"phase": 1, "vary": "object volume at fixed full submersion", "hold": "fluid density and gravity", "notice": "buoyant force changes with displaced volume even when object mass is held fixed"}
-      ]
+        {
+          "phase": 1,
+          "vary": "object volume at fixed full submersion",
+          "hold": "fluid density and gravity",
+          "notice": "buoyant force changes with displaced volume even when object mass is held fixed"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-FLUID-R2"
     },
     {
       "rung": "R3",
       "ladder_position": 50,
-      "provenance": "SYNTHESIS",
-      "aha": "For steady incompressible flow through one tube, the volume-flow rate is conserved, so smaller cross-sectional area requires larger flow speed.",
-      "learner_owns": [
-        "Buoyant force is determined by displaced fluid volume.",
-        "Can compare products and can interpret velocity arrows along a path."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "Bernoulli",
+        "static pressure drop",
+        "Torricelli",
+        "Venturi",
+        "viscosity"
       ],
-      "ceiling": ["Bernoulli", "static pressure drop", "Torricelli", "Venturi", "viscosity"],
       "must_contain": [
         "A directed flow path through wide and narrow sections with velocity arrows and cross-sectional areas marked.",
         "Equal time intervals showing equal fluid volume crossing each section."
       ],
-      "misconception": {
-        "wrong_idea": "Water must slow down in a narrower pipe because there is less space available.",
-        "diagnostic_prompt": "In steady incompressible flow, if the pipe area halves, does the average speed halve or double?",
-        "repair": "Conserve volume flow rate: the same volume per time must pass every section, so area and average speed vary inversely."
-      },
-      "closure": "Given three pipe sections, rank their flow speeds from cross-sectional areas and justify the ranking using one conserved flow rate.",
       "controlled_variation": [
-        {"phase": 1, "vary": "cross-sectional area along the tube", "hold": "steady incompressible flow rate", "notice": "velocity arrows lengthen where the area narrows"}
-      ]
+        {
+          "phase": 1,
+          "vary": "cross-sectional area along the tube",
+          "hold": "steady incompressible flow rate",
+          "notice": "velocity arrows lengthen where the area narrows"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-FLUID-R3"
     },
     {
       "rung": "R4",
       "ladder_position": 65,
-      "provenance": "SYNTHESIS",
-      "aha": "Along a streamline in steady ideal flow, pressure, kinetic, and gravitational energy-per-volume terms trade; a speed increase does not by itself imply low pressure unless the other terms and model conditions are controlled.",
-      "learner_owns": [
-        "Continuity links flow speed to cross-sectional area in steady incompressible flow.",
-        "Can compare heights and distinguish static pressure from flow speed."
+      "provenance": "SOURCE",
+      "ceiling": [
+        "boundary layer",
+        "turbulence",
+        "viscous loss",
+        "pump head",
+        "cavitation"
       ],
-      "ceiling": ["boundary layer", "turbulence", "viscous loss", "pump head", "cavitation"],
       "must_contain": [
         "Two marked points on the same streamline with pressure, speed, and height terms shown as one energy ledger.",
         "A horizontal narrowing case followed by a case where height also changes."
       ],
-      "misconception": {
-        "wrong_idea": "Wherever fluid speed is higher, static pressure must be lower, regardless of height or losses.",
-        "diagnostic_prompt": "Point 2 has higher speed than point 1 but is also much lower. Can speed alone determine which point has higher pressure?",
-        "repair": "Use all Bernoulli terms between points on the same streamline and state the ideal-flow assumptions before drawing a pressure conclusion."
-      },
-      "closure": "For two points on one ideal streamline, identify which terms can be equal, which change, and predict pressure direction without blindly applying 'faster means lower pressure'.",
       "controlled_variation": [
-        {"phase": 1, "vary": "cross-sectional area on a horizontal streamline", "hold": "fluid density, height, and steady ideal-flow conditions", "notice": "narrowing raises speed and lowers static pressure in this controlled case"},
-        {"phase": 2, "vary": "height while area also changes", "hold": "same streamline, fluid density, and steady ideal-flow conditions", "notice": "pressure cannot be inferred from speed change alone when gravitational term also changes"}
-      ]
+        {
+          "phase": 1,
+          "vary": "cross-sectional area on a horizontal streamline",
+          "hold": "fluid density, height, and steady ideal-flow conditions",
+          "notice": "narrowing raises speed and lowers static pressure in this controlled case"
+        },
+        {
+          "phase": 2,
+          "vary": "height while area also changes",
+          "hold": "same streamline, fluid density, and steady ideal-flow conditions",
+          "notice": "pressure cannot be inferred from speed change alone when gravitational term also changes"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-FLUID-R4"
     },
     {
       "rung": "R5",
@@ -110,7 +136,13 @@
         "Bernoulli trades pressure, kinetic, and gravitational terms only under its stated ideal-flow conditions.",
         "Can use continuity to relate speeds at two sections."
       ],
-      "ceiling": ["vena contracta", "discharge coefficient", "compressibility correction", "head loss", "Reynolds number"],
+      "ceiling": [
+        "vena contracta",
+        "discharge coefficient",
+        "compressibility correction",
+        "head loss",
+        "Reynolds number"
+      ],
       "must_contain": [
         "A tank-to-orifice directed path with free-surface and exit points explicitly chosen.",
         "A Venturi with pressure taps and areas marked before any algebraic cancellation."
@@ -122,8 +154,18 @@
       },
       "closure": "Given a tank or Venturi setup, choose the two comparison points, name every term that cancels and why, and identify any approximation used.",
       "controlled_variation": [
-        {"phase": 1, "vary": "outlet area relative to tank area", "hold": "fluid, height difference, and equal atmospheric pressures", "notice": "surface speed becomes negligible only in the small-outlet limit"},
-        {"phase": 2, "vary": "pressure difference between Venturi taps", "hold": "steady incompressible flow and fixed section areas", "notice": "the measured pressure difference maps to the speed difference only after continuity links the section speeds"}
+        {
+          "phase": 1,
+          "vary": "outlet area relative to tank area",
+          "hold": "fluid, height difference, and equal atmospheric pressures",
+          "notice": "surface speed becomes negligible only in the small-outlet limit"
+        },
+        {
+          "phase": 2,
+          "vary": "pressure difference between Venturi taps",
+          "hold": "steady incompressible flow and fixed section areas",
+          "notice": "the measured pressure difference maps to the speed difference only after continuity links the section speeds"
+        }
       ]
     }
   ],
@@ -132,15 +174,44 @@
     "difficult_move": "Selecting the physically comparable points and deciding which quantities are actually conserved or equal before cancelling terms.",
     "independent_check": "Test a limiting case: equal depths recover equal static pressure, equal areas recover equal flow speed, and removing a height or speed difference must remove its corresponding Bernoulli contribution.",
     "support_ladder": [
-      {"level": "high", "handed_over": "The fluid regime and comparison points are identified, with candidate equal terms marked; the learner justifies cancellations, computes, and checks."},
-      {"level": "medium", "handed_over": "The relevant points or control sections are marked, but the learner decides the governing relation and equalities."},
-      {"level": "low", "handed_over": "Only the apparatus or flow description and measured values are given."}
+      {
+        "level": "high",
+        "handed_over": "The fluid regime and comparison points are identified, with candidate equal terms marked; the learner justifies cancellations, computes, and checks."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The relevant points or control sections are marked, but the learner decides the governing relation and equalities."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the apparatus or flow description and measured values are given."
+      }
     ]
   },
   "transfer": [
-    {"dimension": "model_choice", "changed_demand": "Oil flows through a long narrow tube with a substantial pressure loss: decide whether ideal Bernoulli between distant points is an adequate model.", "information_not_handed_over": "whether viscous dissipation can be neglected over the stated flow path", "repair_to": "R4"},
-    {"dimension": "representation_translation", "changed_demand": "A velocity-arrow field and pressure labels replace the pipe-area numbers; infer where continuity predicts narrowing or widening.", "information_not_handed_over": "the cross-sectional-area changes implied by the arrow-field speed pattern", "repair_to": "R3"},
-    {"dimension": "reasoning_steps", "changed_demand": "A draining tank has an outlet comparable in area to the tank; determine efflux speed without neglecting free-surface motion.", "information_not_handed_over": "the need to retain the free-surface speed and relate it to outlet speed by continuity", "repair_to": "R5"},
-    {"dimension": "novelty", "changed_demand": "An oddly shaped submerged body replaces spheres and blocks; determine how buoyant force changes as only part of it emerges.", "information_not_handed_over": "the displaced-fluid volume at the new immersion state", "repair_to": "R2"}
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Oil flows through a long narrow tube with a substantial pressure loss: decide whether ideal Bernoulli between distant points is an adequate model.",
+      "information_not_handed_over": "whether viscous dissipation can be neglected over the stated flow path",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A velocity-arrow field and pressure labels replace the pipe-area numbers; infer where continuity predicts narrowing or widening.",
+      "information_not_handed_over": "the cross-sectional-area changes implied by the arrow-field speed pattern",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A draining tank has an outlet comparable in area to the tank; determine efflux speed without neglecting free-surface motion.",
+      "information_not_handed_over": "the need to retain the free-surface speed and relate it to outlet speed by continuity",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "An oddly shaped submerged body replaces spheres and blocks; determine how buoyant force changes as only part of it emerges.",
+      "information_not_handed_over": "the displaced-fluid volume at the new immersion state",
+      "repair_to": "R2"
+    }
   ]
 }
