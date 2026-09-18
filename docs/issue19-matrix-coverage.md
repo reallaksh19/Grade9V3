@@ -6,7 +6,7 @@ Counts describe canonical records on the branch; they are not learner mastery me
 | Matrix | Rungs | Present microtopics | Owned primary capabilities | Representative mapped questions | Unresolved / held |
 | --- | ---: | ---: | ---: | ---: | --- |
 | Physics — One-dimensional motion | 6 | 6 | 6 | 6 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
-| Physics — Newton-law force reasoning | 5 | 5 | 5 | 1 retained authored Second-Law question | Human academic review pending; friction and third-law donor expansion intentionally deferred |
+| Physics — Newton-law force reasoning | 7 | 7 | 7 | 7 retained authored Core2A questions | Human academic review pending; donor Core2B frame-choice transfer item intentionally not retained |
 | Physics — Work / Energy / Power | 7 | 7 | 7 | 7 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
 | Physics — Sound | 5 | 5 | 5 | 5 retained authored questions | Human academic review pending; heritage/curriculum-specific row held pending authoritative binding; no source-backed Core2 custody |
 | Physics — Simple Machines | 3 | 3 | 3 | 2 retained authored questions | Human academic review pending; no source-backed Core2 custody |
@@ -35,15 +35,22 @@ capability graph rather than copied into every question.
 
 ## Physics — Newton-law force reasoning
 
-The migration adds one explicit Second-Law rung/capability because the retained
-Work/Energy derivation capability depends on it.
+The completed matrix now contains seven authored rungs:
 
-The important cross-topic edge is:
+- net-zero-motion reasoning;
+- zero force sum;
+- free-body force ownership;
+- friction from relative slip tendency;
+- Newton's Second Law;
+- Newton's third-law interaction pairs;
+- observer-frame choice.
+
+Friction, Second Law and third law all depend explicitly on
+`CAP-NLM-FBD-BODY-OWNERSHIP`, so each appears after the FBD rung in this matrix.
+
+The important cross-topic edge remains:
 
 `CAP-WEP-ENERGY-DERIVATIONS → CAP-NLM-SECOND-LAW → CAP-NLM-FBD-BODY-OWNERSHIP`.
-
-Friction and Newton's third law remain deferred rather than being imported for coverage
-cosmetics.
 
 ## Physics — Work / Energy / Power
 
