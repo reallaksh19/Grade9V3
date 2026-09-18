@@ -352,6 +352,9 @@ class EveryDeclaredFalsifierIsExecuted(unittest.TestCase):
         self.assertEqual(sorted(set(MUTATIONS) - declared), [])
 
     def test_both_subjects_registries_are_reached(self):
-        # Five of the thirteen cases were in a registry this file never loaded.
-        self.assertEqual(sorted(p.relative_to(REPO).parts[0] for p, *_ in registries()),
-                         ["Mathematics", "Physics"])
+        # Multiple registries may belong to one subject; coverage is about reaching each
+        # subject, not preserving a one-registry-per-subject layout.
+        self.assertEqual(
+            sorted({p.relative_to(REPO).parts[0] for p, *_ in registries()}),
+            ["Mathematics", "Physics"],
+        )
