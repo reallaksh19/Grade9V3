@@ -45,16 +45,16 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD"
+      },
       "title": "One-dimensional motion",
       "topic": "Motion",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "Two qualitative distinctions are authored; rate formulae and constant-acceleration equations remain upstream-blocked.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
-      "prerequisite_refs": [
-        "BUCKET-PHY-VEC-ADD-SUB"
-      ],
+      "prerequisite_refs": [],
       "conventions": [
         {
           "id": "CONV-KIN-POSITIVE-DIRECTION",
@@ -1428,7 +1428,9 @@
   "practice_profiles": [],
   "evidence": [],
   "known_issues": [],
-  "extensions": {},
+  "extensions": {
+    "grade9_track": "STANDARD"
+  },
   "data": [
     {
       "id": "DAT-KIN-ILLUSTRATIVE-PATH",
