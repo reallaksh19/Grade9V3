@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 107,
-  "relation_count": 164,
+  "component_count": 109,
+  "relation_count": 166,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 23,
-    "TOOLING": 32,
+    "TEST": 24,
+    "TOOLING": 33,
     "WEB": 5
   },
-  "digest": "sha256:a5cb3a38f13609d911356262cbdd0b84f95c819b6f614df31058c0b5f263fc57",
+  "digest": "sha256:9cc258137fc8f434140e85b0c252f1113daa7705697bc05881c69d376429c1a8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -439,6 +439,13 @@
       "sha256": "42289024e8205987f07ba8025ed85fd407010854c65527d21095984dc4df2a8e"
     },
     {
+      "path": "Shared/tools/feedback.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 14237,
+      "sha256": "821ba5fb69a2da6303ac64bf6ead1e2e18197900a4e48f9dbd09e0367f73ca45"
+    },
+    {
       "path": "Shared/tools/import_study_observations.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -626,6 +633,13 @@
       "role_description": "Executable checks",
       "bytes": 8506,
       "sha256": "7d207ea2b4ad2509af81421421373033027c283558fe839b0171392b3676baac"
+    },
+    {
+      "path": "tests/test_feedback.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 11280,
+      "sha256": "aa15f2eec1d3fdbc33da774ae29cdc73f53f3669bdaaa938c692d54634304d91"
     },
     {
       "path": "tests/test_gates.py",
@@ -1090,6 +1104,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/feedback.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/learner_evidence.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1331,6 +1350,11 @@
     },
     {
       "from": "tests/test_execution_packet.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_feedback.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
