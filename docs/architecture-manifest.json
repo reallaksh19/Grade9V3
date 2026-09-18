@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 128,
-  "relation_count": 187,
+  "component_count": 129,
+  "relation_count": 189,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 37,
+    "TEST": 38,
     "TOOLING": 39,
     "WEB": 5
   },
-  "digest": "sha256:4e7ee6d6cdc220516e8ca9b9719b5a6a717df5734576fe9b1d2f9fbe7d2fcd5e",
+  "digest": "sha256:e586db6a3f0773283d9f21ff799729b22e5116ca346f50608f181180a4bb2e8b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -134,8 +134,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 69947,
-      "sha256": "9f6682c16e25c4363caa0d1944f0753326f97c97255c6c8b611b003221c372b5"
+      "bytes": 73597,
+      "sha256": "019dcb64a80f5f6ff5bb5bc474661a5b82859afdcb11b4890a4923e2d3393ff8"
     },
     {
       "path": "Shared/library/practice_inventory.py",
@@ -176,8 +176,8 @@
       "path": "Shared/library/resolve.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 10155,
-      "sha256": "4f3723cd7c856558afab995610b485e774d10e0998034be84a6f28834c5d171a"
+      "bytes": 10997,
+      "sha256": "db1b9b59e0752c7b4dcd0c1cb49708d31600b98aec2858bf8c7eb0a1a78b6c1e"
     },
     {
       "path": "Shared/library/review-promotion-receipt.schema.json",
@@ -668,6 +668,13 @@
       "role_description": "Executable checks",
       "bytes": 757,
       "sha256": "1de5cdfb36e32cc769ce6305788d80bdccaed0a4ccee9d4e91fe3c4c752f9bf9"
+    },
+    {
+      "path": "tests/test_application_context_schema.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4627,
+      "sha256": "c5e360983ba155c4d49ab849c03ff880d9d6b0a421e1bb4ac17faee3ab4dd967"
     },
     {
       "path": "tests/test_architecture.py",
@@ -1509,6 +1516,16 @@
     {
       "from": "Shared/tools/worksheet_study_plan.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_application_context_schema.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_application_context_schema.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
