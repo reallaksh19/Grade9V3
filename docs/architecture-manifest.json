@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 64,
-  "relation_count": 110,
+  "component_count": 65,
+  "relation_count": 112,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 14,
     "TEST": 6,
-    "TOOLING": 20,
+    "TOOLING": 21,
     "WEB": 5
   },
-  "digest": "sha256:69c594c2eb5219cba8be5767fe858670389490c86685ada6177d1febedcfbc35",
+  "digest": "sha256:2f0b6e80ebf39ecc75aad35fa32199bde0e6a724f32fe5f4b32d563ed974c0cf",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -306,6 +306,13 @@
       "sha256": "78746a5f22c1f04bcee72242dec44f8f128df715a3b6d4b7610294afefa2a242"
     },
     {
+      "path": "Shared/tools/curriculum_mapping_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7852,
+      "sha256": "cf0a41fbf19fd5913c54396113a344a80100aa5cbbd820059c87f396c222f2eb"
+    },
+    {
       "path": "Shared/tools/engineering_readiness.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -428,8 +435,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 93480,
-      "sha256": "3c1f0d10f8514b7b160bdd999511fb439f77c15763f131c64835adbdc4528a50"
+      "bytes": 95273,
+      "sha256": "254c49b1684b97603e5f509117e7c1b63c03020ad420a5efc80701096f9181a0"
     },
     {
       "path": "tools/app.css",
@@ -442,8 +449,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 354193,
-      "sha256": "779bef4f5f297caf4766c52e25b638e77bfc3344a2c7128ad8d6e0798dd0274e"
+      "bytes": 356617,
+      "sha256": "e91f357a87e44d01dde02148fa0b33aaa776e86b089e4627af8c814b70b2075c"
     },
     {
       "path": "tools/index.html",
@@ -721,6 +728,16 @@
     {
       "from": "Shared/tools/check_subjects.py",
       "to": "Shared.tools.spec_delivery",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/curriculum_mapping_audit.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/curriculum_mapping_audit.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {

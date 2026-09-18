@@ -1673,7 +1673,18 @@ window.GRADE9V3 = {
           "badge": "MEDIUM",
           "status": "CANDIDATE",
           "prerequisites": [],
-          "curriculum": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "STANDARD",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-STD",
+              "locator": "Unit III — Motion; printed p.14; C-2.1",
+              "mapping_status": "VERIFIED"
+            }
+          ],
           "microtopics": [
             {
               "id": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
@@ -2065,7 +2076,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 17,
+          "record_count": 18,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -2341,7 +2352,18 @@ window.GRADE9V3 = {
           "prerequisites": [
             "BUCKET-PHY-KIN-1D-MOTION"
           ],
-          "curriculum": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "STANDARD",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-STD",
+              "locator": "Unit III — Force and Laws of Motion; printed p.15; C-2.1",
+              "mapping_status": "VERIFIED"
+            }
+          ],
           "microtopics": [
             {
               "id": "MIC-PHY-NLM-NET-ZERO-MOTION",
@@ -2825,7 +2847,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 21,
+          "record_count": 23,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3570,7 +3592,18 @@ window.GRADE9V3 = {
           "prerequisites": [
             "BUCKET-PHY-WORK-ENERGY-POWER"
           ],
-          "curriculum": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "STANDARD",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-STD",
+              "locator": "Unit III — Work, Energy and Simple Machines; printed pp.16–17; C-2.6",
+              "mapping_status": "VERIFIED"
+            }
+          ],
           "microtopics": [
             {
               "id": "MIC-PHY-MACHINE-TRADEOFF",
@@ -3869,7 +3902,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 29,
+          "record_count": 30,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3906,7 +3939,18 @@ window.GRADE9V3 = {
           "prerequisites": [
             "BUCKET-PHY-KIN-1D-MOTION"
           ],
-          "curriculum": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "STANDARD",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-STD",
+              "locator": "Unit III — Sound; printed p.17; C-2.7",
+              "mapping_status": "VERIFIED"
+            }
+          ],
           "microtopics": [
             {
               "id": "MIC-PHY-SOUND-SOURCE-MEDIUM",
@@ -4306,7 +4350,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 22,
+          "record_count": 23,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4640,7 +4684,18 @@ window.GRADE9V3 = {
           "prerequisites": [
             "BUCKET-VECTOR-REPRESENTATION"
           ],
-          "curriculum": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "ADVANCED",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-ADV",
+              "locator": "Chapter 2 §2.4 and Check Your Understanding; printed pp.11–14 — graphical vector addition/subtraction",
+              "mapping_status": "VERIFIED"
+            }
+          ],
           "microtopics": [
             {
               "id": "MIC-PHY-VEC-SUB-ORDER",
@@ -4806,7 +4861,18 @@ window.GRADE9V3 = {
           "prerequisites": [
             "BUCKET-PHY-NLM-FIRST-LAW"
           ],
-          "curriculum": [],
+          "curriculum": [
+            {
+              "board": "CBSE",
+              "grade": 9,
+              "academic_year": "2026-27",
+              "track": "STANDARD",
+              "scope_class": "PRESCRIBED",
+              "source_ref": "SRC-CBSE-STD",
+              "locator": "Unit III — Work, Energy and Simple Machines; printed p.16; C-2.5",
+              "mapping_status": "VERIFIED"
+            }
+          ],
           "microtopics": [
             {
               "id": "MIC-PHY-WEP-WORK-DIRECTION",
@@ -5315,7 +5381,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 30,
+          "record_count": 31,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5361,8 +5427,8 @@ window.GRADE9V3 = {
               "track": "ADVANCED",
               "scope_class": "OWNER_EXTENSION",
               "source_ref": "SRC-CBSE-ADV",
-              "locator": "Chapter 2 for background only; quantitative vector relative velocity is treated as extension",
-              "mapping_status": "CANDIDATE"
+              "locator": "Chapter 2 §2.2; printed pp.10–11 explicitly establishes observer-dependent motion; quantitative vector relative-velocity treatment is a local extension",
+              "mapping_status": "VERIFIED"
             }
           ],
           "microtopics": [
@@ -5820,10 +5886,10 @@ window.GRADE9V3 = {
               "grade": 9,
               "academic_year": "2026-27",
               "track": "ADVANCED",
-              "scope_class": "OWNER_EXTENSION",
+              "scope_class": "PRESCRIBED",
               "source_ref": "SRC-CBSE-ADV",
-              "locator": "Chapter 2 for background only; quantitative vector construction/subtraction is treated as extension",
-              "mapping_status": "CANDIDATE"
+              "locator": "Chapter 2 §§2.3–2.4; printed pp.11–12 — scalars/vectors and graphical vector operations",
+              "mapping_status": "VERIFIED"
             }
           ],
           "microtopics": [
