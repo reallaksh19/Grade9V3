@@ -1131,7 +1131,8 @@
         "Use v_B-v_A for A relative to B."
       ],
       "item_refs": [
-        "Q-AUTHOR-REL-01"
+        "Q-AUTHOR-REL-01",
+        "Q-AUTHOR-REL-02"
       ]
     }
   ],
@@ -1211,6 +1212,82 @@
           "reveals": "METHOD"
         }
       ]
+    },
+    {
+      "id": "Q-AUTHOR-REL-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR",
+      "original_identifier": "AUTHOR-REL-02",
+      "stem": "A rescue boat and a drifting marker are each shown by velocity arrows in the bank frame. The question asks for the velocity of the boat relative to the marker. Without being told the subtraction order, state which velocity must be subtracted from which and give one observer-reversal check.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Both velocity arrows are measured in the same bank frame over the same interval, with parallel nonrotating axes."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Use v_boat/marker = v_boat/bank - v_marker/bank. Reversing the requested observer order gives the opposite vector.",
+        "reasoning": [
+          "Read 'boat relative to marker' as the directed quantity measured from the marker to the boat.",
+          "Both given velocities already use the same bank frame, so subtract the marker velocity from the boat velocity.",
+          "Swap the requested order to marker relative to boat; the result must reverse direction."
+        ],
+        "check": "Swap boat and marker in the wording. The new relative-velocity vector must be the negative of the first.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "States boat velocity minus marker velocity, both in the bank frame.",
+            "evidence_of": "Mapping the unfamiliar river context onto the previously taught observer/reference subtraction order."
+          },
+          {
+            "criterion": "Uses observer reversal as a check rather than changing magnitudes independently.",
+            "evidence_of": "Preserving vector direction and the meaning of reversed relative velocity."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK"
+      ],
+      "family_ref": "FAM-RELATIVE-V",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Write the requested quantity as 'boat/marker' before looking at the arrows. The order in the label is the order your result must describe.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Both arrows already use one common bank frame. Use the same subtraction construction you learned for A relative to B; do not invent a new river-specific rule.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "novelty",
+        "statement": "The familiar relative-velocity construction is presented through river-navigation roles, so the learner must map boat and marker onto the observer/reference order without being told which vector is subtracted.",
+        "builds_on": [
+          "Q-AUTHOR-REL-01",
+          "MIC-SAME-TIME"
+        ]
+      },
+      "repair_ref": "RP-2"
     }
   ],
   "teaching_routes": [
