@@ -1005,6 +1005,115 @@
           "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-NEWTON-SECOND-LAW",
+      "title": "Newton's second law for net force and acceleration",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Force and Laws of Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-NLM-NET-FORCE-ACCELERATION",
+          "statement": "For a fixed positive mass, net force and acceleration are directed together and linked by F_net = m a."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-NEWTON-SECOND-LAW",
+          "expression": "F_net = m a",
+          "meaning": "The vector net external force on a body equals its mass times its acceleration.",
+          "symbols": [
+            {
+              "symbol": "F_net",
+              "meaning": "Net external force along the declared one-dimensional axis",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass of the chosen body",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "a",
+              "meaning": "Acceleration along the same declared axis",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "F_net and a refer to the same chosen body.",
+            "All signed components use one declared axis."
+          ],
+          "validator_refs": [
+            "NEWTON_SECOND_LAW"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose the body before summing external forces.",
+        "Use one inertial frame for the Grade 9 relation.",
+        "Mass is positive and treated as constant over the interval."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-NLM2-BODY",
+          "sequence": 1,
+          "action": "Choose one body and one signed axis, then sum only external forces acting on that body.",
+          "why_valid": "Newton's second law applies to the net external force on one chosen body."
+        },
+        {
+          "step_id": "RS-NLM2-EQUATE",
+          "sequence": 2,
+          "action": "Set the signed net force equal to mass times signed acceleration.",
+          "why_valid": "REL-NEWTON-SECOND-LAW owns the quantitative relation.",
+          "depends_on": [
+            "RS-NLM2-BODY"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-NLM2-LARGEST-FORCE",
+          "wrong_idea": "Acceleration points in the direction of the largest individual force rather than the net force.",
+          "counterexample": "Equal opposite forces can both be large while net force and acceleration are zero.",
+          "repair": "Sum signed external forces first, then use the direction of F_net."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-NLM2-ONE-AXIS",
+          "title": "One-dimensional net-force and acceleration problems",
+          "hidden_invariants": [
+            "The same chosen body and sign convention are used in the force sum and acceleration."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0
+      },
+      "badges": [
+        "FORCE-MOTION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-NLM2-VALIDATOR",
+          "mutation": "Replace the relation's validator reference with an undeclared id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
     }
   ]
 }
