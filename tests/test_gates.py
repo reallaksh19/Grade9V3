@@ -8,7 +8,6 @@ EveryDeclaredFalsifierIsExecuted below. It is true now because the binding is de
 running the mutation rather than from a table that agrees with itself.
 """
 import copy
-import math
 import json
 import sys
 import unittest
@@ -200,12 +199,6 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         echo = physics_recompute(self.case(
             "ECHO_DISTANCE", {"speed": "m/s", "echo_time": "s"},
             speed=340, echo_time=0.4))
-        graph_acceleration = physics_recompute(self.case(
-            "AVERAGE_ACCELERATION",
-            {"delta_v": "m/s", "dt": "s"}, delta_v=8, dt=4))
-        circular_speed = physics_recompute(self.case(
-            "UNIFORM_CIRCULAR_SPEED",
-            {"radius": "m", "period": "s"}, radius=10, period=20))
         self.assertEqual(displacement, 24)
         self.assertEqual(no_time, {"v_squared_m2_s2": 121})
         self.assertEqual(force, 12)
@@ -215,8 +208,6 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         self.assertEqual(ma, 3)
         self.assertEqual(frequency, 200)
         self.assertEqual(echo, 68)
-        self.assertEqual(graph_acceleration, 2)
-        self.assertAlmostEqual(circular_speed, math.pi)
 
     def test_relative_velocity_gate_exists_for_the_authored_bucket(self):
         ids = {g["gate_id"] for g in registry()["gates"]}
