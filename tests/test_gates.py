@@ -358,6 +358,11 @@ def _electric_power_validator(data):
     _undeclare_first_relation_validator(data, "PHY-ELECTRIC-POWER")
 
 
+@mutates("FAL-NLM2-VALIDATOR")
+def _nlm2_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-NEWTON-SECOND-LAW")
+
+
 def registries():
     """Every subject's gate registries, with that subject's adapter and bindings."""
     import importlib
