@@ -207,6 +207,9 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         circular_speed = physics_recompute(self.case(
             "UNIFORM_CIRCULAR_SPEED",
             {"radius": "m", "period": "s"}, radius=7, period=14))
+        graph_area = physics_recompute(self.case(
+            "CONSTANT_ACCELERATION_GRAPH_AREA",
+            {"u": "m/s", "v": "m/s", "t": "s"}, u=5, v=11, t=3))
         self.assertEqual(displacement, 24)
         self.assertEqual(no_time, {"v_squared_m2_s2": 121})
         self.assertEqual(force, 12)
@@ -218,6 +221,7 @@ class FoundationalQuantitativeValidators(unittest.TestCase):
         self.assertEqual(echo, 68)
         self.assertEqual(graph_acceleration, 1)
         self.assertAlmostEqual(circular_speed, math.pi)
+        self.assertEqual(graph_area, 24)
 
     def test_relative_velocity_gate_exists_for_the_authored_bucket(self):
         ids = {g["gate_id"] for g in registry()["gates"]}
