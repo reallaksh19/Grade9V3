@@ -151,6 +151,9 @@ def lifecycle_handoff(report: dict) -> dict:
     authoring_blockers = sorted(set(structural + owner + actions))
     build_blockers = sorted(set(authoring_blockers + product_holds))
     release_blockers = list(build_blockers)
+    academic = report.get("academic_readiness") or {}
+    if academic.get("mechanical_findings"):
+        release_blockers.append("ACADEMIC_READINESS")
     if report.get("readiness", {}).get("ACADEMIC_REVIEW") != "REVIEWED":
         release_blockers.append("ACADEMIC_REVIEW")
     release_blockers = sorted(set(release_blockers))
