@@ -10,6 +10,12 @@ capability or misconception. This module owns the safer next-step policy:
 It never emits an ANSWER-revealing hint, never guesses which capability failed when a
 multi-capability question is ambiguous, and never writes learner state silently. Instead
 it returns an observation draft that the caller may persist explicitly.
+
+A real school worksheet question does not have to be promoted into the canonical question
+library. For such questions the caller supplies the already-resolved worksheet mapping
+(primary + meaningful secondary capability refs). Because that transient row has no
+canonical hint ladder, the runtime diagnoses/repairs from existing microtopic content
+rather than inventing a hint.
 """
 from __future__ import annotations
 
@@ -41,6 +47,100 @@ def question_record(records: dict, question_ref: str) -> dict | None:
     if record and record.get("_collection") == "questions":
         return record
     return None
+
+
+def resolve_question_input(request: dict, records: dict) -> tuple[dict | None, str | None, list[dict]]:
+    """Resolve either a canonical question or one transient worksheet-mapping row.
+
+    Canonical records win when the id exists because they carry governed hints, transfer
+    metadata and repair refs. Otherwise a worksheet question may supply only the mapping
+    already established by study_map.py. This function validates that those capability
+    refs are canonical; it does not create content for the worksheet.
+    """
+    question_ref = request.get("question_ref")
+    canonical = question_record(records, question_ref)
+    supplied = request.get("worksheet_question")
+    findings: list[dict] = []
+
+    if canonical is not None:
+        if supplied:
+            supplied_id = supplied.get("question_id")
+            if supplied_id and supplied_id != question_ref:
+                findings.append({
+                    "point": "FEEDBACK_WORKSHEET_QUESTION_ID_MISMATCH",
+                    "detail": (
+                        f"worksheet_question.question_id {supplied_id} does not match "
+                        f"question_ref {question_ref}"
+                    ),
+                })
+            supplied_primary = supplied.get("primary_capability_ref")
+            supplied_secondary = set(supplied.get("secondary_capability_refs") or [])
+            if (
+                supplied_primary
+                and (
+                    supplied_primary != canonical.get("primary_capability_ref")
+                    or supplied_secondary
+                    != set(canonical.get("secondary_capability_refs") or [])
+                )
+            ):
+                findings.append({
+                    "point": "FEEDBACK_CANONICAL_MAPPING_DRIFT",
+                    "detail": (
+                        "worksheet_question mapping conflicts with the canonical question; "
+                        "canonical capability ownership is authoritative"
+                    ),
+                })
+        return canonical, "CANONICAL_QUESTION", findings
+
+    if not supplied:
+        return None, None, [{
+            "point": "FEEDBACK_QUESTION_UNKNOWN",
+            "detail": (
+                f"{question_ref} is not a canonical question and no worksheet_question "
+                "mapping was supplied"
+            ),
+        }]
+
+    supplied_id = supplied.get("question_id") or question_ref
+    if supplied_id != question_ref:
+        findings.append({
+            "point": "FEEDBACK_WORKSHEET_QUESTION_ID_MISMATCH",
+            "detail": (
+                f"worksheet_question.question_id {supplied_id} does not match "
+                f"question_ref {question_ref}"
+            ),
+        })
+
+    primary = supplied.get("primary_capability_ref")
+    secondary = list(supplied.get("secondary_capability_refs") or [])
+    if not primary:
+        findings.append({
+            "point": "FEEDBACK_WORKSHEET_PRIMARY_CAPABILITY_MISSING",
+            "detail": "worksheet_question requires primary_capability_ref",
+        })
+
+    for capability in [primary, *secondary]:
+        if not capability:
+            continue
+        record = records.get(capability)
+        if record is None or record.get("_collection") != "capabilities":
+            findings.append({
+                "point": "FEEDBACK_WORKSHEET_CAPABILITY_UNKNOWN",
+                "capability_ref": capability,
+                "detail": "worksheet mapping names no canonical capability in this subject",
+            })
+
+    if findings:
+        return None, "WORKSHEET_MAPPING", findings
+
+    return {
+        "id": question_ref,
+        "primary_capability_ref": primary,
+        "secondary_capability_refs": secondary,
+        "hints": [],
+        "_worksheet_mapping": True,
+        "_mapping_basis": supplied.get("mapping_basis"),
+    }, "WORKSHEET_MAPPING", []
 
 
 def required_capabilities(question: dict) -> list[str]:
@@ -272,15 +372,13 @@ def run(request: dict, repo: Path = REPO) -> dict:
         })
 
     records = subject_records(subject, repo)
-    question = question_record(records, question_ref)
+    question, question_origin, question_findings = resolve_question_input(request, records)
+    findings.extend(question_findings)
     if question is None:
         return {
             "question_ref": question_ref,
             "next_action": "STOP",
-            "findings": [{
-                "point": "FEEDBACK_QUESTION_UNKNOWN",
-                "detail": f"{question_ref} is not a canonical question in {subject}",
-            }],
+            "findings": findings,
             "passed": False,
         }
 
@@ -303,6 +401,7 @@ def run(request: dict, repo: Path = REPO) -> dict:
     )
     base = {
         "question_ref": question["id"],
+        "question_origin": question_origin,
         "result": result,
         "failed_capability_ref": failed,
         "candidate_capabilities": candidates,
@@ -355,6 +454,16 @@ def run(request: dict, repo: Path = REPO) -> dict:
                 **base,
                 "next_action": "RETRY",
                 "hint": hint,
+                "passed": not findings,
+            }
+        if question.get("_worksheet_mapping") and evaluation.get("misconception_index") is None:
+            # The transient worksheet row truthfully carries no canonical hint ladder.
+            # Diagnose from governed misconception prompts rather than fabricating a hint
+            # just to keep the retry cadence symmetrical with canonical questions.
+            return {
+                **base,
+                "next_action": "DIAGNOSE",
+                "diagnostic_options": diagnostic_options(records, [failed]),
                 "passed": not findings,
             }
 
