@@ -234,8 +234,173 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-VECOPS-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Directed subtraction and operand-order practice",
+      "capability_refs": [
+        "CAP-VEC-SUB-ORDER"
+      ],
+      "solution_structure": [
+        "Write two ordered requests for the same pair: A minus B, then B minus A.",
+        "For A minus B, follow A and then the reversed B arrow using the already-learned subtraction construction.",
+        "Repeat with the order swapped and place both completed arrows from the same start for comparison."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The physical wording no longer names the vector operation explicitly; the learner must identify directed subtraction and its operand order."
+      ],
+      "common_wrong_routes": [
+        "Vector subtraction is commutative in the same way as vector addition."
+      ],
+      "item_refs": [
+        "Q-PHY-VECOPS-2A-01",
+        "Q-PHY-VECOPS-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-VECOPS-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+      "original_identifier": "AUTHOR-VECOPS-2A-01",
+      "stem": "Two labelled arrows A and B are shown, and a completed construction for A minus B points southeast. Without recalculating its length, describe the direction of B minus A and explain the check you used.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "B minus A points northwest: exactly opposite to the shown result, with the same length.",
+        "reasoning": [
+          "The two requests use the same pair and differ only in order.",
+          "Swapping the order swaps which arrow is reversed in the known construction.",
+          "Placing both results from one start makes the second point opposite the first."
+        ],
+        "check": "Swap the labels again; the direction must return to southeast without changing the length.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-VEC-SUB-ORDER",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VECOPS-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: Which of the two original arrows is second in A minus B, and what does the construction do to that second arrow?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Keep the same two inputs, swap only their order, and compare the two completed arrows from one start; the second points opposite the first.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-VECOPS-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ADD-SUB"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+      "original_identifier": "AUTHOR-VECOPS-2B-01",
+      "stem": "A navigation report labels the actual directed displacement A and the planned directed displacement B, then asks for the directed correction from the plan to the actual result. Choose the subtraction order and explain how the answer changes if the wording is reversed to 'from actual to planned.'",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "The correction from plan to actual is A minus B. Reversing the wording gives B minus A, the same length in the opposite direction when the first result is nonzero.",
+        "reasoning": [
+          "The phrase 'from plan to actual' fixes an ordered comparison.",
+          "Use actual minus planned for that directed difference.",
+          "Swapping the requested order reverses the result."
+        ],
+        "check": "Swap the wording twice; the second swap must recover the original correction direction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Chooses A minus B for the correction from planned B to actual A.",
+            "evidence_of": "Mapping directional wording onto the correct ordered subtraction."
+          },
+          {
+            "criterion": "Explains the reversed wording as B minus A with opposite orientation.",
+            "evidence_of": "Preserving the operand-order consequence rather than treating subtraction as commutative."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-VEC-SUB-ORDER",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VECOPS-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Rewrite the request as an ordered 'from ___ to ___' comparison before choosing an operation.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the authored order check: swapping the subtraction order reverses a nonzero result.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The physical wording no longer names the vector operation explicitly; the learner must identify directed subtraction and its operand order.",
+        "builds_on": [
+          "Q-PHY-VECOPS-2A-01",
+          "MIC-PHY-VEC-SUB-ORDER"
+        ]
+      },
+      "repair_ref": "VEC3-1"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-VEC-ADD-SUB-A",
