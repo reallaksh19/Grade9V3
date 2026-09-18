@@ -209,6 +209,18 @@ def _question(ctx, block):
     require(block.get("exposure_role") in {"NEW_TRANSFER", "PRACTICE", "RECONSTRUCTION_ANCHOR",
             "WORKED_TO_FADED", "SPACED_RETRIEVAL", "WORKED_EXAMPLE", "SOURCE_CUSTODY"},
             "EXPOSURE_ROLE_REQUIRED")
+    if block.get("exposure_role") == "NEW_TRANSFER":
+        transfer = block.get("transfer") or {}
+        text(transfer.get("dimension"), "TRANSFER_DIMENSION_REQUIRED")
+        text(transfer.get("statement"), "TRANSFER_STATEMENT_REQUIRED")
+        strings(transfer.get("builds_on"), "TRANSFER_LINEAGE_REQUIRED")
+        text(block.get("repair_ref"), "TRANSFER_REPAIR_REQUIRED")
+        rubric = answer.get("rubric") or []
+        require(isinstance(rubric, list) and bool(rubric), "TRANSFER_RUBRIC_REQUIRED")
+        for row in rubric:
+            require(isinstance(row, dict), "TRANSFER_RUBRIC_REQUIRED")
+            text(row.get("criterion"), "TRANSFER_RUBRIC_CRITERION_REQUIRED")
+            text(row.get("evidence_of"), "TRANSFER_RUBRIC_EVIDENCE_REQUIRED")
 
 
 def _learner_fit(plan, products):
