@@ -5,7 +5,18 @@
   "status": "CANDIDATE",
   "subject": "Physics",
   "scope_summary": "Grade 9 Sound: vibrating sources, propagation through material media as longitudinal disturbances, frequency/period/wavelength/amplitude/speed, pitch and loudness, and reflection applications including echo, reverberation and echolocation.",
-  "curriculum_mappings": [],
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "STANDARD",
+      "scope_class": "PRESCRIBED",
+      "source_ref": "SRC-CBSE-STD",
+      "locator": "Unit III — Sound; printed p.17; C-2.7",
+      "mapping_status": "VERIFIED"
+    }
+  ],
   "resources": [
     {
       "id": "SRC-AUTHOR-SOUND-G9",
@@ -49,14 +60,26 @@
       "evidence_refs": [],
       "extensions": {
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
-        "grade9_track": "STANDARD"
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "Sound",
       "topic": "Sound",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "The main difficulty is separating local particle vibration from wave propagation, then keeping frequency, wavelength, amplitude, speed, pitch and loudness distinct.",
       "depth_overlay": "FOUNDATION",
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Unit III — Sound; printed p.17; C-2.7",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "prerequisite_refs": [
         "BUCKET-PHY-KIN-1D-MOTION"
       ],
@@ -88,11 +111,25 @@
         "SRC-AUTHOR-SOUND-G9"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Explain sound production by vibration and why mechanical sound propagation requires a material medium.",
       "success_criterion": "Names a vibrating source and distinguishes source vibration from propagation through solids, liquids or gases; rejects propagation through vacuum.",
       "prerequisite_refs": [],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Sound; printed p.17; C-2.7 — production by vibration and need for a medium",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -104,13 +141,27 @@
         "SRC-AUTHOR-SOUND-G9"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
       "success_criterion": "States that particles oscillate about equilibrium mainly parallel to propagation while the disturbance/energy travels onward.",
       "prerequisite_refs": [
         "CAP-SOUND-SOURCE-MEDIUM"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Sound; printed p.17; C-2.7 — longitudinal propagation through a medium",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -122,13 +173,27 @@
         "SRC-AUTHOR-SOUND-G9"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Relate period, frequency, wavelength and wave speed for one sound wave and keep amplitude as a separate measure.",
       "success_criterion": "Uses f = 1/T and v = f lambda with values from the same wave/medium and does not confuse amplitude with wavelength.",
       "prerequisite_refs": [
         "CAP-SOUND-LONGITUDINAL"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Sound; printed p.17; C-2.7 — wavelength, frequency, time period, amplitude, intensity and speed",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -140,13 +205,27 @@
         "SRC-AUTHOR-SOUND-G9"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Connect higher frequency with higher pitch and distinguish amplitude/intensity from pitch.",
       "success_criterion": "Predicts pitch from frequency and treats loudness as related to sound intensity/amplitude rather than frequency alone.",
       "prerequisite_refs": [
         "CAP-SOUND-WAVE-QUANTITIES"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Sound; printed p.17; C-2.7/C-5.3 — pitch and loudness",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -158,13 +237,27 @@
         "SRC-AUTHOR-SOUND-G9"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Explain reflection of sound and distinguish echo, reverberation and echolocation; compute a simple echo distance from round-trip delay.",
       "success_criterion": "Uses the half-round-trip path for echo distance and classifies delayed distinct echoes versus overlapping reverberation.",
       "prerequisite_refs": [
         "CAP-SOUND-WAVE-QUANTITIES"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Sound; printed p.17; C-2.7 — reflection, echo, reverberation and echolocation",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     }
