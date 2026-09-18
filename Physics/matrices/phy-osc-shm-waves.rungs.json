@@ -116,12 +116,7 @@
     {
       "rung": "R4",
       "ladder_position": 65,
-      "provenance": "SYNTHESIS",
-      "aha": "In ideal SHM, kinetic and potential energy exchange while total mechanical energy stays constant, and each energy term repeats twice during one displacement cycle.",
-      "learner_owns": [
-        "Ideal SHM has a period set by system parameters within stated validity conditions.",
-        "Can interpret squared quantities and conservation of mechanical energy."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "damping",
         "driving",
@@ -133,12 +128,6 @@
         "Energy-versus-time plots for kinetic, potential, and total energy aligned with displacement.",
         "A comparison of one full displacement cycle with the number of kinetic-energy peaks."
       ],
-      "misconception": {
-        "wrong_idea": "Potential energy is negative whenever displacement is negative.",
-        "diagnostic_prompt": "If spring potential energy is proportional to x^2, does changing x from +A/2 to -A/2 change that energy?",
-        "repair": "Energy depends on the square of displacement, so opposite displacements can carry the same potential energy."
-      },
-      "closure": "Over one full SHM cycle, identify how many times kinetic energy reaches a maximum and explain why total energy does not oscillate.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -146,7 +135,8 @@
           "hold": "amplitude, angular frequency, and total energy",
           "notice": "kinetic and potential energy trade twice while their sum stays fixed"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OSC-ENERGY-EXCHANGE"
     },
     {
       "rung": "R5",
