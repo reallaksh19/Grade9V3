@@ -5,7 +5,18 @@
   "status": "CANDIDATE",
   "subject": "Physics",
   "scope_summary": "Grade 9 simple machines: force/distance tradeoffs, mechanical advantage, and qualitative lever, pulley and inclined-plane reasoning.",
-  "curriculum_mappings": [],
+  "curriculum_mappings": [
+    {
+      "board": "CBSE",
+      "grade": 9,
+      "academic_year": "2026-27",
+      "track": "STANDARD",
+      "scope_class": "PRESCRIBED",
+      "source_ref": "SRC-CBSE-STD",
+      "locator": "Unit III — Work, Energy and Simple Machines; printed pp.16–17; C-2.6",
+      "mapping_status": "VERIFIED"
+    }
+  ],
   "resources": [
     {
       "id": "SRC-AUTHOR-SIMPLE-MACHINES",
@@ -49,14 +60,26 @@
       "evidence_refs": [],
       "extensions": {
         "practice_coverage_policy": "ALL_PRIMARY_CAPABILITIES",
-        "grade9_track": "STANDARD"
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
       },
       "title": "Simple machines",
       "topic": "Work, Energy and Simple Machines",
       "intrinsic_badge": "MEDIUM",
       "badge_reason": "The arithmetic is simple; the conceptual difficulty is seeing force advantage as a distance/direction tradeoff rather than free energy.",
       "depth_overlay": "FOUNDATION",
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Unit III — Work, Energy and Simple Machines; printed pp.16–17; C-2.6",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "prerequisite_refs": [
         "BUCKET-PHY-WORK-ENERGY-POWER"
       ],
@@ -85,13 +108,27 @@
         "SRC-AUTHOR-SIMPLE-MACHINES"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Explain how a simple machine trades effort force, direction or input distance without creating energy.",
       "success_criterion": "Rejects free-energy interpretations and identifies the compensating distance/direction tradeoff.",
       "prerequisite_refs": [
         "CAP-WEP-GRADE9-QUANT"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed pp.16–17; C-2.6 — simple machines and mechanical advantage",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -103,13 +140,27 @@
         "SRC-AUTHOR-SIMPLE-MACHINES"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Compute mechanical advantage from load force divided by effort force.",
       "success_criterion": "Uses load and effort from the same machine state and interprets MA greater than one as force advantage, not energy gain.",
       "prerequisite_refs": [
         "CAP-MACHINE-TRADEOFF"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed pp.16–17; C-2.6 — define/calculate mechanical advantage",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     },
@@ -121,13 +172,27 @@
         "SRC-AUTHOR-SIMPLE-MACHINES"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9_track": "STANDARD",
+        "curriculum_mapping_policy": "VERIFIED"
+      },
       "action": "Compare levers, pulleys and inclined planes by what they change about force, direction and input distance.",
       "success_criterion": "Identifies the machine's qualitative tradeoff without assuming that every machine reduces effort force.",
       "prerequisite_refs": [
         "CAP-MACHINE-MA"
       ],
-      "curriculum_mappings": [],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 9,
+          "academic_year": "2026-27",
+          "track": "STANDARD",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-STD",
+          "locator": "Work, Energy and Simple Machines; printed pp.16–17; C-2.6 — pulley, inclined plane and lever",
+          "mapping_status": "VERIFIED"
+        }
+      ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
     }
