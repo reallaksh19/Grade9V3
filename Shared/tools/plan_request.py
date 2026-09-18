@@ -16,7 +16,7 @@ from Shared.contracts import ContractError, load
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.practice_inventory import coverage as practice_coverage
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import capability_graph, resolve_request
+from Shared.tools import academic_readiness, capability_graph, resolve_request
 
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
@@ -115,14 +115,40 @@ def _learner_route(request: dict, board: dict, caps: dict, mics: dict,
             "route_reason": resolved["reason"]}
 
 
-def _review_state(records: dict, board: dict) -> dict:
-    bucket_id = board["bucket_id"]
-    relevant = [r for r in records.values()
-                if (r.get("_collection") == "buckets" and r.get("id") == bucket_id)
-                or (r.get("_collection") == "microtopics" and r.get("bucket_id") == bucket_id)]
-    states = sorted({r.get("status", "UNKNOWN") for r in relevant})
-    return {"state": "REVIEWED" if relevant and states == ["REVIEWED"] else "NOT_REVIEWED",
-            "record_states": states, "records": [r["id"] for r in relevant]}
+def _rung_inventory(board: dict, mics: dict) -> list[dict]:
+    """Keep existence, matrix provenance, library status and source refs on separate axes."""
+    rows = []
+    for row in board.get("rungs", []):
+        record = mics.get(row.get("microtopic_ref"))
+        rows.append({
+            "rung": row["rung"],
+            "position": row["ladder_position"],
+            "microtopic": row.get("microtopic_ref"),
+            "existence": "PRESENT" if record else "ABSENT",
+            "matrix_provenance": row.get("provenance"),
+            "library_record_status": record.get("status") if record else None,
+            "source_refs": list(record.get("source_refs") or []) if record else [],
+        })
+    return rows
+
+
+def execution_handoff(report: dict) -> dict:
+    """Plan and execute are different operations; execution refuses unresolved planning."""
+    blockers = []
+    blockers.extend(f["point"] for f in report.get("findings", []))
+    blockers.extend(row["id"] for row in report.get("required_owner_inputs", []))
+    blockers.extend(row["id"] for row in report.get("agent_actions", []))
+    blockers.extend(
+        f'{row["core"]}:{row["state"]}' for row in report.get("products", [])
+        if row["state"] not in {"READY", "WITHHELD"}
+    )
+    if report.get("readiness", {}).get("ACADEMIC_REVIEW") != "REVIEWED":
+        blockers.append("ACADEMIC_REVIEW")
+    return {
+        "state": "READY_FOR_EXECUTION" if not blockers else "BLOCKED",
+        "blockers": sorted(set(blockers)),
+        "rule": "Planning may wait; execution may not guess.",
+    }
 
 
 def plan(request: dict, repo: Path = REPO) -> dict:
@@ -201,18 +227,18 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                 state, reason = "WITHHELD", "declared purpose does not route transfer"
         products.append({"core": core, "state": state, **({"reason": reason} if reason else {})})
 
-    review = _review_state(records, board)
-    expansion = "READY" if not findings and review["state"] == "REVIEWED" else "BLOCKED"
-    return {
+    academic = academic_readiness.board_report(board, subject, repo)
+    review = academic["human_review"]
+    expansion = ("READY" if not findings and academic["learner_release_ready"]
+                 else "BLOCKED")
+    report = {
         "mode": "PLAN_ONLY",
         "request_id": request.get("request_id"),
         "subject": subject,
         "subtopic": board.get("subtopic"),
         "bucket": board["bucket_id"],
         "matrix": board["_path"],
-        "canonical_rungs": [{"rung": r["rung"], "position": r["ladder_position"],
-                             "microtopic": r.get("microtopic_ref")}
-                            for r in board.get("rungs", [])],
+        "canonical_rungs": _rung_inventory(board, mics),
         "readiness": {
             "STRUCTURE": "READY" if not findings else "BLOCKED",
             "REACHABLE_TO_LEARN": learner_route["state"],
@@ -228,11 +254,19 @@ def plan(request: dict, repo: Path = REPO) -> dict:
         "products": products,
         "required_owner_inputs": owner_inputs,
         "agent_actions": actions,
+        "academic_readiness": academic,
         "review": review,
+        "core_relationships": {
+            "CORE1A_CORE1B": "same canonical rung segment; agency changes, target does not",
+            "CORE2A": "practice inside the taught capability family; support may vary",
+            "CORE2B": "transfer changes decision structure while preserving taught truth",
+        },
         "findings": findings,
         "passed": not findings,
         "no_content_authored": True,
     }
+    report["execution"] = execution_handoff(report)
+    return report
 
 
 def audit(repo: Path = REPO) -> dict:
