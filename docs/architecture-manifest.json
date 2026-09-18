@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 109,
-  "relation_count": 166,
+  "component_count": 111,
+  "relation_count": 168,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 24,
-    "TOOLING": 33,
+    "TEST": 25,
+    "TOOLING": 34,
     "WEB": 5
   },
-  "digest": "sha256:9cc258137fc8f434140e85b0c252f1113daa7705697bc05881c69d376429c1a8",
+  "digest": "sha256:ae0f2895f679933c9b71cad764dead9c1bee201c7b7b4ae02700a38fadfbc468",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -442,8 +442,8 @@
       "path": "Shared/tools/feedback.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 14237,
-      "sha256": "821ba5fb69a2da6303ac64bf6ead1e2e18197900a4e48f9dbd09e0367f73ca45"
+      "bytes": 14471,
+      "sha256": "55ea2828df9655bebaf7475303dcc3e9f1d4cf8d0709ba7299fe5058b2913d7c"
     },
     {
       "path": "Shared/tools/import_study_observations.py",
@@ -514,6 +514,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 21726,
       "sha256": "dee56dd27ebc5f8ee958f1d94e9b7fea3a84d69a62300aeec61f34a6913125cf"
+    },
+    {
+      "path": "Shared/tools/review_schedule.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 3192,
+      "sha256": "2e4e673c4833cb5ae80a7c94422cbb18302a15fac35f059fc10a303e0bac2d57"
     },
     {
       "path": "Shared/tools/source_pipeline.py",
@@ -638,8 +645,8 @@
       "path": "tests/test_feedback.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11280,
-      "sha256": "aa15f2eec1d3fdbc33da774ae29cdc73f53f3669bdaaa938c692d54634304d91"
+      "bytes": 11576,
+      "sha256": "3ef65f09bc969387d00586531a0e5f995b8863fc08250dc60af02ecd81d0219d"
     },
     {
       "path": "tests/test_gates.py",
@@ -703,6 +710,13 @@
       "role_description": "Executable checks",
       "bytes": 15139,
       "sha256": "7538842543f30f2f56c6e0e36262870ebeb90fa5692ff397dd677ecf02261342"
+    },
+    {
+      "path": "tests/test_review_schedule.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3754,
+      "sha256": "6ec63adf5303df20704c1079816baab85db81f1e7fefcac29d9c62f2cc5d629f"
     },
     {
       "path": "tests/test_source_pipeline.py",
@@ -1106,6 +1120,11 @@
     {
       "from": "Shared/tools/feedback.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/feedback.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -1540,6 +1559,11 @@
     },
     {
       "from": "tests/test_review_authority.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_review_schedule.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
