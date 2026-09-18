@@ -14,6 +14,7 @@ if __package__ in (None, ""):
 from Shared.contracts import digest, load  # noqa: E402
 from Shared.library.practice_inventory import bucket_capabilities  # noqa: E402
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
+from Shared.tools import review_authority  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/source-inspection-receipt.schema.json"
 RECEIPTS = REPO / "Sources/receipts"
@@ -52,7 +53,22 @@ def _schema_findings(receipt: dict, repo: Path) -> list[dict]:
     } for error in validator.iter_errors(public)]
 
 
-def derive_coverage(records: dict, bucket_id: str, resource_refs: list[str]) -> dict:
+def _package_paths(subject: str, repo: Path) -> dict[str, str]:
+    found = {}
+    for path in sorted((repo / subject / "library").glob("*.json")):
+        package = load(path)
+        pid = package.get("package_id")
+        if pid:
+            found[pid] = str(path.relative_to(repo))
+    return found
+
+
+def _public(record: dict) -> dict:
+    return {key: value for key, value in record.items() if not key.startswith("_")}
+
+
+def derive_coverage(records: dict, bucket_id: str, resource_refs: list[str],
+                    subject: str | None = None, repo: Path = REPO) -> dict:
     """Derive structural source coverage from reviewed canonical questions.
 
     SUFFICIENT is intentionally strict: every capability taught by the bucket must be
@@ -61,13 +77,26 @@ def derive_coverage(records: dict, bucket_id: str, resource_refs: list[str]) -> 
     """
     owned = bucket_capabilities(records, bucket_id)
     resources = set(resource_refs)
-    eligible = [
-        row for row in records.values()
-        if row.get("_collection") == "questions"
-        and row.get("status") in {"REVIEWED", "CURATED"}
-        and row.get("primary_capability_ref") in owned
-        and set(row.get("source_refs", [])) & resources
-    ]
+    package_paths = _package_paths(subject, repo) if subject else {}
+    eligible = []
+    for row in records.values():
+        if row.get("_collection") != "questions":
+            continue
+        if row.get("status") not in {"REVIEWED", "CURATED"}:
+            continue
+        if row.get("primary_capability_ref") not in owned:
+            continue
+        if not (set(row.get("source_refs", [])) & resources):
+            continue
+        if subject:
+            target = package_paths.get(row.get("_package"))
+            authority = (
+                review_authority.authority_for_record(subject, target, _public(row), repo)
+                if target else {"verified": False}
+            )
+            if not authority.get("verified") or authority.get("state") not in {"REVIEWED", "CURATED"}:
+                continue
+        eligible.append(row)
 
     result = {}
     for core in CORES:
@@ -177,9 +206,19 @@ def verify(receipt: dict, *, request: dict | None = None,
             if not (set(question.get("source_refs", [])) & resource_ids):
                 fail("SOURCE_RECEIPT_QUESTION_SOURCE_MISMATCH", qref,
                      "question is not bound to any resource evidenced by this receipt")
-            if status == "SUFFICIENT" and question.get("status") not in {"REVIEWED", "CURATED"}:
-                fail("SOURCE_RECEIPT_UNREVIEWED_QUESTION_CLAIMS_SUFFICIENCY", qref,
-                     "SUFFICIENT coverage may cite only REVIEWED or CURATED questions")
+            if status == "SUFFICIENT":
+                if question.get("status") not in {"REVIEWED", "CURATED"}:
+                    fail("SOURCE_RECEIPT_UNREVIEWED_QUESTION_CLAIMS_SUFFICIENCY", qref,
+                         "SUFFICIENT coverage may cite only REVIEWED or CURATED questions")
+                else:
+                    target = _package_paths(subject, repo).get(question.get("_package"))
+                    authority = (
+                        review_authority.authority_for_record(subject, target, _public(question), repo)
+                        if target else {"verified": False, "state": "NOT_REVIEWED"}
+                    )
+                    if not authority.get("verified") or authority.get("state") not in {"REVIEWED", "CURATED"}:
+                        fail("SOURCE_RECEIPT_UNBACKED_REVIEW_CLAIMS_SUFFICIENCY", qref,
+                             "question status is not backed by a valid digest-bound promotion receipt")
             if core == "CORE2":
                 if question.get("origin") not in {"ORIGINAL", "ADAPTED"}:
                     fail("SOURCE_RECEIPT_CORE2_AUTHORED_QUESTION", qref,
