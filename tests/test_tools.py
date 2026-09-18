@@ -15,8 +15,8 @@ from Shared.library import compile_inputs  # noqa: E402
 from Shared.tools import (  # noqa: E402
     author_brief, build_manifest, build_web_data, capability_audit, ceiling_audit,
     check_subjects, capability_collisions, curriculum_mapping_audit, engineering_readiness,
-    learner_evidence, matrix_conformance, practice_readiness, publication_provenance,
-    resolve_request, teaching_route_coverage,
+    learner_evidence, matrix_conformance, practice_readiness, prescribed_practical_coverage,
+    publication_provenance, resolve_request, teaching_route_coverage,
     spec_conformance,
     spec_delivery, topic_independence_guard,
 )
@@ -1425,6 +1425,69 @@ class CurriculumMappingAudit(unittest.TestCase):
         points = {finding["point"] for finding in findings}
         self.assertIn("CURRICULUM_MAPPING_SOURCE_WRONG_ROLE", points)
         self.assertIn("CURRICULUM_MAPPING_SOURCE_NOT_INSPECTED", points)
+
+
+class PrescribedPracticalCoverage(unittest.TestCase):
+    def test_all_current_grade9_physics_practicals_have_bucket_owned_practice(self):
+        report = prescribed_practical_coverage.audit("Physics")
+        self.assertTrue(report["passed"], report["findings"])
+        actual = {
+            practical["id"]
+            for bucket in report["buckets"]
+            for practical in bucket["practicals"]
+        }
+        self.assertEqual(actual, {
+            "CBSE-IX-2026-PHY-PRACTICAL-09",
+            "CBSE-IX-2026-PHY-PRACTICAL-10",
+            "CBSE-IX-2026-PHY-PRACTICAL-11",
+            "CBSE-IX-2026-PHY-PRACTICAL-12",
+            "CBSE-IX-2026-PHY-PRACTICAL-13",
+        })
+        for bucket in report["buckets"]:
+            for practical in bucket["practicals"]:
+                self.assertTrue(practical["question_refs"], practical["id"])
+
+    def test_missing_practice_item_is_reported(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            subject = root / "Example"
+            (subject / "library").mkdir(parents=True)
+            package = {
+                "buckets": [{
+                    "id": "BUCKET-X", "_collection": "buckets",
+                    "extensions": {
+                        "practical_coverage_policy": "PRESCRIBED_PRACTICALS",
+                        "prescribed_practicals": [{
+                            "id": "P-X", "source_ref": "SRC-CURR",
+                            "locator": "Practical 1", "capability_ref": "CAP-X",
+                        }],
+                    },
+                }],
+                "microtopics": [{
+                    "id": "MIC-X", "_collection": "microtopics",
+                    "bucket_id": "BUCKET-X", "primary_capability_ref": "CAP-X",
+                }],
+                "questions": [],
+                "resources": [{
+                    "id": "SRC-CURR", "_collection": "resources",
+                    "role": ["CURRICULUM"], "access_status": "SECTION_INSPECTED",
+                }],
+            }
+            (subject / "library/x.v1.json").write_text("{}", encoding="utf-8")
+            import Shared.tools.prescribed_practical_coverage as practical_audit
+            original_load, original_index = practical_audit.load, practical_audit.build_index
+            try:
+                practical_audit.load = lambda _: package
+                records = {}
+                for collection in ("buckets", "microtopics", "questions", "resources"):
+                    for record in package[collection]:
+                        records[record["id"]] = record
+                practical_audit.build_index = lambda _: records
+                report = practical_audit.audit("Example", root)
+            finally:
+                practical_audit.load, practical_audit.build_index = original_load, original_index
+            self.assertFalse(report["passed"])
+            self.assertEqual(report["findings"][0]["point"], "PRACTICAL_PRACTICE_MISSING")
 
 
 class TeachingRouteCoverage(unittest.TestCase):
