@@ -8,6 +8,9 @@ Counts describe canonical records on the branch; they are not learner mastery me
 | Physics — One-dimensional motion | 6 | 6 | 6 | 6 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
 | Physics — Newton-law force reasoning | 7 | 7 | 7 | 7 retained authored Core2A questions | Human academic review pending; donor Core2B frame-choice transfer item intentionally not retained |
 | Physics — Work / Energy / Power | 7 | 7 | 7 | 7 retained authored questions | Human academic review pending; no source-backed Core2 custody; donor Core2B transfer item intentionally not retained |
+| Physics — Gravitation | 5 | 3 canonical + 2 synthesis gaps | 3 | 1 retained authored Core2A question | R2 inverse-square and R3 free-fall acceleration remain synthesis/un-authored canonical gaps; donor Core2B item not retained |
+| Physics — Vector addition/subtraction | 4 | 1 canonical + 3 synthesis gaps | 1 | 1 retained authored Core2A question | R1/R2/R4 remain synthesis gaps; donor Core2B item not retained |
+| Physics — Vector representation | 3 | 3 present rungs (4 package microtopics) | 4 | 1 retained authored Core2A question | Human academic review pending; donor Core2B item not retained |
 | Physics — Sound | 5 | 5 | 5 | 5 retained authored questions | Human academic review pending; heritage/curriculum-specific row held pending authoritative binding; no source-backed Core2 custody |
 | Physics — Simple Machines | 3 | 3 | 3 | 2 retained authored questions | Human academic review pending; no source-backed Core2 custody |
 | Mathematics — Linear equations in one unknown | 3 | 3 | 3 | 1 authored question | Human academic review pending; no authorised question corpus, so source-backed Core2 remains held |
@@ -65,6 +68,19 @@ positions across matrices is used.
 
 Representative retained questions cover supported practice/derivation/practical
 reasoning with primary capability ownership and only genuine secondary capabilities.
+
+## Physics — Gravitation and vector practice-only coverage
+
+These matrices were not rewritten. PR #9 supplied one retained authored Core2A anchor
+per matrix, and each anchor traces to already-existing canonical teaching:
+
+- Gravitation: `Q-PHY-GRAV-2A-01 → CAP-PHY-GRAV-R1 → MIC-PHY-GRAV-R1 → R1`;
+- Vector add/sub: `Q-PHY-VECOPS-2A-01 → CAP-VEC-SUB-ORDER → MIC-PHY-VEC-SUB-ORDER → R3`;
+- Vector representation: `Q-PHY-VECREP-2A-01 → CAP-VECTOR-VS-SCALAR → MIC-VECTOR-VS-SCALAR → R1`.
+
+The coverage report deliberately keeps existing synthesis gaps visible. In particular,
+Gravitation R2/R3 and Vector add/sub R1/R2/R4 have no canonical microtopic record yet;
+the practice migration does not manufacture one.
 
 ## Physics — Sound
 
