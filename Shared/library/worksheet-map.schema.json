@@ -65,6 +65,38 @@
           }
         }
       }
+    },
+    "syllabus_capabilities": {
+      "type": "array",
+      "description": "Optional owner/syllabus overlay expressed only as canonical capability refs. It supplements question-derived demand and never proves that the worksheet covers the whole syllabus.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["capability_ref"],
+        "properties": {
+          "capability_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "declared_extension_capabilities": {
+      "type": "array",
+      "description": "Optional deliberately-added enrichment/competition capabilities. These remain distinct from question demand and syllabus requirement.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
     }
   }
 }
