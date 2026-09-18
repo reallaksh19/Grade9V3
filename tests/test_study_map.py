@@ -148,6 +148,7 @@ class WorksheetStudyMap(unittest.TestCase):
         self.assertEqual(row["state"], "EXTERNAL_BRIDGE")
         self.assertEqual(row["delivery_state"], "EXTERNAL_BRIDGE")
         self.assertEqual(row["provider"], "ProviderSubject")
+        self.assertEqual(row["external_provider"], "ProviderSubject")
         self.assertNotIn(
             study_map.NO_TEACHING_LOCATION,
             [finding["point"] for finding in report["findings"]],

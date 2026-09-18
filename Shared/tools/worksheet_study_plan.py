@@ -222,6 +222,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
                 "success_criterion": cap.get("success_criterion"),
                 "delivery_state": cap.get("delivery_state"),
                 "provider": cap.get("provider"),
+                "external_provider": cap.get("external_provider") or cap.get("provider"),
                 "acceptance_status": cap.get("acceptance_status"),
                 "learner_state": state,
                 "lessons": lessons,
@@ -247,7 +248,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             and primary
             and primary.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE
         ):
-            lesson_labels = [f'Bridge: {primary.get("provider") or "external provider"}']
+            lesson_labels = [f'External bridge: {primary.get("provider") or "external provider"}']
         question_state, attention = _attention_for(capability_rows, observations)
         question_rows.append({
             "question_id": qid,
@@ -353,7 +354,7 @@ def readable(report: dict) -> str:
     for row in report.get("route", []):
         lesson = " + ".join(item["label"] for item in row.get("lessons", []))
         if not lesson and row.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
-            lesson = f'Bridge: {row.get("provider") or "external provider"}'
+            lesson = f'External bridge: {row.get("provider") or "external provider"}'
         out.append(
             "| " + " | ".join([
                 _md(row.get("order")),

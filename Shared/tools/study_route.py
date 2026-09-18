@@ -214,6 +214,7 @@ def resolve(mapping: dict, repo: Path = REPO) -> dict:
             "state": state,
             "delivery_state": delivery["state"],
             "provider": delivery["provider"],
+            "external_provider": delivery["provider"],
             "acceptance_status": delivery["acceptance_status"],
         })
 

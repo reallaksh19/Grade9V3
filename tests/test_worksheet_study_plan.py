@@ -211,6 +211,8 @@ class WorksheetStudyPlan(unittest.TestCase):
             rows = self.by_capability(unobserved)
             self.assertEqual(rows["CAP-BRIDGE"]["recommended_action"], "BRIDGE")
             self.assertEqual(rows["CAP-BRIDGE"]["provider"], "ProviderSubject")
+            self.assertEqual(rows["CAP-BRIDGE"]["external_provider"], "ProviderSubject")
+            self.assertIn("External bridge: ProviderSubject", worksheet_study_plan.readable(unobserved))
             self.assertEqual(
                 [row["capability"] for row in unobserved["blockers"]],
                 ["CAP-BRIDGE"],
