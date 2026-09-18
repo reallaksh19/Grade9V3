@@ -80,56 +80,6 @@
       "microtopic_ref": "MIC-PHY-KIN-AVERAGE-RATES"
     },
     {
-      "rung": "R6",
-      "ladder_position": 60,
-      "provenance": "SOURCE",
-      "ceiling": [
-        "instantaneous derivative",
-        "integration under a curve",
-        "calculus notation"
-      ],
-      "must_contain": [
-        "A position-time graph with labelled axes and units whose slope is interpreted as average velocity.",
-        "A velocity-time graph with labelled axes and units whose slope is interpreted as average acceleration.",
-        "An explicit contrast between graph height and graph slope."
-      ],
-      "controlled_variation": [
-        {
-          "phase": 1,
-          "vary": "the vertical axis from position to velocity",
-          "hold": "the same horizontal time axis and rise-over-run construction",
-          "notice": "the slope changes physical meaning from velocity to acceleration"
-        },
-        {
-          "phase": 2,
-          "vary": "the graph segment from sloped to horizontal",
-          "hold": "the same graph type",
-          "notice": "zero slope means zero rate of change of the vertical-axis quantity"
-        }
-      ],
-      "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
-      "engineering_dependencies": [
-        {
-          "kind": "GATE_RELATION",
-          "ref": "REL-AVERAGE-ACCELERATION",
-          "required_for": "RUNG_AUTHORITY",
-          "reason": "Velocity-time slope interpretation requires gate-owned average acceleration."
-        },
-        {
-          "kind": "VALIDATOR",
-          "ref": "AVERAGE_ACCELERATION",
-          "required_for": "NUMERIC_EXIT",
-          "reason": "The graph exit numerically checks velocity change over elapsed time."
-        },
-        {
-          "kind": "REPRESENTATION_KIND",
-          "ref": "GRAPH",
-          "required_for": "LEARNER_REPRESENTATION",
-          "reason": "The curriculum outcome explicitly requires plotting and interpreting motion graphs."
-        }
-      ]
-    },
-    {
       "rung": "R3",
       "ladder_position": 70,
       "provenance": "SOURCE",
@@ -239,8 +189,7 @@
       ],
       "must_contain": [
         "Equal-length tangent velocity arrows at different points on one circle.",
-        "An inward acceleration arrow distinguished from the tangent velocity direction.",
-        "One complete circumference 2 pi r divided by one positive period T to obtain speed."
+        "An inward acceleration arrow distinguished from the tangent velocity direction."
       ],
       "controlled_variation": [
         {
@@ -256,21 +205,7 @@
           "notice": "the turning acceleration shrinks toward zero as direction stops changing"
         }
       ],
-      "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
-      "engineering_dependencies": [
-        {
-          "kind": "GATE_RELATION",
-          "ref": "REL-UNIFORM-CIRCULAR-SPEED",
-          "required_for": "RUNG_AUTHORITY",
-          "reason": "The prescribed Grade 9 circular-speed expression needs gate ownership."
-        },
-        {
-          "kind": "VALIDATOR",
-          "ref": "UNIFORM_CIRCULAR_SPEED",
-          "required_for": "NUMERIC_EXIT",
-          "reason": "The circular-speed exit needs an implemented Physics validator."
-        }
-      ]
+      "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
     }
   ],
   "family": {
@@ -316,12 +251,6 @@
       "changed_demand": "A constant speed is maintained on a curved path, requiring the learner to decide whether acceleration can still be nonzero.",
       "information_not_handed_over": "whether changing direction alone counts as a change of velocity",
       "repair_to": "R5"
-    },
-    {
-      "dimension": "representation_translation",
-      "changed_demand": "The learner must read a motion graph directly rather than receiving displacement, velocity change or acceleration in prose.",
-      "information_not_handed_over": "whether the vertical axis is position or velocity and therefore what the graph slope represents",
-      "repair_to": "R6"
     }
   ]
 }
