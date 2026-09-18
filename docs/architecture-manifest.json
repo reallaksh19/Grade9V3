@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 121,
-  "relation_count": 179,
+  "component_count": 123,
+  "relation_count": 184,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
     "TEST": 33,
-    "TOOLING": 36,
+    "TOOLING": 38,
     "WEB": 5
   },
-  "digest": "sha256:326fa099f32a98a1715c306b9d22b8cb8dd51b8a13fea806cbc4baa3808ee7dc",
+  "digest": "sha256:6bc749e6d17cb9f85a9db7f7820feb12cc469cf62f658aab8ba95855a1a7917e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -523,6 +523,13 @@
       "sha256": "2e4e673c4833cb5ae80a7c94422cbb18302a15fac35f059fc10a303e0bac2d57"
     },
     {
+      "path": "Shared/tools/session_readiness.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 19146,
+      "sha256": "591a427222c1c81e1f65bc89e0b8374b0519716280f9f60d6207fcfdf7008ccd"
+    },
+    {
       "path": "Shared/tools/source_pipeline.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -570,6 +577,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 3427,
       "sha256": "2fbfcdcd572554caac213a11c254fbedd9d42dd2bce45a1846a76c29f49c6cf7"
+    },
+    {
+      "path": "Shared/tools/study_session.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 20821,
+      "sha256": "9de8e3c256cf5b5c12a151ba414e828ae8307f78dea4bd399df15c26a9bcf9cf"
     },
     {
       "path": "Shared/tools/study_start.py",
@@ -659,8 +673,8 @@
       "path": "tests/test_c6_examside_motion_in_plane.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 6282,
-      "sha256": "7ad1024cc24e61a5be4edfb9771b8441b1fc621f93e3da4ed0a214e22102f8b8"
+      "bytes": 8315,
+      "sha256": "64e3188025b77013fb76340230b9a4cd911ce7b8e8f34c72fe582fd7952c52e0"
     },
     {
       "path": "tests/test_core_issue19_integration.py",
@@ -1323,6 +1337,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/session_readiness.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/session_readiness.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/source_pipeline.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1414,6 +1438,21 @@
     },
     {
       "from": "Shared/tools/study_scope_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_session.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_session.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
