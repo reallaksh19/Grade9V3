@@ -265,6 +265,45 @@ def _eq_prescribed_no_binding(data):
     gate(data, "MATH-EQ-EXACT-SOLUTION")["curriculum"]["scope_class"] = "PRESCRIBED"
 
 
+def _undeclare_first_relation_validator(data, gate_id):
+    gate(data, gate_id)["relations"][0]["validator_refs"] = ["VALIDATOR_NOT_DECLARED"]
+
+
+@mutates("FAL-KIN-AVG-VALIDATOR")
+def _kin_avg_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-KIN-AVERAGE-RATES")
+
+
+@mutates("FAL-GRAV-SCALAR-VALIDATOR")
+def _grav_scalar_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-GRAV-SCALAR-LAWS")
+
+
+@mutates("FAL-FLUID-HYDRO-VALIDATOR")
+def _fluid_hydro_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-FLUID-HYDROSTATIC")
+
+
+@mutates("FAL-THERMO-FIRST-VALIDATOR")
+def _thermo_first_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-THERMO-FIRST-LAW")
+
+
+@mutates("FAL-WAVE-SPEED-VALIDATOR")
+def _wave_speed_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-WAVE-SPEED")
+
+
+@mutates("FAL-POWER-RATES-VALIDATOR")
+def _power_rates_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-POWER-RATES")
+
+
+@mutates("FAL-ELEC-POWER-VALIDATOR")
+def _electric_power_validator(data):
+    _undeclare_first_relation_validator(data, "PHY-ELECTRIC-POWER")
+
+
 def registries():
     """Every subject's gate registries, with that subject's adapter and bindings."""
     import importlib
@@ -319,5 +358,5 @@ class EveryDeclaredFalsifierIsExecuted(unittest.TestCase):
 
     def test_both_subjects_registries_are_reached(self):
         # Five of the thirteen cases were in a registry this file never loaded.
-        self.assertEqual(sorted(p.relative_to(REPO).parts[0] for p, *_ in registries()),
+        self.assertEqual(sorted({p.relative_to(REPO).parts[0] for p, *_ in registries()}),
                          ["Mathematics", "Physics"])
