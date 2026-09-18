@@ -829,6 +829,10 @@
         {
           "concept_id": "CON-WEP-CONSERVATION",
           "statement": "Mechanical energy is conserved only when no additional transfer crosses the chosen mechanical account."
+        },
+        {
+          "concept_id": "CON-WEP-ENERGY-DERIVATIONS",
+          "statement": "The Grade 9 kinetic- and raised-body potential-energy expressions are consequences of the work ledger plus already-authored force/motion relations, not isolated formulas."
         }
       ],
       "prerequisites": [],
@@ -994,12 +998,45 @@
             "No frictional or outside transfer changes the chosen mechanical-energy account.",
             "Initial and final energies use the same potential-energy reference."
           ]
+        },
+        {
+          "relation_id": "REL-WEIGHT-NEAR-EARTH",
+          "expression": "F_weight = m g",
+          "meaning": "Near Earth's surface in an approximately uniform gravitational field, the weight-force magnitude on mass m is m times gravitational acceleration magnitude g.",
+          "symbols": [
+            {
+              "symbol": "F_weight",
+              "meaning": "Weight-force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Local gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "m > 0.",
+            "g > 0.",
+            "Near-Earth field is treated as approximately uniform over the height range.",
+            "This relation gives the force magnitude; downward direction is supplied by the physical geometry."
+          ]
         }
       ],
       "representations": [],
       "validity_conditions": [
         "Choose the system/account before applying conservation.",
-        "Use the same reference frame and height reference consistently."
+        "Use the same reference frame and height reference consistently.",
+        "The Grade 9 derivation of K = 0.5 m v^2 uses a constant net force collinear with the displacement, so the constant-acceleration no-time relation applies.",
+        "The Grade 9 derivation of Delta U_g = m g Delta h uses a near-Earth approximately uniform g and a controlled lift whose applied force balances the weight."
       ],
       "reasoning_sequence": [
         {
