@@ -516,8 +516,175 @@
   ],
   "relations": [],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-OPT-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Mirror geometry and sign-convention practice",
+      "capability_refs": [
+        "CAP-OPT-NORMAL-REFLECTION",
+        "CAP-OPT-REAL-VIRTUAL-IMAGE",
+        "CAP-OPT-SIGN-CONVENTION"
+      ],
+      "solution_structure": [
+        "At the point where the incoming light path meets the mirror, draw the line perpendicular to the surface before marking any angle.",
+        "Copy the incoming path's tilt from the normal to the opposite side of that normal to construct the outgoing path.",
+        "Rotate the entire drawing on the page and repeat the construction without changing the physical geometry."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the bucket's authored construction applies before using it.",
+        "representation_translation": "Translate the task into already-authored quantities or directions without changing the physical claim.",
+        "reasoning_steps": "Carry the authored reasoning sequence through its independent check rather than stopping at a label.",
+        "novelty": "Map unfamiliar roles onto already-taught quantities; no new scientific relation is introduced by practice."
+      },
+      "safe_variations": [
+        "Change surface labels, orientation, or context while preserving the same authored decision structure."
+      ],
+      "transfer_boundaries": [
+        "The learner must read coordinate signs directly from a ray diagram and declared directions instead of being given signed optical quantities."
+      ],
+      "common_wrong_routes": [
+        "The angle of incidence is measured from the mirror surface."
+      ],
+      "item_refs": [
+        "Q-PHY-OPT-2A-01",
+        "Q-PHY-OPT-2B-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-OPT-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+      "original_identifier": "AUTHOR-OPT-2A-01",
+      "stem": "Given an incoming light path and a plane mirror drawn at an arbitrary page angle, construct the normal and the reflected path, and state which line the two reflection angles are measured from.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Draw the perpendicular normal at the contact point, then place the outgoing path on the other side with the same tilt to that normal; both angles are measured from the normal.",
+        "reasoning": [
+          "Locate the point where the incoming path meets the surface.",
+          "Draw the perpendicular reference there before reading or copying any angle.",
+          "Use the same reference on the opposite side to place the outgoing path."
+        ],
+        "check": "Rotate the page mentally. If the construction depends on the page edge rather than the normal, it will change; a correct construction will not.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-OPT-NORMAL-REFLECTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-OPT-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking yourself: At the exact contact point, which line could give both the incoming and outgoing path the same local reference?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Draw the normal first; incidence and reflection angles are defined from that line, not from the surface.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-OPT-2B-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+      "original_identifier": "AUTHOR-OPT-2B-01",
+      "stem": "A mirror ray diagram declares the pole as origin, incident light to the right as positive distance, and upward as positive height. The real image point lies left of the pole and below the principal axis. Without using an object/image sign table, assign the signs of the image distance and image height and explain the rule.",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Both the image distance and image height are negative: the image lies opposite the declared positive distance direction and below the declared positive height direction.",
+        "reasoning": [
+          "Use the pole as the horizontal origin and compare the image position with the declared positive distance direction.",
+          "The image lies left while positive distance points right, so its distance is negative.",
+          "The image lies below the principal axis while upward is positive, so its height is negative."
+        ],
+        "check": "Reverse the page drawing and carry the declared incident-light arrow with the physical setup; the signs should follow the declaration rather than the page edge.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "rubric": [
+          {
+            "criterion": "Assigns negative signs to both image distance and image height under the stated convention.",
+            "evidence_of": "Translating diagram position into signed coordinates from declared axes."
+          },
+          {
+            "criterion": "Explains signs from direction declarations rather than image labels.",
+            "evidence_of": "Using one consistent coordinate rule for every optical point."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-OPT-SIGN-CONVENTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-OPT-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Ignore the words 'real image' when assigning signs; start from the declared origin and positive directions.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Treat horizontal position and vertical height as two separate signed-coordinate questions.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must read coordinate signs directly from a ray diagram and declared directions instead of being given signed optical quantities.",
+        "builds_on": [
+          "Q-PHY-OPT-2A-01",
+          "MIC-OPT-SIGN-CONVENTION"
+        ]
+      },
+      "repair_ref": "OPT-R3-1"
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-OPT-CORE1A",
