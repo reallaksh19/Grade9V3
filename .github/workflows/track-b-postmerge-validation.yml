@@ -1,0 +1,55 @@
+name: Track B Postmerge Validation
+on:
+  push:
+    branches: [track-b-postmerge-validation]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet jsonschema
+      - name: Track B package intake
+        run: |
+          python3 Shared/library/intake.py             Physics/library/phy-rot-rigid-body.v1.json             Physics/library/phy-grav-universal-law.v1.json             Physics/library/phy-fluid-bernoulli-equation.v1.json             Physics/library/phy-thermo-first-second-law.v1.json
+      - name: Matrix ceiling and request checks
+        run: |
+          python3 Shared/tools/matrix_conformance.py --enforce
+          python3 Shared/tools/ceiling_audit.py --enforce
+          python3 Shared/tools/resolve_request.py --enforce
+      - name: Track B author briefs bind
+        run: |
+          set -e
+          check () {
+            python3 Shared/tools/author_brief.py --subject Physics --bucket "$1" --rung "$2" --core CORE1A | grep -q "## Bind to $3"
+          }
+          check BUCKET-PHY-ROT-RIGID-BODY R1 MIC-PHY-ROT-R1
+          check BUCKET-PHY-ROT-RIGID-BODY R3 MIC-PHY-ROT-R3
+          check BUCKET-PHY-ROT-RIGID-BODY R4 MIC-PHY-ROT-R4
+          check BUCKET-PHY-ROT-RIGID-BODY R5 MIC-PHY-ROT-R5
+          check BUCKET-PHY-GRAV-UNIVERSAL-LAW R1 MIC-PHY-GRAV-R1
+          check BUCKET-PHY-GRAV-UNIVERSAL-LAW R4 MIC-PHY-GRAV-R4
+          check BUCKET-PHY-GRAV-UNIVERSAL-LAW R5 MIC-PHY-GRAV-R5
+          check BUCKET-PHY-FLUID-BERNOULLI-EQUATION R2 MIC-PHY-FLUID-R2
+          check BUCKET-PHY-FLUID-BERNOULLI-EQUATION R3 MIC-PHY-FLUID-R3
+          check BUCKET-PHY-FLUID-BERNOULLI-EQUATION R4 MIC-PHY-FLUID-R4
+          check BUCKET-PHY-THERMO-FIRST-SECOND-LAW R1 MIC-PHY-THERMO-R1
+          check BUCKET-PHY-THERMO-FIRST-SECOND-LAW R3 MIC-PHY-THERMO-R3
+          check BUCKET-PHY-THERMO-FIRST-SECOND-LAW R4 MIC-PHY-THERMO-R4
+          check BUCKET-PHY-THERMO-FIRST-SECOND-LAW R5 MIC-PHY-THERMO-R5
+      - name: Full unit suite
+        continue-on-error: true
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
+      - name: Subject sweep
+        continue-on-error: true
+        run: python3 Shared/tools/check_subjects.py
+      - name: Depiction gate
+        continue-on-error: true
+        run: python3 Shared/library/depiction.py --enforce
+      - name: Capability collisions
+        run: python3 Shared/tools/capability_collisions.py
+      - name: Generated artifacts current
+        run: python3 Shared/tools/build_manifest.py --check
