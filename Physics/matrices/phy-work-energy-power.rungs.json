@@ -122,7 +122,7 @@
     },
     {
       "rung": "R5",
-      "ladder_position": 95,
+      "ladder_position": 85,
       "provenance": "SOURCE",
       "ceiling": [
         "force-velocity product"
@@ -172,6 +172,93 @@
         }
       ],
       "microtopic_ref": "MIC-PHY-WEP-POWER-RATES"
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 100,
+      "provenance": "SOURCE",
+      "ceiling": [
+        "line integral",
+        "variable-force integration",
+        "relativistic energy",
+        "rotational kinetic energy"
+      ],
+      "must_contain": [
+        "A signed along-path force component before W = F_parallel s is used.",
+        "Separate K = 0.5mv^2 and Delta U_g = mg Delta h terms before any conservation statement.",
+        "An explicit no-extra-transfer check before K_i + U_i = K_f + U_f."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "force orientation relative to the same displacement",
+          "hold": "force magnitude and displacement",
+          "notice": "work changes through the signed along-path component"
+        },
+        {
+          "phase": 2,
+          "vary": "speed",
+          "hold": "the same positive mass",
+          "notice": "kinetic energy changes with speed squared"
+        },
+        {
+          "phase": 3,
+          "vary": "the path from smooth to rough",
+          "hold": "the same endpoints",
+          "notice": "endpoint gravitational change stays the same while friction changes the mechanical-energy account"
+        }
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-GRADE9-QUANT",
+      "engineering_dependencies": [
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WORK-CONSTANT-FORCE",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Grade 9 numerical work requires the gate-owned constant-force work relation."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-KINETIC-ENERGY",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Grade 9 kinetic-energy calculations require gate ownership."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Near-Earth potential-energy changes require gate-owned conditions."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-WORK-ENERGY-THEOREM",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "The work-energy theorem must be gate-owned before teaching it as subject truth."
+        },
+        {
+          "kind": "GATE_RELATION",
+          "ref": "REL-MECHANICAL-ENERGY-CONSERVATION",
+          "required_for": "RUNG_AUTHORITY",
+          "reason": "Mechanical-energy conservation needs an explicit gate-owned closed-account condition."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "WORK_CONSTANT_FORCE",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Numerical work checks need the implemented Physics validator."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "KINETIC_ENERGY",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Kinetic-energy exits need the implemented Physics validator."
+        },
+        {
+          "kind": "VALIDATOR",
+          "ref": "GRAVITATIONAL_POTENTIAL_ENERGY",
+          "required_for": "NUMERIC_EXIT",
+          "reason": "Near-Earth potential-energy exits need the implemented Physics validator."
+        }
+      ]
     }
   ],
   "family": {
@@ -217,6 +304,12 @@
       "changed_demand": "Two machines perform the same task with different time profiles and the learner must separate total work from average and instantaneous power.",
       "information_not_handed_over": "which reported rate is tied to the whole interval rather than a single instant",
       "repair_to": "R5"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A numerical energy problem includes friction and the learner must decide whether to use mechanical-energy conservation alone or include an explicit transfer term.",
+      "information_not_handed_over": "whether the chosen K + U account is closed",
+      "repair_to": "R6"
     }
   ]
 }
