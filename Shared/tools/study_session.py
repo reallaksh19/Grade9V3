@@ -977,6 +977,22 @@ def readable_plan(report: dict) -> str:
         "",
     ]
 
+    if report.get("applied_owner_choices"):
+        out += ["## Applied session owner choices", ""]
+        for choice in report["applied_owner_choices"]:
+            if choice.get("kind") == OWNER_EXTERNAL:
+                detail = f'External bridge: {choice.get("provider")}'
+            else:
+                detail = f'{choice.get("matrix_id")} / {choice.get("rung")}'
+            out.append(f'- {choice.get("capability_ref")}: {detail}')
+        out += [""]
+
+    if report.get("owner_choice_warnings"):
+        out += ["## Owner-choice warnings", ""]
+        for warning in report["owner_choice_warnings"]:
+            out.append(f'- {warning.get("point")}: {warning.get("detail", "")}')
+        out += [""]
+
     if report.get("owner_estimates"):
         out += ["## Rough starting estimates", ""]
         for estimate in report["owner_estimates"]:
@@ -1138,6 +1154,13 @@ def main() -> int:
         metavar="TARGET=PERCENT",
         help="TARGET is matrix id, bucket id, or exact subtopic name; may repeat",
     )
+    p_plan.add_argument(
+        "--owner-choice",
+        action="append",
+        default=[],
+        metavar="CAPABILITY=LOCATION:MATRIX:RUNG|EXTERNAL:PROVIDER",
+        help="session-only owner resolution; may repeat",
+    )
     p_plan.add_argument("--readable", action="store_true")
     p_plan.add_argument("--enforce", action="store_true")
 
@@ -1167,7 +1190,12 @@ def main() -> int:
 
     if args.command == "plan":
         profile = load(args.profile) if args.profile else None
-        report = plan(mapping, args.estimate, profile)
+        report = plan(
+            mapping,
+            args.estimate,
+            profile,
+            owner_choice_specs=args.owner_choice,
+        )
         print(readable_plan(report) if args.readable
               else json.dumps(report, indent=2, ensure_ascii=False))
         return 1 if args.enforce and not report["passed"] else 0
