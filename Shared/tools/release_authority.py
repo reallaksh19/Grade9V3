@@ -185,6 +185,10 @@ def evaluate(release_request: dict, repo: Path = REPO) -> dict:
             fail("RELEASE_RECORD_REVIEW_UNBACKED", rid,
                  f"learner-facing {record.get('_collection')} has no current digest-backed review authority")
             continue
+        if not authority.get("receipt"):
+            fail("RELEASE_RECORD_REVIEW_RECEIPT_MISSING", rid,
+                 "verified learner-facing review authority did not identify its promotion receipt")
+            continue
         reviewed_records.append({
             "record_id": rid,
             "collection": record["_collection"],
