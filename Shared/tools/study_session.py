@@ -37,6 +37,17 @@ READY_WITH_BRIDGE = session_readiness.READY_WITH_BRIDGE
 PILOT_READY = session_readiness.PILOT_READY
 NOT_READY = session_readiness.NOT_READY
 
+EXECUTE_WITH_FALLBACK = "EXECUTE_WITH_FALLBACK"
+OWNER_DECISION = "OWNER_DECISION"
+
+HARD_PLAN_FINDINGS = {
+    "WORKSHEET_MAP_STRUCTURE",
+    "WORKSHEET_QUESTION_ID_DUPLICATE",
+    "WORKSHEET_STUDY_PLAN_SYNTHETIC_PROFILE_REFUSED",
+    "STUDY_ROUTE_PREREQUISITE_UNKNOWN",
+    "STUDY_ROUTE_PREREQUISITE_CYCLE",
+}
+
 
 def _matrices(subject: str, repo: Path = REPO) -> list[dict]:
     root = repo / subject / "matrices"
@@ -127,8 +138,9 @@ def _touched_matrix_ids(study_plan: dict) -> list[str]:
 
 
 def _session_status(readiness_rows: list[dict], study_plan: dict) -> str:
+    """Keep matrix readiness truthful; execution fallback is decided separately."""
     statuses = {row.get("status") for row in readiness_rows}
-    if NOT_READY in statuses or not study_plan.get("valid", study_plan.get("passed", False)):
+    if NOT_READY in statuses:
         return NOT_READY
     if PILOT_READY in statuses:
         return PILOT_READY
@@ -137,9 +149,90 @@ def _session_status(readiness_rows: list[dict], study_plan: dict) -> str:
     return READY
 
 
+def _rung_state(readiness: dict | None, rung: str | None) -> str | None:
+    if readiness is None or not rung:
+        return None
+    for row in readiness.get("rungs", []):
+        if row.get("rung") == rung:
+            return row.get("state")
+    return None
+
+
+def _route_execution(study_plan: dict, readiness_rows: list[dict], warnings: list[dict]):
+    """Annotate only exceptional execution states; normal route actions stay unchanged."""
+    by_matrix = {row.get("matrix_id"): row for row in readiness_rows}
+    route = []
+    owner_decisions = []
+    fallback_reasons = []
+    executable = 0
+
+    for row in study_plan.get("route", []):
+        item = dict(row)
+        action = item.get("recommended_action")
+        disposition = None
+
+        if action == "SKIP":
+            item["execution_disposition"] = None
+            route.append(item)
+            continue
+
+        if item.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
+            executable += 1
+            item["execution_disposition"] = None
+            route.append(item)
+            continue
+
+        locations = list(item.get("locations") or [])
+        if item.get("state") != "RESOLVED" or len(locations) != 1:
+            disposition = OWNER_DECISION
+            owner_decisions.append({
+                "capability_ref": item.get("capability_ref"),
+                "reason": "canonical teaching delivery is unresolved or ambiguous",
+            })
+        else:
+            location = locations[0]
+            readiness = by_matrix.get(location.get("matrix_id"))
+            rung_state = _rung_state(readiness, location.get("rung"))
+            if rung_state in {None, "BLOCKED"}:
+                disposition = OWNER_DECISION
+                owner_decisions.append({
+                    "capability_ref": item.get("capability_ref"),
+                    "matrix_id": location.get("matrix_id"),
+                    "rung": location.get("rung"),
+                    "reason": "the demanded teaching rung is not executable without an owner choice",
+                })
+            else:
+                executable += 1
+                if rung_state == "NEEDS_SUPPORT":
+                    disposition = EXECUTE_WITH_FALLBACK
+                    fallback_reasons.append({
+                        "capability_ref": item.get("capability_ref"),
+                        "matrix_id": location.get("matrix_id"),
+                        "rung": location.get("rung"),
+                        "reason": "the demanded rung is usable but self-study support is incomplete",
+                    })
+
+        item["execution_disposition"] = disposition
+        route.append(item)
+
+    if executable:
+        overall = (
+            EXECUTE_WITH_FALLBACK
+            if warnings or fallback_reasons or owner_decisions
+            else None
+        )
+    elif owner_decisions:
+        overall = OWNER_DECISION
+    else:
+        overall = None
+    return route, owner_decisions, fallback_reasons, executable, overall
+
+
 def _next_step(study_plan: dict) -> dict | None:
     for row in study_plan.get("route", []):
         if row.get("recommended_action") == "SKIP":
+            continue
+        if row.get("execution_disposition") == OWNER_DECISION:
             continue
         lessons = row.get("lessons", [])
         lesson = lessons[0] if lessons else None
@@ -174,25 +267,33 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         for matrix_id in _touched_matrix_ids(study_plan)
     ]
     status = _session_status(readiness_rows, study_plan)
-    findings = [*estimate_findings, *study_plan.get("findings", [])]
+    plan_findings = list(study_plan.get("findings", []))
+    hard_findings = [
+        row for row in plan_findings
+        if row.get("point") in HARD_PLAN_FINDINGS
+    ]
+    decision_findings = [
+        row for row in plan_findings
+        if row.get("point") not in HARD_PLAN_FINDINGS
+    ]
+    warnings = [
+        *estimate_findings,
+        *list(study_plan.get("warnings", [])),
+    ]
 
-    if status == NOT_READY and not any(
-        row.get("point") == "STUDY_SESSION_TOPIC_NOT_READY"
-        for row in findings
-    ):
-        blocked = [
-            row.get("matrix_id")
-            for row in readiness_rows
-            if row.get("status") == NOT_READY
-        ]
-        findings.append({
-            "point": "STUDY_SESSION_TOPIC_NOT_READY",
-            "matrices": blocked,
-            "detail": (
-                "one or more required matrices are not self-study ready; keep the "
-                "content gap explicit instead of fabricating a session"
-            ),
+    route, owner_decisions, fallback_reasons, executable_count, disposition = _route_execution(
+        study_plan, readiness_rows, warnings
+    )
+    for finding in decision_findings:
+        owner_decisions.append({
+            "point": finding.get("point"),
+            "target": finding.get("where") or finding.get("capability"),
+            "reason": finding.get("detail", ""),
         })
+    if decision_findings and executable_count:
+        disposition = EXECUTE_WITH_FALLBACK
+    elif decision_findings and not executable_count:
+        disposition = OWNER_DECISION
 
     academic_warnings = [
         {
@@ -204,10 +305,12 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         for warning in row.get("academic_warnings", [])
     ]
 
-    valid = status != NOT_READY and not estimate_findings
+    valid = not hard_findings
     ready = (
         valid
-        and status != PILOT_READY
+        and executable_count > 0
+        and disposition is None
+        and status not in {PILOT_READY, NOT_READY}
         and study_plan.get("ready", True)
     )
     return {
@@ -218,6 +321,10 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
         "ready": ready,
         "profile_id": study_plan.get("profile_id"),
         "owner_estimates": estimates,
+        "execution_disposition": disposition,
+        "owner_decisions": owner_decisions,
+        "fallback_reasons": fallback_reasons,
+        "warnings": warnings,
         "readiness": [{
             "matrix_id": row.get("matrix_id"),
             "subtopic": row.get("subtopic"),
@@ -225,15 +332,16 @@ def plan(mapping: dict, estimate_specs: list[str] | None = None,
             "external_bridges": row.get("external_bridges", []),
             "support_findings": row.get("support_findings", []),
         } for row in readiness_rows],
-        "next_step": _next_step(study_plan) if status != NOT_READY else None,
+        "next_step": _next_step({"route": route}) if valid and executable_count else None,
         "questions": study_plan.get("questions", []),
-        "route": study_plan.get("route", []),
+        "route": route,
         "academic_warnings": academic_warnings,
-        "findings": findings,
+        "findings": hard_findings,
         "blockers": list(study_plan.get("blockers", [])),
         "passed": valid,
         "rules": [
-            "Readiness must be established before a subtopic is treated as self-study ready.",
+            "Matrix readiness remains truthful; execution may fall back only on demanded usable rungs.",
+            "Only EXECUTE_WITH_FALLBACK and OWNER_DECISION are added as exceptional execution dispositions.",
             "Owner percentages choose a local starting attempt; they are not mastery evidence.",
             "Worksheet questions remain transient demand unless separately promoted.",
             "Attempt evaluation is supplied by the caller; the runner does not pretend to grade free-form work.",
@@ -270,6 +378,7 @@ def _question_readiness(
     matrix_ids = []
     blockers = []
     external_bridges = []
+    local_locations = []
 
     for capability in mapped:
         locations = list(index.get("locations", {}).get(capability, []))
@@ -324,6 +433,7 @@ def _question_readiness(
             continue
 
         for location in delivery["locations"]:
+            local_locations.append((capability, location))
             matrix_id = location.get("matrix_id")
             if matrix_id and matrix_id not in matrix_ids:
                 matrix_ids.append(matrix_id)
@@ -332,12 +442,26 @@ def _question_readiness(
         session_readiness.audit(subject, matrix_id=matrix_id, repo=repo)
         for matrix_id in matrix_ids
     ]
-    for row in readiness_rows:
-        if row.get("status") == NOT_READY:
+    readiness_by_matrix = {
+        row.get("matrix_id"): row for row in readiness_rows
+    }
+    for capability, location in local_locations:
+        if result not in {"INCORRECT", "UNDECIDABLE"}:
+            continue
+        if failed_capability_ref is not None and failed_capability_ref != capability:
+            continue
+        readiness = readiness_by_matrix.get(location.get("matrix_id"))
+        rung_state = _rung_state(readiness, location.get("rung"))
+        if rung_state in {None, "BLOCKED"}:
             blockers.append({
-                "point": "STUDY_SESSION_QUESTION_TOPIC_NOT_READY",
-                "matrix_id": row.get("matrix_id"),
-                "detail": "question feedback is blocked because its teaching matrix is not ready",
+                "point": "STUDY_SESSION_QUESTION_RUNG_NOT_EXECUTABLE",
+                "capability_ref": capability,
+                "matrix_id": location.get("matrix_id"),
+                "rung": location.get("rung"),
+                "detail": (
+                    "the failed capability cannot be repaired from the demanded rung "
+                    "without an explicit owner decision"
+                ),
             })
 
     return readiness_rows, blockers, external_bridges
@@ -378,11 +502,12 @@ def attempt(mapping: dict, question_id: str, *, result: str,
     if blockers:
         return {
             "question_ref": question_id,
-            "next_action": "STOP",
+            "next_action": OWNER_DECISION,
+            "execution_disposition": OWNER_DECISION,
             "readiness": readiness_rows,
             "external_bridges": external_bridges,
             "findings": blockers,
-            "passed": False,
+            "passed": True,
         }
 
     evaluation = {
@@ -435,6 +560,7 @@ def readable_plan(report: dict) -> str:
         "",
         f'  subject: {report.get("subject")}',
         f'  status:  {report.get("status")}',
+        f'  execution: {report.get("execution_disposition") or "NORMAL"}',
         "",
     ]
 
@@ -490,6 +616,17 @@ def readable_plan(report: dict) -> str:
             f'[{row.get("learner_state")}]'
         )
         out.append(f'  {row.get("why_extra_attention")}')
+
+    if report.get("warnings"):
+        out += ["", "## Fallback warnings", ""]
+        for warning in report["warnings"]:
+            out.append(f'- {warning.get("point")}: {warning.get("detail", "")}')
+
+    if report.get("owner_decisions"):
+        out += ["", "## Owner decisions", ""]
+        for decision in report["owner_decisions"]:
+            target = decision.get("target") or decision.get("capability_ref") or decision.get("matrix_id")
+            out.append(f'- {target}: {decision.get("reason", "")}')
 
     if report.get("academic_warnings"):
         out += ["", "## Parent warnings", ""]
