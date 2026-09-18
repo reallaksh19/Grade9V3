@@ -51,6 +51,12 @@ jobs:
       - name: Requests resolve to a plan, or refuse with a reason
         run: python3 Shared/tools/resolve_request.py --enforce
 
+      # Practice READY is a buildability claim, not merely a matrix claim. Check every
+      # bucket so a planner/compiler disagreement cannot hide behind the one committed
+      # request.
+      - name: Practice readiness agrees with compilation
+        run: python3 Shared/tools/practice_readiness.py --enforce
+
       - name: No ceiling forbids the word its own rung teaches
         run: python3 Shared/tools/ceiling_audit.py --enforce
 
