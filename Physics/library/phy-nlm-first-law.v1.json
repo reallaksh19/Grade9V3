@@ -79,6 +79,72 @@
             "locator": "Practicals item 12; printed p.19 — Verification of Newton’s Second Law of Motion using a trolley, pulley and hanging masses (Ch. 6).",
             "capability_ref": "CAP-NLM-SECOND-LAW"
           }
+        ],
+        "curriculum_outcome_coverage_policy": "DECLARED_OUTCOMES",
+        "curriculum_outcomes": [
+          {
+            "id": "CBSE9-FORCE-BALANCE-FIRST-LAW",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Force and Laws of Motion; printed p.15; C-2.1 — balanced/unbalanced forces and Newton's first law",
+            "capability_refs": [
+              "CAP-NLM-NET-ZERO-MOTION",
+              "CAP-NLM-FORCES-SUM-ZERO",
+              "CAP-NLM-FBD-BODY-OWNERSHIP"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-NLM-NET-ZERO-MOTION",
+              "MIC-PHY-NLM-FORCES-SUM-ZERO",
+              "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
+            ],
+            "question_refs": [
+              "Q-PHY-NLM-2A-01",
+              "Q-PHY-NLM-2A-COV-02",
+              "Q-PHY-NLM-2A-COV-03"
+            ]
+          },
+          {
+            "id": "CBSE9-FORCE-FRICTION",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Force and Laws of Motion; printed p.15; C-2.1 — force of friction and its impact on motion",
+            "capability_refs": [
+              "CAP-NLM-FRICTION"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-NLM-FRICTION"
+            ],
+            "question_refs": [
+              "Q-PHY-NLM-2A-COV-04"
+            ]
+          },
+          {
+            "id": "CBSE9-FORCE-SECOND-LAW",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Force and Laws of Motion; printed p.15; C-2.1 — Newton's second law, mass, acceleration and F = m a",
+            "capability_refs": [
+              "CAP-NLM-SECOND-LAW"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-NLM-SECOND-LAW"
+            ],
+            "question_refs": [
+              "Q-PHY-NLM-2A-COV-05",
+              "Q-PHY-NLM-PRACTICAL-12"
+            ]
+          },
+          {
+            "id": "CBSE9-FORCE-THIRD-LAW",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Force and Laws of Motion; printed p.15; C-2.1 — Newton's third law and applications in daily life",
+            "capability_refs": [
+              "CAP-NLM-THIRD-LAW"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-NLM-THIRD-LAW"
+            ],
+            "question_refs": [
+              "Q-PHY-NLM-2A-COV-06"
+            ]
+          }
         ]
       },
       "title": "Force and Newton's laws",
