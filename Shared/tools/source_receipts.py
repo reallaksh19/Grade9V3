@@ -95,7 +95,8 @@ def derive_coverage(records: dict, bucket_id: str, resource_refs: list[str]) -> 
 
 
 def verify(receipt: dict, *, request: dict | None = None,
-           expected_bucket: str | None = None, repo: Path = REPO) -> dict:
+           expected_bucket: str | None = None, records_override: dict | None = None,
+           repo: Path = REPO) -> dict:
     found = list(_schema_findings(receipt, repo))
 
     def fail(point: str, where: str, detail: str) -> None:
@@ -103,7 +104,7 @@ def verify(receipt: dict, *, request: dict | None = None,
 
     subject = receipt.get("subject", "")
     try:
-        records = _records(subject, repo) if subject else {}
+        records = records_override if records_override is not None else (_records(subject, repo) if subject else {})
     except Exception as exc:
         records = {}
         fail("SOURCE_RECEIPT_LIBRARY_UNREADABLE", subject, str(exc))
