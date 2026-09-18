@@ -123,11 +123,7 @@
     {
       "rung": "R5",
       "ladder_position": 95,
-      "provenance": "SYNTHESIS",
-      "aha": "Power is the rate of doing work: average power uses total work over an interval, while instantaneous power depends on force and velocity at that instant.",
-      "learner_owns": [
-        "Mechanical energy K + U is conserved only when non-conservative and unmodelled external work vanish; friction or a moving support changes the energy account."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "force-velocity product"
       ],
@@ -135,12 +131,6 @@
         "Two machines doing the same total work in different times.",
         "A changing-speed case where the same average power hides different instantaneous rates."
       ],
-      "misconception": {
-        "wrong_idea": "If two processes do the same total work, they necessarily have the same power.",
-        "diagnostic_prompt": "Two motors lift the same load through the same height, one in half the time. Do they do the same work, and do they have the same average power?",
-        "repair": "Separate amount of work from rate: average power divides total work by elapsed time; instantaneous power depends on what is happening at that instant."
-      },
-      "closure": "Given work and timing information, distinguish total work, average power, and when enough information exists to discuss instantaneous power.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -180,7 +170,8 @@
           "required_for": "NUMERIC_EXIT",
           "reason": "Instantaneous force-velocity power calculations need the implemented same-instant validator."
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-POWER-RATES"
     }
   ],
   "family": {
