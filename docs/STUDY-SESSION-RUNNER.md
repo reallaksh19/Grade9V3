@@ -91,9 +91,14 @@ observation draft, and a review date.
 
 ## Safety / anti-drift rules
 
-- `NOT_READY` teaching matrices block the session rather than being filled with invented
-  teaching.
-- `PILOT_READY` remains visibly weaker than `SESSION_READY`.
+- Matrix readiness remains truthful, but it is not a blanket execution kill switch. If the
+  actually demanded rung is usable inside a `PILOT_READY` or `NOT_READY` matrix, the
+  session may continue as `EXECUTE_WITH_FALLBACK` while the surrounding gaps remain visible.
+- If the demanded delivery/rung cannot be selected safely, return `OWNER_DECISION` rather
+  than guessing. These are the only two exceptional execution dispositions added by the
+  fallback-first policy.
+- `PILOT_READY` remains visibly weaker than `SESSION_READY`, and `NOT_READY` remains a
+  truthful matrix-level readiness statement.
 - External worksheet questions remain transient demand; they are not automatically promoted
   to Core2/source custody.
 - External-provider prerequisites remain explicit bridges.
@@ -105,6 +110,7 @@ observation draft, and a review date.
 
 ## What comes next
 
-Use the runner on a real Relative Motion worksheet before broadening it. The next core
-change should be justified by an observed problem in that session: wrong starting point,
-bad diagnosis, over-revealing help, unsuitable verification, or awkward evidence capture.
+Use live learner sessions and the independent Question → Study Map benchmark to test the
+fallback boundary. New tightening rules should not create additional execution-state enums:
+normal actions remain normal, safe degradation uses `EXECUTE_WITH_FALLBACK`, and cases that
+need a human choice use `OWNER_DECISION`.
