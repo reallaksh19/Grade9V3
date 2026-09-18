@@ -1359,6 +1359,163 @@
           "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-SIMPLE-MACHINES-GRADE9",
+      "title": "Grade 9 simple machines and mechanical advantage",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Work, Energy and Simple Machines",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-MACHINE-TRADEOFF",
+          "statement": "A simple machine can trade force magnitude, direction or input distance; it does not create work or energy."
+        },
+        {
+          "concept_id": "CON-MACHINE-MA",
+          "statement": "Mechanical advantage compares load force with effort force for the same machine state."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-MECHANICAL-ADVANTAGE",
+          "expression": "MA = F_load / F_effort",
+          "meaning": "Mechanical advantage is the ratio of load force magnitude to effort force magnitude.",
+          "symbols": [
+            {
+              "symbol": "MA",
+              "meaning": "Mechanical advantage",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "F_load",
+              "meaning": "Load force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "F_effort",
+              "meaning": "Effort force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            }
+          ],
+          "conditions": [
+            "F_load >= 0.",
+            "F_effort > 0.",
+            "Load and effort magnitudes refer to the same machine state."
+          ],
+          "validator_refs": [
+            "MECHANICAL_ADVANTAGE"
+          ]
+        },
+        {
+          "relation_id": "REL-IDEAL-MACHINE-WORK",
+          "expression": "F_effort d_effort = F_load d_load",
+          "meaning": "For an ideal lossless simple machine, input work equals useful output work.",
+          "symbols": [
+            {
+              "symbol": "F_effort",
+              "meaning": "Effort force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "d_effort",
+              "meaning": "Distance moved at the effort point",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "F_load",
+              "meaning": "Load force magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "d_load",
+              "meaning": "Distance moved by the load",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Ideal lossless model.",
+            "Each force magnitude is paired with displacement along its own line of action.",
+            "All distances are nonnegative magnitudes."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "State whether the machine is being treated as ideal before equating input and output work.",
+        "Mechanical advantage compares force magnitudes, not energies."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-MACHINE-FUNCTION",
+          "sequence": 1,
+          "action": "Identify what the machine changes: effort force, direction, or input distance.",
+          "why_valid": "A machine's benefit is a tradeoff, not new energy."
+        },
+        {
+          "step_id": "RS-MACHINE-MA",
+          "sequence": 2,
+          "action": "Compare load and effort forces through MA = F_load/F_effort.",
+          "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
+          "depends_on": [
+            "RS-MACHINE-FUNCTION"
+          ]
+        },
+        {
+          "step_id": "RS-MACHINE-WORK",
+          "sequence": 3,
+          "action": "For an ideal machine, connect reduced effort force to increased effort distance through equal input/output work.",
+          "why_valid": "REL-IDEAL-MACHINE-WORK owns the ideal work tradeoff.",
+          "depends_on": [
+            "RS-MACHINE-MA"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-MACHINE-FREE-ENERGY",
+          "wrong_idea": "A machine with mechanical advantage greater than one creates energy because the output force is larger.",
+          "counterexample": "An ideal machine that halves effort force requires a correspondingly larger effort distance for the same work.",
+          "repair": "Track both force and distance; mechanical advantage is a force tradeoff, not an energy gain."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-MACHINE-GRADE9",
+          "title": "Lever, pulley and inclined-plane force tradeoffs",
+          "hidden_invariants": [
+            "The same useful load work is compared with the effort work under an explicitly ideal or non-ideal model."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 3,
+        "prerequisite_depth": 1
+      },
+      "badges": [
+        "SIMPLE-MACHINES"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-MACHINE-MA-VALIDATOR",
+          "mutation": "Replace the mechanical-advantage validator reference with an undeclared id.",
+          "expected_violation": "RELATION_VALIDATOR_UNDECLARED"
+        }
+      ]
     }
   ]
 }
