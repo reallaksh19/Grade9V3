@@ -49,6 +49,14 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
                 "CAP-RELATIVE-V",
                 {"CAP-VECTOR-CHECK", "CAP-RIGHT-TRIANGLE"},
             ),
+            "NEETPREP-MQB-REL-Q4": (
+                "CAP-VEC-ADD-DECOMPOSE",
+                {"CAP-RELATIVE-V"},
+            ),
+            "NEETPREP-MQB-REL-Q5": (
+                "CAP-VEC-ADD-DECOMPOSE",
+                {"CAP-RELATIVE-V", "CAP-RIGHT-TRIANGLE"},
+            ),
             "NEETPREP-MQB-REL-Q7": (
                 "CAP-RELATIVE-V",
                 {"CAP-VECTOR-CHECK", "CAP-RIGHT-TRIANGLE"},
