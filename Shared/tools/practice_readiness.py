@@ -53,6 +53,35 @@ def _owned_question_records(records: dict, bucket_id: str) -> list[dict]:
     )
 
 
+def _practice_coverage(records: dict, bucket_id: str, questions: list[dict]) -> dict:
+    """Coverage of this bucket's taught primary capabilities by local practice items."""
+    bucket = records.get(bucket_id, {})
+    policy = (bucket.get("extensions") or {}).get("practice_coverage_policy")
+    taught = sorted({
+        record.get("primary_capability_ref")
+        for record in records.values()
+        if record.get("_collection") == "microtopics"
+        and record.get("bucket_id") == bucket_id
+        and record.get("primary_capability_ref")
+    })
+    practiced: set[str] = set()
+    for question in questions:
+        if not any(entry.get("core") in PRACTICE for entry in question.get("exposure", [])):
+            continue
+        primary = question.get("primary_capability_ref")
+        if primary:
+            practiced.add(primary)
+        practiced.update(question.get("secondary_capability_refs", []))
+    covered = sorted(capability for capability in taught if capability in practiced)
+    missing = sorted(capability for capability in taught if capability not in practiced)
+    return {
+        "policy": policy,
+        "taught_primary_capabilities": taught,
+        "practice_covered_capabilities": covered,
+        "missing_capabilities": missing,
+    }
+
+
 def _request(subject: str, board: dict) -> dict:
     position = min(row["ladder_position"] for row in board.get("rungs", []))
     return {
@@ -101,6 +130,15 @@ def audit(subject: str, repo: Path = REPO) -> dict:
             compiler_error = {"code": error.code, "detail": error.detail}
 
         questions = _owned_question_records(records, bucket_id)
+        coverage = _practice_coverage(records, bucket_id, questions)
+        if (coverage["policy"] == "ALL_PRIMARY_CAPABILITIES"
+                and coverage["missing_capabilities"]):
+            findings.append({
+                "point": "BUCKET_PRACTICE_COVERAGE_INCOMPLETE",
+                "bucket": bucket_id,
+                "missing_capabilities": coverage["missing_capabilities"],
+                "detail": "bucket opts into ALL_PRIMARY_CAPABILITIES but local practice does not cover every taught primary capability",
+            })
         exposed = {
             core: [
                 q["id"] for q in questions
@@ -139,6 +177,7 @@ def audit(subject: str, repo: Path = REPO) -> dict:
             "bucket": bucket_id,
             "matrix": str(path.relative_to(repo)),
             "questions": len(questions),
+            "coverage": coverage,
             "exposed": exposed,
             "planner": {
                 core: {
