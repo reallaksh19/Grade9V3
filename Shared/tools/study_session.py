@@ -27,6 +27,7 @@ if __package__ in (None, ""):
 from Shared.contracts import load  # noqa: E402
 from Shared.tools import (  # noqa: E402
     capability_delivery,
+    capability_graph,
     feedback,
     session_readiness,
     study_map,
@@ -717,6 +718,24 @@ def _question_readiness(
         *list(question.get("secondary_capability_refs") or []),
     ]
 
+    # Direct question mappings stay sparse. A prerequisite is considered here only when
+    # reviewed work explicitly attributes the failure to it; we do not copy prerequisite
+    # closure into worksheet secondary capability mappings.
+    caps, _ = capability_graph.subject_graph(subject, repo)
+    prerequisite_refs = set(
+        capability_graph.prerequisite_closure_many(
+            [capability for capability in mapped if capability],
+            caps,
+        )
+    )
+    checked_capabilities = list(mapped)
+    if (
+        failed_capability_ref
+        and failed_capability_ref in prerequisite_refs
+        and failed_capability_ref not in checked_capabilities
+    ):
+        checked_capabilities.append(failed_capability_ref)
+
     from Shared.tools import study_map  # local import avoids a wider public surface
 
     index = study_map.subject_index(subject, repo)
@@ -725,7 +744,7 @@ def _question_readiness(
     external_bridges = []
     local_locations = []
 
-    for capability in mapped:
+    for capability in checked_capabilities:
         locations = list(index.get("locations", {}).get(capability, []))
         cap_record = index.get("capabilities", {}).get(capability, {})
         if not cap_record:
