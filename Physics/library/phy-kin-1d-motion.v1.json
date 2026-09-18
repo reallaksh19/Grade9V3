@@ -1,0 +1,489 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-KIN-1D-MOTION-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Authored conceptual rungs for distance versus displacement and for the distinction between instantaneous velocity and acceleration. Average-rate formulae and constant-acceleration equations remain registry-blocked.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-KIN-1D",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track A authored one-dimensional motion constructions",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-kin-1d-motion.v1.json",
+      "edition": "0.1.0",
+      "section": "R1 and R3 conceptual rungs",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external curriculum or scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides the qualitative kinematics distinctions without importing the candidate packet as authority.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-KIN-1D-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "One-dimensional motion",
+      "topic": "Motion",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Two qualitative distinctions are authored; rate formulae and constant-acceleration equations remain upstream-blocked.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-VEC-ADD-SUB"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-KIN-POSITIVE-DIRECTION",
+          "statement": "Declare one positive direction before describing a one-dimensional change in position."
+        }
+      ],
+      "scope": {
+        "covers": "Qualitative path-versus-displacement and velocity-versus-acceleration distinctions in one-dimensional motion.",
+        "excluded": [
+          "Average-speed and average-velocity formulae.",
+          "Constant-acceleration kinematic equations."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish travelled path length from the directed start-to-finish change.",
+      "success_criterion": "Classify an out-and-back trip as nonzero distance with zero displacement.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-KIN-ZERO-V-NONZERO-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+      "success_criterion": "State that zero instantaneous velocity does not imply zero acceleration.",
+      "prerequisite_refs": [
+        "CAP-KIN-DISTANCE-DISPLACEMENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Path travelled is not start-to-finish change",
+      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+      "primary_capability_ref": "CAP-KIN-DISTANCE-DISPLACEMENT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Everyday language often uses distance for both ideas, so an out-and-back case is needed to force the distinction.",
+      "entry_assumptions": [
+        "Can trace a route from a marked start to a marked finish on a straight line."
+      ],
+      "inferential_jump": "Distance counts the whole route travelled, while displacement records only the directed change from start to finish; a return to the start leaves zero displacement after a nonzero journey.",
+      "teaching_path": [
+        {
+          "id": "KIN1-1",
+          "role": "DECLARE",
+          "action": "Mark a start point on a straight path and declare east as the positive direction.",
+          "why_valid": "A directed change is only readable once the line has a stated positive way.",
+          "inputs": [],
+          "output": "start: S.  east: positive.  west: opposite."
+        },
+        {
+          "id": "KIN1-2",
+          "role": "TRANSFORM",
+          "action": "Trace a walk away from S and then back to S, counting every part of the route.",
+          "why_valid": "The route count accumulates what was travelled even though the final place can match the initial place.",
+          "inputs": [],
+          "output": "route travelled: nonzero.  start-to-finish change: zero because finish = S."
+        },
+        {
+          "id": "KIN1-3",
+          "role": "VERIFY",
+          "action": "Compare that return trip with a one-way trip chosen to have the same total route length.",
+          "why_valid": "Holding route length fixed while changing the finish isolates the information displacement carries.",
+          "inputs": [],
+          "output": "same route length; different finish -> different displacement."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Distance travelled and displacement are always the same number.",
+          "diagnostic_prompt": "A walker leaves a marker, turns around, and finishes back at the marker. Is the journey length zero just because the final change in position is zero?",
+          "repair": "Count every part of the route for distance; compare only the start and finish for displacement, keeping the declared direction."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement.",
+          "reasoning": [
+            "Distance follows the whole route, so equal total travel can give equal distance.",
+            "Displacement compares only the finish with the start.",
+            "Returning to the marker erases the start-to-finish change, not the travelled route."
+          ],
+          "check": "Ignore the middle of each route and look only at the two endpoints; only Route A has matching endpoints.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response makes only qualitative zero/nonzero and same/different comparisons; it asserts no computed magnitude."
+        }
+      },
+      "research_contribution": "Author-created controlled contrast built from the committed matrix. Candidate packet material was consulted only as non-authoritative input.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A person walks away from a marker and later returns exactly to it. Before naming any quantities, has every measure of the journey returned to zero?",
+          "defensible_answer": "No. The start-to-finish change is zero, but the travelled route is still nonzero."
+        },
+        "attempt": {
+          "produces": "Two short descriptions of the same return trip: one that records the whole route and one that records only start versus finish.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The whole-route description remains nonzero.",
+              "evidence_of": "Keeping travelled path information after the return."
+            },
+            {
+              "criterion": "The start-versus-finish description is zero.",
+              "evidence_of": "Using endpoints rather than retracing the route for displacement."
+            }
+          ],
+          "accepted": [
+            "'The traveller covered a nonzero route, but finished where they started, so the endpoint change is zero.'"
+          ],
+          "rejected": [
+            "'Both are zero because the traveller ended where they began.' This erases the path that was actually travelled."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Did the traveller move along any part of the path before returning?",
+              "why_this_ask": "It makes the existence of travelled path undeniable before the endpoint comparison is introduced.",
+              "from_step_ref": "KIN1-2"
+            },
+            {
+              "ask": "Where is the finish compared with the start?",
+              "why_this_ask": "It switches from the history of the route to the endpoint relation."
+            },
+            {
+              "ask": "Which description should keep the detour: the whole route or the start-to-finish change?",
+              "why_this_ask": "The learner has to assign the two pieces of information to different quantities rather than memorize names.",
+              "from_step_ref": "KIN1-3"
+            },
+            {
+              "ask": "If another route has the same total travel but ends elsewhere, which description must change?",
+              "why_this_ask": "The comparison tests whether the endpoint information has actually been separated from path length."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels the two descriptions after a constructed return trip. The learner route first notices the contradiction between real travel and a zero endpoint change, then assigns each description a job."
+        },
+        "boundary_test": {
+          "prompt": "If the traveller never leaves the starting marker, what happens to both descriptions?",
+          "answer": "Both are zero: there is no travelled route and no change between start and finish.",
+          "confirms": "The two quantities can agree in a boundary case without becoming the same concept."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Zero velocity at an instant does not mean zero acceleration",
+      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+      "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "A single still-looking instant invites learners to confuse the current velocity with how velocity is changing.",
+      "entry_assumptions": [
+        "Can distinguish the direction of motion just before and just after a turning point."
+      ],
+      "inferential_jump": "Velocity and acceleration answer different questions: velocity can be zero at one instant while a nonzero acceleration determines the change through that instant.",
+      "teaching_path": [
+        {
+          "id": "KIN3-1",
+          "role": "DECLARE",
+          "action": "Record three moments around a vertical turning point: just before the top, at the top, and just after.",
+          "why_valid": "A single snapshot hides change; neighbouring moments reveal whether the zero-velocity state persists.",
+          "inputs": [],
+          "output": "before: moving upward.  top: velocity zero.  after: moving downward."
+        },
+        {
+          "id": "KIN3-2",
+          "role": "TRANSFORM",
+          "action": "Compare the direction of the velocity change across those three moments.",
+          "why_valid": "Going from upward through zero to downward requires the velocity to keep changing through the top instant.",
+          "inputs": [],
+          "output": "velocity change through the top: downward, including at the zero-velocity instant."
+        },
+        {
+          "id": "KIN3-3",
+          "role": "VERIFY",
+          "action": "Contrast the turning point with an object that is simply resting on a shelf.",
+          "why_valid": "Both can have zero velocity now, but only one immediately changes velocity, so zero velocity alone cannot determine acceleration.",
+          "inputs": [],
+          "output": "turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If velocity is zero at an instant, acceleration must also be zero at that instant.",
+          "diagnostic_prompt": "At the highest point of a vertically thrown object, velocity is momentarily zero. Does the next moment have the same velocity?",
+          "repair": "Compare moments immediately before and after the top; the velocity changes from upward to downward, so acceleration remains nonzero through the zero-velocity instant."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two objects have zero velocity at one instant: one is at the top of a vertical flight, the other is resting on a shelf. What can you conclude about their accelerations from velocity alone?",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Nothing definite from the zero velocity alone. The turning object can have nonzero downward acceleration while the resting object can have zero acceleration in the stated comparison.",
+          "reasoning": [
+            "Velocity describes motion at the instant.",
+            "Acceleration describes how velocity is changing through the instant.",
+            "Neighbouring moments distinguish the turning point from sustained rest."
+          ],
+          "check": "Look immediately before and after the instant: a changing velocity signals nonzero acceleration even when the middle velocity is zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer distinguishes zero/nonzero acceleration qualitatively and gives no computed acceleration value."
+        }
+      },
+      "research_contribution": "Author-created turning-point contrast. It does not promote the candidate packet's quantitative projectile or kinematic equations.",
+      "prerequisite_refs": [
+        "CAP-KIN-DISTANCE-DISPLACEMENT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "At the very top of a vertical throw the object is momentarily not moving upward or downward. Before reading on, do you predict its acceleration is also zero there?",
+          "defensible_answer": "No. Its velocity is zero only at that instant while its velocity is still changing from upward to downward."
+        },
+        "attempt": {
+          "produces": "A three-moment before/top/after description plus a separate statement about the direction of the velocity change.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The top moment is labelled zero velocity without extending that zero to the neighbouring moments.",
+              "evidence_of": "Treating the top as an instant rather than an interval of rest."
+            },
+            {
+              "criterion": "The velocity change is described as continuing downward through the top.",
+              "evidence_of": "Keeping acceleration separate from the current velocity value."
+            }
+          ],
+          "accepted": [
+            "'Before: upward; top: zero; after: downward. The velocity is changing downward through all three moments.'"
+          ],
+          "rejected": [
+            "'At the top both velocity and acceleration are zero because the object stops.' This treats an instant as a period of rest."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Just before the top, which way is the object moving?",
+              "why_this_ask": "The learner starts from an observable direction rather than a definition.",
+              "from_step_ref": "KIN3-1"
+            },
+            {
+              "ask": "Just after the top, which way is it moving?",
+              "why_this_ask": "The second neighbour exposes the sign change that a single top snapshot hides."
+            },
+            {
+              "ask": "Can velocity change from upward to downward without changing through the middle instant?",
+              "why_this_ask": "It forces the learner to reason about change rather than equate zero velocity with zero acceleration.",
+              "from_step_ref": "KIN3-2"
+            },
+            {
+              "ask": "How is this different from an object that remains on a shelf before and after the same instant?",
+              "why_this_ask": "The contrast tests whether the learner can separate current velocity from its change.",
+              "from_step_ref": "KIN3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states the three moments and compares them. The learner route commits to the neighbouring directions first, then has to explain how the middle instant can be zero without ending the change."
+        },
+        "boundary_test": {
+          "prompt": "An object is at rest before, during, and after the instant under discussion. Does zero velocity now still force a nonzero acceleration?",
+          "answer": "No. With velocity unchanged at zero across the interval, this comparison supports zero acceleration.",
+          "confirms": "The claim is not that zero velocity implies nonzero acceleration; it is that zero velocity alone does not decide acceleration."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-KIN-1D-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal the two kinematics distinctions",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+        "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+      ],
+      "entry_needs": [
+        "A marked one-dimensional path and ordinary before/after motion descriptions."
+      ],
+      "learner_actions": [
+        "Compare path history with endpoints.",
+        "Compare velocity at an instant with velocity change through it."
+      ],
+      "help_plan": [
+        "Use endpoint markers before naming displacement.",
+        "Use three neighbouring moments at a turning point before discussing acceleration."
+      ],
+      "reveal_plan": "Completed contrasts remain visible with the independent checks beside them.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-KIN-1D",
+          "purpose": "Conceptual construction",
+          "reason": "These rungs are authored here and do not claim external curriculum authority."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to teach average-rate formulae or constant-acceleration equations."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-KIN-1D-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit the two kinematics distinctions",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+        "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+      ],
+      "entry_needs": [
+        "Same intrinsic content as Core1A; no learner-percentage assumption."
+      ],
+      "learner_actions": [
+        "Predict whether returning erases travelled path.",
+        "Predict whether zero velocity fixes acceleration."
+      ],
+      "help_plan": [
+        "Ask for route history before endpoints.",
+        "Ask for before/after motion before naming acceleration."
+      ],
+      "reveal_plan": "Each learner prediction precedes reconstruction and closed model feedback.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-KIN-1D",
+          "purpose": "Elicitation cycle",
+          "reason": "The self-tutor prompts are authored specifically for these rungs."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn the blocked quantitative rungs into lighter qualitative substitutes."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-KIN-ILLUSTRATIVE-PATH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 5,
+      "unit": "m",
+      "symbol": "d_example",
+      "meaning": "Illustrative path segment length available to compiled study obligations; no exit answer depends on its numerical value.",
+      "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    }
+  ]
+}

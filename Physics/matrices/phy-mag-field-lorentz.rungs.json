@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 10,
-      "provenance": "SYNTHESIS",
-      "aha": "Magnetic field B is an axial vector: its direction is tied to an oriented rotation convention, and dot/cross marks encode out-of-page and into-page directions rather than particle paths.",
-      "learner_owns": [
-        "Can distinguish a location in a diagram from a direction assigned at that location."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "flux",
         "cross product",
@@ -25,12 +21,6 @@
         "The axial-vector character of B stated separately from the polar-vector motion of a charged particle.",
         "A closed-loop field-line picture that does not treat lines as material strings."
       ],
-      "misconception": {
-        "wrong_idea": "Magnetic field lines begin at a north pole and end at a south pole everywhere.",
-        "diagnostic_prompt": "Trace one magnetic field line through and around a bar magnet. Where can it stop?",
-        "repair": "Treat field lines as a direction map: they continue in closed loops, including through the magnet."
-      },
-      "closure": "Given dot/cross/arrows around a magnet, identify the local B direction, name its axial-vector convention, and state whether a field line may terminate there.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -44,16 +34,13 @@
           "hold": "the same magnet",
           "notice": "the field direction changes continuously and the line closes rather than terminating"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-MAG-FIELD-DIRECTION"
     },
     {
       "rung": "R2",
       "ladder_position": 25,
-      "provenance": "SYNTHESIS",
-      "aha": "Magnetic flux measures the component of magnetic field through an oriented area; changing the surface orientation changes flux even when B and area size stay fixed.",
-      "learner_owns": [
-        "R1: magnetic field B is an axial directed quantity with explicit in-plane and out-of-plane representation conventions."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "Lorentz force",
         "Lenz's law",
@@ -63,12 +50,6 @@
         "An explicit area-normal direction before any cosine is used.",
         "Comparison of face-on, tilted, and edge-on orientations at fixed B and area."
       ],
-      "misconception": {
-        "wrong_idea": "Flux is just magnetic-field strength times area, so orientation does not matter.",
-        "diagnostic_prompt": "A loop with fixed area rotates from face-on to edge-on in a uniform field. What must happen to its flux?",
-        "repair": "Project the oriented area along the field direction: the dot product selects the component through the surface."
-      },
-      "closure": "Rank the flux for several orientations of the same loop in one uniform field and justify the ranking from the area normal.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -82,7 +63,8 @@
           "hold": "the surface and magnetic field",
           "notice": "the signed flux reverses with the normal while the physical surface is unchanged"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-MAG-FLUX-ORIENTATION"
     },
     {
       "rung": "R3",

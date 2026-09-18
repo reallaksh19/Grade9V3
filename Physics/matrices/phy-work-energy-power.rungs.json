@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "Work measures the component of force along the actual displacement: a perpendicular force can be large and still do zero work.",
-      "learner_owns": [
-        "Can identify a force direction and trace an object's displacement path."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "dot product",
         "line integral",
@@ -24,12 +20,6 @@
         "A force arrow and a directed path shown at several relative angles.",
         "A zero-work case where force and displacement are perpendicular."
       ],
-      "misconception": {
-        "wrong_idea": "Any force acting on a moving object does positive work because the object moves.",
-        "diagnostic_prompt": "A mass moves in a circle while a force points toward the centre. Does that inward force do work along the instantaneous tangential displacement?",
-        "repair": "Compare the force direction with the actual displacement direction; only the along-path component contributes to work."
-      },
-      "closure": "Given several force/displacement orientations, classify work as positive, negative, or zero and justify from direction.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -43,16 +33,13 @@
           "hold": "the path direction and 90-degree angle",
           "notice": "work remains zero even as the force arrow grows"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-WORK-DIRECTION"
     },
     {
       "rung": "R2",
       "ladder_position": 40,
-      "provenance": "SYNTHESIS",
-      "aha": "Net work is the change in kinetic energy, so the sign of net work tells whether kinetic energy increases or decreases.",
-      "learner_owns": [
-        "Work measures the component of force along the actual displacement: a perpendicular force can be large and still do zero work."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "kinetic energy theorem",
         "potential energy",
@@ -63,12 +50,6 @@
         "Two motions with the same initial speed but opposite signs of net work.",
         "A before/after speed comparison tied to the sign of net work rather than to one named force."
       ],
-      "misconception": {
-        "wrong_idea": "Only a positive force magnitude can increase kinetic energy; negative work cannot be represented physically.",
-        "diagnostic_prompt": "A braking force acts opposite the motion. What sign is its work, and what should happen to kinetic energy?",
-        "repair": "Add the work of all acting forces to obtain net work, then match its sign and amount to the kinetic-energy change."
-      },
-      "closure": "Given initial and final speeds or a stated net work, determine the sign of the kinetic-energy change and cross-check the two descriptions.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -76,16 +57,13 @@
           "hold": "the initial speed and displacement length",
           "notice": "positive, zero, and negative net work correspond to increasing, unchanged, and decreasing kinetic energy"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-NET-WORK-SIGN"
     },
     {
       "rung": "R3",
       "ladder_position": 60,
-      "provenance": "SYNTHESIS",
-      "aha": "Potential energy is an accounting device for conservative interactions: its change replaces the work of that interaction, while dissipative forces must remain explicit work terms.",
-      "learner_owns": [
-        "Net work is the change in kinetic energy, so the sign of net work tells whether kinetic energy increases or decreases."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "potential function",
         "conservative field",
@@ -96,12 +74,6 @@
         "Two different paths between the same height endpoints for a conservative interaction.",
         "A contrasting dissipative interaction whose work depends on path length."
       ],
-      "misconception": {
-        "wrong_idea": "Every force can be assigned a potential energy so that its work can be hidden inside U.",
-        "diagnostic_prompt": "Can kinetic friction be represented by a single potential-energy difference that depends only on the start and finish positions?",
-        "repair": "Use potential energy only for conservative interactions whose work is captured by endpoint state change; keep dissipative work explicit."
-      },
-      "closure": "For a set of forces, identify which may be represented by potential-energy changes and which must remain explicit work terms.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -115,16 +87,13 @@
           "hold": "a kinetic-friction magnitude",
           "notice": "frictional work changes with path length and cannot be encoded by endpoints alone"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY"
     },
     {
       "rung": "R4",
       "ladder_position": 80,
-      "provenance": "SYNTHESIS",
-      "aha": "Mechanical energy K + U is conserved only when non-conservative and unmodelled external work vanish; friction or a moving support changes the energy account.",
-      "learner_owns": [
-        "Potential energy is an accounting device for conservative interactions: its change replaces the work of that interaction, while dissipative forces must remain explicit work terms."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "energy conservation shortcut",
         "isolated system",
@@ -135,12 +104,6 @@
         "A frictionless descent compared with an otherwise identical rough descent.",
         "An explicit system boundary and every external/non-conservative work term before K + U is compared."
       ],
-      "misconception": {
-        "wrong_idea": "Mechanical energy is always conserved, so one may write Ki + Ui = Kf + Uf even when friction or a moving support does work.",
-        "diagnostic_prompt": "A block slides down a rough ramp. If it starts from the same height as on a smooth ramp, must it reach the bottom with the same kinetic energy?",
-        "repair": "Check for non-conservative and external work first; use K + U conservation only when those net work terms vanish, otherwise include them in the balance."
-      },
-      "closure": "Given an energy-accounting problem, state whether mechanical energy is conserved and write the correct balance including any non-conservative or external work.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -154,7 +117,8 @@
           "hold": "the endpoints and system boundary",
           "notice": "K + U for the mechanical degrees of freedom decreases by the negative friction work"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
     },
     {
       "rung": "R5",

@@ -1,0 +1,814 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Authored conceptual spine for Newton's first-law reasoning, zero-net-force force inventories, free-body-diagram body ownership, and observer-frame choice. No equations or new depiction kinds are asserted.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-NLM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track A authored Newton/FBD conceptual constructions",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-nlm-first-law.v1.json",
+      "edition": "0.1.0",
+      "section": "R1-R4 conceptual rungs",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external curriculum or scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supplies the four conceptual rungs required before a free-body-diagram product can be authored, without creating a renderer or gate relation.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Newton's first law and free-body diagrams",
+      "topic": "Laws of Motion",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficult work is separating motion from change of motion, then assigning each force to the body it actually acts on.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-KIN-1D-MOTION"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-NLM-BODY-FIRST",
+          "statement": "Choose the body before listing forces; each listed force must name an external agent acting on that body."
+        },
+        {
+          "id": "CONV-NLM-FRAME-FIRST",
+          "statement": "State whether the observer is accelerating before deciding whether a pseudo-force is part of the chosen description."
+        }
+      ],
+      "scope": {
+        "covers": "Qualitative first-law reasoning, force cancellation, free-body-diagram ownership, and frame choice.",
+        "excluded": [
+          "Quantitative force-acceleration equations.",
+          "A canonical FREE_BODY_DIAGRAM representation or renderer implementation."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-NLM-NET-ZERO-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate zero net force to unchanged velocity.",
+      "success_criterion": "Accept steady motion as compatible with zero net force.",
+      "prerequisite_refs": [
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-NLM-FORCES-SUM-ZERO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Distinguish zero net force from the absence of individual forces.",
+      "success_criterion": "Recognize that nonzero forces can cancel in the net force.",
+      "prerequisite_refs": [
+        "CAP-NLM-NET-ZERO-MOTION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Assign each force arrow to the body on which that force acts.",
+      "success_criterion": "Place a partner force on the other body's diagram rather than the chosen body's diagram.",
+      "prerequisite_refs": [
+        "CAP-NLM-FORCES-SUM-ZERO"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-NLM-FRAME-CHOICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Decide whether an observer description requires a pseudo-force.",
+      "success_criterion": "Identify accelerating-observer cases that need the added pseudo-force convention.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-NLM-NET-ZERO-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Zero net force allows steady motion",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-NET-ZERO-MOTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Everyday friction makes continued motion look as if it needs a continuing push.",
+      "entry_assumptions": [
+        "Can tell whether an object's velocity is changing."
+      ],
+      "inferential_jump": "Zero net force does not mean zero motion; it means velocity does not change, so rest and steady motion are both compatible with the same condition.",
+      "teaching_path": [
+        {
+          "id": "NLM1-1",
+          "role": "DECLARE",
+          "action": "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
+          "why_valid": "Motion and change of motion are different observations, and only the second identifies acceleration.",
+          "inputs": [
+            "CAP-KIN-ZERO-V-NONZERO-A"
+          ],
+          "output": "state A: moving steadily.  state B: speeding up, slowing down, or turning."
+        },
+        {
+          "id": "NLM1-2",
+          "role": "TRANSFORM",
+          "action": "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
+          "why_valid": "Once the hand is gone, a continuing steady velocity can be observed without a continuing forward push.",
+          "inputs": [],
+          "output": "after release: positions advance evenly in one direction; velocity stays unchanged."
+        },
+        {
+          "id": "NLM1-3",
+          "role": "VERIFY",
+          "action": "Compare the released moving cart with a cart that starts at rest under the same zero-net-force condition.",
+          "why_valid": "If both keep their initial velocities, the rule is about unchanged velocity rather than about rest.",
+          "inputs": [],
+          "output": "moving cart: stays steady.  resting cart: stays at rest.  both show no velocity change."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A force must keep acting in the direction of motion or the object must stop.",
+          "diagnostic_prompt": "A low-friction cart is pushed and then released. After the hand loses contact, what horizontal force is required merely to keep it moving steadily?",
+          "repair": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion."
+        }
+      ],
+      "exit_task": {
+        "prompt": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
+          "reasoning": [
+            "Rest is a zero velocity that stays zero.",
+            "Steady straight motion is a nonzero velocity that stays unchanged.",
+            "The shared condition is no change of velocity, not no motion."
+          ],
+          "check": "Ask whether the motion description contains speeding up, slowing down, or turning. If none occurs, zero net force remains compatible.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer classifies motion qualitatively and asserts no computed force or acceleration."
+        }
+      },
+      "research_contribution": "Author-created first-law contrast. It states no force equation and promotes no candidate-packet formula.",
+      "prerequisite_refs": [
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A low-friction cart is already moving when the push ends. Must a new forward force keep acting just to preserve that motion?",
+          "defensible_answer": "No. If the net force is zero, the cart can keep the velocity it already has."
+        },
+        "attempt": {
+          "produces": "A two-case prediction for a released moving cart and an initially resting cart under the same zero-net-force condition.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The moving cart is allowed to continue steadily.",
+              "evidence_of": "Separating motion from acceleration."
+            },
+            {
+              "criterion": "The resting cart is allowed to remain at rest under the same rule.",
+              "evidence_of": "Recognizing unchanged velocity as the common condition."
+            }
+          ],
+          "accepted": [
+            "'The moving cart keeps moving steadily; the resting cart stays at rest. Neither has to change velocity.'"
+          ],
+          "rejected": [
+            "'Zero net force makes both carts stop.' This turns zero net force into a command for zero velocity rather than unchanged velocity."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "After the hand leaves the cart, is the hand still exerting the forward push?",
+              "why_this_ask": "It removes the continuing-contact explanation before discussing what the cart does.",
+              "from_step_ref": "NLM1-2"
+            },
+            {
+              "ask": "What would count as a change of velocity in the next few moments?",
+              "why_this_ask": "The learner must name acceleration-like changes rather than equate movement itself with force."
+            },
+            {
+              "ask": "If none of those changes occurs, what part of the cart's motion is staying the same?",
+              "why_this_ask": "It identifies unchanged velocity as the invariant.",
+              "from_step_ref": "NLM1-3"
+            },
+            {
+              "ask": "Does that same rule also allow a cart whose starting velocity is zero?",
+              "why_this_ask": "The rest case checks that the learner has not replaced one special state with another."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path presents the moving and resting cases as a finished comparison. The learner route first removes the push, defines what change would look like, then discovers that both cases share unchanged velocity."
+        },
+        "boundary_test": {
+          "prompt": "A cart moving east begins to slow down. Can zero net force still describe that interval?",
+          "answer": "No. Slowing down is a change of velocity, so the zero-net-force condition no longer fits the stated interval.",
+          "confirms": "The rule is about unchanged velocity, not simply about whether the object is moving."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Nonzero forces can cancel",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-FORCES-SUM-ZERO",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often read a zero total as evidence that nothing is present instead of as cancellation among directed contributions.",
+      "entry_assumptions": [
+        "Can interpret zero net force as unchanged velocity."
+      ],
+      "inferential_jump": "Several nonzero forces can act on one body while their directed sum is zero; the motion responds to the net result rather than to the mere presence of forces.",
+      "teaching_path": [
+        {
+          "id": "NLM2-1",
+          "role": "DECLARE",
+          "action": "List two opposite pushes on the same object as separate contributions before combining them.",
+          "why_valid": "Keeping the contributions visible prevents a zero total from being mistaken for no forces.",
+          "inputs": [],
+          "output": "leftward push: present.  rightward push: present."
+        },
+        {
+          "id": "NLM2-2",
+          "role": "TRANSFORM",
+          "action": "Make the two opposite pushes equal in size and combine their directional effects.",
+          "why_valid": "Equal opposite contributions cancel in the net result while each contribution still exists.",
+          "inputs": [],
+          "output": "two nonzero opposite pushes -> net force: zero."
+        },
+        {
+          "id": "NLM2-3",
+          "role": "VERIFY",
+          "action": "Increase both opposite pushes together while keeping them equal.",
+          "why_valid": "The individual forces change while the zero net result persists, directly separating the parts from their sum.",
+          "inputs": [],
+          "output": "larger opposite pushes: still net force zero; individual forces remain nonzero."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "If the net force is zero, no forces are acting.",
+          "diagnostic_prompt": "A book rests on a table. Are there no forces on the book, or can nonzero forces add to zero?",
+          "repair": "List every interaction force on the body, then combine their directions; cancellation belongs to the net result, not to the individual forces."
+        }
+      ],
+      "exit_task": {
+        "prompt": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.",
+          "reasoning": [
+            "Each force remains an actual interaction on the body.",
+            "Opposite equal directional effects cancel only when combined.",
+            "A zero net force is consistent with unchanged velocity."
+          ],
+          "check": "Increase both forces equally; the net remains zero even though neither individual force disappears.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response uses only equality, opposition, and zero/nonzero classification; it asserts no computed force magnitude."
+        }
+      },
+      "research_contribution": "Author-created cancellation contrast, deliberately separate from any force-acceleration equation.",
+      "prerequisite_refs": [
+        "CAP-NLM-NET-ZERO-MOTION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two people push the same box equally hard in opposite directions. If the box has zero net force, does that mean neither person is exerting a force?",
+          "defensible_answer": "No. Both forces are present; their opposite directional effects cancel in the net result."
+        },
+        "attempt": {
+          "produces": "A force inventory that keeps both opposite contributions visible plus a separate statement of the net result.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both nonzero contributions remain listed.",
+              "evidence_of": "Not confusing cancellation with absence."
+            },
+            {
+              "criterion": "Only the combined result is labelled zero.",
+              "evidence_of": "Locating the zero at the level of the sum."
+            }
+          ],
+          "accepted": [
+            "'Left push present; right push present; equal and opposite, so the net force is zero.'"
+          ],
+          "rejected": [
+            "'No forces act because the net is zero.' This deletes the interactions instead of combining them."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Before adding anything, how many pushes are physically acting on the box?",
+              "why_this_ask": "It fixes the inventory before a zero total can erase it.",
+              "from_step_ref": "NLM2-1"
+            },
+            {
+              "ask": "Which directions do those pushes point?",
+              "why_this_ask": "Cancellation requires direction, so the learner has to preserve it."
+            },
+            {
+              "ask": "If the two sizes match, what happens to the combined directional effect?",
+              "why_this_ask": "The zero is derived from the pair rather than assumed from the motion.",
+              "from_step_ref": "NLM2-2"
+            },
+            {
+              "ask": "If both people push harder by the same amount, which statements change and which stay true?",
+              "why_this_ask": "The variation separates individual magnitudes from the net result.",
+              "from_step_ref": "NLM2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path lists and combines the forces. The learner route commits to the inventory first, then derives cancellation and tests it by changing both contributions together."
+        },
+        "boundary_test": {
+          "prompt": "One of the two equal opposite pushes is removed. Is the net force still zero?",
+          "answer": "No. One nonzero force remains without an equal opposite contribution to cancel it.",
+          "confirms": "Zero net force came from cancellation between present forces, not from a property of the object."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "A free-body diagram belongs to one chosen body",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Equal-and-opposite partner forces look like natural cancellations until the learner asks which body each arrow actually acts on.",
+      "entry_assumptions": [
+        "Can keep several forces visible even when their net effect is zero."
+      ],
+      "inferential_jump": "A free-body diagram contains forces acting on one chosen body only; the equal-and-opposite partner of an interaction acts on the other body and belongs on that other body's diagram.",
+      "teaching_path": [
+        {
+          "id": "NLM3-1",
+          "role": "DECLARE",
+          "action": "Choose the cart as the body to describe and require every arrow to answer 'who acts on the cart?'",
+          "why_valid": "The ownership question gives one mechanical test for whether a force belongs on the chosen body's diagram.",
+          "inputs": [],
+          "output": "chosen body: cart.  every listed arrow must be an agent -> cart force."
+        },
+        {
+          "id": "NLM3-2",
+          "role": "TRANSFORM",
+          "action": "For the horse-cart contact, place the horse-on-cart force on the cart diagram and place the cart-on-horse partner on a separate horse diagram.",
+          "why_valid": "The two forces belong to one interaction but act on different bodies, so combining them on one body's diagram changes the question being asked.",
+          "inputs": [],
+          "output": "cart diagram: horse -> cart.  horse diagram: cart -> horse."
+        },
+        {
+          "id": "NLM3-3",
+          "role": "VERIFY",
+          "action": "Switch the chosen body from cart to horse and rebuild the inventory from the ownership question.",
+          "why_valid": "A correct diagram changes when the chosen body changes even though the physical interaction is the same.",
+          "inputs": [],
+          "output": "switch body -> switch which contact-force arrow belongs in the diagram; partner arrows never cancel on one diagram."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Equal and opposite partner forces cancel each other on one body's free-body diagram.",
+          "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
+          "repair": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
+          "reasoning": [
+            "Choose the box first.",
+            "Ask which member of the contact pair acts on the box.",
+            "The partner acts on the person, so it cannot cancel the first force on the box diagram."
+          ],
+          "check": "Switch the chosen body to the person; the membership of the two partner arrows must switch with it.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer assigns force ownership qualitatively and contains no computed force value."
+        }
+      },
+      "research_contribution": "Author-created body-ownership construction. A drawable FREE_BODY_DIAGRAM representation is intentionally not authored in this track.",
+      "prerequisite_refs": [
+        "CAP-NLM-FORCES-SUM-ZERO"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A horse pulls a cart while the cart pulls back on the horse. If you draw only the cart, should both of those horizontal forces appear on the cart's free-body diagram?",
+          "defensible_answer": "No. Only the horse-on-cart force acts on the cart; the cart-on-horse partner belongs on the horse's diagram."
+        },
+        "attempt": {
+          "produces": "Two separate body inventories, one for the cart and one for the horse, with the contact partner arrows assigned to the body each arrow acts on.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each diagram contains only the member of the contact pair acting on its chosen body.",
+              "evidence_of": "Using force ownership rather than visual cancellation."
+            },
+            {
+              "criterion": "The partner arrows are placed on different body diagrams.",
+              "evidence_of": "Recognizing that equal-and-opposite partners do not cancel within one body's inventory."
+            }
+          ],
+          "accepted": [
+            "'Cart: horse pushes cart forward. Horse: cart pushes horse backward.' The two arrows are on different diagrams."
+          ],
+          "rejected": [
+            "Both equal-and-opposite arrows drawn on the cart and crossed out. This puts a force acting on the horse into the cart's inventory."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which single body are you describing first?",
+              "why_this_ask": "The diagram has no ownership until a body is chosen.",
+              "from_step_ref": "NLM3-1"
+            },
+            {
+              "ask": "For the horse-on-cart force, which object receives the push?",
+              "why_this_ask": "The receiver test decides membership without requiring a named law."
+            },
+            {
+              "ask": "For the cart-on-horse partner, which object receives that push?",
+              "why_this_ask": "The same test places the partner on the other diagram.",
+              "from_step_ref": "NLM3-2"
+            },
+            {
+              "ask": "When you switch the chosen body, which contact arrow moves into the new inventory?",
+              "why_this_ask": "Rebuilding the diagram tests whether body ownership, rather than arrow pairing, controls placement.",
+              "from_step_ref": "NLM3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path demonstrates two correct diagrams. The learner route begins from one chosen body and repeatedly applies the receiver test until the separation of partner arrows is forced."
+        },
+        "boundary_test": {
+          "prompt": "Two hands push the same box equally in opposite directions. Can those two forces both appear on the box's free-body diagram?",
+          "answer": "Yes. Both hands act on the same chosen box, so both forces belong there and may cancel in the net force.",
+          "confirms": "The rule is body ownership, not a ban on opposite arrows appearing together."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-FRAME-CHOICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "An accelerating observer needs a declared pseudo-force convention",
+      "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
+      "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The same physical interactions can be described by observers with different accelerations, and the extra convention is easy to omit when the observer is inside the accelerating vehicle.",
+      "entry_assumptions": [
+        "Can build a force inventory for one chosen body."
+      ],
+      "inferential_jump": "A force-based account depends on the observer: a non-accelerating observer uses the physical interaction forces, while an accelerating observer must add the corresponding pseudo-force convention to describe the same observed motion consistently.",
+      "teaching_path": [
+        {
+          "id": "NLM4-1",
+          "role": "DECLARE",
+          "action": "Describe the same loose object first from the roadside and then from inside a bus, stating whether each observer is accelerating.",
+          "why_valid": "The observer choice is part of the model; leaving it implicit makes two different descriptions look contradictory.",
+          "inputs": [],
+          "output": "roadside: observer acceleration zero.  bus during start: observer acceleration forward."
+        },
+        {
+          "id": "NLM4-2",
+          "role": "TRANSFORM",
+          "action": "Keep the physical interactions unchanged and compare what the accelerating bus observer sees the loose object do relative to the bus.",
+          "why_valid": "The apparent backward motion comes from the observer's changing motion, not from a newly discovered physical contact on the object.",
+          "inputs": [],
+          "output": "bus accelerates forward -> loose object appears to shift backward relative to the bus."
+        },
+        {
+          "id": "NLM4-3",
+          "role": "VERIFY",
+          "action": "Add a backward pseudo-force only in the accelerating-observer description and compare it with the roadside account.",
+          "why_valid": "The added convention compensates for the observer's acceleration without inventing a new physical interaction.",
+          "inputs": [],
+          "output": "roadside account: physical forces only.  accelerating-bus account: same physical forces plus backward pseudo-force."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The same ordinary-force diagram can be used unchanged in any accelerating observer's frame.",
+          "diagnostic_prompt": "A loose mass appears to accelerate backward inside a bus that starts forward. Can the bus observer use only the same physical-force inventory as the roadside observer?",
+          "repair": "State the observer first. Use physical interactions alone for a non-accelerating observer; for an accelerating observer include the corresponding pseudo-force consistently."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A bus accelerates forward and a loose object appears to move backward relative to the bus. Compare the roadside and bus-observer force descriptions without calculating any magnitude.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The roadside description uses the physical interactions only. The accelerating bus description adds a backward pseudo-force convention to account for the observer's acceleration.",
+          "reasoning": [
+            "The physical interactions on the object do not change merely because the observer changes.",
+            "The bus observer is accelerating relative to the roadside observer.",
+            "The pseudo-force belongs to that accelerating-observer description rather than to a new physical agent."
+          ],
+          "check": "Repeat the comparison once the bus moves at steady speed; the extra pseudo-force should no longer be needed for the observer change alone.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer classifies observer descriptions and contains no computed pseudo-force or acceleration magnitude."
+        }
+      },
+      "research_contribution": "Author-created observer-choice boundary. No pseudo-force equation is asserted; a quantitative treatment would require upstream gate ownership.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A bus starts forward and a loose object seems to shift backward to a passenger. Before adding any new force, did a new physical agent suddenly begin pulling the object backward?",
+          "defensible_answer": "No. The physical interactions need not change; the passenger's observer description changes because the bus is accelerating."
+        },
+        "attempt": {
+          "produces": "Two labelled observer descriptions of the same object: roadside and accelerating bus, with a statement of where the pseudo-force convention appears.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The roadside description keeps only physical interactions.",
+              "evidence_of": "Not inventing a new physical agent when the observer changes."
+            },
+            {
+              "criterion": "The bus description adds the pseudo-force specifically because that observer accelerates.",
+              "evidence_of": "Attaching the convention to observer acceleration rather than to the object."
+            }
+          ],
+          "accepted": [
+            "'Roadside: physical forces only. Accelerating bus: same physical forces plus a backward pseudo-force for the bus description.'"
+          ],
+          "rejected": [
+            "'A new backward physical force appears when the bus starts.' This confuses an observer convention with an interaction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Did the set of physical objects touching or attracting the loose object change when the bus started?",
+              "why_this_ask": "It tests whether a new physical agent exists before any observer convention is introduced.",
+              "from_step_ref": "NLM4-2"
+            },
+            {
+              "ask": "Which observer is accelerating during the bus start?",
+              "why_this_ask": "The extra convention is tied to observer acceleration, so this must be explicit."
+            },
+            {
+              "ask": "What does the passenger see the loose object do relative to the bus?",
+              "why_this_ask": "The observed relative motion is the phenomenon the bus description has to account for.",
+              "from_step_ref": "NLM4-2"
+            },
+            {
+              "ask": "Where should the pseudo-force be added so the two descriptions remain consistent about the same physical situation?",
+              "why_this_ask": "The learner must attach the added term to the accelerating observer rather than to a new physical interaction.",
+              "from_step_ref": "NLM4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares two observer accounts directly. The learner route first rules out a new physical agent, identifies which observer accelerates, then introduces the pseudo-force as a modelling convention."
+        },
+        "boundary_test": {
+          "prompt": "The bus now travels at constant velocity. Does changing from the roadside observer to the bus observer by itself require the added pseudo-force?",
+          "answer": "No. With no observer acceleration in this comparison, the extra pseudo-force convention is not required merely because the observers move relative to each other.",
+          "confirms": "The trigger is observer acceleration, not observer motion in general."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-NLM-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal Newton/FBD conceptual spine",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-NET-ZERO-MOTION",
+        "MIC-PHY-NLM-FORCES-SUM-ZERO",
+        "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-FRAME-CHOICE"
+      ],
+      "entry_needs": [
+        "Velocity-versus-acceleration distinction from the kinematics prerequisite."
+      ],
+      "learner_actions": [
+        "Separate motion from motion change.",
+        "Keep individual forces distinct from their net result.",
+        "Assign forces to one chosen body.",
+        "Declare observer acceleration before using a pseudo-force convention."
+      ],
+      "help_plan": [
+        "Use a released low-friction cart for the first-law contrast.",
+        "Use two separate body inventories before any force equations.",
+        "Use roadside versus accelerating-bus descriptions for the observer boundary."
+      ],
+      "reveal_plan": "Completed conceptual constructions are visible; no quantitative force relation is introduced.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-NLM",
+          "purpose": "Conceptual teaching spine",
+          "reason": "The four rungs are authored here without promoting candidate-packet authority."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not treat the absence of a FREE_BODY_DIAGRAM representation record as permission to invent one.",
+        "Do not turn these distinctions into a quantitative force-law lesson."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-NLM-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit Newton/FBD conceptual spine",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-NET-ZERO-MOTION",
+        "MIC-PHY-NLM-FORCES-SUM-ZERO",
+        "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+        "MIC-PHY-NLM-FRAME-CHOICE"
+      ],
+      "entry_needs": [
+        "Same intrinsic coverage as Core1A; no inferred learner mastery."
+      ],
+      "learner_actions": [
+        "Commit to motion and force predictions before reveal.",
+        "Build body-specific force inventories.",
+        "Contrast roadside and accelerating-observer accounts."
+      ],
+      "help_plan": [
+        "Ask which body receives each force before naming any pairing rule.",
+        "Ask whether a physical agent changed before introducing a pseudo-force."
+      ],
+      "reveal_plan": "Prediction, reconstruction, misconception diagnosis and boundary tests precede the closed reveal.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-NLM",
+          "purpose": "Self-tutor elicitation",
+          "reason": "Each elicitation cycle is authored specifically for the corresponding rung."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not substitute a declarative diagram for the learner's body-ownership decision."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-NLM-ILLUSTRATIVE-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1,
+      "unit": "m/s",
+      "symbol": "v_example",
+      "meaning": "Illustrative steady speed available to compiled study obligations; none of the authored exits depends on its numerical value.",
+      "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    }
+  ]
+}

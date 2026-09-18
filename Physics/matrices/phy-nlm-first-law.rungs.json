@@ -9,11 +9,7 @@
     {
       "rung": "R1",
       "ladder_position": 20,
-      "provenance": "SYNTHESIS",
-      "aha": "Zero net force does not mean zero motion: it means the velocity does not change, so rest and constant-velocity motion are both possible.",
-      "learner_owns": [
-        "Can describe whether an object's speed or direction is changing."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "inertia",
         "equilibrium",
@@ -24,12 +20,6 @@
         "A case that keeps moving after the push has ended.",
         "A case at rest with no change in motion, treated by the same rule."
       ],
-      "misconception": {
-        "wrong_idea": "A force must keep acting in the direction of motion or the object must stop.",
-        "diagnostic_prompt": "A low-friction cart is pushed and then released. After the hand loses contact, what horizontal force is required merely to keep it moving steadily?",
-        "repair": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion."
-      },
-      "closure": "Given a motion description, state whether zero net force is compatible with it and justify the decision from whether velocity changes.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -43,16 +33,13 @@
           "hold": "zero net horizontal force",
           "notice": "both rest and steady motion fit the same zero-change condition"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION"
     },
     {
       "rung": "R2",
       "ladder_position": 45,
-      "provenance": "SYNTHESIS",
-      "aha": "Several forces can act on one body while their vector sum is zero; the motion responds to the sum, not to the mere presence of forces.",
-      "learner_owns": [
-        "Zero net force does not mean zero motion: it means the velocity does not change, so rest and constant-velocity motion are both possible."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "equilibrium equation",
         "free-body diagram",
@@ -63,12 +50,6 @@
         "At least two nonzero force arrows whose vector sum is zero.",
         "A comparison between 'no force' and 'zero net force'."
       ],
-      "misconception": {
-        "wrong_idea": "If the net force is zero, no forces are acting.",
-        "diagnostic_prompt": "A book rests on a table. Are there no forces on the book, or can nonzero forces add to zero?",
-        "repair": "List every interaction force on the body, then add them as directed quantities; cancellation belongs to the sum, not to the individual forces."
-      },
-      "closure": "For a stationary or steadily moving object, identify a nonzero force pair that can sum to zero and show their directions.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -76,16 +57,13 @@
           "hold": "their equality and opposite directions",
           "notice": "the individual arrows can grow while the net arrow remains zero"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO"
     },
     {
       "rung": "R3",
       "ladder_position": 70,
-      "provenance": "SYNTHESIS",
-      "aha": "A free-body diagram contains forces acting on the chosen body only; an action-reaction partner acts on the other body and belongs on its diagram.",
-      "learner_owns": [
-        "Several forces can act on one body while their vector sum is zero; the motion responds to the sum, not to the mere presence of forces."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "Newton's third law",
         "interaction pair",
@@ -96,12 +74,6 @@
         "The same interaction shown on two separate body diagrams.",
         "A rule that every arrow on one diagram must name an external agent acting on that chosen body."
       ],
-      "misconception": {
-        "wrong_idea": "Equal and opposite interaction forces cancel each other on one body's free-body diagram.",
-        "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
-        "repair": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen."
-      },
-      "closure": "Given two interacting bodies, draw or describe separate force inventories and place an action-reaction pair on different bodies.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -115,16 +87,13 @@
           "hold": "the interaction pair between the two bodies",
           "notice": "the two bodies can have different net forces even though the interaction pair remains equal and opposite"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
     },
     {
       "rung": "R4",
       "ladder_position": 90,
-      "provenance": "SYNTHESIS",
-      "aha": "Newton's force law needs a declared frame: in an accelerating frame an added pseudo-force is required to recover the same observed acceleration.",
-      "learner_owns": [
-        "A free-body diagram contains forces acting on the chosen body only; an action-reaction partner acts on the other body and belongs on its diagram."
-      ],
+      "provenance": "SOURCE",
       "ceiling": [
         "inertial frame",
         "non-inertial frame",
@@ -134,12 +103,6 @@
         "Two observers describing the same object, one in a non-accelerating frame and one in an accelerating frame.",
         "An explicit declaration of the chosen frame before the force sum is written."
       ],
-      "misconception": {
-        "wrong_idea": "The same ordinary-force diagram can be used unchanged in any accelerating observer's frame.",
-        "diagnostic_prompt": "A mass appears to accelerate backward inside a bus that starts forward. Can the bus-frame observer use only the same real-force inventory as the roadside observer?",
-        "repair": "Either analyse in an inertial frame using real interactions, or if using an accelerating frame include the frame's pseudo-force consistently."
-      },
-      "closure": "Given a simple accelerating-frame situation, state which frame is being used and whether a pseudo-force must be included.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -153,7 +116,8 @@
           "hold": "the same object and physical interactions",
           "notice": "the bus-frame account now needs an added backward pseudo-force"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE"
     }
   ],
   "family": {

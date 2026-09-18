@@ -1,0 +1,308 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-OSC-SHM-WAVES-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Author-created conceptual entry rung for stable equilibrium and restoring tendency. Kinematic, period, energy-frequency and propagation equations remain outside the package pending gate-owned relations.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-OSC-SHM-WAVES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Track C authored oscillation-entry rung draft",
+      "origin": "AUTHORED",
+      "locator": "Track C / oscillation rung authoring",
+      "edition": "0.1.0",
+      "section": "Conceptual construction for stable equilibrium and restoring tendency",
+      "last_checked": "2026-09-18",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external reproduction rights claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "MIC-OSC-STABLE-EQUILIBRIUM",
+        "CAP-OSC-STABLE-EQUILIBRIUM"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides the low-rung distinction between mere repetition and motion organized around stable equilibrium without asserting later oscillator equations.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Oscillation foundation: stable equilibrium",
+      "topic": "Oscillations",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The entry distinction separates return-directed behavior from mere repetition before quantitative oscillator models are used.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Identify whether a displaced system has a tendency directed back toward one stable equilibrium.",
+      "success_criterion": "Classify a repeated motion by whether displacement to either side produces a return-directed tendency.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-OSC-STABLE-EQUILIBRIUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Repetition is not enough: look for a stable equilibrium",
+      "bucket_id": "BUCKET-PHY-OSC-SHM-WAVES",
+      "primary_capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Repeated motion is visually salient, so learners can miss the stronger requirement that the system's response be organized around one stable equilibrium.",
+      "entry_assumptions": [
+        "Can identify a repeated back-and-forth motion and distinguish position from direction of motion."
+      ],
+      "inferential_jump": "An oscillation is organized around a stable equilibrium: when displaced, the system has a tendency that points back toward that equilibrium.",
+      "teaching_path": [
+        {
+          "id": "OSC-R1-1",
+          "role": "DECLARE",
+          "action": "Mark one position as the equilibrium and label displacements on opposite sides of it.",
+          "why_valid": "A return tendency can only be judged relative to a named equilibrium; otherwise back has no fixed destination.",
+          "inputs": [],
+          "output": "left displacement | equilibrium | right displacement"
+        },
+        {
+          "id": "OSC-R1-2",
+          "role": "TRANSFORM",
+          "action": "Move the same system first to the left of equilibrium and then to the right, recording the direction of its tendency each time.",
+          "why_valid": "If the equilibrium is stable, the direction must reverse when the side of displacement reverses so that it points inward in both cases.",
+          "inputs": [],
+          "output": "left side -> tendency right; right side -> tendency left"
+        },
+        {
+          "id": "OSC-R1-3",
+          "role": "VERIFY",
+          "action": "Compare that pattern with a motion that repeats around a circular track but has no single position toward which displacement produces a return tendency.",
+          "why_valid": "The counterexample keeps repetition while removing the stable-equilibrium structure, showing that repetition alone is insufficient.",
+          "inputs": [],
+          "output": "repeats -> yes; one return-directed equilibrium -> no"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Any motion that repeats is automatically simple harmonic motion.",
+          "diagnostic_prompt": "A ball moves periodically around a circular track. Does repetition alone show a restoring tendency toward one equilibrium position?",
+          "repair": "Separate periodicity from the restoring condition; repetition by itself does not identify simple harmonic motion."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Three motions repeat. For each, decide whether one stable equilibrium organizes the motion and justify the choice by what happens after a displacement to either side.",
+        "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A qualifying motion has one equilibrium toward which the system tends to return from either side; repetition without that inward pattern is not enough.",
+          "reasoning": [
+            "Name the candidate equilibrium before judging the motion.",
+            "Check the response after a displacement on one side and then the other side.",
+            "Accept the classification only when the response reverses so that it points toward the same equilibrium from both sides."
+          ],
+          "check": "Swap the side of displacement. A stable equilibrium should make the return tendency swap direction as well; a merely repeating path need not.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is a qualitative classification of restoring behavior and makes no computed period, frequency or amplitude claim."
+        }
+      },
+      "research_contribution": "This author-created counterexample sequence isolates stable-equilibrium reasoning before any later oscillator equation is admitted.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a motion repeats perfectly, is that alone enough to show it is organized around a stable equilibrium?",
+          "defensible_answer": "No. Repetition can occur without a single position that produces an inward return tendency from both sides."
+        },
+        "attempt": {
+          "produces": "A marked equilibrium for each candidate motion, with arrows showing the response after equal displacements to opposite sides.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "One equilibrium candidate is explicitly marked before arrows are judged.",
+              "evidence_of": "Making the reference position part of the reasoning."
+            },
+            {
+              "criterion": "The response direction is tested on both sides rather than inferred from one example.",
+              "evidence_of": "Showing the inward pattern that defines the distinction."
+            }
+          ],
+          "accepted": [
+            "The sketch marks one center and shows left displacement returning right and right displacement returning left, while the repeating circular case is rejected for lacking that one-center pattern."
+          ],
+          "rejected": [
+            "The response accepts every repeating path and never checks what a displacement to the opposite side would make the system do."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where would you place one position that the system could be displaced away from?",
+              "why_this_ask": "A return tendency is meaningless until the learner proposes an equilibrium.",
+              "from_step_ref": "OSC-R1-1"
+            },
+            {
+              "ask": "After moving the system to the left of that point, which way would a return tendency have to point?",
+              "why_this_ask": "The first side gives a concrete directional prediction.",
+              "from_step_ref": "OSC-R1-2"
+            },
+            {
+              "ask": "Now move it to the other side. What must reverse if the same point is truly stable?",
+              "why_this_ask": "The second side tests whether the result is structural rather than accidental.",
+              "from_step_ref": "OSC-R1-2"
+            },
+            {
+              "ask": "Can a circular repeating path pass the same two-sided test?",
+              "why_this_ask": "The counterexample removes stable equilibrium while preserving repetition.",
+              "from_step_ref": "OSC-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path contrasts examples directly; the elicitation route makes the learner nominate an equilibrium and commit to two opposite-side predictions before seeing the counterexample."
+        },
+        "boundary_test": {
+          "prompt": "If the system is placed exactly at the stable equilibrium and left undisturbed, which return direction should be preferred?",
+          "answer": "Neither side should be preferred; the defining return-direction test begins after a displacement away from equilibrium.",
+          "confirms": "The concept concerns response to displacement around an equilibrium, not a permanent arrow attached at the center."
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-OSC-CORE1A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Completed stable-equilibrium comparison",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-OSC-STABLE-EQUILIBRIUM"
+      ],
+      "entry_needs": [
+        "Learners can recognize repeated motion and direction of motion."
+      ],
+      "learner_actions": [
+        "Read the completed two-sided equilibrium test.",
+        "Use the repeating-path counterexample to explain why repetition is insufficient."
+      ],
+      "help_plan": [
+        "Keep one marked equilibrium visible.",
+        "Show opposite-side displacements before the counterexample."
+      ],
+      "reveal_plan": "The declarative route reveals the complete inward-response pattern and boundary case.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+          "purpose": "Oscillation concept draft",
+          "reason": "The authored source supplies the qualitative equilibrium construction."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not introduce oscillator kinematics, period, energy-frequency or propagation equations here."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-OSC-CORE1B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-OSC-SHM-WAVES"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit a stable-equilibrium test",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-OSC-STABLE-EQUILIBRIUM"
+      ],
+      "entry_needs": [
+        "Learners can propose a center and make directional predictions."
+      ],
+      "learner_actions": [
+        "Nominate an equilibrium.",
+        "Predict the response from each side.",
+        "Reject a repeating counterexample that lacks the two-sided pattern."
+      ],
+      "help_plan": [
+        "Ask for the equilibrium before naming the rule.",
+        "Delay the circular counterexample until both side predictions are committed.",
+        "Close with the exact boundary at equilibrium."
+      ],
+      "reveal_plan": "The tutor makes the learner build the two-sided test before the classification language is revealed.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+          "purpose": "Oscillation self-tutor draft",
+          "reason": "The author-created resource supplies the prompts and closure."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not turn the route into numerical period or frequency work without governed equations."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}
