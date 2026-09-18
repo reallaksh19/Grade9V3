@@ -1,0 +1,25 @@
+{
+  "worksheet_id": "EXAMSIDE-RELATIVE-MOTION-LIVE-01",
+  "subject": "Physics",
+  "source_note": "Operational live-pilot subset from the owner-supplied ExamSIDE JEE Main Motion in a Plane bank. Questions remain external demand evidence and are not canonical curriculum/source custody.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-MIP-2026-01-21-RIVER",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2026, 21 Jan evening: river/boat round trip, minimum time and downstream drift. Source: https://questions.examside.com/past-years/jee/question/pa-river-of-width-200-m-is-flowing-from-west-to-east-with-jee-main-physics-cxejvco5eunwtrgu"
+    },
+    {
+      "question_id": "EXAMSIDE-MIP-2022-06-27-RAIN",
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-CHECK"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2022, 27 Jun morning: rain/runner relative-velocity geometry. Source: https://questions.examside.com/past-years/jee/question/pa-girl-standing-on-road-holds-her-umbrella-at-45circ-jee-main-physics-motion-lyymnrgvtydyg6aw"
+    }
+  ]
+}
