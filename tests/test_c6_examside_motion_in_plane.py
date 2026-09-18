@@ -18,10 +18,9 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
     def mapping(self):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
 
-    def test_real_question_slice_resolves_without_promoting_questions_to_canonical_truth(self):
+    def test_real_question_slice_maps_without_promoting_questions_to_canonical_truth(self):
         mapping = self.mapping()
         report = worksheet_study_plan.resolve(mapping)
-        self.assertTrue(report["passed"], report["findings"])
         self.assertEqual(len(report["questions"]), 3)
 
         for source_row, resolved in zip(mapping["questions"], report["questions"]):
@@ -39,6 +38,18 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
         }
         self.assertIn("MATRIX-PHY-RELATIVE-MOTION", matrices)
         self.assertIn("MATRIX-PHY-NLM-FIRST-LAW", matrices)
+
+    def test_real_slice_exposes_external_prerequisite_without_fabricating_teaching(self):
+        report = worksheet_study_plan.resolve(self.mapping())
+        self.assertFalse(report["passed"])
+        gaps = [
+            row for row in report["findings"]
+            if row.get("point") == "STUDY_ROUTE_CAPABILITY_HAS_NO_TEACHING_LOCATION"
+        ]
+        self.assertEqual(
+            [row["capability"] for row in gaps],
+            ["CAP-SIGNED-PAIR"],
+        )
 
     def test_relative_motion_demand_keeps_reference_frame_support_explicit(self):
         report = worksheet_study_plan.resolve(self.mapping())
