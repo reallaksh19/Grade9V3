@@ -23,6 +23,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
+from Shared.tools import review_schedule  # noqa: E402
 
 RESULTS = {"CORRECT", "INCORRECT", "UNDECIDABLE"}
 ERROR_STAGES = {"CONCEPT", "SETUP", "EXECUTION", "CARELESS", "UNKNOWN"}
@@ -296,12 +297,17 @@ def run(request: dict, repo: Path = REPO) -> dict:
         failed = candidates[0]
 
     observation = observation_draft(request, question, failed)
+    review = (
+        review_schedule.schedule(observation, transfer=bool(question.get("transfer")))
+        if observation is not None else None
+    )
     base = {
         "question_ref": question["id"],
         "result": result,
         "failed_capability_ref": failed,
         "candidate_capabilities": candidates,
         "observation_draft": observation,
+        "review": review,
         "findings": findings,
     }
 
