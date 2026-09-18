@@ -60,6 +60,18 @@ def _obligations(blocks: list[dict], concepts: set[str] | None = None) -> set[st
     return found if concepts is None else found & concepts
 
 
+def _revealed_text(block: dict) -> str:
+    """What a learner gets after opening a reveal, regardless of block kind."""
+    if block.get("kind") == "QUESTION":
+        answer = block.get("answer") or {}
+        return " ".join([
+            str(answer.get("summary", "")),
+            *[str(step) for step in answer.get("steps", [])],
+            str(answer.get("check", "")),
+        ])
+    return str(block.get("text", ""))
+
+
 def findings(plan: dict, obligations: list[dict] | None = None) -> list[dict]:
     """Every way a compiled plan's B product fails to demand work its A product does not."""
     found: list[dict] = []
@@ -98,7 +110,8 @@ def findings(plan: dict, obligations: list[dict] | None = None) -> list[dict]:
                      f"is placed before {prompt_id}, so the answer arrives before the question")
                 continue
             prompt = b_blocks[indexed[prompt_id]]
-            if normalise(block.get("text", "")) in normalise(prompt.get("text", "")):
+            revealed = normalise(_revealed_text(block))
+            if revealed and revealed in normalise(prompt.get("text", "")):
                 fail("PROMPT_ANSWERED_IN_PLACE", b_core, prompt["id"],
                      "already contains what its reveal says, so nothing is being asked")
             elicited |= set(prompt.get("obligation_ids", []))
