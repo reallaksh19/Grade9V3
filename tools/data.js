@@ -4419,12 +4419,17 @@ window.GRADE9V3 = {
               "entry_assumptions": [
                 "Can identify repeated back-and-forth motion and can distinguish matter from empty space."
               ],
-              "inferential_jump": "A vibrating source can launch a mechanical disturbance into nearby matter; sound can propagate through gases, liquids and solids but not through a vacuum because there are no particles to transmit the mechanical disturbance.",
+              "inferential_jump": "A string, stretched membrane or enclosed air column can vibrate and launch a mechanical disturbance into nearby matter; sound then propagates through gases, liquids or solids, but not through a vacuum because there are no material particles to transmit the disturbance.",
               "teaching_path": [
                 {
                   "action": "Identify the object that vibrates when sound is produced.",
                   "why_valid": "Sound production begins with a source undergoing repeated mechanical motion.",
                   "output": "source: vibrating object."
+                },
+                {
+                  "action": "Compare three sound sources—a plucked string, a struck stretched membrane, and a blown air column—and identify what is actually vibrating in each.",
+                  "why_valid": "The current Grade 9 curriculum explicitly varies the sound-producing system; the common invariant is a vibrating physical source.",
+                  "output": "string instrument -> stretched string vibrates; drum-like source -> stretched membrane vibrates; blown pipe/bottle-like source -> enclosed air column vibrates."
                 },
                 {
                   "action": "Follow how neighboring particles in a gas, liquid or solid can push/pull on nearby particles without travelling all the way to the listener.",
@@ -4445,23 +4450,25 @@ window.GRADE9V3 = {
                 }
               ],
               "exit_task": {
-                "prompt": "A bell rings inside a sealed chamber. Compare what happens to ordinary sound transmission as the air is gradually removed, while the bell itself can still vibrate.",
+                "prompt": "A plucked string, a struck drum membrane, and a blown air column all produce sound. Identify the vibrating source in each, then explain what happens to ordinary sound transmission if the surrounding material medium is removed.",
                 "source_ref": "SRC-AUTHOR-SOUND-G9",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "The bell may still vibrate, but ordinary sound transmission through the chamber becomes weaker and tends toward none as the material medium is removed.",
+                  "summary": "The stretched string, stretched membrane and air column are the respective vibrating sources. Their vibration can launch sound into a material medium, but ordinary mechanical sound propagation tends to none as that surrounding medium is removed.",
                   "reasoning": [
-                    "The source vibration can remain.",
-                    "Sound propagation requires neighboring material particles to transmit the disturbance.",
-                    "Removing the gas removes that propagation path."
+                    "In the string example, the stretched string vibrates.",
+                    "In the membrane example, the stretched membrane vibrates.",
+                    "In the wind/air-column example, the air column vibrates.",
+                    "These source vibrations disturb neighboring material particles.",
+                    "Removing the transmitting material removes the ordinary mechanical path even though a source may still vibrate."
                   ],
-                  "check": "The claim distinguishes source vibration from sound transmission rather than saying the bell must stop moving.",
+                  "check": "The same source-medium distinction works across all three production methods; the vibrating element changes, but the need for a material transmission path does not.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The exit makes a qualitative source-versus-medium comparison without a computed quantity."
+                  "no_numeric_claim": "The exit identifies curriculum-named vibrating sources and the qualitative need for a material propagation medium."
                 }
               },
               "prerequisites": []
@@ -4731,6 +4738,68 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-SOUND-WAVE-QUANTITIES"
               ]
+            },
+            {
+              "id": "MIC-PHY-SOUND-HERITAGE",
+              "title": "Historical sound contexts reuse the same vibration and reflection ideas",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The physics is already taught; the task is to connect it accurately to named historical and scientific contexts.",
+              "entry_assumptions": [
+                "Can explain reflected sound, echo and reverberation.",
+                "Can identify vibrating strings and membranes as sound sources."
+              ],
+              "inferential_jump": "The curriculum's Gol Gumbaz example belongs to the already-taught reflected-sound family, while Raman's documented acoustics work connects the same Grade 9 ideas of vibration, resonance and musical sound to real scientific investigation.",
+              "teaching_path": [
+                {
+                  "action": "Place Gol Gumbaz in the reflection part of the sound map: the curriculum names its whispering gallery as a historical example associated with echoes.",
+                  "why_valid": "This uses the curriculum's own historical-context outcome without adding an undeclared architectural-acoustics model.",
+                  "output": "Gol Gumbaz curriculum context -> reflected sound / echo family."
+                },
+                {
+                  "action": "Use the Raman Research Institute source to identify acoustics themes Raman actually investigated: bowed and struck strings, maintenance of vibrations/resonance, and Indian drums such as mridangam and tabla.",
+                  "why_valid": "The external archival source supplies documented acoustics examples rather than inferring them from Raman's name.",
+                  "output": "Raman acoustics examples -> vibrating strings, resonance, mridangam/tabla overtones and musical-instrument sound."
+                },
+                {
+                  "action": "Reject the shortcut that the Grade 9 Raman-awareness outcome here must be explained through the optical Raman effect.",
+                  "why_valid": "This Sound outcome is being connected to Raman's separately documented acoustics work; no optics mechanism is required to satisfy the sound-history context.",
+                  "output": "Sound curriculum context -> Raman acoustics work; optical Raman-effect mechanism not required here."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Any mention of C. V. Raman in science must be explained only through the Raman effect in optics.",
+                  "diagnostic_prompt": "The Grade 9 Sound curriculum asks for awareness about Raman. Did Raman also carry out documented research on sound and musical instruments?",
+                  "repair": "Yes. RRI documents work on strings, resonance and Indian musical drums; use that acoustics history for this Sound context and keep the optical Raman effect separate."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Explain why Gol Gumbaz belongs in a Grade 9 Sound lesson, then name two acoustics topics that C. V. Raman is documented by Raman Research Institute as having investigated.",
+                "source_ref": "SRC-RRI-CV-RAMAN-ACOUSTICS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Gol Gumbaz is used by the curriculum as a historical reflected-sound/echo context. Raman's documented acoustics work included topics such as bowed or struck strings, resonance/maintenance of vibrations, and the acoustics/overtones of Indian drums including mridangam and tabla.",
+                  "reasoning": [
+                    "The curriculum explicitly places the Gol Gumbaz whispering-gallery example beside sound reflection/echo learning.",
+                    "RRI archival material documents Raman's research on strings, vibrations/resonance and musical instruments.",
+                    "These examples connect historical/scientific context to sound without importing a higher-grade optical explanation."
+                  ],
+                  "check": "The answer must keep the Gol Gumbaz statement at the level actually asserted by the curriculum and must use Raman acoustics examples supported by the RRI source.",
+                  "acceptable_alternatives": [
+                    "Any two RRI-supported acoustics examples from the authored lesson are acceptable."
+                  ],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit checks sourced historical/scientific context and makes no numerical physics claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-SOUND-REFLECTION",
+                "CAP-SOUND-SOURCE-MEDIUM"
+              ]
             }
           ],
           "relations": [
@@ -4894,6 +4963,12 @@ window.GRADE9V3 = {
               "answer": "The wall is 68 m away. The 0.40 s covers the outward and return paths, so 340 x 0.40 = 136 m is the round-trip distance and the one-way range is half of that."
             },
             {
+              "id": "Q-PHY-SOUND-HERITAGE-2A-01",
+              "stem": "A Grade 9 Sound display has two panels: 'Gol Gumbaz' and 'C. V. Raman'. For Gol Gumbaz, name the already-taught sound idea the curriculum is connecting it to. For Raman, name two acoustics research themes supported by the Raman Research Institute source. Do not use the Raman effect as your Sound explanation.",
+              "origin": "AUTHORED",
+              "answer": "Gol Gumbaz belongs to the reflected-sound/echo context. Supported Raman acoustics examples include bowed/struck strings, maintenance of vibrations/resonance, and acoustics/overtones of mridangam and tabla."
+            },
+            {
               "id": "Q-PHY-SOUND-PRACTICAL-10",
               "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
               "origin": "AUTHORED",
@@ -4938,6 +5013,12 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-SOUND-HERITAGE",
+              "action": "Connect already-taught Grade 9 sound ideas to the curriculum's Gol Gumbaz echo example and to C. V. Raman's documented acoustics research on musical instruments.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-SOUND-LONGITUDINAL",
               "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
               "provider": null,
@@ -4957,7 +5038,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-SOUND-SOURCE-MEDIUM",
-              "action": "Explain sound production by vibration and why mechanical sound propagation requires a material medium.",
+              "action": "Explain sound production by vibration using strings, membranes and vibrating air columns, and explain why mechanical sound propagation requires a material medium.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -4968,7 +5049,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 88,
+          "record_count": 92,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4980,8 +5061,8 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 6,
-            "obligations": 9,
+            "questions": 7,
+            "obligations": 10,
             "authoring_requirements": [
               {
                 "kind": "PROSE_AUTHORING",
