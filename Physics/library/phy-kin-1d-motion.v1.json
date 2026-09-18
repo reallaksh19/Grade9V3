@@ -105,6 +105,24 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-KIN-AVERAGE-RATES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+      "success_criterion": "Uses totals before division and keeps path length distinct from signed endpoint change.",
+      "prerequisite_refs": [
+        "CAP-KIN-DISTANCE-DISPLACEMENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -374,9 +392,279 @@
           "confirms": "The claim is not that zero velocity implies nonzero acceleration; it is that zero velocity alone does not decide acceleration."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-KIN-AVERAGE-RATES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Average speed and average velocity come from different totals",
+      "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
+      "primary_capability_ref": "CAP-KIN-AVERAGE-RATES",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The arithmetic is simple, but equal-distance and equal-time weighting are easily confused.",
+      "entry_assumptions": [
+        "Can distinguish total travelled path from signed displacement and can read one positive elapsed interval."
+      ],
+      "inferential_jump": "Average speed divides total path length by total time, while average velocity divides signed displacement by that same time; neither is obtained by averaging listed speeds unless the weighting justifies it.",
+      "teaching_path": [
+        {
+          "id": "KIN2-1",
+          "role": "DECLARE",
+          "action": "For one two-leg trip, record total path length, signed start-to-finish displacement, and the total elapsed time in separate rows.",
+          "why_valid": "The two averages differ only in the numerator, so separating the totals prevents path and endpoint information from being merged.",
+          "inputs": [
+            "CAP-KIN-DISTANCE-DISPLACEMENT"
+          ],
+          "output": "distance_total = sum of leg lengths; Delta x = x_final - x_initial; Delta t = total elapsed time."
+        },
+        {
+          "id": "KIN2-2",
+          "role": "TRANSFORM",
+          "action": "Divide total path length by total time, then divide signed displacement by the same total time.",
+          "why_valid": "Each relation is a total-over-common-interval average and the gate owns both formulas.",
+          "inputs": [
+            "REL-AVERAGE-SPEED",
+            "REL-AVERAGE-VELOCITY"
+          ],
+          "output": "speed_avg = distance_total / Delta t; v_avg = Delta x / Delta t."
+        },
+        {
+          "id": "KIN2-3",
+          "role": "VERIFY",
+          "action": "Check a return trip where the finish equals the start.",
+          "why_valid": "The boundary keeps nonzero path length while forcing displacement to zero, so it tests whether the two averages stayed distinct.",
+          "inputs": [],
+          "output": "return trip -> average speed may be nonzero; whole-trip average velocity = 0."
+        }
+      ],
+      "relation_refs": [
+        "REL-AVERAGE-SPEED",
+        "REL-AVERAGE-VELOCITY"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Average speed is always the arithmetic mean of the speeds listed for the trip.",
+          "diagnostic_prompt": "Two equal-distance legs are travelled at different speeds. Did the traveller spend equal time at each speed?",
+          "repair": "Build total distance and total time first. Only equal time weighting permits an unweighted arithmetic mean of speeds."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Average speed is 6 m/s and average velocity is +2 m/s.",
+          "reasoning": [
+            "Average speed uses 120 m / 20 s = 6 m/s.",
+            "Average velocity uses the signed displacement +40 m / 20 s = +2 m/s.",
+            "The different numerators explain why the two averages differ."
+          ],
+          "check": "Both calculations use the same 20 s interval; only the path-versus-displacement numerator changes.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "AVERAGE_RATE",
+            "bindings": {
+              "distance": "DAT-KIN-AVG-DIST",
+              "displacement": "DAT-KIN-AVG-DISP",
+              "dt": "DAT-KIN-AVG-DT"
+            }
+          }
+        }
+      },
+      "research_contribution": "Author-created average-rate construction bound to gate-owned relations and an implemented Physics validator.",
+      "prerequisite_refs": [
+        "CAP-KIN-DISTANCE-DISPLACEMENT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A traveller returns to the starting point after moving for a nonzero time. Must average speed and average velocity both be zero?",
+          "defensible_answer": "No. Whole-trip displacement and average velocity are zero, but total path length and average speed can be nonzero."
+        },
+        "attempt": {
+          "produces": "Separate distance, displacement and time totals followed by the two average-rate calculations.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Average speed uses total path length rather than displacement.",
+              "evidence_of": "Preserving the distance/displacement distinction in the numerator."
+            },
+            {
+              "criterion": "Average velocity uses signed displacement and the same total time.",
+              "evidence_of": "Using a common interval and retaining direction."
+            }
+          ],
+          "accepted": [
+            "120 m / 20 s = 6 m/s; +40 m / 20 s = +2 m/s."
+          ],
+          "rejected": [
+            "(speed on leg 1 + speed on leg 2)/2 without first establishing equal time weighting."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What total quantity keeps every travelled leg even if the direction reverses?",
+              "why_this_ask": "It recovers the path-length numerator.",
+              "from_step_ref": "KIN2-1"
+            },
+            {
+              "ask": "What signed quantity depends only on start and finish?",
+              "why_this_ask": "It recovers the displacement numerator."
+            },
+            {
+              "ask": "Which elapsed time belongs under both totals?",
+              "why_this_ask": "The two averages must use the same interval.",
+              "from_step_ref": "KIN2-2"
+            },
+            {
+              "ask": "What happens to each average on a return trip?",
+              "why_this_ask": "The boundary checks that the two numerators were not conflated.",
+              "from_step_ref": "KIN2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path constructs the two averages directly; the learner route starts from the return-trip conflict and reconstructs which total belongs to each rate."
+        },
+        "boundary_test": {
+          "prompt": "If the traveller never leaves the start during a positive time interval, what are both averages?",
+          "answer": "Both are zero because both total distance and signed displacement are zero while elapsed time is positive.",
+          "confirms": "The two rates can agree without being the same quantity."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-AVERAGE-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "speed_avg = distance_total / Delta t",
+      "meaning": "Average speed is total distance travelled divided by the positive elapsed time.",
+      "symbols": [
+        {
+          "symbol": "speed_avg",
+          "meaning": "Average speed over the interval",
+          "unit_or_domain": "m/s; scalar"
+        },
+        {
+          "symbol": "distance_total",
+          "meaning": "Total path length travelled",
+          "unit_or_domain": "m; nonnegative scalar"
+        },
+        {
+          "symbol": "Delta t",
+          "meaning": "Positive elapsed time",
+          "unit_or_domain": "s; positive scalar"
+        }
+      ],
+      "conditions": [
+        "Delta t > 0.",
+        "distance_total >= 0."
+      ],
+      "derivation": [
+        {
+          "id": "KIN-AVG-SPEED-1",
+          "role": "DECLARE",
+          "action": "Accumulate the length of every travelled leg over the chosen interval.",
+          "why_valid": "Average speed uses path length, so reversals do not cancel.",
+          "inputs": [],
+          "output": "distance_total = sum of travelled leg lengths."
+        },
+        {
+          "id": "KIN-AVG-SPEED-2",
+          "role": "TRANSFORM",
+          "action": "Divide the accumulated distance by the total positive elapsed time.",
+          "why_valid": "Average rate over an interval is the total measure divided by that interval.",
+          "inputs": [],
+          "output": "speed_avg = distance_total / Delta t."
+        }
+      ],
+      "limits": [
+        "This is an interval average, not an instantaneous speed.",
+        "Arithmetic mean of listed speeds is valid only when the time weighting makes it so."
+      ],
+      "checks": [
+        "A round trip can have nonzero average speed even when displacement is zero.",
+        "distance_total is nonnegative, so average speed is nonnegative for Delta t > 0."
+      ],
+      "gate_relation_ref": "REL-AVERAGE-SPEED"
+    },
+    {
+      "id": "REL-AVERAGE-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "v_avg = Delta x / Delta t",
+      "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+      "symbols": [
+        {
+          "symbol": "v_avg",
+          "meaning": "Average velocity along the declared axis",
+          "unit_or_domain": "m/s; signed scalar"
+        },
+        {
+          "symbol": "Delta x",
+          "meaning": "Signed displacement over the interval",
+          "unit_or_domain": "m; signed scalar"
+        },
+        {
+          "symbol": "Delta t",
+          "meaning": "Positive elapsed time",
+          "unit_or_domain": "s; positive scalar"
+        }
+      ],
+      "conditions": [
+        "Delta t > 0.",
+        "Delta x uses one declared axis/sign convention."
+      ],
+      "derivation": [
+        {
+          "id": "KIN-AVG-VEL-1",
+          "role": "DECLARE",
+          "action": "Subtract final position from initial position using the declared axis convention.",
+          "why_valid": "Displacement depends only on the two endpoints and keeps direction through its sign.",
+          "inputs": [],
+          "output": "Delta x = x_final - x_initial."
+        },
+        {
+          "id": "KIN-AVG-VEL-2",
+          "role": "TRANSFORM",
+          "action": "Divide the signed displacement by the same total elapsed time used for the trip.",
+          "why_valid": "Average velocity is the signed position change per common interval.",
+          "inputs": [],
+          "output": "v_avg = Delta x / Delta t."
+        }
+      ],
+      "limits": [
+        "This is a finite-interval average and need not equal the instantaneous velocity at any particular moment."
+      ],
+      "checks": [
+        "Returning to the start gives zero average velocity for the whole trip.",
+        "Reversing the declared positive axis reverses both Delta x and v_avg but not the physical motion."
+      ],
+      "gate_relation_ref": "REL-AVERAGE-VELOCITY"
+    }
+  ],
   "representations": [],
   "question_families": [
     {
@@ -650,6 +938,54 @@
       "symbol": "d_example",
       "meaning": "Illustrative path segment length available to compiled study obligations; no exit answer depends on its numerical value.",
       "locator": "Author-created illustrative value; no measurement or curriculum provenance claimed."
+    },
+    {
+      "id": "DAT-KIN-AVG-DIST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 120,
+      "unit": "m",
+      "symbol": "distance_total",
+      "meaning": "Total path length in the authored average-rate exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-KIN-AVG-DISP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 40,
+      "unit": "m",
+      "symbol": "Delta x",
+      "meaning": "Signed displacement in the authored average-rate exit task.",
+      "locator": "Author-created exact practice datum."
+    },
+    {
+      "id": "DAT-KIN-AVG-DT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 20,
+      "unit": "s",
+      "symbol": "Delta t",
+      "meaning": "Elapsed time in the authored average-rate exit task.",
+      "locator": "Author-created exact practice datum."
     }
   ]
 }
