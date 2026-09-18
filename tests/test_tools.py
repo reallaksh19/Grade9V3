@@ -1173,7 +1173,10 @@ class ResolveRequest(unittest.TestCase):
                         f'# Authoring brief -- {core["core"]}, Relative motion, '
                         f'rung {step["rung"]}', text)
         self.assertIn("## Purpose PRACTICE -- support medium", text)
-        self.assertIn("## Transfer -- 4 changed demands", text)
+        # CORE2B is BLOCKED (no library question exposed to it), so the transfer
+        # brief is not emitted. This becomes assertIn once a transfer question is
+        # authored (P1).
+        self.assertNotIn("## Transfer --", text)
 
     def test_a_refused_request_yields_the_refusal_rather_than_briefs(self):
         request = self.request()
@@ -1191,6 +1194,10 @@ class ResolveRequest(unittest.TestCase):
         # Stated as the rule over every bucket, not against one named subtopic: that
         # bucket was BUCKET-PHY-NLM-FIRST-LAW, and it stopped being empty the day its
         # rungs were authored.
+        #
+        # P0 fix: a taught ladder may also block a practice core when the library holds
+        # no question exposed to it. Both BLOCKED reasons are correct and carry distinct
+        # reason strings so they can be told apart.
         import glob
         checked = 0
         for path in sorted(glob.glob(str(REPO / "Physics/matrices/*.rungs.json"))):
@@ -1205,11 +1212,13 @@ class ResolveRequest(unittest.TestCase):
             for name in ("CORE2A", "CORE2B"):
                 with self.subTest(bucket=board["bucket_id"], core=name):
                     core = self.core(report, name)
-                    if taught:
-                        self.assertNotEqual(core["state"], "BLOCKED")
-                    else:
+                    if not taught:
                         self.assertEqual(core["state"], "BLOCKED")
                         self.assertIn("no rung of this ladder has a record", core["reason"])
+                    elif core["state"] == "BLOCKED":
+                        # Taught but blocked: must be the library-exposure block,
+                        # not the untaught block.
+                        self.assertIn("no question exposed", core["reason"])
             checked += 1
         self.assertGreater(checked, 0, "no matrices, so this asserts nothing")
 
@@ -1223,6 +1232,53 @@ class ResolveRequest(unittest.TestCase):
         core = self.core(resolve_request.plan(request), "CORE2B")
         self.assertEqual(core["state"], "WITHHELD")
         self.assertIn("coverage gap wearing a transfer label", core["reason"])
+
+    def test_core2b_blocked_when_library_has_no_exposed_question(self):
+        """The plan says BLOCKED, not READY, when the library cannot back CORE2B."""
+        report = resolve_request.plan(self.request())
+        core = self.core(report, "CORE2B")
+        self.assertEqual(core["state"], "BLOCKED")
+        self.assertIn("no question exposed", core["reason"])
+        # The purpose is valid -- the block is about the library, not the purpose.
+        self.assertEqual(core["purpose"], "COMPETITION")
+
+    def test_plan_and_compiler_agree_on_supported_cores(self):
+        """If the plan says READY, the compiler must not refuse.  The P0 fix."""
+        from Shared.library.compile_inputs import compile_bucket
+        from Shared.library.resolve import build_index
+        import glob
+
+        lib_paths = sorted(glob.glob(str(REPO / "Physics/library/*.v1.json")))
+        packages = [json.loads(Path(p).read_text(encoding="utf-8")) for p in lib_paths]
+        records = build_index(packages)
+
+        checked = 0
+        for path in sorted(glob.glob(str(REPO / "Physics/matrices/*.rungs.json"))):
+            board = json.loads(Path(path).read_text(encoding="utf-8"))
+            request = self.request()
+            request["bucket_id"] = board["bucket_id"]
+            request["learner"]["owner_estimate"]["knowledge_percentage"] = min(
+                r["ladder_position"] for r in board["rungs"])
+            report = resolve_request.plan(request)
+
+            try:
+                compiled = compile_bucket(records, board["bucket_id"],
+                                          topic_id="PHY-TEST", title="test",
+                                          subject="Physics",
+                                          practice_control={"mode": "DESIGN_PREVIEW",
+                                                            "purpose": "PRACTICE"})
+            except Exception:
+                continue  # Bucket can't compile at all -- not this test's concern.
+
+            selected = set(compiled["baseline"]["selected_cores"])
+            for core in report["cores"]:
+                if core["state"] == "READY" and core["core"] in ("CORE2A", "CORE2B"):
+                    with self.subTest(bucket=board["bucket_id"], core=core["core"]):
+                        self.assertIn(core["core"], selected,
+                                      f'resolve_request says {core["core"]} is READY but '
+                                      f'compile_inputs does not support it')
+            checked += 1
+        self.assertGreater(checked, 0, "no matrices, so this asserts nothing")
 
 
 class CeilingAudit(unittest.TestCase):

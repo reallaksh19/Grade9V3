@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 62,
-  "relation_count": 102,
+  "relation_count": 104,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 18,
     "WEB": 5
   },
-  "digest": "sha256:439f3623a9eb008ed18a807ceb6552e5d7bbae1655b3ffdc32b91179681c6cf9",
+  "digest": "sha256:99371a146c119be1aaac726b83f50b9b77d22e610aafc1943a559f73698a88e2",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -344,8 +344,8 @@
       "path": "Shared/tools/resolve_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 17684,
-      "sha256": "1b7fa1db8d3fb958d03434b15c79f5fcb55fed3a189b58d1329a5b6759890c25"
+      "bytes": 19746,
+      "sha256": "5132da25c8ae77aa455d6765ed132319db577ff50a25dd140afffcf5669a09f2"
     },
     {
       "path": "Shared/tools/spec_conformance.py",
@@ -414,8 +414,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 82098,
-      "sha256": "1cd104eb3e51b33316c8dbb5c0780a3a71bc557714dbaef9d9b761d3daddce34"
+      "bytes": 85265,
+      "sha256": "11722373ad5d36e357b14763401dbd30675618326d4c7aeaebf43b06d94f3c9c"
     },
     {
       "path": "tools/app.css",
@@ -428,8 +428,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 272110,
-      "sha256": "380db270b2c702cd9dcd1bbac790431b3d93209709f5f0996340c1a5de2f5fed"
+      "bytes": 276916,
+      "sha256": "6420140d7bfb034cf80fa003470e85b484eb386b1df1b344960de8f96ec49783"
     },
     {
       "path": "tools/index.html",
@@ -937,6 +937,16 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {

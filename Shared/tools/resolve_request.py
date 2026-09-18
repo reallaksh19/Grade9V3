@@ -67,6 +67,32 @@ def ladder(subject: str, bucket_id: str, repo: Path = REPO) -> dict | None:
     return None
 
 
+def _library_has_exposure(subject: str, bucket_id: str, core: str,
+                          repo: Path = REPO) -> bool:
+    """True if the library package that owns *bucket_id* holds a question exposed to *core*.
+
+    The plan must consult what the compiler consults: a product declared READY
+    here and refused by the compiler is a disagreement a stress run would hit.
+    Reading the exposure tags (not the content) is the same category of
+    dependency as reading the matrix.
+
+    Per-bucket, not per-subject: a question in one package does not satisfy a
+    different bucket's compiler.
+    """
+    library_dir = repo / subject / "library"
+    if not library_dir.is_dir():
+        return False
+    for path in sorted(library_dir.glob("*.v1.json")):
+        pkg = load(path)
+        pkg_buckets = {b["id"] for b in pkg.get("buckets", [])}
+        if bucket_id not in pkg_buckets:
+            continue
+        for question in pkg.get("questions", []):
+            if any(e.get("core") == core for e in question.get("exposure", [])):
+                return True
+    return False
+
+
 def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dict:
     """The lowest rung this learner cannot yet do, read from the per-capability map.
 
@@ -207,6 +233,20 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                               "purpose": purpose["id"],
                               "reason": purpose.get("reason_when_withheld", "")})
                 continue
+            # The plan must consult what the compiler consults: a product declared
+            # READY here and refused by the compiler is a disagreement a stress run
+            # would hit.  Reading the exposure tags (not the content) is the same
+            # category of dependency as reading the matrix.
+            if not _library_has_exposure(subject, bucket_id, core, repo):
+                transfer_rows = (len(board.get("transfer") or [])
+                                 if core == TRANSFER else 0)
+                detail = (f"matrix declares {transfer_rows} transfer rows but "
+                          if transfer_rows else "")
+                built.append({"core": core, "state": "BLOCKED",
+                              "purpose": purpose["id"],
+                              "reason": f"{detail}the library holds no question exposed "
+                                        f"to {core}"})
+                continue
             built.append({"core": core, "state": "READY", "purpose": purpose["id"],
                           "support": purpose["support"],
                           "handed_over": handed.get(purpose["support"]),
@@ -285,9 +325,10 @@ def readable(report: dict) -> str:
         if core.get("segment"):
             out += [""]
         if core.get("purpose"):
-            out += [f'  purpose      {core["purpose"]}',
-                    f'  support      {core["support"]}',
-                    f'  handed over  {core.get("handed_over") or "AUTHOR_REQUIRED"}']
+            out += [f'  purpose      {core["purpose"]}']
+            if core.get("support"):
+                out += [f'  support      {core["support"]}',
+                        f'  handed over  {core.get("handed_over") or "AUTHOR_REQUIRED"}']
             if core.get("rows") is not None:
                 out += [f'  transfer     {core["rows"]} rows available']
             out += [""]
