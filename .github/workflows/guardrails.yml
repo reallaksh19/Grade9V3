@@ -63,6 +63,12 @@ jobs:
       - name: Verified curriculum mappings resolve to inspected sources
         run: python3 Shared/tools/curriculum_mapping_audit.py --enforce
 
+      # A verified mapping can still hide an omitted source outcome.  Opted-in buckets
+      # therefore declare a finite outcome checklist, and every item must have a taught
+      # capability, a teaching microtopic and bucket-owned practice evidence.
+      - name: Declared curriculum outcomes have teaching and practice custody
+        run: python3 Shared/tools/curriculum_outcome_coverage.py --enforce
+
       # Buckets may opt into complete teaching custody.  For those buckets every owned
       # microtopic must be present in both CORE1A and CORE1B routes.
       - name: Opt-in teaching routes cover every owned microtopic
