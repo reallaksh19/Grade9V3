@@ -921,7 +921,7 @@
             "REL-KINETIC-ENERGY",
             "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH"
           ],
-          "output": "work and energy terms in joules."
+          "output": "W = F_parallel s; K = 0.5 m v^2; Delta U_g = m g Delta h, all in joules under their stated conditions."
         },
         {
           "id": "WEP6-3",
