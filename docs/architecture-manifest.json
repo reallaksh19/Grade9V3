@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 95,
+  "component_count": 96,
   "relation_count": 152,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 27,
-    "TEST": 16,
+    "TEST": 17,
     "TOOLING": 28,
     "WEB": 5
   },
-  "digest": "sha256:fde3643ec44d35369ded98f3cb07e5b8a555361a05640fc72f237e6f2da12a7d",
+  "digest": "sha256:fbb28087fe0d4c6968e6999ad6e4866661011ff24ae0496383a109705fd99ffe",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -584,6 +584,13 @@
       "role_description": "Executable checks",
       "bytes": 13978,
       "sha256": "2c9f3987e74913b14937f2a743b1a3fb73788e464d4ee9177bc19f80a3afc26c"
+    },
+    {
+      "path": "tests/test_issue19_physics_content.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9769,
+      "sha256": "d9b66357abdc81eb9eddecc61035e53ea82d39d3d03eb713a0d29b2704499015"
     },
     {
       "path": "tests/test_library.py",
