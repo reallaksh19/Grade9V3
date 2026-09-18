@@ -52,6 +52,48 @@ def _schema_findings(receipt: dict, repo: Path) -> list[dict]:
     } for error in validator.iter_errors(public)]
 
 
+def derive_coverage(records: dict, bucket_id: str, resource_refs: list[str]) -> dict:
+    """Derive structural source coverage from reviewed canonical questions.
+
+    SUFFICIENT is intentionally strict: every capability taught by the bucket must be
+    represented by at least one REVIEWED/CURATED source-bound question eligible for that
+    Core. Candidate transcription is evidence-in-progress, not custody authority.
+    """
+    owned = bucket_capabilities(records, bucket_id)
+    resources = set(resource_refs)
+    eligible = [
+        row for row in records.values()
+        if row.get("_collection") == "questions"
+        and row.get("status") in {"REVIEWED", "CURATED"}
+        and row.get("primary_capability_ref") in owned
+        and set(row.get("source_refs", [])) & resources
+    ]
+
+    result = {}
+    for core in CORES:
+        if core == "CORE2":
+            questions = [q for q in eligible if q.get("origin") in {"ORIGINAL", "ADAPTED"}]
+        else:
+            questions = [
+                q for q in eligible
+                if any(exposure.get("core") == core for exposure in q.get("exposure", []))
+            ]
+        represented = {q.get("primary_capability_ref") for q in questions}
+        missing = sorted(owned - represented)
+        status = "SUFFICIENT" if owned and not missing else "INSUFFICIENT"
+        result[core] = {
+            "status": status,
+            "question_refs": sorted(q["id"] for q in questions),
+            "basis": (
+                "Every bucket-owned capability has reviewed/curated source-bound question evidence for this Core."
+                if status == "SUFFICIENT"
+                else "Missing reviewed/curated source-bound coverage for: "
+                + (", ".join(missing) if missing else "all bucket capabilities")
+            ),
+        }
+    return result
+
+
 def verify(receipt: dict, *, request: dict | None = None,
            expected_bucket: str | None = None, repo: Path = REPO) -> dict:
     found = list(_schema_findings(receipt, repo))
@@ -119,6 +161,7 @@ def verify(receipt: dict, *, request: dict | None = None,
         if status == "SUFFICIENT" and not refs:
             fail("SOURCE_RECEIPT_SUFFICIENT_WITHOUT_QUESTIONS", core,
                  "sufficiency requires at least one evidenced canonical question")
+        represented = set()
         for qref in refs:
             question = records.get(qref)
             if not question or question.get("_collection") != "questions":
@@ -128,9 +171,14 @@ def verify(receipt: dict, *, request: dict | None = None,
             if question.get("primary_capability_ref") not in owned:
                 fail("SOURCE_RECEIPT_QUESTION_OUTSIDE_BUCKET", qref,
                      "question primary capability is not taught by this bucket")
+            else:
+                represented.add(question.get("primary_capability_ref"))
             if not (set(question.get("source_refs", [])) & resource_ids):
                 fail("SOURCE_RECEIPT_QUESTION_SOURCE_MISMATCH", qref,
                      "question is not bound to any resource evidenced by this receipt")
+            if status == "SUFFICIENT" and question.get("status") not in {"REVIEWED", "CURATED"}:
+                fail("SOURCE_RECEIPT_UNREVIEWED_QUESTION_CLAIMS_SUFFICIENCY", qref,
+                     "SUFFICIENT coverage may cite only REVIEWED or CURATED questions")
             if core == "CORE2":
                 if question.get("origin") not in {"ORIGINAL", "ADAPTED"}:
                     fail("SOURCE_RECEIPT_CORE2_AUTHORED_QUESTION", qref,
@@ -139,6 +187,11 @@ def verify(receipt: dict, *, request: dict | None = None,
                 if not any(row.get("core") == core for row in question.get("exposure", [])):
                     fail("SOURCE_RECEIPT_QUESTION_NOT_EXPOSED", qref,
                          f"question is not exposed to {core}")
+        if status == "SUFFICIENT":
+            missing = sorted(owned - represented)
+            if missing:
+                fail("SOURCE_RECEIPT_CAPABILITY_COVERAGE_INCOMPLETE", core,
+                     "SUFFICIENT coverage misses bucket capabilities: " + ", ".join(missing))
 
     verified = not found
     return {
