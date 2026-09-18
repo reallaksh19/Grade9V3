@@ -12,7 +12,8 @@ VALIDATORS = {
     "HYDROSTATIC_PRESSURE_DIFFERENCE", "THERMODYNAMIC_FIRST_LAW", "WAVE_SPEED",
     "AVERAGE_POWER", "INSTANTANEOUS_POWER", "ELECTRIC_POWER",
     "CONSTANT_ACCELERATION_DISPLACEMENT", "CONSTANT_ACCELERATION_NO_TIME",
-    "NEWTON_SECOND_LAW",
+    "NEWTON_SECOND_LAW", "WORK_CONSTANT_FORCE", "KINETIC_ENERGY",
+    "GRAVITATIONAL_POTENTIAL_ENERGY",
 }
 
 
@@ -98,6 +99,23 @@ def recompute(case: dict):
         if mass <= 0:
             raise ValueError("MASS_NONPOSITIVE")
         return mass * _number(case, "acceleration", "m/s^2")
+    if kind == "WORK_CONSTANT_FORCE":
+        displacement = _number(case, "displacement", "m")
+        if displacement < 0:
+            raise ValueError("DISPLACEMENT_NEGATIVE")
+        return _number(case, "force_parallel", "N") * displacement
+    if kind == "KINETIC_ENERGY":
+        mass = _number(case, "mass", "kg")
+        speed = _number(case, "speed", "m/s")
+        if mass <= 0 or speed < 0:
+            raise ValueError("KINETIC_ENERGY_DOMAIN_INVALID")
+        return 0.5 * mass * speed * speed
+    if kind == "GRAVITATIONAL_POTENTIAL_ENERGY":
+        mass = _number(case, "mass", "kg")
+        g = _number(case, "g", "m/s^2")
+        if mass <= 0 or g <= 0:
+            raise ValueError("GPE_DOMAIN_INVALID")
+        return mass * g * _number(case, "delta_h", "m")
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
