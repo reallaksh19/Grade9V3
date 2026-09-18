@@ -1,5 +1,5 @@
 {
-  "acquisition_id": "ACQ-55FB92E0AA0024F51429",
+  "acquisition_id": "ACQ-AC61407B78FEAEC7C8DF",
   "version": "1.0.0",
   "subject": "Physics",
   "bucket_id": "BUCKET-RELATIVE-MOTION",
@@ -9,7 +9,7 @@
   "resolved_locator": "tests/fixtures/source_ingest/relative-motion-source.txt",
   "acquired_at": "2026-09-18",
   "media_type": "text/plain",
-  "byte_length": 226,
-  "sha256": "55fb92e0aa0024f514296e4d77bad50e485c0cacf661cc3f720411e211a98e17",
+  "byte_length": 529,
+  "sha256": "ac61407b78feaec7c8df769aca364ad5479c011bcd009af9664a01a41f1d2b8d",
   "snapshot_ref": "tests/fixtures/source_ingest/relative-motion-source.txt"
 }
