@@ -132,6 +132,95 @@
             "locator": "Practicals item 10; printed p.19 — Determination of speed of a pulse propagated through a stretched string/slinky (Ch. 10).",
             "capability_ref": "CAP-SOUND-WAVE-QUANTITIES"
           }
+        ],
+        "curriculum_outcome_coverage_policy": "DECLARED_OUTCOMES",
+        "curriculum_outcomes": [
+          {
+            "id": "CBSE9-SOUND-PRODUCTION",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Sound; printed p.17; C-2.7 — produce sound using strings, stretched membranes and air columns; material medium",
+            "capability_refs": [
+              "CAP-SOUND-SOURCE-MEDIUM"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-SOUND-SOURCE-MEDIUM"
+            ],
+            "question_refs": [
+              "Q-PHY-SOUND-2A-COV-02"
+            ]
+          },
+          {
+            "id": "CBSE9-SOUND-LONGITUDINAL-PROPAGATION",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Sound; printed p.17; C-2.7 — longitudinal propagation through a medium including solids and liquids",
+            "capability_refs": [
+              "CAP-SOUND-LONGITUDINAL"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-SOUND-LONGITUDINAL"
+            ],
+            "question_refs": [
+              "Q-PHY-SOUND-2A-COV-03"
+            ]
+          },
+          {
+            "id": "CBSE9-SOUND-GRAPHS-WAVE-QUANTITIES",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Sound; printed p.17; C-2.7 — graphical representation; wavelength, frequency, time period, amplitude, intensity and speed; derive speed expression",
+            "capability_refs": [
+              "CAP-SOUND-WAVE-QUANTITIES"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-SOUND-WAVE-QUANTITIES"
+            ],
+            "question_refs": [
+              "Q-PHY-SOUND-2A-01",
+              "Q-PHY-SOUND-PRACTICAL-10"
+            ]
+          },
+          {
+            "id": "CBSE9-SOUND-PERCEPTION-RANGE",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Sound; printed p.17; C-2.7/C-5.3 — audible range, pitch, loudness and music",
+            "capability_refs": [
+              "CAP-SOUND-PERCEPTION"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-SOUND-PERCEPTION"
+            ],
+            "question_refs": [
+              "Q-PHY-SOUND-2A-COV-04",
+              "Q-PHY-SOUND-2A-01"
+            ]
+          },
+          {
+            "id": "CBSE9-SOUND-REFLECTION",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Sound; printed p.17; C-2.7 — reflection of sound, echo, reverberation and echolocation",
+            "capability_refs": [
+              "CAP-SOUND-REFLECTION"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-SOUND-REFLECTION"
+            ],
+            "question_refs": [
+              "Q-PHY-SOUND-2B-01"
+            ]
+          },
+          {
+            "id": "CBSE9-SOUND-HISTORICAL-CONTEXT",
+            "source_ref": "SRC-CBSE-STD",
+            "locator": "Sound; printed p.17; C-6.1 — Gol Gumbaz whispering-gallery/echo context and awareness about Sir C. V. Raman",
+            "capability_refs": [
+              "CAP-SOUND-HERITAGE"
+            ],
+            "microtopic_refs": [
+              "MIC-PHY-SOUND-HERITAGE"
+            ],
+            "question_refs": [
+              "Q-PHY-SOUND-HERITAGE-2A-01"
+            ]
+          }
         ]
       },
       "title": "Sound",
