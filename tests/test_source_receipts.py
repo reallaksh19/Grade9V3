@@ -87,6 +87,18 @@ class SourceReceipts(unittest.TestCase):
         self.assertIn("SOURCE_RECEIPT_BASIS_MISMATCH",
                       [row["point"] for row in report["findings"]])
 
+    def test_current_ncert_receipt_reports_source_basis_drift(self):
+        receipt = copy.deepcopy(
+            source_receipts.store()["SRCREC-NCERT-KEPH103-RELATIVE-MOTION-2026-09-18"]
+        )
+        report = source_receipts.verify(receipt)
+        self.assertTrue(report["verified"], report["findings"])
+        self.assertEqual(report["basis_assessment"]["status"], "DRIFT")
+        self.assertEqual(
+            report["basis_assessment"]["replacement_candidates"],
+            ["https://ncert.nic.in/textbook/pdf/keph102.pdf"],
+        )
+
     def test_request_cannot_self_assert_source_inspection_status(self):
         schema = json.loads(
             (REPO / "Shared/library/authoring-request.schema.json").read_text(encoding="utf-8")
