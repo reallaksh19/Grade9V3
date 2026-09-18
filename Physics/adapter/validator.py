@@ -5,8 +5,13 @@ from __future__ import annotations
 import math
 
 
-VALIDATORS = {"CONSTANT_ACCELERATION_VELOCITY", "CONSTANT_ACCELERATION_INITIAL_VELOCITY",
-              "CONSTANT_ACCELERATION_EVENT_TIME", "SPEED_FROM_COMPONENTS", "APEX_STATE"}
+VALIDATORS = {
+    "CONSTANT_ACCELERATION_VELOCITY", "CONSTANT_ACCELERATION_INITIAL_VELOCITY",
+    "CONSTANT_ACCELERATION_EVENT_TIME", "SPEED_FROM_COMPONENTS", "APEX_STATE",
+    "AVERAGE_RATE", "UNIVERSAL_GRAVITATION", "GRAVITATIONAL_ACCELERATION",
+    "HYDROSTATIC_PRESSURE_DIFFERENCE", "THERMODYNAMIC_FIRST_LAW", "WAVE_SPEED",
+    "AVERAGE_POWER", "INSTANTANEOUS_POWER", "ELECTRIC_POWER",
+}
 
 
 def _number(case: dict, name: str, unit: str) -> float:
@@ -26,6 +31,56 @@ def recompute(case: dict):
         return math.hypot(_number(case, "vx", "m/s"), _number(case, "vy", "m/s"))
     if kind == "APEX_STATE":
         return _apex(case)
+    if kind == "AVERAGE_RATE":
+        dt = _number(case, "dt", "s")
+        distance = _number(case, "distance", "m")
+        displacement = _number(case, "displacement", "m")
+        if dt <= 0 or distance < 0:
+            raise ValueError("AVERAGE_RATE_DOMAIN_INVALID")
+        return {"average_speed_m_s": distance / dt,
+                "average_velocity_m_s": displacement / dt}
+    if kind == "UNIVERSAL_GRAVITATION":
+        G = _number(case, "G", "N m^2/kg^2")
+        m1, m2, r = (_number(case, "m1", "kg"), _number(case, "m2", "kg"),
+                     _number(case, "r", "m"))
+        if min(G, m1, m2, r) <= 0:
+            raise ValueError("GRAVITATION_DOMAIN_INVALID")
+        return G * m1 * m2 / (r * r)
+    if kind == "GRAVITATIONAL_ACCELERATION":
+        G = _number(case, "G", "N m^2/kg^2")
+        M, r = _number(case, "M", "kg"), _number(case, "r", "m")
+        if min(G, M, r) <= 0:
+            raise ValueError("GRAVITATION_DOMAIN_INVALID")
+        return G * M / (r * r)
+    if kind == "HYDROSTATIC_PRESSURE_DIFFERENCE":
+        rho = _number(case, "rho", "kg/m^3")
+        g = _number(case, "g", "m/s^2")
+        delta_h = _number(case, "delta_h", "m")
+        if rho <= 0 or g <= 0:
+            raise ValueError("HYDROSTATIC_MODEL_INVALID")
+        return rho * g * delta_h
+    if kind == "THERMODYNAMIC_FIRST_LAW":
+        if case.get("work_convention") != "WORK_BY_SYSTEM_POSITIVE":
+            raise ValueError("THERMODYNAMIC_WORK_CONVENTION_REQUIRED")
+        return _number(case, "Q", "J") - _number(case, "W", "J")
+    if kind == "WAVE_SPEED":
+        frequency = _number(case, "frequency", "Hz")
+        wavelength = _number(case, "wavelength", "m")
+        if frequency < 0 or wavelength < 0:
+            raise ValueError("WAVE_DOMAIN_INVALID")
+        return frequency * wavelength
+    if kind == "AVERAGE_POWER":
+        dt = _number(case, "dt", "s")
+        if dt <= 0:
+            raise ValueError("POWER_INTERVAL_INVALID")
+        return _number(case, "work", "J") / dt
+    if kind == "INSTANTANEOUS_POWER":
+        speed = _number(case, "speed", "m/s")
+        if speed < 0:
+            raise ValueError("SPEED_NEGATIVE")
+        return _number(case, "force_parallel", "N") * speed
+    if kind == "ELECTRIC_POWER":
+        return _number(case, "voltage", "V") * _number(case, "current", "A")
     a = _number(case, "a", "m/s^2")
     if case.get("model") != "CONSTANT_ACCELERATION" or not case.get("axis_convention"):
         raise ValueError("PHYSICS_MODEL_AND_AXIS_REQUIRED")
