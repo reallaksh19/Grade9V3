@@ -567,6 +567,50 @@
       ],
       "proves": "Mechanical advantage follows from load-force magnitude divided by effort-force magnitude.",
       "does_not_prove": "That the machine is ideal, efficient, or correctly represented by the supplied forces."
+    },
+    {
+      "id": "FREQUENCY_PERIOD",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "period"
+      ],
+      "input_units": {
+        "period": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "Hz",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "period > 0"
+      ],
+      "proves": "Frequency follows as the reciprocal of the positive period for one repeating vibration.",
+      "does_not_prove": "That the signal is periodic or that the measured period belongs to the intended mode."
+    },
+    {
+      "id": "ECHO_DISTANCE",
+      "status": "IMPLEMENTED",
+      "inputs": [
+        "speed",
+        "echo_time"
+      ],
+      "input_units": {
+        "speed": "m/s",
+        "echo_time": "s"
+      },
+      "result": {
+        "shape": "SCALAR_WITH_UNIT",
+        "unit": "m",
+        "comparison": "RELATIVE_AND_ABSOLUTE_TOLERANCE_1E-9"
+      },
+      "requires": [
+        "speed > 0",
+        "echo_time >= 0",
+        "echo_time is a round-trip delay in the same medium"
+      ],
+      "proves": "One-way reflector distance follows from speed times round-trip delay divided by two.",
+      "does_not_prove": "That the observed delayed sound is a single reflection or that the medium speed is uniform."
     }
   ],
   "representation_kinds": [
