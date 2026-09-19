@@ -4267,29 +4267,34 @@ window.GRADE9V3 = {
             },
             {
               "id": "MIC-PHY-MACHINE-MA",
-              "title": "Mechanical advantage compares load force with effort force",
+              "title": "Mechanical advantage is a same-state load-to-effort force ratio",
               "badge": "EASY",
               "status": "CANDIDATE",
-              "badge_reason": "The ratio is simple once load and effort are correctly identified.",
+              "badge_reason": "The ratio is simple; the fragile part is pairing load and effort from the same steady setup and not confusing force advantage with efficiency.",
               "entry_assumptions": [
                 "Can label input/effort and output/load forces on the same machine state."
               ],
-              "inferential_jump": "Mechanical advantage is a dimensionless force ratio, MA = F_load/F_effort; values above one indicate force advantage but do not measure energy efficiency.",
+              "inferential_jump": "Mechanical advantage is the dimensionless same-state force ratio MA = F_load/F_effort; a practical demonstration must measure both forces for one steady setup before forming the ratio, and the result says nothing by itself about efficiency.",
               "teaching_path": [
                 {
-                  "action": "Label the effort force and the load force for the same machine state.",
-                  "why_valid": "The ratio is meaningful only when numerator and denominator refer to the same machine state.",
-                  "output": "load: F_load; effort: F_effort."
+                  "action": "Label the effort force and load force for one steady machine state before taking or using readings.",
+                  "why_valid": "Mechanical advantage compares simultaneous input/output force magnitudes for the same setup; mixing states makes the ratio physically meaningless.",
+                  "output": "one machine state with F_load and F_effort identified"
                 },
                 {
-                  "action": "Divide load-force magnitude by effort-force magnitude.",
-                  "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
-                  "output": "MA = F_load / F_effort."
+                  "action": "Calculate MA = F_load/F_effort from those same-state force magnitudes.",
+                  "why_valid": "REL-MECHANICAL-ADVANTAGE owns the dimensionless load-to-effort ratio.",
+                  "output": "MA = F_load/F_effort"
                 },
                 {
-                  "action": "Check that the ratio is dimensionless and interpret MA = 1 as no force multiplication.",
-                  "why_valid": "Both numerator and denominator are forces, so units cancel.",
-                  "output": "MA has no unit; MA > 1 is force advantage; MA = 1 is no force multiplication."
+                  "action": "Check that the force units cancel and interpret MA = 1 and MA > 1 without making an efficiency claim.",
+                  "why_valid": "Both quantities are forces, so MA is dimensionless; its meaning is force advantage only.",
+                  "output": "MA dimensionless; MA = 1 means equal load/effort magnitudes; MA > 1 means force advantage"
+                },
+                {
+                  "action": "For a lever demonstration, measure load and effort for the same balanced or steady setting, then repeat under a controlled setup change while keeping the load and measurement method fixed.",
+                  "why_valid": "A fair practical comparison changes the intended machine setup while preventing mixed-state or mixed-method readings from masquerading as a mechanical-advantage change.",
+                  "output": "same-state MA measurement plus one controlled comparison"
                 }
               ],
               "misconceptions": [
@@ -4297,6 +4302,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Mechanical advantage is the same as efficiency.",
                   "diagnostic_prompt": "Can an ideal fixed pulley have MA = 1 and still be useful?",
                   "repair": "Yes. MA compares forces only; a machine can be useful by changing force direction even with MA = 1."
+                },
+                {
+                  "wrong_idea": "A load reading from one lever setting can be divided by an effort reading from a different setting to calculate mechanical advantage.",
+                  "diagnostic_prompt": "If the effort point is moved between two lever settings, may you combine the old load reading with the new effort reading to form one MA?",
+                  "repair": "No. Measure load and effort for the same steady setting, then calculate MA for that state. Compare separate same-state ratios across controlled settings."
                 }
               ],
               "exit_task": {
@@ -4562,7 +4572,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-MACHINE-MA",
-              "action": "Compute mechanical advantage from load force divided by effort force.",
+              "action": "Define, calculate and demonstrate mechanical advantage as load force divided by effort force using measurements from the same machine state.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },

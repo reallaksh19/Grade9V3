@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 146,
-  "relation_count": 200,
+  "component_count": 147,
+  "relation_count": 201,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 53,
+    "TEST": 54,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:c33e7b433aabdc65f9a77e45af67935fca0a2f5e550d15760cfce99d515b514a",
+  "digest": "sha256:1a4550dc46bf695b22403a7d6a20e973e0d93605b862f1092d41aa5891c04922",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -810,6 +810,13 @@
       "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
     },
     {
+      "path": "tests/test_grade9_simple_machines_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2620,
+      "sha256": "88198b204ca5ee93c95616c20578e0e94a6a0babde5cab6f563bea07824df243"
+    },
+    {
       "path": "tests/test_grade9_sound_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1009,8 +1016,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 445936,
-      "sha256": "90cf0343651ffc6b0cbb0a5cf4ac105f82e8e4350106344b10a4db2e1c5e6004"
+      "bytes": 447489,
+      "sha256": "6fd9a9412ab015c065b1199e40e70ac4d4458e6963e3e1c11d280b9728b5be2a"
     },
     {
       "path": "tools/index.html",
@@ -1734,6 +1741,11 @@
     },
     {
       "from": "tests/test_grade9_gravitation_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_simple_machines_scope.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
