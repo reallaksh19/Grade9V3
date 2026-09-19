@@ -146,34 +146,9 @@ def matrix_summary(subject: str, records: dict) -> list[dict]:
                                 gcdr = atlas_ext.get("gcdr_contract")
                                 if gcdr:
                                     policy = gcdr.get("route_policy", {})
-                                    quality = gcdr.get("quality_audit", {})
-                                    state_fidelity = gcdr.get("state_fidelity_contract", {})
-                                    audit_groups = [
-                                        quality.get("audit_1_canonical_truth_scope", {}),
-                                        quality.get("audit_2_graphical_state_fidelity", {}),
-                                        quality.get("audit_3_reconstruction_teaching_transfer", {}),
-                                        quality.get("audit_4_runtime_release_integrity", {}),
-                                    ]
-                                    audit_statuses = [
-                                        status
-                                        for group in audit_groups
-                                        for status in group.values()
-                                    ]
                                     activity["support_route"] = {
                                         "kind": "GCDR",
                                         "conformance_status": gcdr.get("conformance_status"),
-                                        "quality_audit_status": quality.get("audit_status"),
-                                        "quality_pending_checks": sum(
-                                            status == "PENDING" for status in audit_statuses
-                                        ),
-                                        "quality_failed_checks": sum(
-                                            status == "FAIL" for status in audit_statuses
-                                        ),
-                                        "unresolved_findings_count": len(
-                                            quality.get("unresolved_findings", [])
-                                        ),
-                                        "external_state_mapping": state_fidelity.get("external_state_mapping"),
-                                        "missing_parameter_policy": state_fidelity.get("missing_parameter_policy"),
                                         "recommended_when": policy.get("recommended_when", []),
                                         "learner_evidence_triggers": policy.get("learner_evidence_triggers", []),
                                         "auto_route_policy": policy.get("auto_route_policy"),
