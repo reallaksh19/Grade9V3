@@ -78,7 +78,7 @@ class ExplorerParser(HTMLParser):
         if element_id:
             self.ids.append(element_id)
 
-        if tag in {"input", "select", "button", "textarea"}:
+        if tag in {"input", "select", "button", "textarea"} or element_id:
             key = element_id or f"anon-{len(self.elements)}"
             dataset = {
                 k[5:].replace("-", "_"): v
