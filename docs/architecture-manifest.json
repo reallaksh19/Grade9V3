@@ -16,7 +16,7 @@
     "TOOLING": 41,
     "WEB": 6
   },
-  "digest": "sha256:bc2d06d10e7fd795a9e5af46986c65e36cee152967743e50f4ccae885f2609d5",
+  "digest": "sha256:caf1fc0e590c6b61d57ea48dee349a310782b947bf30274186f002b07b7a090e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1163,8 +1163,8 @@
       "path": "tests/test_topic_atlas_contract.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8579,
-      "sha256": "67508e516f0ad91d55868262a60749d3e761ed5a33afe1a06bebbd2bf158ae53"
+      "bytes": 8589,
+      "sha256": "6dd9ef40f8cd80889acb977605fcef36c3e91ce54232720cd2b509e87b97efb9"
     },
     {
       "path": "tests/test_vector_foundations_modernization.py",
