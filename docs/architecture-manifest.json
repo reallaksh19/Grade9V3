@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:ce7c3bafe0f446a165a61ea7f7f796dc814f55d46033352c5104dcaf7a94652d",
+  "digest": "sha256:2133f575912c82790901c7a0882759e3eb216c7a5b38ecc836ffe5603fc4f7f9",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -820,15 +820,15 @@
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9085,
-      "sha256": "450e66f50bcc1f4620b43b468484d2217a31c440e04358fc774dadb86f274a7a"
+      "bytes": 8972,
+      "sha256": "69c331f7ff35fd761e48c66a990b4b985706fc3a17eb4272213fbf8235b99afc"
     },
     {
       "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7247,
-      "sha256": "8e1cbf47fd27c3eda53ce59ecd5e3930df2d13576543a9b7db8b6da0f8e93543"
+      "bytes": 7669,
+      "sha256": "876a835b81bc9a9b84f9ff1e669c8282a4f25b5035f7f03699b71d8b251ac5b0"
     },
     {
       "path": "tests/test_g9_nlm_friction_connected.py",
