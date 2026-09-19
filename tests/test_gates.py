@@ -300,6 +300,16 @@ def _proj_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-KIN-PROJECTILE-MODEL")
 
 
+@mutates("FAL-PIN-VEC-SYMBOL-NO-UNIT")
+def _pin_vec_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-PINNACLE-VECTOR-ALGEBRA")
+
+
+@mutates("FAL-PIN-NLM-SYMBOL-NO-UNIT")
+def _pin_nlm_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-PINNACLE-NLM-APPLIED")
+
+
 @mutates("FAL-KIN-AVG-SYMBOL-NO-UNIT")
 def _kin_avg_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-KIN-AVERAGE-RATES")
