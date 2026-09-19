@@ -1,0 +1,73 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-LAWS-OF-MOTION-ACCEPTANCE-2026-09-19",
+  "subject": "Physics",
+  "source_note": "Owner-approved ExamSIDE JEE Main Laws of Motion page (2002-2026): https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion . These rows are concise demand mappings to specific inspected ExamSIDE items. They deliberately do not copy the external stems, answers, figures, or solutions and do not create canonical source-question custody.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-NLM-2026-01-24-STACK-SLIDING",
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/pin-the-given-figure-the-blocks-a-b-and-c-weigh-4-m-jee-main-physics-units-and-measurements-t3z9u8iplgwprvv3 . Demand summary only: stacked bodies with sliding friction, contact-specific normal reactions and constant-speed force balance."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2022-06-28-HANGING-4M",
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [
+        "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez . Demand summary only: ideal string/pulley coupling, constrained acceleration and tension under Newton-II equations."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2021-08-26-STATIC-TOGETHER",
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-COMMON-ACCEL",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w . Demand summary only: maximum applied force for two bodies to continue moving together without relative slip."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2021-08-31-ACCELERATING-CAR-BOB",
+      "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo . Demand summary only: an accelerating observer/vehicle changes the convenient force description; this remains a non-default explicit extension."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2021-03-18-BULLET-WOOD",
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/a-bullet-of-mass-01-kg-is-fired-on-a-wooden-block-to-pierce-jee-main-physics-units-and-measurements-kby8wgkat6zck7kf . Demand summary only: infer uniform deceleration from stopping distance, then convert that acceleration to retarding force. Chapter placement does not override the kinematics-first primary learner action."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2021-09-01-ROUGH-INCLINE-TIMING",
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-KIN-CONSTANT-ACCELERATION"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3 . Demand summary only: use rough-versus-smooth constant-acceleration timing to infer a friction coefficient."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-MOMENTUM-TRANSFER-MACHINE-GUN",
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Source: https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5 . Demand summary only: repeated fixed-mass ejecta require momentum change per item times ejection rate, with opposite launcher recoil and balancing holding force."
+    }
+  ]
+}
