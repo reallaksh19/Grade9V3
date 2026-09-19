@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:72bc505ecba7387fc6518ef29108ad2ff15d4b7bb10424f37e8c5249bd9949b4",
+  "digest": "sha256:63f0f184dcf6d389cb76020a9c8ad7b2327d9c26ab5cb9559cdb0f5f57c195a7",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -631,8 +631,8 @@
       "path": "tests/fixtures/agent_path_stress/cases.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 17268,
-      "sha256": "d554e48a5ecdb6494fbc85a000463efa309a653ded4be54a5ed756c505d3905d"
+      "bytes": 19750,
+      "sha256": "d9af3ef63a03d8d3bb835a1017d23c614febe567598f3e31a459d33cc0b2954b"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
@@ -701,8 +701,8 @@
       "path": "tests/test_agent_path_stress_runner.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 1841,
-      "sha256": "0f38c42de695864158ccd62ebef2505b60abf725b367d7d43d2593fc3bf6c843"
+      "bytes": 2999,
+      "sha256": "ed42ea85bc0ea0a79e92bff4d9a9af565f7ee263da86346f8d9605ed32a62192"
     },
     {
       "path": "tests/test_application_context_schema.py",
@@ -1058,8 +1058,8 @@
       "path": "tools/run_agent_path_stress.py",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 6323,
-      "sha256": "de77a74ea3accc804d3e86fa3eac595f9375a4147d9071c54801622d191ed063"
+      "bytes": 6932,
+      "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
     }
   ],
   "relations": [

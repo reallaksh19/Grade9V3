@@ -267,7 +267,9 @@ python3 tools/run_agent_path_stress.py --all --enforce
 ```
 
 A machine `PASS` means the current planner still resolves the prompt according to the
-frozen architecture path. It does **not** by itself prove that an external agent followed
+frozen architecture path. For cases that declare `selected_segment`, the runner also checks
+the execution-packet teaching segment, so retained non-default extension rungs cannot silently
+re-enter the ordinary route. It does **not** by itself prove that an external agent followed
 that path. For an agent audit, inspect the agent's response/PR and compare its actual
 decisions against the matching frozen case, especially the `must_not` conditions.
 
@@ -431,6 +433,46 @@ Fail if the agent treats 90% as mastery, loses the cross-topic Work/Energy prere
 mixes measurements from different machine states, assumes all useful machines multiply
 force, or imports torque/pulley/efficiency formula catalogues into the Grade-9 route.
 
+
+
+---
+
+## APSTRESS-G9-MOTION-70-DEFAULT
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — One-dimensional motion. Student knowledge
+> estimate: 70%. Use the estimate only to select the starting rung and preserve prerequisite
+> checks. Keep the zero-velocity/non-zero-acceleration diagnostic extension out of the
+> ordinary default route unless it is explicitly demanded; continue through the required
+> graph, constant-acceleration and elementary uniform-circular-motion rungs without pulling
+> Grade-10/11 projectile or general 2D kinematics into this Grade-9 path.
+
+### Expected path
+
+```text
+resolve current Grade-9 Motion matrix
+→ owner estimate 70
+→ non-default diagnostic R3 is not an automatic coordinate
+→ conservative default floor = R2 at ladder_position 45
+→ prerequisite check:
+     CAP-KIN-DISTANCE-DISPLACEMENT
+→ READY_WITH_CHECKS
+→ selected ordinary teaching segment:
+     R2
+     R4G
+     R4
+     R5
+→ R3 remains available only for explicit diagnostic/question/owner demand
+→ CORE1A / CORE1B use the same selected segment
+```
+
+This is the post-#88 Grade-9 Motion checkpoint. It tests the distinction between retaining a
+useful diagnostic capability and silently treating it as ordinary curriculum progression.
+
+Fail if the agent uses the 70% estimate to select R3, appends R3 to the default teaching
+segment, treats the percentage as mastery, skips the R1 prerequisite check, or broadens the
+Grade-9 Motion route into projectile/general two-dimensional kinematics.
 
 ---
 
