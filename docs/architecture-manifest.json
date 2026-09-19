@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 164,
-  "relation_count": 215,
+  "component_count": 165,
+  "relation_count": 217,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 71,
+    "TEST": 72,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:86fcd96272c2d362d1d91fd677fa47a06890f638fb747adaad7af87521ab73fa",
+  "digest": "sha256:fd10e1bbcb103b3eda90bb3b4f1aa72cb995cdc77b85c4499361d925c37e3f4b",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -820,8 +820,8 @@
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8972,
-      "sha256": "69c331f7ff35fd761e48c66a990b4b985706fc3a17eb4272213fbf8235b99afc"
+      "bytes": 9368,
+      "sha256": "e048bbbf4fedbe71a308645b1adda5db793ffc8eb60390ea8eca69f0b8167fd7"
     },
     {
       "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
@@ -913,6 +913,13 @@
       "role_description": "Executable checks",
       "bytes": 4220,
       "sha256": "c0516c711c21581eefad2b623ee0b74864af73d0cfbd17273b92b44552aa4707"
+    },
+    {
+      "path": "tests/test_grade9_nlm_friction_agent_a_atlas.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8702,
+      "sha256": "df733f503be90ee83476e20075587341ebfd6f4dfb20716498576ac4f0cc2c37"
     },
     {
       "path": "tests/test_grade9_simple_machines_scope.py",
@@ -1135,8 +1142,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 629554,
-      "sha256": "d8a3b23f6c1a22ad92dbb8c1335dd49d3999ae1a9b75cd87a8e845a7dbf90d47"
+      "bytes": 634493,
+      "sha256": "d3f3af10390e0cdd66dba1e4aebba0f6b09da6efac156f59aeafd69c03d66a79"
     },
     {
       "path": "tools/index.html",
@@ -1460,12 +1467,12 @@
     },
     {
       "from": "Shared/tools/compile_execution_packet.py",
-      "to": "Shared.tools",
+      "to": "Shared.tools.spec_conformance",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/tools/compile_execution_packet.py",
-      "to": "Shared.tools.spec_conformance",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -1480,12 +1487,12 @@
     },
     {
       "from": "Shared/tools/execute_authoring_run.py",
-      "to": "Shared.library",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/tools/execute_authoring_run.py",
-      "to": "Shared.library.resolve",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -1600,17 +1607,17 @@
     },
     {
       "from": "Shared/tools/resolve_request.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "Shared/tools/resolve_request.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "Shared/tools/resolve_request.py",
       "to": "Shared.tools.author_brief",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -1620,12 +1627,12 @@
     },
     {
       "from": "Shared/tools/review_authority.py",
-      "to": "Shared.library",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/tools/review_authority.py",
-      "to": "Shared.library.resolve",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -1929,6 +1936,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_grade9_nlm_friction_agent_a_atlas.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_friction_agent_a_atlas.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_grade9_simple_machines_scope.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -1955,12 +1972,12 @@
     },
     {
       "from": "tests/test_import_sil.py",
-      "to": "Shared.library",
+      "to": "Shared.library.intake",
       "kind": "IMPORTS"
     },
     {
       "from": "tests/test_import_sil.py",
-      "to": "Shared.library.intake",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -1971,16 +1988,6 @@
     {
       "from": "tests/test_library.py",
       "to": "Shared.contracts",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_library.py",
-      "to": "Shared.library",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_library.py",
-      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2001,6 +2008,16 @@
     {
       "from": "tests/test_library.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2195,11 +2212,6 @@
     },
     {
       "from": "tests/test_tools.py",
-      "to": "Shared.library",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_tools.py",
       "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
@@ -2215,17 +2227,22 @@
     },
     {
       "from": "tests/test_tools.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
       "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_tools.py",
-      "to": "Shared.tools.topic_independence_guard",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_tools.py",
-      "to": "Shared.tools.topic_independence_guard",
       "kind": "IMPORTS"
     },
     {

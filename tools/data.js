@@ -3890,6 +3890,11 @@ window.GRADE9V3 = {
                   "action": "Check a conveyor-belt case where the belt can frictionally accelerate an object in the same direction as the object's motion.",
                   "why_valid": "The counterexample falsifies the shortcut 'friction always points opposite velocity'.",
                   "output": "friction direction follows contact slip tendency, not a universal page-direction rule."
+                },
+                {
+                  "action": "Decide whether any tangential friction is required at all; allow friction to be zero when the contact has neither relative sliding nor a tendency to slide.",
+                  "why_valid": "Friction is a responsive tangential contact force, not an automatic nonzero force merely because two rough surfaces touch.",
+                  "output": "contact-state check -> friction may be zero when no tangential force is required."
                 }
               ],
               "misconceptions": [
@@ -3897,6 +3902,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Friction always points opposite the object's velocity.",
                   "diagnostic_prompt": "A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box's motion?",
                   "repair": "Decide the relative sliding tendency at the contact first; friction opposes that tendency."
+                },
+                {
+                  "wrong_idea": "Two rough surfaces in contact must always exert a nonzero friction force.",
+                  "diagnostic_prompt": "A crate and rough platform already move together at constant velocity. If no horizontal force is otherwise required, must the friction force be nonzero merely because the surfaces are rough?",
+                  "repair": "No. Ask what relative sliding or slip tendency would occur without friction. If none exists and no tangential force is required, friction can be zero."
                 }
               ],
               "exit_task": {
@@ -4024,6 +4034,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "The normal force is always mg.",
                   "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
                   "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+                },
+                {
+                  "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+                  "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+                  "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
                 }
               ],
               "exit_task": {
@@ -4476,10 +4491,28 @@ window.GRADE9V3 = {
               "answer": "The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton's laws can be written in that non-inertial frame."
             },
             {
+              "id": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
+              "stem": "A 5 kg block is already sliding to the right on a horizontal floor. A constant 18 N horizontal force pulls it to the right. The coefficient of kinetic friction is 0.20 and take g=10 m/s^2. Find the acceleration.",
+              "origin": "AUTHORED",
+              "answer": "The block accelerates at 1.6 m/s^2 to the right."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+              "stem": "A 5 kg block rests on a rough horizontal floor. A 12 N horizontal pull is applied, but the block remains at rest. The coefficient of static friction is 0.6 and take g=10 m/s^2. Find the actual static friction and its limiting value.",
+              "origin": "AUTHORED",
+              "answer": "The actual static friction is 12 N opposite the pull; the limiting value is 30 N."
+            },
+            {
               "id": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
               "stem": "A small block of mass m rests on a larger block of mass M. The floor under the larger block is smooth. A horizontal force F is applied to the larger block. The coefficient of static friction between the blocks is mu_s. Derive the largest value of F for which the two blocks can move together without slipping.",
               "origin": "AUTHORED",
               "answer": "While there is no slip, both blocks have a = F/(M+m). The upper block needs friction f_required = m a. Since N = m g here, no slip requires mF/(M+m) <= mu_s m g, so F <= mu_s(M+m)g. Therefore F_max = mu_s(M+m)g."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-FRICTION-ZERO-08",
+              "stem": "A crate rests on a rough horizontal floor. No horizontal force acts on it, and there is no tendency for the crate to slide relative to the floor. What is the friction force on the crate?",
+              "origin": "AUTHORED",
+              "answer": "The friction force is zero."
             },
             {
               "id": "Q-PHY-NLM-2A-IDEAL-STRING-03",
@@ -4500,10 +4533,34 @@ window.GRADE9V3 = {
               "answer": "To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction."
             },
             {
+              "id": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
+              "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest.",
+              "origin": "AUTHORED",
+              "answer": "At impending slip, N=mg+P sin(theta) and P cos(theta)=mu_s N, so P_max = mu_s m g / (cos(theta)-mu_s sin(theta))."
+            },
+            {
               "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
               "stem": "A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate's acceleration or justify that it remains at rest.",
               "origin": "AUTHORED",
               "answer": "First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| <= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
+              "stem": "A block of mass m rests on a block of mass M on a smooth floor. A horizontal force F is applied to the upper block m. The coefficient of static friction between the blocks is mu_s. Derive the largest F for which the blocks move together without slipping.",
+              "origin": "AUTHORED",
+              "answer": "If the blocks move together, a=F/(m+M). The lower block needs friction f_required=Ma. With N=mg at the interface, no slip requires MF/(m+M) <= mu_s m g, so F_max = mu_s m g (m+M)/M."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
+              "stem": "A runner accelerates forward without the shoe slipping on the ground. Determine the direction of the static friction force exerted by the ground on the shoe, and justify it from the relative slip tendency at the contact.",
+              "origin": "AUTHORED",
+              "answer": "The ground's static friction on the shoe points forward."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+              "stem": "A rough horizontal platform and a crate on it are already moving together at constant velocity. At the instant considered there is no other horizontal force on the crate. Must a nonzero friction force act on the crate merely because the surfaces are rough?",
+              "origin": "AUTHORED",
+              "answer": "No. The friction force can be zero."
             },
             {
               "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
@@ -4628,7 +4685,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 89,
+          "record_count": 96,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4640,7 +4697,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 17,
+            "questions": 24,
             "obligations": 15,
             "authoring_requirements": [
               {
