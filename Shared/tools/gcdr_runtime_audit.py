@@ -206,8 +206,8 @@ function snapshot(elements) {
     out[el._key] = {
       value: String(el.value),
       checked: !!el.checked,
-      textContent: String(el.textContent || ''),
-      innerHTML: String(el.innerHTML || ''),
+      textContent: String(el.textContent),
+      innerHTML: String(el.innerHTML),
     };
   }
   return out;
