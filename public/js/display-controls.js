@@ -61,9 +61,40 @@
     applyDisplaySettings();
   }
 
+  function stepFont(delta) {
+    const next = Math.round((fontScale + delta) * 100) / 100;
+    setFontScale(next);
+  }
+
+  function stepScale(delta) {
+    const next = Math.round((uiScale + delta) * 100) / 100;
+    setUiScale(next);
+  }
+
   function resetDisplay() {
     setFontScale(1.0);
     setUiScale(1.0);
+  }
+
+  function togglePopover() {
+    const popover = document.getElementById('g9-display-popover');
+    if (popover) {
+      popover.classList.toggle('active');
+    }
+  }
+
+  function openPopover() {
+    const popover = document.getElementById('g9-display-popover');
+    if (popover) {
+      popover.classList.add('active');
+    }
+  }
+
+  function closePopover() {
+    const popover = document.getElementById('g9-display-popover');
+    if (popover) {
+      popover.classList.remove('active');
+    }
   }
 
   // Cross-tab synchronization
@@ -91,17 +122,31 @@
     const scaleSlider = document.getElementById('g9-scale-slider');
     const scaleLabel = document.getElementById('g9-scale-val');
 
+    const fontPct = Math.round(fontScale * 100) + '%';
+    const scalePct = Math.round(uiScale * 100) + '%';
+
     if (fontSlider) fontSlider.value = fontScale;
-    if (fontLabel) fontLabel.textContent = Math.round(fontScale * 100) + '%';
+    if (fontLabel) fontLabel.textContent = fontPct;
     if (scaleSlider) scaleSlider.value = uiScale;
-    if (scaleLabel) scaleLabel.textContent = Math.round(uiScale * 100) + '%';
+    if (scaleLabel) scaleLabel.textContent = scalePct;
+
+    // Update all inline badges
+    document.querySelectorAll('.g9-inline-font-val').forEach(el => {
+      el.textContent = fontPct;
+    });
+    document.querySelectorAll('.g9-inline-scale-val').forEach(el => {
+      el.textContent = scalePct;
+    });
   }
 
   function initWidget() {
     applyDisplaySettings();
 
     // Prevent duplicate injection
-    if (document.getElementById('g9-display-widget-root')) return;
+    if (document.getElementById('g9-display-widget-root')) {
+      updateWidgetUI();
+      return;
+    }
 
     // Inject CSS for the display widget
     const style = document.createElement('style');
@@ -109,48 +154,50 @@
     style.textContent = `
       #g9-display-widget-root {
         position: fixed;
-        bottom: 18px;
-        right: 18px;
-        z-index: 99999;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2147483647;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
       .g9-display-trigger {
         background: #161b22;
-        border: 1px solid #444c56;
+        border: 1px solid #58a6ff;
         color: #f0f6fc;
-        padding: 6px 12px;
+        padding: 7px 14px;
         border-radius: 20px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
         display: flex;
         align-items: center;
         gap: 6px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+        box-shadow: 0 4px 18px rgba(0,0,0,0.6);
         transition: all 0.2s ease;
         backdrop-filter: blur(8px);
       }
       .g9-display-trigger:hover {
         background: #21262d;
-        border-color: #58a6ff;
-        color: #58a6ff;
+        border-color: #79c0ff;
+        color: #79c0ff;
         transform: translateY(-1px);
+        box-shadow: 0 6px 22px rgba(88, 166, 255, 0.25);
       }
       .g9-display-popover {
-        position: absolute;
-        bottom: 38px;
-        right: 0;
-        width: 270px;
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        width: 290px;
         background: #161b22;
         border: 1px solid #444c56;
-        border-radius: 8px;
-        padding: 14px 16px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        border-radius: 10px;
+        padding: 16px 18px;
+        box-shadow: 0 12px 36px rgba(0,0,0,0.75);
         display: none;
         flex-direction: column;
-        gap: 12px;
-        z-index: 100000;
-        backdrop-filter: blur(12px);
+        gap: 14px;
+        z-index: 2147483647;
+        backdrop-filter: blur(14px);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
       .g9-display-popover.active {
         display: flex;
@@ -160,28 +207,46 @@
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid rgba(68, 76, 86, 0.5);
-        padding-bottom: 6px;
+        padding-bottom: 8px;
       }
       .g9-popover-title {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.6px;
-        color: #9aa4b2;
+        color: #c9d1d9;
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
+      }
+      .g9-popover-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .g9-close-btn {
+        background: transparent;
+        border: none;
+        color: #8b949e;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 0 4px;
+        line-height: 1;
+        transition: color 0.15s;
+      }
+      .g9-close-btn:hover {
+        color: #f0f6fc;
       }
       .g9-control-row {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 6px;
       }
       .g9-control-label-wrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 11px;
+        font-size: 11.5px;
         font-weight: 600;
         color: #c9d1d9;
       }
@@ -189,6 +254,10 @@
         font-family: ui-monospace, monospace;
         color: #58a6ff;
         font-weight: 700;
+        background: rgba(56, 139, 253, 0.12);
+        border: 1px solid rgba(56, 139, 253, 0.3);
+        padding: 1px 6px;
+        border-radius: 4px;
       }
       .g9-slider {
         width: 100%;
@@ -198,16 +267,16 @@
       }
       .g9-btn-pill-row {
         display: flex;
-        gap: 4px;
+        gap: 5px;
         margin-top: 2px;
       }
       .g9-pill {
         background: #21262d;
         border: 1px solid #30363d;
         color: #9aa4b2;
-        padding: 2px 7px;
+        padding: 3px 8px;
         border-radius: 4px;
-        font-size: 10px;
+        font-size: 10.5px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.1s ease;
@@ -223,12 +292,11 @@
         background: transparent;
         border: 1px solid #30363d;
         color: #9aa4b2;
-        padding: 4px 8px;
+        padding: 3px 8px;
         border-radius: 4px;
         font-size: 10px;
         font-weight: 600;
         cursor: pointer;
-        align-self: flex-end;
         transition: all 0.15s;
       }
       .g9-reset-btn:hover {
@@ -236,23 +304,51 @@
         border-color: #f85149;
         color: #ff7b72;
       }
+      .g9-popover-hint {
+        font-size: 10px;
+        color: #8b949e;
+        line-height: 1.4;
+        border-top: 1px solid rgba(68, 76, 86, 0.3);
+        padding-top: 6px;
+      }
+      .g9-display-trigger-btn {
+        background: var(--bg-card, #161b22);
+        border: 1px solid var(--border, #30363d);
+        color: var(--text, #c9d1d9);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.15s;
+      }
+      .g9-display-trigger-btn:hover {
+        border-color: var(--accent, #58a6ff);
+        color: var(--accent, #58a6ff);
+      }
     `;
     document.head.appendChild(style);
 
-    // Create widget container
+    // Create widget container anchored directly to documentElement (immune to body zoom/scroll)
     const container = document.createElement('div');
     container.id = 'g9-display-widget-root';
 
     container.innerHTML = `
       <button class="g9-display-trigger" id="g9-display-toggle-btn" title="Global Display & Accessibility (Font & UI Scale)">
         <span>🔤 / 🔍</span>
-        <span>Display</span>
+        <span>Display & Scale</span>
       </button>
 
       <div class="g9-display-popover" id="g9-display-popover">
         <div class="g9-popover-header">
           <span class="g9-popover-title">⚙️ Display &amp; Scale</span>
-          <button class="g9-reset-btn" id="g9-btn-reset" title="Reset Font &amp; Scale to 100%">Reset</button>
+          <div class="g9-popover-actions">
+            <button class="g9-reset-btn" id="g9-btn-reset" title="Reset Font &amp; Scale to 100%">Reset</button>
+            <button class="g9-close-btn" id="g9-btn-close" title="Close">✕</button>
+          </div>
         </div>
 
         <!-- Font Size Slider -->
@@ -284,14 +380,20 @@
             <button class="g9-pill" data-scale="1.20">120%</button>
           </div>
         </div>
+
+        <div class="g9-popover-hint">
+          💡 Persists in localStorage and syncs across open tabs in real-time.
+        </div>
       </div>
     `;
 
-    document.body.appendChild(container);
+    // Append to documentElement so position:fixed is always relative to the viewport window
+    document.documentElement.appendChild(container);
 
     // Event handlers
     const toggleBtn = document.getElementById('g9-display-toggle-btn');
     const popover = document.getElementById('g9-display-popover');
+    const closeBtn = document.getElementById('g9-btn-close');
     const fontSlider = document.getElementById('g9-font-slider');
     const scaleSlider = document.getElementById('g9-scale-slider');
     const resetBtn = document.getElementById('g9-btn-reset');
@@ -301,8 +403,13 @@
       popover.classList.toggle('active');
     });
 
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      popover.classList.remove('active');
+    });
+
     document.addEventListener('click', (e) => {
-      if (!container.contains(e.target)) {
+      if (!container.contains(e.target) && !e.target.closest('.g9-display-trigger-btn') && !e.target.closest('.display-controls-wrap')) {
         popover.classList.remove('active');
       }
     });
@@ -338,7 +445,12 @@
   window.Grade9Display = {
     setFontScale,
     setUiScale,
+    stepFont,
+    stepScale,
     resetDisplay,
+    togglePopover,
+    openPopover,
+    closePopover,
     getFontScale: () => fontScale,
     getUiScale: () => uiScale
   };
