@@ -17,15 +17,23 @@
         "calculus"
       ],
       "must_contain": [
-        "One x-y frame with signed component quantities.",
-        "The same time label on both component descriptions."
+        "One declared x-y frame, origin and time origin for the whole event.",
+        "Signed x/y component quantities.",
+        "The same elapsed time on both component descriptions.",
+        "Recombination only from components evaluated at the same instant."
       ],
       "controlled_variation": [
         {
           "phase": 1,
           "vary": "whether only x, only y, or both component velocities change",
-          "hold": "one common time and frame",
-          "notice": "component histories can differ while describing one event"
+          "hold": "one common frame, sign convention and elapsed time",
+          "notice": "component histories may differ while still describing one object"
+        },
+        {
+          "phase": 2,
+          "vary": "the observation time at which the state is requested",
+          "hold": "the same component functions and frame",
+          "notice": "x(t) and y(t) must be evaluated at the same t before they can form one plane state"
         }
       ]
     },
@@ -40,22 +48,29 @@
         "calculus"
       ],
       "must_contain": [
-        "Separate x and y constant-acceleration equations.",
-        "One explicit check that a_x and a_y are constant.",
-        "One common elapsed time."
+        "A separate validity check that a_x and a_y are each constant over the interval on which their equations are used.",
+        "Separate x and y constant-acceleration equations with signed component values.",
+        "One common elapsed time.",
+        "Any event time found from one axis reused on the other axis for that same event."
       ],
       "controlled_variation": [
         {
           "phase": 1,
-          "vary": "the component acceleration pair",
-          "hold": "initial component velocities and common time",
+          "vary": "the constant component acceleration pair",
+          "hold": "initial component velocities, frame and common time",
           "notice": "each axis responds only to its own acceleration component"
         },
         {
           "phase": 2,
-          "vary": "one acceleration component from nonzero to zero",
-          "hold": "the other axis state",
-          "notice": "that axis reduces to uniform motion while the other can remain accelerated"
+          "vary": "one acceleration component from constant to time-varying",
+          "hold": "the other axis model and the same physical interval",
+          "notice": "constant-acceleration validity is checked per component rather than granted to the whole problem at once"
+        },
+        {
+          "phase": 3,
+          "vary": "which axis supplies the event condition used to find time",
+          "hold": "one event and one physical clock",
+          "notice": "the event time obtained from either axis must be used on both axes"
         }
       ]
     },
@@ -69,34 +84,51 @@
         "variable gravity",
         "trajectory-equation derivation",
         "inclined-target projectile geometry",
+        "moving-launcher relative-motion conversion",
         "calculus"
       ],
       "must_contain": [
         "A post-release force/model statement before projectile equations.",
         "a_x=0 and a_y=-g under an explicit +y-up convention.",
         "Horizontal and oblique launch treated as initial-condition variations.",
-        "A range/height/time/speed result checked against the component model rather than memorized in isolation."
+        "An explicit event condition before solving apex, same-height return or unequal-height landing.",
+        "At the apex only v_y is zero; horizontal velocity and downward acceleration remain.",
+        "Same-height shortcuts used only when launch and landing heights are equal.",
+        "For any unequal-height landing, use the actual signed Delta y and actual u_y; horizontal launch is only the special initial condition u_y=0. Obtain landing time vertically and share it with horizontal motion.",
+        "A requested speed/direction/position/range result reconstructed from simultaneous components rather than memorized in isolation."
       ],
       "controlled_variation": [
         {
           "phase": 1,
           "vary": "initial vertical component from zero to positive",
-          "hold": "same gravity-only model",
-          "notice": "horizontal and oblique launch use the same equations with different initial conditions"
+          "hold": "the same gravity-only free-flight model",
+          "notice": "horizontal and oblique launch use the same component laws with different initial conditions"
         },
         {
           "phase": 2,
-          "vary": "the requested output among flight time, height, range, later speed or direction",
-          "hold": "the same component model",
-          "notice": "these are consequences of one capability rather than separate laws"
+          "vary": "the requested event among a later time, apex, same-height return and lower landing",
+          "hold": "the same projectile model and one shared clock",
+          "notice": "different events are identified by different vertical component conditions before time is solved"
+        },
+        {
+          "phase": 3,
+          "vary": "landing height from equal to launch height to below launch height",
+          "hold": "u_x, u_y and gravity-only free flight",
+          "notice": "same-height shortcuts stop being valid when Delta y at landing is not zero"
+        },
+        {
+          "phase": 4,
+          "vary": "the requested output among velocity vector, speed, direction, height, range or flight time",
+          "hold": "the same event time and component state",
+          "notice": "the output is reconstructed from one component model rather than selected from a catalogue of separate projectile laws"
         }
       ]
     }
   ],
   "family": {
-    "invariant_demand": "Use one declared frame and common time, solve perpendicular motion components independently, and choose the ideal projectile specialization only after its gravity-only assumptions are established.",
-    "difficult_move": "Recognizing that Motion in 2 D is not a catalogue of projectile formulas: it is component kinematics plus a model choice and consistent reconstruction.",
-    "independent_check": "Component signs/units must be consistent, both axes must use one time, and projectile results must agree with a_x=0, a_y=-g and qualitative velocity evolution.",
+    "invariant_demand": "Declare one frame and clock, represent the motion with simultaneous signed components, validate the component kinematic model, and for projectile questions choose both the gravity-only specialization and the event condition before reconstructing the requested result.",
+    "difficult_move": "Keeping model choice and event choice separate: first decide which component equations are valid, then decide what condition identifies the requested instant, while preserving one common clock.",
+    "independent_check": "Signs/units and one-clock consistency must hold; projectile states must preserve a_x=0 and a_y=-g, apex must keep nonzero downward acceleration, and same-height shortcuts must be rejected when landing height differs.",
     "support_ladder": [
       {
         "level": "high",
