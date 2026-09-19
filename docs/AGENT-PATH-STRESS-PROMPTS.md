@@ -153,6 +153,43 @@ This case checks that learner placement and practice support remain two differen
 
 ---
 
+## APSTRESS-G9-NLM-100-DEFAULT
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Newton's first law and free-body diagrams.
+> Student knowledge estimate: 100%. Use the estimate only to select the starting rung and
+> preserve prerequisite checks. Keep observer-frame/pseudo-force reasoning available only
+> for explicit extension demand; an ordinary Grade-9 route must not enter or append that
+> frame-choice rung.
+
+### Expected path
+
+```text
+resolve current Grade-9 NLM matrix
+→ owner estimate 100
+→ non-default frame-choice R4 at ladder_position 100 is not an automatic coordinate
+→ highest default coordinate = R7 at ladder_position 94
+→ prerequisite check:
+     CAP-NLM-FBD-BODY-OWNERSHIP
+→ READY_WITH_CHECKS
+→ selected ordinary teaching segment:
+     R7
+→ R4 remains available only for explicit diagnostic/question/owner demand
+→ CORE1A / CORE1B use the same selected segment
+```
+
+This is the high-end post-#88 Force/Laws checkpoint. It covers the case the 70% practice
+checkpoint cannot: even a rough **100%** owner estimate must stop at the highest default
+Grade-9 coordinate and must not turn the retained observer-frame extension into the automatic
+entry point.
+
+Fail if the agent treats 100% as mastery, selects or appends R4 automatically, skips the
+body-ownership prerequisite check, deletes the frame-choice capability instead of preserving
+explicit extension routing, or gives CORE1A and CORE1B different targets.
+
+---
+
 ## APSTRESS-G9-WEP-80-TRANSFER
 
 ### Prompt

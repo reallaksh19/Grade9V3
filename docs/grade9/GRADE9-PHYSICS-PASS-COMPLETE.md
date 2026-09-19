@@ -48,7 +48,7 @@ Each of the six Grade-9 production slices now has at least one saved agent-path 
 
 ```text
 Motion                 APSTRESS-G9-MOTION-70-DEFAULT
-Force / Laws           APSTRESS-G9-NLM-70-PRACTICE
+Force / Laws           APSTRESS-G9-NLM-70-PRACTICE + APSTRESS-G9-NLM-100-DEFAULT
 Gravitation            APSTRESS-G9-GRAV-60-TEACH
 Work / Energy / Power  APSTRESS-G9-WEP-95-DERIVATION
 Sound                  APSTRESS-G9-SOUND-95-REFLECTION
@@ -58,7 +58,5 @@ Simple Machines        APSTRESS-G9-SIMPLE-MACHINES-90
 The runner checks the owner-estimate route and, where declared, the execution-packet teaching
 segment. This matters after the post-completion extension-routing correction: retained
 diagnostic/advanced rungs may remain canonical without becoming automatic learner coordinates
-or default teaching suffixes.
-
-This is system regression evidence only. It does not create learner mastery evidence and does
+or default teaching suffixes. The 100% Force/Laws checkpoint additionally proves that the\nhighest rough estimate still stops at R7 instead of selecting the non-default frame-choice R4.\n\nThis is system regression evidence only. It does not create learner mastery evidence and does
 not reopen the Grade-9 authoring pass.
