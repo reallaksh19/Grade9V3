@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 159,
-  "relation_count": 208,
+  "component_count": 161,
+  "relation_count": 210,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 66,
+    "TEST": 68,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:c2369b5b62084cbf0adc0281f710d8d7a18dd7314b953cf0fac582b0bc1737e4",
+  "digest": "sha256:e0cb447496bbd89247f969c88300090b2c784a8f1df47a80bc5f393da66af067",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -635,6 +635,13 @@
       "sha256": "e54e9b7515b1ec9e658aa9bc2a579e1b16859b7cb258a115af1a85e2407c87a9"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-laws-of-motion.acceptance.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4733,
+      "sha256": "1c66392b715e884db0e01aefd24f6fe18c1b0b0d13c9b9c2ad459d105b656582"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane-core.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -808,6 +815,13 @@
       "role_description": "Executable checks",
       "bytes": 42610,
       "sha256": "9466a6b44392abc9896c8bc164a4ea59fadc6a7d3af30d39ed73efde9c9ae13e"
+    },
+    {
+      "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7247,
+      "sha256": "8e1cbf47fd27c3eda53ce59ecd5e3930df2d13576543a9b7db8b6da0f8e93543"
     },
     {
       "path": "tests/test_g9_nlm_friction_connected.py",
@@ -1100,8 +1114,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 605385,
-      "sha256": "04f099be2a4b246eaa837df0b85c00c979b9884835b6b0690c9d5e6cade7bef7"
+      "bytes": 607766,
+      "sha256": "dbc7386233c265970d6ed9f26a2d14f860e2beaaa86584e21591900ac0703e7a"
     },
     {
       "path": "tools/index.html",
@@ -1810,6 +1824,16 @@
     },
     {
       "from": "tests/test_feedback.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_nlm_examside_practice_acceptance.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_nlm_examside_practice_acceptance.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

@@ -4320,6 +4320,12 @@ window.GRADE9V3 = {
               "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged."
             },
             {
+              "id": "Q-PHY-NLM-2A-CONNECTED-02",
+              "stem": "Two blocks A and B of masses m_A and m_B remain in contact on a smooth horizontal floor. A horizontal force F pushes A toward B, and the contact is maintained. Derive their common acceleration and the magnitude of the contact force exerted by A on B.",
+              "origin": "AUTHORED",
+              "answer": "The fixed contact keeps the blocks at one common acceleration a = F/(m_A+m_B). For block B alone, the contact force is its only horizontal force, so N_AB = m_B a = m_B F/(m_A+m_B)."
+            },
+            {
               "id": "Q-PHY-NLM-2A-COV-02",
               "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
               "origin": "AUTHORED",
@@ -4348,6 +4354,24 @@ window.GRADE9V3 = {
               "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
               "origin": "AUTHORED",
               "answer": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+              "stem": "One taut inextensible string passes over one fixed pulley. Let y_A and y_B be the two straight segment lengths measured positive away from the pulley. Write the string-length relation and derive the corresponding velocity and acceleration relations. If A accelerates away from the pulley with magnitude a, state B's signed acceleration in these coordinates.",
+              "origin": "AUTHORED",
+              "answer": "The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+              "stem": "A small block of mass m rests on a larger block of mass M. The floor under the larger block is smooth. A horizontal force F is applied to the larger block. The coefficient of static friction between the blocks is mu_s. Derive the largest value of F for which the two blocks can move together without slipping.",
+              "origin": "AUTHORED",
+              "answer": "While there is no slip, both blocks have a = F/(M+m). The upper block needs friction f_required = m a. Since N = m g here, no slip requires mF/(M+m) <= mu_s m g, so F <= mu_s(M+m)g. Therefore F_max = mu_s(M+m)g."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-IDEAL-STRING-03",
+              "stem": "Two carts A and B of masses m_A and m_B are connected by one taut massless inextensible string on a smooth horizontal track. A horizontal force F pulls cart A away from B along the string. Derive the common acceleration and the string tension. Then name one model change that would make equal tension throughout the connector no longer guaranteed.",
+              "origin": "AUTHORED",
+              "answer": "The string constraint gives one acceleration a = F/(m_A+m_B). For B, T = m_B a, so T = m_B F/(m_A+m_B). Equal tension relies on the ideal massless-string model; a connector with significant mass or a nonideal redirection can invalidate one common T."
             },
             {
               "id": "Q-PHY-NLM-PRACTICAL-12",
@@ -4460,7 +4484,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 79,
+          "record_count": 83,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4471,7 +4495,7 @@ window.GRADE9V3 = {
               "CORE2A"
             ],
             "atoms": 76,
-            "questions": 7,
+            "questions": 11,
             "obligations": 15,
             "authoring_requirements": [
               {
@@ -4784,23 +4808,15 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 0,
-            "obligations": 3,
+            "questions": 1,
+            "obligations": 5,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
