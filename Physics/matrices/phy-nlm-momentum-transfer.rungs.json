@@ -25,7 +25,9 @@
         "Momentum change per item as final minus initial, not final momentum alone.",
         "A finite-count reconstruction of momentum transferred per unit time before the compact rate formula.",
         "Separate signs for force on ejecta, recoil on launcher and holding force.",
-        "A unit check reducing rate times momentum to newtons."
+        "A unit check reducing rate times momentum to newtons.",
+        "An explicit zero-momentum-change case where a nonzero item stream produces zero transfer force.",
+        "A time-scale boundary stating that R Delta p_item is an average repeated-event force, not an instantaneous pulse value."
       ],
       "controlled_variation": [
         {
@@ -45,6 +47,12 @@
           "vary": "the declared positive direction",
           "hold": "the same physical ejection",
           "notice": "all signed momentum and force values reverse consistently while magnitudes remain unchanged"
+        },
+        {
+          "phase": 4,
+          "vary": "whether the requested quantity is long-time average force or the instantaneous/peak force during one launch",
+          "hold": "the same event rate and per-item momentum change",
+          "notice": "the repeated-event data determine the average force but do not determine the force-time pulse or peak without additional temporal information"
         }
       ]
     }

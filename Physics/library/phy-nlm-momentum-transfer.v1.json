@@ -122,7 +122,9 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY",
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER",
+        "agent_a:semantic_boundary": "Owns average external force from repeated discrete fixed-mass item momentum changes in one inertial frame, including recoil and balancing holding-force roles. It does not own the instantaneous force-time pulse, collision conservation, impulse integration, rocket dynamics, or continuously varying-mass equations."
       },
       "action": "Relate an external average force to momentum transferred per unit time and, for repeated identical fixed-mass ejecta, compute the signed force from ejection rate times momentum change per item before inferring the opposite launcher reaction and any balancing holding force.",
       "success_criterion": "Declares a positive direction and one inertial frame, forms Delta p_item = m(v_out - v_in), uses F_avg,on_ejecta = R Delta p_item for a steady repeated stream, gives the launcher interaction force the opposite sign, gives the external holding force the sign required to balance recoil when the launcher is held fixed, and verifies (1/s)(kg m/s) = N without invoking collision conservation, impulse integration or rocket dynamics.",
@@ -147,7 +149,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY",
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
       },
       "title": "Force from a steady stream of discrete momentum changes",
       "bucket_id": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
@@ -206,6 +209,14 @@
           "why_valid": "The rate-times-momentum product must reduce to force units and the launcher/holding directions must be consistent with the chosen positive ejection direction.",
           "inputs": [],
           "output": "R Delta p_item units = (1/s)(kg m/s) = kg m/s^2 = N; recoil sign is opposite ejecta momentum gain"
+        },
+        {
+          "id": "NLM-MTR-6",
+          "role": "VERIFY",
+          "action": "State the time meaning of the computed stream force: R Delta p_item is an average over the repeated events, not a claim that the force on the launcher or on each item is constant at every instant.",
+          "why_valid": "A rate of repeated discrete momentum changes fixes the average momentum transferred per unit time. The detailed force pulse during one launch requires additional force-versus-time or interaction-time information that this bounded model does not provide.",
+          "inputs": [],
+          "output": "known repeated-event data -> F_avg = R Delta p_item; instantaneous force waveform remains undetermined without extra time-profile information"
         }
       ],
       "relation_refs": [
@@ -214,7 +225,9 @@
         "REL-NLM-DISCRETE-MOMENTUM-TRANSFER"
       ],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "The force magnitude is firing rate times m v_out even when the item already had nonzero velocity in the chosen frame.",
@@ -230,6 +243,11 @@
           "wrong_idea": "Once a momentum-rate formula appears, the problem should be treated as rocket or continuously varying-mass dynamics.",
           "diagnostic_prompt": "Does this task require solving how a launcher's mass and velocity evolve continuously, or only the average momentum transferred by repeated fixed-mass items?",
           "repair": "Stay with the discrete stream: momentum change per item times items per second. Do not import a rocket equation or variable-mass differential model."
+        },
+        {
+          "wrong_idea": "The value R Delta p_item is the instantaneous force at every moment during firing.",
+          "diagnostic_prompt": "If each launch produces a short force pulse followed by a gap, can the event rate and momentum change alone determine the peak force inside the pulse?",
+          "repair": "No. R Delta p_item gives the average force over the repeated stream. Peak or instantaneous force needs additional interaction-time or force-time information."
         }
       ],
       "exit_task": {
@@ -508,7 +526,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY",
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
       },
       "title": "Discrete momentum-transfer force practice",
       "capability_refs": [
@@ -529,19 +548,35 @@
       },
       "safe_variations": [
         "Change item mass, entry velocity, exit velocity or ejection rate while preserving one inertial frame and repeated fixed-mass items.",
-        "Change the physical story from pellets to another discrete stream while preserving the same per-item momentum change and rate structure."
+        "Change the physical story from pellets to another discrete stream while preserving the same per-item momentum change and rate structure.",
+        "Reverse the declared coordinate direction while preserving the same physical ejection so every signed momentum and force result must transform consistently.",
+        "Give a count over a finite time interval instead of an already-computed items-per-second rate.",
+        "Ask whether a computed stream force is an average or an instantaneous pulse quantity without supplying pulse-time information."
       ],
       "transfer_boundaries": [
         "Do not replace Delta p_item with final momentum unless initial momentum is zero in the chosen frame.",
-        "Do not import collision-conservation, impulse-integral or rocket/continuously varying-mass methods unless explicitly demanded."
+        "Do not import collision-conservation, impulse-integral or rocket/continuously varying-mass methods unless explicitly demanded.",
+        "Do not report R Delta p_item as an instantaneous or peak force; it is the average force determined by the repeated-event data.",
+        "A nonzero ejection rate does not imply a nonzero transfer force when each item's signed momentum change is zero."
       ],
       "common_wrong_routes": [
         "Use m v_out instead of m(v_out-v_in).",
         "Give launcher recoil and holding force the same role or body.",
-        "Treat the derivative notation as a requirement to perform calculus."
+        "Treat the derivative notation as a requirement to perform calculus.",
+        "Treat items per minute or a finite item count as though it were already items per second.",
+        "Treat the average stream force as a continuous instantaneous force trace."
       ],
       "item_refs": [
-        "Q-PHY-NLM-MTR-2A-01"
+        "Q-PHY-NLM-MTR-2A-01",
+        "Q-PHY-NLM-MTR-2A-02",
+        "Q-PHY-NLM-MTR-2A-03",
+        "Q-PHY-NLM-MTR-2A-04",
+        "Q-PHY-NLM-MTR-2A-05",
+        "Q-PHY-NLM-MTR-2B-MODEL-01",
+        "Q-PHY-NLM-MTR-2B-LOG-02",
+        "Q-PHY-NLM-MTR-2B-SUPPORT-03",
+        "Q-PHY-NLM-MTR-2B-ZERO-04",
+        "Q-PHY-NLM-MTR-2B-AVERAGE-05"
       ]
     }
   ],
@@ -557,7 +592,8 @@
       "extensions": {
         "issue107:scope_class": "QUESTION_DEMAND",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
@@ -608,7 +644,698 @@
           "text": "Multiply the per-pellet momentum change by pellets per second, then keep the force on the pellets separate from the reaction on the launcher.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "repair_ref": "NLM-MTR-2"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2A-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2A-02",
+      "stem": "A launcher is held fixed and ejects 0.020 kg projectiles from rest at 8 projectiles per second. Each leaves at 300 m/s in the positive direction. Find the average force on the projectile stream, the average recoil force on the launcher, and the external holding force.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use the laboratory frame.",
+        "Positive is the ejection direction.",
+        "The repeated stream is steady."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Each projectile gains 6 kg m/s of momentum, so the average force on the stream is +48 N. The stream exerts -48 N on the launcher, and the holding force on the fixed launcher is +48 N.",
+        "reasoning": [
+          "One projectile changes momentum by Delta p=0.020(300-0)=6 kg m/s.",
+          "Eight identical changes each second give an average stream force 8(6)=48 N in the positive direction.",
+          "The projectile stream exerts the interaction-partner force -48 N on the launcher.",
+          "Because the launcher is held fixed, the external support must supply +48 N to balance the recoil."
+        ],
+        "check": "The rate-times-momentum units are (1/s)(kg m/s)=N, and the launcher recoil has the opposite sign from the projectile momentum gain.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "First find the momentum change of one projectile in the declared laboratory frame.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Convert the repeated identical changes into momentum gained each second, then assign the interaction-partner and holding-force directions to the correct bodies.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM-MTR-3"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2A-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2A-03",
+      "stem": "During a 6.0 s interval, a fixed launcher processes 90 identical 0.010 kg pellets. In the laboratory frame each pellet enters at +20 m/s and leaves at +140 m/s. Find the average force on the pellet stream over the interval.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Positive is the common entry/exit direction.",
+        "The same momentum change applies to each of the 90 pellets."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The rate is 90/6=15 pellets/s. Each pellet gains 0.010(140-20)=1.2 kg m/s, so the average force on the stream is +18 N.",
+        "reasoning": [
+          "Convert the finite count into the event rate R=90/6=15 s^-1.",
+          "One pellet changes momentum by Delta p=0.010(120)=1.2 kg m/s.",
+          "The average momentum-transfer rate is R Delta p=15(1.2)=18 kg m/s^2.",
+          "The positive sign follows from the pellet momentum increase in the declared positive direction."
+        ],
+        "check": "Using 90 as though it were pellets per second would overstate the force by a factor of six.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The question gives a number of pellets over a time interval, not yet a rate in pellets per second.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compute R=n/Delta t, then multiply by the final-minus-initial momentum change of one pellet.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM-MTR-3"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2A-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2A-04",
+      "stem": "A fixed launcher ejects 0.050 kg projectiles to the left from rest at 5 projectiles per second. The coordinate axis is chosen positive to the right, and each projectile leaves with velocity -40 m/s. Give the signed average force on the projectile stream, the signed recoil force on the launcher, and the signed external holding force.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use the laboratory frame.",
+        "Rightward is positive.",
+        "The launcher remains fixed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Each projectile has Delta p=0.050(-40-0)=-2 kg m/s. The average stream force is -10 N, the recoil force on the launcher is +10 N, and the external holding force on the launcher is -10 N.",
+        "reasoning": [
+          "Keep the declared right-positive coordinate even though the physical ejection is leftward.",
+          "One projectile's signed momentum change is -2 kg m/s.",
+          "Five such changes per second give -10 N on the projectile stream.",
+          "The launcher receives the opposite interaction force +10 N, so the support must apply -10 N to hold it fixed."
+        ],
+        "check": "Changing the coordinate convention would reverse all three signs but not the physical directions or force magnitudes.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Use the declared right-positive axis; do not silently replace the signed exit velocity by its speed.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "After finding the signed stream force, use body ownership to reverse the sign for launcher recoil and reverse it again for the holding force.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM-MTR-4"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2A-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2A-05",
+      "stem": "A held launcher ejects 120 identical 0.010 kg pellets from rest to +100 m/s during a 4.0 s interval. Compute the average force on the pellet stream. Then state whether this calculation proves that the instantaneous force is equal to that value at every moment of the 4.0 s interval.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Positive is the ejection direction.",
+        "Only the item count, interval and per-item velocity change are known; no force-time pulse shape or interaction time is supplied."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The rate is 30 pellets/s and each pellet gains 1 kg m/s, so the average stream force is +30 N. This does not determine the instantaneous force at every moment; the detailed pulses require additional time-profile information.",
+        "reasoning": [
+          "The event rate over the interval is R=120/4=30 s^-1.",
+          "One pellet gains Delta p=0.010(100)=1 kg m/s.",
+          "The repeated-event momentum-transfer rate gives F_avg=30(1)=30 N.",
+          "That result is an average over the interval. The same impulse per event could arise from different short force pulses."
+        ],
+        "check": "A force trace containing brief peaks and zero-force gaps can still have a 30 N time average, so the average alone cannot specify the peak value.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Separate the quantity determined by total momentum change divided by the full interval from the detailed force during one individual launch.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compute n/Delta t and the per-item Delta p for the average; do not invent a peak force without pulse-time data.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM-MTR-6"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2B-MODEL-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2B-MODEL-01",
+      "stem": "A held launcher fires 0.004 kg projectiles from rest at 20 per second, each leaving at 500 m/s. No acceleration time or barrel length is supplied. A learner says the average holding force cannot be found because F=ma needs the projectile acceleration. Determine whether the requested average force is nevertheless fixed by the given information, and find it if it is.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use the laboratory frame.",
+        "Positive is the ejection direction.",
+        "The question asks for the long-time average holding force, not the force pulse on one projectile."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Yes. Each projectile gains 2 kg m/s of momentum and 20 are fired each second, so the projectile stream gains momentum at +40 N. The launcher recoil is -40 N and the required average holding force is +40 N.",
+        "reasoning": [
+          "The missing acceleration time prevents finding the detailed acceleration or instantaneous launch force on one projectile.",
+          "It does not prevent finding the momentum change of one projectile: 0.004(500)=2 kg m/s.",
+          "Twenty identical momentum changes each second give an average momentum-transfer rate of 40 N.",
+          "The support must balance the opposite launcher recoil."
+        ],
+        "check": "Any barrel-time profile consistent with the same projectile momentum change and firing rate gives the same long-time average momentum-transfer force.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Recognizes that the requested average force is determined even though projectile acceleration time is absent.",
+            "evidence_of": "Selects the rate-of-momentum route instead of declaring the problem unsolvable from missing ma data."
+          },
+          {
+            "criterion": "Computes 2 kg m/s per projectile and 40 N for the stream.",
+            "evidence_of": "Connects the available per-item momentum change to the event rate."
+          },
+          {
+            "criterion": "Assigns +40 N to the external holding force on the fixed launcher.",
+            "evidence_of": "Keeps stream force, recoil and holding force on their correct bodies."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-MTR-2A-02",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Withholds projectile acceleration time and asks whether the average force remains determined, forcing selection of the momentum-transfer representation rather than a direct ma calculation."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which change for one projectile can be computed from its mass and initial/final velocities without knowing the duration of the launch?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "The question asks for a long-time average over many identical events, not the detailed force during one event.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must choose a momentum-change-rate representation when the requested average force is determined but the acceleration-time information needed for a direct per-projectile ma route is absent.",
+        "builds_on": [
+          "Q-PHY-NLM-MTR-2A-02"
+        ]
+      },
+      "repair_ref": "NLM-MTR-3"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2B-LOG-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2B-LOG-02",
+      "stem": "A test log records 600 identical projectiles during a 30 s run. Each has mass 5.0 g, enters the launcher at +50 m/s and leaves at +250 m/s. Convert the log into the quantities needed to determine the average holding force on a fixed launcher, and give that force.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Positive is the exit direction.",
+        "Use SI units before multiplying the rate by the per-item momentum change."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The log gives R=600/30=20 s^-1 and m=0.0050 kg. Each item gains 0.0050(250-50)=1.0 kg m/s, so the stream force is +20 N, the recoil is -20 N and the required holding force is +20 N.",
+        "reasoning": [
+          "Translate the event log into an ejection rate of 20 items per second.",
+          "Translate 5.0 g into 0.0050 kg.",
+          "Use final-minus-initial momentum to obtain 1.0 kg m/s per item.",
+          "The average stream force is 20 N; the fixed launcher needs the opposite-of-recoil holding force +20 N."
+        ],
+        "check": "The count and time must first become s^-1; treating 600 as the rate would give a dimensionally misleading result.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Converts the finite log into 20 items/s and 5.0 g into 0.0050 kg.",
+            "evidence_of": "Translates the supplied representation into the capability's SI rate and per-item quantities."
+          },
+          {
+            "criterion": "Uses the 200 m/s velocity change rather than the final 250 m/s alone.",
+            "evidence_of": "Preserves the final-minus-initial momentum meaning after representation conversion."
+          },
+          {
+            "criterion": "Reports +20 N as the holding force on the fixed launcher.",
+            "evidence_of": "Carries the translated quantities through the force-role sequence."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-MTR-2A-03",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a direct SI finite-count problem into a test-log representation with mass-unit conversion, requiring the learner to reconstruct the event rate and per-item momentum change before using the same physics."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The log does not yet give the two quantities in the form used by the momentum-transfer relation: convert the count/time and the mass first.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "After the representation is in SI form, compute one item's final-minus-initial momentum and then the repeated-event average.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate a finite event log and non-SI mass into the rate/per-item representation before applying the already-taught momentum-transfer relation.",
+        "builds_on": [
+          "Q-PHY-NLM-MTR-2A-03"
+        ]
+      },
+      "repair_ref": "NLM-MTR-3"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2B-SUPPORT-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2B-SUPPORT-03",
+      "stem": "A launcher ejects projectiles to the left while the laboratory x-axis is positive to the right. From the repeated stream calculation, the launcher experiences an average recoil force of +12 N. The launcher is held fixed by a support. State (i) the force of the support on the launcher and (ii) the force of the launcher on the support, with signs, and explain why these two forces must not be confused.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Rightward is positive.",
+        "The launcher remains fixed.",
+        "Only horizontal forces are being discussed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The support must exert -12 N on the launcher so the launcher's average net force is zero. By Newton III, the launcher exerts +12 N on the support. These are an interaction pair on different bodies; the +12 N launcher recoil from the projectile stream is a different force acting on the launcher.",
+        "reasoning": [
+          "The given projectile-stream recoil on the launcher is +12 N.",
+          "A fixed launcher requires zero average horizontal net force, so support-on-launcher must be -12 N.",
+          "The Newton-third-law partner of support-on-launcher is launcher-on-support, +12 N.",
+          "The projectile-stream recoil and the support interaction both act on the launcher and therefore are not a third-law pair with each other; they balance in the launcher's force sum."
+        ],
+        "check": "If support-on-launcher were also +12 N, the fixed launcher would have a nonzero +24 N average net force, contradicting the held condition.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Assigns -12 N to support-on-launcher.",
+            "evidence_of": "Uses the fixed-launcher force balance on the correct body."
+          },
+          {
+            "criterion": "Assigns +12 N to launcher-on-support.",
+            "evidence_of": "Forms the actual Newton-third-law pair across support and launcher."
+          },
+          {
+            "criterion": "Distinguishes the projectile recoil from the support reaction pair.",
+            "evidence_of": "Keeps forces that balance on one body separate from interaction partners on different bodies."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-MTR-2A-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes the target from computing recoil/holding magnitudes to identifying the additional support interaction pair, requiring a body-by-body force account after the signed recoil is known."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "For the held launcher, which force must cancel the stated +12 N recoil in the launcher's own force sum?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "After identifying support-on-launcher, find its Newton-third-law partner by changing the body on which the force acts.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must extend the stream/recoil result into a support-body force account and distinguish a balancing force on one body from a Newton-third-law partner on another.",
+        "builds_on": [
+          "Q-PHY-NLM-MTR-2A-04"
+        ]
+      },
+      "repair_ref": "NLM-MTR-4"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2B-ZERO-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2B-ZERO-04",
+      "stem": "A device passes identical pellets through at a steady nonzero rate. In the chosen laboratory frame each pellet enters at +120 m/s and leaves at +120 m/s. A proposed shortcut says that because pellets emerge carrying momentum, the device must experience a nonzero average recoil equal to rate times m times 120 m/s. Decide whether that conclusion follows from the bounded momentum-transfer model.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The pellet mass is unchanged.",
+        "The stated entry and exit velocities are equal in the same inertial frame.",
+        "Consider only the momentum transfer associated with this through-stream."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "No. Each pellet has Delta p=m(120-120)=0, so the average momentum-transfer force from this through-stream is zero despite the nonzero momentum carried by the pellets.",
+        "reasoning": [
+          "The force is tied to momentum change of each item, not to final momentum carried away by itself.",
+          "Here final and initial signed velocities are identical, so Delta p_item=0.",
+          "Multiplying the nonzero event rate by zero momentum change still gives zero average transfer force.",
+          "Using Rmv_out would count momentum the pellets already possessed before entering the device."
+        ],
+        "check": "If the device changes the exit speed while the entry speed stays +120 m/s, the transfer force becomes nonzero again in proportion to that change.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Rejects the nonzero-force shortcut despite the nonzero stream momentum.",
+            "evidence_of": "Uses momentum change rather than momentum presence as the causal quantity."
+          },
+          {
+            "criterion": "Sets Delta p_item to zero from equal signed entry and exit velocities.",
+            "evidence_of": "Keeps both states in the same inertial frame."
+          },
+          {
+            "criterion": "Concludes zero average transfer force for the bounded stream contribution.",
+            "evidence_of": "Applies the rate relation without inventing momentum change."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-MTR-2A-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes the familiar speed-up case into a nonzero-throughput but zero-momentum-change case so the learner must decide whether the force depends on final momentum or on transferred momentum."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Compare the pellet's signed momentum before and after the device rather than looking only at what leaves.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must refuse a final-momentum shortcut when a nonzero item stream carries momentum but the device produces no per-item momentum change.",
+        "builds_on": [
+          "Q-PHY-NLM-MTR-2A-01"
+        ]
+      },
+      "repair_ref": "NLM-MTR-2"
+    },
+    {
+      "id": "Q-PHY-NLM-MTR-2B-AVERAGE-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_MOMENTUM_TRANSFER"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2B-AVERAGE-05",
+      "stem": "A repeated-launch calculation gives F_avg=30 N for a held launcher. A high-speed force sensor, however, shows short force pulses separated by intervals close to zero force. A learner says the sensor disproves the 30 N result because the force is not constantly 30 N. Decide whether the two observations are compatible and state what additional information would be needed to determine a peak force.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The 30 N value was obtained from total transferred momentum divided by the full observation time.",
+        "No individual pulse duration or force-time shape is supplied."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "They are compatible. The 30 N result is the time-average momentum-transfer force over many events, not an assertion of a constant instantaneous force. Determining a peak force requires additional pulse-duration or force-time-profile information.",
+        "reasoning": [
+          "The repeated-event relation fixes total momentum change divided by the observation time.",
+          "A pulsed signal can have the same time average while taking values much larger than 30 N during a short event and near zero between events.",
+          "Therefore the sensor trace does not contradict the average result.",
+          "Peak force cannot be recovered from event rate and momentum change alone."
+        ],
+        "check": "Different pulse shapes can have the same impulse per event and the same event rate, so they can share the same average force while having different peaks.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Keeps the 30 N value as a time average rather than a constant-force claim.",
+            "evidence_of": "Interprets the output of the repeated-event relation at the correct temporal scale."
+          },
+          {
+            "criterion": "Accepts a pulsed force trace as compatible with the same average.",
+            "evidence_of": "Does not confuse average force with instantaneous waveform."
+          },
+          {
+            "criterion": "Names pulse duration or force-time profile as missing information for a peak value.",
+            "evidence_of": "Respects the boundary of what the available data determine."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-MTR-2A-05",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a calculation-and-interpretation exercise into a conflict between an average-force result and a pulsed sensor representation, requiring the learner to decide which temporal claim the model actually makes."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Ask whether total momentum change divided by a long observation time specifies every value of the force inside that interval.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide whether a pulsed instantaneous-force trace invalidates a correctly computed average momentum-transfer force and identify the missing information needed for a peak value.",
+        "builds_on": [
+          "Q-PHY-NLM-MTR-2A-05"
+        ]
+      },
+      "repair_ref": "NLM-MTR-6"
     }
   ],
   "teaching_routes": [

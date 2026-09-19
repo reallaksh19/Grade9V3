@@ -222,11 +222,23 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
         )
         self.assertFalse(frame["default_entry_eligible"])
 
-    def test_momentum_transfer_bucket_is_not_silently_opened_for_core2b(self):
+    def test_momentum_transfer_core2b_is_a_separate_explicit_extension(self):
         inventory = practice_inventory.coverage(
             self.records, "BUCKET-PHY-NLM-MOMENTUM-TRANSFER"
         )
-        self.assertEqual(inventory["CORE2B"], [])
+        self.assertEqual(len(inventory["CORE2B"]), 5)
+        self.assertTrue(
+            all(qid.startswith("Q-PHY-NLM-MTR-2B-") for qid in inventory["CORE2B"])
+        )
+        default_inventory = practice_inventory.coverage(
+            self.records, "BUCKET-PHY-NLM-FIRST-LAW"
+        )
+        self.assertTrue(
+            all(
+                not qid.startswith("Q-PHY-NLM-MTR-")
+                for qid in default_inventory["CORE2B"]
+            )
+        )
 
 
 if __name__ == "__main__":
