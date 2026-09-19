@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:62bd0bfd1fdc12cc3686aa4c878449b404dd05f6a2045c5b4916ecb61b39a52c",
+  "digest": "sha256:82332a8742ff265876bbd85cb675fb160d4ba9be764e1b51391d806f33f7f58d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -792,8 +792,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14957,
-      "sha256": "0eb9925c891228a2edb906bd32f1428cca4285cb3c7dcab15cbbc7f37187c9a2"
+      "bytes": 16476,
+      "sha256": "cbe820388961ce6a24e767ea96dec5ec82d5089ea2892c5c2efce3d9084d475c"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -953,8 +953,8 @@
       "path": "tests/test_session_readiness.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11776,
-      "sha256": "9e789e9d3a83deca847034ebaf3ef19a051ccc55da3108bcfea153a8c83fd684"
+      "bytes": 11848,
+      "sha256": "885403eaf77e1790d7843f905834e3cd2a045fdc7e672406cb5b986c7c2b7dad"
     },
     {
       "path": "tests/test_source_pipeline.py",
