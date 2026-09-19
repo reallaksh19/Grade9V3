@@ -41,7 +41,8 @@ class StudyStartOverlay(unittest.TestCase):
         rows = self.by_capability(report)
 
         self.assertEqual(rows["CAP-KIN-DISTANCE-DISPLACEMENT"]["learner_action"], "QUICK_CHECK")
-        self.assertEqual(rows["CAP-KIN-ZERO-V-NONZERO-A"]["learner_action"], "START_HERE")
+        self.assertEqual(rows["CAP-KIN-AVERAGE-RATES"]["learner_action"], "START_HERE")
+        self.assertEqual(rows["CAP-KIN-ZERO-V-NONZERO-A"]["learner_action"], "STUDY")
 
         self.assertEqual(rows["CAP-NLM-NET-ZERO-MOTION"]["learner_action"], "QUICK_CHECK")
         self.assertEqual(rows["CAP-NLM-FORCES-SUM-ZERO"]["learner_action"], "QUICK_CHECK")
