@@ -642,7 +642,7 @@
           "inputs": [
             "CAP-TRIG-RATIO-BRIDGE"
           ],
-          "output": "unsigned perpendicular component magnitudes"
+          "output": "V_adj = V cos(theta); V_opp = V sin(theta)"
         },
         {
           "id": "VAD-3",
@@ -652,7 +652,7 @@
           "inputs": [
             "CAP-VECTOR-SIGNED-COMPONENT"
           ],
-          "output": "signed component pair"
+          "output": "For a first-quadrant vector measured from +x: (V_x,V_y)=(+V cos(theta),+V sin(theta)); other quadrants change signs from the declared axes"
         },
         {
           "id": "VAD-4",
@@ -789,9 +789,9 @@
         }
       ],
       "conditions": [
-        "The two component axes are perpendicular.",
-        "theta is the explicitly identified acute reference angle used in the right-triangle projection.",
-        "Signs are assigned after projection from the declared axis directions."
+        "The component axes are perpendicular.",
+        "The reference axis for theta is explicitly identified.",
+        "Signs are attached from the declared axis directions after the component magnitudes are found."
       ],
       "derivation": [
         {
@@ -950,13 +950,13 @@
         "Predict the resultant sign before arithmetic.",
         "Reconstruct axis-wise addition.",
         "Derive the compensating component from a stated resultant constraint.",
-        "Reconstruct sine/cosine component assignment from adjacent/opposite geometry and axis signs."
+        "Recover the projection rule from adjacent/opposite geometry, then use the signed components in the requested composition."
       ],
       "help_plan": [
         "Ask which terms belong to the same axis before showing an equation.",
         "Ask which resultant component is constrained before revealing cancellation.",
         "Require a substitution check.",
-        "Ask which component is adjacent to the stated angle before revealing a projection formula."
+        "Before revealing a projection, ask which leg is adjacent to the stated angle and which component sign follows from the axis direction."
       ],
       "reveal_plan": "Attempt first is recommended; the complete model answer remains available after the learner commits.",
       "source_preferences": [
@@ -968,7 +968,7 @@
       ],
       "when_not_suitable": [
         "Do not infer an angle or magnitude relation that is not represented by the current capabilities.",
-        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
+        "Do not use elicited composition as a substitute for an unrequested inverse-trigonometric direction or product operation."
       ],
       "practice_profile_ref": null
     },
@@ -997,13 +997,13 @@
       "learner_actions": [
         "Add corresponding signed components in one common axis system.",
         "Translate a requested resultant direction into a component condition and solve the required input component.",
-        "Resolve a magnitude-and-angle vector into signed perpendicular components."
+        "Project an angle-given vector into signed components before composing it with other vectors."
       ],
       "help_plan": [
         "Keep one common axis convention visible.",
         "Write the target resultant component before solving for an input.",
         "Use a substitution check after solving the constraint.",
-        "Name the angle reference before assigning sine/cosine, then attach signs from the declared axes."
+        "For composition problems, mark the supplied angle against its reference axis, project adjacent/opposite magnitudes, then carry the resulting signs into the component sum."
       ],
       "reveal_plan": "Completed component equations and checks are visible in the declarative study product.",
       "source_preferences": [
@@ -1019,7 +1019,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
+        "Do not turn the composition route into inverse-angle recovery, dot-product or cross-product instruction; those require separate selected demand."
       ],
       "practice_profile_ref": null
     },
@@ -1037,21 +1037,18 @@
         "CORE1A"
       ],
       "microtopic_refs": [
-        "MIC-PHY-VEC-SUB-ORDER",
-        "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
+        "MIC-PHY-VEC-SUB-ORDER"
       ],
       "entry_needs": [
         "Graphical subtraction construction is available from the vector-foundation prerequisite."
       ],
       "learner_actions": [
         "Compare the two operand orders from one common start.",
-        "Explain which aspect changes when order swaps.",
-        "Resolve a magnitude-and-angle vector into signed perpendicular components."
+        "Explain which aspect changes when order swaps."
       ],
       "help_plan": [
         "Show the completed first-order construction before the comparison.",
-        "Keep the same scale and start point for both results.",
-        "Name the angle reference before assigning sine/cosine, then attach signs from the declared axes."
+        "Keep the same scale and start point for both results."
       ],
       "reveal_plan": "The completed two-order construction is visible with the reversal check beside it.",
       "source_preferences": [
@@ -1062,8 +1059,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not use this route to teach vector magnitude formulae or cross-product calculations.",
-        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
+        "Do not use this route to teach vector magnitude formulae or cross-product calculations."
       ],
       "practice_profile_ref": null
     },
@@ -1081,21 +1077,18 @@
         "CORE1B"
       ],
       "microtopic_refs": [
-        "MIC-PHY-VEC-SUB-ORDER",
-        "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
+        "MIC-PHY-VEC-SUB-ORDER"
       ],
       "entry_needs": [
         "Same intrinsic prerequisite as Core1A; no learner-percentage assumption."
       ],
       "learner_actions": [
         "Predict the swapped-order direction before reconstructing it.",
-        "Use the rubric and boundary case to close the attempt.",
-        "Reconstruct sine/cosine component assignment from adjacent/opposite geometry and axis signs."
+        "Use the rubric and boundary case to close the attempt."
       ],
       "help_plan": [
         "Ask which input is second before offering any completed arrow.",
-        "Reveal the superposed comparison only after the learner commits.",
-        "Ask which component is adjacent to the stated angle before revealing a projection formula."
+        "Reveal the superposed comparison only after the learner commits."
       ],
       "reveal_plan": "Prediction and construction precede the closed reveal; the full answer remains available for self-study.",
       "source_preferences": [
@@ -1106,8 +1099,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not replace the prerequisite graphical-subtraction teaching with this order check.",
-        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
+        "Do not replace the prerequisite graphical-subtraction teaching with this order check."
       ],
       "practice_profile_ref": null
     }
