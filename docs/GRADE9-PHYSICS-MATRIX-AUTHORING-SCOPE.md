@@ -7,6 +7,48 @@
 > Current freeze: **author Grade 9 only**. Do not broaden the current task into the older
 > mixed Physics-topic batch.
 
+## Active learner-specific Grade-9 reconciliation
+
+The ordinary Grade-9 authoring pass is complete. The current owner direction is to keep the
+active workstream on **Grade 9** until the Pinnacle Terminal-1 school demand is reconciled.
+
+Use these existing planning artifacts as the source of truth for that reconciliation:
+
+- `docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md`
+- `docs/grade9/TERMINAL1-PINNACLE-PHYSICS-MICRO-SCOPE.md`
+- `docs/grade9/terminal1-pinnacle-physics.micro-scope.json`
+
+The portion sheet confirms chapter labels, not their detailed micro-scope. Therefore do not
+bulk-author projectile motion, trig vector resolution, connected-body mechanics, incline
+systems, pulley constraints or quantitative friction families until school material confirms
+the exact learner action.
+
+Keep school-demand evidence and repository readiness separate. A local gap is not automatically
+a school requirement, and a confirmed school chapter is not automatically evidence for every
+plausible subtopic inside it.
+
+### Current investigation order
+
+```text
+1. Motion in 2 D
+   confirm whether projectile/component-motion teaching is actually assessed
+
+2. Vectors
+   confirm arbitrary-angle decomposition, direction recovery, graphical addition
+   and/or unit-vector notation
+
+3. NLM
+   confirm whether assessment extends beyond the current one-body Newton/FBD/friction
+   spine into inclines, tension, multi-block or pulley systems
+
+4. Motion 1 D
+   mainly inspect exam-specific vertical-motion/problem-family demand
+```
+
+Until that evidence arrives, the next artifact is a **school question/subtopic → existing
+capability → reuse/enrich/new-capability/question-variation crosswalk**, not another framework
+layer.
+
 ## Why this scope exists
 
 Grade9V3 now has enough architecture, benchmark coverage and session behavior to make broad
