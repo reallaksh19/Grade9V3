@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 149,
+  "component_count": 150,
   "relation_count": 203,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 56,
+    "TEST": 57,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:68ebfd720bea0238b4ecb754cb555ba54c726032cacabe9be0dd7b0b6173b586",
+  "digest": "sha256:54fb11c4c6c4d275e855f0297904c8223cc750ea8fcefe2a24c62bff7cae6082",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -997,6 +997,13 @@
       "role_description": "Executable checks",
       "bytes": 8899,
       "sha256": "145b8a81bbc2f1fec55161059f36772fc3b765ca9bd1467447cf7ef3a4c860ce"
+    },
+    {
+      "path": "tests/test_terminal1_pinnacle_micro_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5445,
+      "sha256": "75e1d43ba24d5f6cbfc9b6ae85da617318d6d32f1569a93f17f1de86714a0751"
     },
     {
       "path": "tests/test_tools.py",
