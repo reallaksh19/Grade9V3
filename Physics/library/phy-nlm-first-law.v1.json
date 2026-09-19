@@ -2333,7 +2333,11 @@
         "Q-PHY-NLM-2A-COV-04",
         "Q-PHY-NLM-2A-COV-05",
         "Q-PHY-NLM-2A-COV-06",
-        "Q-PHY-NLM-PRACTICAL-12"
+        "Q-PHY-NLM-PRACTICAL-12",
+        "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+        "Q-PHY-NLM-2A-CONNECTED-02",
+        "Q-PHY-NLM-2A-IDEAL-STRING-03",
+        "Q-PHY-NLM-2A-FIXED-PULLEY-04"
       ]
     }
   ],
@@ -2740,6 +2744,263 @@
         },
         {
           "text": "Transfer masses between the trolley and hanger, then compare corrected net force with measured acceleration.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-FRICTION-THRESHOLD-01",
+      "stem": "A small block of mass m rests on a larger block of mass M. The floor under the larger block is smooth. A horizontal force F is applied to the larger block. The coefficient of static friction between the blocks is mu_s. Derive the largest value of F for which the two blocks can move together without slipping.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The upper block has no other horizontal force.",
+        "The contact surfaces remain horizontal.",
+        "Use the static-friction limit only at impending slip."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "While there is no slip, both blocks have a = F/(M+m). The upper block needs friction f_required = m a. Since N = m g here, no slip requires mF/(M+m) <= mu_s m g, so F <= mu_s(M+m)g. Therefore F_max = mu_s(M+m)g.",
+        "reasoning": [
+          "Treat both blocks together first: the only external horizontal force on the two-block system is F, so a = F/(M+m).",
+          "For the upper block alone, static friction is the horizontal force that must provide acceleration a, so f_required = m a = mF/(M+m).",
+          "Because the contact is horizontal with no other vertical force on the upper block, N = m g.",
+          "Static contact is possible only while f_required <= mu_s N; equality occurs at impending slip.",
+          "Substituting and cancelling m gives F_max = mu_s(M+m)g."
+        ],
+        "check": "For F below this threshold, the required friction is below its maximum; setting f_s = mu_s N for every smaller F would incorrectly predict the same friction at all forces.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-COMMON-ACCEL",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "First suppose the blocks do not slip. What acceleration would the two-block system then have?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Now isolate only the upper block. What horizontal force must accelerate it at that same rate? Compare that required friction with the static limit.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-CONNECTED-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-CONNECTED-02",
+      "stem": "Two blocks A and B of masses m_A and m_B remain in contact on a smooth horizontal floor. A horizontal force F pushes A toward B, and the contact is maintained. Derive their common acceleration and the magnitude of the contact force exerted by A on B.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The floor is frictionless.",
+        "The blocks remain in contact throughout the motion.",
+        "Take the direction of F as positive."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The fixed contact keeps the blocks at one common acceleration a = F/(m_A+m_B). For block B alone, the contact force is its only horizontal force, so N_AB = m_B a = m_B F/(m_A+m_B).",
+        "reasoning": [
+          "Because the maintained contact fixes the separation of A and B along the motion direction, they share one acceleration component.",
+          "For the combined system A+B, the contact pair is internal and the external horizontal force is F, giving a = F/(m_A+m_B).",
+          "For B alone, the force exerted by A is external to B and must remain on B's free-body diagram.",
+          "Newton II for B gives N_AB = m_B a = m_B F/(m_A+m_B)."
+        ],
+        "check": "If m_B tends to zero, the required contact force tends to zero while the system acceleration tends to F/m_A, which is consistent.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What physical condition lets you use one acceleration for both blocks?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find the acceleration from the combined system first. Then isolate B; do not cancel the contact force from B's own equation.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-IDEAL-STRING-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pthree-blocks-mathrmm1-m2-m3-having-masses-4-jee-main-physics-motion-s5inhklf6lkhqvkn",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-IDEAL-STRING-03",
+      "stem": "Two carts A and B of masses m_A and m_B are connected by one taut massless inextensible string on a smooth horizontal track. A horizontal force F pulls cart A away from B along the string. Derive the common acceleration and the string tension. Then name one model change that would make equal tension throughout the connector no longer guaranteed.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The string is massless, taut and inextensible.",
+        "There is no pulley in this question.",
+        "The track is frictionless."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The string constraint gives one acceleration a = F/(m_A+m_B). For B, T = m_B a, so T = m_B F/(m_A+m_B). Equal tension relies on the ideal massless-string model; a connector with significant mass or a nonideal redirection can invalidate one common T.",
+        "reasoning": [
+          "The taut inextensible connector keeps the cart separation fixed, so their acceleration components along the track are equal.",
+          "Treating A+B as one system gives F = (m_A+m_B)a.",
+          "For B alone, the only horizontal force is the string tension, so T = m_B a.",
+          "Substitution gives T = m_B F/(m_A+m_B).",
+          "Using one tension magnitude is a model consequence, not a universal property of every rope or pulley arrangement."
+        ],
+        "check": "The tension is smaller than F for positive m_A and m_B, because part of F accelerates cart A as well as cart B.",
+        "acceptable_alternatives": [
+          "A massive string, an elastic connector with a nonuniform dynamical model, or a frictional/inertial pulley in a redirected setup are valid examples of a model change that can invalidate equal tension."
+        ],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-COMMON-ACCEL",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "State the connector model before using one symbol T. What does taut and inextensible imply about the two cart accelerations?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the whole two-cart system to find a, then isolate B to find the tension acting on B.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-FIXED-PULLEY-04",
+      "stem": "One taut inextensible string passes over one fixed pulley. Let y_A and y_B be the two straight segment lengths measured positive away from the pulley. Write the string-length relation and derive the corresponding velocity and acceleration relations. If A accelerates away from the pulley with magnitude a, state B's signed acceleration in these coordinates.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The pulley is fixed.",
+        "Only the two declared straight string segments change length.",
+        "The string remains taut and inextensible."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley.",
+        "reasoning": [
+          "For one fixed pulley, the wrapped/fixed part of the string contributes no changing length in this bounded geometry.",
+          "Inextensibility makes the sum of the two changing straight segment lengths constant.",
+          "Taking one and two time derivatives gives the velocity and acceleration constraints.",
+          "With both coordinates positive away from the pulley, the signed accelerations are equal in magnitude and opposite in sign."
+        ],
+        "check": "If both y_A and y_B increased together, total string length would increase, contradicting inextensibility.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which parts of the string can change length while the pulley itself stays fixed?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Write the sum of those changing segments as a constant before thinking about velocities or accelerations.",
           "reveals": "METHOD"
         }
       ]
