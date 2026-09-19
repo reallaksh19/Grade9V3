@@ -1134,6 +1134,25 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-PINNACLE-NLM-FRICTION-CONNECTED",
+          "title": "Quantitative friction and connected-body constraints",
+          "grade": 9,
+          "chapter": "NLM",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Static friction adjusts up to a limiting magnitude; equality with mu_sN is not automatic.",
+            "A common acceleration is a kinematic constraint justified by together-motion, not by Newton III.",
+            "Equal tension and endpoint-acceleration relations are conditional on an ideal string and its fixed-length geometry."
+          ],
+          "misconceptions": [
+            "muN, equal acceleration or equal tension can be inserted automatically whenever the corresponding words appear."
+          ]
+        },
+        {
           "gate_id": "PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
           "title": "Direction recovery and unit-vector normalization",
           "grade": 9,
@@ -4631,6 +4650,476 @@ window.GRADE9V3 = {
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
               },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-PINNACLE-NLM-FRICTION-CONNECTED",
+          "title": "Pinnacle quantitative friction and connected-body NLM",
+          "topic": "NLM",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-NLM-FIRST-LAW"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+              "title": "Select a quantitative friction model from the contact state",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The key failure is using f=mu N automatically rather than deciding whether static friction is below limit, at limit, or the contact is sliding.",
+              "entry_assumptions": [
+                "Can identify the named contact and qualitative friction direction from relative slip/tendency.",
+                "Can write a signed Newton-II component equation for one body."
+              ],
+              "inferential_jump": "The coefficient gives a bound/model, while the actual friction magnitude depends on the contact state and the normal reaction in the current geometry.",
+              "teaching_path": [
+                {
+                  "action": "Name the contact and decide sticking, impending slip or sliding before writing a magnitude relation.",
+                  "why_valid": "The correct quantitative rule is state-dependent.",
+                  "output": "state = sticking / limiting / sliding"
+                },
+                {
+                  "action": "Solve the chosen body's force equation perpendicular to the contact for N.",
+                  "why_valid": "N is set by the current geometry and external forces, not by a universal N=mg rule.",
+                  "output": "Example horizontal case: N-mg=0 -> N=mg; on an incline use the perpendicular component equation instead."
+                },
+                {
+                  "action": "For sticking use the required f_s subject to |f_s|<=mu_sN; at impending slip use |f_s|=mu_sN; during sliding use the adopted f_k=mu_kN model.",
+                  "why_valid": "This separates self-adjusting static friction from its limit and from the sliding model.",
+                  "output": "Example: required 3 N with mu_sN=8 N gives f_s=3 N, not 8 N."
+                },
+                {
+                  "action": "Check the result against the assumed state and motion.",
+                  "why_valid": "A static result requiring more than the maximum falsifies the no-slip assumption.",
+                  "output": "If required |f_s|>mu_sN, recompute with a sliding model rather than keeping the impossible static state."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Static friction always equals mu_s N.",
+                  "diagnostic_prompt": "A 3 N horizontal push is balanced while the static-friction limit is 8 N. Is friction 8 N?",
+                  "repair": "No. Static friction supplies 3 N; 8 N is only the ceiling before slip."
+                },
+                {
+                  "wrong_idea": "Normal reaction always equals mg.",
+                  "diagnostic_prompt": "On an incline or with another vertical force, must N still equal mg?",
+                  "repair": "No. Solve the perpendicular force equation for the actual geometry."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A block stays at rest under a 4 N horizontal push. The maximum static friction is 9 N. State the friction magnitude and explain why 9 N is not used.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-FRICTION-CONNECTED",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Static friction is 4 N opposite the push.",
+                  "reasoning": [
+                    "The block is sticking, so horizontal acceleration is zero.",
+                    "Static friction supplies the 4 N needed for balance.",
+                    "4 N is below the 9 N limit; the limiting value is not automatically active."
+                  ],
+                  "check": "The horizontal net force is zero and the required static friction satisfies the allowed bound.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The limit is used as a consistency bound, not an automatic equality."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FRICTION",
+                "CAP-NLM-SECOND-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-CONNECTED-ACCELERATION",
+              "title": "Use a justified common acceleration without merging body ownership",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners must combine a kinematic together-motion constraint with separate Newton-II equations without cancelling interaction forces across bodies.",
+              "entry_assumptions": [
+                "Can assign forces to the body on which they act and write Newton II for each selected body.",
+                "Can identify Newton-third-law partners without putting both partner forces on one FBD."
+              ],
+              "inferential_jump": "Bodies may share a constrained acceleration even though the forces and equations remain body-specific.",
+              "teaching_path": [
+                {
+                  "action": "Draw or list one FBD for body A and one for body B, with the interaction force placed separately on each body.",
+                  "why_valid": "Newton II is applied per body; third-law partners act on different bodies.",
+                  "output": "Body A: sum(F_Ax)=m_A a_Ax; Body B: sum(F_Bx)=m_B a_Bx."
+                },
+                {
+                  "action": "State the physical reason the bodies translate together along x: for example, maintained contact without separation or no relative slip.",
+                  "why_valid": "The common acceleration is a kinematic constraint that must come from the situation, not from Newton III.",
+                  "output": "constraint -> a_Ax=a_Bx"
+                },
+                {
+                  "action": "Replace a_Ax and a_Bx by one a_common and solve the simultaneous body equations.",
+                  "why_valid": "The constraint reduces the kinematic unknowns while preserving distinct force balances.",
+                  "output": "Example pair: P-F_contact=m_A a_common; F_contact=m_B a_common."
+                },
+                {
+                  "action": "Substitute the solved a_common and interaction force back into both equations and verify the together-motion assumption remains possible.",
+                  "why_valid": "Both dynamics and the constraint must hold at once.",
+                  "output": "Each body equation balances with the same a_common; any required friction/contact limit is also checked."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If two bodies share acceleration, their forces must be the same.",
+                  "diagnostic_prompt": "Can two different masses share acceleration while requiring different net forces?",
+                  "repair": "Yes. Each body has F_net=m a, so equal a with different m generally means different net force."
+                },
+                {
+                  "wrong_idea": "Third-law contact forces cancel in each body's equation.",
+                  "diagnostic_prompt": "Does the A-on-B force belong on A's FBD?",
+                  "repair": "No. A-on-B acts on B; B-on-A acts on A. They only cancel when a deliberately combined system equation is formed."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two blocks A and B stay in contact and accelerate together on a horizontal line. An external push P acts on A. Write the minimum equation structure needed to solve their common acceleration and contact force.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-FRICTION-CONNECTED",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Use one equation per block and the common-acceleration constraint.",
+                  "reasoning": [
+                    "For A: P-F_contact=m_A a_common.",
+                    "For B: F_contact=m_B a_common.",
+                    "The maintained-contact condition supplies a_A=a_B=a_common."
+                  ],
+                  "check": "Substitute the solved values into both body equations; both must hold with the same acceleration.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task checks structure and body ownership without requiring specific masses."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW",
+                "CAP-NLM-THIRD-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-IDEAL-STRING",
+              "title": "Use one ideal string and fixed pulley as a force-plus-kinematic constraint",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The difficult move is linking equal tension magnitude and fixed string length without treating tension partner forces as cancelling on one body.",
+              "entry_assumptions": [
+                "Can solve simultaneous body-specific Newton-II equations under a previously justified acceleration constraint."
+              ],
+              "inferential_jump": "An ideal string supplies both a force-transmission statement and a kinematic length constraint; neither comes from Newton III alone.",
+              "teaching_path": [
+                {
+                  "action": "State massless, inextensible string and smooth fixed pulley, then draw one body FBD at each endpoint.",
+                  "why_valid": "The equal-tension and fixed-length relations are model-conditional.",
+                  "output": "Body 1 has its tension T; body 2 has its own tension T along the same ideal string."
+                },
+                {
+                  "action": "Write x_1+x_2=L for the two hanging string segments and differentiate conceptually to obtain a_1+a_2=0 in one signed convention.",
+                  "why_valid": "Inextensibility fixes the total string length, so one endpoint's increase is the other's decrease.",
+                  "output": "If + is downward on both segments: a_2=-a_1, so the magnitudes are equal for this fixed-pulley geometry."
+                },
+                {
+                  "action": "Write one Newton-II equation per body using the same tension magnitude T and the linked accelerations.",
+                  "why_valid": "Masslessness and a smooth fixed pulley justify the shared tension magnitude along this one string.",
+                  "output": "Example hanging pair: m_1 g-T=m_1 a_1; m_2 g-T=m_2 a_2; a_1+a_2=0."
+                },
+                {
+                  "action": "Substitute the solved T and accelerations into both body equations and the length constraint.",
+                  "why_valid": "A valid solution must satisfy dynamics and kinematics simultaneously.",
+                  "output": "Both force equations close and a_1+a_2=0 remains true."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Equal tension means the two tension forces cancel on either body's FBD.",
+                  "diagnostic_prompt": "Does the tension acting on body 2 belong in body 1's individual force sum?",
+                  "repair": "No. Equal magnitude does not change body ownership; each arrow belongs to the body it acts on."
+                },
+                {
+                  "wrong_idea": "Every pulley problem has equal tension and equal acceleration magnitudes.",
+                  "diagnostic_prompt": "Would a massive pulley or movable-pulley geometry keep the same relations?",
+                  "repair": "No. The first-slice equalities require the declared ideal fixed-pulley model and its specific length constraint."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two masses hang from one massless inextensible string over a smooth fixed pulley. State the body equations and kinematic relation before solving.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-FRICTION-CONNECTED",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Use one Newton-II equation per mass, one shared tension magnitude T, and the fixed-length relation a_1+a_2=0 in a common signed convention.",
+                  "reasoning": [
+                    "Mass 1 contains only forces acting on mass 1, including its tension T.",
+                    "Mass 2 has its own tension T from the same ideal string.",
+                    "x_1+x_2=L gives a_1+a_2=0 after differentiating the fixed-length constraint."
+                  ],
+                  "check": "Any solved T,a_1,a_2 must satisfy both force equations and the length relation.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task checks the ideal-string model and equation structure."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-CONNECTED-ACCELERATION"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-NLM-COMMON-ACCELERATION",
+              "expression": "For bodies constrained to translate together along x: a_Ax = a_Bx = a_common",
+              "meaning": "A no-separation/no-slip translational constraint can link the relevant acceleration component of multiple bodies while Newton II still applies separately to each body.",
+              "conditions": [
+                "The bodies are constrained to remain in contact or otherwise translate together along the stated direction during the interval.",
+                "Each Newton-II equation is written for one chosen body in one consistent signed axis.",
+                "The common-acceleration equality applies only to the constrained component; other components are not silently equated."
+              ]
+            },
+            {
+              "id": "REL-NLM-FRICTION-MAGNITUDE",
+              "expression": "0 <= f_s <= mu_s N; f_s,max = mu_s N; f_k = mu_k N",
+              "meaning": "Static friction adjusts up to a limiting magnitude; equality holds at impending slip, while the adopted kinetic model is used after sliding is established.",
+              "conditions": [
+                "The contact pair and relative sliding/tendency have been identified.",
+                "The normal reaction N belongs to that same contact in the current force state.",
+                "Use f_s = mu_s N only at the limiting/impending-slip state; otherwise static friction may be smaller.",
+                "Use f_k = mu_k N only when the adopted kinetic-friction model applies during relative sliding."
+              ]
+            },
+            {
+              "id": "REL-NLM-IDEAL-STRING",
+              "expression": "Same ideal string: T_1 = T_2 = T; fixed-pulley length constraint x_1 + x_2 = constant gives a_1 + a_2 = 0",
+              "meaning": "A massless inextensible string over a smooth fixed pulley transmits one tension magnitude along the same string while its fixed length links endpoint motions.",
+              "conditions": [
+                "The string is massless and inextensible.",
+                "The pulley is smooth and fixed.",
+                "The same continuous string is being referenced when one tension magnitude T is used.",
+                "For the bounded fixed-pulley geometry, total string length is constant so the two endpoint acceleration components along the string have equal magnitude and opposite sign in one common signed convention."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-CONNECTED-ACCELERATION",
+              "action": "Model bodies constrained to translate together using separate force equations and a justified common-acceleration relation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FRICTION",
+              "action": "Identify friction as a contact force that opposes relative sliding or the tendency to slide.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FRICTION-MAGNITUDE",
+              "action": "Choose and use the correct quantitative friction magnitude model after identifying the contact state.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-IDEAL-STRING",
+              "action": "Use one massless inextensible string over a smooth fixed pulley to link body-specific tension forces and endpoint accelerations.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-THIRD-LAW",
+              "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 58,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 5,
+            "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -8636,6 +9125,11 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-PINNACLE-NLM-FRICTION-CONNECTED",
           "status": "CANDIDATE",
           "admitted": true
         },

@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 154,
-  "relation_count": 205,
+  "component_count": 156,
+  "relation_count": 206,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 61,
+    "TEST": 63,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:9fef19542a823ea2155f3a6e61e58b3b40186f183419b75784a8b61b4aa8327e",
+  "digest": "sha256:9cb7230b75aaf1b78d9378ec743b0466c754e587056acf9afb0b123ffe4170ff",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -649,6 +649,13 @@
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-nlm-friction-connected.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1855,
+      "sha256": "7f7172e65331b65d4c6b2f6be99077340e0f0006ce785b477c22080f82899cb8"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-vector-direction-unit.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -799,8 +806,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16624,
-      "sha256": "98c5046d0b8336f251d9b9ea3178a85814b1ccb591ac589d26bd58e23b6ee855"
+      "bytes": 16773,
+      "sha256": "b611dec0aabf19a230caeaec162896c348f6ebd7fc85d4a2643ef5fe171e4bb2"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -843,6 +850,13 @@
       "role_description": "Executable checks",
       "bytes": 2109,
       "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
+    },
+    {
+      "path": "tests/test_grade9_nlm_friction_connected.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2623,
+      "sha256": "ad8bf4f7f2040bd0e67d80775eed43efce49978179e59f7b1521dd2598f6be99"
     },
     {
       "path": "tests/test_grade9_simple_machines_scope.py",
@@ -1030,8 +1044,8 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5015,
-      "sha256": "b29812373cb13594f94b1cdc653e61750edb5053bd9b8f32e948ed5143cad005"
+      "bytes": 5308,
+      "sha256": "a5235106aecc427daf86ab21c2a9c042a50b2a8d9912156b48d5386d84f2f900"
     },
     {
       "path": "tests/test_tools.py",
@@ -1065,8 +1079,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 517205,
-      "sha256": "c1c3332658a5ad93943ac565e95765e2d199b6365d988fe2936ebe6add4739aa"
+      "bytes": 546231,
+      "sha256": "cc2fcb2adc08fc84dc6b27f5e1a8986fb2599550876961b3ed2411380792ca1b"
     },
     {
       "path": "tools/index.html",
@@ -1805,6 +1819,11 @@
     },
     {
       "from": "tests/test_grade9_motion2d_examside.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_friction_connected.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
