@@ -141,6 +141,20 @@ jobs:
       - name: Contract claims are backed by code
         run: python3 Shared/tools/capability_audit.py --enforce
 
+      # Helper-branch only: generate the exact derived files so the source slice can be
+      # validated against repository-native generation before those artifacts are copied
+      # back to the real feature branch.
+      - name: Generate exact derived artifacts for G10-1B preview
+        run: python3 Shared/tools/build_manifest.py
+
+      - name: Upload exact derived artifacts for G10-1B preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: g10-1b-generated-artifacts
+          path: |
+            tools/data.js
+            docs/architecture-manifest.json
+
       # Render the expected architecture index as an artifact without modifying the
       # checkout. This makes drift repair inspectable while the following --check remains
       # read-only and still fails when the committed artifact is stale.
