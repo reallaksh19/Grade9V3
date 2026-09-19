@@ -1,0 +1,29 @@
+name: regenerate-vector-slice-preview
+
+on:
+  push:
+    branches:
+      - feat/g9-vector-direction-unit-slice
+
+permissions:
+  contents: read
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate shipped data and manifest
+        run: |
+          python3 Shared/tools/build_web_data.py
+          python3 Shared/tools/build_manifest.py
+      - name: Upload regenerated files
+        uses: actions/upload-artifact@v4
+        with:
+          name: vector-slice-generated
+          path: |
+            tools/data.js
+            docs/architecture-manifest.json
