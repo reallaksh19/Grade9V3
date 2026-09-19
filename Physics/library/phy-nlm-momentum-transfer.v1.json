@@ -505,8 +505,7 @@
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
-        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
-        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND"
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
       ],
       "evidence_refs": [],
       "extensions": {
