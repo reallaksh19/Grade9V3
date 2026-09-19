@@ -544,7 +544,7 @@
         {
           "id": "OPT-REF-R3-3",
           "role": "VERIFY",
-          "action": "Measure i, r and e and compare the incident and emergent directions rather than only their positions.",
+          "action": "Measure the angle of incidence i, angle of refraction r and angle of emergence e, then compare the incident and emergent directions rather than only their positions.",
           "why_valid": "For an ideal parallel slab, e matches i and the emergent direction is parallel even though the path is laterally displaced.",
           "inputs": [],
           "output": "e ≈ i; emergent ray parallel to incident"
@@ -563,7 +563,7 @@
         }
       ],
       "exit_task": {
-        "prompt": "Sketch a ray through a rectangular glass slab at oblique incidence, label i, r and e, and state the two comparisons expected in the ideal model.",
+        "prompt": "Sketch a ray through a rectangular glass slab at oblique incidence; label the angle of incidence i, angle of refraction r and angle of emergence e, then state the two comparisons expected in the ideal model.",
         "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
         "answer": {
           "kind": "MODEL_RESPONSE",
