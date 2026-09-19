@@ -143,6 +143,17 @@ def matrix_summary(subject: str, records: dict) -> list[dict]:
                                 activity["teaching_step_refs"] = atlas_ext.get("teaching_step_refs", [])
                                 activity["activity_kind"] = atlas_ext.get("activity_kind")
                                 activity["design_issue_ref"] = atlas_ext.get("design_issue_ref")
+                                gcdr = atlas_ext.get("gcdr_contract")
+                                if gcdr:
+                                    policy = gcdr.get("route_policy", {})
+                                    activity["support_route"] = {
+                                        "kind": "GCDR",
+                                        "conformance_status": gcdr.get("conformance_status"),
+                                        "recommended_when": policy.get("recommended_when", []),
+                                        "learner_evidence_triggers": policy.get("learner_evidence_triggers", []),
+                                        "auto_route_policy": policy.get("auto_route_policy"),
+                                        "rejoin_step_ref": gcdr.get("exit_evidence", {}).get("rejoin_step_ref")
+                                    }
                             activities.append(activity)
 
             tpath = []
