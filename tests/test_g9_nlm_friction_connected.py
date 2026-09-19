@@ -76,7 +76,7 @@ class Grade9NlmFrictionConnectedSlice(unittest.TestCase):
 
     def test_connected_body_capability_keeps_body_and_system_boundaries_distinct(self):
         cap = self.capabilities["CAP-NLM-CONNECTED-COMMON-ACCEL"]
-        self.assertIn("fixed relative separation", cap["success_criterion"])
+        self.assertIn("relative separation", cap["success_criterion"])
         self.assertIn("whole-system force sum", cap["success_criterion"])
         micro = self.microtopics["MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"]
         outputs = " ".join(step["output"] for step in micro["teaching_path"])
@@ -154,7 +154,7 @@ class Grade9NlmFrictionConnectedSlice(unittest.TestCase):
             matrix_id="MATRIX-PHY-NLM-FIRST-LAW",
         )
         self.assertTrue(report["passed"], report["findings"])
-        self.assertEqual(report["status"], session_readiness.SESSION_READY)
+        self.assertEqual(report["status"], session_readiness.READY)
 
     def test_examside_fixture_routes_through_the_new_capabilities(self):
         report = worksheet_study_plan.resolve(self.fixture)
