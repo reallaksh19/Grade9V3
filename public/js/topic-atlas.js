@@ -495,26 +495,11 @@
           const status = gcdr && act.support_route.conformance_status
             ? ` · ${act.support_route.conformance_status}`
             : '';
-          const auditStatus = gcdr && act.support_route.quality_audit_status
-            ? act.support_route.quality_audit_status
-            : null;
-          const pending = gcdr ? (act.support_route.quality_pending_checks || 0) : 0;
-          const failed = gcdr ? (act.support_route.quality_failed_checks || 0) : 0;
-          const findings = gcdr ? (act.support_route.unresolved_findings_count || 0) : 0;
-          const auditBadge = auditStatus
-            ? `<span class="badge ${auditStatus === 'PASS' ? 'ok' : (failed || findings ? 'hold' : 'warn')}"
-                    style="font-size: 9px; margin-left: 4px;">
-                 Audit ${auditStatus}${pending ? ` · ${pending} pending` : ''}${failed ? ` · ${failed} fail` : ''}${findings ? ` · ${findings} open` : ''}
-               </span>`
-            : '';
-          const fidelity = gcdr && act.support_route.external_state_mapping
-            ? ` · mapping ${act.support_route.external_state_mapping}`
-            : '';
           return `
             <a href="${activityHref(act.locator)}" class="btn primary-phy"
                style="font-size: 11px; padding: 4px 9px; margin-right: 6px; margin-top: 6px;"
-               title="${label} for ${step.id}${status}${auditStatus ? ` · audit ${auditStatus}` : ''}${fidelity}">
-              🧪 ${label}: ${act.title} ${auditBadge} ↗
+               title="${label} for ${step.id}${status}">
+              🧪 ${label}: ${act.title} ↗
             </a>
           `;
         }).join('');
