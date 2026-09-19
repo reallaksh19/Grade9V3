@@ -189,3 +189,20 @@ Any one of these can promote micro-demand from `MICRO_TO_CONFIRM`:
 
 The next artifact should be a **school demand → capability crosswalk**, not another framework
 layer.
+
+
+## Promotion protocol
+
+When additional school material arrives, use:
+
+`docs/grade9/TERMINAL1-PINNACLE-DEMAND-INTAKE.md`
+
+The promotion rule is deliberately narrow:
+
+```text
+explicit school learner action
+→ exact capability comparison
+→ REUSE / ENRICH / AUTHOR / QUESTION_VARIATION / HOLD_UNCONFIRMED
+```
+
+No `MICRO_TO_CONFIRM` row is promoted merely because it is plausible inside a chapter title.
