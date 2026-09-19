@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:6d0ee0f2c382acb8fae5d9701453d2e71a911bcc5413d53d5884b97ccd3719bf",
+  "digest": "sha256:fe8e96a95a3228b19dc40a0a6530a5264cf012317141b685bd8ef74707d4820a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -785,8 +785,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14811,
-      "sha256": "a6040975d63fc60744c647964f9d4dc156884a9ded9569891e0fa0609e84c099"
+      "bytes": 14957,
+      "sha256": "0eb9925c891228a2edb906bd32f1428cca4285cb3c7dcab15cbbc7f37187c9a2"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -862,8 +862,8 @@
       "path": "tests/test_issue19_physics_content.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13356,
-      "sha256": "0b0552d224a4dfdb916ca5ae4a241adfc0d219e0ec7312513d9dd1049962ec2c"
+      "bytes": 13467,
+      "sha256": "da27020e8f2aa0e9557186239d4496ee214a72fb883168d586e5958910d42ba3"
     },
     {
       "path": "tests/test_library.py",
