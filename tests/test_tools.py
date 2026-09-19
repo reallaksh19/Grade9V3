@@ -1221,8 +1221,11 @@ class ResolveRequest(unittest.TestCase):
             request["learner"]["owner_estimate"]["knowledge_percentage"] = min(
                 r["ladder_position"] for r in board["rungs"])
             report = resolve_request.plan(request)
-            teaching = self.core(report, "CORE1A").get("segment") or []
-            taught = any(s["state"] == "PRESENT" for s in teaching)
+            caps, mics = author_brief.capability_chain("Physics")
+            taught = any(
+                author_brief.rung_state(row, caps, mics)["state"] == "PRESENT"
+                for row in board["rungs"]
+            )
             records = resolve_request.library_records("Physics")
             for name in ("CORE2A", "CORE2B"):
                 with self.subTest(bucket=board["bucket_id"], core=name):
