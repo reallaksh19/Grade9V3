@@ -895,6 +895,234 @@
       ]
     },
     {
+      "gate_id": "PHY-NLM-MOMENTUM-TRANSFER-RATE",
+      "title": "Force from discrete momentum transfer per unit time",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Force and Laws of Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-NLM-MOMENTUM-DIRECTED",
+          "statement": "For one fixed-mass item in a declared inertial frame, linear momentum is directed and changes by final minus initial momentum."
+        },
+        {
+          "concept_id": "CON-NLM-FORCE-MOMENTUM-RATE",
+          "statement": "Net external force is the directed rate of momentum change for the same chosen system and frame."
+        },
+        {
+          "concept_id": "CON-NLM-DISCRETE-MOMENTUM-FLOW",
+          "statement": "For repeated identical item momentum changes, items per unit time times momentum change per item gives the average momentum-transfer force on the stream."
+        }
+      ],
+      "prerequisites": [
+        "PHY-NEWTON-SECOND-LAW"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-NLM-LINEAR-MOMENTUM-ITEM",
+          "expression": "p = m v",
+          "meaning": "The signed one-dimensional linear momentum of one fixed-mass item equals its mass times its signed velocity in the declared inertial frame.",
+          "symbols": [
+            {
+              "symbol": "p",
+              "meaning": "Signed linear momentum of one item",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Positive fixed mass of that item",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Signed velocity of the item in the declared inertial frame",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "The item mass is positive and fixed during the compared states.",
+            "Velocity and momentum use the same declared one-dimensional positive direction.",
+            "Initial and final velocities are measured in the same inertial frame."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-FORCE-MOMENTUM-RATE",
+          "expression": "F_ext = dp/dt",
+          "meaning": "The net external force on a chosen system equals its directed rate of change of linear momentum; this bounded Grade-9 extension evaluates that rate through a steady discrete transfer rather than calculus.",
+          "symbols": [
+            {
+              "symbol": "F_ext",
+              "meaning": "Signed net external force on the chosen system",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "p",
+              "meaning": "Signed linear momentum of the chosen system or stream",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "System boundary, inertial frame and positive direction are declared.",
+            "The momentum and force refer to the same chosen system and frame.",
+            "For the learner route here, the rate is evaluated from repeated finite momentum transfers; no derivative calculation is required."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-DISCRETE-MOMENTUM-TRANSFER",
+          "expression": "F_avg,on_ejecta = R Delta p_item",
+          "meaning": "If identical fixed-mass items undergo the same signed momentum change and are ejected at steady rate R items per second, the ejecta stream's average momentum-change rate and average force equal R times the momentum change per item.",
+          "symbols": [
+            {
+              "symbol": "F_avg,on_ejecta",
+              "meaning": "Signed average force on the ejecta stream",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "R",
+              "meaning": "Steady number of identical items ejected per unit time",
+              "unit": "s^-1",
+              "dimension": "T^-1"
+            },
+            {
+              "symbol": "Delta p_item",
+              "meaning": "Signed momentum change of one ejected item",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            }
+          ],
+          "conditions": [
+            "The represented items are identical for the calculation or share the same Delta p_item.",
+            "R is the number ejected per unit time over the averaging interval.",
+            "Delta p_item uses the same inertial frame and positive direction for every item.",
+            "The reported force is an average over the repeated discrete ejections."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Declare one inertial frame and one positive direction before assigning momentum or force signs.",
+        "Use final minus initial momentum for each fixed-mass item; final momentum alone is valid only when the initial momentum is zero in the chosen frame.",
+        "Use the discrete rate form only when the represented repeated items share the stated per-item momentum change or an appropriate average has been defined.",
+        "Keep the force on the ejecta, the opposite launcher interaction force and an external holding force on distinct bodies/roles.",
+        "Do not infer collision-conservation, impulse-integral, rocket-equation or continuously varying-mass machinery from this gate."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-NLMMTR-FRAME",
+          "sequence": 1,
+          "action": "Choose the inertial frame, positive direction and item initial/final states.",
+          "why_valid": "All later momentum and force signs depend on one consistent directed description."
+        },
+        {
+          "step_id": "RS-NLMMTR-ITEM",
+          "sequence": 2,
+          "action": "Compute the signed momentum change of one fixed-mass item.",
+          "why_valid": "The repeated stream transfers that per-item change, not merely final momentum.",
+          "depends_on": [
+            "RS-NLMMTR-FRAME"
+          ]
+        },
+        {
+          "step_id": "RS-NLMMTR-RATE",
+          "sequence": 3,
+          "action": "Convert n repeated item changes over Delta t into the average momentum-change rate and force.",
+          "why_valid": "Summing n equal changes then dividing by the same interval gives (n/Delta t)Delta p_item = R Delta p_item.",
+          "depends_on": [
+            "RS-NLMMTR-ITEM"
+          ]
+        },
+        {
+          "step_id": "RS-NLMMTR-DIRECTION",
+          "sequence": 4,
+          "action": "Assign opposite launcher recoil and, if held fixed, the external holding force that balances it.",
+          "why_valid": "Interaction partners act on different bodies, and a fixed launcher has zero net average force.",
+          "depends_on": [
+            "RS-NLMMTR-RATE"
+          ]
+        },
+        {
+          "step_id": "RS-NLMMTR-CHECK",
+          "sequence": 5,
+          "action": "Verify newton units and a zero-transfer or sign-reversal boundary case.",
+          "why_valid": "A correct momentum-rate force must have force dimensions and respond consistently to direction or zero momentum change.",
+          "depends_on": [
+            "RS-NLMMTR-DIRECTION"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-NLMMTR-FINAL-P-ONLY",
+          "wrong_idea": "Use m v_out per item even when v_in is nonzero in the chosen frame.",
+          "counterexample": "If v_out equals v_in, the item has nonzero momentum but zero momentum change, so this transfer contributes zero force.",
+          "repair": "Use Delta p_item=m(v_out-v_in)."
+        },
+        {
+          "misconception_id": "MIS-NLMMTR-RECOIL-SAME-DIRECTION",
+          "wrong_idea": "The ejecta force and launcher recoil point in the same direction.",
+          "counterexample": "Forward momentum gained by the ejecta corresponds to an opposite interaction force on the launcher.",
+          "repair": "Name the body for each force; the launcher interaction partner is opposite, and a holding force balances that recoil."
+        },
+        {
+          "misconception_id": "MIS-NLMMTR-ROCKET-IMPORT",
+          "wrong_idea": "Any ejection-rate problem requires a rocket equation or full variable-mass dynamics.",
+          "counterexample": "A steady count of identical fixed-mass items can be handled by summing their per-item momentum changes over a finite interval.",
+          "repair": "Use the bounded repeated-item rate unless the problem explicitly asks for continuous variable-mass evolution."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-NLMMTR-DISCRETE-STREAM",
+          "title": "Average force from repeated identical momentum changes",
+          "hidden_invariants": [
+            "The same frame, sign convention and per-item momentum change are used throughout the averaging interval."
+          ]
+        },
+        {
+          "family_id": "FAM-NLMMTR-RECOIL-HOLD",
+          "title": "Launcher recoil and balancing holding force",
+          "hidden_invariants": [
+            "Force on ejecta, interaction recoil on launcher and external holding force are distinct directed quantities on the appropriate bodies."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 5,
+        "prerequisite_depth": 2,
+        "note": "The computation is short; system boundary, final-minus-initial momentum, rate conversion and reaction/holding-force signs are the substantive steps."
+      },
+      "badges": [
+        "FORCE-MOTION",
+        "EXPLICIT-DEMAND",
+        "JEE-PREPARATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-NLMMTR-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
       "gate_id": "PHY-WORK-ENERGY-GRADE9",
       "title": "Grade 9 work, kinetic energy and gravitational potential energy",
       "curriculum": {
