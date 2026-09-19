@@ -16,7 +16,7 @@
     "TOOLING": 41,
     "WEB": 6
   },
-  "digest": "sha256:c9941388faeba8f2ab275c9dad0aac0ed78f8fbda4d579e369fbf837afef9afd",
+  "digest": "sha256:e9678acd7996ab1c0e387c066491fd74d414f2ce316661701362a5342f4d4b8f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -834,8 +834,8 @@
       "path": "tests/test_feedback.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 42610,
-      "sha256": "9466a6b44392abc9896c8bc164a4ea59fadc6a7d3af30d39ed73efde9c9ae13e"
+      "bytes": 42728,
+      "sha256": "9ad2f9d008cacd5c1957459b5e67064d1fc26f37f7aca3bdd546b83a549c6476"
     },
     {
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
@@ -918,8 +918,8 @@
       "path": "tests/test_grade9_motion1d_vertical_gravity_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 10232,
-      "sha256": "09ecbaec0a9bba04d7a01daa156844d2a9205e0f0e818726e5cf3b1c15f7325b"
+      "bytes": 10237,
+      "sha256": "7e63e123d709765c2f838111abb5668c8863fc7b07016bec211b9782ed939292"
     },
     {
       "path": "tests/test_grade9_motion2d_agent_a_atlas.py",
