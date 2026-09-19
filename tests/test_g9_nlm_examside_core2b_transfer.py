@@ -26,15 +26,24 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
         )
         cls.records = resolve_request.library_records("Physics")
         cls.questions = {row["id"]: row for row in cls.package["questions"]}
-        cls.transfer_ids = [
+        cls.examside_transfer_ids = [
             "Q-PHY-NLM-2B-FRICTION-STATE-01",
             "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
             "Q-PHY-NLM-2B-STRING-MODEL-03",
             "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
             "Q-PHY-NLM-2B-FRAME-SELECTION-05",
         ]
+        cls.agent_a_friction_transfer_ids = [
+            "Q-PHY-NLM-2B-FRICTION-WALKING-02",
+            "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+            "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
+            "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
+        ]
+        cls.transfer_ids = (
+            cls.examside_transfer_ids + cls.agent_a_friction_transfer_ids
+        )
 
-    def test_nlm_core2b_inventory_is_exactly_this_representative_set(self):
+    def test_nlm_core2b_inventory_contains_examside_and_agent_a_friction_sets(self):
         inventory = practice_inventory.coverage(
             self.records, "BUCKET-PHY-NLM-FIRST-LAW"
         )
@@ -143,7 +152,7 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
         )
 
     def test_examside_is_demand_provenance_not_question_custody(self):
-        for question_id in self.transfer_ids:
+        for question_id in self.examside_transfer_ids:
             with self.subTest(question_id=question_id):
                 q = self.questions[question_id]
                 self.assertEqual(q["origin"], "AUTHORED")
@@ -160,7 +169,7 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
         inventory = practice_inventory.coverage(
             self.records, "BUCKET-PHY-NLM-FIRST-LAW"
         )
-        self.assertEqual(len(inventory["CORE2B"]), 5)
+        self.assertEqual(len(inventory["CORE2B"]), 9)
         dimensions = {
             self.questions[qid]["transfer"]["dimension"]
             for qid in inventory["CORE2B"]
