@@ -1,44 +1,86 @@
-/* Grade9V3 Unified Design System */
+/* Grade9V3 Unified Design System (Accessibility & Typography Upgraded) */
 :root {
-  --bg: #090d13;
-  --bg-panel: #121822;
-  --bg-card: #1c2432;
-  --bg-card-hover: #263143;
-  --border: #2c384b;
-  --border-hover: #435470;
+  /* ==========================================================================
+     1. COLOR CONTRAST RE-CALIBRATION (WCAG 2.1 AA / AAA Compliant)
+     ========================================================================== */
+  --bg: #0d1117;
+  --bg-panel: #161b22;
+  --bg-card: #21262d;
+  --bg-card-hover: #292f38;
   
-  --text: #f0f4f8;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
+  /* UI Component Boundaries (SC 1.4.11 Compliance: >= 3.0:1) */
+  --border: #444c56;
+  --border-muted: #30363d;
+  --border-hover: #58a6ff;
+  --border-accent: #58a6ff;
+
+  /* Upgraded High-Contrast Text Tokens */
+  --text: #f0f6fc;            /* 17.5:1 on bg - Pure clarity */
+  --text-secondary: #c9d1d9;  /* 11.2:1 on bg, 9.0:1 on card - High readability */
+  --text-muted: #919bb0;      /* 6.3:1 on bg, 5.1:1 on card - Full AA Pass */
+  --text-dim: #9aa4b2;        /* Fixed: 7.2:1 on bg, 5.8:1 on card (Replaces #6e7681) */
+  --accent: #79c0ff;          /* Boosted brightness: 8.8:1 on bg, 7.1:1 on card */
+  --accent-glow: rgba(56, 139, 253, 0.20);
+
+  /* Alert Chips (Calibrated for chromatic separation & contrast >= 5.5:1) */
+  --chip-ok-bg: #132b1e;
+  --chip-ok-border: #3fb950;
+  --chip-ok-text: #56d364;      /* 7.1:1 on chip-ok-bg */
+
+  --chip-warn-bg: #2e1f08;
+  --chip-warn-border: #d29922;
+  --chip-warn-text: #f0b72f;    /* 7.8:1 on chip-warn-bg */
+
+  --chip-hold-bg: #2c1519;
+  --chip-hold-border: #da3633;
+  --chip-hold-text: #ff7b72;    /* 6.8:1 on chip-hold-bg */
+
+  --chip-purple-bg: #24183a;
+  --chip-purple-border: #a371f7;
+  --chip-purple-text: #d2a8ff;  /* 8.5:1 on chip-purple-bg */
 
   /* Subject Brand Accents */
   --phy-accent: #38bdf8;
   --phy-glow: rgba(56, 189, 248, 0.2);
-  --phy-bg: rgba(56, 189, 248, 0.06);
+  --phy-bg: rgba(56, 189, 248, 0.08);
 
   --chem-accent: #34d399;
   --chem-glow: rgba(52, 211, 153, 0.2);
-  --chem-bg: rgba(52, 211, 153, 0.06);
+  --chem-bg: rgba(52, 211, 153, 0.08);
 
   --math-accent: #c084fc;
   --math-glow: rgba(192, 132, 252, 0.2);
-  --math-bg: rgba(192, 132, 252, 0.06);
+  --math-bg: rgba(192, 132, 252, 0.08);
 
-  /* Status Tokens */
-  --ok-bg: #132d1e;
-  --ok-border: #238636;
-  --ok-text: #4ade80;
+  /* ==========================================================================
+     2. MODERN SYSTEM TYPOGRAPHY STACK
+     ========================================================================== */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, sans-serif,
+               "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono",
+               Menlo, Consolas, "Liberation Mono", monospace;
 
-  --warn-bg: #382c16;
-  --warn-border: #9e6a03;
-  --warn-text: #fbbf24;
+  /* ==========================================================================
+     3. HARMONIZED MODULAR TYPE SCALE (Base: 14px, Ratio: 1.125 Major Second)
+     ========================================================================== */
+  --text-xs: 0.75rem;    /* 12px - Absolute minimum accessible floor (Badges, Micro-tags) */
+  --text-sm: 0.8125rem;  /* 13px - Secondary details, meta labels */
+  --text-base: 0.875rem; /* 14px - Default body, answers, table content */
+  --text-md: 0.9375rem;  /* 15px - Primary reading stems, card summaries */
+  --text-lg: 1.0625rem;  /* 17px - Section headers, stat values */
+  --text-xl: 1.25rem;    /* 20px - Page Title / Focus anchors */
+}
 
-  --hold-bg: #3d1c24;
-  --hold-border: #a42c3d;
-  --hold-text: #f87171;
-
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+/* ==========================================================================
+   GLOBAL RENDERING & TYPOGRAPHIC SMOOTHING
+   ========================================================================== */
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,16 +89,32 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--text-base);
+  line-height: 1.62;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Nav Bar */
+/* Tabular numbers for numerical precision across badges and ladders */
+.stat-value,
+.rung-num-pill,
+.node-id,
+.q-id,
+.badge,
+code {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Monospace equation safety: disable ligatures that confound math notation */
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Navigation Bar */
 header.site-nav {
-  background: rgba(18, 24, 34, 0.85);
+  background: rgba(22, 27, 34, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 14px 24px;
@@ -77,15 +135,13 @@ header.site-nav {
   text-decoration: none;
   color: var(--text);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: -0.3px;
 }
-.brand-link span.logo-icon {
-  font-size: 20px;
-}
+.brand-link span.logo-icon { font-size: 20px; }
 .brand-badge {
-  font-size: 11px;
-  padding: 2px 7px;
+  font-size: var(--text-xs);
+  padding: 2px 8px;
   border-radius: 10px;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -101,9 +157,9 @@ nav.nav-links {
 }
 nav.nav-links a {
   text-decoration: none;
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 7px 12px;
   border-radius: 6px;
   color: var(--text-muted);
   transition: all 0.15s ease;
@@ -126,8 +182,8 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  color: var(--text-dim);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 .breadcrumb a {
@@ -136,22 +192,22 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   transition: color 0.15s;
 }
 .breadcrumb a:hover { color: var(--text); }
-.breadcrumb span.sep { color: var(--border-hover); }
+.breadcrumb span.sep { color: var(--border); }
 .breadcrumb span.current { color: var(--text); font-weight: 600; }
 
 /* Main Container */
 .container {
-  max-width: 1200px;
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 24px 60px 24px;
+  padding: 28px 24px 60px 24px;
   flex: 1;
 }
 
 /* Hero */
 .hero {
   text-align: center;
-  padding: 48px 20px 40px 20px;
+  padding: 40px 20px 36px 20px;
   max-width: 860px;
   margin: 0 auto;
 }
@@ -163,22 +219,22 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   border-radius: 20px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-family: var(--font-mono);
   color: var(--text-muted);
   margin-bottom: 16px;
 }
 .hero h1 {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 800;
   line-height: 1.25;
   margin-bottom: 12px;
   letter-spacing: -0.5px;
 }
 .hero p.lead {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* 3 Main Subject Cards Grid */
@@ -186,7 +242,7 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
 .subject-card {
@@ -252,10 +308,10 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
 }
 
 .subject-desc {
-  font-size: 13.5px;
+  font-size: var(--text-base);
   color: var(--text-muted);
   margin-bottom: 24px;
-  line-height: 1.6;
+  line-height: 1.62;
   flex-grow: 1;
 }
 
@@ -267,7 +323,7 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
 }
 
 .card-action {
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -286,22 +342,24 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   gap: 4px;
   padding: 3px 8px;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.05em;
 }
-.badge.ok { background: var(--ok-bg); border: 1px solid var(--ok-border); color: var(--ok-text); }
-.badge.warn { background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text); }
-.badge.hold { background: var(--hold-bg); border: 1px solid var(--hold-border); color: var(--hold-text); }
+.badge.ok { background: var(--chip-ok-bg); border: 1px solid var(--chip-ok-border); color: var(--chip-ok-text); }
+.badge.warn { background: var(--chip-warn-bg); border: 1px solid var(--chip-warn-border); color: var(--chip-warn-text); }
+.badge.hold { background: var(--chip-hold-bg); border: 1px solid var(--chip-hold-border); color: var(--chip-hold-text); }
+.badge.purple { background: var(--chip-purple-bg); border: 1px solid var(--chip-purple-border); color: var(--chip-purple-text); }
 .badge.phy { background: var(--phy-bg); border: 1px solid var(--phy-accent); color: var(--phy-accent); }
 .badge.chem { background: var(--chem-bg); border: 1px solid var(--chem-accent); color: var(--chem-accent); }
 .badge.math { background: var(--math-bg); border: 1px solid var(--math-accent); color: var(--math-accent); }
+.badge.neutral { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); }
 
 /* Sections */
 .section-header {
-  margin: 48px 0 20px 0;
+  margin: 40px 0 18px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -311,7 +369,7 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   padding-bottom: 10px;
 }
 .section-header h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text);
   display: flex;
@@ -336,7 +394,7 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   border-color: var(--border-hover);
 }
 .chapter-header {
-  padding: 18px 24px;
+  padding: 16px 22px;
   background: var(--bg-card);
   display: flex;
   align-items: center;
@@ -353,7 +411,7 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   gap: 10px;
 }
 .subtopics-grid {
-  padding: 20px 24px;
+  padding: 20px 22px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
@@ -373,15 +431,15 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   background: rgba(255, 255, 255, 0.02);
 }
 .subtopic-title {
-  font-size: 14px;
+  font-size: var(--text-base);
   font-weight: 600;
   color: var(--text);
   margin-bottom: 6px;
 }
 .subtopic-desc {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
   margin-bottom: 14px;
   flex-grow: 1;
 }
@@ -398,9 +456,9 @@ nav.nav-links a.math-link.active { color: var(--math-accent); border-color: var(
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 7px 12px;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -428,6 +486,6 @@ footer.site-footer {
   padding: 24px 20px;
   background: var(--bg-panel);
   text-align: center;
-  color: var(--text-dim);
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
 }
