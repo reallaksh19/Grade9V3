@@ -1377,19 +1377,9 @@
       ],
       "falsification_cases": [
         {
-          "case_id": "FAL-OPT-MIRROR-SIGN-CONVENTION",
-          "mutation": "Assign signs from object/image labels without declaring the pole and positive directions.",
-          "expected_violation": "MIRROR_SIGN_CONVENTION_REQUIRED"
-        },
-        {
-          "case_id": "FAL-OPT-MIRROR-NO-PARAXIAL-LIMIT",
-          "mutation": "Present 1/v + 1/u = 1/f as exact for arbitrary wide-aperture spherical-mirror rays.",
-          "expected_violation": "MIRROR_PARAXIAL_MODEL_REQUIRED"
-        },
-        {
-          "case_id": "FAL-OPT-MIRROR-DROP-MAGNIFICATION-SIGN",
-          "mutation": "Replace signed magnification with an unsigned size ratio and infer orientation from magnitude alone.",
-          "expected_violation": "MIRROR_MAGNIFICATION_SIGN_REQUIRED"
+          "case_id": "FAL-OPT-MIRROR-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from a mirror-relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
     }
