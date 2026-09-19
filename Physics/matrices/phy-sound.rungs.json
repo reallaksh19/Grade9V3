@@ -53,8 +53,8 @@
         "transverse polarization"
       ],
       "must_contain": [
-        "Compressions and rarefactions moving along one propagation axis.",
-        "One marked particle oscillating locally while the disturbance travels much farther."
+        "Compressions labelled as locally denser/higher-pressure regions and rarefactions as less-dense/lower-pressure regions along one propagation axis.",
+        "One marked particle oscillating locally mainly parallel to propagation while the disturbance travels much farther."
       ],
       "controlled_variation": [
         {
@@ -82,10 +82,10 @@
         "wave equation PDE"
       ],
       "must_contain": [
-        "A spatial sound-wave graph whose horizontal repeat distance is identified as wavelength.",
-        "A temporal sound-wave graph whose horizontal repeat time is identified as period.",
+        "A spatial graph whose horizontal repeat distance is wavelength.",
+        "A temporal graph whose horizontal repeat time is period.",
         "Amplitude read from vertical extent without confusing it with wavelength or period.",
-        "An explicit derivation v = lambda/T = f lambda for one wave in one medium."
+        "An explicit same-wave/same-medium validity check before using v = f lambda."
       ],
       "controlled_variation": [
         {
@@ -156,8 +156,8 @@
       ],
       "must_contain": [
         "An outward-and-return reflected path before echo distance is calculated.",
-        "A distinction between a separate echo and overlapping reverberation.",
-        "An echolocation example using return timing as a range cue."
+        "A distinction between a separate echo and overlapping reverberation without hard-coding one universal threshold distance.",
+        "An echolocation/ranging example using return timing as a range cue."
       ],
       "controlled_variation": [
         {
@@ -176,9 +176,9 @@
     }
   ],
   "family": {
-    "invariant_demand": "Identify source and medium, keep particle motion separate from wave propagation, distinguish the wave quantities, and trace reflection paths before calculating.",
-    "difficult_move": "Knowing which quantity the words describe—particle displacement, amplitude, period, frequency, wavelength, wave speed, pitch, loudness or round-trip delay—before selecting a relation.",
-    "independent_check": "Units and boundary cases must agree: fT=1, v=f lambda for one wave, and echo one-way range is half the round-trip path.",
+    "invariant_demand": "Identify the vibrating source and material medium, separate local particle motion from disturbance propagation, read graph axes before naming wave quantities, and trace the complete reflected path before using timing relations.",
+    "difficult_move": "Keeping representation roles separate: source versus medium, particles versus wave pattern, spatial versus temporal repeat spacing, pitch/loudness versus propagation quantities, and one-way range versus round-trip path.",
+    "independent_check": "Vacuum must block ordinary mechanical sound propagation; longitudinal particle motion must be parallel to propagation; fT=1 and v=fλ must use one wave/medium state; echo one-way range is half the round-trip path.",
     "support_ladder": [
       {
         "level": "high",
