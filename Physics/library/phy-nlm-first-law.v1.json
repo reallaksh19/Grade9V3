@@ -286,7 +286,9 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "agent_a:semantic_boundary": "Owns the kinematic consequence of an active fixed-separation constraint and the body-versus-system boundary used with Newton II. It does not license common acceleration after the constraint is lost, and it does not own equal-string-tension or pulley-length geometry."
       },
       "action": "Identify which bodies are constrained to share one acceleration component and write consistent body-specific or whole-system Newton-II equations.",
       "success_criterion": "States the physical constraint that fixes relative separation, uses one compatible sign convention, gives constrained bodies the same acceleration component only when justified, and cancels internal partner forces only in a whole-system force sum rather than on an individual-body FBD.",
@@ -307,7 +309,9 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "agent_a:semantic_boundary": "Owns force transmission in one declared ideal string/redirection model: body-specific tension forces, one common tension magnitude when justified, and tension obtained from Newton II rather than identified automatically with weight. It does not own the string-length kinematic constraint."
       },
       "action": "Use one declared ideal-string model to assign tension forces and, where justified, one common tension magnitude throughout that same string.",
       "success_criterion": "States the ideal massless-taut-string and frictionless/massless redirection assumptions, puts each tension arrow on the body it acts on, uses one tension magnitude only under those assumptions, and refuses that equality for a nonideal rope or pulley model.",
@@ -329,7 +333,9 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "agent_a:semantic_boundary": "Owns conversion of one fixed-pulley inextensible-string geometry into signed displacement, velocity and acceleration constraints. The length relation is a kinematic claim and does not by itself prove equal tension."
       },
       "action": "Convert constant length of one taut inextensible string over one fixed ideal pulley into the corresponding displacement, velocity, or acceleration relation.",
       "success_criterion": "Declares coordinates along the two string segments, writes the fixed-length relation y_A + y_B = constant, derives a_A + a_B = 0 in those coordinates, and does not generalize that result to movable/compound pulley geometry.",
@@ -1485,7 +1491,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "title": "Connected bodies and a justified common acceleration",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1533,6 +1540,17 @@
             "CAP-NLM-FBD-BODY-OWNERSHIP"
           ],
           "output": "system: Sigma F_external = (m_A + m_B) a; internal pair absent only after equations are combined"
+        },
+        {
+          "id": "NLM9-5",
+          "role": "VERIFY",
+          "action": "Match the chosen system boundary to the requested quantity: use the combined constrained system when internal forces are irrelevant to the shared acceleration, then isolate the body or subsystem that makes a requested interaction force external.",
+          "why_valid": "An internal interaction disappears from a whole-system force sum, so that boundary is efficient for acceleration but cannot by itself determine the internal force that was cancelled.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "target shared acceleration -> whole constrained system; target internal/contact force -> isolate a body or subsystem while carrying the same justified acceleration."
         }
       ],
       "relation_refs": [
@@ -1552,6 +1570,11 @@
           "wrong_idea": "The contact force between two bodies can be cancelled from each individual FBD because it is an internal force of the pair.",
           "diagnostic_prompt": "On body A alone, is the force from body B external to A?",
           "repair": "Yes. Keep it in A's equation. It cancels only after A and B are deliberately combined into one system equation."
+        },
+        {
+          "wrong_idea": "Bodies with the same acceleration must have the same net force.",
+          "diagnostic_prompt": "Two connected bodies of different masses share acceleration a. Must their individual net forces be equal?",
+          "repair": "No. The constraint can make their accelerations equal while Newton II gives different net forces m_A a and m_B a when the masses differ."
         }
       ],
       "exit_task": {
@@ -1631,7 +1654,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "title": "Ideal-string tension belongs to each body-specific FBD",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1677,6 +1701,16 @@
           "why_valid": "Those changes alter the force transmission assumptions that supported one common T.",
           "inputs": [],
           "output": "nonideal feature present -> equal-tension relation not licensed by this capability"
+        },
+        {
+          "id": "NLM10-5",
+          "role": "TRANSFORM",
+          "action": "Determine the tension magnitude from a chosen body's signed Newton-II equation; do not replace T by mg or by an applied force merely because those forces appear in the same setup.",
+          "why_valid": "Uniform tension says the ideal string transmits one magnitude throughout itself; it does not say that magnitude equals some different force. For a hanging body, T=mg only in the special zero-acceleration case.",
+          "inputs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "for +y upward on a hanging mass: T - mg = ma_y; therefore a_y=0 -> T=mg, a_y>0 -> T>mg, and a_y<0 -> T<mg."
         }
       ],
       "relation_refs": [
@@ -1696,6 +1730,11 @@
           "wrong_idea": "Every rope over every pulley has the same tension on both sides.",
           "diagnostic_prompt": "What model assumptions justify using one symbol T throughout the rope?",
           "repair": "State the ideal massless string and frictionless/massless redirection assumptions first. Without them, equal tension is not automatic."
+        },
+        {
+          "wrong_idea": "The tension in a string holding a hanging mass is always equal to the mass's weight.",
+          "diagnostic_prompt": "A hanging mass accelerates upward. Can T still equal mg while Newton II gives a nonzero upward net force?",
+          "repair": "Write the signed body equation. With upward positive, T-mg=ma, so upward acceleration requires T>mg; equality belongs only to zero vertical acceleration."
         }
       ],
       "exit_task": {
@@ -1771,7 +1810,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "title": "One fixed-pulley string gives one length constraint",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1815,6 +1855,16 @@
           "why_valid": "The two segment changes must cancel to preserve total string length.",
           "inputs": [],
           "output": "|a_A| = |a_B| with opposite signs in the declared away-from-pulley coordinates"
+        },
+        {
+          "id": "NLM11-5",
+          "role": "VERIFY",
+          "action": "Keep the kinematic string-length claim separate from the force-transmission claim: derive the acceleration relation from inextensibility and fixed geometry, and use equal tension only when the independent ideal-string/redirection assumptions license it.",
+          "why_valid": "The acceleration relation comes from constant string length, whereas tension equality comes from the force model. One statement is not the proof of the other.",
+          "inputs": [
+            "CAP-NLM-IDEAL-STRING-TENSION"
+          ],
+          "output": "fixed-length geometry -> a_A + a_B = 0 in the declared coordinates; ideal force-transmission model -> T_A = T_B. Treat these as separate justified statements."
         }
       ],
       "relation_refs": [
@@ -1834,6 +1884,11 @@
           "wrong_idea": "Bodies on opposite sides of a fixed pulley have the same signed acceleration.",
           "diagnostic_prompt": "If both coordinates are positive away from the pulley, can both segment lengths increase while total string length stays fixed?",
           "repair": "No. Their signed changes are opposite: a_A + a_B = 0 in these coordinates."
+        },
+        {
+          "wrong_idea": "The two end accelerations are equal and opposite because the string tension is equal on both sides.",
+          "diagnostic_prompt": "If equal tension were no longer guaranteed but the same fixed, taut, inextensible string still could not change length, which relation would you re-check from geometry?",
+          "repair": "Derive the acceleration relation from the fixed-length equation. Equal tension is a separate force-model statement and is not the cause of the kinematic constraint."
         }
       ],
       "exit_task": {
@@ -2308,7 +2363,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:connected_string_packet": "NLM_CONNECTED_STRING"
       },
       "title": "Newton-law and observer-frame practice",
       "capability_refs": [
@@ -2339,13 +2395,18 @@
         "Change surface labels, orientation, or context while preserving the same authored decision structure.",
         "Change masses, applied-force directions, or contact labels while preserving the same friction-state decision.",
         "Change the connected-body story while preserving the same declared kinematic constraint and body-specific force ownership.",
-        "Change which side of one fixed ideal pulley moves while preserving the same single-string length relation."
+        "Change which side of one fixed ideal pulley moves while preserving the same single-string length relation.",
+        "Change whether a contact/connector remains able to enforce fixed separation before assigning a common acceleration.",
+        "Change the target between shared acceleration and an internal interaction force so the learner must choose the appropriate system boundary.",
+        "Change a hanging body's acceleration state while keeping the same ideal string so tension must be solved rather than identified with weight."
       ],
       "transfer_boundaries": [
         "The observer frame is not handed over as inertial; the learner must choose a consistent frame treatment before building the force account.",
         "Static friction is not set equal to its maximum unless impending slip is established.",
         "Equal tension is not assumed unless the ideal-string/redirection model is declared.",
-        "Pulley acceleration ratios are not imported from another geometry; derive the active string-length relation."
+        "Pulley acceleration ratios are not imported from another geometry; derive the active string-length relation.",
+        "Do not preserve common acceleration after the physical constraint that fixed separation has been lost.",
+        "Do not use equal tension as the explanation for a fixed-string acceleration relation; force transmission and geometry are separate model claims."
       ],
       "common_wrong_routes": [
         "A force must keep acting in the direction of motion or the object must stop.",
@@ -2353,7 +2414,11 @@
         "Rough contact means the friction force must be nonzero.",
         "Static friction always equals mu_s N instead of taking the value required up to that limit.",
         "N is always mg even when another force has a perpendicular component.",
-        "A supplied mu_k is permission to use kinetic friction before sliding is established."
+        "A supplied mu_k is permission to use kinetic friction before sliding is established.",
+        "Touching or connected bodies automatically keep one acceleration even after the constraint can no longer act.",
+        "Bodies with the same acceleration must have the same net force.",
+        "A hanging body's tension is automatically equal to its weight.",
+        "Equal tension is what causes the equal-magnitude fixed-pulley acceleration constraint."
       ],
       "item_refs": [
         "Q-PHY-NLM-2A-01",
@@ -2379,7 +2444,11 @@
         "Q-PHY-NLM-2B-FRICTION-WALKING-02",
         "Q-PHY-NLM-2B-FRICTION-ZERO-03",
         "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
-        "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05"
+        "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
+        "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
+        "Q-PHY-NLM-2A-ATWOOD-12",
+        "Q-PHY-NLM-2B-CONTACT-LOSS-06",
+        "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07"
       ]
     }
   ],
@@ -2871,7 +2940,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -2922,7 +2992,8 @@
           "text": "Find the acceleration from the combined system first. Then isolate B; do not cancel the contact force from B's own equation.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "repair_ref": "NLM9-5"
     },
     {
       "id": "Q-PHY-NLM-2A-IDEAL-STRING-03",
@@ -2935,7 +3006,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pthree-blocks-mathrmm1-m2-m3-having-masses-4-jee-main-physics-motion-s5inhklf6lkhqvkn",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -2989,7 +3061,8 @@
           "text": "Use the whole two-cart system to find a, then isolate B to find the tension acting on B.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "repair_ref": "NLM10-5"
     },
     {
       "id": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
@@ -3002,7 +3075,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3050,7 +3124,8 @@
           "text": "Write the sum of those changing segments as a constant before thinking about velocities or accelerations.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "repair_ref": "NLM11-3"
     },
     {
       "id": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
@@ -3222,7 +3297,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
-        "examside:demand_provenance": "ExamSIDE demand family—multi-body string/contact equations require system-boundary decisions; representative source https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch"
+        "examside:demand_provenance": "ExamSIDE demand family—multi-body string/contact equations require system-boundary decisions; representative source https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3304,7 +3380,7 @@
           "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"
         ]
       },
-      "repair_ref": "NLM9-4"
+      "repair_ref": "NLM9-5"
     },
     {
       "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
@@ -3317,7 +3393,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
-        "examside:demand_provenance": "ExamSIDE demand family—string/pulley problems make tension-model assumptions consequential; representative corpus https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+        "examside:demand_provenance": "ExamSIDE demand family—string/pulley problems make tension-model assumptions consequential; representative corpus https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3411,7 +3488,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
-        "examside:demand_provenance": "ExamSIDE demand family—fixed-pulley geometry must be translated into a constraint before dynamics; representative source https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez"
+        "examside:demand_provenance": "ExamSIDE demand family—fixed-pulley geometry must be translated into a constraint before dynamics; representative source https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
+        "agent_a:packet": "NLM_CONNECTED_STRING"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -4130,6 +4208,311 @@
         ]
       },
       "repair_ref": "NLM8-2"
+    },
+    {
+      "id": "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_CONNECTED_STRING"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-CONNECTED-CONSTRAINT-11",
+      "stem": "Blocks A and B are side by side on a smooth horizontal floor, with A to the left of B and no adhesive connection. Compare two cases. In case 1 a horizontal force pushes A to the right into B and contact is maintained. In case 2 the same force pulls A to the left, away from B. In which case may one common horizontal acceleration be imposed, and why?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The contact force is an ordinary normal force and cannot pull the blocks together.",
+        "The floor is frictionless."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "A common acceleration is justified in case 1 while maintained contact fixes the separation. It is not justified in case 2: the normal contact cannot pull B after A is pulled away, so the contact constraint is lost.",
+        "reasoning": [
+          "Common acceleration must be earned from an active constraint that fixes relative separation.",
+          "When A is pushed into B and contact is maintained, the normal interaction can enforce the shared motion.",
+          "When A is pulled away from B, an ordinary normal force cannot act as a tensile connector to keep them together.",
+          "After separation, each block's acceleration must be obtained from its own remaining forces."
+        ],
+        "check": "If a proposed case-2 solution assigns a nonzero pulling normal force on B to preserve contact, it has given an ordinary contact force a capability it does not have.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What physical condition must stay active before equal acceleration can be imposed?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask whether an ordinary contact normal can keep acting when A tries to move away from B.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM9-1"
+    },
+    {
+      "id": "Q-PHY-NLM-2A-ATWOOD-12",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-ATWOOD-12",
+      "stem": "Masses m_A and m_B, with m_B > m_A, hang from the two ends of one taut massless inextensible string over one fixed frictionless massless pulley. Derive the acceleration magnitude a and the common string tension T. State explicitly why T is not equal to either hanging weight during the acceleration.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Mass A accelerates upward and mass B accelerates downward.",
+        "Use the same acceleration magnitude a for the two ends, as required by the fixed string-length constraint.",
+        "Neglect air resistance."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The acceleration magnitude is a=(m_B-m_A)g/(m_A+m_B), and the common tension is T=2m_A m_B g/(m_A+m_B). During the motion T>m_A g and T<m_B g, so it is not equal to either weight unless the corresponding acceleration is zero.",
+        "reasoning": [
+          "The fixed inextensible string gives equal acceleration magnitudes for the two ends while the ideal string/pulley model licenses one common tension T.",
+          "For A, upward positive gives T-m_A g=m_A a.",
+          "For B, downward positive gives m_B g-T=m_B a.",
+          "Adding the equations gives a=(m_B-m_A)g/(m_A+m_B).",
+          "Substitution into either body equation gives T=2m_A m_B g/(m_A+m_B).",
+          "Because A accelerates upward, its tension exceeds m_A g; because B accelerates downward, its tension is below m_B g."
+        ],
+        "check": "If m_A=m_B, the formula reduces to a=0 and T=mg, recovering the equilibrium special case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 2
+      },
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [
+        "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Separate the two claims you need: what fixes the acceleration relationship, and what licenses one common tension magnitude?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Write one signed Newton-II equation for each mass, then add the equations to eliminate T.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM10-5"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_CONNECTED_STRING"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-CONTACT-LOSS-06",
+      "stem": "Two blocks A and B are initially touching on a smooth horizontal floor, with A to the left of B. A horizontal force F is suddenly applied to A toward the left, away from B. A proposed solution treats A+B as one connected system and writes a=F/(m_A+m_B). Decide whether that model is valid immediately after the force is applied. If it is not, state the two accelerations.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "There is no glue, string, or other connector.",
+        "The contact is an ordinary normal interaction that cannot pull.",
+        "Take rightward as positive."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The common-acceleration model is invalid because the force makes A separate from B and an ordinary normal contact cannot pull them together. Immediately after contact is lost, a_A=-F/m_A and a_B=0.",
+        "reasoning": [
+          "The earlier common-acceleration rule applies only while an active condition fixes the blocks' separation.",
+          "Here F drives A away from B, so maintaining contact would require a tensile contact force on B, which an ordinary normal interaction cannot supply.",
+          "Once the contact force becomes zero, B has no horizontal force and therefore zero horizontal acceleration.",
+          "A has the applied leftward force F, so with rightward positive its acceleration is -F/m_A."
+        ],
+        "check": "The rejected value F/(m_A+m_B) would require B to accelerate left even though no horizontal interaction remains on B.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Rejects common acceleration because the stated contact cannot enforce fixed separation under the applied force.",
+            "evidence_of": "Treats the constraint as conditional rather than automatic."
+          },
+          {
+            "criterion": "Sets the post-separation contact force to zero.",
+            "evidence_of": "Recognizes that an ordinary normal interaction cannot pull."
+          },
+          {
+            "criterion": "Obtains a_A=-F/m_A and a_B=0 in the declared sign convention.",
+            "evidence_of": "Rebuilds the individual-body dynamics after the constraint is lost."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Turns the qualitative maintained-versus-lost-contact contrast into a dynamics task where the learner must reject a familiar whole-system equation and rebuild the two body accelerations."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Before using one acceleration, ask what interaction would have to keep the separation fixed after A is pulled away from B.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide that the common-acceleration connected-system model has ceased to apply, rather than being told that contact is maintained.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11"
+        ]
+      },
+      "repair_ref": "NLM9-1"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_CONNECTED_STRING"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-CONSTRAINT-VS-TENSION-07",
+      "stem": "Two masses remain attached to one taut inextensible string that does not slip on a fixed pulley. The pulley is now stated to have appreciable rotational inertia, and no rotational-dynamics relation is supplied. A student claims that both T_A=T_B and a_A+a_B=0 must either survive together or fail together. Decide which statement can still be obtained from the bounded material, and which statement is no longer licensed.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Coordinates y_A and y_B are measured positive away from the fixed pulley along the two straight string segments.",
+        "The string remains taut and inextensible and does not slip.",
+        "Do not invent a torque or rotational-inertia equation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The kinematic relation a_A+a_B=0 still follows from the fixed total string length. Equal tension T_A=T_B is no longer guaranteed by the taught ideal redirection model once appreciable pulley rotational inertia is introduced. A quantitative tension difference is outside this packet.",
+        "reasoning": [
+          "The signed acceleration relation is derived from the inextensible string's fixed length and the two changing straight segments.",
+          "That geometric argument does not use equality of tension magnitudes.",
+          "The one-common-T rule was licensed by the ideal massless/frictionless redirection model.",
+          "Introducing appreciable pulley rotational inertia breaks that force-transmission idealization, so the packet must refuse equal tension without supplying a replacement dynamics model."
+        ],
+        "check": "If the pulley is restored to the massless ideal model, both claims are licensed again, but for different reasons: geometry for the acceleration relation and force transmission for equal tension.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Retains a_A+a_B=0 from the fixed-length geometry.",
+            "evidence_of": "Can identify the kinematic origin of the string constraint independently of force transmission."
+          },
+          {
+            "criterion": "Refuses to assert T_A=T_B after the ideal redirection assumption is broken.",
+            "evidence_of": "Treats equal tension as model-conditional."
+          },
+          {
+            "criterion": "Does not manufacture a numerical or symbolic nonideal-pulley tension relation.",
+            "evidence_of": "Respects the stated boundary of the available model."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+      "secondary_capability_refs": [
+        "CAP-NLM-IDEAL-STRING-TENSION"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-ATWOOD-12",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Breaks only the ideal force-transmission assumption from an ideal Atwood setup while preserving fixed inextensible-string geometry, forcing the learner to separate the two model claims."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which statement is derived from total string length, and which statement depends on the pulley/string force idealization?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must preserve the kinematic length constraint while rejecting the equal-tension model after only the force-transmission assumption changes.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-ATWOOD-12"
+        ]
+      },
+      "repair_ref": "NLM11-5"
     }
   ],
   "teaching_routes": [
