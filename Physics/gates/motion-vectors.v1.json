@@ -1101,6 +1101,502 @@
           "expected_violation": "GATE_PREREQUISITE_UNKNOWN"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-VEC-ANGLE-DECOMPOSITION",
+      "title": "Resolve a magnitude-and-angle vector into perpendicular components",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Vectors / Motion in a Plane",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-VEC-PROJECTION-REFERENCE",
+          "statement": "Sine/cosine component assignment is determined by which axis the stated angle is measured from: cosine is adjacent and sine is opposite."
+        },
+        {
+          "concept_id": "CON-VEC-PROJECTION-SIGN",
+          "statement": "Right-triangle ratios give component magnitudes; signed directions come from the declared axes/quadrant."
+        }
+      ],
+      "prerequisites": [
+        "PHY-VEC-SCALAR-VECTOR",
+        "PHY-VEC-AXIS-CONVENTION"
+      ],
+      "external_prerequisites": [
+        {
+          "capability_id": "MATH-TRIG-RATIOS",
+          "provider_subject": "Mathematics",
+          "statement": "Use sine and cosine ratios in a right triangle to obtain leg magnitudes from a hypotenuse and acute reference angle.",
+          "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-VEC-ANGLE-COMPONENTS",
+          "expression": "V_adj = V cos(theta); V_opp = V sin(theta)",
+          "meaning": "Resolve a vector magnitude into component magnitudes adjacent/opposite to an explicitly stated acute reference angle, then assign signs from the declared axes.",
+          "symbols": [
+            {
+              "symbol": "V",
+              "meaning": "Vector magnitude",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "theta",
+              "meaning": "Acute reference angle to one component axis",
+              "unit": "rad or degree",
+              "dimension": "1"
+            },
+            {
+              "symbol": "V_adj",
+              "meaning": "Adjacent component magnitude",
+              "unit": "same as V",
+              "dimension": "same as V"
+            },
+            {
+              "symbol": "V_opp",
+              "meaning": "Opposite component magnitude",
+              "unit": "same as V",
+              "dimension": "same as V"
+            }
+          ],
+          "conditions": [
+            "The component axes are perpendicular.",
+            "The reference axis for theta is explicitly identified.",
+            "Signs are attached from the declared axis directions after the component magnitudes are found."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Do not assign sine/cosine by x/y labels until the angle reference is identified.",
+        "Keep component signs separate from the nonnegative right-triangle leg magnitudes."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-VAD-REFERENCE",
+          "sequence": 1,
+          "action": "Identify the axis from which the given acute angle is measured.",
+          "why_valid": "Adjacent/opposite roles are defined relative to that angle."
+        },
+        {
+          "step_id": "RS-VAD-PROJECT",
+          "sequence": 2,
+          "action": "Use cosine for the adjacent component magnitude and sine for the opposite magnitude.",
+          "why_valid": "These are the right-triangle projection ratios.",
+          "depends_on": [
+            "RS-VAD-REFERENCE"
+          ]
+        },
+        {
+          "step_id": "RS-VAD-SIGN",
+          "sequence": 3,
+          "action": "Attach signs from the declared positive axes.",
+          "why_valid": "Direction is encoded by signed components, not by positive triangle lengths.",
+          "depends_on": [
+            "RS-VAD-PROJECT"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-VAD-X-ALWAYS-COS",
+          "wrong_idea": "The x-component is always V cos(theta).",
+          "counterexample": "If theta is measured from +y, the y-component is adjacent and takes the cosine magnitude.",
+          "repair": "Mark the reference axis first, then label adjacent/opposite before x/y."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-VAD-ANGLE-COMPONENTS",
+          "title": "Resolve a magnitude-and-angle vector for later plane-motion use",
+          "hidden_invariants": [
+            "The resolved pair reconstructs the same vector magnitude.",
+            "Changing the angle reference description does not change the physical vector."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 2
+      },
+      "badges": [
+        "VECTOR-FOUNDATION",
+        "MOTION-IN-PLANE"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-VAD-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from one declared relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-KIN-2D-COMPONENT-MOTION",
+      "title": "Independent perpendicular components under common time",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Motion in 2 D",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-KIN-2D-INDEPENDENT",
+          "statement": "In a fixed Cartesian frame, perpendicular motion components evolve independently under their own acceleration components while sharing the same elapsed time."
+        },
+        {
+          "concept_id": "CON-KIN-2D-RECONSTRUCT",
+          "statement": "A two-dimensional velocity or displacement is reconstructed from its signed perpendicular components; solving one component does not erase the other."
+        }
+      ],
+      "prerequisites": [
+        "PHY-VEC-SCALAR-VECTOR"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-KIN-2D-VELOCITY",
+          "expression": "v_x = u_x + a_x t; v_y = u_y + a_y t",
+          "meaning": "For constant acceleration components over one shared interval, each velocity component follows the one-dimensional constant-acceleration relation independently.",
+          "symbols": [
+            {
+              "symbol": "u_x",
+              "meaning": "Initial x-velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u_y",
+              "meaning": "Initial y-velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_x",
+              "meaning": "Final x-velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_y",
+              "meaning": "Final y-velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a_x",
+              "meaning": "Constant x-acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_y",
+              "meaning": "Constant y-acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Common elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "a_x and a_y are constant over the interval.",
+            "Both component equations use the same elapsed time and frame."
+          ]
+        },
+        {
+          "relation_id": "REL-KIN-2D-DISPLACEMENT",
+          "expression": "Delta x = u_x t + 0.5 a_x t^2; Delta y = u_y t + 0.5 a_y t^2",
+          "meaning": "For constant acceleration components over one shared interval, each displacement component follows the one-dimensional constant-acceleration relation independently.",
+          "symbols": [
+            {
+              "symbol": "Delta x",
+              "meaning": "x-displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "Delta y",
+              "meaning": "y-displacement over the interval",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "u_x",
+              "meaning": "Initial x-velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u_y",
+              "meaning": "Initial y-velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "a_x",
+              "meaning": "Constant x-acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_y",
+              "meaning": "Constant y-acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Common elapsed time",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "a_x and a_y are constant over the interval.",
+            "Both component equations use the same elapsed time and frame."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Use one fixed non-rotating Cartesian frame.",
+        "The same time interval applies to x and y components.",
+        "Each acceleration component is constant before the constant-acceleration equations are used."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-K2D-FRAME",
+          "sequence": 1,
+          "action": "Declare one x-y frame and write initial velocity/acceleration as signed components.",
+          "why_valid": "Component signs and equations require one common coordinate description."
+        },
+        {
+          "step_id": "RS-K2D-SPLIT",
+          "sequence": 2,
+          "action": "Write separate x and y equations with the same t.",
+          "why_valid": "Perpendicular component dynamics evolve independently but describe the same event time.",
+          "depends_on": [
+            "RS-K2D-FRAME"
+          ]
+        },
+        {
+          "step_id": "RS-K2D-REJOIN",
+          "sequence": 3,
+          "action": "Reconstruct the requested vector magnitude/direction or position from the solved components.",
+          "why_valid": "The physical two-dimensional state is the combined component pair.",
+          "depends_on": [
+            "RS-K2D-SPLIT"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-K2D-DIFFERENT-TIMES",
+          "wrong_idea": "The x and y motions may be solved with unrelated elapsed times because they are independent.",
+          "counterexample": "A projectile's horizontal and vertical coordinates at one physical instant must use the same t.",
+          "repair": "Independence means separate component equations, not separate clocks."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-K2D-CONSTANT-ACCELERATION",
+          "title": "Solve plane motion by component constant-acceleration equations",
+          "hidden_invariants": [
+            "One common time couples the component descriptions of the same event.",
+            "Each component uses only its own initial velocity and acceleration."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 5,
+        "prerequisite_depth": 3
+      },
+      "badges": [
+        "MOTION-IN-PLANE"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-K2D-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from one declared component-relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-KIN-PROJECTILE-MODEL",
+      "title": "Projectile motion as a special two-dimensional constant-acceleration model",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Motion in 2 D",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-PROJ-GRAVITY-ONLY",
+          "statement": "In the ideal near-Earth projectile model after release, air resistance is neglected, horizontal acceleration is zero and vertical acceleration is constant downward g."
+        },
+        {
+          "concept_id": "CON-PROJ-ONE-TIME",
+          "statement": "Horizontal and vertical projectile components share one elapsed time; horizontal launch and oblique launch are initial-condition variations of the same model."
+        }
+      ],
+      "prerequisites": [
+        "PHY-KIN-2D-COMPONENT-MOTION"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-PROJECTILE-COMPONENT-MODEL",
+          "expression": "a_x = 0; a_y = -g; v_x = u_x; v_y = u_y - g t; Delta x = u_x t; Delta y = u_y t - 0.5 g t^2",
+          "meaning": "With +y upward and air resistance neglected near Earth, projectile motion is the 2D constant-acceleration model specialized to zero horizontal acceleration and constant downward gravitational acceleration.",
+          "symbols": [
+            {
+              "symbol": "u_x",
+              "meaning": "Initial horizontal velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "u_y",
+              "meaning": "Initial vertical velocity component",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_x",
+              "meaning": "Horizontal velocity component at time t",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v_y",
+              "meaning": "Vertical velocity component at time t",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Delta x",
+              "meaning": "Horizontal displacement",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "Delta y",
+              "meaning": "Vertical displacement",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Local gravitational acceleration magnitude",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "t",
+              "meaning": "Elapsed time since release",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Near-Earth region with approximately constant g.",
+            "Air resistance neglected.",
+            "+y is declared upward for the displayed signs.",
+            "The object is in free flight after release."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Do not apply the ideal projectile model while a contact/propulsion force is still acting.",
+        "State the vertical sign convention before writing a_y=-g.",
+        "Horizontal and oblique launch are handled by changing u_x/u_y, not by changing the physical model."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-PROJ-SELECT",
+          "sequence": 1,
+          "action": "Decide whether the object is in free flight under gravity alone with air resistance neglected.",
+          "why_valid": "That model choice determines whether the projectile component equations are justified."
+        },
+        {
+          "step_id": "RS-PROJ-INITIAL",
+          "sequence": 2,
+          "action": "Express the initial velocity as u_x/u_y; resolve a launch angle only if the question supplies one.",
+          "why_valid": "Initial conditions determine the component histories while the gravitational acceleration model stays fixed.",
+          "depends_on": [
+            "RS-PROJ-SELECT"
+          ]
+        },
+        {
+          "step_id": "RS-PROJ-SOLVE",
+          "sequence": 3,
+          "action": "Solve x and y components with one common time and reconstruct the requested speed/direction/position.",
+          "why_valid": "The component equations describe the same projectile at the same instant.",
+          "depends_on": [
+            "RS-PROJ-INITIAL"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-PROJ-HORIZONTAL-FORCE",
+          "wrong_idea": "A projectile needs a horizontal force to keep moving horizontally.",
+          "counterexample": "With air resistance neglected, horizontal velocity remains constant after release because horizontal acceleration is zero.",
+          "repair": "Separate velocity from acceleration: nonzero v_x does not require nonzero a_x."
+        },
+        {
+          "misconception_id": "MIS-PROJ-TWO-CLOCKS",
+          "wrong_idea": "Horizontal and vertical projectile motions can use different flight times.",
+          "counterexample": "The object has one physical position at each instant; both component coordinates correspond to the same t.",
+          "repair": "Use one shared time variable in both component equations."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-PROJECTILE-GRADE9-PINNACLE",
+          "title": "Horizontal and oblique projectile questions from component motion",
+          "hidden_invariants": [
+            "One common time links x and y.",
+            "Gravity changes only the vertical velocity in the ideal model.",
+            "Range/height/time-of-flight are consequences of the component model, not separate physical laws."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 6,
+        "prerequisite_depth": 4
+      },
+      "badges": [
+        "MOTION-IN-PLANE",
+        "PROJECTILE"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-PROJ-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from one projectile-relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
     }
   ]
 }

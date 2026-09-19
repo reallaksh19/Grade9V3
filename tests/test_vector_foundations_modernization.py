@@ -111,10 +111,10 @@ class VectorFoundationsModernization(unittest.TestCase):
             [row["point"] for row in report["support_findings"]],
         )
 
-    def test_active_vector_add_sub_matrix_contains_only_demanded_three_rungs(self):
+    def test_active_vector_add_sub_matrix_contains_demanded_four_rungs(self):
         self.assertEqual(
             [row["rung"] for row in self.ops_matrix["rungs"]],
-            ["R1", "R2", "R3"],
+            ["R1", "R2", "R3", "R4"],
         )
         self.assertEqual(
             [row["microtopic_ref"] for row in self.ops_matrix["rungs"]],
@@ -122,6 +122,7 @@ class VectorFoundationsModernization(unittest.TestCase):
                 "MIC-PHY-VEC-COMPONENT-SUM",
                 "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
                 "MIC-PHY-VEC-SUB-ORDER",
+                "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
             ],
         )
         self.assertTrue(
@@ -170,13 +171,26 @@ class VectorFoundationsModernization(unittest.TestCase):
             route["CAP-VEC-RESULTANT-CONSTRAINT"]["order"],
         )
 
-    def test_angle_trigonometry_gap_remains_explicit(self):
-        issue = next(
-            row for row in self.ops["known_issues"]
-            if row["id"] == "ISS-VEC-ANGLE-DECOMPOSITION-MATH"
+    def test_angle_decomposition_is_now_real_demand_backed_with_math_bridge(self):
+        caps = {row["id"]: row for row in self.ops["capabilities"]}
+        cap = caps["CAP-VEC-ANGLE-DECOMPOSITION"]
+        self.assertEqual(
+            cap["prerequisite_refs"],
+            ["CAP-VECTOR-SIGNED-COMPONENT", "CAP-TRIG-RATIO-BRIDGE"],
         )
-        self.assertIn("does not yet teach", issue["description"])
-        self.assertIn("trigonometric", issue["description"].lower())
+        self.assertIn(
+            "REL-VEC-ANGLE-COMPONENTS",
+            {row["id"] for row in self.ops["relations"]},
+        )
+        self.assertFalse(any(
+            row["id"] == "ISS-VEC-ANGLE-DECOMPOSITION-MATH"
+            for row in self.ops["known_issues"]
+        ))
+        report = session_readiness.audit(
+            "Physics", matrix_id="MATRIX-PHY-VEC-ADD-SUB"
+        )
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["status"], session_readiness.READY_WITH_BRIDGE)
 
 
 if __name__ == "__main__":

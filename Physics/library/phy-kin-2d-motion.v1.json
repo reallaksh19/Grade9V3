@@ -1,0 +1,929 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-KIN-2D-MOTION-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Owner-approved ExamSIDE question-demand slice for plane motion: independent x/y component reasoning, 2D constant-acceleration component solving, and projectile model selection. Calculus-style position-vector differentiation, trajectory-equation derivation, drag and advanced projectile geometry remain outside the first slice.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 Motion-in-2D adaptation from owner-approved ExamSIDE demand",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-kin-2d-motion.v1.json",
+      "edition": "0.1.0",
+      "section": "Independent x/y motion, 2D constant acceleration and projectile model",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created adaptation. External ExamSIDE questions remain linked/summarized rather than copied; no Pinnacle curriculum authority is claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-KIN-2D-CONSTANT-ACCELERATION",
+        "CAP-KIN-PROJECTILE-MODEL",
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT",
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Turns selected real ExamSIDE question demand into the smallest durable local learner-action spine while preserving the distinction between external question evidence and school-issued scope.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-KIN-2D-MOTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Two-dimensional kinematics and projectile model",
+      "topic": "Motion in 2 D",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The main difficulty is keeping one coordinate frame and one time variable while treating perpendicular components independently and selecting the projectile specialization only when its assumptions hold.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-VEC-ADD-SUB",
+        "BUCKET-PHY-KIN-1D-MOTION"
+      ],
+      "scope": {
+        "covers": "Independent perpendicular component motion in one frame, constant-acceleration component equations with common time, and the ideal near-Earth projectile specialization for horizontal and oblique launch questions.",
+        "excluded": [
+          "Calculus-based differentiation of a time-dependent position vector.",
+          "Derivation or memorization of a large catalogue of range/height/time-of-flight formulas as separate capabilities.",
+          "Trajectory-equation derivation as a first-slice requirement.",
+          "Air drag, Coriolis effects, variable gravity, target-on-incline projectile geometry and other advanced variants."
+        ],
+        "extension_refs": []
+      },
+      "conventions": [
+        {
+          "id": "CONV-KIN-2D-AXES",
+          "statement": "Use one declared non-rotating x-y frame for the whole event; both component equations use the same elapsed time."
+        },
+        {
+          "id": "CONV-PROJ-UP-POSITIVE",
+          "statement": "When +y is chosen upward, the ideal projectile model uses a_x=0 and a_y=-g after release."
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Represent one plane-motion event as independent signed x/y component histories that share one elapsed time.",
+      "success_criterion": "Declares one frame, separates x and y quantities without mixing axes, uses the same time for both component states, and reconstructs the requested plane vector/position from the component pair.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Apply constant-acceleration kinematics independently to x and y components of one plane-motion event.",
+      "success_criterion": "Checks that a_x and a_y are constant, writes the appropriate one-dimensional relation separately on each axis with one common t, solves only the needed components, and recombines them consistently.",
+      "prerequisite_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-KIN-CONSTANT-ACCELERATION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-KIN-PROJECTILE-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Recognize and solve an ideal near-Earth projectile as a special two-dimensional constant-acceleration state.",
+      "success_criterion": "After release with air resistance neglected, sets a_x=0 and a_y=-g for +y upward, keeps one common time, accepts horizontal or already-resolved oblique initial components, and reconstructs the requested speed, direction, displacement, range, height or flight-time consequence without treating those outputs as separate physical laws.",
+      "prerequisite_refs": [
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Split one plane-motion event into independent x/y components with one clock",
+      "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
+      "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often interpret independent components as unrelated motions and accidentally use different times or mix x and y quantities.",
+      "entry_assumptions": [
+        "Can read signed vector components in a declared x-y frame."
+      ],
+      "inferential_jump": "Perpendicular components may be solved separately because each axis equation contains only that axis's quantities, but they still describe one object at one physical time.",
+      "teaching_path": [
+        {
+          "id": "K2D1-1",
+          "role": "DECLARE",
+          "action": "Choose one fixed x-y frame and write the initial position/velocity/acceleration as signed component pairs.",
+          "why_valid": "Component equations have meaning only in one common frame.",
+          "inputs": [],
+          "output": "declared x/y state"
+        },
+        {
+          "id": "K2D1-2",
+          "role": "TRANSFORM",
+          "action": "Separate the x equation from the y equation without transferring a component from one axis into the other.",
+          "why_valid": "Perpendicular component equations evolve independently in Cartesian kinematics.",
+          "inputs": [],
+          "output": "x history uses only x, u_x, v_x, a_x; y history uses only y, u_y, v_y, a_y"
+        },
+        {
+          "id": "K2D1-3",
+          "role": "VERIFY",
+          "action": "Use the same elapsed time when comparing or recombining the two component states.",
+          "why_valid": "Both equations describe the same object at the same instant.",
+          "inputs": [],
+          "output": "one common time -> one plane state"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Independent x and y motions may use different elapsed times.",
+          "diagnostic_prompt": "At one instant 2 s after launch, may the x equation use t=2 s while the y equation uses another time?",
+          "repair": "No. Independence means the axis equations do not directly mix components; the same physical event still has one shared elapsed time."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A particle has x-velocity 6 m/s and y-velocity -8 m/s at t=3 s. Explain what 'independent components' means and what must remain shared between the x and y descriptions.",
+        "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The x and y component equations are solved separately in the same frame, but both describe the same particle at the same t=3 s.",
+          "reasoning": [
+            "Keep x quantities in the x equation and y quantities in the y equation.",
+            "Use one common elapsed time for the same physical instant.",
+            "Recombine components only after each axis is handled consistently."
+          ],
+          "check": "Both component values must refer to the same frame and same instant.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "No new numerical computation is required."
+        }
+      },
+      "research_contribution": "ExamSIDE includes real x-y motion and projectile questions whose demand cannot be represented honestly by a one-dimensional capability alone.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If x and y components are independent, does that mean the object has two different clocks?",
+          "defensible_answer": "No. The component equations are separate, but the event uses one common elapsed time."
+        },
+        "attempt": {
+          "produces": "A two-column x/y setup with one shared t.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Axes are kept separate while time/frame remain shared.",
+              "evidence_of": "Correct component independence model."
+            }
+          ],
+          "accepted": [
+            "Separate x and y equations; same t for both."
+          ],
+          "rejected": [
+            "Use x acceleration in the y equation or assign unrelated times."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What information must be common because both equations describe the same object at one instant?",
+              "why_this_ask": "Recovers the shared-time invariant.",
+              "from_step_ref": "K2D1-1"
+            },
+            {
+              "ask": "Which quantities are allowed to differ independently between axes?",
+              "why_this_ask": "Separates component dynamics from common event structure.",
+              "from_step_ref": "K2D1-2"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching states the independence/common-time rule; reconstruction makes the learner distinguish what separates from what stays shared."
+        },
+        "boundary_test": {
+          "prompt": "If a_x=0 but a_y is nonzero, may v_x stay constant while v_y changes?",
+          "answer": "Yes. That is exactly what independent component evolution permits.",
+          "confirms": "One component can change while the other does not."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Apply constant-acceleration kinematics component by component",
+      "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The formulas are familiar from 1D, but the challenge is selecting the right component equation on each axis and enforcing one common time.",
+      "entry_assumptions": [
+        "Can use the existing one-dimensional constant-acceleration model.",
+        "Can keep x/y components separate with one common time."
+      ],
+      "inferential_jump": "The one-dimensional constant-acceleration equations can be applied to each perpendicular component independently when a_x and a_y are each constant over the same interval.",
+      "teaching_path": [
+        {
+          "id": "K2D2-1",
+          "role": "DECLARE",
+          "action": "Check that each acceleration component is constant and list u_x,u_y,a_x,a_y for the same interval.",
+          "why_valid": "The component equations inherit the same constant-acceleration condition as the 1D model.",
+          "inputs": [],
+          "output": "component initial state + model check"
+        },
+        {
+          "id": "K2D2-2",
+          "role": "TRANSFORM",
+          "action": "Apply v=u+at and/or displacement=u t+0.5 a t^2 separately to x and y using the same t.",
+          "why_valid": "Each axis follows the 1D relation using only its own signed values.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "v_x=u_x+a_x t and v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2 and Delta y=u_y t+0.5a_y t^2"
+        },
+        {
+          "id": "K2D2-3",
+          "role": "VERIFY",
+          "action": "Recombine or compare the solved components only after checking signs, units and common time.",
+          "why_valid": "The pair must represent one physically consistent plane state.",
+          "inputs": [],
+          "output": "checked component pair"
+        }
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The magnitude of acceleration should be inserted unchanged into both x and y equations.",
+          "diagnostic_prompt": "If a=(10 i + 4 j) m/s², should both component equations use a=√116?",
+          "repair": "No. Use a_x=10 only in the x equation and a_y=4 only in the y equation; the magnitude is not either component."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A particle starts with u=(0,5) m/s and constant a=(10,4) m/s². Set up the x and y position equations at common time t without solving a particular numerical t.",
+        "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Use Delta x=0*t+0.5(10)t² and Delta y=5t+0.5(4)t² with the same t.",
+          "reasoning": [
+            "Read signed component initial velocities and accelerations.",
+            "Apply the 1D constant-acceleration displacement relation separately.",
+            "Keep one common elapsed time."
+          ],
+          "check": "Units are metres on both displacements and no x quantity appears in the y equation or vice versa.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task asks for exact symbolic setup, not a new numerical claim."
+        }
+      },
+      "research_contribution": "Directly matches ExamSIDE 2020 x-y constant-acceleration demand while reusing the existing 1D constant-acceleration capability rather than duplicating it.",
+      "prerequisite_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-KIN-CONSTANT-ACCELERATION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a_x is nonzero and a_y is zero, which velocity component changes with time?",
+          "defensible_answer": "Only v_x changes; v_y remains constant."
+        },
+        "attempt": {
+          "produces": "Two correct component constant-acceleration equations using one t.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each axis uses only its own signed initial values and acceleration while sharing the same time.",
+              "evidence_of": "2D component model use rather than a scalar-magnitude shortcut."
+            }
+          ],
+          "accepted": [
+            "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
+          ],
+          "rejected": [
+            "Use |a| in both equations or use separate unrelated times."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What does the familiar 1D equation become when you apply it only along x?",
+              "why_this_ask": "Transfers an existing model instead of introducing a new formula.",
+              "from_step_ref": "K2D2-1"
+            },
+            {
+              "ask": "What must be identical in the y equation because both describe the same event?",
+              "why_this_ask": "Recovers the common-time coupling.",
+              "from_step_ref": "K2D2-2"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching supplies component forms; reconstruction derives them by applying the existing 1D model separately to each axis."
+        },
+        "boundary_test": {
+          "prompt": "If a_y changes with time while a_x stays constant, may the constant-acceleration equations still be exact on both axes for the whole interval?",
+          "answer": "No. The x relation may remain exact, but the y constant-acceleration relation is not exact over that interval.",
+          "confirms": "Model validity is checked per component."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Select the gravity-only projectile model before using projectile consequences",
+      "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Projectile formulas become brittle when the learner skips the model decision, mixes times, or treats horizontal velocity as requiring a continuing horizontal force.",
+      "entry_assumptions": [
+        "Can solve 2D constant-acceleration component equations.",
+        "If an oblique launch angle is given, angle-based vector decomposition is available as a separate prerequisite for that question."
+      ],
+      "inferential_jump": "After release in the ideal near-Earth model, projectile motion is not a new set of laws: it is the same component kinematics with a_x=0 and a_y=-g (for +y upward).",
+      "teaching_path": [
+        {
+          "id": "K2D3-1",
+          "role": "DECLARE",
+          "action": "Decide that the object is in free flight after release, neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
+          "why_valid": "Projectile equations are justified only by this model choice.",
+          "inputs": [],
+          "output": "projectile acceleration state"
+        },
+        {
+          "id": "K2D3-2",
+          "role": "TRANSFORM",
+          "action": "Use supplied/resolved u_x,u_y and one common t in the component equations.",
+          "why_valid": "Horizontal and vertical launch cases differ only in initial component values, not in the underlying model.",
+          "inputs": [
+            "CAP-KIN-2D-CONSTANT-ACCELERATION"
+          ],
+          "output": "v_x=u_x, v_y=u_y-g t, Delta x=u_x t, Delta y=u_y t-0.5 g t^2 for the same t"
+        },
+        {
+          "id": "K2D3-3",
+          "role": "VERIFY",
+          "action": "Reconstruct the requested speed/direction/position and check qualitative limits: v_x constant, vertical velocity decreases linearly until/through the top.",
+          "why_valid": "Independent component behaviour supplies physical checks before accepting a range/height/time result.",
+          "inputs": [],
+          "output": "checked projectile consequence"
+        }
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Horizontal projectile motion has no vertical velocity because it was launched horizontally.",
+          "diagnostic_prompt": "One second after a horizontal launch, is v_y still zero under gravity?",
+          "repair": "No. u_y=0 initially, but a_y=-g makes v_y=-gt after release."
+        },
+        {
+          "wrong_idea": "A projectile needs a horizontal force to keep moving horizontally.",
+          "diagnostic_prompt": "If a_x=0 after release, can v_x still be nonzero?",
+          "repair": "Yes. Zero horizontal acceleration means horizontal velocity stays constant, not that it becomes zero."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A stone is launched horizontally from a cliff with speed u. With +y upward and air resistance neglected, write its component acceleration, velocity and displacement relations after release and explain why one common t is used.",
+        "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "a_x=0, a_y=-g; v_x=u, v_y=-gt; Delta x=ut, Delta y=-0.5gt², all at the same elapsed time t.",
+          "reasoning": [
+            "After release only gravity acts in the ideal model.",
+            "Gravity has no horizontal component in the chosen frame.",
+            "Both component coordinates describe the same stone at the same instant."
+          ],
+          "check": "Horizontal velocity remains constant while downward speed magnitude grows with time.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is symbolic and model-based; no cliff height or numerical g is required."
+        }
+      },
+      "research_contribution": "Selected ExamSIDE horizontal/oblique projectile questions justify a durable projectile model capability. Range, height and time-of-flight remain consequences/variations, not separate capabilities.",
+      "prerequisite_refs": [
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Immediately after a horizontal launch, which acceleration component is zero in the ideal model?",
+          "defensible_answer": "a_x is zero; a_y is -g if +y is upward."
+        },
+        "attempt": {
+          "produces": "A model declaration and component-equation setup for a horizontal or oblique projectile.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The learner selects gravity-only free flight, uses a_x=0/a_y=-g and one common time before calculating any named projectile quantity.",
+              "evidence_of": "Projectile model selection rather than formula recall."
+            }
+          ],
+          "accepted": [
+            "State assumptions, set component accelerations, then solve x/y with one t."
+          ],
+          "rejected": [
+            "Start from a memorized range/height formula without establishing the free-flight component model."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What forces remain after release in the idealized problem?",
+              "why_this_ask": "Elicits the gravity-only model.",
+              "from_step_ref": "K2D3-1"
+            },
+            {
+              "ask": "What does that imply for a_x and a_y in the declared frame?",
+              "why_this_ask": "Builds the projectile specialization from acceleration.",
+              "from_step_ref": "K2D3-2"
+            },
+            {
+              "ask": "What is shared between horizontal and vertical component equations?",
+              "why_this_ask": "Recovers the one-time invariant.",
+              "from_step_ref": "K2D3-3"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching states the projectile specialization; reconstruction derives it from the post-release interaction model and coordinate choice."
+        },
+        "boundary_test": {
+          "prompt": "If air resistance is important, is a_x=0 still justified?",
+          "answer": "Not generally. Drag can produce a horizontal acceleration, so the ideal projectile model no longer applies exactly.",
+          "confirms": "Projectile formulas are conditional model consequences."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-KIN-2D-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "v_x = u_x + a_x t; v_y = u_y + a_y t",
+      "meaning": "Each perpendicular velocity component follows the 1D constant-acceleration relation over one common interval.",
+      "symbols": [
+        {
+          "symbol": "u_x",
+          "meaning": "Initial x velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "u_y",
+          "meaning": "Initial y velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "v_x",
+          "meaning": "Final x velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "v_y",
+          "meaning": "Final y velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "a_x",
+          "meaning": "Constant x acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "a_y",
+          "meaning": "Constant y acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Common elapsed time",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "a_x and a_y are constant over the interval.",
+        "Both component equations use the same elapsed time and frame."
+      ],
+      "derivation": [
+        {
+          "id": "K2D-REL-V-1",
+          "role": "DECLARE",
+          "action": "Apply the existing constant-acceleration velocity relation v=u+at along the x axis only.",
+          "why_valid": "The x component is one one-dimensional constant-acceleration motion when a_x is constant.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "v_x = u_x + a_x t"
+        },
+        {
+          "id": "K2D-REL-V-2",
+          "role": "TRANSFORM",
+          "action": "Apply the same relation independently along the y axis over the same elapsed time.",
+          "why_valid": "The y component has its own constant acceleration a_y but describes the same event interval.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "v_y = u_y + a_y t"
+        },
+        {
+          "id": "K2D-REL-V-3",
+          "role": "VERIFY",
+          "action": "Read the two equations together as one velocity component pair at time t.",
+          "why_valid": "The component pair represents one plane velocity only when frame and time agree.",
+          "inputs": [],
+          "output": "v(t) has components (u_x+a_x t, u_y+a_y t)"
+        }
+      ],
+      "limits": [
+        "If either acceleration component varies during the interval, that component's constant-acceleration velocity equation is not exact over the whole interval.",
+        "These component equations do not by themselves select the coordinate frame or determine whether acceleration is constant."
+      ],
+      "checks": [
+        "Units match velocity on both equations.",
+        "If a_x=0 then v_x stays constant; likewise for y."
+      ],
+      "gate_relation_ref": "REL-KIN-2D-VELOCITY"
+    },
+    {
+      "id": "REL-KIN-2D-DISPLACEMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "Delta x = u_x t + 0.5 a_x t^2; Delta y = u_y t + 0.5 a_y t^2",
+      "meaning": "Each perpendicular displacement component follows the 1D constant-acceleration displacement relation over one common interval.",
+      "symbols": [
+        {
+          "symbol": "Delta x",
+          "meaning": "x displacement",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "Delta y",
+          "meaning": "y displacement",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "u_x",
+          "meaning": "Initial x velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "u_y",
+          "meaning": "Initial y velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "a_x",
+          "meaning": "Constant x acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "a_y",
+          "meaning": "Constant y acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Common elapsed time",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "a_x and a_y are constant over the interval.",
+        "Both component equations use the same elapsed time and frame."
+      ],
+      "derivation": [
+        {
+          "id": "K2D-REL-S-1",
+          "role": "DECLARE",
+          "action": "Apply the existing constant-acceleration displacement relation Delta s=u t+0.5 a t^2 to the x component.",
+          "why_valid": "The x displacement is a one-dimensional component motion with initial velocity u_x and constant acceleration a_x.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "Delta x = u_x t + 0.5 a_x t^2"
+        },
+        {
+          "id": "K2D-REL-S-2",
+          "role": "TRANSFORM",
+          "action": "Apply the same relation to the y component using the same elapsed time.",
+          "why_valid": "The y component evolves independently but belongs to the same physical interval.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "Delta y = u_y t + 0.5 a_y t^2"
+        },
+        {
+          "id": "K2D-REL-S-3",
+          "role": "VERIFY",
+          "action": "Recombine the two signed displacements as one plane displacement.",
+          "why_valid": "A Cartesian displacement is determined by its signed perpendicular components.",
+          "inputs": [],
+          "output": "Delta r has components (u_x t+0.5 a_x t^2, u_y t+0.5 a_y t^2)"
+        }
+      ],
+      "limits": [
+        "The displacement component equations require constant a_x and a_y over the interval on which each one is used.",
+        "They describe displacement from the chosen initial instant, not total path length."
+      ],
+      "checks": [
+        "Every term has length units.",
+        "Setting one acceleration component to zero reduces that axis to uniform motion."
+      ],
+      "gate_relation_ref": "REL-KIN-2D-DISPLACEMENT"
+    },
+    {
+      "id": "REL-PROJECTILE-COMPONENT-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "a_x = 0; a_y = -g; v_x = u_x; v_y = u_y - g t; Delta x = u_x t; Delta y = u_y t - 0.5 g t^2",
+      "meaning": "With +y upward, air resistance neglected and near-Earth constant g, projectile motion is 2D constant acceleration specialized to zero horizontal and downward vertical acceleration.",
+      "symbols": [
+        {
+          "symbol": "u_x",
+          "meaning": "Initial horizontal velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "u_y",
+          "meaning": "Initial vertical velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "v_x",
+          "meaning": "Horizontal velocity at t",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "v_y",
+          "meaning": "Vertical velocity at t",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "Delta x",
+          "meaning": "Horizontal displacement",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "Delta y",
+          "meaning": "Vertical displacement",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "g",
+          "meaning": "Local gravitational acceleration magnitude",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Elapsed time",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "Near-Earth region with approximately constant g.",
+        "Air resistance neglected.",
+        "+y is declared upward for the displayed signs.",
+        "The object is in free flight after release."
+      ],
+      "derivation": [
+        {
+          "id": "PROJ-REL-1",
+          "role": "DECLARE",
+          "action": "For free flight near Earth with air resistance neglected and +y upward, set a_x=0 and a_y=-g.",
+          "why_valid": "Gravity is the only retained acceleration in the ideal projectile model and points vertically downward.",
+          "inputs": [],
+          "output": "a_x = 0; a_y = -g"
+        },
+        {
+          "id": "PROJ-REL-2",
+          "role": "TRANSFORM",
+          "action": "Substitute a_x=0 and a_y=-g into the 2D velocity component relations.",
+          "why_valid": "The projectile model is a specialization of the same component constant-acceleration equations.",
+          "inputs": [
+            "REL-KIN-2D-VELOCITY"
+          ],
+          "output": "v_x = u_x; v_y = u_y - g t"
+        },
+        {
+          "id": "PROJ-REL-3",
+          "role": "TRANSFORM",
+          "action": "Substitute the same acceleration components into the 2D displacement relations.",
+          "why_valid": "Horizontal and vertical displacements follow the same specialized component model over the shared time.",
+          "inputs": [
+            "REL-KIN-2D-DISPLACEMENT"
+          ],
+          "output": "Delta x = u_x t; Delta y = u_y t - 0.5 g t^2"
+        },
+        {
+          "id": "PROJ-REL-4",
+          "role": "VERIFY",
+          "action": "Check that horizontal velocity stays constant while vertical velocity changes linearly with time.",
+          "why_valid": "Those trends follow directly from a_x=0 and a_y=-g.",
+          "inputs": [],
+          "output": "constant v_x and linearly decreasing v_y under the declared +y-up convention"
+        }
+      ],
+      "limits": [
+        "The displayed projectile specialization is not exact when drag, propulsion, contact forces, appreciably varying g or a rotating-frame effect is material.",
+        "Changing the vertical sign convention changes the displayed signs; the physical downward acceleration does not change."
+      ],
+      "checks": [
+        "v_x is constant.",
+        "At the highest point of an oblique trajectory, v_y=0 but a_y remains -g.",
+        "Both component equations use the same t."
+      ],
+      "gate_relation_ref": "REL-PROJECTILE-COMPONENT-MODEL"
+    }
+  ],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-KIN-2D-CORE1A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal plane-motion component and projectile model",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+        "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+        "MIC-PHY-KIN-PROJECTILE-MODEL"
+      ],
+      "entry_needs": [
+        "Signed vector components are available; one-dimensional constant-acceleration reasoning is available; angle decomposition is used only when a selected question supplies a magnitude-and-angle initial vector."
+      ],
+      "learner_actions": [
+        "Separate one event into x/y histories with one clock.",
+        "Apply constant-acceleration equations per component.",
+        "Select the ideal projectile specialization before using projectile consequences."
+      ],
+      "help_plan": [
+        "Draw a two-column x/y table with one shared t.",
+        "Transfer the existing 1D constant-acceleration relation to one axis at a time.",
+        "State post-release forces and coordinate sign before writing projectile equations."
+      ],
+      "reveal_plan": "Teach the three durable decisions explicitly; use range/height/time-of-flight only as applications after the projectile model is established.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+          "purpose": "Real Motion-in-a-Plane question demand",
+          "reason": "Owner-approved source contains representative x-y constant-acceleration and projectile questions that require these learner actions."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not extend into calculus-based position-vector differentiation, drag, trajectory-equation derivation or advanced projectile geometry in this first slice."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-KIN-2D-CORE1B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit plane-motion component and projectile model",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+        "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+        "MIC-PHY-KIN-PROJECTILE-MODEL"
+      ],
+      "entry_needs": [
+        "Learner can commit to an axis/model choice before seeing the completed component equations."
+      ],
+      "learner_actions": [
+        "Explain what component independence does and does not mean.",
+        "Rebuild 2D constant acceleration from the 1D relation.",
+        "Derive projectile acceleration components from the gravity-only model."
+      ],
+      "help_plan": [
+        "Ask what must share one time.",
+        "Ask which x quantities belong in the x equation.",
+        "Ask what forces remain after projectile release."
+      ],
+      "reveal_plan": "Prediction/reconstruction precedes the closed model statement; formulas are revealed only after the learner identifies the component/model structure.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+          "purpose": "Question-driven reconstruction",
+          "reason": "The selected source questions expose the exact model choices the learner must make."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not convert every projectile output formula into a separate concept or capability."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

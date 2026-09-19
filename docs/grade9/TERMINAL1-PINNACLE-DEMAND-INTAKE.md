@@ -8,6 +8,18 @@
 
 ## Accepted evidence
 
+Two evidence classes are intentionally distinct:
+
+- **school-issued evidence** may promote `school_micro_demand`;
+- **owner-approved reliable external question banks** may authorize bounded question-demand
+  capability work without being relabelled as school/curriculum authority.
+
+As of 2026-09-19, the owner explicitly accepts ExamSIDE past-year question pages for the
+second class. Selected ExamSIDE questions may therefore justify `REUSE`, `ENRICH`,
+`AUTHOR` or `QUESTION_VARIATION` decisions while the Pinnacle school micro-scope remains
+separately tracked.
+
+
 Use any of the following when supplied by the owner:
 
 - chapter contents/index pages;

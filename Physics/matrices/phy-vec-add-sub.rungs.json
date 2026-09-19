@@ -87,12 +87,44 @@
         }
       ],
       "microtopic_ref": "MIC-PHY-VEC-SUB-ORDER"
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 80,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+      "ceiling": [
+        "inverse trigonometric direction recovery",
+        "dot product",
+        "cross product",
+        "rotated basis"
+      ],
+      "must_contain": [
+        "A magnitude-and-angle vector with the reference axis explicitly marked.",
+        "An adjacent/opposite decision before sine/cosine is assigned.",
+        "A sign check from the declared x/y directions.",
+        "A magnitude reconstruction check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the reference angle from 30° to 60°",
+          "hold": "vector magnitude and first-quadrant direction",
+          "notice": "the adjacent and opposite component magnitudes trade relative size"
+        },
+        {
+          "phase": 2,
+          "vary": "the quadrant/direction while holding the same acute reference angle and magnitude",
+          "hold": "the component magnitudes",
+          "notice": "component signs change while the vector magnitude does not"
+        }
+      ]
     }
   ],
   "family": {
-    "invariant_demand": "Use one declared axis system, preserve signed directional information, combine corresponding vector components, impose any stated resultant-component constraint, and preserve operand order for subtraction.",
-    "difficult_move": "Keeping the physical direction requirement attached to the correct signed component equation instead of replacing vector operations with magnitude arithmetic or a story-specific shortcut.",
-    "independent_check": "Use an alternate representation: a rough arrow construction must agree with the component signs; a constrained component must satisfy its target after substitution; swapping subtraction operands must negate the result.",
+    "invariant_demand": "Use one declared axis system, preserve signed directional information, combine corresponding vector components, impose any stated resultant-component constraint, preserve subtraction order, and resolve a magnitude-and-angle vector by explicit projection geometry when components are not already given.",
+    "difficult_move": "Keeping the requested direction attached to the correct signed component equation and identifying the angle reference before assigning sine/cosine, rather than using magnitude arithmetic or story-specific shortcuts.",
+    "independent_check": "Use an alternate representation: rough arrow geometry must agree with component signs; a constrained component must satisfy its target; swapping subtraction operands must negate the result; resolved components must reconstruct the original magnitude.",
     "support_ladder": [
       {
         "level": "high",
@@ -126,6 +158,12 @@
       "changed_demand": "The same pair of vectors is presented in the opposite subtraction order.",
       "information_not_handed_over": "the final orientation of the difference",
       "repair_to": "R3"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A vector is given only by magnitude, quadrant and an acute angle to one axis, so signed x/y components must be constructed before vector or kinematics equations can be used.",
+      "information_not_handed_over": "which component is adjacent/opposite to the stated angle and what signs the axes require",
+      "repair_to": "R4"
     }
   ]
 }

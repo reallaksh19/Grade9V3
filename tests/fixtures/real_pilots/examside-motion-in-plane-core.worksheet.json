@@ -1,0 +1,44 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-MOTION-IN-PLANE-COMPONENT-PROJECTILE-SLICE",
+  "subject": "Physics",
+  "source_note": "Owner-approved reliable external question-demand source: ExamSIDE JEE Main Motion in a Plane (https://questions.examside.com/past-years/jee/jee-main/physics/motion-in-a-plane). Only concise demand summaries and source URLs are retained; question text is not copied. This fixture authorizes bounded capability work from selected real questions but is not Pinnacle school/curriculum authority.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-MIP-2023-04-11-PROJECTILE-VELOCITY",
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-VEC-ANGLE-DECOMPOSITION",
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2023, 11 Apr evening: projectile launched at 30°; asks velocity after 2 s. Source: https://questions.examside.com/past-years/jee/question/pa-projectile-is-projected-at-30circ-from-horizont-jee-main-physics-motion-wyyd3nentr13rnyz"
+    },
+    {
+      "question_id": "EXAMSIDE-MIP-2023-02-01-HORIZONTAL-PROJECTILE",
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2023, 1 Feb morning: stone thrown horizontally from a cliff; asks impact speed. Source: https://questions.examside.com/past-years/jee/question/pa-child-stands-on-the-edge-of-the-cliff-10-mathrmm-jee-main-physics-motion-5jgy4k1cpw4mvtva"
+    },
+    {
+      "question_id": "EXAMSIDE-MIP-2020-09-04-COMPONENT-ACCELERATION",
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2020, 4 Sep morning: initial velocity and constant acceleration given as i/j components; asks common-time coordinates. Source: https://questions.examside.com/past-years/jee/question/starting-from-the-origin-at-time-t--0-with-initial-velocit-jee-main-physics-motion-j1m1trskoadsnbbe"
+    },
+    {
+      "question_id": "EXAMSIDE-MIP-2026-04-08-RANGE-TIME",
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2026, 8 Apr evening: same launch speed at two angles, same range, different times of flight; asks range. Source: https://questions.examside.com/past-years/jee/question/ptwo-identical-bodies-projected-with-the-same-speed-at-tw-jee-main-physics-units-and-measurements-iaabma5f0npelftx"
+    }
+  ]
+}

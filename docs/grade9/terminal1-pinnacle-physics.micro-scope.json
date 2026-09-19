@@ -14,7 +14,8 @@
     "LOCAL_READY means Grade9V3 already owns usable teaching for the learner action; it does not prove the school will assess it.",
     "LOCAL_GAP means Grade9V3 does not yet own a durable canonical teaching capability for the learner action; author only after school or real-question demand confirms it.",
     "OWNER_ESTIMATE and stress fixtures remain routing evidence, never mastery evidence.",
-    "This planning file introduces no runtime readiness state, matrix field or curriculum-authority enum."
+    "This planning file introduces no runtime readiness state, matrix field or curriculum-authority enum.",
+    "Owner-approved ExamSIDE Motion-in-a-Plane PYQs are accepted as reliable external question-demand evidence for bounded capability authoring; this does not change Pinnacle school_micro_demand or curriculum authority."
   ],
   "chapters": [
     {
@@ -88,11 +89,15 @@
         },
         {
           "micro": "arbitrary-angle decomposition into x/y components",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-ANGLE-DECOMPOSITION",
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "recover vector direction angle from components",
@@ -238,64 +243,91 @@
         },
         {
           "micro": "arbitrary-angle initial-vector decomposition",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-ANGLE-DECOMPOSITION",
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "independence of orthogonal x/y motion coupled by common time",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "two-dimensional constant-acceleration component solving",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-KIN-2D-CONSTANT-ACCELERATION",
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "horizontal projectile model",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-PROJECTILE-MODEL"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "oblique projectile model",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-KIN-PROJECTILE-MODEL",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "projectile time of flight / maximum height / range",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-KIN-PROJECTILE-MODEL",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "TREAT_AS_APPLICATIONS_UNLESS_FAILURE_PROVES_SEPARATE_CAPABILITY"
+          "action": "QUESTION_VARIATION",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "projectile velocity magnitude/direction at a later time",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-KIN-PROJECTILE-MODEL",
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "QUESTION_VARIATION",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "projectile trajectory equation",
           "local_state": "LOCAL_GAP",
           "local_refs": [],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "DEFER_OUTSIDE_FIRST_SLICE",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "differentiate a time-dependent 2D position vector to obtain velocity",

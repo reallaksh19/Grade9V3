@@ -169,3 +169,38 @@ This is intentionally a stronger evidence boundary than either extreme:
 - it does not pretend Grade9V3 already teaches general 2D/projectile motion;
 - it also does not manufacture school scope merely because external question banks and
   Physics knowledge show that the content is plausible.
+
+
+## Owner source decision — 2026-09-19
+
+The owner explicitly approved ExamSIDE as a reliable source for worksheet/question demand.
+
+That changes the authoring disposition:
+
+```text
+Pinnacle chapter label                confirmed
+Pinnacle chapter-internal micro-scope still school-unconfirmed
+ExamSIDE real question demand         trusted for selected worksheet intake
+local 2D/projectile gaps              authoring may proceed when a selected ExamSIDE item needs them
+```
+
+Selected first-slice evidence:
+
+- JEE Main 2023-04-11 evening: oblique projectile velocity after time;
+- JEE Main 2023-02-01 morning: horizontal projectile from a cliff;
+- JEE Main 2020-09-04 morning: x-y constant acceleration with component acceleration;
+- JEE Main 2026-04-08 evening: equal-range projectiles with different flight times.
+
+The bounded local response is:
+
+```text
+CAP-VEC-ANGLE-DECOMPOSITION
+        ↓
+CAP-KIN-2D-INDEPENDENT-COMPONENTS
+        ↓
+CAP-KIN-2D-CONSTANT-ACCELERATION
+        ↓
+CAP-KIN-PROJECTILE-MODEL
+```
+
+Range, height, time of flight and horizontal/oblique launch are initially handled as question variations of this spine. Calculus-style position-vector differentiation and trajectory-equation derivation remain outside this first slice.
