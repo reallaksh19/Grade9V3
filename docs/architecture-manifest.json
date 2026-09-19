@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:02cd6764a22803013797a083fa8286f286ab6b299a811bf56c9a033bce93caf3",
+  "digest": "sha256:062c07c1505adb594f4e435af62d5f5cfcdb7968ecbb092bfc03a7cf0aea6b8f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -904,8 +904,8 @@
       "path": "tests/test_grade9_motion2d_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9357,
-      "sha256": "03cda91110fcf50b5f335a3438037b45f70b95be06dcd70f5e5ce1120ef25bea"
+      "bytes": 9370,
+      "sha256": "6434a8f02ac9fc63386a92c043518882fd8c2ecfe76baee8f9238a88b03ec586"
     },
     {
       "path": "tests/test_grade9_motion2d_examside.py",
