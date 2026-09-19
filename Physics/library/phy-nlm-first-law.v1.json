@@ -3084,8 +3084,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "examside:demand_provenance": "ExamSIDE demand family—static-friction feasibility is not handed over; representative source https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3139,7 +3139,8 @@
           "stem",
           "conditions",
           "answer"
-        ]
+        ],
+        "reason": "Change the earlier threshold exercise into an unlabeled contact-state selection task: the learner must decide whether static contact is feasible before choosing a friction model."
       },
       "exposure": [
         {
@@ -3178,8 +3179,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "examside:demand_provenance": "ExamSIDE demand family—multi-body string/contact equations require system-boundary decisions; representative source https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3233,7 +3234,8 @@
           "stem",
           "conditions",
           "answer"
-        ]
+        ],
+        "reason": "Change the two-body practice into a three-body system-boundary task that requires switching from the whole train to one cart without being told which boundary to use."
       },
       "exposure": [
         {
@@ -3272,8 +3274,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "examside:demand_provenance": "ExamSIDE demand family—string/pulley problems make tension-model assumptions consequential; representative corpus https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3326,7 +3328,8 @@
           "stem",
           "conditions",
           "answer"
-        ]
+        ],
+        "reason": "Break one ideal-pulley assumption from the earlier ideal-string practice so the learner must decide whether the equal-tension model still applies."
       },
       "exposure": [
         {
@@ -3365,8 +3368,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "examside:demand_provenance": "ExamSIDE demand family—fixed-pulley geometry must be translated into a constraint before dynamics; representative source https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3419,7 +3422,8 @@
           "stem",
           "conditions",
           "answer"
-        ]
+        ],
+        "reason": "Change the earlier fixed-pulley coordinate presentation into a verbal geometry with a new sign convention so the learner must reconstruct the length relation."
       },
       "exposure": [
         {
@@ -3458,8 +3462,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "examside:demand_provenance": "ExamSIDE demand family—accelerating-vehicle problems require observer-frame selection; representative source https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3513,7 +3517,8 @@
           "stem",
           "conditions",
           "answer"
-        ]
+        ],
+        "reason": "Change the earlier explicit two-frame comparison into a modelling-choice task where the desired stationary representation must determine the observer frame."
       },
       "exposure": [
         {
