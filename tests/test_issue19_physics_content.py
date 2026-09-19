@@ -250,6 +250,7 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
             {
                 "PHY-KIN-AVERAGE-RATES",
                 "PHY-NEWTON-SECOND-LAW",
+                "PHY-NLM-CONTACT-CONSTRAINTS",
                 "PHY-POWER-RATES",
                 "PHY-WORK-ENERGY-GRADE9",
                 "PHY-WAVE-SPEED",
