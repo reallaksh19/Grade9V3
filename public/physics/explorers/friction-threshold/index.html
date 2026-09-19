@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NLM Explorer 1 · Static-to-Kinetic Friction Threshold</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --bg-card-hover: #2d333b;
+      --border: #30363d;
+      --border-accent: #388bfd;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --text-dim: #6e7681;
+      --accent: #58a6ff;
+      --accent-glow: rgba(56, 139, 253, 0.2);
+      --static-color: #388bfd;
+      --threshold-color: #d2a8ff;
+      --kinetic-color: #f0883e;
+      --danger-color: #f85149;
+      --success-color: #56d364;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+    .badge.static { background: #16243b; border: 1px solid #388bfd; color: #58a6ff; }
+    .badge.kinetic { background: #382516; border: 1px solid #f0883e; color: #ffa657; }
+    .badge.threshold { background: #2f1d42; border: 1px solid #bc8cff; color: #d2a8ff; }
+    .badge.neutral { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 960px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Simulation Canvas Container */
+    .canvas-container {
+      position: relative;
+      background: #090d13;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Controls */
+    .control-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .control-label span.val {
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Status Bar */
+    .status-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .status-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .status-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .status-val {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Real-Time Live Graph */
+    .graph-container {
+      position: relative;
+      background: #090d13;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    /* Invariant Highlight Box */
+    .invariant-box {
+      background: rgba(56, 139, 253, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .invariant-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    /* Diagnostic Questions Section */
+    .questions-section {
+      margin-top: 32px;
+    }
+    .q-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+    .q-card:hover {
+      border-color: rgba(88, 166, 255, 0.5);
+    }
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .q-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .q-stem {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      background: var(--bg-card);
+      padding: 12px 14px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.15s ease;
+    }
+    .option-label:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+    }
+    .option-label input[type=radio] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+    }
+    .solution-box {
+      display: none;
+      background: #111a24;
+      border: 1px solid #1f3b5c;
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .solution-box.active { display: block; }
+    .solution-box.correct { border-color: var(--success-color); background: rgba(46, 160, 67, 0.08); }
+    .solution-box.wrong { border-color: var(--danger-color); background: rgba(248, 81, 73, 0.08); }
+    .btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn.secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn.secondary:hover { background: var(--bg-card-hover); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    🔬 NLM Explorer 1: Static-to-Kinetic Friction Threshold
+    <span class="badge static">R5 & R8 Interactive</span>
+  </div>
+  <div>
+    <a href="../topic-atlas/nlm/index.html" style="color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;">
+      ← Back to NLM Topic Atlas
+    </a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Invariant summary card -->
+  <div class="invariant-box">
+    <div class="invariant-title">⚡ Governing Model Invariants</div>
+    <div>
+      1. <strong>Static Friction ($f_s$) is a self-adjusting reaction</strong>, NOT a fixed formula: $0 \le f_s \le \mu_s N$. It perfectly matches the net applied tangential force until the threshold $\mu_s N$ is exceeded.<br>
+      2. <strong>Threshold Snap & Kinetic Drop:</strong> Once sliding is initiated ($P_x > \mu_s N$), friction abruptly drops to $f_k = \mu_k N$.<br>
+      3. <strong>Dynamic Normal Reaction:</strong> Pulling at an angle $	heta$ relieves floor contact: $N = mg - P\sin	heta$. As a result, the maximum static threshold $\mu_s N$ shrinks dynamically as pull increases!
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Left Column: Simulation & FBD -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>Interactive Physical System & FBD</span>
+        <span id="motion-badge" class="badge static">Rest (Static)</span>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="simCanvas" width="680" height="320"></canvas>
+      </div>
+
+      <!-- Controls -->
+      <div class="control-row">
+        <div class="control-group">
+          <div class="control-label">
+            <span>Applied Pull Force (P)</span>
+            <span class="val" id="val-p">15 N</span>
+          </div>
+          <input type="range" id="slider-p" min="0" max="100" step="0.5" value="15">
+        </div>
+        <div class="control-group">
+          <div class="control-label">
+            <span>Pull Angle (&theta;)</span>
+            <span class="val" id="val-theta">0&deg;</span>
+          </div>
+          <input type="range" id="slider-theta" min="0" max="60" step="1" value="0">
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-group">
+          <div class="control-label">
+            <span>Block Mass (m)</span>
+            <span class="val" id="val-m">5.0 kg</span>
+          </div>
+          <input type="range" id="slider-m" min="1" max="20" step="0.5" value="5">
+        </div>
+        <div class="control-group">
+          <div class="control-label">
+            <span>Static Coeff (&mu;<sub>s</sub>)</span>
+            <span class="val" id="val-mus">0.50</span>
+          </div>
+          <input type="range" id="slider-mus" min="0.1" max="1.0" step="0.02" value="0.5">
+        </div>
+        <div class="control-group">
+          <div class="control-label">
+            <span>Kinetic Coeff (&mu;<sub>k</sub>)</span>
+            <span class="val" id="val-muk">0.30</span>
+          </div>
+          <input type="range" id="slider-muk" min="0.05" max="0.9" step="0.02" value="0.3">
+        </div>
+      </div>
+
+      <!-- Live status strip -->
+      <div class="status-strip">
+        <div class="status-item">
+          <div class="status-label">Horizontal Pull P<sub>x</sub></div>
+          <div class="status-val" id="stat-px">15.0 N</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Normal Reaction N</div>
+          <div class="status-val" id="stat-n">50.0 N</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Max Static Limit f<sub>s,max</sub></div>
+          <div class="status-val" id="stat-fsmax">25.0 N</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Actual Friction f</div>
+          <div class="status-val" id="stat-f" style="color: var(--static-color);">15.0 N</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Acceleration a</div>
+          <div class="status-val" id="stat-a">0.00 m/s&sup2;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Live Invariant Graph & Microscopic View -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>Friction vs Applied Load Invariant</span>
+        <span class="badge neutral">f(P) Live Response</span>
+      </div>
+
+      <div class="graph-container">
+        <canvas id="graphCanvas" width="460" height="320"></canvas>
+      </div>
+
+      <div style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 10px;">
+        <p><strong>Graph Key:</strong></p>
+        <p>• <span style="color: var(--static-color); font-weight: bold;">Blue Line:</span> Static equilibrium regime ($f_s = P_x$). Force adjusts 1:1.</p>
+        <p>• <span style="color: var(--threshold-color); font-weight: bold;">Purple Peak:</span> Impending slip threshold ($f_{s,	ext{max}} = \mu_s N$).</p>
+        <p>• <span style="color: var(--kinetic-color); font-weight: bold;">Orange Line:</span> Kinetic plateau ($f_k = \mu_k N$). Acceleration occurs here.</p>
+        <p>• <span style="color: #fff; font-weight: bold;">White Marker:</span> Current real-time operating state.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Diagnostic Questions (Only Answerable After Explorer is Understood) -->
+  <section class="questions-section">
+    <div class="panel-title" style="font-size: 16px; margin-bottom: 8px;">
+      <span>🧠 Targeted Diagnostic Challenges</span>
+      <span class="badge neutral">Requires Explorer Model Invariants</span>
+    </div>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+      These questions specifically diagnose and dismantle standard mechanical formula-plugging mistakes ($f = \mu N$).
+    </p>
+
+    <!-- Question 1 -->
+    <div class="q-card" id="q1">
+      <div class="q-header">
+        <span class="q-title">Question 1 · The Sub-Threshold Trap</span>
+        <span class="badge neutral">Diagnostic 1.1</span>
+      </div>
+      <div class="q-stem">
+        A $5	ext{ kg}$ block sits at rest on a horizontal floor with $\mu_s = 0.5$ and $\mu_k = 0.3$ ($g = 10	ext{ m/s}^2$). A horizontal pull of $P = 15	ext{ N}$ is applied. What is the magnitude of the friction force acting on the block, and what is its acceleration?
+      </div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q1_opt" value="A">
+          <span><strong>A.</strong> Friction is $25	ext{ N}$, causing the block to accelerate backward at $2	ext{ m/s}^2$.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q1_opt" value="B">
+          <span><strong>B.</strong> Friction is $25	ext{ N}$, but the block stays at rest because friction balances motion.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q1_opt" value="C">
+          <span><strong>C.</strong> Friction is $15	ext{ N}$, and the block remains at rest with acceleration $0	ext{ m/s}^2$.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q1_opt" value="D">
+          <span><strong>D.</strong> Friction is $15	ext{ N}$, but it drops to kinetic friction $15	ext{ N}$ so it accelerates forward at $3	ext{ m/s}^2$.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ1()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ1ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-box" id="q1-solution">
+        <div id="q1-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> The formula $\mu_s N = 0.5 	imes (5 	imes 10) = 25	ext{ N}$ represents the <em>maximum possible threshold</em> of static friction, NOT the actual friction force! Because the applied pull $P = 15	ext{ N} < 25	ext{ N}$, the block never slips. Static friction adjusts dynamically to maintain equilibrium: $f_s = P = 15	ext{ N}$, and acceleration is $0	ext{ m/s}^2$.
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="q-card" id="q2">
+      <div class="q-header">
+        <span class="q-title">Question 2 · The Kinetic Drop Discontinuity</span>
+        <span class="badge neutral">Diagnostic 1.2</span>
+      </div>
+      <div class="q-stem">
+        The horizontal pull on the same $5	ext{ kg}$ block is increased to $P = 30	ext{ N}$ and held constant. What is the friction force acting on the block now, and what is its acceleration?
+      </div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q2_opt" value="A">
+          <span><strong>A.</strong> Friction is $25	ext{ N}$, giving acceleration $a = (30 - 25)/5 = 1	ext{ m/s}^2$.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q2_opt" value="B">
+          <span><strong>B.</strong> Friction drops to kinetic friction $f_k = 15	ext{ N}$, giving acceleration $a = (30 - 15)/5 = 3	ext{ m/s}^2$.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q2_opt" value="C">
+          <span><strong>C.</strong> Friction self-adjusts to match the applied force: $f = 30	ext{ N}$, so $a = 0	ext{ m/s}^2$.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q2_opt" value="D">
+          <span><strong>D.</strong> Friction becomes zero because the block is now moving smoothly.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ2()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ2ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-box" id="q2-solution">
+        <div id="q2-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> Because $P = 30	ext{ N} > f_{s,	ext{max}} = 25	ext{ N}$, the static contact bond breaks and relative sliding commences. The instant sliding begins, the static regime is abandoned and friction drops to the constant kinetic value $f_k = \mu_k N = 0.3 	imes 50 = 15	ext{ N}$. The net accelerating force is $F_{	ext{net}} = 30	ext{ N} - 15	ext{ N} = 15	ext{ N}$, resulting in $a = 15/5 = 3	ext{ m/s}^2$.
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="q-card" id="q3">
+      <div class="q-header">
+        <span class="q-title">Question 3 · Angled Pull & Dynamic Normal Reaction</span>
+        <span class="badge neutral">Diagnostic 1.3</span>
+      </div>
+      <div class="q-stem">
+        A $10	ext{ kg}$ crate ($\mu_s = 0.6$) is pulled by an increasing force $P$ directed at $37^\circ$ above the horizontal ($\sin 37^\circ = 0.6, \cos 37^\circ = 0.8$). As $P$ increases from zero before the crate slips, what happens to the maximum possible static friction force ($f_{s,	ext{max}}$)?
+      </div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q3_opt" value="A">
+          <span><strong>A.</strong> It remains strictly constant at $\mu_s mg = 60	ext{ N}$ because mass and surface roughness have not changed.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q3_opt" value="B">
+          <span><strong>B.</strong> It increases because the applied force is getting stronger.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q3_opt" value="C">
+          <span><strong>C.</strong> It decreases because the upward vertical component $P\sin 37^\circ$ relieves normal contact force $N$.</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q3_opt" value="D">
+          <span><strong>D.</strong> It drops instantly to zero because the angle lifts the block completely off the floor.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ3()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ3ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-box" id="q3-solution">
+        <div id="q3-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> The vertical equilibrium of the block is $N + P\sin 37^\circ = mg \implies N = mg - P\sin 37^\circ$. Because normal reaction is reduced by the upward component of the pull, the maximum static holding threshold $f_{s,	ext{max}} = \mu_s N$ decreases dynamically as $P$ increases! This makes the crate slip earlier than it would under a purely horizontal pull.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// Physical State Variables
+let m = 5.0; // kg
+let g = 10.0; // m/s^2
+let mu_s = 0.50;
+let mu_k = 0.30;
+let P = 15.0; // N
+let theta = 0; // degrees
+let blockX = 140; // canvas coord
+let blockV = 0;
+let lastTime = null;
+
+// UI Elements
+const sliderP = document.getElementById('slider-p');
+const sliderTheta = document.getElementById('slider-theta');
+const sliderM = document.getElementById('slider-m');
+const sliderMus = document.getElementById('slider-mus');
+const sliderMuk = document.getElementById('slider-muk');
+
+const valP = document.getElementById('val-p');
+const valTheta = document.getElementById('val-theta');
+const valM = document.getElementById('val-m');
+const valMus = document.getElementById('val-mus');
+const valMuk = document.getElementById('val-muk');
+
+const statPx = document.getElementById('stat-px');
+const statN = document.getElementById('stat-n');
+const statFsmax = document.getElementById('stat-fsmax');
+const statF = document.getElementById('stat-f');
+const statA = document.getElementById('stat-a');
+const motionBadge = document.getElementById('motion-badge');
+
+const simCanvas = document.getElementById('simCanvas');
+const simCtx = simCanvas.getContext('2d');
+const graphCanvas = document.getElementById('graphCanvas');
+const graphCtx = graphCanvas.getContext('2d');
+
+function updateParams() {
+  P = parseFloat(sliderP.value);
+  theta = parseFloat(sliderTheta.value);
+  m = parseFloat(sliderM.value);
+  mu_s = parseFloat(sliderMus.value);
+  mu_k = parseFloat(sliderMuk.value);
+
+  // Guarantee mu_k <= mu_s
+  if (mu_k > mu_s) {
+    mu_k = mu_s;
+    sliderMuk.value = mu_k;
+  }
+
+  valP.textContent = P.toFixed(1) + ' N';
+  valTheta.textContent = theta.toFixed(0) + '°';
+  valM.textContent = m.toFixed(1) + ' kg';
+  valMus.textContent = mu_s.toFixed(2);
+  valMuk.textContent = mu_k.toFixed(2);
+}
+
+sliderP.oninput = updateParams;
+sliderTheta.oninput = updateParams;
+sliderM.oninput = updateParams;
+sliderMus.oninput = updateParams;
+sliderMuk.oninput = updateParams;
+
+function computePhysics() {
+  const rad = theta * Math.PI / 180;
+  const Px = P * Math.cos(rad);
+  const Py = P * Math.sin(rad);
+
+  const weight = m * g;
+  // Normal reaction: cannot be negative (if Py > weight, block lifts off)
+  const N = Math.max(0, weight - Py);
+  const isLiftOff = (Py >= weight);
+
+  const fs_max = mu_s * N;
+  const fk = mu_k * N;
+
+  let f = 0;
+  let a = 0;
+  let state = "STATIC";
+
+  if (isLiftOff) {
+    state = "LIFT_OFF";
+    f = 0;
+    a = Px / m;
+  } else if (Px > fs_max + 0.001) {
+    state = "KINETIC";
+    f = fk;
+    a = (Px - fk) / m;
+  } else if (Math.abs(Px - fs_max) <= 0.001 && fs_max > 0) {
+    state = "THRESHOLD";
+    f = fs_max;
+    a = 0;
+  } else {
+    state = "STATIC";
+    f = Px;
+    a = 0;
+  }
+
+  return { Px, Py, weight, N, fs_max, fk, f, a, state };
+}
+
+function renderSim(dt) {
+  const p = computePhysics();
+
+  // Update motion if sliding
+  if (p.state === "KINETIC" || p.state === "LIFT_OFF") {
+    blockV += p.a * dt;
+    blockX += blockV * dt * 25; // scaling for canvas
+    if (blockX > simCanvas.width - 120) {
+      blockX = 40; // loop back smoothly
+    }
+  } else {
+    blockV = 0;
+  }
+
+  // Update text stats
+  statPx.textContent = p.Px.toFixed(1) + ' N';
+  statN.textContent = p.N.toFixed(1) + ' N';
+  statFsmax.textContent = p.fs_max.toFixed(1) + ' N';
+  statF.textContent = p.f.toFixed(1) + ' N';
+  statA.textContent = p.a.toFixed(2) + ' m/s²';
+
+  if (p.state === "STATIC") {
+    motionBadge.className = "badge static";
+    motionBadge.textContent = "Rest (Static Regime)";
+    statF.style.color = "var(--static-color)";
+  } else if (p.state === "THRESHOLD") {
+    motionBadge.className = "badge threshold";
+    motionBadge.textContent = "Impending Slip (Threshold!)";
+    statF.style.color = "var(--threshold-color)";
+  } else if (p.state === "KINETIC") {
+    motionBadge.className = "badge kinetic";
+    motionBadge.textContent = "Sliding (Kinetic Regime)";
+    statF.style.color = "var(--kinetic-color)";
+  } else {
+    motionBadge.className = "badge threshold";
+    motionBadge.textContent = "Airborne (Lift-Off)";
+    statF.style.color = "#fff";
+  }
+
+  // Draw simulation scene
+  simCtx.clearRect(0, 0, simCanvas.width, simCanvas.height);
+
+  const floorY = 230;
+  const blockW = 80;
+  const blockH = 50;
+  const curY = floorY - blockH;
+
+  // Draw Floor
+  simCtx.fillStyle = '#1c2430';
+  simCtx.fillRect(0, floorY, simCanvas.width, simCanvas.height - floorY);
+  simCtx.strokeStyle = '#30363d';
+  simCtx.lineWidth = 2;
+  simCtx.beginPath();
+  simCtx.moveTo(0, floorY);
+  simCtx.lineTo(simCanvas.width, floorY);
+  simCtx.stroke();
+
+  // Floor hatching
+  simCtx.strokeStyle = '#21262d';
+  for (let x = 0; x < simCanvas.width; x += 16) {
+    simCtx.beginPath();
+    simCtx.moveTo(x, floorY);
+    simCtx.lineTo(x - 10, floorY + 14);
+    simCtx.stroke();
+  }
+
+  // Draw Block
+  const cx = blockX + blockW / 2;
+  const cy = curY + blockH / 2;
+
+  simCtx.fillStyle = '#21262d';
+  simCtx.strokeStyle = p.state === "KINETIC" ? 'var(--kinetic-color)' : (p.state === "THRESHOLD" ? 'var(--threshold-color)' : 'var(--static-color)');
+  simCtx.lineWidth = 2;
+  simCtx.fillRect(blockX, curY, blockW, blockH);
+  simCtx.strokeRect(blockX, curY, blockW, blockH);
+
+  // Block Label
+  simCtx.fillStyle = '#e6edf3';
+  simCtx.font = '12px ' + getComputedStyle(document.body).fontFamily;
+  simCtx.textAlign = 'center';
+  simCtx.fillText(m.toFixed(1) + ' kg', cx, cy + 4);
+
+  // FBD Vectors
+  const scale = 1.3; // px per N
+
+  // 1. Gravity (Down)
+  drawArrow(simCtx, cx, cy, cx, cy + p.weight * scale, '#8b949e', 'W = ' + p.weight.toFixed(0) + 'N');
+
+  // 2. Normal Force (Up)
+  if (p.N > 0) {
+    drawArrow(simCtx, cx, cy, cx, cy - p.N * scale, 'var(--accent)', 'N = ' + p.N.toFixed(1) + 'N');
+  }
+
+  // 3. Applied Pull Vector (Angled)
+  const rad = theta * Math.PI / 180;
+  const pxEnd = cx + (P * Math.cos(rad)) * scale;
+  const pyEnd = cy - (P * Math.sin(rad)) * scale;
+  drawArrow(simCtx, cx, cy, pxEnd, pyEnd, '#f0883e', 'P = ' + P.toFixed(1) + 'N (' + theta + '°)');
+
+  // 4. Friction Vector (Left along interface)
+  if (p.f > 0) {
+    const fColor = (p.state === "KINETIC") ? 'var(--kinetic-color)' : (p.state === "THRESHOLD" ? 'var(--threshold-color)' : 'var(--static-color)');
+    drawArrow(simCtx, cx, floorY, cx - p.f * scale, floorY, fColor, 'f = ' + p.f.toFixed(1) + 'N');
+  }
+
+  // 5. Acceleration Vector (if any)
+  if (p.a > 0) {
+    drawArrow(simCtx, cx, curY - 14, cx + p.a * 15, curY - 14, 'var(--success-color)', 'a = ' + p.a.toFixed(2) + ' m/s²');
+  }
+}
+
+function drawArrow(ctx, fromX, fromY, toX, toY, color, label) {
+  const headLen = 8;
+  const angle = Math.atan2(toY - fromY, toX - fromX);
+  const len = Math.hypot(toX - fromX, toY - fromY);
+
+  if (len < 1) return;
+
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 2;
+
+  ctx.beginPath();
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(toX, toY);
+  ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+  ctx.fill();
+
+  if (label) {
+    ctx.font = '11px monospace';
+    ctx.fillStyle = color;
+    ctx.textAlign = (toX >= fromX) ? 'left' : 'right';
+    const textOffset = 6;
+    ctx.fillText(label, toX + (toX >= fromX ? textOffset : -textOffset), toY - 4);
+  }
+}
+
+function renderGraph() {
+  const w = graphCanvas.width;
+  const h = graphCanvas.height;
+  graphCtx.clearRect(0, 0, w, h);
+
+  const padLeft = 46;
+  const padBottom = 36;
+  const padTop = 20;
+  const padRight = 20;
+
+  const plotW = w - padLeft - padRight;
+  const plotH = h - padBottom - padTop;
+
+  // Axes
+  graphCtx.strokeStyle = '#30363d';
+  graphCtx.lineWidth = 1;
+  graphCtx.beginPath();
+  graphCtx.moveTo(padLeft, padTop);
+  graphCtx.lineTo(padLeft, h - padBottom);
+  graphCtx.lineTo(w - padRight, h - padBottom);
+  graphCtx.stroke();
+
+  // Labels
+  graphCtx.fillStyle = '#8b949e';
+  graphCtx.font = '10px monospace';
+  graphCtx.textAlign = 'right';
+  graphCtx.fillText('f (N)', padLeft - 6, padTop + 6);
+  graphCtx.textAlign = 'center';
+  graphCtx.fillText('Applied Load P_x (N)', padLeft + plotW / 2, h - 10);
+
+  // Compute key graph coordinates for current normal reaction N
+  const rad = theta * Math.PI / 180;
+  const Py = P * Math.sin(rad);
+  const N = Math.max(0, m * g - Py);
+  const fs_max = mu_s * N;
+  const fk = mu_k * N;
+
+  const maxAxisX = 80;
+  const maxAxisY = Math.max(50, fs_max * 1.4);
+
+  const toScreenX = (val) => padLeft + (val / maxAxisX) * plotW;
+  const toScreenY = (val) => (h - padBottom) - (val / maxAxisY) * plotH;
+
+  // Grid ticks
+  for (let x = 20; x <= maxAxisX; x += 20) {
+    const sx = toScreenX(x);
+    graphCtx.strokeStyle = '#1c2128';
+    graphCtx.beginPath();
+    graphCtx.moveTo(sx, padTop);
+    graphCtx.lineTo(sx, h - padBottom);
+    graphCtx.stroke();
+    graphCtx.fillText(x, sx, h - padBottom + 14);
+  }
+
+  // Draw Static Line (slope 1 up to fs_max)
+  graphCtx.strokeStyle = 'var(--static-color)';
+  graphCtx.lineWidth = 3;
+  graphCtx.beginPath();
+  graphCtx.moveTo(toScreenX(0), toScreenY(0));
+  graphCtx.lineTo(toScreenX(fs_max), toScreenY(fs_max));
+  graphCtx.stroke();
+
+  // Draw Discontinuous Drop (dotted vertical drop from fs_max to fk)
+  graphCtx.strokeStyle = 'var(--threshold-color)';
+  graphCtx.lineWidth = 2;
+  graphCtx.setLineDash([4, 4]);
+  graphCtx.beginPath();
+  graphCtx.moveTo(toScreenX(fs_max), toScreenY(fs_max));
+  graphCtx.lineTo(toScreenX(fs_max), toScreenY(fk));
+  graphCtx.stroke();
+  graphCtx.setLineDash([]);
+
+  // Draw Kinetic Plateau (horizontal line at fk)
+  graphCtx.strokeStyle = 'var(--kinetic-color)';
+  graphCtx.lineWidth = 3;
+  graphCtx.beginPath();
+  graphCtx.moveTo(toScreenX(fs_max), toScreenY(fk));
+  graphCtx.lineTo(toScreenX(maxAxisX), toScreenY(fk));
+  graphCtx.stroke();
+
+  // Draw Critical Threshold Peak Marker
+  graphCtx.fillStyle = 'var(--threshold-color)';
+  graphCtx.beginPath();
+  graphCtx.arc(toScreenX(fs_max), toScreenY(fs_max), 5, 0, 2 * Math.PI);
+  graphCtx.fill();
+
+  graphCtx.font = '10px monospace';
+  graphCtx.fillStyle = 'var(--threshold-color)';
+  graphCtx.textAlign = 'left';
+  graphCtx.fillText(' Peak: ' + fs_max.toFixed(1) + 'N', toScreenX(fs_max) + 6, toScreenY(fs_max) - 4);
+
+  // Draw Current Operating Point Marker
+  const pPhys = computePhysics();
+  const curX = Math.min(maxAxisX, pPhys.Px);
+  const curY = pPhys.f;
+
+  graphCtx.fillStyle = '#ffffff';
+  graphCtx.beginPath();
+  graphCtx.arc(toScreenX(curX), toScreenY(curY), 6, 0, 2 * Math.PI);
+  graphCtx.fill();
+  graphCtx.strokeStyle = '#000000';
+  graphCtx.lineWidth = 2;
+  graphCtx.stroke();
+}
+
+// Animation loop
+function loop(timestamp) {
+  if (!lastTime) lastTime = timestamp;
+  const dt = Math.min(0.05, (timestamp - lastTime) / 1000);
+  lastTime = timestamp;
+
+  renderSim(dt);
+  renderGraph();
+
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// Question Check Functions
+function checkQ1() {
+  const sel = document.querySelector('input[name="q1_opt"]:checked');
+  const sol = document.getElementById('q1-solution');
+  const fb = document.getElementById('q1-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'C') {
+    sol.className = 'solution-box active correct';
+    fb.innerHTML = '✅ CORRECT! Static friction adjusts to exactly 15 N.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-box active wrong';
+    fb.innerHTML = '❌ INCORRECT: Standard Formula Trap!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ1ToSim() {
+  sliderM.value = 5;
+  sliderMus.value = 0.5;
+  sliderMuk.value = 0.3;
+  sliderTheta.value = 0;
+  sliderP.value = 15;
+  updateParams();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function checkQ2() {
+  const sel = document.querySelector('input[name="q2_opt"]:checked');
+  const sol = document.getElementById('q2-solution');
+  const fb = document.getElementById('q2-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'B') {
+    sol.className = 'solution-box active correct';
+    fb.innerHTML = '✅ CORRECT! Friction drops to kinetic (15 N), accelerating at 3 m/s².';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-box active wrong';
+    fb.innerHTML = '❌ INCORRECT: Notice the kinetic drop!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ2ToSim() {
+  sliderM.value = 5;
+  sliderMus.value = 0.5;
+  sliderMuk.value = 0.3;
+  sliderTheta.value = 0;
+  sliderP.value = 30;
+  updateParams();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function checkQ3() {
+  const sel = document.querySelector('input[name="q3_opt"]:checked');
+  const sol = document.getElementById('q3-solution');
+  const fb = document.getElementById('q3-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'C') {
+    sol.className = 'solution-box active correct';
+    fb.innerHTML = '✅ CORRECT! Normal reaction decreases dynamically, lowering the threshold.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-box active wrong';
+    fb.innerHTML = '❌ INCORRECT: Normal reaction is not always mg!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ3ToSim() {
+  sliderM.value = 10;
+  sliderMus.value = 0.6;
+  sliderMuk.value = 0.4;
+  sliderTheta.value = 37;
+  sliderP.value = 40;
+  updateParams();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
