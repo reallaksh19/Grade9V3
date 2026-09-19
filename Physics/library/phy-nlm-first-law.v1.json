@@ -67,6 +67,109 @@
       ],
       "selection_reason": "Owner-approved ExamSIDE NLM reconnaissance repeatedly exposes quantitative friction thresholds and connected-body/string constraints. The source is used to justify preparation demand, not to define curriculum or canonical questions.",
       "fallback": []
+    },
+    {
+      "id": "ACT-NLM-FRICTION-THRESHOLD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Static-to-Kinetic Friction Threshold Explorer",
+      "origin": "AUTHORED",
+      "locator": "public/physics/nlm/explorers/friction-threshold/index.html",
+      "edition": "1.0.0",
+      "section": "Interactive FBD, normal force angle variation and dynamic threshold",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created interactive cognitive model.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "ACTIVITY"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-FRICTION-QUANT"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "ADVANCED"
+      ],
+      "selection_reason": "Interactive physical simulation with real-time FBD vectors and dynamic normal force from angled pull.",
+      "fallback": []
+    },
+    {
+      "id": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Atwood Machine & String Constraint Explorer",
+      "origin": "AUTHORED",
+      "locator": "public/physics/nlm/explorers/atwood-pulleys/index.html",
+      "edition": "1.0.0",
+      "section": "Interactive pulley systems, string tension dynamics, and kinematic acceleration constraints",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created interactive cognitive model.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "ACTIVITY"
+      ],
+      "supports_claims": [
+        "CAP-NLM-IDEAL-STRING-TENSION",
+        "CAP-NLM-SINGLE-STRING-CONSTRAINT"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "ADVANCED"
+      ],
+      "selection_reason": "Interactive dual-mode Atwood machine and movable pulley simulation with dynamic string tension and constraint kinematics.",
+      "fallback": []
+    },
+    {
+      "id": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Connected Blocks & Newton's Third Law Explorer",
+      "origin": "AUTHORED",
+      "locator": "public/physics/nlm/explorers/connected-blocks/index.html",
+      "edition": "1.0.0",
+      "section": "Multi-body contact forces, action-reaction pairs, system boundaries, and push direction asymmetry",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created interactive cognitive model.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "ACTIVITY"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-THIRD-LAW",
+        "CAP-NLM-CONNECTED-COMMON-ACCEL"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "ADVANCED"
+      ],
+      "selection_reason": "Interactive multi-block train simulation demonstrating contact normal force transmission, equal-and-opposite interface pairs, and system-boundary cancellation.",
+      "fallback": []
     }
   ],
   "buckets": [
