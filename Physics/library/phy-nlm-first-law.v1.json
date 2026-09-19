@@ -157,7 +157,9 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "agent_a:incline_integration": "USES_EXISTING_OWNER"
+      },
       "action": "Assign each force arrow to the body on which that force acts.",
       "success_criterion": "Place a partner force on the other body's diagram rather than the chosen body's diagram.",
       "prerequisite_refs": [],
@@ -192,7 +194,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:incline_integration": "USES_EXISTING_OWNER"
       },
       "curriculum_mappings": [],
       "external_provider": null,
@@ -217,7 +220,8 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9",
         "agent_a:packet": "NLM_FRICTION",
-        "agent_a:semantic_boundary": "Owns qualitative contact-level friction existence and direction from relative sliding or slip tendency. It does not own coefficient-based magnitude/state selection; that belongs to CAP-NLM-FRICTION-QUANT."
+        "agent_a:semantic_boundary": "Owns qualitative contact-level friction existence and direction from relative sliding or slip tendency. It does not own coefficient-based magnitude/state selection; that belongs to CAP-NLM-FRICTION-QUANT.",
+        "agent_a:incline_integration": "USES_EXISTING_OWNER"
       },
       "curriculum_mappings": [],
       "external_provider": null,
@@ -264,7 +268,8 @@
       "extensions": {
         "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
         "agent_a:packet": "NLM_FRICTION",
-        "agent_a:semantic_boundary": "Owns static-feasibility and kinetic-friction model selection after the body/contact model is declared: determine N, solve the no-slip friction demand, compare with the static bound, and switch models only when the contact state justifies it. It does not create separate capabilities for every incline, block-stack, or force-angle context."
+        "agent_a:semantic_boundary": "Owns static-feasibility and kinetic-friction model selection after the body/contact model is declared: determine N, solve the no-slip friction demand, compare with the static bound, and switch models only when the contact state justifies it. It does not create separate capabilities for every incline, block-stack, or force-angle context.",
+        "agent_a:incline_integration": "USES_EXISTING_OWNER"
       },
       "action": "Decide whether static friction can supply the tangential force required by the chosen-body dynamics; if relative sliding is established, use the declared kinetic-friction model.",
       "success_criterion": "Obtains the actual normal force from the free-body dynamics, computes the friction required for no slip, accepts static friction only when |f_required| <= mu_s N, uses equality only at impending slip, and switches to |f_k| = mu_k N only after relative sliding is established.",
@@ -624,7 +629,9 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION"
+      },
       "title": "A free-body diagram belongs to one chosen body",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
       "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
@@ -658,16 +665,33 @@
           "why_valid": "A correct diagram changes when the chosen body changes even though the physical interaction is the same.",
           "inputs": [],
           "output": "switch body -> switch which contact-force arrow belongs in the diagram; partner arrows never cancel on one diagram."
+        },
+        {
+          "id": "NLM3-4",
+          "role": "VERIFY",
+          "action": "When a physical force is resolved into components for chosen axes, keep the body-force inventory unchanged: use the components as a representation of that one force in the equations, not as additional interaction forces alongside the original vector.",
+          "why_valid": "Resolving a vector changes its coordinate representation, not the number of physical interactions acting on the body. Counting both the original force and its components double-counts the same interaction.",
+          "inputs": [
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "output": "one physical force -> either original vector representation or its signed components in the chosen equations, never both as separate forces"
         }
       ],
       "relation_refs": [],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-NLM-INCLINE-MODELLING"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "Equal and opposite partner forces cancel each other on one body's free-body diagram.",
           "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
           "repair": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen."
+        },
+        {
+          "wrong_idea": "After resolving weight on an incline, mg, mg sin(theta) and mg cos(theta) are three separate forces on the block.",
+          "diagnostic_prompt": "If gravity is one Earth-on-block interaction, did choosing tilted axes create two new physical agents?",
+          "repair": "No. Weight remains one physical force. Its parallel/perpendicular components are the coordinate representation used in the chosen equations; do not add the original mg again to those component sums."
         }
       ],
       "exit_task": {
@@ -894,7 +918,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION"
       },
       "title": "Net force, not any one force, sets acceleration",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -933,18 +958,36 @@
           "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
           "inputs": [],
           "output": "F_net = 0 -> a = 0 for m > 0."
+        },
+        {
+          "id": "NLM6-4",
+          "role": "DECLARE",
+          "action": "Choose axes that make the active constraint easy to express; for a fixed inclined contact, use parallel/perpendicular axes when helpful, resolve the physical forces into those axes, and write separate signed Newton-II equations.",
+          "why_valid": "Newton II is coordinate-independent. Aligning one axis with the contact makes maintained contact explicit as a_perp=0 while leaving the tangential acceleration free to be nonzero.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "output": "contact-aligned model: Sigma F_parallel = m a_parallel; Sigma F_perp = m a_perp, with maintained fixed contact -> a_perp = 0"
         }
       ],
       "relation_refs": [
         "REL-NEWTON-SECOND-LAW"
       ],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-NLM-INCLINE-MODELLING"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
           "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
           "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+        },
+        {
+          "wrong_idea": "If a block on a fixed incline has zero acceleration perpendicular to the plane, its total acceleration must be zero.",
+          "diagnostic_prompt": "Can a block remain in contact with a fixed plane while speeding up down the plane?",
+          "repair": "Yes. Maintained contact sets only a_perp=0. The parallel component a_parallel is determined independently by the net force along the plane."
         }
       ],
       "exit_task": {
@@ -1093,7 +1136,9 @@
       ],
       "relation_refs": [],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-NLM-INCLINE-MODELLING"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "Friction always points opposite the object's velocity.",
@@ -1394,7 +1439,8 @@
       ],
       "representation_refs": [],
       "question_family_refs": [
-        "FAM-PHY-NLM-PRACTICE"
+        "FAM-PHY-NLM-PRACTICE",
+        "FAM-PHY-NLM-INCLINE-MODELLING"
       ],
       "misconceptions": [
         {
@@ -2449,6 +2495,78 @@
         "Q-PHY-NLM-2A-ATWOOD-12",
         "Q-PHY-NLM-2B-CONTACT-LOSS-06",
         "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07"
+      ]
+    },
+    {
+      "id": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "title": "Inclined-plane force modelling",
+      "capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-FRICTION-QUANT",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "solution_structure": [
+        "Choose the block and declare axes, normally parallel/perpendicular to the fixed plane.",
+        "List the actual forces before resolving any of them into components.",
+        "Resolve only the forces that are not already axis-aligned.",
+        "Use the perpendicular equation first to determine the actual normal reaction under maintained contact.",
+        "Use the parallel equation for acceleration or for the friction value required by a no-slip state.",
+        "If rough contact is involved, test the required static friction against its bound or use the kinetic model only after sliding is established."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide axis representation, friction direction/state, or whether a proposed force model is physically valid before calculating.",
+        "representation_translation": "Translate the same incline physics between contact-aligned axes, laboratory axes, diagrams and component equations.",
+        "reasoning_steps": "Carry FBD ownership, decomposition, normal-force determination and tangential dynamics in the correct dependency order.",
+        "novelty": "Change angle, applied-force direction or contact state without introducing a new scientific relation."
+      },
+      "safe_variations": [
+        "Change theta while preserving one fixed plane and the same force inventory.",
+        "Change from smooth to rough contact while preserving the same gravity decomposition.",
+        "Add an applied force whose perpendicular component changes N.",
+        "Reverse the expected slip tendency so the static-friction direction must be reconsidered.",
+        "Change coordinate representation while preserving the same physical forces and acceleration."
+      ],
+      "transfer_boundaries": [
+        "Do not create an inclined-plane capability merely because the plane is tilted.",
+        "Do not count a force and its resolved components as separate forces.",
+        "Do not assume N=mg or even N=mg cos(theta) when another force has a perpendicular component.",
+        "Do not set f_s=mu_s N unless the contact is at impending slip.",
+        "Do not import movable-wedge or rolling-body constraints into the fixed-plane model."
+      ],
+      "common_wrong_routes": [
+        "Use x-horizontal/y-vertical by habit and then mix signs or constraints across axes.",
+        "Draw mg, mg sin(theta) and mg cos(theta) as three separate forces.",
+        "Assume zero perpendicular acceleration means zero total acceleration.",
+        "Assume N=mg on a tilted surface.",
+        "Point friction automatically uphill or downhill without first checking the slip tendency."
+      ],
+      "item_refs": [
+        "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
+        "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+        "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+        "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+        "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+        "Q-PHY-NLM-INCLINE-2B-AXES-01",
+        "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+        "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
+        "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
+        "Q-PHY-NLM-INCLINE-2B-TIMING-05"
       ]
     }
   ],
@@ -4513,6 +4631,830 @@
         ]
       },
       "repair_ref": "NLM11-5"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2A-SMOOTH-01",
+      "stem": "A block of mass m is released from rest on a smooth fixed plane inclined at angle theta above the horizontal. Choose axes that make the contact constraint simple, determine the normal reaction, and find the block's acceleration along the plane.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "0 < theta < 90 degrees.",
+        "The plane is fixed and smooth.",
+        "The block remains in contact with the plane."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Using axes parallel/perpendicular to the plane, weight has components mg sin(theta) down the plane and mg cos(theta) into the plane. Maintained contact gives N=mg cos(theta), and the tangential equation gives acceleration g sin(theta) down the plane.",
+        "reasoning": [
+          "Choose the block and use +parallel down the plane and +perpendicular outward from the plane.",
+          "The physical forces are weight mg and the normal reaction N.",
+          "Resolve weight into mg sin(theta) parallel down the plane and mg cos(theta) perpendicular into the plane.",
+          "Maintained contact gives a_perp=0, so N-mg cos(theta)=0.",
+          "Along the plane, mg sin(theta)=m a_parallel, so a_parallel=g sin(theta) down the plane."
+        ],
+        "check": "At theta=0 the tangential acceleration tends to zero and N tends to mg; as theta approaches 90 degrees, N tends to zero and the tangential acceleration tends to g.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which axis choice turns maintained contact into one simple acceleration statement?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "With axes parallel/perpendicular to the plane, resolve weight before writing the two signed Newton-II equations.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM6-4"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2A-STATIC-02",
+      "stem": "A block rests on a rough fixed plane inclined at angle theta. The coefficient of static friction is mu_s. Determine the friction required for rest and derive the condition under which the static state is possible.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "No other force acts on the block.",
+        "The block is tested for rest; do not assume limiting friction at the start."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "For rest, N=mg cos(theta) and static friction must act up the plane with required magnitude mg sin(theta). Rest is feasible when mg sin(theta) <= mu_s mg cos(theta), equivalently tan(theta) <= mu_s.",
+        "reasoning": [
+          "Without friction the block tends to slide down the plane, so static friction required for rest points up the plane.",
+          "The perpendicular equation gives N=mg cos(theta).",
+          "The no-slip tangential equation requires f_required=mg sin(theta).",
+          "Static contact is possible only if f_required <= mu_s N.",
+          "Cancelling mg cos(theta)>0 gives tan(theta)<=mu_s."
+        ],
+        "check": "The calculation uses equality f_s=mu_s N only at the limiting angle; for a smaller angle the actual static friction is below its maximum.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "First ask which way the block would tend to slip if friction vanished.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find N from the perpendicular equation, solve the friction required for rest, then compare that requirement with mu_s N.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM8-3"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2A-SLIDING-03",
+      "stem": "A block is already sliding down a rough fixed plane inclined at angle theta. The coefficient of kinetic friction is mu_k. Derive its acceleration along the plane.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The sliding direction is down the plane.",
+        "No other force acts on the block.",
+        "The plane is fixed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "N=mg cos(theta). Kinetic friction has magnitude mu_k mg cos(theta) and points up the plane, so the down-plane acceleration is a=g[sin(theta)-mu_k cos(theta)].",
+        "reasoning": [
+          "Maintained contact gives N=mg cos(theta).",
+          "Because the block is sliding down relative to the plane, kinetic friction points up the plane.",
+          "With down-plane positive, m a=mg sin(theta)-mu_k mg cos(theta).",
+          "Divide by m to obtain a=g[sin(theta)-mu_k cos(theta)]."
+        ],
+        "check": "Setting mu_k=0 recovers the smooth-plane result a=g sin(theta).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The block is already sliding down the plane; which way must the kinetic friction act at the contact?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the perpendicular equation for N, then write the tangential net force with down the plane positive.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM8-4"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+      "stem": "A block of mass m is on a smooth fixed plane that rises to the right at angle theta above the horizontal. A horizontal force P pushes the block to the right. Determine the normal reaction and the acceleration along the plane.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "0 < theta < 90 degrees.",
+        "The block remains in contact with the smooth plane.",
+        "The applied force P is horizontal and rightward."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Relative to plane-aligned axes, P has P cos(theta) up the plane and P sin(theta) into the plane. Thus N=mg cos(theta)+P sin(theta), and a_parallel=[P cos(theta)-mg sin(theta)]/m with uphill positive.",
+        "reasoning": [
+          "Choose +parallel uphill and +perpendicular outward from the plane.",
+          "Resolve the horizontal force into P cos(theta) uphill and P sin(theta) into the plane.",
+          "Resolve weight into mg sin(theta) downhill and mg cos(theta) into the plane.",
+          "Maintained contact gives N-mg cos(theta)-P sin(theta)=0.",
+          "The parallel equation is P cos(theta)-mg sin(theta)=m a_parallel."
+        ],
+        "check": "At P=0 the result reduces to the ordinary smooth-incline equations, with negative uphill acceleration -g sin(theta).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 2
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The horizontal applied force is not parallel to the plane. Which component presses into the plane and which acts along it?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Resolve P and mg in the same plane-aligned axes, use a_perp=0 for N, then use the parallel equation for acceleration.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM6-4"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+      "stem": "A block rests on a smooth fixed incline. A student draws three downward-related force arrows on the same free-body diagram: mg vertically downward, mg sin(theta) down the plane, and mg cos(theta) into the plane. Diagnose the diagram and state how the weight should be represented when writing plane-aligned equations.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The only physical interactions are Earth-on-block gravity and plane-on-block normal contact.",
+        "The question is about force ownership and representation, not numerical calculation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The diagram double-counts gravity. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums.",
+        "reasoning": [
+          "A free-body inventory is a list of physical interactions acting on the chosen body.",
+          "Gravity is one Earth-on-block interaction, represented by the vector mg.",
+          "Resolving that vector into parallel/perpendicular components changes its coordinate description only.",
+          "The component equations may use the two components instead of the unresolved weight vector; they are not two new agents."
+        ],
+        "check": "The physical-force count remains two in this smooth-contact case: weight and normal reaction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+      "secondary_capability_refs": [
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Did choosing new axes create any new physical object acting on the block?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Keep one gravity interaction; use either its original vector or its resolved components in a given equation representation, not both.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM3-4"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2B-AXES-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2B-AXES-01",
+      "stem": "The same smooth fixed-incline problem is solved by two students. Student A uses axes parallel/perpendicular to the plane. Student B keeps horizontal/vertical laboratory axes. Decide whether both coordinate choices are physically valid, and explain why Student A's choice usually makes the contact constraint and acceleration easier to express.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Both students use one consistent inertial frame.",
+        "The plane is fixed and smooth.",
+        "No numerical angle is required."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Both coordinate systems are valid if used consistently. Plane-aligned axes are usually simpler because maintained contact becomes a_perp=0 and the unknown acceleration has only a parallel component; horizontal/vertical axes require projecting both the normal force and the constrained acceleration.",
+        "reasoning": [
+          "Changing axes does not change the physical forces or motion.",
+          "In plane-aligned axes, the normal reaction lies on the perpendicular axis and the tangential motion lies on the parallel axis.",
+          "The contact condition is therefore stated directly as a_perp=0.",
+          "In horizontal/vertical axes the same normal and acceleration must be represented by components, which is valid but algebraically less direct."
+        ],
+        "check": "A correct solution in either coordinate system must predict the same physical acceleration vector and normal reaction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Accepts both coordinate systems as valid representations.",
+            "evidence_of": "Treats axis choice as modelling convenience rather than a physical law."
+          },
+          {
+            "criterion": "Identifies a_perp=0 as the simple contact statement in plane-aligned axes.",
+            "evidence_of": "Connects representation choice to the active constraint."
+          },
+          {
+            "criterion": "States that horizontal/vertical axes require extra projection rather than different physics.",
+            "evidence_of": "Preserves coordinate invariance of Newton II."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a direct plane-aligned calculation into a comparison of two coordinate representations, requiring the learner to distinguish physical validity from modelling convenience."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Does rotating the coordinate axes change which objects exert forces on the block?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare how the maintained-contact condition is written in each axis choice.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate the same fixed-incline dynamics between contact-aligned and laboratory axes without treating one representation as different physics.",
+        "builds_on": [
+          "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
+          "CTX-PHY-NLM-INCLINED-PLANE"
+        ]
+      },
+      "repair_ref": "NLM6-4"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+      "stem": "A block is at rest on a rough incline. A controllable force P acts up the plane. In one trial P is slightly smaller than mg sin(theta); in another it is slightly larger than mg sin(theta), and in both trials the available static friction is sufficient to prevent motion. Determine the static-friction direction in each trial without assuming that friction always points uphill.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The plane is fixed.",
+        "The block remains at rest in both stated trials.",
+        "P acts exactly parallel to the plane."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "When P<mg sin(theta), the no-friction tendency is down the plane, so static friction acts up the plane. When P>mg sin(theta), the no-friction tendency is up the plane, so static friction acts down the plane. At P=mg sin(theta), the required static friction is zero.",
+        "reasoning": [
+          "Friction direction follows the relative slip tendency that would exist without friction.",
+          "Compare the applied uphill force P with the downhill gravity component mg sin(theta).",
+          "If gravity's component is larger, friction must act uphill to maintain rest.",
+          "If P is larger, friction must act downhill.",
+          "If the two non-friction tangential forces balance exactly, no tangential friction is required."
+        ],
+        "check": "The physical direction changes continuously through a zero-friction case rather than remaining permanently uphill.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses the no-friction slip tendency rather than the object's current zero velocity.",
+            "evidence_of": "Applies the contact-level friction-direction rule."
+          },
+          {
+            "criterion": "Assigns uphill friction for P<mg sin(theta) and downhill friction for P>mg sin(theta).",
+            "evidence_of": "Responds correctly to the reversed tangential tendency."
+          },
+          {
+            "criterion": "Allows zero friction at P=mg sin(theta).",
+            "evidence_of": "Does not force a nonzero friction value merely because the surface is rough."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Adds a variable tangential applied force so the friction direction can reverse while the block remains static, testing slip-tendency reasoning rather than a memorized uphill direction."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Temporarily remove friction from the model. Which way would the block tend to move in each trial?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must choose the static-friction direction from the changed slip tendency, including a zero-friction boundary, instead of carrying over the familiar downhill-gravity case.",
+        "builds_on": [
+          "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+          "MIC-PHY-NLM-FRICTION"
+        ]
+      },
+      "repair_ref": "NLM5-2"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
+      "stem": "A block of mass m is held at rest on a rough fixed plane that rises to the right at angle theta. A horizontal force P pushes to the right. The coefficient of static friction is mu_s. Derive the condition on P and theta for the block to be able to remain at rest.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "0 < theta < 90 degrees.",
+        "The applied force is horizontal.",
+        "Do not assume the static-friction direction in advance; use a signed required value."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "With uphill positive, N=mg cos(theta)+P sin(theta). The static friction required by rest is f_required=mg sin(theta)-P cos(theta). Static equilibrium is feasible exactly when |mg sin(theta)-P cos(theta)| <= mu_s[mg cos(theta)+P sin(theta)].",
+        "reasoning": [
+          "Resolve P into P cos(theta) uphill and P sin(theta) into the plane.",
+          "The perpendicular rest condition gives N=mg cos(theta)+P sin(theta).",
+          "The tangential rest equation P cos(theta)+f_s-mg sin(theta)=0 gives the signed required friction f_required=mg sin(theta)-P cos(theta).",
+          "Do not choose a friction direction separately; the sign of f_required supplies it.",
+          "The static model is feasible when the magnitude of that required value does not exceed mu_s N."
+        ],
+        "check": "At P=0 the condition reduces to tan(theta)<=mu_s; if P cos(theta)=mg sin(theta), the required friction is zero.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Includes the inward perpendicular component P sin(theta) when finding N.",
+            "evidence_of": "Does not assume N=mg cos(theta) after another force is applied."
+          },
+          {
+            "criterion": "Solves a signed f_required from the tangential equilibrium equation.",
+            "evidence_of": "Lets the equation determine the required friction direction."
+          },
+          {
+            "criterion": "Tests |f_required| against mu_s N instead of setting friction equal to its limit immediately.",
+            "evidence_of": "Uses the static-feasibility model correctly."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Adds rough contact and an unknown friction direction to the same horizontal-force geometry, requiring a signed friction demand and static-feasibility test after the altered normal reaction is found."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which part of the horizontal force changes the contact normal, and which part changes the tangential force demand?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find N first, then solve the signed friction needed for rest before comparing its magnitude with the static limit.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must integrate force decomposition, altered normal reaction, signed friction demand and static feasibility in dependency order rather than copying N=mg cos(theta) or f=mu_s N.",
+        "builds_on": [
+          "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+          "MIC-PHY-NLM-FRICTION-QUANT"
+        ]
+      },
+      "repair_ref": "NLM8-1"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2B-COMPONENT-TRAP-04",
+      "stem": "A proposed plane-aligned solution writes the tangential force sum as mg + mg sin(theta) and the perpendicular force sum as N - mg - mg cos(theta). The solver says the component terms were added because the weight was resolved. Identify the modelling error and write the correct role of the weight in the two component equations.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The block is on a smooth fixed incline.",
+        "Only gravity and the normal reaction act."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The solution double-counts the same weight vector. In plane-aligned equations, gravity contributes mg sin(theta) down the plane and mg cos(theta) into the plane; the unresolved mg is not added again. Thus the tangential gravity term is mg sin(theta), and the perpendicular equation uses N-mg cos(theta)=0 for maintained contact.",
+        "reasoning": [
+          "Weight mg is one physical force, not three.",
+          "Resolving it replaces its representation in the chosen component equations.",
+          "The original vector magnitude mg is not itself a signed scalar component along either tilted axis.",
+          "Use the two appropriate components in the two equations and keep the normal as the separate contact force."
+        ],
+        "check": "The corrected equations account for exactly two physical interactions: Earth-on-block gravity and plane-on-block normal contact.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Identifies double-counting of gravity as the error.",
+            "evidence_of": "Distinguishes physical-force inventory from vector components."
+          },
+          {
+            "criterion": "Uses mg sin(theta) only in the tangential gravity contribution.",
+            "evidence_of": "Assigns the correct component to the along-plane equation."
+          },
+          {
+            "criterion": "Uses mg cos(theta) only in the perpendicular gravity contribution and N separately.",
+            "evidence_of": "Builds the maintained-contact equation without re-adding mg."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+      "secondary_capability_refs": [
+        "CAP-VEC-ANGLE-DECOMPOSITION",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a diagram diagnosis into a faulty pair of component equations, requiring the learner to preserve force ownership through a different representation."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "How many physical interactions act on the smooth-contact block, and did the axis rotation create another agent?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "A resolved vector contributes one scalar component to each axis equation; the original vector is not added again as a third scalar term.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must recognize the same force/component double-counting error after it moves from a drawn FBD into algebraic component equations.",
+        "builds_on": [
+          "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+          "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
+        ]
+      },
+      "repair_ref": "NLM3-4"
+    },
+    {
+      "id": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-INCLINE-2B-TIMING-05",
+      "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Both trials start from rest at the same point.",
+        "The incline angle and travel distance are unchanged.",
+        "The rough-surface trial has established downward sliding with constant mu_k."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2].",
+        "reasoning": [
+          "The smooth trial gives a_0=g sin(theta).",
+          "The rough sliding trial gives a=g[sin(theta)-mu_k cos(theta)].",
+          "Equal distance from rest gives s=(1/2)a_0 t_0^2=(1/2)a t^2, hence a/a_0=t_0^2/t^2.",
+          "Substitute the two incline accelerations and solve for mu_k.",
+          "This yields mu_k=tan(theta)[1-t_0^2/t^2]."
+        ],
+        "check": "Because t>t_0, the bracket is positive. If t approaches t_0, the inferred mu_k approaches zero.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Builds the smooth and rough incline accelerations from the corresponding force models.",
+            "evidence_of": "Keeps the contact-state physics distinct between trials."
+          },
+          {
+            "criterion": "Uses equal-distance constant-acceleration kinematics to relate a/a_0 to t_0^2/t^2.",
+            "evidence_of": "Connects the NLM result to the measured timing representation."
+          },
+          {
+            "criterion": "Solves to mu_k=tan(theta)[1-t_0^2/t^2] and checks its limiting sign.",
+            "evidence_of": "Completes the cross-topic reasoning and verifies plausibility."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-KIN-CONSTANT-ACCELERATION",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+      "context_refs": [
+        "CTX-PHY-NLM-INCLINED-PLANE"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a direct rough-incline acceleration derivation into an inference from smooth-versus-rough travel times over the same distance, requiring the NLM result to be connected to constant-acceleration kinematics."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The two trials cover the same distance from rest. What relation connects distance, constant acceleration and travel time in each trial?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Express the rough acceleration from the friction model and the smooth acceleration from the no-friction model, then eliminate the common distance.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must combine the established rough-incline dynamics with an independent timing representation to infer the friction coefficient, rather than being asked directly for acceleration.",
+        "builds_on": [
+          "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+          "CAP-KIN-CONSTANT-ACCELERATION"
+        ]
+      },
+      "repair_ref": "NLM8-4"
     }
   ],
   "teaching_routes": [
@@ -4711,6 +5653,61 @@
       "symbol": "a",
       "meaning": "Signed acceleration in the authored Newton-second-law exit task.",
       "locator": "Author-created exact practice datum."
+    }
+  ],
+  "application_contexts": [
+    {
+      "id": "CTX-PHY-NLM-INCLINED-PLANE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "examside:demand_provenance": "ExamSIDE Laws-of-Motion rough-incline demand; canonical context is Grade9V3-authored and does not copy external question text."
+      },
+      "title": "Block on a fixed inclined plane",
+      "description": "A rigid plane at angle theta to the horizontal used as an application context for body-specific FBDs, contact-aligned axes, force decomposition, Newton II, normal reaction and friction-state reasoning.",
+      "invariants": [
+        "The plane is fixed unless a question explicitly states otherwise.",
+        "One may choose axes parallel and perpendicular to the plane without changing the physical forces.",
+        "For maintained contact with a fixed plane, the body's acceleration perpendicular to the plane is zero.",
+        "The normal reaction is determined by the perpendicular dynamics; it is not automatically mg.",
+        "If friction is present, its direction and model are determined from relative sliding or slip tendency at the contact."
+      ],
+      "variation_dimensions": [
+        {
+          "name": "plane_angle",
+          "description": "Vary theta while keeping the same fixed-plane geometry."
+        },
+        {
+          "name": "surface_state",
+          "description": "Vary smooth, static-rough, impending-slip and established-sliding contact."
+        },
+        {
+          "name": "applied_force_direction",
+          "description": "Vary forces parallel to the plane, horizontal, or otherwise angled so the normal reaction may change."
+        },
+        {
+          "name": "representation",
+          "description": "Vary contact-aligned versus laboratory horizontal/vertical axes while preserving the same physical situation."
+        }
+      ],
+      "task_objectives": [
+        "Build a correct chosen-body force account without inventing component forces as extra interactions.",
+        "Resolve the required force components relative to the declared axes.",
+        "Use perpendicular dynamics to determine N and tangential dynamics to determine acceleration or required friction.",
+        "Check friction feasibility or sliding state only after the contact-normal dynamics are established."
+      ],
+      "scope_limits": [
+        "No moving wedge or accelerating-plane constraint.",
+        "No rolling-body dynamics.",
+        "No banked-curve or centripetal-force catalogue.",
+        "No three-dimensional contact geometry.",
+        "No new inclined-plane mastery capability."
+      ]
     }
   ]
 }
