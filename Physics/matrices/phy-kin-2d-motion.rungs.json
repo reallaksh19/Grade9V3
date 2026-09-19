@@ -94,7 +94,7 @@
         "An explicit event condition before solving apex, same-height return or unequal-height landing.",
         "At the apex only v_y is zero; horizontal velocity and downward acceleration remain.",
         "Same-height shortcuts used only when launch and landing heights are equal.",
-        "For horizontal or unequal-height launch, flight time is obtained from vertical motion and then shared with horizontal motion.",
+        "For any unequal-height landing, use the actual signed Delta y and actual u_y; horizontal launch is only the special initial condition u_y=0. Obtain landing time vertically and share it with horizontal motion.",
         "A requested speed/direction/position/range result reconstructed from simultaneous components rather than memorized in isolation."
       ],
       "controlled_variation": [

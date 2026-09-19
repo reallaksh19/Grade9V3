@@ -27,6 +27,12 @@ jobs:
       - name: Topic independence guard — scan engine and tooling
         run: python3 Shared/tools/topic_independence_guard.py
 
+      # Heavy-graphical support routes are governed separately from the academic graph.
+      # The guard validates their design contract, semantic-leaf/capability bindings,
+      # honest conformance status and implementation locator without granting human review.
+      - name: Graphical cognitive deconstruction contracts are valid
+        run: python3 Shared/tools/explorer_design_guard.py --enforce
+
       # A role spec may not require content the schema has nowhere to keep. Enforcing:
       # the 68 findings this first reported are closed, 28 by correcting the spec's path
       # and 40 by adding the field. It is its own step rather than part of the subject
@@ -144,23 +150,29 @@ jobs:
       # Render the expected architecture index as an artifact without modifying the
       # checkout. This makes drift repair inspectable while the following --check remains
       # read-only and still fails when the committed artifact is stale.
-      - name: Render architecture manifest preview
+      - name: Render generated-artifact previews
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          from Shared.tools import build_manifest
+          from Shared.tools import build_manifest, build_web_data
           Path("/tmp/architecture-manifest.json").write_text(
               json.dumps(build_manifest.collect(), indent=2, ensure_ascii=False) + "\n",
               encoding="utf-8",
           )
+          Path("/tmp/data.js").write_text(
+              build_web_data.render(build_web_data.build()),
+              encoding="utf-8",
+          )
           PY
 
-      - name: Upload architecture manifest preview
+      - name: Upload generated-artifact previews
         uses: actions/upload-artifact@v4
         with:
-          name: architecture-manifest-preview
-          path: /tmp/architecture-manifest.json
+          name: generated-artifact-preview
+          path: |
+            /tmp/architecture-manifest.json
+            /tmp/data.js
 
       # --check compares the generated data file and the manifest without writing
       # either, so it covers both artifacts and leaves the checkout untouched.
