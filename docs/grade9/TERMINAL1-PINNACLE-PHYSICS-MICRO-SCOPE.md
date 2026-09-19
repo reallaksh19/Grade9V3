@@ -52,14 +52,14 @@ learner-evidence states or curriculum-authority enums.
 - subtraction order — `CAP-VEC-SUB-ORDER`;
 - perpendicular magnitude/right-triangle reasoning — existing Mathematics bridge.
 
-### Local gaps to author only after school demand is confirmed
+### Question-demand extension now locally authored
 
-- arbitrary-angle trigonometric decomposition into x/y components;
-- a durable direction-angle reconstruction action;
-- unit-vector `i/j` notation, if the Pinnacle chapter actually assesses it.
+Owner approval on 2026-09-19 accepts ExamSIDE past-year questions as a reliable external question-demand source. Selected Motion-in-a-Plane questions now justify `CAP-VEC-ANGLE-DECOMPOSITION`, backed by an explicit Mathematics trigonometric-ratio bridge.
 
-The arbitrary-angle decomposition gap is the most consequential because it also gates
-inclined-plane NLM and ordinary projectile setup.
+Still unconfirmed for Pinnacle school scope:
+
+- a separate inverse-trig direction-angle reconstruction capability;
+- unit-vector `i/j` notation, unless school material or a selected reliable question requires it.
 
 ## Motion 1 D
 
@@ -91,19 +91,18 @@ inclined-plane NLM and ordinary projectile setup.
 
 These existing routes still carry their declared Mathematics bridges where relevant.
 
-### Confirmed local content gaps
+### Owner-approved external question-demand slice
 
-The repository itself already records the following as missing durable subject content:
+ExamSIDE JEE Main Motion-in-a-Plane PYQs are now accepted by the owner as a reliable question-demand source. A selected worksheet slice has therefore justified and closed the first durable local gaps:
 
-1. arbitrary-angle trigonometric vector decomposition;
-2. independence of orthogonal x/y motions coupled by common time;
-3. two-dimensional constant-acceleration component solving;
-4. projectile-model selection.
+1. `CAP-VEC-ANGLE-DECOMPOSITION`;
+2. `CAP-KIN-2D-INDEPENDENT-COMPONENTS`;
+3. `CAP-KIN-2D-CONSTANT-ACCELERATION`;
+4. `CAP-KIN-PROJECTILE-MODEL`.
 
-If the Pinnacle chapter confirms projectile demand, the smallest durable teaching spine
-should be built around those decisions. Do **not** create separate capabilities merely for
-time of flight, maximum height and range unless real learner/question evidence shows that
-they are independently fail-able actions.
+This changes **local capability state**, not Pinnacle school authority: the chapter-internal school rows stay `MICRO_TO_CONFIRM` until school-issued evidence confirms them.
+
+Range, maximum height, time of flight, horizontal launch and oblique launch remain applications/question variations of the projectile model unless learner evidence proves a separate capability is needed.
 
 Potential projectile applications to confirm:
 
@@ -197,10 +196,7 @@ The current evidence decision for Motion in 2D is recorded in:
 
 `docs/grade9/TERMINAL1-PINNACLE-MOTION2D-RECON.md`
 
-The existing ExamSIDE Motion-in-a-Plane pilot is useful **external real-question evidence**:
-it confirms that projectile/component-motion gaps are genuine local subject-content gaps when
-such questions are demanded. It is not Pinnacle school authority, so those micro rows remain
-`MICRO_TO_CONFIRM` until a school source supplies the learner action.
+The existing ExamSIDE Motion-in-a-Plane source is now owner-approved as a **reliable external question-demand source**. It can authorize bounded capability authoring and worksheet mapping for selected real questions. It is still not Pinnacle school-issued authority, so `school_micro_demand` remains separate and may stay `MICRO_TO_CONFIRM`.
 
 ## Promotion protocol
 

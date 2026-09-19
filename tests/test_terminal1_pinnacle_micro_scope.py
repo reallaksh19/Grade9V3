@@ -42,16 +42,6 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
             for micro in chapter["micro"]
         }
         guarded = {
-            ("Vectors", "arbitrary-angle decomposition into x/y components"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("Motion in 2 D", "independence of orthogonal x/y motion coupled by common time"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("Motion in 2 D", "two-dimensional constant-acceleration component solving"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("Motion in 2 D", "horizontal projectile model"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("Motion in 2 D", "oblique projectile model"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
             ("NLM", "string tension / connected bodies"):
                 "AUTHOR_ONLY_IF_CONFIRMED",
             ("NLM", "pulley constraints / connected acceleration"):
@@ -63,6 +53,34 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
                 self.assertEqual(row["local_state"], "LOCAL_GAP")
                 self.assertEqual(row["school_micro_demand"], "MICRO_TO_CONFIRM")
                 self.assertEqual(row["action"], action)
+
+
+    def test_examside_can_confirm_external_question_demand_without_promoting_school_scope(self):
+        scope = self.scope()
+        lookup = {
+            (chapter["school_label"], micro["micro"]): micro
+            for chapter in scope["chapters"]
+            for micro in chapter["micro"]
+        }
+        expected = {
+            ("Vectors", "arbitrary-angle decomposition into x/y components"):
+                "CAP-VEC-ANGLE-DECOMPOSITION",
+            ("Motion in 2 D", "independence of orthogonal x/y motion coupled by common time"):
+                "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+            ("Motion in 2 D", "two-dimensional constant-acceleration component solving"):
+                "CAP-KIN-2D-CONSTANT-ACCELERATION",
+            ("Motion in 2 D", "horizontal projectile model"):
+                "CAP-KIN-PROJECTILE-MODEL",
+            ("Motion in 2 D", "oblique projectile model"):
+                "CAP-KIN-PROJECTILE-MODEL",
+        }
+        for key, cap in expected.items():
+            with self.subTest(chapter=key[0], micro=key[1]):
+                row = lookup[key]
+                self.assertEqual(row["school_micro_demand"], "MICRO_TO_CONFIRM")
+                self.assertEqual(row["external_question_demand"], "CONFIRMED_EXAMSIDE")
+                self.assertIn(cap, row["local_refs"])
+                self.assertEqual(row["action"], "REUSE_IF_DEMANDED")
 
     def test_existing_extensions_stay_nondefault_until_explicit_demand(self):
         scope = self.scope()

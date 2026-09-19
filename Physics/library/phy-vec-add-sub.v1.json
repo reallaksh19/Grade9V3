@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored conceptual rung for operand-order orientation in vector subtraction. Quantitative magnitude, addition, unit-vector and cross-product rungs remain blocked on engineering-gate relations and are not promoted here.",
+  "scope_summary": "Authored vector-operation slice for real Motion-in-a-Plane demand: component composition, resultant constraints, subtraction order, and angle-based decomposition. Cross product and dot product remain outside this bounded route.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -34,6 +34,39 @@
       ],
       "selection_reason": "Provides the conceptual operand-order rung without duplicating the existing graphical-subtraction construction; that existing capability is a prerequisite.",
       "fallback": []
+    },
+    {
+      "id": "SRC-EXAMSIDE-MIP-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE JEE Main Motion in a Plane past-year question bank",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/jee-main/physics/motion-in-a-plane",
+      "edition": "2002-2026 JEE Main PYQ page inspected 2026-09-19",
+      "section": "Selected Motion-in-a-Plane questions used only as real question-demand evidence",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question bank. Grade9V3 stores only short demand summaries, identifiers and URLs; it does not copy the bank or claim school/curriculum custody.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-VEC-ANGLE-DECOMPOSITION",
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-KIN-2D-CONSTANT-ACCELERATION",
+        "CAP-KIN-PROJECTILE-MODEL"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Owner approved ExamSIDE as a reliable question-demand source. Selected JEE Main Motion-in-a-Plane items directly require angle-based components, x/y component motion, two-dimensional constant acceleration and projectile model use.",
+      "fallback": []
     }
   ],
   "buckets": [
@@ -49,7 +82,7 @@
       "title": "Vector addition, subtraction and orientation",
       "topic": "Vectors / Motion in a Plane",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The active slice now covers component-wise vector composition, explicit resultant-component constraints, and subtraction-order orientation; unrelated cross-product material remains deferred.",
+      "badge_reason": "The active slice covers component composition, explicit resultant constraints, subtraction-order orientation, and angle-based decomposition needed by selected real Motion-in-a-Plane questions; dot/cross product material remains deferred.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -62,9 +95,9 @@
         }
       ],
       "scope": {
-        "covers": "Component-wise vector addition in declared axes, choosing an input component to satisfy a resultant-component constraint, and qualitative operand-order orientation for vector subtraction.",
+        "covers": "Component-wise vector addition in declared axes, choosing an input component to satisfy a resultant-component constraint, qualitative operand-order orientation for vector subtraction, and resolving a magnitude-and-angle vector into signed perpendicular components.",
         "excluded": [
-          "Trigonometric decomposition from an arbitrary angle when component values are not otherwise available.",
+          "Inverse-trigonometric direction recovery when the angle itself is the unknown; this remains a separate learner action.",
           "Dot-product calculations.",
           "Cross-product magnitude and axial-orientation calculations."
         ],
@@ -124,6 +157,25 @@
       "success_criterion": "State that swapping the subtraction order reverses the directed result.",
       "prerequisite_refs": [
         "CAP-GRAPHICAL-SUBTRACT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Resolve a vector of known magnitude and stated acute angle to a declared perpendicular axis pair into signed x/y components.",
+      "success_criterion": "Declare the positive axes and angle reference, use adjacent = V cos(theta) and opposite = V sin(theta) for component magnitudes, attach signs from the vector's quadrant/directions, and verify that the reconstructed magnitude agrees with V.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-TRIG-RATIO-BRIDGE"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -553,9 +605,224 @@
           "confirms": "The reversal statement applies to a directed nonzero result; the zero case is the limiting boundary."
         }
       }
+    },
+    {
+      "id": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Resolve magnitude-and-angle vectors into signed perpendicular components",
+      "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The trigonometry is short, but angle-reference and quadrant mistakes can swap components or erase direction before any kinematics begins.",
+      "entry_assumptions": [
+        "Can read signed components against declared axes.",
+        "Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge."
+      ],
+      "inferential_jump": "A magnitude-and-angle vector can be replaced by two perpendicular signed components without changing the physical vector; cosine belongs to the component adjacent to the stated reference angle and sine to the opposite component.",
+      "teaching_path": [
+        {
+          "id": "VAD-1",
+          "role": "DECLARE",
+          "action": "Draw the vector against declared +x/+y axes and mark exactly which axis the acute angle is measured from.",
+          "why_valid": "Sine/cosine component labels depend on the stated reference angle, not on a memorized x=cos rule.",
+          "inputs": [],
+          "output": "axes + vector + angle reference"
+        },
+        {
+          "id": "VAD-2",
+          "role": "TRANSFORM",
+          "action": "Use V cos(theta) for the adjacent component magnitude and V sin(theta) for the opposite component magnitude.",
+          "why_valid": "These are the right-triangle projections of the vector on perpendicular axes.",
+          "inputs": [
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
+          "output": "unsigned perpendicular component magnitudes"
+        },
+        {
+          "id": "VAD-3",
+          "role": "TRANSFORM",
+          "action": "Attach each component sign from whether the vector points with or against the declared positive axis.",
+          "why_valid": "Trigonometric ratios give magnitudes here; axis direction carries the physical sign.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "signed component pair"
+        },
+        {
+          "id": "VAD-4",
+          "role": "VERIFY",
+          "action": "Reconstruct sqrt(Vx^2+Vy^2) and compare with the original magnitude V.",
+          "why_valid": "The resolved components must describe the same vector magnitude.",
+          "inputs": [],
+          "output": "reconstructed magnitude agrees with V"
+        }
+      ],
+      "relation_refs": [
+        "REL-VEC-ANGLE-COMPONENTS"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The x-component is always V cos(theta), regardless of which axis theta is measured from.",
+          "diagnostic_prompt": "If theta is measured from the +y axis instead of +x, which component is adjacent to theta?",
+          "repair": "Name the angle reference first. Cosine goes with the adjacent component and sine with the opposite component; x/y labels follow only after the geometry is fixed."
+        },
+        {
+          "wrong_idea": "Sine and cosine automatically provide the component signs.",
+          "diagnostic_prompt": "A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?",
+          "repair": "Use trig for component magnitudes, then use the declared axis directions to attach signs. Left is negative x when right is +x."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A vector of magnitude 20 points 30 degrees above the +x axis. Resolve it into x and y components symbolically using sin/cos, state their signs, and give one independent check.",
+        "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Vx = 20 cos(30°) and Vy = 20 sin(30°), both positive.",
+          "reasoning": [
+            "The 30° angle is measured from +x, so x is adjacent and y is opposite.",
+            "The vector points right and up, so both component signs are positive.",
+            "The component pair must reconstruct magnitude 20."
+          ],
+          "check": "Check sqrt(Vx^2+Vy^2)=20 using sin^2(theta)+cos^2(theta)=1.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task is intentionally symbolic; exact decimal component values are not required."
+        }
+      },
+      "research_contribution": "Selected ExamSIDE projectile questions make angle-based initial-velocity components a real question-demand prerequisite. The teaching sequence is locally authored and does not import JEE readiness or school-syllabus authority.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-TRIG-RATIO-BRIDGE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "For a vector at a small angle above +x, should the x-component or y-component be larger?",
+          "defensible_answer": "The x-component should be larger because it is adjacent to the small angle."
+        },
+        "attempt": {
+          "produces": "A labelled right-triangle/vector sketch and signed component pair.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The angle reference is explicitly tied to an axis before choosing sine/cosine.",
+              "evidence_of": "Correct projection geometry rather than memorized labels."
+            },
+            {
+              "criterion": "Component signs come from declared axis directions.",
+              "evidence_of": "Direction information is preserved."
+            }
+          ],
+          "accepted": [
+            "From +x: Vx=V cos(theta), Vy=V sin(theta), then apply quadrant signs."
+          ],
+          "rejected": [
+            "Always write x=V cos(theta) without checking the angle reference."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which component lies adjacent to the stated angle?",
+              "why_this_ask": "It recovers the cosine assignment from geometry.",
+              "from_step_ref": "VAD-1"
+            },
+            {
+              "ask": "Which direction does each component point relative to the positive axes?",
+              "why_this_ask": "It restores signs after the magnitude projection.",
+              "from_step_ref": "VAD-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative route states the projection rule; reconstruction starts from adjacent/opposite geometry and asks the learner to rebuild it."
+        },
+        "boundary_test": {
+          "prompt": "If the same vector is described by an acute angle measured from +y instead, do the physical components change?",
+          "answer": "No. The physical components are the same; only which component is adjacent/opposite to the named angle changes.",
+          "confirms": "Component values belong to the vector and axes, not to a memorized sine/cosine label."
+        }
+      }
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-VEC-ANGLE-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V_adj = V cos(theta); V_opp = V sin(theta)",
+      "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values then follow from the declared directions.",
+      "symbols": [
+        {
+          "symbol": "V",
+          "meaning": "Vector magnitude",
+          "unit_or_domain": "same unit as the vector components"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "Acute reference angle between the vector and one declared axis",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "V_adj",
+          "meaning": "Magnitude of the component adjacent to theta",
+          "unit_or_domain": "same unit as V"
+        },
+        {
+          "symbol": "V_opp",
+          "meaning": "Magnitude of the component opposite theta",
+          "unit_or_domain": "same unit as V"
+        }
+      ],
+      "conditions": [
+        "The two component axes are perpendicular.",
+        "theta is the explicitly identified acute reference angle used in the right-triangle projection.",
+        "Signs are assigned after projection from the declared axis directions."
+      ],
+      "derivation": [
+        {
+          "id": "REL-VAD-1",
+          "role": "DECLARE",
+          "action": "Use cos(theta)=adjacent/hypotenuse and sin(theta)=opposite/hypotenuse for the component triangle.",
+          "why_valid": "The vector magnitude is the hypotenuse and the perpendicular component magnitudes are the legs.",
+          "inputs": [],
+          "output": "right-triangle ratios"
+        },
+        {
+          "id": "REL-VAD-2",
+          "role": "TRANSFORM",
+          "action": "Multiply both ratios by V.",
+          "why_valid": "This isolates each component magnitude.",
+          "inputs": [],
+          "output": "V_adj=V cos(theta), V_opp=V sin(theta)"
+        }
+      ],
+      "limits": [
+        "This relation does not by itself recover an unknown direction angle from components.",
+        "It does not define dot or cross products.",
+        "For non-acute standard-position angles, use the same projections with signs supplied consistently by the axis/quadrant convention rather than blindly treating both values as positive."
+      ],
+      "checks": [
+        "sqrt(V_adj^2+V_opp^2)=V.",
+        "A small angle from an axis gives a larger adjacent than opposite component."
+      ],
+      "gate_relation_ref": "REL-VEC-ANGLE-COMPONENTS"
+    }
+  ],
   "representations": [],
   "question_families": [
     {
@@ -673,7 +940,8 @@
       ],
       "microtopic_refs": [
         "MIC-PHY-VEC-COMPONENT-SUM",
-        "MIC-PHY-VEC-RESULTANT-CONSTRAINT"
+        "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+        "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
       ],
       "entry_needs": [
         "Same intrinsic prerequisites as Core1A; no learner-percentage assumption."
@@ -681,12 +949,14 @@
       "learner_actions": [
         "Predict the resultant sign before arithmetic.",
         "Reconstruct axis-wise addition.",
-        "Derive the compensating component from a stated resultant constraint."
+        "Derive the compensating component from a stated resultant constraint.",
+        "Reconstruct sine/cosine component assignment from adjacent/opposite geometry and axis signs."
       ],
       "help_plan": [
         "Ask which terms belong to the same axis before showing an equation.",
         "Ask which resultant component is constrained before revealing cancellation.",
-        "Require a substitution check."
+        "Require a substitution check.",
+        "Ask which component is adjacent to the stated angle before revealing a projection formula."
       ],
       "reveal_plan": "Attempt first is recommended; the complete model answer remains available after the learner commits.",
       "source_preferences": [
@@ -697,7 +967,8 @@
         }
       ],
       "when_not_suitable": [
-        "Do not infer an angle or magnitude relation that is not represented by the current capabilities."
+        "Do not infer an angle or magnitude relation that is not represented by the current capabilities.",
+        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
       ],
       "practice_profile_ref": null
     },
@@ -717,19 +988,22 @@
       ],
       "microtopic_refs": [
         "MIC-PHY-VEC-COMPONENT-SUM",
-        "MIC-PHY-VEC-RESULTANT-CONSTRAINT"
+        "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+        "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
       ],
       "entry_needs": [
         "Signed-component reading from the Vector Representation prerequisite is available."
       ],
       "learner_actions": [
         "Add corresponding signed components in one common axis system.",
-        "Translate a requested resultant direction into a component condition and solve the required input component."
+        "Translate a requested resultant direction into a component condition and solve the required input component.",
+        "Resolve a magnitude-and-angle vector into signed perpendicular components."
       ],
       "help_plan": [
         "Keep one common axis convention visible.",
         "Write the target resultant component before solving for an input.",
-        "Use a substitution check after solving the constraint."
+        "Use a substitution check after solving the constraint.",
+        "Name the angle reference before assigning sine/cosine, then attach signs from the declared axes."
       ],
       "reveal_plan": "Completed component equations and checks are visible in the declarative study product.",
       "source_preferences": [
@@ -745,7 +1019,7 @@
         }
       ],
       "when_not_suitable": [
-        "Do not use this route to teach missing trigonometric decomposition from an arbitrary angle."
+        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
       ],
       "practice_profile_ref": null
     },
@@ -763,18 +1037,21 @@
         "CORE1A"
       ],
       "microtopic_refs": [
-        "MIC-PHY-VEC-SUB-ORDER"
+        "MIC-PHY-VEC-SUB-ORDER",
+        "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
       ],
       "entry_needs": [
         "Graphical subtraction construction is available from the vector-foundation prerequisite."
       ],
       "learner_actions": [
         "Compare the two operand orders from one common start.",
-        "Explain which aspect changes when order swaps."
+        "Explain which aspect changes when order swaps.",
+        "Resolve a magnitude-and-angle vector into signed perpendicular components."
       ],
       "help_plan": [
         "Show the completed first-order construction before the comparison.",
-        "Keep the same scale and start point for both results."
+        "Keep the same scale and start point for both results.",
+        "Name the angle reference before assigning sine/cosine, then attach signs from the declared axes."
       ],
       "reveal_plan": "The completed two-order construction is visible with the reversal check beside it.",
       "source_preferences": [
@@ -785,7 +1062,8 @@
         }
       ],
       "when_not_suitable": [
-        "Do not use this route to teach vector magnitude formulae or cross-product calculations."
+        "Do not use this route to teach vector magnitude formulae or cross-product calculations.",
+        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
       ],
       "practice_profile_ref": null
     },
@@ -803,18 +1081,21 @@
         "CORE1B"
       ],
       "microtopic_refs": [
-        "MIC-PHY-VEC-SUB-ORDER"
+        "MIC-PHY-VEC-SUB-ORDER",
+        "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
       ],
       "entry_needs": [
         "Same intrinsic prerequisite as Core1A; no learner-percentage assumption."
       ],
       "learner_actions": [
         "Predict the swapped-order direction before reconstructing it.",
-        "Use the rubric and boundary case to close the attempt."
+        "Use the rubric and boundary case to close the attempt.",
+        "Reconstruct sine/cosine component assignment from adjacent/opposite geometry and axis signs."
       ],
       "help_plan": [
         "Ask which input is second before offering any completed arrow.",
-        "Reveal the superposed comparison only after the learner commits."
+        "Reveal the superposed comparison only after the learner commits.",
+        "Ask which component is adjacent to the stated angle before revealing a projection formula."
       ],
       "reveal_plan": "Prediction and construction precede the closed reveal; the full answer remains available for self-study.",
       "source_preferences": [
@@ -825,7 +1106,8 @@
         }
       ],
       "when_not_suitable": [
-        "Do not replace the prerequisite graphical-subtraction teaching with this order check."
+        "Do not replace the prerequisite graphical-subtraction teaching with this order check.",
+        "Do not extend this route into inverse-trig direction recovery, dot product, or cross product unless a selected question independently demands it."
       ],
       "practice_profile_ref": null
     }
@@ -841,16 +1123,6 @@
       "classification": "CAPABILITY_LIMIT",
       "description": "The previous synthesis matrix bundled an unimplemented cross-product rung with the active component-addition/subtraction slice. No current retained worksheet demand justifies teaching cross product in this self-study route.",
       "next_action": "Keep cross product outside the active matrix until a real worksheet, syllabus requirement, or owner-approved extension supplies distinct demand and prerequisite support."
-    },
-    {
-      "id": "ISS-VEC-ANGLE-DECOMPOSITION-MATH",
-      "affected_refs": [
-        "CAP-VEC-COMPONENT-SUM",
-        "CAP-VEC-RESULTANT-CONSTRAINT"
-      ],
-      "classification": "CAPABILITY_LIMIT",
-      "description": "The active slice composes already available signed components and solves component constraints. It does not yet teach trigonometric decomposition of a magnitude-and-angle vector into components.",
-      "next_action": "Add a provider-grounded trigonometric decomposition prerequisite only when a selected question genuinely requires that move."
     }
   ],
   "extensions": {},

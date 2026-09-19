@@ -1,0 +1,141 @@
+{
+  "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
+  "topic": "Motion in 2 D",
+  "subtopic": "Two-dimensional constant acceleration and projectile model",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; this matrix is an owner-approved question-demand extension and does not alter the ordinary Standard Grade-9 Motion matrix.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 30,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "ceiling": [
+        "constant-acceleration formula",
+        "projectile formula",
+        "calculus"
+      ],
+      "must_contain": [
+        "One x-y frame with signed component quantities.",
+        "The same time label on both component descriptions."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "whether only x, only y, or both component velocities change",
+          "hold": "one common time and frame",
+          "notice": "component histories can differ while describing one event"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "ceiling": [
+        "projectile shortcut formula",
+        "trajectory equation",
+        "calculus"
+      ],
+      "must_contain": [
+        "Separate x and y constant-acceleration equations.",
+        "One explicit check that a_x and a_y are constant.",
+        "One common elapsed time."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the component acceleration pair",
+          "hold": "initial component velocities and common time",
+          "notice": "each axis responds only to its own acceleration component"
+        },
+        {
+          "phase": 2,
+          "vary": "one acceleration component from nonzero to zero",
+          "hold": "the other axis state",
+          "notice": "that axis reduces to uniform motion while the other can remain accelerated"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "ceiling": [
+        "air drag",
+        "variable gravity",
+        "trajectory-equation derivation",
+        "inclined-target projectile geometry",
+        "calculus"
+      ],
+      "must_contain": [
+        "A post-release force/model statement before projectile equations.",
+        "a_x=0 and a_y=-g under an explicit +y-up convention.",
+        "Horizontal and oblique launch treated as initial-condition variations.",
+        "A range/height/time/speed result checked against the component model rather than memorized in isolation."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "initial vertical component from zero to positive",
+          "hold": "same gravity-only model",
+          "notice": "horizontal and oblique launch use the same equations with different initial conditions"
+        },
+        {
+          "phase": 2,
+          "vary": "the requested output among flight time, height, range, later speed or direction",
+          "hold": "the same component model",
+          "notice": "these are consequences of one capability rather than separate laws"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Use one declared frame and common time, solve perpendicular motion components independently, and choose the ideal projectile specialization only after its gravity-only assumptions are established.",
+    "difficult_move": "Recognizing that Motion in 2 D is not a catalogue of projectile formulas: it is component kinematics plus a model choice and consistent reconstruction.",
+    "independent_check": "Component signs/units must be consistent, both axes must use one time, and projectile results must agree with a_x=0, a_y=-g and qualitative velocity evolution.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Frame, component table, constant-acceleration status and projectile assumptions are labelled."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Frame and known component values are labelled; learner selects component equations/model."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical story and requested output are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A plane-motion story must first be converted into signed x/y component states before equations are selected.",
+      "information_not_handed_over": "the component representation and common-time structure",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Acceleration is given as a vector and the learner must decide whether constant-acceleration equations may be used on each component.",
+      "information_not_handed_over": "that model validity is checked component-wise",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A launched object is still under propulsion or has important drag, so the standard projectile specialization may not apply.",
+      "information_not_handed_over": "whether gravity-only free flight is a valid model",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "The question asks for range, height, flight time or later velocity without naming the intermediate component equations.",
+      "information_not_handed_over": "which component condition defines the requested event",
+      "repair_to": "R3"
+    }
+  ]
+}
