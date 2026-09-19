@@ -3518,24 +3518,38 @@ window.GRADE9V3 = {
               "inferential_jump": "Perpendicular components may be solved separately because each axis equation contains only that axis's quantities, but they still describe one object at one physical time.",
               "teaching_path": [
                 {
+                  "id": "K2D1-1",
                   "action": "Choose one fixed x-y frame, one origin and one time origin for the whole plane-motion event.",
                   "why_valid": "A component value is meaningful only after its frame and sign convention are fixed.",
-                  "output": "one declared frame, origin, axis orientation and t=0"
+                  "role": "DECLARE",
+                  "output": "one declared frame, origin, axis orientation and t=0",
+                  "inputs": []
                 },
                 {
+                  "id": "K2D1-2",
                   "action": "Represent position, velocity and acceleration as signed x and y components in that same frame.",
                   "why_valid": "A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.",
-                  "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)"
+                  "role": "TRANSFORM",
+                  "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)",
+                  "inputs": [
+                    "CAP-VECTOR-SIGNED-COMPONENT"
+                  ]
                 },
                 {
+                  "id": "K2D1-3",
                   "action": "Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.",
                   "why_valid": "The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.",
-                  "output": "two axis histories coupled by one clock"
+                  "role": "TRANSFORM",
+                  "output": "two axis histories coupled by one clock",
+                  "inputs": []
                 },
                 {
+                  "id": "K2D1-4",
                   "action": "Recombine only component values that refer to the same frame and the same instant.",
                   "why_valid": "Mixing x at one time with y at another does not describe any single physical state of the object.",
-                  "output": "one physically valid plane state reconstructed from simultaneous components"
+                  "role": "VERIFY",
+                  "output": "one physically valid plane state reconstructed from simultaneous components",
+                  "inputs": []
                 }
               ],
               "misconceptions": [
@@ -3587,19 +3601,33 @@ window.GRADE9V3 = {
               "inferential_jump": "The one-dimensional constant-acceleration equations can be applied to each perpendicular component independently when a_x and a_y are each constant over the same interval.",
               "teaching_path": [
                 {
+                  "id": "K2D2-1",
                   "action": "Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.",
                   "why_valid": "The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.",
-                  "output": "per-axis model-validity decision"
+                  "role": "DECLARE",
+                  "output": "per-axis model-validity decision",
+                  "inputs": [
+                    "CAP-KIN-CONSTANT-ACCELERATION"
+                  ]
                 },
                 {
+                  "id": "K2D2-2",
                   "action": "Apply the one-dimensional constant-acceleration relations independently to x and y using only that axis's signed values and the same t.",
                   "why_valid": "Each Cartesian component obeys the same one-dimensional relation when its acceleration component is constant.",
-                  "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2"
+                  "role": "TRANSFORM",
+                  "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2",
+                  "inputs": [
+                    "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+                    "CAP-KIN-CONSTANT-ACCELERATION"
+                  ]
                 },
                 {
+                  "id": "K2D2-3",
                   "action": "If one axis determines an event time, reuse that same time on the other axis before recombining and checking the plane state.",
                   "why_valid": "The event occurs once for the object; a time obtained from one component is the clock value for every component at that same event.",
-                  "output": "event time transferred across axes, then one checked plane state"
+                  "role": "VERIFY",
+                  "output": "event time transferred across axes, then one checked plane state",
+                  "inputs": []
                 }
               ],
               "misconceptions": [
@@ -3657,39 +3685,62 @@ window.GRADE9V3 = {
               "inferential_jump": "After release in the ideal near-Earth model, projectile motion is not a new set of laws: it is the same component kinematics with a_x=0 and a_y=-g (for +y upward).",
               "teaching_path": [
                 {
+                  "id": "K2D3-1",
                   "action": "Decide whether the object is in ideal near-Earth free flight after release; neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
                   "why_valid": "The standard projectile equations are a conditional specialization of 2D constant acceleration, not an automatic label for every launched object.",
-                  "output": "gravity-only projectile acceleration state"
+                  "role": "DECLARE",
+                  "output": "gravity-only projectile acceleration state",
+                  "inputs": []
                 },
                 {
+                  "id": "K2D3-2",
                   "action": "Use supplied or separately resolved u_x and u_y with one common t in the horizontal and vertical component equations.",
                   "why_valid": "Horizontal, oblique and downward/upward initial components change the initial state, not the gravity-only model.",
-                  "output": "v_x=u_x; v_y=u_y-g t; Delta x=u_x t; Delta y=u_y t-0.5g t^2"
+                  "role": "TRANSFORM",
+                  "output": "v_x=u_x; v_y=u_y-g t; Delta x=u_x t; Delta y=u_y t-0.5g t^2",
+                  "inputs": [
+                    "CAP-KIN-2D-CONSTANT-ACCELERATION"
+                  ]
                 },
                 {
+                  "id": "K2D3-3",
                   "action": "Translate the requested event into the component condition that defines it before solving for time.",
                   "why_valid": "Apex, same-height return, ground impact and a specified later instant are different events; each is identified by a different component condition.",
-                  "output": "event condition chosen before calculation"
+                  "role": "DECLARE",
+                  "output": "event condition chosen before calculation",
+                  "inputs": []
                 },
                 {
+                  "id": "K2D3-4",
                   "action": "For an apex event, set v_y=0 while keeping v_x=u_x and a_y=-g.",
                   "why_valid": "At the highest point only the vertical velocity component is momentarily zero; gravity still accelerates downward and horizontal motion continues.",
-                  "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration"
+                  "role": "TRANSFORM",
+                  "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration",
+                  "inputs": []
                 },
                 {
+                  "id": "K2D3-5",
                   "action": "For a return to the launch height, set Delta y=0 and treat any same-height flight-time/range shortcut as conditional on that equality.",
                   "why_valid": "The shortcut follows from the vertical displacement returning to its initial value; it is not valid when the landing height differs.",
-                  "output": "same-height event condition and its validity boundary"
+                  "role": "TRANSFORM",
+                  "output": "same-height event condition and its validity boundary",
+                  "inputs": []
                 },
                 {
-                  "action": "For a horizontal launch or unequal-height landing, use u_y=0 only as the initial vertical condition and obtain the event time from the vertical position equation.",
-                  "why_valid": "Gravity immediately builds vertical velocity; the fall/landing condition, not the horizontal speed, determines the flight time.",
-                  "output": "vertical event time for horizontal or unequal-height launch"
+                  "id": "K2D3-6",
+                  "action": "For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.",
+                  "why_valid": "Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.",
+                  "role": "TRANSFORM",
+                  "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x",
+                  "inputs": []
                 },
                 {
+                  "id": "K2D3-7",
                   "action": "At the selected event time, reconstruct the requested velocity, speed, direction, displacement or range from simultaneous components and check qualitative limits.",
                   "why_valid": "The reported projectile result is a consequence of one component model and one event, so its components must refer to the same instant and satisfy a_x=0, a_y=-g.",
-                  "output": "checked projectile consequence at one physical event"
+                  "role": "VERIFY",
+                  "output": "checked projectile consequence at one physical event",
+                  "inputs": []
                 }
               ],
               "misconceptions": [
@@ -15560,7 +15611,7 @@ window.GRADE9V3 = {
                     "role": "TRANSFORM",
                     "action": "For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.",
                     "why_valid": "Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.",
-                    "output": "vertical event time from the actual landing displacement and actual initial vertical component",
+                    "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x",
                     "inputs": []
                   },
                   {
