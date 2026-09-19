@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 147,
-  "relation_count": 201,
+  "component_count": 148,
+  "relation_count": 202,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 54,
+    "TEST": 55,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:0e869ab71680d4cdbd4dbb551a34f923aafd9595b6b174ced1c824a93815b692",
+  "digest": "sha256:fe8e96a95a3228b19dc40a0a6530a5264cf012317141b685bd8ef74707d4820a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -785,8 +785,15 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14811,
-      "sha256": "a6040975d63fc60744c647964f9d4dc156884a9ded9569891e0fa0609e84c099"
+      "bytes": 14957,
+      "sha256": "0eb9925c891228a2edb906bd32f1428cca4285cb3c7dcab15cbbc7f37187c9a2"
+    },
+    {
+      "path": "tests/test_grade10_optics_reflection_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4764,
+      "sha256": "bb7c65f28948b43b148833bc79cf572c3436bccd6ee40c65ed9829a31e7f7962"
     },
     {
       "path": "tests/test_grade9_force_laws_scope.py",
@@ -855,8 +862,8 @@
       "path": "tests/test_issue19_physics_content.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13356,
-      "sha256": "0b0552d224a4dfdb916ca5ae4a241adfc0d219e0ec7312513d9dd1049962ec2c"
+      "bytes": 13467,
+      "sha256": "da27020e8f2aa0e9557186239d4496ee214a72fb883168d586e5958910d42ba3"
     },
     {
       "path": "tests/test_library.py",
@@ -1016,8 +1023,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 447489,
-      "sha256": "6fd9a9412ab015c065b1199e40e70ac4d4458e6963e3e1c11d280b9728b5be2a"
+      "bytes": 463931,
+      "sha256": "3e1fdc6f0a960e3292e6dcf36137700628fdb08c1ea0667fb7957bbd79e97a5d"
     },
     {
       "path": "tools/index.html",
@@ -1737,6 +1744,11 @@
     {
       "from": "tests/test_gates.py",
       "to": "Shared.gates.validate",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade10_optics_reflection_scope.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {

@@ -98,11 +98,7 @@
     {
       "rung": "R4",
       "ladder_position": 55,
-      "provenance": "SYNTHESIS",
-      "aha": "Principal rays are construction shortcuts tied to spherical-mirror geometry, and a consistent pair of rays locates the image without requiring every ray to be drawn.",
-      "learner_owns": [
-        "R3: signed optical coordinates are assigned from a declared pole, axis, and incident-light direction."
-      ],
+      "provenance": "AUTHORED",
       "ceiling": [
         "mirror formula",
         "magnification",
@@ -112,12 +108,6 @@
         "Parallel-to-axis, through-focus, and through-center ray rules stated as paired before/after directions.",
         "Two-ray intersections for multiple object positions."
       ],
-      "misconception": {
-        "wrong_idea": "A principal ray diagram is a decorative sketch, so the ray rules can be mixed without affecting image location.",
-        "diagnostic_prompt": "If two correctly constructed principal rays predict different image points, what must be wrong?",
-        "repair": "Each principal ray is constrained by the same mirror geometry; use any valid pair and require a common intersection or common backward intersection."
-      },
-      "closure": "Construct an image with two principal rays and use a third principal ray as a consistency check.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -131,16 +121,13 @@
           "hold": "the same mirror and principal-ray rules",
           "notice": "image position, orientation, and real/virtual character change systematically"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION"
     },
     {
       "rung": "R5",
       "ladder_position": 70,
-      "provenance": "SYNTHESIS",
-      "aha": "The spherical-mirror equation relates signed object distance, image distance, and focal length under the paraxial approximation; it is an algebraic model of the same geometry as the ray construction.",
-      "learner_owns": [
-        "R4: a consistent principal-ray pair locates one image point for a stated spherical mirror."
-      ],
+      "provenance": "AUTHORED",
       "ceiling": [
         "magnification",
         "virtual object",
@@ -150,12 +137,6 @@
         "Signed u, v, and f inserted only after the diagram establishes the coordinate directions.",
         "A ray-diagram estimate compared with the equation result."
       ],
-      "misconception": {
-        "wrong_idea": "The mirror formula is exact for any ray striking any part of a spherical mirror.",
-        "diagnostic_prompt": "Two rays strike far from the principal axis at large angles. Is the paraxial mirror formula guaranteed to predict their exact intersection?",
-        "repair": "State the paraxial condition before using the formula and treat large-angle disagreement as a model-limit issue, not an algebra error."
-      },
-      "closure": "Given u and f with a declared sign convention, solve for v, classify the image, and state the paraxial condition behind the calculation.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -169,16 +150,13 @@
           "hold": "the same spherical mirror and object",
           "notice": "the simple formula becomes an approximation whose geometric agreement can degrade"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OPT-MIRROR-EQUATION"
     },
     {
       "rung": "R6",
       "ladder_position": 85,
-      "provenance": "SYNTHESIS",
-      "aha": "Magnification links image size and orientation to signed image/object distances; its sign carries orientation information rather than being an expendable algebraic detail.",
-      "learner_owns": [
-        "R5: the mirror equation gives a signed image distance under a declared convention and paraxial model."
-      ],
+      "provenance": "AUTHORED",
       "ceiling": [
         "multi-element optics",
         "lens formula",
@@ -188,12 +166,6 @@
         "Both ratios m = h_i/h_o and m = -v/u connected for the same image.",
         "One case with negative magnification and one with positive magnification."
       ],
-      "misconception": {
-        "wrong_idea": "Magnification is only the positive size ratio, so its sign can be discarded.",
-        "diagnostic_prompt": "Two images are equally large, one erect and one inverted. Can one unsigned magnification value distinguish them?",
-        "repair": "Keep the sign: magnitude tells relative size while sign records erect versus inverted orientation under the convention."
-      },
-      "closure": "Use signed u and v to compute magnification, then predict image orientation and relative size before checking against a ray diagram.",
       "controlled_variation": [
         {
           "phase": 1,
@@ -207,7 +179,8 @@
           "hold": "object position and the remaining mirror curvature",
           "notice": "image brightness changes while the whole geometric image and magnification remain"
         }
-      ]
+      ],
+      "microtopic_ref": "MIC-OPT-MIRROR-MAGNIFICATION"
     }
   ],
   "family": {

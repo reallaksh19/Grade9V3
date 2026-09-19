@@ -241,8 +241,12 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
             )
 
         gate = load_json(REPO / "Physics/gates/foundational-relations.v1.json")
+        grade9_gate_ids = {
+            row["gate_id"] for row in gate["gates"]
+            if row["curriculum"]["grade"] == 9
+        }
         self.assertEqual(
-            {row["gate_id"] for row in gate["gates"]},
+            grade9_gate_ids,
             {
                 "PHY-KIN-AVERAGE-RATES",
                 "PHY-NEWTON-SECOND-LAW",

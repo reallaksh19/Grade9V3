@@ -1192,6 +1192,196 @@
           "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-OPTICS-MIRRORS-GRADE10",
+      "title": "Grade 10 spherical-mirror image construction, formula and magnification",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 10,
+        "chapter": "Light - Reflection and Refraction",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-OPT-SPHERICAL-RAY-CONSTRUCTION",
+          "statement": "For a spherical mirror in the paraxial model, principal-ray rules are consistent constructions for locating the same image point; image nature follows whether reflected rays or only their backward extensions meet."
+        },
+        {
+          "concept_id": "CON-OPT-MIRROR-EQUATION",
+          "statement": "For a spherical mirror under one declared Cartesian sign convention and the paraxial approximation, signed object distance u, image distance v and focal length f satisfy 1/v + 1/u = 1/f."
+        },
+        {
+          "concept_id": "CON-OPT-MIRROR-MAGNIFICATION",
+          "statement": "Mirror magnification m = h_i/h_o = -v/u carries both relative image size and orientation; its sign is physically meaningful."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-MIRROR-EQUATION",
+          "expression": "1/v + 1/u = 1/f",
+          "meaning": "For one spherical mirror in the paraxial model, signed image distance and object distance combine to the reciprocal signed focal length.",
+          "symbols": [
+            {
+              "symbol": "u",
+              "meaning": "Signed object distance measured from the mirror pole",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Signed image distance measured from the mirror pole",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "f",
+              "meaning": "Signed focal length of the spherical mirror",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "u, v and f use the same declared Cartesian sign convention and mirror pole as origin.",
+            "The spherical-mirror construction is used in the paraxial/small-angle regime.",
+            "u, v and f describe the same mirror and object-image state."
+          ]
+        },
+        {
+          "relation_id": "REL-MIRROR-MAGNIFICATION",
+          "expression": "m = -v/u = h_i/h_o",
+          "meaning": "For the same spherical-mirror image, transverse magnification is the signed image-to-object height ratio and equals negative signed image distance divided by signed object distance.",
+          "symbols": [
+            {
+              "symbol": "m",
+              "meaning": "Signed transverse magnification",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Signed object distance from the mirror pole",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Signed image distance from the mirror pole",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "h_i",
+              "meaning": "Signed image height relative to the principal axis",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "h_o",
+              "meaning": "Signed object height relative to the principal axis",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "u, v, h_i and h_o use one declared Cartesian sign convention.",
+            "Object and image refer to the same spherical-mirror state.",
+            "h_o is nonzero when the height ratio is evaluated."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Declare the mirror pole, principal axis, incident-light direction and vertical sign convention before assigning signed optical quantities.",
+        "Use the spherical-mirror formula only within the paraxial/small-angle model rather than claiming exact convergence for arbitrary wide-aperture rays.",
+        "A valid principal-ray pair must locate one common image point or one common backward-extension point.",
+        "The sign of magnification is retained because it distinguishes erect from inverted images."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-OPT-MIRROR-RAYS",
+          "sequence": 1,
+          "action": "Construct at least two valid principal rays from one object point and require a common physical or backward-extension intersection.",
+          "why_valid": "The spherical-mirror image is a geometric property of one reflected ray bundle, not of a chosen decorative ray."
+        },
+        {
+          "step_id": "RS-OPT-MIRROR-SIGNS",
+          "sequence": 2,
+          "action": "Assign u, v and f only after declaring the Cartesian coordinate directions from the pole.",
+          "why_valid": "The mirror equation relates signed coordinates; object/image labels alone do not determine signs.",
+          "depends_on": [
+            "RS-OPT-MIRROR-RAYS"
+          ]
+        },
+        {
+          "step_id": "RS-OPT-MIRROR-EQUATION",
+          "sequence": 3,
+          "action": "Apply REL-MIRROR-EQUATION to the same paraxial mirror state and cross-check the result against the ray construction.",
+          "why_valid": "The equation and construction are two representations of the same model.",
+          "depends_on": [
+            "RS-OPT-MIRROR-SIGNS"
+          ]
+        },
+        {
+          "step_id": "RS-OPT-MIRROR-MAGNIFICATION",
+          "sequence": 4,
+          "action": "Use REL-MIRROR-MAGNIFICATION and retain its sign when predicting relative size and orientation.",
+          "why_valid": "Magnitude alone cannot distinguish erect from inverted images.",
+          "depends_on": [
+            "RS-OPT-MIRROR-EQUATION"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-OPT-MIRROR-MIXED-RAYS",
+          "wrong_idea": "Principal-ray rules can be mixed arbitrarily even if they predict different image points.",
+          "counterexample": "Two valid ray rules for the same object point and mirror must intersect at the same image point within the model.",
+          "repair": "Treat each principal ray as constrained by the same mirror geometry and reject an inconsistent construction."
+        },
+        {
+          "misconception_id": "MIS-OPT-MIRROR-LABEL-SIGNS",
+          "wrong_idea": "Object distance, image distance and focal length have permanent signs based only on their labels.",
+          "counterexample": "Reversing the page drawing while carrying the declared incident-light direction with the physical setup preserves the coordinate rule rather than page-left/page-right mnemonics.",
+          "repair": "Declare origin and positive directions first, then assign every distance and height sign from those coordinates."
+        },
+        {
+          "misconception_id": "MIS-OPT-MIRROR-EXACT-ALL-RAYS",
+          "wrong_idea": "The spherical-mirror formula is exact for arbitrary rays striking anywhere on a wide spherical mirror.",
+          "counterexample": "Large-angle rays far from the principal axis need not converge to the single point predicted by the paraxial approximation.",
+          "repair": "State the paraxial model before using the formula and treat wide-aperture disagreement as a model-limit issue."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-OPT-SPHERICAL-MIRROR-G10",
+          "title": "Spherical-mirror image construction, signed formula and magnification",
+          "hidden_invariants": [
+            "Ray construction, signed mirror equation and magnification must describe the same object-mirror-image state.",
+            "The coordinate convention is declared before substitution.",
+            "The paraxial model boundary remains visible when a formula is used."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 3
+      },
+      "badges": [
+        "OPTICS",
+        "GRADE10-OWNER-EXTENSION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-OPT-MIRROR-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from a mirror-relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
     }
   ]
 }
