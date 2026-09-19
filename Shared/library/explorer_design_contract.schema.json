@@ -1,0 +1,365 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:graphical-cognitive-deconstruction:1.0.0",
+  "title": "Graphical Cognitive Deconstruction Route Contract",
+  "description": "Governed design contract for heavy-graphical parallel support activities. It supplements, and never replaces, the canonical capability/rung/microtopic/teaching-step graph.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "conformance_status",
+    "cognitive_target",
+    "route_policy",
+    "interaction_sequence",
+    "graphical_contract",
+    "boundary_contract",
+    "exit_evidence",
+    "implementation_evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "conformance_status": {
+      "enum": [
+        "DESIGN_BOUND",
+        "IMPLEMENTATION_PARTIAL",
+        "CERTIFIED"
+      ],
+      "description": "CERTIFIED means every implementation_evidence flag is true and the guard can verify the contract's structural prerequisites. Human scientific/pedagogical approval remains separate."
+    },
+    "cognitive_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_failure",
+        "target_operation",
+        "core_invariant",
+        "boundary"
+      ],
+      "properties": {
+        "target_failure": {
+          "type": "string",
+          "minLength": 10
+        },
+        "target_operation": {
+          "type": "string",
+          "minLength": 10
+        },
+        "core_invariant": {
+          "type": "string",
+          "minLength": 5
+        },
+        "boundary": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "route_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recommended_when",
+        "learner_evidence_triggers",
+        "prerequisite_policy",
+        "auto_route_policy"
+      ],
+      "properties": {
+        "recommended_when": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "INTRINSIC_HARD",
+              "COUNTERINTUITIVE",
+              "HIDDEN_MECHANISM",
+              "RELATIONAL",
+              "CONSTRAINT_BASED",
+              "MULTI_REPRESENTATION",
+              "BOUNDARY_SENSITIVE",
+              "REFERENCE_FRAME_SENSITIVE",
+              "SYSTEM_BOUNDARY_SENSITIVE"
+            ]
+          }
+        },
+        "learner_evidence_triggers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "LOW_MASTERY_CONFIRMED",
+              "REPEATED_FAILURE",
+              "MISCONCEPTION_DETECTED",
+              "NORMAL_REPAIR_FAILED",
+              "RECONSTRUCTION_FAILED",
+              "PREREQUISITE_UNCERTAIN"
+            ]
+          }
+        },
+        "prerequisite_policy": {
+          "const": "DIVERT_IF_PREREQUISITE_MISSING"
+        },
+        "auto_route_policy": {
+          "enum": [
+            "RECOMMEND_ONLY",
+            "AUTO_AFTER_STRONG_EVIDENCE"
+          ],
+          "description": "Never auto-route from one wrong answer. AUTO_AFTER_STRONG_EVIDENCE requires the learner system to establish one of the declared evidence triggers."
+        }
+      }
+    },
+    "interaction_sequence": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "CONTEXT",
+          "PREDICT",
+          "MANIPULATE",
+          "OBSERVE",
+          "CONTRADICT",
+          "GRAPHICAL_DECONSTRUCTION",
+          "MATHEMATICAL_RECONSTRUCTION",
+          "INVARIANT_DISCOVERY",
+          "BOUNDARY_STRESS",
+          "SCAFFOLD_FADE",
+          "FRESH_TRANSFER"
+        ]
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "PREDICT"
+          }
+        },
+        {
+          "contains": {
+            "const": "MANIPULATE"
+          }
+        },
+        {
+          "contains": {
+            "const": "GRAPHICAL_DECONSTRUCTION"
+          }
+        },
+        {
+          "contains": {
+            "const": "MATHEMATICAL_RECONSTRUCTION"
+          }
+        },
+        {
+          "contains": {
+            "const": "BOUNDARY_STRESS"
+          }
+        },
+        {
+          "contains": {
+            "const": "FRESH_TRANSFER"
+          }
+        }
+      ]
+    },
+    "graphical_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phenomenon_view",
+        "mechanism_view",
+        "mathematical_structure_view",
+        "direct_manipulation",
+        "synchronized_representations",
+        "causal_chain",
+        "progressive_disclosure",
+        "counterfactual_model"
+      ],
+      "properties": {
+        "phenomenon_view": {
+          "type": "string",
+          "minLength": 10
+        },
+        "mechanism_view": {
+          "type": "string",
+          "minLength": 10
+        },
+        "mathematical_structure_view": {
+          "type": "string",
+          "minLength": 10
+        },
+        "direct_manipulation": {
+          "type": "string",
+          "minLength": 5
+        },
+        "synchronized_representations": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "causal_chain": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "progressive_disclosure": {
+          "type": "string",
+          "minLength": 10
+        },
+        "counterfactual_model": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "boundary_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assumption_held",
+        "stress_action",
+        "expected_break",
+        "learner_must_identify"
+      ],
+      "properties": {
+        "assumption_held": {
+          "type": "string",
+          "minLength": 5
+        },
+        "stress_action": {
+          "type": "string",
+          "minLength": 5
+        },
+        "expected_break": {
+          "type": "string",
+          "minLength": 5
+        },
+        "learner_must_identify": {
+          "type": "string",
+          "minLength": 5
+        }
+      }
+    },
+    "exit_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reconstruction_required",
+        "boundary_test_required",
+        "fresh_transfer_required",
+        "rejoin_step_ref",
+        "evidence_events"
+      ],
+      "properties": {
+        "reconstruction_required": {
+          "const": true
+        },
+        "boundary_test_required": {
+          "const": true
+        },
+        "fresh_transfer_required": {
+          "const": true
+        },
+        "rejoin_step_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_events": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "INITIAL_PREDICTION",
+              "MISCONCEPTION_SIGNATURE",
+              "MANIPULATION_COMPLETED",
+              "CONTRADICTION_UNDERSTOOD",
+              "CAUSAL_CHAIN_RECONSTRUCTED",
+              "INVARIANT_RECONSTRUCTED",
+              "BOUNDARY_TEST_RESULT",
+              "FRESH_TRANSFER_RESULT"
+            ]
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "INITIAL_PREDICTION"
+              }
+            },
+            {
+              "contains": {
+                "const": "CAUSAL_CHAIN_RECONSTRUCTED"
+              }
+            },
+            {
+              "contains": {
+                "const": "BOUNDARY_TEST_RESULT"
+              }
+            },
+            {
+              "contains": {
+                "const": "FRESH_TRANSFER_RESULT"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "implementation_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prediction_before_reveal",
+        "meaningful_direct_manipulation",
+        "synchronized_representations",
+        "physical_contradiction",
+        "explicit_causal_chain",
+        "mathematics_from_visual_mechanism",
+        "invariant_discovery",
+        "boundary_stress",
+        "scaffold_fade",
+        "fresh_transfer_without_scaffold"
+      ],
+      "properties": {
+        "prediction_before_reveal": {
+          "type": "boolean"
+        },
+        "meaningful_direct_manipulation": {
+          "type": "boolean"
+        },
+        "synchronized_representations": {
+          "type": "boolean"
+        },
+        "physical_contradiction": {
+          "type": "boolean"
+        },
+        "explicit_causal_chain": {
+          "type": "boolean"
+        },
+        "mathematics_from_visual_mechanism": {
+          "type": "boolean"
+        },
+        "invariant_discovery": {
+          "type": "boolean"
+        },
+        "boundary_stress": {
+          "type": "boolean"
+        },
+        "scaffold_fade": {
+          "type": "boolean"
+        },
+        "fresh_transfer_without_scaffold": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
