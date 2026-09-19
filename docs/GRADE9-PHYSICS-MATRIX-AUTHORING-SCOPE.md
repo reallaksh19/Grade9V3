@@ -69,7 +69,7 @@ discarded or kept extension-only.
 
 ## Grade-9 pass status
 
-**COMPLETE pending only normal repository acceptance/guardrails for the G9-6 merge.**
+**COMPLETE.** G9-1 through G9-6 are audited and merged; Grade 10 remains outside the active freeze.
 
 All six active Grade-9 production slices have now been audited. The freeze remains in force:
 do not begin Grade 10 in the same authoring PR.
