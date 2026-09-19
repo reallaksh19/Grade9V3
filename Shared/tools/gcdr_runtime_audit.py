@@ -408,9 +408,13 @@ def inspect_html(path: Path) -> dict:
         key for key in sorted(expected_keys)
         if key not in by_key or not by_key[key].get("has_handler") or by_key[key].get("error")
     ]
+    element_by_key = {row["key"]: row for row in parser.elements}
     no_effect = [
         key for key in sorted(expected_keys)
-        if key in by_key and by_key[key].get("has_handler") and not by_key[key].get("causes_effect")
+        if key in by_key
+        and element_by_key[key]["tag"] != "button"
+        and by_key[key].get("has_handler")
+        and not by_key[key].get("causes_effect")
         and not re.search(r"reset", key, re.I)
     ]
     all_runtime_text = "\n".join(
