@@ -1,0 +1,91 @@
+{
+  "matrix_id": "MATRIX-PHY-NLM-MOMENTUM-TRANSFER",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+  "topic": "Force and Laws of Motion",
+  "subtopic": "Discrete momentum-transfer force",
+  "axis_note": "This is an explicit-demand extension matrix. Its only rung is intentionally non-default so ordinary Grade-9 NLM owner-estimate routing cannot enter it; a real mapped question or explicit owner entry must activate the slice.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+      "default_entry_eligible": false,
+      "ceiling": [
+        "collision taxonomy",
+        "coefficient of restitution",
+        "impulse integral",
+        "rocket equation",
+        "continuously varying-mass dynamics",
+        "center-of-mass collision method"
+      ],
+      "must_contain": [
+        "One declared inertial frame and positive ejection direction.",
+        "Momentum change per item as final minus initial, not final momentum alone.",
+        "A finite-count reconstruction of momentum transferred per unit time before the compact rate formula.",
+        "Separate signs for force on ejecta, recoil on launcher and holding force.",
+        "A unit check reducing rate times momentum to newtons."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the item entry velocity while holding mass, exit velocity and ejection rate fixed",
+          "hold": "the same inertial frame and positive direction",
+          "notice": "the force changes with Delta p_item = m(v_out-v_in), so final momentum alone is not the invariant demand"
+        },
+        {
+          "phase": 2,
+          "vary": "the ejection rate while holding the per-item momentum change fixed",
+          "hold": "the same item mass and velocity change",
+          "notice": "the average force scales directly with items per second"
+        },
+        {
+          "phase": 3,
+          "vary": "the declared positive direction",
+          "hold": "the same physical ejection",
+          "notice": "all signed momentum and force values reverse consistently while magnitudes remain unchanged"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Choose a frame/direction, determine the momentum change of one fixed-mass ejected item, convert repeated item changes into momentum transferred per unit time, and distinguish the force on ejecta from launcher recoil and a balancing holding force.",
+    "difficult_move": "Keeping one system/body and sign convention through three related but different quantities: per-item momentum change, stream momentum-transfer rate, and the opposite launcher/holding-force directions.",
+    "independent_check": "Verify newton units, reverse the chosen axis and recover sign consistency, and test the zero-transfer boundary v_out=v_in.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The sign convention, per-item momentum relation and finite-interval count structure are supplied; the learner completes the rate and reaction directions."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The sign convention and item states are supplied; the learner must construct Delta p_item and convert a repeated count into force."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the ejection story, item mass/velocities and rate are supplied; the learner must choose frame, representation, rate relation and force directions independently."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A recoil/holding-force story supplies mass, launch velocities and number fired per second without naming momentum transfer.",
+      "information_not_handed_over": "that the demanded force comes from repeated per-item momentum changes per unit time rather than constant-mass F = m a alone",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "The firing rate is given as n items during an interval Delta t instead of directly as items per second.",
+      "information_not_handed_over": "the conversion R=n/Delta t and the finite-interval derivation of F_avg=(n/Delta t)Delta p_item",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "The discrete momentum-transfer stream is a spray, pellets or parcels rather than bullets.",
+      "information_not_handed_over": "that the same bounded repeated-item structure applies while collision and rocket methods remain unnecessary",
+      "repair_to": "R1"
+    }
+  ]
+}
