@@ -1473,12 +1473,12 @@
       "symbols": [
         {
           "symbol": "u",
-          "meaning": "Signed object distance from optical centre",
+          "meaning": "Signed object distance used by the thin-lens equation, measured from the optical centre",
           "unit_or_domain": "m; signed length"
         },
         {
           "symbol": "v",
-          "meaning": "Signed image distance from optical centre",
+          "meaning": "Signed image distance predicted by the thin-lens equation, measured from the optical centre",
           "unit_or_domain": "m; signed length"
         },
         {
@@ -1542,12 +1542,12 @@
         },
         {
           "symbol": "u",
-          "meaning": "Signed object distance from optical centre",
+          "meaning": "Signed object distance used in the lens magnification distance ratio",
           "unit_or_domain": "m; signed length"
         },
         {
           "symbol": "v",
-          "meaning": "Signed image distance from optical centre",
+          "meaning": "Signed image distance used in the lens magnification distance ratio",
           "unit_or_domain": "m; signed length"
         },
         {
