@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:9aa8ef99bf832d2a8f2335ba1c23f31d66a1784cbaa479f9fdd23f8a731b16df",
+  "digest": "sha256:72bc505ecba7387fc6518ef29108ad2ff15d4b7bb10424f37e8c5249bd9949b4",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -604,7 +604,7 @@
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
       "bytes": 12014,
-      "sha256": "da3daacc3520eeb148843f84dda00785aa5042b9640b955fb80ee2a5927f8f1a"
+      "sha256": "37311ba400b2f8c8e0c6eebbe3cf74ada83f286484457f71f3ae153a6880767d"
     },
     {
       "path": "Shared/tools/topic_independence_allowlist.json",
@@ -800,7 +800,7 @@
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 7433,
-      "sha256": "42a722a0f8e4553d697988e0c10b63f06c66545653e275756d7c7597d07f9616"
+      "sha256": "9ab934fa087279391350fe6e027ea05934a99e40f7b7074f9f140c5aac66ac28"
     },
     {
       "path": "tests/test_grade9_force_laws_scope.py",
