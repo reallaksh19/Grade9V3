@@ -182,14 +182,17 @@
         },
         {
           "micro": "vertical one-dimensional motion under gravity / sign handling",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
           "local_refs": [
             "CAP-KIN-CONSTANT-ACCELERATION",
-            "CAP-PHY-GRAV-FREE-FALL-G"
+            "CAP-PHY-GRAV-FREE-FALL-G",
+            "CAP-KIN-ZERO-V-NONZERO-A"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY",
-          "external_question_demand": "CONFIRMED_EXAMSIDE"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH",
+          "demand_note": "Local preparation now covers one-dimensional vertical constant-g sign handling, apex/event conditions, reversed-axis representations, return/impact events and velocity-time transfer. Air resistance, variable-g large-altitude motion and calculus remain outside this bounded slice."
         },
         {
           "micro": "zero velocity with nonzero acceleration at a turning point",
