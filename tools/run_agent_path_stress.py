@@ -21,7 +21,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import plan_request, resolve_request  # noqa: E402
+from Shared.tools import compile_execution_packet, plan_request, resolve_request  # noqa: E402
 
 FIXTURE = REPO / "tests/fixtures/agent_path_stress/cases.json"
 
@@ -36,6 +36,7 @@ def by_id(suite: dict) -> dict[str, dict]:
 
 def actual_projection(case: dict) -> dict:
     report = plan_request.plan(case["request"])
+    packet = compile_execution_packet.compile_packet(case["request"])
     purposes = resolve_request.purposes()
     practice_support = {}
     for core, intent in case["request"].get("practice", {}).items():
@@ -51,6 +52,9 @@ def actual_projection(case: dict) -> dict:
         "prerequisite_checks": report["learner_route"].get("prerequisite_checks", []),
         "required_owner_inputs": [row["id"] for row in report["required_owner_inputs"]],
         "practice_support": practice_support,
+        "selected_segment": [
+            row["rung"] for row in packet.get("canonical", {}).get("selected_segment", [])
+        ],
         "core1a_core1b_relationship": (
             report.get("core_relationships", {}).get("CORE1A_CORE1B")
         ),
@@ -75,6 +79,14 @@ def compare(case: dict, actual: dict) -> list[dict]:
                 "field": field,
                 "expected": expected.get(field),
                 "actual": actual.get(field),
+            })
+
+    if "selected_segment" in expected:
+        if actual.get("selected_segment") != expected["selected_segment"]:
+            differences.append({
+                "field": "selected_segment",
+                "expected": expected["selected_segment"],
+                "actual": actual.get("selected_segment"),
             })
 
     requested = set(case["request"].get("requested_cores", []))
@@ -176,7 +188,8 @@ def main() -> int:
                 f'route={actual["route_state"]} '
                 f'checks={actual["prerequisite_checks"]} '
                 f'owner_inputs={actual["required_owner_inputs"]} '
-                f'support={actual["practice_support"]}'
+                f'support={actual["practice_support"]} '
+                f'segment={actual["selected_segment"]}'
             )
             for diff in report["differences"]:
                 print(
