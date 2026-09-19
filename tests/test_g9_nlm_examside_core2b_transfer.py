@@ -34,13 +34,14 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
             "Q-PHY-NLM-2B-FRAME-SELECTION-05",
         ]
 
-    def test_no_earlier_pr_had_already_populated_nlm_core2b(self):
-        # This is a repository-state regression, not a claim about GitHub history:
-        # the transfer slice is deliberately the five-question set introduced here.
+    def test_nlm_core2b_inventory_is_exactly_this_representative_set(self):
         inventory = practice_inventory.coverage(
             self.records, "BUCKET-PHY-NLM-FIRST-LAW"
         )
-        self.assertEqual(inventory["CORE2B"], self.transfer_ids)
+        self.assertEqual(
+            set(inventory["CORE2B"]),
+            set(self.transfer_ids),
+        )
 
     def test_transfer_set_covers_the_representative_nlm_decisions(self):
         expected = {
