@@ -1221,8 +1221,15 @@ class ResolveRequest(unittest.TestCase):
             request["learner"]["owner_estimate"]["knowledge_percentage"] = min(
                 r["ladder_position"] for r in board["rungs"])
             report = resolve_request.plan(request)
-            teaching = self.core(report, "CORE1A").get("segment") or []
-            taught = any(s["state"] == "PRESENT" for s in teaching)
+            caps, mics = resolve_request.capability_chain("Physics")
+            # A non-default extension can have a fully authored canonical rung while being
+            # absent from the automatic CORE1A segment. Practice availability must therefore
+            # distinguish "no rung record exists" from "a rung is taught but owns no
+            # bucket practice questions" using the canonical ladder itself.
+            taught = any(
+                resolve_request.rung_state(rung, caps, mics)["state"] == "PRESENT"
+                for rung in board["rungs"]
+            )
             records = resolve_request.library_records("Physics")
             for name in ("CORE2A", "CORE2B"):
                 with self.subTest(bucket=board["bucket_id"], core=name):
