@@ -68,7 +68,7 @@
       "repair_to": "R1"
     },
     {
-      "dimension": "question_direction",
+      "dimension": "reasoning_steps",
       "changed_demand": "The emitted-stream momentum is easy to compute but the question asks for holding/recoil force on the launcher.",
       "information_not_handed_over": "which body receives the third-law partner and its direction",
       "repair_to": "R1"
