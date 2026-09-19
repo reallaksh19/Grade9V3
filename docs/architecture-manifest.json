@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 164,
-  "relation_count": 216,
+  "component_count": 167,
+  "relation_count": 217,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 28,
-    "TEST": 71,
-    "TOOLING": 40,
+    "LIBRARY": 29,
+    "TEST": 72,
+    "TOOLING": 41,
     "WEB": 6
   },
-  "digest": "sha256:062c07c1505adb594f4e435af62d5f5cfcdb7968ecbb092bfc03a7cf0aea6b8f",
+  "digest": "sha256:97dcc2ec9d13f30d527686305b4306ac091e85b6006da77a2c0233dbb99acea5",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -87,6 +87,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 5118,
       "sha256": "2484c3741e34e97ad9611e9cabaa1e4f113f1c00687862fd71a3293449a80c4a"
+    },
+    {
+      "path": "Shared/library/explorer_design_contract.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 9393,
+      "sha256": "126a04037a4808132adfeeccd36fd1fb4948c8db0af02c7af222f3efefa4c282"
     },
     {
       "path": "Shared/library/import_sil.py",
@@ -386,8 +393,8 @@
       "path": "Shared/tools/build_web_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 12820,
-      "sha256": "ad16d96930f63a8671c17d918f72a1225db53932d7b721adac05c3979a3c3b6c"
+      "bytes": 13675,
+      "sha256": "ad44761572741a5f4eb078af63b03a57f21241d6562db3638465a096d61e4765"
     },
     {
       "path": "Shared/tools/capability_audit.py",
@@ -451,6 +458,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 21307,
       "sha256": "42289024e8205987f07ba8025ed85fd407010854c65527d21095984dc4df2a8e"
+    },
+    {
+      "path": "Shared/tools/explorer_design_guard.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5700,
+      "sha256": "4f93c832107dc2774558bde52cf24fa543d2c42cafb0446ea1cbfcc61eb165be"
     },
     {
       "path": "Shared/tools/feedback.py",
@@ -803,6 +817,13 @@
       "sha256": "7d207ea2b4ad2509af81421421373033027c283558fe839b0171392b3676baac"
     },
     {
+      "path": "tests/test_explorer_design_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4917,
+      "sha256": "593d2b64e6f73e40d79b5ae72be6ac044fbb7a583bbeb819fbbfbedf2c391687"
+    },
+    {
       "path": "tests/test_external_provider_bridge.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1107,8 +1128,8 @@
       "path": "tests/test_topic_atlas_contract.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8090,
-      "sha256": "7bcd93b0c8d32bee9aeeec55c457d4d063d1aa64457808e93de8e414eb8f26ed"
+      "bytes": 8579,
+      "sha256": "67508e516f0ad91d55868262a60749d3e761ed5a33afe1a06bebbd2bf158ae53"
     },
     {
       "path": "tests/test_vector_foundations_modernization.py",
@@ -1135,8 +1156,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 1694473,
-      "sha256": "4184d14ec6f986353dbff740394db65bae58caa80a84048933587ef8a1760664"
+      "bytes": 1698889,
+      "sha256": "6ce0cbdaded5df5fdbd4c4b01c24ca8de6628440da10e7228dde02fe3b832d4a"
     },
     {
       "path": "tools/index.html",
@@ -1810,6 +1831,11 @@
     },
     {
       "from": "tests/test_execution_packet.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_explorer_design_contract.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
