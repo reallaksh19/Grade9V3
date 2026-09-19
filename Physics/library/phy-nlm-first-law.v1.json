@@ -135,6 +135,41 @@
       ],
       "selection_reason": "Interactive dual-mode Atwood machine and movable pulley simulation with dynamic string tension and constraint kinematics.",
       "fallback": []
+    },
+    {
+      "id": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Connected Blocks & Newton's Third Law Explorer",
+      "origin": "AUTHORED",
+      "locator": "public/physics/nlm/explorers/connected-blocks/index.html",
+      "edition": "1.0.0",
+      "section": "Multi-body contact forces, action-reaction pairs, system boundaries, and push direction asymmetry",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created interactive cognitive model.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "ACTIVITY"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-THIRD-LAW",
+        "CAP-NLM-CONNECTED-COMMON-ACCEL"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "ADVANCED"
+      ],
+      "selection_reason": "Interactive multi-block train simulation demonstrating contact normal force transmission, equal-and-opposite interface pairs, and system-boundary cancellation.",
+      "fallback": []
     }
   ],
   "buckets": [

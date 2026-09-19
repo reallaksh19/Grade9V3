@@ -16435,7 +16435,19 @@ window.GRADE9V3 = {
                   "repair_ref": null
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                  "title": "Connected Blocks & Newton's Third Law Explorer",
+                  "locator": "public/physics/nlm/explorers/connected-blocks/index.html",
+                  "section": "Multi-body contact forces, action-reaction pairs, system boundaries, and push direction asymmetry",
+                  "supports_claims": [
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
+                    "CAP-NLM-THIRD-LAW",
+                    "CAP-NLM-CONNECTED-COMMON-ACCEL"
+                  ]
+                }
+              ]
             },
             {
               "rung": "R5",
@@ -17185,7 +17197,19 @@ window.GRADE9V3 = {
                   "repair_ref": "NLM9-4"
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                  "title": "Connected Blocks & Newton's Third Law Explorer",
+                  "locator": "public/physics/nlm/explorers/connected-blocks/index.html",
+                  "section": "Multi-body contact forces, action-reaction pairs, system boundaries, and push direction asymmetry",
+                  "supports_claims": [
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
+                    "CAP-NLM-THIRD-LAW",
+                    "CAP-NLM-CONNECTED-COMMON-ACCEL"
+                  ]
+                }
+              ]
             },
             {
               "rung": "R10",
@@ -17733,7 +17757,19 @@ window.GRADE9V3 = {
                   "repair_ref": null
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                  "title": "Connected Blocks & Newton's Third Law Explorer",
+                  "locator": "public/physics/nlm/explorers/connected-blocks/index.html",
+                  "section": "Multi-body contact forces, action-reaction pairs, system boundaries, and push direction asymmetry",
+                  "supports_claims": [
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
+                    "CAP-NLM-THIRD-LAW",
+                    "CAP-NLM-CONNECTED-COMMON-ACCEL"
+                  ]
+                }
+              ]
             },
             {
               "rung": "R4",

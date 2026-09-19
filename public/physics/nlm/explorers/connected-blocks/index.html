@@ -1,0 +1,1902 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NLM Explorer 3 · Connected Blocks & Newton's Third Law</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --bg-card-hover: #2d333b;
+      --border: #444c56;
+      --border-accent: #388bfd;
+      --text: #f0f6fc;
+      --text-muted: #919bb0;
+      --text-dim: #9aa4b2;
+      --accent: #58a6ff;
+      --accent-glow: rgba(56, 139, 253, 0.25);
+      --push-color: #388bfd;
+      --n12-color: #f0883e;
+      --n23-color: #e3b341;
+      --accel-color: #56d364;
+      --block1-color: #388bfd;
+      --block2-color: #bc8cff;
+      --block3-color: #f778ba;
+      --danger-color: #ff7b72;
+      --success-color: #56d364;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge.connected {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+    .badge.neutral {
+      background: rgba(148, 163, 184, 0.12);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Governing Invariants Card */
+    .invariant-card {
+      background: rgba(56, 139, 253, 0.08);
+      border: 1px solid rgba(56, 139, 253, 0.3);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .invariant-card strong { color: var(--accent); }
+    .inv-item {
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .inv-num {
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 18px;
+    }
+
+    /* Preset & Transport Toolbar */
+    .toolbar-strip {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .preset-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .preset-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+    .btn-preset {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-preset:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-preset.active {
+      background: rgba(56, 139, 253, 0.15);
+      border-color: var(--border-accent);
+      color: var(--accent);
+    }
+
+    .transport-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-transport {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-transport:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+    }
+    .btn-transport.primary {
+      background: var(--accent);
+      color: #0d1117;
+      border-color: var(--accent);
+    }
+    .btn-transport.primary:hover {
+      opacity: 0.92;
+    }
+
+    /* Grid Layout */
+    .grid-main {
+      display: grid;
+      grid-template-columns: 1.28fr 0.92fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 1080px) {
+      .grid-main { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(68, 76, 86, 0.4);
+      padding-bottom: 10px;
+    }
+    .panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Stage Canvas Container */
+    .stage-wrapper {
+      position: relative;
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Overlaid Toggles */
+    .canvas-hud-options {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      display: flex;
+      gap: 12px;
+      z-index: 5;
+      background: rgba(13, 17, 23, 0.88);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      backdrop-filter: blur(4px);
+    }
+    .canvas-hud-options label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .canvas-hud-options input { accent-color: var(--accent); }
+
+    /* Mode Selector Pills */
+    .mode-pills {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+    .btn-pill {
+      background: rgba(13, 17, 23, 0.88);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: all 0.15s;
+    }
+    .btn-pill.active {
+      background: var(--accent);
+      color: #0d1117;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Push Direction Toggle Pill */
+    .direction-pill {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+      background: rgba(13, 17, 23, 0.88);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+    }
+    .btn-dir {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-dir.active {
+      background: var(--push-color);
+      color: #fff;
+      border-color: var(--push-color);
+    }
+
+    /* Controls Grid */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .control-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .control-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    /* Status Grid */
+    .status-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .stat-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-cell-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .stat-cell-value {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Newton-II & System Boundary HUD */
+    .equations-hud {
+      background: #111620;
+      border: 1px solid #233044;
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 14px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+    }
+    @media (max-width: 600px) {
+      .equations-hud { grid-template-columns: 1fr; }
+    }
+    .eq-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .eq-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .eq-body {
+      color: #c9d1d9;
+      line-height: 1.45;
+    }
+
+    /* Graph Container */
+    .graph-wrapper {
+      position: relative;
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      cursor: crosshair;
+    }
+    .graph-tooltip {
+      position: absolute;
+      background: rgba(13, 17, 23, 0.95);
+      border: 1px solid var(--border-accent);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+      line-height: 1.4;
+    }
+
+    /* Info Cards on Right */
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+    .info-card h4 {
+      color: var(--text);
+      font-size: 12px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Questions */
+    .questions-container {
+      margin-top: 32px;
+    }
+    .q-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+    .q-card:hover {
+      border-color: rgba(88, 166, 255, 0.4);
+    }
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .q-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .q-stem {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .opt-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.15s ease;
+    }
+    .opt-label:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+    }
+    .opt-label input[type=radio] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+    }
+    .btn {
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn.secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn.secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+    }
+    .solution-panel {
+      display: none;
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+    .solution-panel.active { display: block; }
+    .solution-panel.correct {
+      border: 1px solid var(--success-color);
+      background: rgba(46, 160, 67, 0.1);
+    }
+    .solution-panel.wrong {
+      border: 1px solid var(--danger-color);
+      background: rgba(248, 81, 73, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <span>🔬 NLM Explorer 3: Connected Blocks &amp; Newton's Third Law</span>
+    <span class="badge connected">R3, R7 &amp; R9 Interactive</span>
+  </div>
+  <div>
+    <a href="../../index.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">
+      ← Back to Laws of Motion Hub
+    </a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb">
+    <a href="../../../../index.html">Home</a>
+    <span>/</span>
+    <a href="../../../index.html">Physics</a>
+    <span>/</span>
+    <a href="../../index.html">Laws of Motion</a>
+    <span>/</span>
+    <span style="color: var(--text); font-weight: 600;">Connected Blocks &amp; Third Law</span>
+  </div>
+
+  <!-- Invariant summary card -->
+  <div class="invariant-card">
+    <div style="font-weight: 700; color: #fff; font-size: 14px;">⚡ Governing Invariants &amp; Connected Multi-Body Pedagogy:</div>
+    <div class="inv-item">
+      <div class="inv-num">1.</div>
+      <div>
+        <strong>The Contact Force Fallacy (N₁₂ &ne; F)</strong>: When pushing a train of touching blocks with external force F, the normal contact force at the interface does <em>not</em> equal F!
+        <code style="color: var(--n12-color); font-weight: bold; background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 4px;">N₁₂ = [m₂ / (m₁ + m₂)] &times; F &lt; F</code>.
+        Block 1 uses part of F to accelerate itself (<code>m₁ a</code>); only the remaining fraction is transmitted to push Block 2!
+      </div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-num">2.</div>
+      <div>
+        <strong>Newton's Third Law &amp; Body Ownership (R3 &amp; R7)</strong>: The contact pair consists of equal and opposite forces:
+        <code>N⃗₁&rarr;₂ = -N⃗₂&rarr;₁</code>. These forces <strong>act on different bodies</strong>! They NEVER appear on the same isolated free-body diagram and therefore never cancel on one body.
+      </div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-num">3.</div>
+      <div>
+        <strong>Push Direction Asymmetry Invariant</strong>: Reversing the direction of push preserves system acceleration: <code>a = F / (m₁ + m₂)</code>, but drastically changes the internal contact force! Pushing from left gives <code>N₁₂ = [m₂ / (m₁ + m₂)] F</code>, while pushing from right gives <code>N'₁₂ = [m₁ / (m₁ + m₂)] F</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Presets & Transport Toolbar -->
+  <div class="toolbar-strip">
+    <div class="preset-group">
+      <span class="preset-label">Lab Experiments:</span>
+      <button class="btn-preset active" id="btn-preset-1" onclick="applyPreset(1)">
+        ① Two Blocks (m₁ = 4 kg, m₂ = 2 kg, F = 18 N)
+      </button>
+      <button class="btn-preset" id="btn-preset-2" onclick="applyPreset(2)">
+        ② Reversal Asymmetry (m₁ = 2 kg, m₂ = 8 kg, F = 50 N)
+      </button>
+      <button class="btn-preset" id="btn-preset-3" onclick="applyPreset(3)">
+        ③ Three-Block Train (m₁ = 2 kg, m₂ = 3 kg, m₃ = 5 kg)
+      </button>
+      <button class="btn-preset" id="btn-preset-4" onclick="applyPreset(4)">
+        ④ Massive Lead Car Trap (m₁ = 9 kg, m₂ = 1 kg &rArr; N₁₂ = 0.1 F)
+      </button>
+    </div>
+
+    <div class="transport-group">
+      <button class="btn-transport primary" id="btn-play" onclick="togglePlay()">⏸ Pause</button>
+      <button class="btn-transport" onclick="stepForward()">⏭ Step</button>
+      <button class="btn-transport" onclick="resetSim()">↺ Reset</button>
+      <button class="btn-transport" id="btn-speed" onclick="cycleSpeed()">Speed: 1.0x</button>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Physical Grid -->
+  <div class="grid-main">
+
+    <!-- Left Column: Simulation Stage, Controls & Equations -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>Connected Train Stage &amp; Interface Gauges</span>
+          <span id="motion-badge" class="badge connected">Pushing Left-to-Right (F = 30 N)</span>
+        </div>
+      </div>
+
+      <!-- Canvas Stage with Overlaid Toggles -->
+      <div class="stage-wrapper">
+        <canvas id="simCanvas" width="760" height="420"></canvas>
+
+        <div class="mode-pills">
+          <button class="btn-pill active" id="mode-2blocks" onclick="switchBlockCount(2)">2-Block Train</button>
+          <button class="btn-pill" id="mode-3blocks" onclick="switchBlockCount(3)">3-Block Train</button>
+        </div>
+
+        <div class="direction-pill">
+          <span style="font-size: 11px; font-weight: 700; color: var(--text-muted); align-self: center; margin-right: 4px;">PUSH:</span>
+          <button class="btn-dir active" id="btn-dir-ltr" onclick="setPushDirection('LTR')">Push from Left &rarr;</button>
+          <button class="btn-dir" id="btn-dir-rtl" onclick="setPushDirection('RTL')">&larr; Push from Right</button>
+        </div>
+
+        <div class="canvas-hud-options">
+          <label title="Show digital force gauge at the contact boundary">
+            <input type="checkbox" id="chk-gauges" checked onchange="redrawCanvas()"> Interface Gauges
+          </label>
+          <label title="Show isolated point-particle Free Body Diagram">
+            <input type="checkbox" id="chk-fbd" onchange="redrawCanvas()"> Isolated FBDs
+          </label>
+          <label title="Show system boundary outline">
+            <input type="checkbox" id="chk-boundary" checked onchange="redrawCanvas()"> System Boundary
+          </label>
+        </div>
+      </div>
+
+      <!-- Controls Grid -->
+      <div class="controls-grid">
+        <div class="control-card">
+          <div class="control-top">
+            <span>Push Force (F<sub>ext</sub>)</span>
+            <span class="control-val" id="val-f" style="color: var(--push-color);">30.0 N</span>
+          </div>
+          <input type="range" id="slider-f" min="0.0" max="80.0" step="1.0" value="30.0">
+        </div>
+
+        <div class="control-card">
+          <div class="control-top">
+            <span>Mass 1 (m₁)</span>
+            <span class="control-val" id="val-m1" style="color: var(--block1-color);">4.0 kg</span>
+          </div>
+          <input type="range" id="slider-m1" min="1.0" max="15.0" step="0.5" value="4.0">
+        </div>
+
+        <div class="control-card">
+          <div class="control-top">
+            <span>Mass 2 (m₂)</span>
+            <span class="control-val" id="val-m2" style="color: var(--block2-color);">2.0 kg</span>
+          </div>
+          <input type="range" id="slider-m2" min="1.0" max="15.0" step="0.5" value="2.0">
+        </div>
+
+        <div class="control-card" id="card-m3" style="display: none;">
+          <div class="control-top">
+            <span>Mass 3 (m₃)</span>
+            <span class="control-val" id="val-m3" style="color: var(--block3-color);">4.0 kg</span>
+          </div>
+          <input type="range" id="slider-m3" min="1.0" max="15.0" step="0.5" value="4.0">
+        </div>
+      </div>
+
+      <!-- Live Dynamic Status Matrix -->
+      <div class="status-matrix">
+        <div class="stat-cell">
+          <span class="stat-cell-label">System Accel (a)</span>
+          <span class="stat-cell-value" id="stat-a" style="color: var(--accel-color);">5.00 m/s²</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Total Mass (M)</span>
+          <span class="stat-cell-value" id="stat-mtot">6.0 kg</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Contact Force N₁₂</span>
+          <span class="stat-cell-value" id="stat-n12" style="color: var(--n12-color);">10.0 N</span>
+        </div>
+        <div class="stat-cell" id="stat-cell-n23" style="display: none;">
+          <span class="stat-cell-label">Contact Force N₂₃</span>
+          <span class="stat-cell-value" id="stat-n23" style="color: var(--n23-color);">0.0 N</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Ratio N₁₂ / F</span>
+          <span class="stat-cell-value" id="stat-ratio">33.3 %</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Velocity (v)</span>
+          <span class="stat-cell-value" id="stat-v">0.00 m/s</span>
+        </div>
+      </div>
+
+      <!-- Live Newton's Second Law Equations HUD -->
+      <div class="equations-hud">
+        <div class="eq-col">
+          <span class="eq-title">Whole System Equation (Internal Forces Cancel)</span>
+          <div class="eq-body" id="eq-system-text">
+            &Sigma;F<sub>ext</sub> = F = 30.0 N &rArr; a = F / (m₁ + m₂) = 30.0 / 6.0 = 5.00 m/s²
+          </div>
+        </div>
+        <div class="eq-col">
+          <span class="eq-title">Interface Contact Equation (Newton's 3rd Law)</span>
+          <div class="eq-body" id="eq-contact-text">
+            N₁₂ = m₂ &times; a = 2.0 &times; 5.00 = 10.0 N (|N₁&rarr;₂| = |N₂&rarr;₁| = 10.0 N)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Phase-Space Graph & Invariants -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>Contact Force vs Mass Partitioning</span>
+          <span class="badge neutral">Draggable Phase-Space</span>
+        </div>
+      </div>
+
+      <div class="graph-wrapper" id="graphContainer">
+        <canvas id="graphCanvas" width="540" height="390"></canvas>
+        <div id="graphTooltip" class="graph-tooltip"></div>
+      </div>
+
+      <div style="font-size: 11px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
+        <span>💡 <em>Drag horizontally on the curve to scrub Mass 2 (m₂)!</em></span>
+        <span style="font-family: var(--font-mono);">Range: 1.0 &ndash; 15.0 kg</span>
+      </div>
+
+      <div class="info-card">
+        <h4>🔄 The Push Reversal Paradox</h4>
+        <p>
+          Pushing from Left ($F$ on $m_1$): $N_{12} = \frac{m_2}{m_1 + m_2} F$.<br>
+          Pushing from Right ($F$ on $m_2$): $N'_{12} = \frac{m_1}{m_1 + m_2} F$.
+        </p>
+        <p style="margin-top: 6px;">
+          • If $m_1 = 2\text{ kg}$ and $m_2 = 8\text{ kg}$, with $F = 50\text{ N}$:<br>
+          &nbsp;&nbsp;Pushing left gives $N_{12} = \frac{8}{10} \times 50 = \mathbf{40\text{ N}}$.<br>
+          &nbsp;&nbsp;Pushing right gives $N'_{12} = \frac{2}{10} \times 50 = \mathbf{10\text{ N}}$!<br>
+          • The acceleration is identical ($5\text{ m/s}^2$), but the contact stress drops by <strong>75%</strong>!
+        </p>
+      </div>
+
+      <div class="info-card" style="border-left: 3px solid var(--n12-color);">
+        <h4 style="color: var(--n12-color);">⚖️ Why Action &amp; Reaction Never Cancel</h4>
+        <p>
+          $N_{1\to 2}$ acts on Block 2 to push it forward. $N_{2\to 1}$ acts on Block 1 resisting the push. Because they act on <em>different bodies</em>, neither block experiences zero net force! They cancel <strong>only</strong> when you draw a system boundary around BOTH blocks together.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Diagnostic Challenges -->
+  <section class="questions-container">
+    <div class="panel-header">
+      <div class="panel-title" style="font-size: 15px;">
+        <span>🧠 Targeted Diagnostic Challenges</span>
+        <span class="badge neutral">Requires Explorer Invariants</span>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+      These challenges diagnose and eliminate common contact-force and Third Law fallacies.
+    </p>
+
+    <!-- Question 1 -->
+    <div class="q-card" id="q1">
+      <div class="q-header">
+        <span class="q-title">Question 1 · The Full-Force Contact Fallacy</span>
+        <span class="badge neutral">Diagnostic 3.1</span>
+      </div>
+      <div class="q-stem">
+        Two blocks with masses m₁ = 3 kg and m₂ = 2 kg rest on a frictionless horizontal surface in contact. A horizontal push of F = 20 N is applied to m₁ pushing towards m₂. What is the magnitude of the contact normal force between the blocks?
+      </div>
+      <div class="options-grid">
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="A">
+          <span><strong>A.</strong> 20 N, because force transmits without change through solid touching bodies.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="B">
+          <span><strong>B.</strong> 8 N, because N₁₂ = [m₂ / (m₁ + m₂)] &times; F = (2 / 5) &times; 20 N = 8 N.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="C">
+          <span><strong>C.</strong> 12 N, which is the force required to accelerate m₁ alone.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="D">
+          <span><strong>D.</strong> 0 N, because action and reaction between the blocks cancel each other out.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ1()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ1ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-panel" id="q1-solution">
+        <div id="q1-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> Option B is correct! First find the common acceleration: a = F / (m₁ + m₂) = 20 / 5 = 4 m/s². The only horizontal force acting on Block 2 is the contact normal force N₁₂, so by Newton's Second Law on Block 2: N₁₂ = m₂ a = 2 &times; 4 = 8 N. Block 1 consumes 12 N (m₁ a) to accelerate itself, transmitting only the remaining 8 N to Block 2!
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="q-card" id="q2">
+      <div class="q-header">
+        <span class="q-title">Question 2 · The Push Reversal Symmetry Trap</span>
+        <span class="badge neutral">Diagnostic 3.2</span>
+      </div>
+      <div class="q-stem">
+        In the same setup (m₁ = 3 kg, m₂ = 2 kg), the same 20 N force is now applied to m₂ pushing toward m₁ (from right to left). How does the new contact force N'₁₂ compare to the previous contact force N₁₂?
+      </div>
+      <div class="options-grid">
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="A">
+          <span><strong>A.</strong> It remains 8 N, because the contact interface between the same two blocks cannot change.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="B">
+          <span><strong>B.</strong> It increases to 12 N, because the contact force must now accelerate the heavier 3 kg mass: N'₁₂ = m₁ a = 3 &times; 4 = 12 N.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="C">
+          <span><strong>C.</strong> It becomes negative (-8 N) to reflect the opposite direction of motion.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="D">
+          <span><strong>D.</strong> It becomes 20 N because the lighter block is pushed first.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ2()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ2ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-panel" id="q2-solution">
+        <div id="q2-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> Option B is correct! When pushing m₂, the contact force must accelerate m₁ in front of it. Since m₁ = 3 kg is heavier than m₂ = 2 kg, a greater contact force is required to impart the same 4 m/s² acceleration: N'₁₂ = m₁ a = 3 &times; 4 = 12 N! Reversing the push direction changes the contact force from 8 N to 12 N!
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="q-card" id="q3">
+      <div class="q-header">
+        <span class="q-title">Question 3 · The Third Law Action-Reaction Cancellation Myth</span>
+        <span class="badge neutral">Diagnostic 3.3</span>
+      </div>
+      <div class="q-stem">
+        A student argues: <em>"According to Newton's Third Law, if Block 1 exerts a force of 8 N on Block 2, then Block 2 exerts an equal and opposite force of 8 N on Block 1. Since these two forces are equal and opposite (8 N - 8 N = 0), the blocks can never accelerate!"</em> What is the fundamental flaw in this reasoning?
+      </div>
+      <div class="options-grid">
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="A">
+          <span><strong>A.</strong> The two forces are not really equal in magnitude while the blocks are accelerating.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="B">
+          <span><strong>B.</strong> The action and reaction forces act on different bodies, so they cannot cancel on any single body's free-body diagram.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="C">
+          <span><strong>C.</strong> Newton's Third Law applies only to static objects, not accelerating systems.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="D">
+          <span><strong>D.</strong> Action occurs slightly before reaction, allowing brief acceleration between ticks.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ3()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ3ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-panel" id="q3-solution">
+        <div id="q3-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> Option B is the foundational insight of Newton's Third Law (R3 &amp; R7)! To determine if Block 1 accelerates, you sum ONLY the forces acting ON Block 1: F_net,1 = F - N₂₁ = 20 - 8 = 12 N &ne; 0! The force N₁₂ acts on Block 2, so it cannot cancel forces acting on Block 1. Action-reaction pairs only cancel when you take the combined system of both bodies together.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// -------------------------------------------------------------
+// PHYSICAL SYSTEM STATE
+// -------------------------------------------------------------
+let blockCount = 2; // 2 or 3
+let pushDir = 'LTR'; // 'LTR' (Left to Right) or 'RTL' (Right to Left)
+
+let F_ext = 30.0; // N
+let m1 = 4.0;     // kg
+let m2 = 2.0;     // kg
+let m3 = 4.0;     // kg
+
+let posX = 160;   // px (position of left block train)
+let vel = 0;      // m/s
+let accel = 0;    // m/s^2
+
+let isRunning = true;
+let simSpeed = 1.0;
+let lastTime = null;
+
+// DOM Elements
+const sliderF = document.getElementById('slider-f');
+const sliderM1 = document.getElementById('slider-m1');
+const sliderM2 = document.getElementById('slider-m2');
+const sliderM3 = document.getElementById('slider-m3');
+
+const valF = document.getElementById('val-f');
+const valM1 = document.getElementById('val-m1');
+const valM2 = document.getElementById('val-m2');
+const valM3 = document.getElementById('val-m3');
+
+const statA = document.getElementById('stat-a');
+const statMtot = document.getElementById('stat-mtot');
+const statN12 = document.getElementById('stat-n12');
+const statN23 = document.getElementById('stat-n23');
+const statCellN23 = document.getElementById('stat-cell-n23');
+const statRatio = document.getElementById('stat-ratio');
+const statV = document.getElementById('stat-v');
+
+const motionBadge = document.getElementById('motion-badge');
+const eqSystemText = document.getElementById('eq-system-text');
+const eqContactText = document.getElementById('eq-contact-text');
+
+const chkGauges = document.getElementById('chk-gauges');
+const chkFbd = document.getElementById('chk-fbd');
+const chkBoundary = document.getElementById('chk-boundary');
+
+const cardM3 = document.getElementById('card-m3');
+
+const simCanvas = document.getElementById('simCanvas');
+const simCtx = simCanvas.getContext('2d');
+const graphCanvas = document.getElementById('graphCanvas');
+const graphCtx = graphCanvas.getContext('2d');
+const graphContainer = document.getElementById('graphContainer');
+const graphTooltip = document.getElementById('graphTooltip');
+
+// -------------------------------------------------------------
+// EVENT LISTENERS & PARAMETER BINDING
+// -------------------------------------------------------------
+function syncSliders() {
+  F_ext = parseFloat(sliderF.value);
+  m1 = parseFloat(sliderM1.value);
+  m2 = parseFloat(sliderM2.value);
+  m3 = parseFloat(sliderM3.value);
+
+  valF.textContent = F_ext.toFixed(1) + ' N';
+  valM1.textContent = m1.toFixed(1) + ' kg';
+  valM2.textContent = m2.toFixed(1) + ' kg';
+  valM3.textContent = m3.toFixed(1) + ' kg';
+
+  clearPresetHighlight();
+  redrawCanvas();
+}
+
+sliderF.oninput = syncSliders;
+sliderM1.oninput = syncSliders;
+sliderM2.oninput = syncSliders;
+sliderM3.oninput = syncSliders;
+
+function clearPresetHighlight() {
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('btn-preset-' + i);
+    if (el) el.classList.remove('active');
+  }
+}
+
+function switchBlockCount(count) {
+  blockCount = count;
+  document.getElementById('mode-2blocks').className = (count === 2) ? 'btn-pill active' : 'btn-pill';
+  document.getElementById('mode-3blocks').className = (count === 3) ? 'btn-pill active' : 'btn-pill';
+  cardM3.style.display = (count === 3) ? 'flex' : 'none';
+  statCellN23.style.display = (count === 3) ? 'flex' : 'none';
+  resetSim();
+}
+
+function setPushDirection(dir) {
+  pushDir = dir;
+  document.getElementById('btn-dir-ltr').className = (dir === 'LTR') ? 'btn-dir active' : 'btn-dir';
+  document.getElementById('btn-dir-rtl').className = (dir === 'RTL') ? 'btn-dir active' : 'btn-dir';
+  resetSim();
+}
+
+// -------------------------------------------------------------
+// CORE PHYSICS CALCULATIONS
+// -------------------------------------------------------------
+function getPhysics() {
+  const mTot = (blockCount === 2) ? (m1 + m2) : (m1 + m2 + m3);
+  const a = mTot > 0 ? (F_ext / mTot) : 0;
+
+  let n12 = 0;
+  let n23 = 0;
+
+  if (blockCount === 2) {
+    if (pushDir === 'LTR') {
+      // Pushing Block 1 from Left: N12 accelerates Block 2
+      n12 = m2 * a;
+    } else {
+      // Pushing Block 2 from Right: N12 accelerates Block 1
+      n12 = m1 * a;
+    }
+  } else {
+    // 3 Blocks
+    if (pushDir === 'LTR') {
+      // Pushing m1: N12 accelerates (m2 + m3), N23 accelerates m3
+      n12 = (m2 + m3) * a;
+      n23 = m3 * a;
+    } else {
+      // Pushing m3: N23 accelerates (m1 + m2), N12 accelerates m1
+      n23 = (m1 + m2) * a;
+      n12 = m1 * a;
+    }
+  }
+
+  return { a, mTot, n12, n23 };
+}
+
+// -------------------------------------------------------------
+// PRESETS
+// -------------------------------------------------------------
+function applyPreset(num) {
+  clearPresetHighlight();
+  const btn = document.getElementById('btn-preset-' + num);
+  if (btn) btn.classList.add('active');
+
+  if (num === 1) { // Two Blocks standard
+    switchBlockCount(2);
+    setPushDirection('LTR');
+    sliderF.value = 18.0;
+    sliderM1.value = 4.0;
+    sliderM2.value = 2.0;
+  } else if (num === 2) { // Reversal Asymmetry
+    switchBlockCount(2);
+    setPushDirection('LTR');
+    sliderF.value = 50.0;
+    sliderM1.value = 2.0;
+    sliderM2.value = 8.0;
+  } else if (num === 3) { // Three-Block Train
+    switchBlockCount(3);
+    setPushDirection('LTR');
+    sliderF.value = 40.0;
+    sliderM1.value = 2.0;
+    sliderM2.value = 3.0;
+    sliderM3.value = 5.0;
+  } else if (num === 4) { // Massive lead car
+    switchBlockCount(2);
+    setPushDirection('LTR');
+    sliderF.value = 60.0;
+    sliderM1.value = 9.0;
+    sliderM2.value = 1.0;
+  }
+  syncSliders();
+  resetSim();
+}
+
+// -------------------------------------------------------------
+// TRANSPORT CONTROLS
+// -------------------------------------------------------------
+function togglePlay() {
+  isRunning = !isRunning;
+  const btn = document.getElementById('btn-play');
+  btn.textContent = isRunning ? '⏸ Pause' : '▶ Play';
+  btn.className = isRunning ? 'btn-transport primary' : 'btn-transport';
+}
+
+function resetSim() {
+  posX = (pushDir === 'LTR') ? 140 : 420;
+  vel = 0;
+  accel = 0;
+  redrawCanvas();
+}
+
+function stepForward() {
+  const p = getPhysics();
+  updateSimulationState(0.04, p);
+  redrawCanvas();
+}
+
+function cycleSpeed() {
+  const speeds = [0.5, 1.0, 2.0];
+  const idx = speeds.indexOf(simSpeed);
+  simSpeed = speeds[(idx + 1) % speeds.length];
+  document.getElementById('btn-speed').textContent = 'Speed: ' + simSpeed.toFixed(1) + 'x';
+}
+
+// -------------------------------------------------------------
+// SIMULATION UPDATE STEP
+// -------------------------------------------------------------
+function updateSimulationState(dt, p) {
+  accel = (pushDir === 'LTR') ? p.a : -p.a;
+  vel += accel * dt;
+
+  const dx = vel * dt * 25; // px scaling
+  posX += dx;
+
+  // Boundary loop
+  if (posX > 460) {
+    posX = 120;
+    vel = 0;
+  } else if (posX < 80) {
+    posX = 420;
+    vel = 0;
+  }
+}
+
+// -------------------------------------------------------------
+// RENDERING: CONNECTED BLOCKS STAGE
+// -------------------------------------------------------------
+function renderSimStage(p) {
+  const w = simCanvas.width;
+  const h = simCanvas.height;
+  simCtx.clearRect(0, 0, w, h);
+
+  const isFbdOnly = chkFbd.checked;
+  const isGauges = chkGauges.checked;
+  const isBoundary = chkBoundary.checked;
+
+  const groundY = 270;
+
+  // 1. Sleek Track Bed & Support Surface
+  simCtx.fillStyle = '#1e293b';
+  simCtx.fillRect(30, groundY, w - 60, 26);
+  simCtx.strokeStyle = '#475569';
+  simCtx.lineWidth = 2;
+  simCtx.strokeRect(30, groundY, w - 60, 26);
+
+  // Surface Hatching
+  simCtx.strokeStyle = '#334155';
+  for (let x = 35; x <= w - 40; x += 16) {
+    simCtx.beginPath();
+    simCtx.moveTo(x, groundY + 26);
+    simCtx.lineTo(x + 10, groundY);
+    simCtx.stroke();
+  }
+
+  // Low friction steel rail
+  simCtx.strokeStyle = '#94a3b8';
+  simCtx.lineWidth = 3;
+  simCtx.beginPath();
+  simCtx.moveTo(30, groundY);
+  simCtx.lineTo(w - 30, groundY);
+  simCtx.stroke();
+
+  // 2. Block Geometries
+  // Size proportional to mass
+  const w1 = Math.max(45, Math.min(85, 35 + m1 * 4));
+  const h1 = w1 * 0.95;
+  const w2 = Math.max(45, Math.min(85, 35 + m2 * 4));
+  const h2 = w2 * 0.95;
+  const w3 = (blockCount === 3) ? Math.max(45, Math.min(85, 35 + m3 * 4)) : 0;
+  const h3 = w3 * 0.95;
+
+  // Spacing between blocks (separated if FBD view is on)
+  const gap = isFbdOnly ? 40 : 0;
+
+  // Positions
+  const x1 = posX;
+  const y1_pos = groundY - h1;
+
+  const x2 = x1 + w1 + gap;
+  const y2_pos = groundY - h2;
+
+  const x3 = x2 + w2 + gap;
+  const y3_pos = groundY - h3;
+
+  // 3. System Boundary (if enabled and not in FBD mode)
+  if (isBoundary && !isFbdOnly) {
+    const totalTrainW = (blockCount === 2) ? (w1 + w2) : (w1 + w2 + w3);
+    const maxTrainH = Math.max(h1, h2, h3);
+    const pad = 12;
+
+    simCtx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
+    simCtx.lineWidth = 2;
+    simCtx.setLineDash([6, 5]);
+    simCtx.strokeRect(x1 - pad, groundY - maxTrainH - pad, totalTrainW + pad * 2, maxTrainH + pad + 2);
+    simCtx.setLineDash([]);
+
+    // Boundary Label
+    simCtx.fillStyle = '#38bdf8';
+    simCtx.font = 'bold 11px monospace';
+    simCtx.textAlign = 'center';
+    simCtx.fillText(`System Boundary [M = ${p.mTot.toFixed(1)} kg]`, x1 + totalTrainW / 2, groundY - maxTrainH - pad - 6);
+  }
+
+  // 4. Render Individual Blocks
+  drawTrainBlock(simCtx, x1, y1_pos, w1, h1, m1, '#388bfd', 'm₁', isFbdOnly);
+  drawTrainBlock(simCtx, x2, y2_pos, w2, h2, m2, '#bc8cff', 'm₂', isFbdOnly);
+  if (blockCount === 3) {
+    drawTrainBlock(simCtx, x3, y3_pos, w3, h3, m3, '#f778ba', 'm₃', isFbdOnly);
+  }
+
+  // 5. Interface Stress & Force Gauges
+  if (isGauges && !isFbdOnly) {
+    // Interface 1-2
+    const interface12X = x1 + w1;
+    const interface12Y = groundY - Math.min(h1, h2) / 2;
+    drawInterfaceGauge(simCtx, interface12X, interface12Y, p.n12, 'N₁₂');
+
+    if (blockCount === 3) {
+      // Interface 2-3
+      const interface23X = x2 + w2;
+      const interface23Y = groundY - Math.min(h2, h3) / 2;
+      drawInterfaceGauge(simCtx, interface23X, interface23Y, p.n23, 'N₂₃');
+    }
+  }
+
+  // 6. External Push Piston & Force Vector
+  const vectorScale = 1.6; // px per N
+  if (pushDir === 'LTR') {
+    // Push on left face of Block 1
+    const pushFromX = x1 - 50;
+    const pushToX = x1;
+    const pushY = groundY - h1 / 2;
+    drawPistonRam(simCtx, pushFromX - 25, pushY, 35, 18, 'LTR');
+    drawVectorArrow(simCtx, pushFromX, pushY, pushToX, pushY, '#388bfd', `F = ${F_ext.toFixed(0)} N`, 'top');
+  } else {
+    // Push on right face of last block
+    const rightEdge = (blockCount === 2) ? (x2 + w2) : (x3 + w3);
+    const lastH = (blockCount === 2) ? h2 : h3;
+    const pushFromX = rightEdge + 50;
+    const pushToX = rightEdge;
+    const pushY = groundY - lastH / 2;
+    drawPistonRam(simCtx, pushFromX + 25, pushY, 35, 18, 'RTL');
+    drawVectorArrow(simCtx, pushFromX, pushY, pushToX, pushY, '#388bfd', `F = ${F_ext.toFixed(0)} N`, 'top');
+  }
+
+  // 7. Free Body Diagram Force Vectors (When in FBD view or overlay)
+  if (isFbdOnly) {
+    // BLOCK 1
+    const cx1 = x1 + w1 / 2;
+    const cy1 = groundY - h1 / 2;
+    // Floor Normal & Weight
+    drawVectorArrow(simCtx, cx1, cy1, cx1, cy1 - m1 * 10 * 0.4, '#94a3b8', `N₁`, 'left');
+    drawVectorArrow(simCtx, cx1, cy1, cx1, cy1 + m1 * 10 * 0.4, '#94a3b8', `W₁`, 'left');
+
+    if (pushDir === 'LTR') {
+      // Push on Block 1
+      drawVectorArrow(simCtx, x1, cy1, x1 + F_ext * vectorScale * 0.6, cy1, '#388bfd', `F`, 'top');
+      // Contact force from 2 on 1 (opposing push)
+      drawVectorArrow(simCtx, x1 + w1, cy1, x1 + w1 - p.n12 * vectorScale * 0.6, cy1, '#f0883e', `N₂₁`, 'bottom');
+    } else {
+      // Pushed from right: contact force from 2 pushes 1
+      drawVectorArrow(simCtx, x1 + w1, cy1, x1 + w1 - p.n12 * vectorScale * 0.6, cy1, '#f0883e', `N₂₁`, 'bottom');
+    }
+
+    // BLOCK 2
+    const cx2 = x2 + w2 / 2;
+    const cy2 = groundY - h2 / 2;
+    // Floor Normal & Weight
+    drawVectorArrow(simCtx, cx2, cy2, cx2, cy2 - m2 * 10 * 0.4, '#94a3b8', `N₂`, 'left');
+    drawVectorArrow(simCtx, cx2, cy2, cx2, cy2 + m2 * 10 * 0.4, '#94a3b8', `W₂`, 'left');
+
+    if (pushDir === 'LTR') {
+      // Contact from 1 pushes 2
+      drawVectorArrow(simCtx, x2, cy2, x2 + p.n12 * vectorScale * 0.6, cy2, '#f0883e', `N₁₂`, 'top');
+      if (blockCount === 3) {
+        // Contact resistance from 3
+        drawVectorArrow(simCtx, x2 + w2, cy2, x2 + w2 - p.n23 * vectorScale * 0.6, cy2, '#e3b341', `N₃₂`, 'bottom');
+      }
+    } else {
+      // Pushed from right
+      if (blockCount === 3) {
+        drawVectorArrow(simCtx, x2 + w2, cy2, x2 + w2 - p.n23 * vectorScale * 0.6, cy2, '#e3b341', `N₃₂`, 'bottom');
+      } else {
+        drawVectorArrow(simCtx, x2 + w2, cy2, x2 + w2 - F_ext * vectorScale * 0.6, cy2, '#388bfd', `F`, 'top');
+      }
+      // Contact resistance from 1
+      drawVectorArrow(simCtx, x2, cy2, x2 + p.n12 * vectorScale * 0.6, cy2, '#f0883e', `N₁₂`, 'top');
+    }
+
+    // BLOCK 3 (if 3-block mode)
+    if (blockCount === 3) {
+      const cx3 = x3 + w3 / 2;
+      const cy3 = groundY - h3 / 2;
+      drawVectorArrow(simCtx, cx3, cy3, cx3, cy3 - m3 * 10 * 0.4, '#94a3b8', `N₃`, 'left');
+      drawVectorArrow(simCtx, cx3, cy3, cx3, cy3 + m3 * 10 * 0.4, '#94a3b8', `W₃`, 'left');
+
+      if (pushDir === 'LTR') {
+        drawVectorArrow(simCtx, x3, cy3, x3 + p.n23 * vectorScale * 0.6, cy3, '#e3b341', `N₂₃`, 'top');
+      } else {
+        drawVectorArrow(simCtx, x3 + w3, cy3, x3 + w3 - F_ext * vectorScale * 0.6, cy3, '#388bfd', `F`, 'top');
+        drawVectorArrow(simCtx, x3, cy3, x3 + p.n23 * vectorScale * 0.6, cy3, '#e3b341', `N₂₃`, 'bottom');
+      }
+    }
+  }
+
+  // 8. Acceleration Arrow for the System
+  if (Math.abs(p.a) > 0.05) {
+    const aDir = (pushDir === 'LTR') ? 1 : -1;
+    const aStartX = (pushDir === 'LTR') ? x1 : ((blockCount === 2) ? (x2 + w2) : (x3 + w3));
+    drawVectorArrow(simCtx, aStartX, groundY + 44, aStartX + aDir * Math.abs(p.a) * 12, groundY + 44,
+      '#56d364', `a = ${p.a.toFixed(2)} m/s²`, 'bottom');
+  }
+
+  // 9. Newton's Third Law Microscopic Interface Inset (Top Right)
+  drawInterfaceMagnifier(simCtx, w - 210, 48, 195, 105, p.n12);
+}
+
+// -------------------------------------------------------------
+// DRAWING HELPERS: BLOCKS, INTERFACE GAUGE, MAGNIFIER, PISTON
+// -------------------------------------------------------------
+function drawTrainBlock(ctx, x, y, w, h, massVal, themeColor, label, isFbdOnly) {
+  if (!isFbdOnly) {
+    // 3D Metallic / Beveled Cargo Block
+    const grad = ctx.createLinearGradient(x, y, x + w, y + h);
+    grad.addColorStop(0, '#334155');
+    grad.addColorStop(0.5, '#1e293b');
+    grad.addColorStop(1, '#0f172a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(x, y, w, h);
+
+    // Colored Accent Bevel
+    ctx.strokeStyle = themeColor;
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(x, y, w, h);
+
+    // Corner rivet details
+    ctx.fillStyle = '#94a3b8';
+    ctx.beginPath();
+    ctx.arc(x + 5, y + 5, 2, 0, Math.PI * 2);
+    ctx.arc(x + w - 5, y + 5, 2, 0, Math.PI * 2);
+    ctx.arc(x + 5, y + h - 5, 2, 0, Math.PI * 2);
+    ctx.arc(x + w - 5, y + h - 5, 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Mass text
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = 'bold 12px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(massVal.toFixed(1) + ' kg', x + w / 2, y + h / 2 + 4);
+
+    // Subtitle label
+    ctx.fillStyle = themeColor;
+    ctx.font = 'bold 11px monospace';
+    ctx.fillText(label, x + w / 2, y - 6);
+  } else {
+    // Isolated Point-Particle with bounding box
+    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.strokeRect(x, y, w, h);
+    ctx.setLineDash([]);
+
+    // Center disc
+    const cx = x + w / 2;
+    const cy = y + h / 2;
+    ctx.fillStyle = themeColor;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 8, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 11px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${label} (${massVal.toFixed(1)}kg)`, cx, y - 8);
+  }
+}
+
+function drawInterfaceGauge(ctx, x, y, forceVal, label) {
+  // Pressure bar at interface line
+  const barH = 40;
+  const ratio = Math.min(1.0, forceVal / 60);
+  const glowColor = `rgb(${Math.floor(240 + ratio * 15)}, ${Math.floor(136 - ratio * 80)}, ${Math.floor(62 - ratio * 50)})`;
+
+  ctx.strokeStyle = glowColor;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(x, y - barH / 2);
+  ctx.lineTo(x, y + barH / 2);
+  ctx.stroke();
+
+  // Floating Digital Badge
+  const badgeW = 60;
+  const badgeH = 18;
+  const badgeX = x - badgeW / 2;
+  const badgeY = y - barH / 2 - badgeH - 4;
+
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+  ctx.fillRect(badgeX, badgeY, badgeW, badgeH);
+  ctx.strokeStyle = glowColor;
+  ctx.lineWidth = 1;
+  ctx.strokeRect(badgeX, badgeY, badgeW, badgeH);
+
+  ctx.fillStyle = glowColor;
+  ctx.font = 'bold 10px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${label}: ${forceVal.toFixed(1)}N`, x, badgeY + 12);
+}
+
+function drawInterfaceMagnifier(ctx, x, y, w, h, forceVal) {
+  // Semi-transparent background box
+  ctx.fillStyle = 'rgba(13, 17, 23, 0.92)';
+  ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = '#388bfd';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x, y, w, h);
+
+  // Title
+  ctx.fillStyle = '#388bfd';
+  ctx.font = 'bold 10px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('🔍 3rd Law Interface Lens', x + 8, y + 14);
+
+  // Interface split line
+  const midX = x + w / 2;
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([2, 2]);
+  ctx.beginPath();
+  ctx.moveTo(midX, y + 24);
+  ctx.lineTo(midX, y + h - 10);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Block labels
+  ctx.font = '9px monospace';
+  ctx.fillStyle = '#388bfd';
+  ctx.textAlign = 'center';
+  ctx.fillText('On Block 1', midX - 45, y + 34);
+  ctx.fillStyle = '#bc8cff';
+  ctx.fillText('On Block 2', midX + 45, y + 34);
+
+  // Action-Reaction Equal and Opposite Arrows
+  const arrowY = y + 55;
+  const arrowLen = Math.min(38, Math.max(12, 10 + (forceVal / 40) * 25));
+
+  // N_2->1 (acting ON 1, pointing left)
+  drawVectorArrow(ctx, midX - 2, arrowY, midX - 2 - arrowLen, arrowY, '#f0883e', '', 'none');
+
+  // N_1->2 (acting ON 2, pointing right)
+  drawVectorArrow(ctx, midX + 2, arrowY, midX + 2 + arrowLen, arrowY, '#f0883e', '', 'none');
+
+  // Formula statement
+  ctx.fillStyle = '#f0883e';
+  ctx.font = 'bold 10px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText(`|N⃗₁₂| = |N⃗₂₁| = ${forceVal.toFixed(1)} N`, midX, y + h - 10);
+}
+
+function drawPistonRam(ctx, x, y, w, h, dir) {
+  ctx.fillStyle = '#475569';
+  ctx.fillRect(x - w / 2, y - h / 2, w, h);
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x - w / 2, y - h / 2, w, h);
+
+  // Push pad
+  ctx.fillStyle = '#388bfd';
+  const padX = (dir === 'LTR') ? (x + w / 2) : (x - w / 2 - 4);
+  ctx.fillRect(padX, y - h / 2 - 2, 4, h + 4);
+}
+
+function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label, labelPos) {
+  const headLen = 7;
+  const angle = Math.atan2(toY - fromY, toX - fromX);
+  const len = Math.hypot(toX - fromX, toY - fromY);
+
+  if (len < 1) return;
+
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 2.5;
+
+  ctx.beginPath();
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  ctx.stroke();
+
+  // Arrowhead
+  ctx.beginPath();
+  ctx.moveTo(toX, toY);
+  ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+  ctx.fill();
+
+  if (label && labelPos !== 'none') {
+    ctx.font = 'bold 11px monospace';
+    ctx.fillStyle = color;
+    if (labelPos === 'top') {
+      ctx.textAlign = 'center';
+      ctx.fillText(label, (fromX + toX) / 2, toY - 8);
+    } else if (labelPos === 'bottom') {
+      ctx.textAlign = 'center';
+      ctx.fillText(label, (fromX + toX) / 2, toY + 16);
+    } else if (labelPos === 'left') {
+      ctx.textAlign = 'right';
+      ctx.fillText(label, toX - 8, toY + 4);
+    } else {
+      ctx.textAlign = 'left';
+      ctx.fillText(label, toX + 8, toY + 4);
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// RENDERING: CONTACT FORCE VS MASS RATIO GRAPH
+// -------------------------------------------------------------
+function renderGraph(p) {
+  const w = graphCanvas.width;
+  const h = graphCanvas.height;
+  graphCtx.clearRect(0, 0, w, h);
+
+  const padLeft = 52;
+  const padBottom = 42;
+  const padTop = 42;
+  const padRight = 50;
+
+  const plotW = w - padLeft - padRight;
+  const plotH = h - padBottom - padTop;
+
+  const maxM2 = 15.0;  // X axis: Mass 2 (1 to 15 kg)
+  const maxForceY = 80; // Y axis: Contact Force (0 to 80 N)
+
+  const toScreenX = (valM2) => padLeft + (valM2 / maxM2) * plotW;
+  const toScreenY = (valF) => (h - padBottom) - (valF / maxForceY) * plotH;
+
+  // 1. Grid Lines
+  graphCtx.strokeStyle = '#1e293b';
+  graphCtx.lineWidth = 1;
+  for (let m = 3; m <= maxM2; m += 3) {
+    const sx = toScreenX(m);
+    graphCtx.beginPath();
+    graphCtx.moveTo(sx, padTop);
+    graphCtx.lineTo(sx, h - padBottom);
+    graphCtx.stroke();
+    graphCtx.fillStyle = '#64748b';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'center';
+    graphCtx.fillText(m + 'kg', sx, h - padBottom + 16);
+  }
+
+  for (let f = 20; f <= maxForceY; f += 20) {
+    const sy = toScreenY(f);
+    graphCtx.beginPath();
+    graphCtx.moveTo(padLeft, sy);
+    graphCtx.lineTo(w - padRight, sy);
+    graphCtx.stroke();
+    graphCtx.fillStyle = '#f0883e';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'right';
+    graphCtx.fillText(f + 'N', padLeft - 6, sy + 4);
+  }
+
+  // 2. Axes
+  graphCtx.strokeStyle = '#475569';
+  graphCtx.lineWidth = 1.5;
+  graphCtx.beginPath();
+  graphCtx.moveTo(padLeft, padTop);
+  graphCtx.lineTo(padLeft, h - padBottom);
+  graphCtx.lineTo(w - padRight, h - padBottom);
+  graphCtx.stroke();
+
+  // Axis Titles
+  graphCtx.fillStyle = '#f0883e';
+  graphCtx.font = 'bold 11px monospace';
+  graphCtx.textAlign = 'left';
+  graphCtx.fillText('— N₁₂ (N)', padLeft, padTop - 14);
+
+  graphCtx.fillStyle = '#94a3b8';
+  graphCtx.textAlign = 'center';
+  graphCtx.fillText('Mass 2 (m₂) [kg]', padLeft + plotW / 2, h - 10);
+
+  // 3. Draw Contact Force Curve as m2 varies (for current F and m1)
+  // When LTR: N12(m2) = [m2 / (m1 + m2)] * F_ext
+  // When RTL: N12(m2) = [m1 / (m1 + m2)] * F_ext
+  graphCtx.strokeStyle = '#f0883e';
+  graphCtx.lineWidth = 3;
+  graphCtx.beginPath();
+  for (let testM2 = 0.5; testM2 <= maxM2; testM2 += 0.25) {
+    const curN = (pushDir === 'LTR')
+      ? (testM2 / (m1 + testM2)) * F_ext
+      : (m1 / (m1 + testM2)) * F_ext;
+    const sx = toScreenX(testM2);
+    const sy = toScreenY(curN);
+    if (testM2 === 0.5) graphCtx.moveTo(sx, sy);
+    else graphCtx.lineTo(sx, sy);
+  }
+  graphCtx.stroke();
+
+  // External Force Ceiling line F_ext
+  const fExtY = toScreenY(F_ext);
+  graphCtx.strokeStyle = 'rgba(56, 139, 253, 0.4)';
+  graphCtx.lineWidth = 1.5;
+  graphCtx.setLineDash([4, 4]);
+  graphCtx.beginPath();
+  graphCtx.moveTo(padLeft, fExtY);
+  graphCtx.lineTo(w - padRight, fExtY);
+  graphCtx.stroke();
+  graphCtx.setLineDash([]);
+
+  graphCtx.fillStyle = '#388bfd';
+  graphCtx.font = '10px monospace';
+  graphCtx.textAlign = 'right';
+  graphCtx.fillText(`Applied F = ${F_ext.toFixed(0)} N`, w - padRight - 6, fExtY - 5);
+
+  // 4. Current Operating Point Marker
+  const curX = toScreenX(m2);
+  const curY = toScreenY(p.n12);
+
+  // Glow
+  graphCtx.fillStyle = 'rgba(240, 136, 62, 0.35)';
+  graphCtx.beginPath();
+  graphCtx.arc(curX, curY, 11, 0, Math.PI * 2);
+  graphCtx.fill();
+
+  // Disc
+  graphCtx.fillStyle = '#ffffff';
+  graphCtx.beginPath();
+  graphCtx.arc(curX, curY, 6, 0, Math.PI * 2);
+  graphCtx.fill();
+  graphCtx.strokeStyle = '#000000';
+  graphCtx.lineWidth = 2;
+  graphCtx.stroke();
+
+  // Operating Label
+  graphCtx.font = 'bold 11px monospace';
+  graphCtx.fillStyle = '#f0883e';
+  graphCtx.textAlign = (curX > w - padRight - 70) ? 'right' : 'left';
+  const tagOffset = (curX > w - padRight - 70) ? -10 : 10;
+  graphCtx.fillText(`N₁₂ = ${p.n12.toFixed(1)} N`, curX + tagOffset, curY - 5);
+}
+
+// -------------------------------------------------------------
+// GRAPH INTERACTION / DRAGGING
+// -------------------------------------------------------------
+let isDraggingGraph = false;
+
+function handleGraphInteraction(e) {
+  const rect = graphCanvas.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  const padLeft = 52;
+  const padRight = 50;
+  const plotW = graphCanvas.width - padLeft - padRight;
+  const maxM2 = 15.0;
+
+  const clampedX = Math.max(padLeft, Math.min(graphCanvas.width - padRight, mouseX));
+  const newM2 = Math.max(1.0, Math.min(15.0, ((clampedX - padLeft) / plotW) * maxM2));
+
+  sliderM2.value = newM2.toFixed(1);
+  syncSliders();
+
+  // Tooltip
+  const pPhys = getPhysics();
+  graphTooltip.style.display = 'block';
+  graphTooltip.style.left = (mouseX + 14) + 'px';
+  graphTooltip.style.top = (mouseY - 26) + 'px';
+  graphTooltip.innerHTML = `<strong>m₂ = ${newM2.toFixed(1)} kg</strong><br>Contact N₁₂ = ${pPhys.n12.toFixed(1)} N<br>Accel a = ${pPhys.a.toFixed(2)} m/s²`;
+}
+
+graphCanvas.addEventListener('mousedown', (e) => {
+  isDraggingGraph = true;
+  handleGraphInteraction(e);
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (isDraggingGraph) {
+    handleGraphInteraction(e);
+  }
+});
+
+window.addEventListener('mouseup', () => {
+  isDraggingGraph = false;
+  graphTooltip.style.display = 'none';
+});
+
+graphCanvas.addEventListener('mouseleave', () => {
+  if (!isDraggingGraph) graphTooltip.style.display = 'none';
+});
+
+// -------------------------------------------------------------
+// SYNCHRONIZED RE-DRAWING & UI STATUS UPDATE
+// -------------------------------------------------------------
+function redrawCanvas() {
+  const p = getPhysics();
+
+  statA.textContent = p.a.toFixed(2) + ' m/s²';
+  statMtot.textContent = p.mTot.toFixed(1) + ' kg';
+  statN12.textContent = p.n12.toFixed(1) + ' N';
+  statN23.textContent = p.n23.toFixed(1) + ' N';
+  statRatio.textContent = F_ext > 0 ? ((p.n12 / F_ext) * 100).toFixed(1) + ' %' : '0.0 %';
+  statV.textContent = Math.abs(vel).toFixed(2) + ' m/s';
+
+  const dirText = (pushDir === 'LTR') ? 'Left-to-Right' : 'Right-to-Left';
+  motionBadge.textContent = `Pushing ${dirText} (F = ${F_ext.toFixed(0)} N)`;
+
+  // Update Equations HUD
+  eqSystemText.textContent = `ΣF_ext = F = ${F_ext.toFixed(1)} N → a = ${F_ext.toFixed(1)} / ${p.mTot.toFixed(1)} = ${p.a.toFixed(2)} m/s²`;
+
+  if (blockCount === 2) {
+    if (pushDir === 'LTR') {
+      eqContactText.textContent = `N₁₂ = m₂·a = ${m2.toFixed(1)}·${p.a.toFixed(2)} = ${p.n12.toFixed(1)} N (Block 1 uses ${(F_ext - p.n12).toFixed(1)} N)`;
+    } else {
+      eqContactText.textContent = `N'₁₂ = m₁·a = ${m1.toFixed(1)}·${p.a.toFixed(2)} = ${p.n12.toFixed(1)} N (Block 2 uses ${(F_ext - p.n12).toFixed(1)} N)`;
+    }
+  } else {
+    eqContactText.textContent = `N₁₂ = ${p.n12.toFixed(1)} N | N₂₃ = ${p.n23.toFixed(1)} N (Each interface passes required forward force)`;
+  }
+
+  renderSimStage(p);
+  renderGraph(p);
+}
+
+// -------------------------------------------------------------
+// ANIMATION TICK LOOP (60 FPS)
+// -------------------------------------------------------------
+function tick(timestamp) {
+  if (!lastTime) lastTime = timestamp;
+  const rawDt = Math.min(0.05, (timestamp - lastTime) / 1000);
+  lastTime = timestamp;
+
+  if (isRunning) {
+    const dt = rawDt * simSpeed;
+    const p = getPhysics();
+    updateSimulationState(dt, p);
+  }
+
+  redrawCanvas();
+  requestAnimationFrame(tick);
+}
+
+// Start simulation loop
+requestAnimationFrame(tick);
+
+// -------------------------------------------------------------
+// DIAGNOSTIC QUESTIONS CHECKERS
+// -------------------------------------------------------------
+function checkQ1() {
+  const sel = document.querySelector('input[name="q1_opt"]:checked');
+  const sol = document.getElementById('q1-solution');
+  const fb = document.getElementById('q1-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'B') {
+    sol.className = 'solution-panel active correct';
+    fb.innerHTML = '✅ CORRECT! N₁₂ = (m₂ / M)·F = (2/5)·20 = 8 N.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-panel active wrong';
+    fb.innerHTML = '❌ INCORRECT: Remember that Block 1 uses part of F to accelerate itself!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ1ToSim() {
+  switchBlockCount(2);
+  setPushDirection('LTR');
+  sliderF.value = 20.0;
+  sliderM1.value = 3.0;
+  sliderM2.value = 2.0;
+  syncSliders();
+  resetSim();
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+
+function checkQ2() {
+  const sel = document.querySelector('input[name="q2_opt"]:checked');
+  const sol = document.getElementById('q2-solution');
+  const fb = document.getElementById('q2-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'B') {
+    sol.className = 'solution-panel active correct';
+    fb.innerHTML = '✅ CORRECT! Pushing m₂ requires 12 N to accelerate the heavier 3 kg mass in front!';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-panel active wrong';
+    fb.innerHTML = '❌ INCORRECT: Notice the push direction asymmetry!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ2ToSim() {
+  switchBlockCount(2);
+  setPushDirection('RTL');
+  sliderF.value = 20.0;
+  sliderM1.value = 3.0;
+  sliderM2.value = 2.0;
+  syncSliders();
+  resetSim();
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+
+function checkQ3() {
+  const sel = document.querySelector('input[name="q3_opt"]:checked');
+  const sol = document.getElementById('q3-solution');
+  const fb = document.getElementById('q3-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'B') {
+    sol.className = 'solution-panel active correct';
+    fb.innerHTML = '✅ CORRECT! Action and reaction act on different bodies and never cancel on one body.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-panel active wrong';
+    fb.innerHTML = '❌ INCORRECT: Review R3 and R7 body ownership!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ3ToSim() {
+  applyPreset(2);
+  chkFbd.checked = true;
+  redrawCanvas();
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

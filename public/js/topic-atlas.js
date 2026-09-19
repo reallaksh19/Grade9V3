@@ -504,27 +504,28 @@
       // Activities linked to this rung
       let activitiesHtml = '';
       if (r.activities && r.activities.length > 0) {
-        const act = r.activities[0];
-        let href = act.locator;
-        if (href.startsWith('public/physics/nlm/')) {
-          href = href.replace('public/physics/nlm/', '');
-        } else if (href.startsWith('public/')) {
-          href = '../../' + href.replace('public/', '');
-        }
-        activitiesHtml = `
-          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 12px; margin-top: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-              <span class="badge phy">Governed Activity Resource</span>
-              <strong style="color: #fff; font-size: 13px;">${act.title}</strong>
+        activitiesHtml = r.activities.map(act => {
+          let href = act.locator;
+          if (href.startsWith('public/physics/nlm/')) {
+            href = href.replace('public/physics/nlm/', '');
+          } else if (href.startsWith('public/')) {
+            href = '../../' + href.replace('public/', '');
+          }
+          return `
+            <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 12px; margin-top: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge phy">Governed Activity Resource</span>
+                <strong style="color: #fff; font-size: 13px;">${act.title}</strong>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                ${act.section || 'Interactive explorer canonically registered in library records.'}
+              </p>
+              <a href="${href}" class="btn primary-phy" style="font-size: 11px; padding: 4px 10px;">
+                Launch Activity ↗
+              </a>
             </div>
-            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
-              ${act.section || 'Interactive explorer canonically registered in library records.'}
-            </p>
-            <a href="${href}" class="btn primary-phy" style="font-size: 11px; padding: 4px 10px;">
-              Launch Activity ↗
-            </a>
-          </div>
-        `;
+          `;
+        }).join('');
       }
 
       // Controlled variation
