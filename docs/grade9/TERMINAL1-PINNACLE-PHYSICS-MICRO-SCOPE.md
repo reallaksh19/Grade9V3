@@ -191,6 +191,17 @@ The next artifact should be a **school demand → capability crosswalk**, not an
 layer.
 
 
+## Motion-in-2D reconnaissance
+
+The current evidence decision for Motion in 2D is recorded in:
+
+`docs/grade9/TERMINAL1-PINNACLE-MOTION2D-RECON.md`
+
+The external ExamSIDE pilot confirms that the suspected projectile/component-motion gaps are
+real local content gaps under real 2D question demand, but it is **not** Pinnacle school
+authority. Therefore those micro rows remain `MICRO_TO_CONFIRM` until a school source supplies
+the learner action.
+
 ## Promotion protocol
 
 When additional school material arrives, use:
