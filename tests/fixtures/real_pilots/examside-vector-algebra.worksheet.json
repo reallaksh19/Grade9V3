@@ -1,0 +1,28 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-VECTOR-ALGEBRA-DEMAND-PILOT",
+  "subject": "Physics",
+  "source_note": "Owner-approved ExamSIDE JEE Main Vector Algebra page: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra . This fixture stores three concise representative demand-family mappings from the 2026-09-19 reconnaissance. It does not reproduce individual question text, claim Pinnacle-issued micro-scope, or create canonical question custody.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-VECTOR-DEMAND-UNIT-NOTATION",
+      "primary_capability_ref": "CAP-VEC-UNIT-NOTATION",
+      "secondary_capability_refs": [],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: translate a signed 2-D component vector into i-hat/j-hat form while preserving signs. Demand-family mapping only; no individual ExamSIDE question custody claimed."
+    },
+    {
+      "question_id": "EXAMSIDE-VECTOR-DEMAND-DIRECTION",
+      "primary_capability_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+      "secondary_capability_refs": [],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: recover resultant/vector direction from signed components with quadrant handling. Demand-family mapping only; no individual ExamSIDE question custody claimed."
+    },
+    {
+      "question_id": "EXAMSIDE-VECTOR-DEMAND-UNIT-DIRECTION",
+      "primary_capability_ref": "CAP-VEC-UNIT-DIRECTION",
+      "secondary_capability_refs": [],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: obtain a unit vector in a specified nonzero 2-D direction by normalization. Demand-family mapping only; no individual ExamSIDE question custody claimed."
+    }
+  ]
+}
