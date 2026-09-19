@@ -1,0 +1,37 @@
+name: regenerate-nlm-core2b-preview
+
+on:
+  push:
+    branches:
+      - feat/g9-nlm-examside-core2b-transfer
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/g9-nlm-examside-core2b-transfer
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh publication runtimes and generated artifacts
+        run: |
+          python3 Shared/tools/republish.py --write
+          python3 Shared/tools/build_web_data.py
+          python3 Shared/tools/build_manifest.py
+      - name: Commit regenerated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Physics/content tools/data.js docs/architecture-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Build: refresh Core2B delivery artifacts"
+            git push origin HEAD:feat/g9-nlm-examside-core2b-transfer
+          fi
