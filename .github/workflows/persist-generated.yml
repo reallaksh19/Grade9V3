@@ -1,0 +1,36 @@
+name: persist generated preview
+
+on:
+  push:
+    branches:
+      - tmp/g10-1b-generated-preview
+
+permissions:
+  contents: write
+
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet jsonschema
+
+      - name: Generate repository-native derived files
+        run: python3 Shared/tools/build_manifest.py
+
+      - name: Commit derived files if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/data.js docs/architecture-manifest.json
+          if git diff --cached --quiet; then
+            echo "generated artifacts already committed"
+            exit 0
+          fi
+          git commit -m "CI helper: persist generated artifacts"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
