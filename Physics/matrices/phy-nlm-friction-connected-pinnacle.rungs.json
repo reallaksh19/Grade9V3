@@ -1,0 +1,142 @@
+{
+  "matrix_id": "MATRIX-PHY-PINNACLE-NLM-FRICTION-CONNECTED",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-PINNACLE-NLM-FRICTION-CONNECTED",
+  "topic": "NLM",
+  "subtopic": "Quantitative friction, common acceleration and ideal-string constraint",
+  "axis_note": "Owner-approved ExamSIDE preparation-demand matrix implementing the first production slice from the merged NLM reconnaissance. Momentum-rate and non-ideal pulley depth are deliberately separate.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 30,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+      "ceiling": [
+        "momentum rate",
+        "collision",
+        "pulley inertia",
+        "rolling resistance model"
+      ],
+      "must_contain": [
+        "An explicit sticking/limiting/sliding decision.",
+        "A normal reaction obtained from the actual perpendicular force equation.",
+        "A consistency check against the static limit or sliding model."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "applied tangential force below the static limit",
+          "hold": "same contact and normal reaction",
+          "notice": "actual static friction changes while mu_sN remains only the ceiling"
+        },
+        {
+          "phase": 2,
+          "vary": "normal loading/geometry",
+          "hold": "same friction coefficients",
+          "notice": "the friction limit changes because N changes"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-CONNECTED-ACCELERATION",
+      "ceiling": [
+        "string constraint",
+        "pulley relation",
+        "momentum conservation",
+        "rigid-body rotation"
+      ],
+      "must_contain": [
+        "At least two body-specific Newton-II equations.",
+        "An explicit physical reason for the common acceleration component.",
+        "No cross-body cancellation of third-law forces inside an individual FBD equation."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "one body mass",
+          "hold": "the maintained together-motion constraint",
+          "notice": "the common acceleration can stay shared while each body's net force requirement changes"
+        },
+        {
+          "phase": 2,
+          "vary": "the contact state from maintained together-motion to slip/separation",
+          "hold": "same bodies",
+          "notice": "the common-acceleration constraint must be removed when the physical constraint fails"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING",
+      "ceiling": [
+        "movable pulley",
+        "compound pulley",
+        "massive string",
+        "pulley rotational inertia"
+      ],
+      "must_contain": [
+        "Massless inextensible string and smooth fixed pulley declared.",
+        "One tension magnitude used on separate body FBDs.",
+        "A fixed-length equation that produces the signed endpoint acceleration relation."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the two hanging masses",
+          "hold": "same ideal fixed-pulley geometry",
+          "notice": "T and acceleration values change while the one-string constraint remains"
+        },
+        {
+          "phase": 2,
+          "vary": "the pulley/model away from the ideal fixed case",
+          "hold": "body ownership",
+          "notice": "equal tension or one-to-one acceleration may no longer be justified"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Declare the contact/connection state first, keep body-specific force ownership, impose only physically justified kinematic constraints, and verify the solved forces/accelerations against those assumptions.",
+    "difficult_move": "Knowing which equality is conditional: static friction is bounded before limiting, common acceleration requires together-motion, and equal tension/fixed-pulley acceleration require the declared ideal string model.",
+    "independent_check": "Static friction satisfies its bound; every body equation closes; shared acceleration matches the physical constraint; ideal-string endpoint accelerations satisfy fixed length.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Contact state, body boundaries and connection assumptions are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Bodies and geometry are supplied; learner chooses state/constraint relations."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical setup and requested force/acceleration are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A friction coefficient is given but the learner must decide whether the contact is below limit, limiting or sliding.",
+      "information_not_handed_over": "which bound/equality is physically justified",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Two or more bodies remain together and a contact force or common acceleration is requested.",
+      "information_not_handed_over": "the separate body equations and justified common-acceleration constraint",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A string/pulley story must be converted into separate FBD equations plus a fixed-length kinematic constraint.",
+      "information_not_handed_over": "which equalities follow from the ideal string/pulley assumptions",
+      "repair_to": "R3"
+    }
+  ]
+}

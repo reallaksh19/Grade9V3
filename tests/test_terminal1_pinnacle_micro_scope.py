@@ -41,12 +41,7 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
             for chapter in scope["chapters"]
             for micro in chapter["micro"]
         }
-        guarded = {
-            ("NLM", "string tension / connected bodies"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("NLM", "pulley constraints / connected acceleration"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-        }
+        guarded = {}
         for key, action in guarded.items():
             with self.subTest(chapter=key[0], micro=key[1]):
                 row = lookup[key]
@@ -79,6 +74,14 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
                 "CAP-KIN-PROJECTILE-MODEL",
             ("Motion in 2 D", "oblique projectile model"):
                 "CAP-KIN-PROJECTILE-MODEL",
+            ("NLM", "coefficient-based static/kinetic friction calculations"):
+                "CAP-NLM-FRICTION-MAGNITUDE",
+            ("NLM", "two-body contact-force systems"):
+                "CAP-NLM-CONNECTED-ACCELERATION",
+            ("NLM", "string tension / connected bodies"):
+                "CAP-NLM-IDEAL-STRING",
+            ("NLM", "pulley constraints / connected acceleration"):
+                "CAP-NLM-IDEAL-STRING",
         }
         for key, cap in expected.items():
             with self.subTest(chapter=key[0], micro=key[1]):
@@ -86,7 +89,10 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
                 self.assertEqual(row["school_micro_demand"], "MICRO_TO_CONFIRM")
                 self.assertEqual(row["external_question_demand"], "CONFIRMED_EXAMSIDE")
                 self.assertIn(cap, row["local_refs"])
-                self.assertEqual(row["action"], "REUSE_IF_DEMANDED")
+                self.assertIn(
+                    row["action"],
+                    {"REUSE_IF_DEMANDED", "QUESTION_VARIATION"},
+                )
 
     def test_existing_extensions_stay_nondefault_until_explicit_demand(self):
         scope = self.scope()

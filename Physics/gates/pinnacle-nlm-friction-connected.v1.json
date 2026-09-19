@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHYSICS-GATES-PINNACLE-NLM-FRICTION-CONNECTED-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "scope": "Bounded quantitative-friction, common-acceleration and ideal-string relations for owner-approved Grade-9 Pinnacle NLM preparation demand.",
+    "deliberately_partial": "Momentum-rate, collisions, non-ideal strings/pulleys and rotation are intentionally absent.",
+    "source_authority": "ExamSIDE supplies owner-approved preparation demand, not Pinnacle school-issued micro-scope.",
+    "review_status": "Author-created adaptation; independent academic review remains separate."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-PINNACLE-NLM-FRICTION-CONNECTED",
+      "title": "Quantitative friction and connected-body constraints",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "NLM",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-PIN-NLM-FRIC-BOUND",
+          "statement": "Static friction adjusts up to a limiting magnitude; equality with mu_sN is not automatic."
+        },
+        {
+          "concept_id": "CON-PIN-NLM-COMMON-A",
+          "statement": "A common acceleration is a kinematic constraint justified by together-motion, not by Newton III."
+        },
+        {
+          "concept_id": "CON-PIN-NLM-STRING",
+          "statement": "Equal tension and endpoint-acceleration relations are conditional on an ideal string and its fixed-length geometry."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-NLM-FRICTION-MAGNITUDE",
+          "expression": "0 <= f_s <= mu_s N; f_s,max = mu_s N; f_k = mu_k N",
+          "meaning": "Static friction adjusts up to a limit; the limiting equality and kinetic model apply only in their corresponding contact states.",
+          "symbols": [
+            {
+              "symbol": "f_s",
+              "meaning": "Static-friction magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "mu_s",
+              "meaning": "Coefficient of static friction",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "N",
+              "meaning": "Normal-reaction magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "f_k",
+              "meaning": "Kinetic-friction magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "mu_k",
+              "meaning": "Coefficient of kinetic friction",
+              "unit": "1",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "The contact pair and relative sliding/tendency have been identified.",
+            "The normal reaction N belongs to that same contact in the current force state.",
+            "Use f_s = mu_s N only at the limiting/impending-slip state; otherwise static friction may be smaller.",
+            "Use f_k = mu_k N only when the adopted kinetic-friction model applies during relative sliding."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-COMMON-ACCELERATION",
+          "expression": "For bodies constrained to translate together along x: a_Ax = a_Bx = a_common",
+          "meaning": "A maintained together-motion constraint can link the relevant acceleration component while Newton II remains body-specific.",
+          "symbols": [
+            {
+              "symbol": "a_Ax",
+              "meaning": "Body A constrained acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_Bx",
+              "meaning": "Body B constrained acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_common",
+              "meaning": "Shared constrained acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The bodies are constrained to remain in contact or otherwise translate together along the stated direction during the interval.",
+            "Each Newton-II equation is written for one chosen body in one consistent signed axis.",
+            "The common-acceleration equality applies only to the constrained component; other components are not silently equated."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-IDEAL-STRING",
+          "expression": "Same ideal string: T_1 = T_2 = T; fixed-pulley length constraint x_1 + x_2 = constant gives a_1 + a_2 = 0",
+          "meaning": "One ideal massless inextensible string over a smooth fixed pulley transmits one tension magnitude while fixed length links endpoint motion.",
+          "symbols": [
+            {
+              "symbol": "T",
+              "meaning": "Tension magnitude along one continuous ideal string",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "x_1",
+              "meaning": "First endpoint signed displacement",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "x_2",
+              "meaning": "Second endpoint signed displacement",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "a_1",
+              "meaning": "First endpoint signed acceleration",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_2",
+              "meaning": "Second endpoint signed acceleration",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The string is massless and inextensible.",
+            "The pulley is smooth and fixed.",
+            "The same continuous string is being referenced when one tension magnitude T is used.",
+            "For the bounded fixed-pulley geometry, total string length is constant so the two endpoint acceleration components along the string have equal magnitude and opposite sign in one common signed convention."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Contact state is chosen before friction equality.",
+        "Body ownership is preserved before any system elimination.",
+        "Equal-tension/fixed-pulley relations require the declared ideal connection."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-PIN-NFC-MODEL",
+          "sequence": 1,
+          "action": "Choose the contact/connection state and body boundaries.",
+          "why_valid": "Every quantitative equality in this slice is conditional on that physical setup."
+        },
+        {
+          "step_id": "RS-PIN-NFC-EQ",
+          "sequence": 2,
+          "action": "Write body-specific Newton-II equations and the appropriate friction or kinematic constraint.",
+          "why_valid": "Dynamics remains local to each chosen body while state/connection constraints link allowed unknowns.",
+          "depends_on": [
+            "RS-PIN-NFC-MODEL"
+          ]
+        },
+        {
+          "step_id": "RS-PIN-NFC-CHECK",
+          "sequence": 3,
+          "action": "Check friction bounds, together-motion and fixed-string length after solving.",
+          "why_valid": "A numerical solution that violates its assumed state is not physically valid.",
+          "depends_on": [
+            "RS-PIN-NFC-EQ"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-PIN-NFC-AUTO-EQUALITY",
+          "wrong_idea": "muN, equal acceleration or equal tension can be inserted automatically whenever the corresponding words appear.",
+          "counterexample": "Static friction can be below its limit, bodies can slip relative to each other, and non-ideal pulleys can have unequal tensions.",
+          "repair": "State the contact/connection condition that licenses each equality before using it."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-PIN-NLM-FRICTION-CONNECTED",
+          "title": "Friction-threshold, blocks-moving-together and ideal fixed-pulley questions",
+          "hidden_invariants": [
+            "Static friction obeys a bound before its limit.",
+            "Together-motion supplies common acceleration, not Newton III.",
+            "Ideal fixed string supplies one T and a fixed-length acceleration constraint."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 7,
+        "prerequisite_depth": 4
+      },
+      "badges": [
+        "NLM",
+        "PINNACLE-QUESTION-DEMAND"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-PIN-NFC-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from the first symbol of the first relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "worksheet_id": "EXAMSIDE-NLM-FRICTION-CONNECTED-CORE",
+  "subject": "Physics",
+  "source_note": "Owner-approved ExamSIDE JEE Main Laws of Motion demand. Concise demand summaries and category URL only; no Pinnacle school-micro-scope claim.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-NLM-ROUGH-INCLINE-FRICTION",
+      "primary_capability_ref": "CAP-NLM-FRICTION-MAGNITUDE",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative JEE Main Laws-of-Motion family: coefficient-based rough-incline motion requiring a friction state/magnitude model. Source: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-BLOCKS-MOVE-TOGETHER",
+      "primary_capability_ref": "CAP-NLM-CONNECTED-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-NLM-FRICTION-MAGNITUDE",
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative JEE Main Laws-of-Motion family: multiple blocks constrained to move together while contact/friction force is solved. Source: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-IDEAL-STRING-PULLEY",
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-ACCELERATION",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative JEE Main Laws-of-Motion family: bodies connected by an ideal string over a smooth fixed pulley with tension/acceleration unknowns. Source: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+    }
+  ]
+}
