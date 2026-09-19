@@ -430,3 +430,43 @@ story-specific lever/pulley/incline capabilities.
 Fail if the agent treats 90% as mastery, loses the cross-topic Work/Energy prerequisite,
 mixes measurements from different machine states, assumes all useful machines multiply
 force, or imports torque/pulley/efficiency formula catalogues into the Grade-9 route.
+
+
+---
+
+## APSTRESS-G10-MIRRORS-85
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Reflection and spherical mirrors. Student
+> knowledge estimate: 85%. Use the estimate only to select the starting rung and preserve
+> prerequisite checks. Keep the ray construction, Cartesian sign convention, paraxial
+> mirror-equation model and signed magnification mutually consistent; do not pull
+> refraction, lenses, human-eye optics or later optics into this bounded Grade-10 slice.
+
+### Expected path
+
+```text
+resolve current Grade-10 Reflection / spherical-mirror matrix
+→ owner estimate 85
+→ conservative floor = R6 at ladder_position 85
+→ prerequisite checks:
+     CAP-OPT-NORMAL-REFLECTION
+     CAP-OPT-REAL-VIRTUAL-IMAGE
+     CAP-OPT-SIGN-CONVENTION
+     CAP-OPT-SPHERICAL-RAY-CONSTRUCTION
+     CAP-OPT-MIRROR-EQUATION
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B use the same canonical target segment
+→ signed magnification remains tied to the same mirror state
+→ ray construction and mirror equation must agree inside the paraxial model
+→ later optics remain outside G10-1A
+```
+
+This is the first frozen Grade-10 checkpoint after G10-1A. It protects the concrete
+integration boundary that the first production slice established: the mirror formula is not
+a detached algebra trick, and magnification is not an unsigned size factor.
+
+Fail if the agent treats 85% as mastery, skips the prerequisite chain, assigns signs from
+labels rather than coordinates, drops magnification sign, treats the mirror equation as an
+exact wide-aperture law, or broadens the slice into refraction/lenses/human-eye optics.
