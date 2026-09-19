@@ -924,6 +924,27 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-OPTICS-MIRRORS-GRADE10",
+          "title": "Grade 10 spherical-mirror image construction, formula and magnification",
+          "grade": 10,
+          "chapter": "Light - Reflection and Refraction",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "For a spherical mirror in the paraxial model, principal-ray rules are consistent constructions for locating the same image point; image nature follows whether reflected rays or only their backward extensions meet.",
+            "For a spherical mirror under one declared Cartesian sign convention and the paraxial approximation, signed object distance u, image distance v and focal length f satisfy 1/v + 1/u = 1/f.",
+            "Mirror magnification m = h_i/h_o = -v/u carries both relative image size and orientation; its sign is physically meaningful."
+          ],
+          "misconceptions": [
+            "Principal-ray rules can be mixed arbitrarily even if they predict different image points.",
+            "Object distance, image distance and focal length have permanent signs based only on their labels.",
+            "The spherical-mirror formula is exact for arbitrary rays striking anywhere on a wide spherical mirror."
+          ]
+        },
+        {
           "gate_id": "PHY-VEC-SCALAR-VECTOR",
           "title": "Magnitude, vector and signed component",
           "grade": 9,
@@ -3458,7 +3479,7 @@ window.GRADE9V3 = {
         },
         {
           "id": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-          "title": "Reflection and mirror-geometry foundations",
+          "title": "Reflection and spherical mirrors",
           "topic": "Light - Reflection and Refraction",
           "badge": "MEDIUM",
           "status": "CANDIDATE",
@@ -3636,11 +3657,218 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "MIC-OPT-REAL-VIRTUAL-IMAGE"
               ]
+            },
+            {
+              "id": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+              "title": "Principal rays are consistent shortcuts to one spherical-mirror image",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners can memorize individual ray rules yet combine them inconsistently or treat one ray as sufficient to locate an image.",
+              "entry_assumptions": [
+                "Can classify real versus virtual intersections and assign optical signs from the declared pole/axis convention."
+              ],
+              "inferential_jump": "A small set of principal-ray rules are not independent tricks: any valid pair for the same object point and spherical mirror must locate the same image point within the model.",
+              "teaching_path": [
+                {
+                  "action": "Label the mirror type, pole, principal axis, focus and centre of curvature, then identify whether each referenced focus/centre is physical or reached by backward extension for that mirror.",
+                  "why_valid": "Principal-ray rules depend on one declared spherical-mirror geometry; the same labels cannot be moved independently from the mirror.",
+                  "output": "one labelled spherical-mirror geometry with P, principal axis, F and C"
+                },
+                {
+                  "action": "From one object point, construct two valid principal rays: parallel-axis/focus, focus/parallel, or centre-of-curvature/retrace, using backward extensions where the convex-mirror rule requires them.",
+                  "why_valid": "Each construction is a constrained consequence of the same spherical-mirror geometry, so a valid pair determines one image point.",
+                  "output": "two consistent reflected paths or reflected paths plus backward extensions"
+                },
+                {
+                  "action": "Use a third valid principal ray as a consistency check and classify the image from actual versus backward-extension intersection, orientation and relative size.",
+                  "why_valid": "An independent third construction should agree with the image location if the first two ray rules were applied consistently.",
+                  "output": "one cross-checked image point with real/virtual and erect/inverted classification"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Any two memorized principal-ray sketches can be combined even if they predict different image points.",
+                  "diagnostic_prompt": "Two correctly labelled rays from the same object point and mirror predict different image locations. Can both constructions be valid?",
+                  "repair": "No. Recheck the mirror type, focus/centre side and before/after ray directions until all valid rays agree on one physical or backward-extension intersection."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For a concave mirror with the object beyond the centre of curvature, describe two principal rays from the top of the object and use their meeting to state the image region and whether the image is real or virtual and erect or inverted.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "A parallel ray reflects through the focus and a ray through the centre of curvature retraces its path; they meet in front of the mirror between F and C, giving a real inverted image.",
+                  "reasoning": [
+                    "Both rays belong to the same concave-mirror geometry.",
+                    "The physical reflected rays meet in front of the mirror, so the image is real.",
+                    "Their intersection lies below the principal axis for an upright object, so the image is inverted."
+                  ],
+                  "check": "A third ray directed through the focus should reflect parallel to the axis and pass through the same image point.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit verifies qualitative ray geometry, image region and image nature; it asserts no computed distance or magnification."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-SIGN-CONVENTION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-MIRROR-EQUATION",
+              "title": "The mirror equation is a signed paraxial model of the ray geometry",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Correct algebra can still represent the wrong physical mirror if signs are assigned from labels or if the paraxial model condition is forgotten.",
+              "entry_assumptions": [
+                "Can construct a spherical-mirror image with principal rays and apply the declared Cartesian sign convention."
+              ],
+              "inferential_jump": "The equation 1/v + 1/u = 1/f does not replace the ray picture: signed u, v and f must refer to the same mirror geometry and the formula is used only within the paraxial/small-angle model.",
+              "teaching_path": [
+                {
+                  "action": "Before substitution, mark the pole/origin and positive longitudinal direction, then assign signed u and f from the diagram.",
+                  "why_valid": "REL-MIRROR-EQUATION relates signed coordinates, so signs must come from the declared coordinate system rather than memorized object/image labels.",
+                  "output": "one mirror diagram with signed u and f"
+                },
+                {
+                  "action": "Use 1/v + 1/u = 1/f and rearrange it to the requested unknown without discarding signs.",
+                  "why_valid": "REL-MIRROR-EQUATION owns the algebraic relation for the same paraxial mirror state.",
+                  "output": "1/v = 1/f - 1/u, or an equivalent signed rearrangement"
+                },
+                {
+                  "action": "Compare the sign/region predicted for v with the principal-ray construction and state the paraxial/small-angle condition behind the equation.",
+                  "why_valid": "A sign or region disagreement reveals a coordinate/construction error, while wide-aperture disagreement can reveal a model-limit issue.",
+                  "output": "equation prediction and ray construction agree within the stated model"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The mirror formula is an exact law for every ray on any part of a spherical mirror, so ray height and aperture never matter.",
+                  "diagnostic_prompt": "If rays strike far from the principal axis at large angles and fail to meet at one point, must the algebra be wrong?",
+                  "repair": "Not necessarily. State the paraxial/small-angle approximation before using the simple mirror equation; wide-aperture disagreement can be a model-limit effect."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A concave-mirror diagram uses the declared Cartesian convention with a real object and real image in front of the mirror, so u < 0 and the ray construction says v < 0. Write the mirror equation rearranged for 1/v, state the sign you expect for v, and name the model condition that must be satisfied before trusting the equation.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Use 1/v = 1/f - 1/u; the physical ray construction requires v to be negative in this convention, and the spherical-mirror equation is used in the paraxial/small-angle regime.",
+                  "reasoning": [
+                    "Keep the signs attached to u and f when rearranging.",
+                    "Use the ray construction as an independent sign/region check on v.",
+                    "State the paraxial model boundary rather than treating the formula as exact for arbitrary wide-aperture rays."
+                  ],
+                  "check": "If the algebra predicts an image region inconsistent with two valid principal rays, revisit signs/model use before accepting the result.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit checks symbolic rearrangement, sign consistency and model validity; no numerical image distance is asserted."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-MIRROR-MAGNIFICATION",
+              "title": "Signed magnification carries image size and orientation",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often keep only the absolute size ratio and lose the orientation information carried by the sign.",
+              "entry_assumptions": [
+                "Can obtain signed u and v for one spherical-mirror state and classify the image from its ray construction."
+              ],
+              "inferential_jump": "Mirror magnification is not merely 'times bigger': m = h_i/h_o = -v/u is signed, so |m| gives relative size while the sign records erect versus inverted orientation under the declared convention.",
+              "teaching_path": [
+                {
+                  "action": "Keep signed u, v, object height h_o and image height h_i tied to the same declared mirror coordinates.",
+                  "why_valid": "REL-MIRROR-MAGNIFICATION compares quantities from one object-image state; mixing states or dropping height direction breaks its meaning.",
+                  "output": "one signed object-image state with u, v, h_o and h_i"
+                },
+                {
+                  "action": "Use m = -v/u = h_i/h_o and preserve the sign while comparing image and object size.",
+                  "why_valid": "REL-MIRROR-MAGNIFICATION binds the distance ratio and height ratio for the same spherical-mirror image.",
+                  "output": "m = -v/u = h_i/h_o; |m| gives the image/object size ratio while sign(m) is retained for orientation."
+                },
+                {
+                  "action": "Predict erect/inverted and enlarged/same-size/diminished from m, then check those claims against the ray diagram.",
+                  "why_valid": "The ray geometry independently shows orientation and approximate relative size, so it can falsify a dropped or reversed sign.",
+                  "output": "magnification sign/size agrees with the ray construction"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Magnification is only a positive size factor, so taking |m| loses nothing important.",
+                  "diagnostic_prompt": "Two images have the same absolute size ratio, but one is erect and one inverted. Can one unsigned magnification distinguish them?",
+                  "repair": "No. Preserve the sign: |m| describes relative size while the sign carries orientation under the declared convention."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For a real object with u < 0, a principal-ray diagram shows a real inverted image in front of the mirror, so v < 0. Without using numbers, determine the sign of m = -v/u and state what that sign says about orientation.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "m is negative, which is consistent with an inverted image.",
+                  "reasoning": [
+                    "With u < 0 and v < 0, v/u is positive.",
+                    "The leading minus sign makes m negative.",
+                    "Negative signed magnification corresponds to inversion under this convention."
+                  ],
+                  "check": "The ray diagram should also show the image below the principal axis for an upright object.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit checks only the sign and physical interpretation of magnification; no computed magnitude is asserted."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-MIRROR-EQUATION"
+              ]
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "id": "REL-MIRROR-EQUATION",
+              "expression": "1/v + 1/u = 1/f",
+              "meaning": "For one spherical mirror in the paraxial model, signed image distance and object distance combine to the reciprocal signed focal length.",
+              "conditions": [
+                "u, v and f use the same declared Cartesian sign convention and mirror pole as origin.",
+                "The spherical-mirror construction is used in the paraxial/small-angle regime.",
+                "u, v and f describe the same mirror and object-image state."
+              ]
+            },
+            {
+              "id": "REL-MIRROR-MAGNIFICATION",
+              "expression": "m = -v/u = h_i/h_o",
+              "meaning": "For the same spherical-mirror image, transverse magnification is the signed image-to-object height ratio and equals negative signed image distance divided by signed object distance.",
+              "conditions": [
+                "u, v, h_i and h_o use one declared Cartesian sign convention.",
+                "Object and image refer to the same spherical-mirror state.",
+                "h_o is nonzero when the height ratio is evaluated."
+              ]
+            }
+          ],
           "questions": [],
           "capabilities": [
+            {
+              "id": "CAP-OPT-MIRROR-EQUATION",
+              "action": "Use the signed spherical-mirror equation within its paraxial model and cross-check the predicted image with the ray construction.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-MIRROR-MAGNIFICATION",
+              "action": "Use signed mirror magnification to connect image size and orientation with signed object/image distances.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
             {
               "id": "CAP-OPT-NORMAL-REFLECTION",
               "action": "Construct a reflected path by measuring both ray directions from the surface normal.",
@@ -3658,24 +3886,26 @@ window.GRADE9V3 = {
               "action": "Assign signs to mirror distances and heights from a declared pole, incident-light direction and vertical convention.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION",
+              "action": "Construct and interpret a spherical-mirror image using a consistent pair of principal rays.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 8,
+          "record_count": 16,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 76,
             "questions": 0,
-            "obligations": 3,
+            "obligations": 8,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",

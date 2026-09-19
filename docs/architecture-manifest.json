@@ -971,18 +971,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session_scenario_scan.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 26000,
-      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
-    },
-    {
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 29339,
       "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
+    },
+    {
+      "path": "tests/test_study_session_scenario_scan.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 26000,
+      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1023,8 +1023,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 447489,
-      "sha256": "6fd9a9412ab015c065b1199e40e70ac4d4458e6963e3e1c11d280b9728b5be2a"
+      "bytes": 463931,
+      "sha256": "3e1fdc6f0a960e3292e6dcf36137700628fdb08c1ea0667fb7957bbd79e97a5d"
     },
     {
       "path": "tools/index.html",
@@ -1041,18 +1041,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run_agent_path_stress.py",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 6323,
-      "sha256": "de77a74ea3accc804d3e86fa3eac595f9375a4147d9071c54801622d191ed063"
-    },
-    {
       "path": "tools/run-builder/index.html",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 7041,
       "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
+    },
+    {
+      "path": "tools/run_agent_path_stress.py",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 6323,
+      "sha256": "de77a74ea3accc804d3e86fa3eac595f9375a4147d9071c54801622d191ed063"
     }
   ],
   "relations": [
@@ -1153,12 +1153,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
@@ -1188,12 +1188,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
@@ -2002,12 +2002,12 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
