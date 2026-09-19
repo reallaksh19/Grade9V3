@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:bc5363baa37a3b10967753af09e3557f0fcc8729b6c9b62e69ba9c0363c0043a",
+  "digest": "sha256:eca81ab3450a3fcf56b492d14d70e169dd5084f92ea961b7b40fac49156ce6a3",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1107,8 +1107,8 @@
       "path": "tests/test_worksheet_study_plan.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13110,
-      "sha256": "2bd98c399bc266a564fbd90f3c467f734509f961681c6fdb88568cff8792394b"
+      "bytes": 13213,
+      "sha256": "3d0563b1e08a91fb25deaa42497d1df9ca81ebbb6d83ac0b70a249a2eac4303f"
     },
     {
       "path": "tools/app.css",
