@@ -46,13 +46,14 @@
       ],
       "must_contain": [
         "Load force divided by effort force, with both values from the same machine state.",
-        "A dimensionless-unit check and an interpretation of MA = 1 and MA > 1."
+        "A dimensionless-unit check and an interpretation of MA = 1 and MA > 1.",
+        "A lever-practical example in which load and effort are measured for the same steady setting before the ratio is formed."
       ],
       "controlled_variation": [
         {
           "phase": 1,
           "vary": "the effort force",
-          "hold": "the same load force",
+          "hold": "the same load force and one machine state",
           "notice": "mechanical advantage changes as the load-to-effort ratio"
         },
         {
@@ -60,6 +61,12 @@
           "vary": "the machine type",
           "hold": "the same numerical load and effort forces",
           "notice": "MA is a generic force ratio independent of the machine name"
+        },
+        {
+          "phase": 3,
+          "vary": "one intended lever setup feature",
+          "hold": "the load and measurement method",
+          "notice": "each setting needs its own same-state load/effort measurements before MA values are compared"
         }
       ]
     },
@@ -94,9 +101,9 @@
     }
   ],
   "family": {
-    "invariant_demand": "Identify effort and load sides, decide what the machine changes about force/direction/distance, and keep the work ledger explicit before interpreting force advantage.",
+    "invariant_demand": "Identify effort and load sides, decide what the machine changes about force/direction/distance, calculate mechanical advantage only from same-state load/effort readings, and keep the work ledger explicit before interpreting force advantage.",
     "difficult_move": "Recognizing that a larger output force is paid for by input distance or another tradeoff rather than created energy.",
-    "independent_check": "For an ideal machine, the force-distance products must match; mechanical advantage must be dimensionless and based on load divided by effort.",
+    "independent_check": "Mechanical advantage must be dimensionless and based on load divided by effort from one machine state; for an ideal machine, any force advantage must remain compatible with the force-distance work tradeoff.",
     "support_ladder": [
       {
         "level": "high",

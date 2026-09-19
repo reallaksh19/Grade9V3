@@ -1,15 +1,15 @@
 {
   "schema_version": "0.1.0",
   "package_id": "LIB-PHY-SIMPLE-MACHINES-G9",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored Grade 9 simple-machines owner-extension spine: effort/load tradeoffs, mechanical advantage, and qualitative lever/pulley/inclined-plane comparison. No board-prescription authority is claimed by this package.",
+  "scope_summary": "Current Grade-9 Simple Machines spine covering effort/load tradeoffs, mechanical advantage, practical same-state load/effort measurement, and qualitative comparison of levers, pulleys and inclined planes. The package remains CANDIDATE and does not promote itself to curriculum authority.",
   "curriculum_mappings": [],
   "resources": [
     {
       "id": "SRC-AUTHOR-SIMPLE-MACHINES",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
@@ -17,8 +17,8 @@
       "title": "Author-created Grade 9 simple-machines constructions",
       "origin": "AUTHORED",
       "locator": "Physics/library/phy-simple-machines.v1.json",
-      "edition": "0.1.0",
-      "section": "Simple machines Grade 9 spine",
+      "edition": "0.2.0 Grade-9 scope audit",
+      "section": "Simple machines, mechanical advantage and lever practical",
       "last_checked": "2026-09-18",
       "access_status": "FULL_ITEM_INSPECTED",
       "rights_status": "Author-created project draft; curriculum placement researched separately, no external scientific-review authority claimed.",
@@ -34,14 +34,14 @@
       "depth": [
         "FOUNDATION"
       ],
-      "selection_reason": "Fills the missing Grade 9 simple-machines domain while reusing the repository's gate-owned work/energy framework.",
+      "selection_reason": "Provides self-contained Grade9V3 teaching for the currently verified Grade-9 simple-machines competency while keeping exact curriculum authority outside the authored package.",
       "fallback": []
     }
   ],
   "buckets": [
     {
       "id": "BUCKET-PHY-SIMPLE-MACHINES",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-SIMPLE-MACHINES"
@@ -56,7 +56,7 @@
       "title": "Simple machines",
       "topic": "Work, Energy and Simple Machines",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The arithmetic is simple; the conceptual difficulty is seeing force advantage as a distance/direction tradeoff rather than created energy.",
+      "badge_reason": "The arithmetic is simple; the durable difficulty is identifying effort/load sides, computing mechanical advantage from the same machine state, and explaining force/distance/direction tradeoffs without implying energy creation.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -69,10 +69,11 @@
         }
       ],
       "scope": {
-        "covers": "Authored lever, pulley and inclined-plane reasoning with mechanical advantage and ideal force-distance work tradeoffs.",
+        "covers": "Grade-9 simple machines: identify pulley, inclined-plane and lever setups; define and calculate mechanical advantage; demonstrate/explain mechanical advantage from same-state load and effort measurements; connect force advantage to an ideal force-distance tradeoff.",
         "excluded": [
-          "Detailed pulley-system formula catalogues.",
-          "Torque equations or efficiency formulae beyond the declared relations."
+          "Detailed pulley-system counting formulae.",
+          "Torque/moment equations as a required Grade-9 route.",
+          "Efficiency formulae or velocity-ratio catalogues beyond explicit later demand."
         ],
         "extension_refs": []
       }
@@ -116,8 +117,8 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "action": "Compute mechanical advantage from load force divided by effort force.",
-      "success_criterion": "Uses load and effort from the same machine state and interprets MA greater than one as force advantage, not energy gain.",
+      "action": "Define, calculate and demonstrate mechanical advantage as load force divided by effort force using measurements from the same machine state.",
+      "success_criterion": "Uses load and effort from the same steady machine state, calculates the dimensionless ratio MA = F_load/F_effort, and interprets MA greater than one as force advantage rather than energy creation or efficiency.",
       "prerequisite_refs": [
         "CAP-MACHINE-TRADEOFF"
       ],
@@ -140,7 +141,7 @@
         "issue19:donor": "PR9"
       },
       "action": "Compare levers, pulleys and inclined planes by what they change about force, direction and input distance.",
-      "success_criterion": "Identifies the machine's qualitative tradeoff without assuming that every machine reduces effort force.",
+      "success_criterion": "Identifies lever, pulley and inclined-plane input/output roles and their qualitative force/direction/distance tradeoff without assuming that every machine reduces effort force.",
       "prerequisite_refs": [
         "CAP-MACHINE-MA"
       ],
@@ -308,43 +309,51 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "title": "Mechanical advantage compares load force with effort force",
+      "title": "Mechanical advantage is a same-state load-to-effort force ratio",
       "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
       "primary_capability_ref": "CAP-MACHINE-MA",
       "intrinsic_badge": "EASY",
-      "badge_reason": "The ratio is simple once load and effort are correctly identified.",
+      "badge_reason": "The ratio is simple; the fragile part is pairing load and effort from the same steady setup and not confusing force advantage with efficiency.",
       "entry_assumptions": [
         "Can label input/effort and output/load forces on the same machine state."
       ],
-      "inferential_jump": "Mechanical advantage is a dimensionless force ratio, MA = F_load/F_effort; values above one indicate force advantage but do not measure energy efficiency.",
+      "inferential_jump": "Mechanical advantage is the dimensionless same-state force ratio MA = F_load/F_effort; a practical demonstration must measure both forces for one steady setup before forming the ratio, and the result says nothing by itself about efficiency.",
       "teaching_path": [
         {
           "id": "SM2-1",
           "role": "DECLARE",
-          "action": "Label the effort force and the load force for the same machine state.",
-          "why_valid": "The ratio is meaningful only when numerator and denominator refer to the same machine state.",
+          "action": "Label the effort force and load force for one steady machine state before taking or using readings.",
+          "why_valid": "Mechanical advantage compares simultaneous input/output force magnitudes for the same setup; mixing states makes the ratio physically meaningless.",
           "inputs": [
             "CAP-MACHINE-TRADEOFF"
           ],
-          "output": "load: F_load; effort: F_effort."
+          "output": "one machine state with F_load and F_effort identified"
         },
         {
           "id": "SM2-2",
           "role": "TRANSFORM",
-          "action": "Divide load-force magnitude by effort-force magnitude.",
-          "why_valid": "REL-MECHANICAL-ADVANTAGE owns the force ratio.",
+          "action": "Calculate MA = F_load/F_effort from those same-state force magnitudes.",
+          "why_valid": "REL-MECHANICAL-ADVANTAGE owns the dimensionless load-to-effort ratio.",
           "inputs": [
             "REL-MECHANICAL-ADVANTAGE"
           ],
-          "output": "MA = F_load / F_effort."
+          "output": "MA = F_load/F_effort"
         },
         {
           "id": "SM2-3",
           "role": "VERIFY",
-          "action": "Check that the ratio is dimensionless and interpret MA = 1 as no force multiplication.",
-          "why_valid": "Both numerator and denominator are forces, so units cancel.",
+          "action": "Check that the force units cancel and interpret MA = 1 and MA > 1 without making an efficiency claim.",
+          "why_valid": "Both quantities are forces, so MA is dimensionless; its meaning is force advantage only.",
           "inputs": [],
-          "output": "MA has no unit; MA > 1 is force advantage; MA = 1 is no force multiplication."
+          "output": "MA dimensionless; MA = 1 means equal load/effort magnitudes; MA > 1 means force advantage"
+        },
+        {
+          "id": "SM2-4",
+          "role": "VERIFY",
+          "action": "For a lever demonstration, measure load and effort for the same balanced or steady setting, then repeat under a controlled setup change while keeping the load and measurement method fixed.",
+          "why_valid": "A fair practical comparison changes the intended machine setup while preventing mixed-state or mixed-method readings from masquerading as a mechanical-advantage change.",
+          "inputs": [],
+          "output": "same-state MA measurement plus one controlled comparison"
         }
       ],
       "relation_refs": [
@@ -359,6 +368,11 @@
           "wrong_idea": "Mechanical advantage is the same as efficiency.",
           "diagnostic_prompt": "Can an ideal fixed pulley have MA = 1 and still be useful?",
           "repair": "Yes. MA compares forces only; a machine can be useful by changing force direction even with MA = 1."
+        },
+        {
+          "wrong_idea": "A load reading from one lever setting can be divided by an effort reading from a different setting to calculate mechanical advantage.",
+          "diagnostic_prompt": "If the effort point is moved between two lever settings, may you combine the old load reading with the new effort reading to form one MA?",
+          "repair": "No. Measure load and effort for the same steady setting, then calculate MA for that state. Compare separate same-state ratios across controlled settings."
         }
       ],
       "exit_task": {
@@ -387,7 +401,7 @@
           }
         }
       },
-      "research_contribution": "Author-created mechanical-advantage calculation bound to gate authority and validator.",
+      "research_contribution": "Author-created Grade9V3 mechanical-advantage construction aligned to the current Grade-9 competency and practical demand; no external package is treated as runtime authority.",
       "prerequisite_refs": [
         "CAP-MACHINE-TRADEOFF"
       ],
@@ -398,23 +412,27 @@
           "defensible_answer": "Greater than one, because the load force is larger than the effort force."
         },
         "attempt": {
-          "produces": "A force ratio with units cancelled and an interpretation.",
+          "produces": "A same-state load/effort ratio with units cancelled, an interpretation, and a short lever-practical measurement plan.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Uses load divided by effort.",
-              "evidence_of": "Maintaining the declared mechanical-advantage convention."
+              "criterion": "Uses load divided by effort from the same machine state.",
+              "evidence_of": "Maintaining both the MA convention and measurement custody."
             },
             {
               "criterion": "Interprets the ratio as force advantage only.",
               "evidence_of": "Not confusing MA with efficiency or energy gain."
+            },
+            {
+              "criterion": "Controls a practical comparison.",
+              "evidence_of": "Keeping load and measurement method fixed while changing only the intended setup variable."
             }
           ],
           "accepted": [
-            "120/40 = 3, dimensionless."
+            "Same steady setting: MA = F_load/F_effort; units cancel. For a lever comparison, keep the load and measurement method fixed while changing only the intended lever setup feature."
           ],
           "rejected": [
-            "40/120 or 3 N."
+            "Mix load and effort readings from different settings, or report MA in newtons."
           ]
         },
         "reconstruct": {
@@ -432,6 +450,11 @@
               "ask": "What does MA > 1 say, and what does it not say?",
               "why_this_ask": "It separates force advantage from efficiency.",
               "from_step_ref": "SM2-3"
+            },
+            {
+              "ask": "In a lever practical, which readings must come from the same setting before you form the ratio?",
+              "why_this_ask": "It protects the experimental meaning of mechanical advantage.",
+              "from_step_ref": "SM2-4"
             }
           ],
           "differs_from_teaching_path": "The teaching path labels before dividing; the learner route begins from the meaning of a force advantage and reconstructs the ratio order."
