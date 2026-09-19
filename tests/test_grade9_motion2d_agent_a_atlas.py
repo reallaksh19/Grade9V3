@@ -100,7 +100,7 @@ class Grade9Motion2DAgentAAtlas(unittest.TestCase):
         )
         self.assertEqual(q["repair_ref"], "K2D3-6")
         self.assertIn("u_y=10", q["stem"])
-        self.assertIn("15 m below", q["stem"])
+        self.assertIn("15 m above level ground", q["stem"])
 
     def test_outputs_remain_semantic_leaves_not_new_capabilities(self):
         caps = {row["id"] for row in self.package["capabilities"]}
