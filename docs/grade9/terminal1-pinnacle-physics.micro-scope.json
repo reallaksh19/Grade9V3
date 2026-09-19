@@ -101,31 +101,37 @@
         },
         {
           "micro": "recover vector direction angle from components",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
           "local_refs": [
-            "CAP-VEC-COMPONENT-SUM"
+            "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+            "CAP-INVERSE-TRIG-BRIDGE"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "ENRICH_OR_AUTHOR_FROM_CONFIRMED_DEMAND",
+          "action": "REUSE_IF_DEMANDED",
           "external_question_demand": "CONFIRMED_EXAMSIDE",
           "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "unit-vector i/j notation",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-VEC-UNIT-NOTATION"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "action": "REUSE_IF_DEMANDED",
           "external_question_demand": "CONFIRMED_EXAMSIDE",
           "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "normalize a nonzero 2D vector to unit direction",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-UNIT-DIRECTION",
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
           "external_question_demand": "CONFIRMED_EXAMSIDE",
-          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "action": "REUSE_IF_DEMANDED",
           "priority_if_confirmed": "HIGH"
         }
       ]

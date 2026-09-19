@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHYSICS-GATES-PINNACLE-VECTOR-DIRECTION-UNIT-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "scope": "Bounded relations for the owner-approved Grade-9 Pinnacle Vector direction/unit production slice.",
+    "deliberately_partial": "Only direction recovery and 2-D normalization are relation-gated here; dot/cross/3-D/calculus are intentionally absent.",
+    "source_authority": "ExamSIDE supplies preparation demand, not Pinnacle school-issued micro-scope.",
+    "review_status": "Author-created adaptation; independent academic review remains separate."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+      "title": "Direction recovery and unit-vector normalization",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Vectors",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-PIN-VEC-DIRECTION-SIGNS",
+          "statement": "A reference angle does not determine physical direction without the signed component quadrant."
+        },
+        {
+          "concept_id": "CON-PIN-VEC-IJ-REP",
+          "statement": "i-hat/j-hat coefficients are the signed x/y components in the same basis."
+        },
+        {
+          "concept_id": "CON-PIN-VEC-NORMALIZE",
+          "statement": "Dividing a nonzero vector by its magnitude preserves direction and produces magnitude one."
+        }
+      ],
+      "prerequisites": [],
+      "external_prerequisites": [
+        {
+          "capability_id": "MATH-INVERSE-TRIG",
+          "provider_subject": "Mathematics",
+          "statement": "Recover a reference angle from a valid trigonometric ratio.",
+          "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-VEC-DIRECTION-FROM-COMPONENTS",
+          "expression": "theta_ref = atan(|Ay/Ax|); physical direction = theta_ref placed by sign(Ax), sign(Ay)",
+          "meaning": "Signed components determine a reference angle and physical quadrant for a nonzero 2-D vector.",
+          "symbols": [
+            {
+              "symbol": "Ax",
+              "meaning": "Signed x component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "Ay",
+              "meaning": "Signed y component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "theta_ref",
+              "meaning": "Reference angle before quadrant placement",
+              "unit": "rad or degree",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "The x and y axes are perpendicular and their positive directions are declared.",
+            "The vector is nonzero.",
+            "Inverse trigonometry supplies a reference/principal angle; the component signs determine the physical quadrant.",
+            "If Ax=0, read the vertical direction directly from the sign of Ay rather than dividing by Ax."
+          ]
+        },
+        {
+          "relation_id": "REL-VEC-UNIT-DIRECTION",
+          "expression": "|A| = sqrt(Ax^2 + Ay^2); A_hat = (Ax i-hat + Ay j-hat)/|A|",
+          "meaning": "Dividing a nonzero vector by its magnitude preserves direction and produces a dimensionless vector of magnitude one.",
+          "symbols": [
+            {
+              "symbol": "|A|",
+              "meaning": "Magnitude of vector A",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "Ax",
+              "meaning": "Signed x component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "Ay",
+              "meaning": "Signed y component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "A_hat",
+              "meaning": "Unit vector in direction A",
+              "unit": "1",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "The x and y axes are perpendicular and use the same physical unit.",
+            "The vector magnitude is nonzero before division.",
+            "The same positive magnitude divides every signed component, so direction is preserved."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Axes are declared before signs/direction are interpreted.",
+        "Inverse trig is a Mathematics bridge, not silently self-certified by Physics.",
+        "Normalization requires a nonzero vector."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-PIN-VDU-SIGNS",
+          "sequence": 1,
+          "action": "Retain signed components and identify the requested representation.",
+          "why_valid": "Direction and notation meaning are lost if component signs or basis are discarded."
+        },
+        {
+          "step_id": "RS-PIN-VDU-TRANSFORM",
+          "sequence": 2,
+          "action": "Recover direction, translate notation or normalize using the declared relation.",
+          "why_valid": "Each operation preserves the same underlying vector information under explicit conditions.",
+          "depends_on": [
+            "RS-PIN-VDU-SIGNS"
+          ]
+        },
+        {
+          "step_id": "RS-PIN-VDU-CHECK",
+          "sequence": 3,
+          "action": "Use sign, round-trip or magnitude-one checks.",
+          "why_valid": "Representation invariants independently detect setup and sign errors.",
+          "depends_on": [
+            "RS-PIN-VDU-TRANSFORM"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-PIN-VDU-RAW-ANGLE",
+          "wrong_idea": "A raw inverse-tangent output fully determines vector direction.",
+          "counterexample": "Vectors in quadrants I and III can share the same positive component ratio magnitude.",
+          "repair": "Retain the component signs and use inverse trig only for a reference angle."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-PIN-VEC-DIRECTION-UNIT",
+          "title": "Resultant direction, i/j notation and 2-D unit-direction questions",
+          "hidden_invariants": [
+            "Component signs fix quadrant.",
+            "i/j coefficients round-trip to the same pair.",
+            "Unit direction has magnitude one."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 5,
+        "prerequisite_depth": 2
+      },
+      "badges": [
+        "VECTOR-FOUNDATION",
+        "PINNACLE-QUESTION-DEMAND"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-PIN-VDU-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from the first symbol of the first relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    }
+  ]
+}

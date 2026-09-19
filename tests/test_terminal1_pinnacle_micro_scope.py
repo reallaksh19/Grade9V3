@@ -65,6 +65,12 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
         expected = {
             ("Vectors", "arbitrary-angle decomposition into x/y components"):
                 "CAP-VEC-ANGLE-DECOMPOSITION",
+            ("Vectors", "recover vector direction angle from components"):
+                "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+            ("Vectors", "unit-vector i/j notation"):
+                "CAP-VEC-UNIT-NOTATION",
+            ("Vectors", "normalize a nonzero 2D vector to unit direction"):
+                "CAP-VEC-UNIT-DIRECTION",
             ("Motion in 2 D", "independence of orthogonal x/y motion coupled by common time"):
                 "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
             ("Motion in 2 D", "two-dimensional constant-acceleration component solving"):

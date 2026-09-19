@@ -1,0 +1,859 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Bounded Grade-9 Pinnacle Vector production slice justified by owner-approved ExamSIDE demand: recover direction from signed components, translate component pairs to i/j notation, and normalize a nonzero 2-D vector to unit direction. Dot/cross products, 3-D vector algebra and calculus remain outside this slice.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE JEE Main Vector Algebra past-year question bank",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra",
+      "edition": "2002-2026 JEE Main PYQ page inspected 2026-09-19",
+      "section": "Selected resultant-direction and unit-vector demand",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question bank used only as owner-approved preparation-demand evidence; Grade9V3 stores concise demand summaries and URLs, not copied question text.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+        "CAP-VEC-UNIT-NOTATION",
+        "CAP-VEC-UNIT-DIRECTION"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "The merged Vector reconnaissance identifies direction recovery, i/j notation and 2-D unit-direction normalization as the smallest high-value production slice from the approved ExamSIDE page.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 bounded Vector direction/unit adaptation",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-vector-direction-unit-pinnacle.v1.json",
+      "edition": "0.1.0",
+      "section": "Direction-from-components, i/j notation and unit-direction learner actions",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created teaching adaptation; no school-issued micro-scope authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+        "CAP-VEC-UNIT-NOTATION",
+        "CAP-VEC-UNIT-DIRECTION"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Implements the exact bounded production slice recommended by the merged reconnaissance.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-MATH-INVERSE-TRIG-BRIDGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Author-drafted inverse-trigonometry bridge for vector direction recovery",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-vector-direction-unit-pinnacle.v1.json#CAP-INVERSE-TRIG-BRIDGE",
+      "edition": "0.1.0",
+      "section": "CAP-INVERSE-TRIG-BRIDGE",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created Mathematics bridge draft; not Mathematics-provider accepted.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [],
+      "selection_reason": "Prevents Physics from silently treating inverse-trigonometric evaluation as demonstrated Mathematics.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Pinnacle vector direction and unit representation",
+      "topic": "Vectors",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The difficulty is representation discipline: retain component signs for direction, distinguish notation from new physics, and normalize without losing orientation.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-VEC-ADD-SUB"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-PIN-VEC-AXES",
+          "statement": "Direction angles are interpreted only after the positive x/y axes are declared."
+        },
+        {
+          "id": "CONV-PIN-VEC-IJ",
+          "statement": "i-hat and j-hat denote unit basis directions; coefficients are the signed components."
+        }
+      ],
+      "scope": {
+        "covers": "Recover a 2-D vector direction from signed components, translate component pairs to/from i/j notation, and normalize a nonzero 2-D vector to a unit direction.",
+        "excluded": [
+          "General dot-product angle, perpendicularity or projection algebra.",
+          "Cross product and normal-to-plane reasoning.",
+          "Three-dimensional vector geometry.",
+          "Calculus/vector-function differentiation."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-INVERSE-TRIG-BRIDGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-INVERSE-TRIG-BRIDGE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Recover an acute/reference angle from a valid trigonometric ratio using inverse sine, cosine or tangent.",
+      "success_criterion": "Given a valid ratio, evaluate a reference angle; Physics must still use vector signs/quadrant to report the physical direction.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": "Mathematics",
+      "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Recover a 2-D vector's physical direction from its signed x/y components.",
+      "success_criterion": "Uses a reference angle from the component ratio and the signs of both components to report the correct physical quadrant/direction, including vertical-axis special cases.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-INVERSE-TRIG-BRIDGE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-UNIT-NOTATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Translate between a signed 2-D component pair and compact i-hat/j-hat vector notation.",
+      "success_criterion": "Writes (Ax,Ay) as Ax i-hat + Ay j-hat and recovers the signed component pair without changing the physical vector.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-UNIT-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Normalize a nonzero 2-D vector to a dimensionless unit vector in the same direction.",
+      "success_criterion": "Computes the magnitude, divides every signed component by the same nonzero magnitude, verifies unit magnitude, and preserves the original direction.",
+      "prerequisite_refs": [
+        "CAP-VEC-UNIT-NOTATION",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Recover physical direction from signed components",
+      "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+      "primary_capability_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The arithmetic is small; the conceptual risk is dropping component signs and treating an inverse-trig principal angle as the full physical direction.",
+      "entry_assumptions": [
+        "Can read signed x/y components against declared axes.",
+        "Inverse-trig evaluation is available or bridged."
+      ],
+      "inferential_jump": "A reference angle gives only shape; the signed component pair supplies quadrant and therefore the physical direction.",
+      "teaching_path": [
+        {
+          "id": "VDIR-1",
+          "role": "DECLARE",
+          "action": "Write the sign pair (sign Ax, sign Ay) before any inverse-trig calculation.",
+          "why_valid": "The sign pair fixes the physical quadrant and protects direction information.",
+          "inputs": [],
+          "output": "quadrant from component signs"
+        },
+        {
+          "id": "VDIR-2",
+          "role": "TRANSFORM",
+          "action": "For Ax nonzero, compute theta_ref=atan(|Ay/Ax|).",
+          "why_valid": "The absolute ratio gives the acute/reference angle of the component triangle.",
+          "inputs": [
+            "CAP-INVERSE-TRIG-BRIDGE"
+          ],
+          "output": "reference angle"
+        },
+        {
+          "id": "VDIR-3",
+          "role": "TRANSFORM",
+          "action": "Place theta_ref in the quadrant from the original signs; handle Ax=0 as a vertical direction directly.",
+          "why_valid": "Quadrant placement turns the reference angle into the vector's physical orientation.",
+          "inputs": [],
+          "output": "quadrant-correct direction"
+        },
+        {
+          "id": "VDIR-4",
+          "role": "VERIFY",
+          "action": "Check that the reported direction would produce x/y signs matching the original vector.",
+          "why_valid": "This is an independent sign-consistency check.",
+          "inputs": [],
+          "output": "direction signs reproduce Ax,Ay signs"
+        }
+      ],
+      "relation_refs": [
+        "REL-VEC-DIRECTION-FROM-COMPONENTS"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "atan(Ay/Ax) by itself always gives the physical direction.",
+          "diagnostic_prompt": "If Ax<0 and Ay>0, can a small principal arctangent alone identify quadrant II?",
+          "repair": "Use inverse trig only for a reference angle, then restore the quadrant from the component signs."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A vector has components (-3,4). Without needing a decimal angle, identify the quadrant and explain how the physical direction is obtained from the component ratio.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The vector is in quadrant II. Use atan(4/3) as a reference angle and place that reference in quadrant II.",
+          "reasoning": "Ax<0 and Ay>0 fix quadrant II.",
+          "check": "A quadrant-II direction must reproduce negative x and positive y components.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Exact inverse-tangent evaluation is intentionally unnecessary; the task checks physical quadrant reconstruction."
+        }
+      },
+      "research_contribution": "Directly implements the merged Vector reconnaissance's first bounded learner action from approved ExamSIDE demand.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-INVERSE-TRIG-BRIDGE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A vector has Ax<0 and Ay>0. Which quadrant must its direction occupy?",
+          "defensible_answer": "Quadrant II."
+        },
+        "attempt": {
+          "produces": "A reference-angle method plus quadrant placement.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses both component signs before inverse trig.",
+              "evidence_of": "Quadrant-aware direction reasoning."
+            },
+            {
+              "criterion": "Separates reference angle from physical direction.",
+              "evidence_of": "Does not overread the principal inverse-trig value."
+            }
+          ],
+          "accepted": [
+            "Use |Ay/Ax| for the reference angle and the signs for quadrant."
+          ],
+          "rejected": [
+            "Report the calculator's raw arctangent value with no sign/quadrant check."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What direction information disappeared when the component ratio was made positive?",
+              "why_this_ask": "Recovers why sign/quadrant must be restored.",
+              "from_step_ref": "VDIR-2"
+            },
+            {
+              "ask": "Which sign pair must the final direction reproduce?",
+              "why_this_ask": "Builds an independent verification.",
+              "from_step_ref": "VDIR-4"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching supplies the quadrant-first method; reconstruction begins from what inverse trig loses."
+        },
+        "boundary_test": {
+          "prompt": "What if Ax=0?",
+          "answer": "Do not divide by Ax. The vector is vertical; Ay>0 means +y and Ay<0 means -y.",
+          "confirms": "Direction recovery includes the vertical-axis special case."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-VEC-UNIT-NOTATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Translate signed components to and from i-hat/j-hat notation",
+      "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+      "primary_capability_ref": "CAP-VEC-UNIT-NOTATION",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "This is representation translation, not a new physical model, but sign loss in compact notation is a common execution failure.",
+      "entry_assumptions": [
+        "Can read signed x/y components against declared axes."
+      ],
+      "inferential_jump": "The coefficients of i-hat and j-hat are exactly the signed x/y components; notation changes, the physical vector does not.",
+      "teaching_path": [
+        {
+          "id": "VIJ-1",
+          "role": "DECLARE",
+          "action": "State that i-hat is one unit in +x and j-hat is one unit in +y.",
+          "why_valid": "The basis symbols carry direction; coefficients carry signed component amounts.",
+          "inputs": [],
+          "output": "i-hat -> +x, j-hat -> +y"
+        },
+        {
+          "id": "VIJ-2",
+          "role": "TRANSFORM",
+          "action": "Replace (Ax,Ay) with Ax i-hat + Ay j-hat, keeping signs unchanged.",
+          "why_valid": "This is a one-to-one representation translation in the same basis.",
+          "inputs": [],
+          "output": "(Ax,Ay) <-> Ax i-hat + Ay j-hat"
+        },
+        {
+          "id": "VIJ-3",
+          "role": "VERIFY",
+          "action": "Read the coefficients back and recover the original ordered pair.",
+          "why_valid": "Round-trip translation checks sign and axis order.",
+          "inputs": [],
+          "output": "recovered pair equals original pair"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "i-hat/j-hat notation changes the vector into a different quantity.",
+          "diagnostic_prompt": "Are (3,-4) and 3 i-hat - 4 j-hat different vectors in the same axes?",
+          "repair": "No. They are two notations for the same signed component pair."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Translate the component pair (-2,5) into i-hat/j-hat notation, then read it back.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "-2 i-hat + 5 j-hat, which reads back as (-2,5).",
+          "reasoning": [
+            "The i-hat coefficient is the signed x component.",
+            "The j-hat coefficient is the signed y component."
+          ],
+          "check": "The round trip reproduces both original signs and their axis order.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task checks exact representation translation."
+        }
+      },
+      "research_contribution": "Implements the merged reconnaissance's unit-notation gap as a bounded representation skill rather than broad Vector Algebra.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If the x component is negative, should the i-hat coefficient be made positive for notation?",
+          "defensible_answer": "No; the coefficient keeps the signed x component."
+        },
+        "attempt": {
+          "produces": "A round-trip pair-to-i/j translation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Preserves coefficient signs.",
+              "evidence_of": "Signed-component fidelity."
+            },
+            {
+              "criterion": "Preserves x with i-hat and y with j-hat.",
+              "evidence_of": "Correct basis mapping."
+            }
+          ],
+          "accepted": [
+            "(-2,5) -> -2 i-hat + 5 j-hat -> (-2,5)."
+          ],
+          "rejected": [
+            "Drop the minus sign or swap i-hat/j-hat coefficients."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What does the coefficient of i-hat represent?",
+              "why_this_ask": "Recovers the x-component mapping.",
+              "from_step_ref": "VIJ-1"
+            },
+            {
+              "ask": "How can you verify the notation change did not change the vector?",
+              "why_this_ask": "Elicits the round-trip check.",
+              "from_step_ref": "VIJ-3"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching states the basis mapping; reconstruction derives it from coefficient meaning."
+        },
+        "boundary_test": {
+          "prompt": "Does changing where the written arrow is drawn change these free-vector components if axes are unchanged?",
+          "answer": "No. Translation of the drawn arrow does not change the free vector's component representation.",
+          "confirms": "Notation concerns vector components, not drawing location."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-VEC-UNIT-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Normalize a nonzero 2-D vector to unit direction",
+      "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+      "primary_capability_ref": "CAP-VEC-UNIT-DIRECTION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The operation is short, but learners must divide every signed component by one common magnitude and understand why direction is preserved.",
+      "entry_assumptions": [
+        "Can write i-hat/j-hat notation.",
+        "Can compute magnitude from perpendicular components."
+      ],
+      "inferential_jump": "Dividing by a positive scalar changes size but not direction; choosing the vector's own magnitude makes the new size exactly one.",
+      "teaching_path": [
+        {
+          "id": "VUN-1",
+          "role": "DECLARE",
+          "action": "Write A=Ax i-hat + Ay j-hat and compute |A|=sqrt(Ax^2+Ay^2).",
+          "why_valid": "Magnitude supplies the single positive scale needed for normalization.",
+          "inputs": [],
+          "output": "|A|"
+        },
+        {
+          "id": "VUN-2",
+          "role": "TRANSFORM",
+          "action": "Divide both signed coefficients by |A|.",
+          "why_valid": "Using one common positive divisor preserves the component ratio and therefore direction.",
+          "inputs": [],
+          "output": "A_hat=(Ax/|A|)i-hat+(Ay/|A|)j-hat"
+        },
+        {
+          "id": "VUN-3",
+          "role": "VERIFY",
+          "action": "Compute |A_hat| and multiply A_hat by |A|.",
+          "why_valid": "A valid unit direction has magnitude one and reconstructs A when rescaled.",
+          "inputs": [],
+          "output": "|A_hat|=1 and |A|A_hat=A"
+        }
+      ],
+      "relation_refs": [
+        "REL-VEC-UNIT-DIRECTION"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Normalize each component separately to +/-1.",
+          "diagnostic_prompt": "Would (3,4) become (1,1) if each component were normalized separately?",
+          "repair": "No. Divide both components by the vector's single magnitude 5, giving (3/5,4/5)."
+        },
+        {
+          "wrong_idea": "A zero vector can be normalized.",
+          "diagnostic_prompt": "What divisor would A/|A| require when A=(0,0)?",
+          "repair": "|A|=0, so normalization is undefined and the zero vector has no unique direction."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Normalize A=3 i-hat - 4 j-hat.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A_hat=(3/5)i-hat-(4/5)j-hat.",
+          "reasoning": [
+            "|A|=sqrt(9+16)=5.",
+            "Divide both signed coefficients by 5.",
+            "The signs remain +x and -y."
+          ],
+          "check": "sqrt((3/5)^2+(-4/5)^2)=1 and 5A_hat=A.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Exact 3-4-5 normalization is used."
+        }
+      },
+      "research_contribution": "Closes the merged reconnaissance's highest-value unit-direction gap while keeping later vector operations outside scope.",
+      "prerequisite_refs": [
+        "CAP-VEC-UNIT-NOTATION",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a nonzero vector is divided by its positive magnitude, should its direction change?",
+          "defensible_answer": "No; only its size changes."
+        },
+        "attempt": {
+          "produces": "A normalized i/j vector plus magnitude-one verification.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses one common magnitude divisor.",
+              "evidence_of": "Correct normalization model."
+            },
+            {
+              "criterion": "Keeps original signs and verifies unit magnitude.",
+              "evidence_of": "Direction preservation and self-check."
+            }
+          ],
+          "accepted": [
+            "A_hat=A/|A|, preserving signed component ratio."
+          ],
+          "rejected": [
+            "Normalize components separately or drop a sign."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What common positive scale changes magnitude without changing direction?",
+              "why_this_ask": "Recovers why a single divisor is required.",
+              "from_step_ref": "VUN-2"
+            },
+            {
+              "ask": "What two checks prove normalization worked?",
+              "why_this_ask": "Elicits magnitude-one and reconstruction checks.",
+              "from_step_ref": "VUN-3"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching gives A/|A|; reconstruction starts from the invariants normalization must preserve."
+        },
+        "boundary_test": {
+          "prompt": "Can A=(0,0) be normalized?",
+          "answer": "No. |A|=0 and the direction is undefined.",
+          "confirms": "Normalization requires a nonzero vector."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-VEC-DIRECTION-FROM-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "theta_ref = atan(|Ay/Ax|); physical direction = theta_ref placed by sign(Ax), sign(Ay)",
+      "meaning": "Signed components determine both a reference angle and the physical quadrant of a nonzero 2-D vector.",
+      "symbols": [
+        {
+          "symbol": "Ax",
+          "meaning": "Signed x component",
+          "unit_or_domain": "same unit as vector"
+        },
+        {
+          "symbol": "Ay",
+          "meaning": "Signed y component",
+          "unit_or_domain": "same unit as vector"
+        },
+        {
+          "symbol": "theta_ref",
+          "meaning": "Acute/reference angle before quadrant placement",
+          "unit_or_domain": "angle"
+        }
+      ],
+      "conditions": [
+        "The x and y axes are perpendicular and their positive directions are declared.",
+        "The vector is nonzero.",
+        "Inverse trigonometry supplies a reference/principal angle; the component signs determine the physical quadrant.",
+        "If Ax=0, read the vertical direction directly from the sign of Ay rather than dividing by Ax."
+      ],
+      "derivation": [
+        {
+          "id": "VDIR-REL-1",
+          "role": "DECLARE",
+          "action": "Retain the signs of Ax and Ay and identify the quadrant.",
+          "why_valid": "Component signs carry physical orientation that the magnitude calculation cannot recover.",
+          "inputs": [],
+          "output": "quadrant from sign pair"
+        },
+        {
+          "id": "VDIR-REL-2",
+          "role": "TRANSFORM",
+          "action": "Use |Ay/Ax| to obtain an acute/reference angle when Ax is nonzero.",
+          "why_valid": "The ratio gives the right-triangle slope magnitude.",
+          "inputs": [
+            "CAP-INVERSE-TRIG-BRIDGE"
+          ],
+          "output": "theta_ref=atan(|Ay/Ax|)"
+        },
+        {
+          "id": "VDIR-REL-3",
+          "role": "VERIFY",
+          "action": "Place the reference angle in the quadrant fixed by the original signs.",
+          "why_valid": "A principal inverse-trig value alone does not encode the full vector direction.",
+          "inputs": [],
+          "output": "physical direction consistent with Ax,Ay"
+        }
+      ],
+      "limits": [
+        "For Ax=0, the direction is vertical and should be read directly.",
+        "The zero vector has no unique direction angle."
+      ],
+      "checks": [
+        "The reported direction must have x/y signs matching the original components."
+      ],
+      "gate_relation_ref": "REL-VEC-DIRECTION-FROM-COMPONENTS"
+    },
+    {
+      "id": "REL-VEC-UNIT-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "|A| = sqrt(Ax^2 + Ay^2); A_hat = (Ax i-hat + Ay j-hat)/|A|",
+      "meaning": "Dividing a nonzero vector by its magnitude preserves direction and produces a dimensionless vector of magnitude one.",
+      "symbols": [
+        {
+          "symbol": "|A|",
+          "meaning": "Magnitude of vector A",
+          "unit_or_domain": "same unit as A components"
+        },
+        {
+          "symbol": "Ax",
+          "meaning": "Signed x component",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "Ay",
+          "meaning": "Signed y component",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "A_hat",
+          "meaning": "Unit vector in the direction of A",
+          "unit_or_domain": "dimensionless"
+        }
+      ],
+      "conditions": [
+        "The x and y axes are perpendicular and use the same physical unit.",
+        "The vector magnitude is nonzero before division.",
+        "The same positive magnitude divides every signed component, so direction is preserved."
+      ],
+      "derivation": [
+        {
+          "id": "VUNIT-REL-1",
+          "role": "DECLARE",
+          "action": "Compute the nonnegative magnitude from perpendicular components.",
+          "why_valid": "The component pair forms a right triangle.",
+          "inputs": [],
+          "output": "|A|=sqrt(Ax^2+Ay^2)"
+        },
+        {
+          "id": "VUNIT-REL-2",
+          "role": "TRANSFORM",
+          "action": "Divide both signed components by |A|.",
+          "why_valid": "Uniform positive scaling preserves direction while setting total magnitude to one.",
+          "inputs": [],
+          "output": "A_hat=(Ax/|A|) i-hat + (Ay/|A|) j-hat"
+        },
+        {
+          "id": "VUNIT-REL-3",
+          "role": "VERIFY",
+          "action": "Recompute the normalized magnitude and multiply back by |A|.",
+          "why_valid": "These checks test both normalization and direction preservation.",
+          "inputs": [],
+          "output": "|A_hat|=1 and |A|A_hat=A"
+        }
+      ],
+      "limits": [
+        "The zero vector cannot be normalized because |A|=0."
+      ],
+      "checks": [
+        "The normalized component squares must sum to 1.",
+        "Multiplying A_hat by |A| must reproduce the original signed components."
+      ],
+      "gate_relation_ref": "REL-VEC-UNIT-DIRECTION"
+    }
+  ],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PIN-VEC-DIR-UNIT-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal bounded Vector direction/unit slice",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+        "MIC-PHY-VEC-UNIT-NOTATION",
+        "MIC-PHY-VEC-UNIT-DIRECTION"
+      ],
+      "entry_needs": [
+        "Signed 2-D components are available; inverse trig remains an explicit Mathematics bridge."
+      ],
+      "learner_actions": [
+        "Recover direction from component signs plus a reference angle.",
+        "Translate component pairs to/from i-hat/j-hat notation.",
+        "Normalize a nonzero 2-D vector and verify magnitude one."
+      ],
+      "help_plan": [
+        "Keep component signs visible before inverse trig.",
+        "Use round-trip notation translation.",
+        "Check unit magnitude and rescaling after normalization."
+      ],
+      "reveal_plan": "Each representation move is shown explicitly and followed by an invariant check.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+          "purpose": "Real preparation demand",
+          "reason": "Approved ExamSIDE Vector Algebra questions require resultant direction and unit-vector representation."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not extend into dot product, projection, cross product, 3-D vector algebra or calculus in this production slice."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PIN-VEC-DIR-UNIT-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-DIRECTION-UNIT"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reconstruct bounded Vector direction/unit slice",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+        "MIC-PHY-VEC-UNIT-NOTATION",
+        "MIC-PHY-VEC-UNIT-DIRECTION"
+      ],
+      "entry_needs": [
+        "Learner can commit to signs, notation mapping or normalization check before the completed method is revealed."
+      ],
+      "learner_actions": [
+        "Use signs to place a direction.",
+        "Explain i/j coefficients.",
+        "Infer normalization from direction-preserving rescaling."
+      ],
+      "help_plan": [
+        "Ask what inverse trig loses.",
+        "Ask what i-hat coefficient means.",
+        "Ask what divisor makes magnitude one without changing direction."
+      ],
+      "reveal_plan": "Learner reconstructs the same canonical relations from representation invariants.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+          "purpose": "Question-driven reconstruction",
+          "reason": "The approved demand exposes representation changes rather than only arithmetic."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route to certify the Mathematics bridge itself."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

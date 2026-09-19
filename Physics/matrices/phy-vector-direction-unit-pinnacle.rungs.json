@@ -1,0 +1,139 @@
+{
+  "matrix_id": "MATRIX-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
+  "topic": "Vectors",
+  "subtopic": "Direction recovery, i/j notation and 2-D unit direction",
+  "axis_note": "Owner-approved ExamSIDE preparation-demand matrix implementing the bounded production sequence from the merged Vector reconnaissance. It does not include dot/cross/3-D/calculus depth.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 30,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+      "ceiling": [
+        "dot product",
+        "cross product",
+        "three-dimensional vector",
+        "vector calculus"
+      ],
+      "must_contain": [
+        "Signed x/y components in declared axes.",
+        "Reference-angle recovery with signs retained.",
+        "Quadrant or vertical-axis direction check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "component sign pattern",
+          "hold": "component magnitudes",
+          "notice": "reference angle can stay the same while physical quadrant changes"
+        },
+        {
+          "phase": 2,
+          "vary": "Ax toward zero",
+          "hold": "nonzero Ay",
+          "notice": "the vertical-axis special case replaces division by Ax"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+      "ceiling": [
+        "dot product",
+        "cross product",
+        "three-dimensional basis"
+      ],
+      "must_contain": [
+        "A component pair and its exact i-hat/j-hat translation.",
+        "A round-trip recovery of the signed pair."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "sign of one component",
+          "hold": "axis mapping",
+          "notice": "only the corresponding basis coefficient sign changes"
+        },
+        {
+          "phase": 2,
+          "vary": "notation from pair to i/j form",
+          "hold": "physical vector",
+          "notice": "representation changes while the vector does not"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+      "ceiling": [
+        "dot product",
+        "cross product",
+        "three-dimensional normalization"
+      ],
+      "must_contain": [
+        "A nonzero 2-D vector in component/i-j form.",
+        "A single common magnitude divisor.",
+        "Magnitude-one and rescaling checks."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "overall positive scale of the original vector",
+          "hold": "direction",
+          "notice": "the unit direction remains unchanged"
+        },
+        {
+          "phase": 2,
+          "vary": "one component sign",
+          "hold": "component magnitudes",
+          "notice": "the unit vector preserves the changed physical direction"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Retain component signs, translate representations without changing the vector, and normalize by one common magnitude while checking physical direction.",
+    "difficult_move": "Separating reference angle from physical direction and treating i/j notation/normalization as representation operations rather than new force or motion laws.",
+    "independent_check": "Direction must reproduce component signs; i/j translation must round-trip; a unit vector must have magnitude one and rescale back to the original vector.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Axes, sign pair and target representation are named."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Axes and components are supplied; learner chooses the conversion/check."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the vector data and requested direction/notation/unit direction are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A resultant is given only as signed components and the question asks for direction.",
+      "information_not_handed_over": "quadrant placement after inverse trig",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A vector written as a pair must be used in i/j notation or vice versa.",
+      "information_not_handed_over": "the basis-symbol mapping",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A question asks only for direction as a unit vector, not the original magnitude.",
+      "information_not_handed_over": "the common normalization scale and magnitude-one check",
+      "repair_to": "R3"
+    }
+  ]
+}

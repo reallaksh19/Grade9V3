@@ -1,0 +1,35 @@
+{
+  "worksheet_id": "EXAMSIDE-VECTOR-DIRECTION-UNIT-CORE",
+  "subject": "Physics",
+  "source_note": "Owner-approved ExamSIDE Vector Algebra demand. Concise demand summaries and source URL only; no Pinnacle school-micro-scope claim.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-VEC-RESULTANT-DIRECTION",
+      "primary_capability_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative ExamSIDE Vector Algebra family: recover resultant/vector direction from signed components. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    },
+    {
+      "question_id": "EXAMSIDE-VEC-IJ-REPRESENTATION",
+      "primary_capability_ref": "CAP-VEC-UNIT-NOTATION",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative ExamSIDE Vector Algebra family: use i-hat/j-hat notation for component vectors. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    },
+    {
+      "question_id": "EXAMSIDE-VEC-UNIT-DIRECTION",
+      "primary_capability_ref": "CAP-VEC-UNIT-DIRECTION",
+      "secondary_capability_refs": [
+        "CAP-VEC-UNIT-NOTATION",
+        "CAP-RIGHT-TRIANGLE-BRIDGE"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative ExamSIDE Vector Algebra family: find a unit vector in a specified/resultant direction. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    }
+  ]
+}
