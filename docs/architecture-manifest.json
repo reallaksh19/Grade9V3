@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 158,
-  "relation_count": 207,
+  "component_count": 159,
+  "relation_count": 208,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 65,
+    "TEST": 66,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:334225bec98cec0d283fac2edd920f14baa44626caa612fdd3596fb8be593174",
+  "digest": "sha256:c2369b5b62084cbf0adc0281f710d8d7a18dd7314b953cf0fac582b0bc1737e4",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -834,8 +834,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16913,
-      "sha256": "a09fc5ceebaa15c14f0abb889979e3626beac90d3b2ec73818ac3ccb87d28a93"
+      "bytes": 17052,
+      "sha256": "fa67f395dbb4531e688f562bf08defca247629d8fb83c22ad76bf1e5cd8256fe"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -843,6 +843,13 @@
       "role_description": "Executable checks",
       "bytes": 4764,
       "sha256": "bb7c65f28948b43b148833bc79cf572c3436bccd6ee40c65ed9829a31e7f7962"
+    },
+    {
+      "path": "tests/test_grade10_optics_refraction_lenses_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5861,
+      "sha256": "7391b91e51e86501e5e66dcb7cf06a12a4f5a7fd85496267ea82e093a7d56047"
     },
     {
       "path": "tests/test_grade9_default_extension_routing.py",
@@ -1093,8 +1100,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 573079,
-      "sha256": "86ffe4a9dc940bf9e41eb70f2a7e3c86362f620bd91fe1acbd5dbc4c57ca4a51"
+      "bytes": 605385,
+      "sha256": "04f099be2a4b246eaa837df0b85c00c979b9884835b6b0690c9d5e6cade7bef7"
     },
     {
       "path": "tools/index.html",
@@ -1833,6 +1840,11 @@
     },
     {
       "from": "tests/test_grade10_optics_reflection_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade10_optics_refraction_lenses_scope.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

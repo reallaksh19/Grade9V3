@@ -1905,6 +1905,317 @@
           "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-OPTICS-LENSES-GRADE10",
+      "title": "Grade 10 refraction, spherical-lens imaging, magnification and power",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 10,
+        "chapter": "Light - Reflection and Refraction",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-OPT-REFRACTION-NORMAL",
+          "statement": "Refraction angles are measured from the surface normal; across a boundary the ray direction changes because light speed differs between media, while the incident ray, normal and refracted ray remain coplanar."
+        },
+        {
+          "concept_id": "CON-OPT-SNELLS-LAW",
+          "statement": "For the same pair of transparent media and wavelength, n1 sin(i) = n2 sin(r); refractive index also expresses the ratio of light speeds, so the angle relation is a model of speed change rather than a drawing mnemonic."
+        },
+        {
+          "concept_id": "CON-OPT-LENS-RAY-CONSTRUCTION",
+          "statement": "For a thin spherical lens in the paraxial model, independent principal-ray rules must locate the same image point or common backward-extension point."
+        },
+        {
+          "concept_id": "CON-OPT-LENS-EQUATION",
+          "statement": "For a thin spherical lens under one declared Cartesian sign convention and the paraxial approximation, signed object distance u, image distance v and focal length f satisfy 1/v - 1/u = 1/f."
+        },
+        {
+          "concept_id": "CON-OPT-LENS-MAGNIFICATION",
+          "statement": "Lens magnification m = h_i/h_o = v/u carries both relative image size and orientation; its sign is physically meaningful."
+        },
+        {
+          "concept_id": "CON-OPT-LENS-POWER",
+          "statement": "Lens power P = 1/f when focal length is expressed in metres; power is in dioptres and retains the focal-length sign, so converging and diverging lenses have opposite signs."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-SNELLS-LAW",
+          "expression": "n_1 sin(i) = n_2 sin(r)",
+          "meaning": "At one planar interface between two transparent media, the normal-referenced incidence and refraction angles are related by the refractive indices of the two media.",
+          "symbols": [
+            {
+              "symbol": "n_1",
+              "meaning": "Refractive index of the incident medium",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "n_2",
+              "meaning": "Refractive index of the refracting medium",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "i",
+              "meaning": "Angle of incidence measured from the normal",
+              "unit": "rad",
+              "dimension": "1"
+            },
+            {
+              "symbol": "r",
+              "meaning": "Angle of refraction measured from the normal",
+              "unit": "rad",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "Angles i and r are measured from the same surface normal at the boundary.",
+            "The media and wavelength remain fixed while the angle relation is used.",
+            "The incident ray, normal and refracted ray are coplanar."
+          ]
+        },
+        {
+          "relation_id": "REL-REFRACTIVE-INDEX-SPEED",
+          "expression": "n = c/v",
+          "meaning": "Absolute refractive index is the ratio of the speed of light in vacuum to its speed in the medium.",
+          "symbols": [
+            {
+              "symbol": "n",
+              "meaning": "Absolute refractive index of the medium",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "c",
+              "meaning": "Speed of light in vacuum",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Speed of light in the medium",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            }
+          ],
+          "conditions": [
+            "c and v refer to the same light frequency/wavelength context for the stated medium.",
+            "v is positive and not greater than c in the ordinary transparent-media model used here."
+          ]
+        },
+        {
+          "relation_id": "REL-LENS-EQUATION",
+          "expression": "1/v - 1/u = 1/f",
+          "meaning": "For one thin spherical lens in the paraxial model, signed image distance minus signed object-distance reciprocal equals reciprocal signed focal length.",
+          "symbols": [
+            {
+              "symbol": "u",
+              "meaning": "Signed object distance from the optical centre",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Signed image distance from the optical centre",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "f",
+              "meaning": "Signed focal length of the thin lens",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "u, v and f use the same declared Cartesian sign convention and optical centre as origin.",
+            "The lens is treated as thin and the construction is paraxial/small-angle.",
+            "u, v and f describe the same lens and object-image state."
+          ]
+        },
+        {
+          "relation_id": "REL-LENS-MAGNIFICATION",
+          "expression": "m = v/u = h_i/h_o",
+          "meaning": "For the same thin-lens image, transverse magnification is the signed image-to-object height ratio and equals signed image distance divided by signed object distance.",
+          "symbols": [
+            {
+              "symbol": "m",
+              "meaning": "Signed transverse magnification",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "u",
+              "meaning": "Signed object distance from the optical centre",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Signed image distance from the optical centre",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "h_i",
+              "meaning": "Signed image height relative to the principal axis",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "h_o",
+              "meaning": "Signed object height relative to the principal axis",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "u, v, h_i and h_o use one declared Cartesian sign convention.",
+            "Object and image refer to the same thin-lens state.",
+            "h_o is nonzero when the height ratio is evaluated."
+          ]
+        },
+        {
+          "relation_id": "REL-LENS-POWER",
+          "expression": "P = 1/f",
+          "meaning": "Optical power is the reciprocal focal length when focal length is expressed in metres.",
+          "symbols": [
+            {
+              "symbol": "P",
+              "meaning": "Signed optical power of the lens",
+              "unit": "D",
+              "dimension": "L^-1"
+            },
+            {
+              "symbol": "f",
+              "meaning": "Signed focal length of the lens",
+              "unit": "m",
+              "dimension": "L"
+            }
+          ],
+          "conditions": [
+            "Focal length f is expressed in metres before taking the reciprocal.",
+            "The sign of f is retained, so converging and diverging lens powers have opposite signs."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Draw the interface or principal axis and the relevant normal/optical centre before assigning angles or signed distances.",
+        "Use Snell's law with angles measured from the normal, never from the interface surface.",
+        "Use the spherical-lens equation only within the thin-lens, paraxial/small-angle model.",
+        "A valid principal-ray pair must locate one common physical or backward-extension image point.",
+        "Retain the signs of lens magnification and focal length because orientation and converging/diverging character depend on them.",
+        "Convert focal length to metres before computing power in dioptres."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-OPT-REFRACTION-TRACE",
+          "sequence": 1,
+          "action": "Draw the normal at the boundary, label the media, and determine whether the ray bends toward or away from the normal from the refractive-index comparison.",
+          "why_valid": "Refraction is defined relative to the local normal and a speed/index change, not the page edge."
+        },
+        {
+          "step_id": "RS-OPT-SNELL",
+          "sequence": 2,
+          "action": "Use REL-SNELLS-LAW and, when required, REL-REFRACTIVE-INDEX-SPEED to connect measured angles and material index.",
+          "why_valid": "The two relations connect ray geometry to the physical speed change.",
+          "depends_on": [
+            "RS-OPT-REFRACTION-TRACE"
+          ]
+        },
+        {
+          "step_id": "RS-OPT-LENS-RAYS",
+          "sequence": 3,
+          "action": "Construct at least two valid principal rays for one thin lens and require a common image or backward-extension intersection.",
+          "why_valid": "The image belongs to one refracted ray bundle rather than to a memorized diagram.",
+          "depends_on": [
+            "RS-OPT-SNELL"
+          ]
+        },
+        {
+          "step_id": "RS-OPT-LENS-EQUATION",
+          "sequence": 4,
+          "action": "Declare the Cartesian signs, apply REL-LENS-EQUATION to the same paraxial lens state, and cross-check its image region against the ray construction.",
+          "why_valid": "The equation and ray construction are representations of the same thin-lens model.",
+          "depends_on": [
+            "RS-OPT-LENS-RAYS"
+          ]
+        },
+        {
+          "step_id": "RS-OPT-LENS-MAG",
+          "sequence": 5,
+          "action": "Use REL-LENS-MAGNIFICATION and retain its sign when interpreting relative size and orientation.",
+          "why_valid": "An unsigned size ratio cannot distinguish erect from inverted images.",
+          "depends_on": [
+            "RS-OPT-LENS-EQUATION"
+          ]
+        },
+        {
+          "step_id": "RS-OPT-LENS-POWER",
+          "sequence": 6,
+          "action": "Convert focal length to metres and use REL-LENS-POWER, retaining focal-length sign.",
+          "why_valid": "The dioptre is inverse metre and the sign distinguishes converging from diverging lenses.",
+          "depends_on": [
+            "RS-OPT-LENS-MAG"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-OPT-REFRACTION-SURFACE-ANGLE",
+          "wrong_idea": "Refraction angles are measured from the interface surface.",
+          "counterexample": "A ray travelling along the normal has incidence and refraction angles of zero, not ninety degrees.",
+          "repair": "Draw the normal first and measure both angles from it."
+        },
+        {
+          "misconception_id": "MIS-OPT-LENS-MIRROR-FORMULA",
+          "wrong_idea": "The mirror relation 1/v + 1/u = 1/f can be copied unchanged for a lens.",
+          "counterexample": "The governed thin-lens relation is 1/v - 1/u = 1/f under the declared Cartesian convention.",
+          "repair": "Identify reflection versus refraction first, then use the relation owned by that optical model."
+        },
+        {
+          "misconception_id": "MIS-OPT-LENS-POWER-CM",
+          "wrong_idea": "A focal length written in centimetres can be substituted directly into P = 1/f to obtain dioptres.",
+          "counterexample": "A 50 cm converging lens has f = 0.50 m and P = +2 D, not +0.02 D.",
+          "repair": "Convert f to metres and retain its sign before taking the reciprocal."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-OPT-REFRACTION-LENS-G10",
+          "title": "Normal-based refraction, thin-lens imaging, signed formula, magnification and power",
+          "hidden_invariants": [
+            "Angles are measured from the normal and indices belong to the declared media.",
+            "Ray construction, signed lens equation and magnification describe the same lens state.",
+            "Thin-lens/paraxial validity remains visible when a lens formula is used.",
+            "Power uses focal length in metres and retains its sign."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 6,
+        "prerequisite_depth": 4
+      },
+      "badges": [
+        "OPTICS",
+        "GRADE10-OWNER-EXTENSION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-OPT-LENS-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from a lens/refraction relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
     }
   ]
 }
