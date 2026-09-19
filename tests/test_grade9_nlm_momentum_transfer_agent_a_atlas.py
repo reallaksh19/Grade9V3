@@ -73,7 +73,7 @@ class Grade9NlmMomentumTransferAgentAAtlas(unittest.TestCase):
         wrong = " ".join(
             row["wrong_idea"] for row in self.micro["misconceptions"]
         ).lower()
-        self.assertIn("final momentum", wrong)
+        self.assertIn("m v_out", wrong)
         self.assertIn("same direction", wrong)
         self.assertIn("rocket", wrong)
         self.assertIn("instantaneous force", wrong)
@@ -153,7 +153,8 @@ class Grade9NlmMomentumTransferAgentAAtlas(unittest.TestCase):
     def test_zero_change_case_refuses_final_momentum_shortcut(self):
         q = self.questions["Q-PHY-NLM-MTR-2B-ZERO-04"]
         self.assertIn("Delta p=m(120-120)=0", q["answer"]["summary"])
-        self.assertIn("zero average transfer force", q["answer"]["summary"])
+        self.assertIn("average momentum-transfer force", q["answer"]["summary"])
+        self.assertIn("is zero", q["answer"]["summary"])
         self.assertEqual(q["repair_ref"], "NLM-MTR-2")
 
     def test_average_force_is_not_promoted_to_instantaneous_force(self):
