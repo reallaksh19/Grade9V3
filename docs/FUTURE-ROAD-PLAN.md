@@ -308,6 +308,79 @@ This should be a view over existing evidence, not a second state store.
 
 ---
 
+### 3.9 Derived learner capability ledger and grade-exit view
+
+**Status**
+
+Deferred. Do not implement this while the current learner/profile/observation model is sufficient.
+
+**Trigger**
+
+Real learner use reaches the point where existing observations are trustworthy but answering either of these repeatedly requires manual reconstruction:
+
+~~~text
+What is the learner's current evidence state for each important capability?
+Is Grade 9 complete enough for Grade 10 to be the next productive place to learn?
+~~~
+
+A trigger is stronger if the same difficulty recurs across several matrices or if a parent/maintainer repeatedly has to combine observations, prerequisite state, help level, transfer evidence and scope by hand.
+
+**Smallest likely change**
+
+Add derived views over existing canonical capabilities, scope decisions and learner observations. Do not create a second content database or a competing mastery store.
+
+A learner capability view may expose, where evidence supports it:
+
+~~~text
+capability_ref
+scope role
+current evidence state
+strongest/latest evidence refs
+independence/help status
+error stage
+open prerequisite blockers
+open misconception refs
+transfer / representation / model-choice evidence where relevant
+review due date
+~~~
+
+A separate grade-exit view may classify each in-scope capability as essential, supporting, question-demand, enrichment or non-default extension, then derive whether the learner has enough independent evidence to advance while keeping non-blocking gaps visible.
+
+Possible learner-facing exit outcomes should remain coarse and auditable, for example:
+
+~~~text
+READY
+READY_WITH_NONBLOCKING_GAPS
+NOT_READY
+EVIDENCE_INSUFFICIENT
+~~~
+
+These are progression decisions, not mastery percentages.
+
+**Evidence rules to preserve**
+
+- owner estimates remain routing priors, never proof;
+- hinted/worked-example success remains assisted evidence;
+- immutable attempt/observation history remains the source, with current state derived from it;
+- essential capabilities may require fresh independent evidence and, where appropriate, changed-representation or transfer evidence;
+- known foundational misconceptions may block progression even when an aggregate score looks high;
+- enrichment/non-default extensions must not silently gate grade completion;
+- unknown/unobserved must remain distinct from demonstrated and missing.
+
+**Do not build now**
+
+- another canonical skill/content database;
+- a hand-maintained giant grade × skill matrix;
+- Bayesian/IRT mastery probabilities;
+- numeric mastery percentages;
+- a second learner-state store that duplicates observations;
+- automatic Grade-9 completion inferred from matrix/session readiness;
+- a new Shared abstraction merely to make a future dashboard convenient.
+
+Prefer a query/report/view over the existing evidence model first. Promote this idea only when live learner evidence demonstrates that the existing state cannot answer the progression question cleanly.
+
+---
+
 ## 4. Ideas that should remain out of scope unless evidence becomes overwhelming
 
 Do not add these merely for completeness:
