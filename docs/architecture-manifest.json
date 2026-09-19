@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 166,
-  "relation_count": 219,
+  "component_count": 167,
+  "relation_count": 221,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 73,
+    "TEST": 74,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:9bcd1dc7c2ffee90a7305337436f4e85b48e843902bdf7a91a7619780a442dc6",
+  "digest": "sha256:6c25264de5d70c4813f60cdae01213a5142dfd2cb309aa5aaea17475695d1c95",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -820,15 +820,15 @@
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9590,
-      "sha256": "608921b2598c9ad50671f5b56b00fcf47ef0f0691788cd1d2b50b597769f10dd"
+      "bytes": 10006,
+      "sha256": "8831be2e38738979174aa498223d0fb3f35da238a53c22862e54f8c2b807b136"
     },
     {
       "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7669,
-      "sha256": "876a835b81bc9a9b84f9ff1e669c8282a4f25b5035f7f03699b71d8b251ac5b0"
+      "bytes": 7741,
+      "sha256": "8eafda3685e9e71f760f41d52306d53eb93cd3391484c4ba8b21b67b281bd002"
     },
     {
       "path": "tests/test_g9_nlm_friction_connected.py",
@@ -927,6 +927,13 @@
       "role_description": "Executable checks",
       "bytes": 8702,
       "sha256": "df733f503be90ee83476e20075587341ebfd6f4dfb20716498576ac4f0cc2c37"
+    },
+    {
+      "path": "tests/test_grade9_nlm_momentum_transfer_agent_a_atlas.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9945,
+      "sha256": "dc6181f15b9b26922e57aac458271d9d2bfe398eb4e48ae8f909822b9f5115f8"
     },
     {
       "path": "tests/test_grade9_simple_machines_scope.py",
@@ -1149,8 +1156,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 641121,
-      "sha256": "dc9c2794e7882c90469037388770169da85397d31a7157efca2acbd3a8ef31c2"
+      "bytes": 649170,
+      "sha256": "ae4890d17c8ef015dc434e17094e1418c7cb6ddcc1edd2aba3174bdbd9c6daa0"
     },
     {
       "path": "tools/index.html",
@@ -1959,6 +1966,16 @@
     },
     {
       "from": "tests/test_grade9_nlm_friction_agent_a_atlas.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_momentum_transfer_agent_a_atlas.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_momentum_transfer_agent_a_atlas.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
