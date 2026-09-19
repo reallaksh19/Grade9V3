@@ -17363,7 +17363,18 @@ window.GRADE9V3 = {
                   "repair_ref": "NLM10-4"
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+                  "title": "Atwood Machine & String Constraint Explorer",
+                  "locator": "public/physics/nlm/explorers/atwood-pulleys/index.html",
+                  "section": "Interactive pulley systems, string tension dynamics, and kinematic acceleration constraints",
+                  "supports_claims": [
+                    "CAP-NLM-IDEAL-STRING-TENSION",
+                    "CAP-NLM-SINGLE-STRING-CONSTRAINT"
+                  ]
+                }
+              ]
             },
             {
               "rung": "R11",
@@ -17540,7 +17551,18 @@ window.GRADE9V3 = {
                   "repair_ref": "NLM11-2"
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+                  "title": "Atwood Machine & String Constraint Explorer",
+                  "locator": "public/physics/nlm/explorers/atwood-pulleys/index.html",
+                  "section": "Interactive pulley systems, string tension dynamics, and kinematic acceleration constraints",
+                  "supports_claims": [
+                    "CAP-NLM-IDEAL-STRING-TENSION",
+                    "CAP-NLM-SINGLE-STRING-CONSTRAINT"
+                  ]
+                }
+              ]
             },
             {
               "rung": "R7",
