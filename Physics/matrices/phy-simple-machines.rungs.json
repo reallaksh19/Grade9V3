@@ -17,19 +17,26 @@
         "pulley-count formula"
       ],
       "must_contain": [
-        "Explicit effort/input and load/output sides.",
-        "A force-distance tradeoff showing why force advantage does not create work."
+        "Explicit effort/input and load/output sides for one machine state.",
+        "An ideal force-distance tradeoff showing why force advantage does not create work.",
+        "A real-machine boundary case showing that losses can make input work exceed useful output work without introducing an efficiency formula."
       ],
       "controlled_variation": [
         {
           "phase": 1,
-          "vary": "the effort force",
-          "hold": "the same useful output work in the ideal model",
+          "vary": "effort force",
+          "hold": "the same useful output work in the ideal lossless model",
           "notice": "a smaller effort force requires a larger effort distance"
         },
         {
           "phase": 2,
-          "vary": "whether the machine changes force direction only or also force magnitude",
+          "vary": "model from ideal lossless to real lossy",
+          "hold": "the same load task",
+          "notice": "exact input-work = useful-output-work is an ideal-model equality, not a guarantee for real machines"
+        },
+        {
+          "phase": 3,
+          "vary": "whether the machine changes direction only or also force magnitude",
           "hold": "the same load task",
           "notice": "machine usefulness is broader than force multiplication"
         }
@@ -94,9 +101,9 @@
     }
   ],
   "family": {
-    "invariant_demand": "Identify effort and load sides, decide what the machine changes about force/direction/distance, and keep the work ledger explicit before interpreting force advantage.",
-    "difficult_move": "Recognizing that a larger output force is paid for by input distance or another tradeoff rather than created energy.",
-    "independent_check": "For an ideal machine, the force-distance products must match; mechanical advantage must be dimensionless and based on load divided by effort.",
+    "invariant_demand": "Identify effort and load sides for the same machine state, decide what changes about force/direction/distance, distinguish ideal lossless tradeoffs from real losses, and only then interpret mechanical advantage.",
+    "difficult_move": "Seeing force advantage as a modelled input-output tradeoff rather than energy creation, while not overextending the ideal work equality to every real machine.",
+    "independent_check": "MA must be dimensionless and use load/effort from the same state; an ideal force advantage requires a compensating distance tradeoff; a real lossy machine may need more input work than useful output work.",
     "support_ladder": [
       {
         "level": "high",

@@ -65,7 +65,11 @@ discarded or kept extension-only.
 | G9-3 Gravitation | **DONOR-ADAPTED / AUDITED** | `docs/grade9/G9-3-GRAVITATION-AUTHORING-AUDIT.md`; force/model-scope/local-g semantics copied and adapted locally; energy/orbit retained as extensions |
 | G9-4 Work, Energy and Power | **DONOR-ADAPTED / AUDITED** | `docs/grade9/G9-4-WORK-ENERGY-POWER-AUTHORING-AUDIT.md`; existing seven-rung spine retained, system-boundary and conditional-conservation semantics strengthened |
 | G9-5 Sound | **DONOR-ADAPTED / AUDITED** | `docs/grade9/G9-5-SOUND-AUTHORING-AUDIT.md`; existing five-rung spine retained, longitudinal representation and echo-model boundaries strengthened |
-| G9-6 Simple Machines | NEXT / SCOPE CONFIRMED | current CBSE Class IX Science (2026-27), Standard explicitly includes simple machines and mechanical advantage; matrix audit remains deferred to G9-6 |
+| G9-6 Simple Machines | **AUDITED / COMPLETE** | `docs/grade9/G9-6-SIMPLE-MACHINES-AUTHORING-AUDIT.md`; no dedicated mature donor found, existing local three-rung spine retained with ideal-versus-real boundary strengthened |
+
+## Grade-9 pass status
+
+**COMPLETE.** G9-1 through G9-6 have now been audited under the Grade-9-only authoring freeze. No Grade-10/11 content was pulled down merely for completeness. The next authoring phase may begin Grade 10 only after using this completed Grade-9 baseline as the starting point.
 
 ## Current Grade-9 Physics production order
 

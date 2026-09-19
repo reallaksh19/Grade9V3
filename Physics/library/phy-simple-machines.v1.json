@@ -1,24 +1,24 @@
 {
   "schema_version": "0.1.0",
   "package_id": "LIB-PHY-SIMPLE-MACHINES-G9",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored Grade 9 simple-machines owner-extension spine: effort/load tradeoffs, mechanical advantage, and qualitative lever/pulley/inclined-plane comparison. No board-prescription authority is claimed by this package.",
+  "scope_summary": "Grade-9 Simple Machines spine covering ideal force-distance tradeoffs, mechanical advantage, and qualitative lever/pulley/inclined-plane comparison. The mature prior Physics donor corpus was searched first but contained no useful dedicated simple-machine engineering record, so this topic remains a local Grade9V3 construction under the current Grade-9 scope.",
   "curriculum_mappings": [],
   "resources": [
     {
       "id": "SRC-AUTHOR-SIMPLE-MACHINES",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [],
       "evidence_refs": [],
       "extensions": {},
-      "title": "Author-created Grade 9 simple-machines constructions",
+      "title": "Local Grade-9 Simple Machines teaching source",
       "origin": "AUTHORED",
       "locator": "Physics/library/phy-simple-machines.v1.json",
-      "edition": "0.1.0",
-      "section": "Simple machines Grade 9 spine",
+      "edition": "Grade-9 completion pass",
+      "section": "Ideal work tradeoff, mechanical advantage and machine comparison",
       "last_checked": "2026-09-18",
       "access_status": "FULL_ITEM_INSPECTED",
       "rights_status": "Author-created project draft; curriculum placement researched separately, no external scientific-review authority claimed.",
@@ -34,14 +34,14 @@
       "depth": [
         "FOUNDATION"
       ],
-      "selection_reason": "Fills the missing Grade 9 simple-machines domain while reusing the repository's gate-owned work/energy framework.",
+      "selection_reason": "No useful dedicated simple-machine donor was found in the mature prior Physics engineering corpus; the existing local Grade9V3 teaching already owns the required learner actions and is retained with a narrow ideal-versus-real boundary.",
       "fallback": []
     }
   ],
   "buckets": [
     {
       "id": "BUCKET-PHY-SIMPLE-MACHINES",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-SIMPLE-MACHINES"
@@ -56,7 +56,7 @@
       "title": "Simple machines",
       "topic": "Work, Energy and Simple Machines",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The arithmetic is simple; the conceptual difficulty is seeing force advantage as a distance/direction tradeoff rather than created energy.",
+      "badge_reason": "The arithmetic is simple; the conceptual difficulty is distinguishing force advantage from energy gain and keeping the ideal lossless work equality separate from real-machine losses.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -69,10 +69,11 @@
         }
       ],
       "scope": {
-        "covers": "Authored lever, pulley and inclined-plane reasoning with mechanical advantage and ideal force-distance work tradeoffs.",
+        "covers": "Grade-9 simple-machine reasoning: effort/load input-output labels, ideal force-distance tradeoff, mechanical advantage, and qualitative lever/pulley/inclined-plane comparison.",
         "excluded": [
-          "Detailed pulley-system formula catalogues.",
-          "Torque equations or efficiency formulae beyond the declared relations."
+          "Detailed pulley-count or velocity-ratio formula catalogues.",
+          "Torque/moment equations beyond the current Grade-9 machine comparison.",
+          "Efficiency formulae or loss models beyond the qualitative statement that real machines can require more input work than useful output work."
         ],
         "extension_refs": []
       }
@@ -94,7 +95,7 @@
         "issue19:donor": "PR9"
       },
       "action": "Explain how a simple machine trades effort force, direction or input distance without creating energy.",
-      "success_criterion": "Rejects free-energy interpretations and identifies the compensating distance/direction tradeoff.",
+      "success_criterion": "In the ideal lossless model, rejects free-energy interpretations and identifies the compensating distance/direction tradeoff; for a real machine, does not force exact input-work = useful-output-work when losses are present.",
       "prerequisite_refs": [
         "CAP-WEP-WORK-DIRECTION"
       ],
@@ -117,7 +118,7 @@
         "issue19:donor": "PR9"
       },
       "action": "Compute mechanical advantage from load force divided by effort force.",
-      "success_criterion": "Uses load and effort from the same machine state and interprets MA greater than one as force advantage, not energy gain.",
+      "success_criterion": "Uses load and effort force magnitudes from the same machine state, keeps MA dimensionless, and interprets MA>1 as force advantage rather than efficiency or energy gain.",
       "prerequisite_refs": [
         "CAP-MACHINE-TRADEOFF"
       ],
@@ -140,7 +141,7 @@
         "issue19:donor": "PR9"
       },
       "action": "Compare levers, pulleys and inclined planes by what they change about force, direction and input distance.",
-      "success_criterion": "Identifies the machine's qualitative tradeoff without assuming that every machine reduces effort force.",
+      "success_criterion": "Uses effort/load input-output reasoning to compare levers, pulleys and inclined planes without assuming every machine reduces force or that device name alone fixes the tradeoff.",
       "prerequisite_refs": [
         "CAP-MACHINE-MA"
       ],
@@ -162,43 +163,51 @@
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9"
       },
-      "title": "A machine trades force or direction for distance; it does not create work",
+      "title": "An ideal machine trades force or direction for distance; real machines can also lose useful mechanical work",
       "bucket_id": "BUCKET-PHY-SIMPLE-MACHINES",
       "primary_capability_ref": "CAP-MACHINE-TRADEOFF",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
+      "badge_reason": "A larger output force looks like free energy unless input distance is tracked, while the ideal equality can also be overgeneralized to real machines with losses.",
       "entry_assumptions": [
         "Can distinguish force from work and identify work as a force acting through displacement."
       ],
-      "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
+      "inferential_jump": "A simple machine can reduce effort force or change direction by requiring a different input distance. In the ideal lossless model input work equals useful output work; real machines may require greater input work because of losses, but still do not create energy.",
       "teaching_path": [
         {
           "id": "SM1-1",
           "role": "DECLARE",
-          "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
-          "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
+          "action": "Name the effort point, load point, effort force, load force, effort distance and load distance for one machine state.",
+          "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides for the same event.",
           "inputs": [
             "CAP-WEP-WORK-DIRECTION"
           ],
-          "output": "input: F_effort, d_effort; output: F_load, d_load."
+          "output": "input: F_effort, d_effort; output: F_load, d_load"
         },
         {
           "id": "SM1-2",
           "role": "TRANSFORM",
-          "action": "For an ideal machine, compare the effort and load work using F_effort d_effort = F_load d_load.",
-          "why_valid": "REL-IDEAL-MACHINE-WORK owns the lossless input-output work equality.",
+          "action": "For an ideal lossless machine, compare input and useful output work with F_effort d_effort = F_load d_load.",
+          "why_valid": "The ideal model transfers work without loss; it does not create extra work.",
           "inputs": [
             "REL-IDEAL-MACHINE-WORK"
           ],
-          "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
+          "output": "ideal input work = useful output work"
         },
         {
           "id": "SM1-3",
           "role": "VERIFY",
-          "action": "Double the load force advantage while keeping ideal useful output work fixed and ask what must happen to effort distance.",
-          "why_valid": "The boundary exposes why force multiplication does not create energy.",
+          "action": "Increase force advantage in the ideal model and identify the compensating effort-distance change.",
+          "why_valid": "The force-distance product exposes why force multiplication does not imply energy creation.",
           "inputs": [],
-          "output": "greater force advantage -> compensating greater input distance in the ideal tradeoff."
+          "output": "greater ideal force advantage -> greater input distance for the same useful output work"
+        },
+        {
+          "id": "SM1-4",
+          "role": "VERIFY",
+          "action": "Now label the machine real rather than ideal and ask whether exact equality between input and useful output work is still guaranteed.",
+          "why_valid": "Real losses can make required input work exceed useful output work; the ideal relation is a model condition, not a universal equality for every real device.",
+          "inputs": [],
+          "output": "real machine: input work may exceed useful output work; no free energy"
         }
       ],
       "relation_refs": [
@@ -211,22 +220,28 @@
       "misconceptions": [
         {
           "wrong_idea": "If a machine gives a larger output force than the effort force, it creates energy.",
-          "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still conserve work?",
-          "repair": "Track both force and distance. In an ideal machine, a force advantage requires a compensating distance tradeoff."
+          "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still preserve the ideal work account?",
+          "repair": "Track both force and distance. In the ideal model, force advantage requires a compensating distance tradeoff."
+        },
+        {
+          "wrong_idea": "Because ideal input work equals useful output work, every real machine must also have exactly equal input and useful output work.",
+          "diagnostic_prompt": "A real machine has friction and heating. Must its useful output work exactly equal the work supplied by the user?",
+          "repair": "No. The exact equality is the ideal lossless model. Real losses can make required input work larger than useful output work; energy is transferred to other stores rather than created or destroyed."
         }
       ],
       "exit_task": {
-        "prompt": "An ideal machine lets a person use a smaller effort force to raise a load. Without numbers, what must happen to the effort distance relative to the load distance if useful output work is unchanged?",
+        "prompt": "An ideal machine uses a smaller effort force to raise a load. Explain the compensating distance tradeoff. Then state what changes in the work account if the same device is real and has frictional losses.",
         "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "The effort point must move farther than the load point when the effort force is smaller than the load force.",
+          "summary": "In the ideal model, the smaller effort force requires a larger effort distance so input work equals useful output work. In a real lossy machine, input work can exceed useful output work because some energy is transferred to other stores.",
           "reasoning": [
-            "Ideal input work equals useful output work.",
-            "Reducing input force while keeping output work fixed requires a larger input distance.",
-            "The machine trades force for distance rather than creating energy."
+            "Force advantage alone does not measure work or energy gain.",
+            "Ideal lossless input and useful output work are equal.",
+            "Reducing effort force at fixed useful output therefore requires greater input distance.",
+            "Real losses can divert part of the input energy, so exact useful-output equality is not guaranteed."
           ],
-          "check": "If both force and distance were multiplied at the output with no extra input, output work would exceed input work and violate the ideal model.",
+          "check": "If both output force and output distance increased with no extra input in the ideal model, the proposed account would create work and fail.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
@@ -235,7 +250,7 @@
           "no_numeric_claim": "The exit makes a qualitative ideal-work tradeoff claim without a computed value."
         }
       },
-      "research_contribution": "Author-created simple-machine work-tradeoff construction bound to the gate-owned ideal machine relation.",
+      "research_contribution": "Local Grade9V3 construction retained after donor search found no dedicated mature simple-machine record; this pass strengthens only the ideal-versus-real model boundary.",
       "prerequisite_refs": [
         "CAP-WEP-WORK-DIRECTION"
       ],
