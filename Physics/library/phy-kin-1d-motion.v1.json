@@ -383,9 +383,7 @@
           "role": "VERIFY",
           "action": "Use v=0 only as the event condition for the vertical turning point while keeping the signed gravitational acceleration nonzero in the same instant.",
           "why_valid": "Velocity describes the instantaneous state of motion; acceleration describes how that velocity is changing. At the apex the upward velocity has just decreased to zero and immediately continues toward negative values under the same downward acceleration.",
-          "inputs": [
-            "CAP-PHY-GRAV-FREE-FALL-G"
-          ],
+          "inputs": [],
           "output": "apex event: v=0 at one instant; acceleration remains downward, so +up gives a=-g and +down gives a=+g"
         }
       ],
