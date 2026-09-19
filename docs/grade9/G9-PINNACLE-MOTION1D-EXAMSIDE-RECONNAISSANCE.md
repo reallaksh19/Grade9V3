@@ -124,10 +124,28 @@ The following may now be marked as owner-approved ExamSIDE preparation demand wh
 No ExamSIDE preparation claim is added here for elementary uniform circular motion from the
 Motion-in-a-Straight-Line page.
 
+## Agent-A vertical-gravity closure
+
+The bounded vertical-motion follow-up is now represented without a new capability. The local
+route reuses `CAP-KIN-CONSTANT-ACCELERATION`, `CAP-PHY-GRAV-FREE-FALL-G` and
+`CAP-KIN-ZERO-V-NONZERO-A`, with a dedicated application context and practice family.
+
+The added preparation distinguishes:
+
+- the magnitude `g>0` from the signed acceleration chosen by the coordinate axis;
+- velocity reversal from acceleration reversal;
+- the apex condition `v=0` from the false conclusion `a=0`;
+- signed displacement from total distance;
+- algebraic roots from the future physical event;
+- equation and velocity-time-graph representations of the same constant-g motion.
+
+This changes **local preparation readiness only**. It does not promote the school micro-demand
+beyond `MICRO_TO_CONFIRM`.
+
 ## Stop condition
 
 Stop after representative straight-line ExamSIDE questions map cleanly through the existing
 capabilities.
 
-No new Motion-1D production content should be authored unless that mapping reveals a specific
-independently fail-able gap.
+No new Motion-1D production capability should be authored unless later mapping or learner
+evidence reveals a specific independently fail-able gap.
