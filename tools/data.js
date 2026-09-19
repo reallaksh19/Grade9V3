@@ -4815,6 +4815,11 @@ window.GRADE9V3 = {
                   "action": "Check units and signs before reporting the force.",
                   "why_valid": "The rate-times-momentum product must reduce to force units and the launcher/holding directions must be consistent with the chosen positive ejection direction.",
                   "output": "R Delta p_item units = (1/s)(kg m/s) = kg m/s^2 = N; recoil sign is opposite ejecta momentum gain"
+                },
+                {
+                  "action": "State the time meaning of the computed stream force: R Delta p_item is an average over the repeated events, not a claim that the force on the launcher or on each item is constant at every instant.",
+                  "why_valid": "A rate of repeated discrete momentum changes fixes the average momentum transferred per unit time. The detailed force pulse during one launch requires additional force-versus-time or interaction-time information that this bounded model does not provide.",
+                  "output": "known repeated-event data -> F_avg = R Delta p_item; instantaneous force waveform remains undetermined without extra time-profile information"
                 }
               ],
               "misconceptions": [
@@ -4832,6 +4837,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Once a momentum-rate formula appears, the problem should be treated as rocket or continuously varying-mass dynamics.",
                   "diagnostic_prompt": "Does this task require solving how a launcher's mass and velocity evolve continuously, or only the average momentum transferred by repeated fixed-mass items?",
                   "repair": "Stay with the discrete stream: momentum change per item times items per second. Do not import a rocket equation or variable-mass differential model."
+                },
+                {
+                  "wrong_idea": "The value R Delta p_item is the instantaneous force at every moment during firing.",
+                  "diagnostic_prompt": "If each launch produces a short force pulse followed by a gap, can the event rate and momentum change alone determine the peak force inside the pulse?",
+                  "repair": "No. R Delta p_item gives the average force over the repeated stream. Peak or instantaneous force needs additional interaction-time or force-time information."
                 }
               ],
               "exit_task": {
@@ -4990,6 +5000,66 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-01",
+              "stem": "A fixed launcher processes identical pellets of mass m. In the laboratory frame each pellet enters moving in the positive direction with speed u and leaves in the same direction with speed v, where v > u. The steady processing rate is R pellets per second. Find the average force on the pellets, the interaction force on the launcher, and the external holding force required to keep the launcher fixed.",
+              "origin": "AUTHORED",
+              "answer": "Each pellet gains Delta p = m(v-u), so the average force on the pellets is +Rm(v-u). The pellets exert -Rm(v-u) on the launcher. To keep the launcher fixed, the external holding force is +Rm(v-u)."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-02",
+              "stem": "A launcher is held fixed and ejects 0.020 kg projectiles from rest at 8 projectiles per second. Each leaves at 300 m/s in the positive direction. Find the average force on the projectile stream, the average recoil force on the launcher, and the external holding force.",
+              "origin": "AUTHORED",
+              "answer": "Each projectile gains 6 kg m/s of momentum, so the average force on the stream is +48 N. The stream exerts -48 N on the launcher, and the holding force on the fixed launcher is +48 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-03",
+              "stem": "During a 6.0 s interval, a fixed launcher processes 90 identical 0.010 kg pellets. In the laboratory frame each pellet enters at +20 m/s and leaves at +140 m/s. Find the average force on the pellet stream over the interval.",
+              "origin": "AUTHORED",
+              "answer": "The rate is 90/6=15 pellets/s. Each pellet gains 0.010(140-20)=1.2 kg m/s, so the average force on the stream is +18 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-04",
+              "stem": "A fixed launcher ejects 0.050 kg projectiles to the left from rest at 5 projectiles per second. The coordinate axis is chosen positive to the right, and each projectile leaves with velocity -40 m/s. Give the signed average force on the projectile stream, the signed recoil force on the launcher, and the signed external holding force.",
+              "origin": "AUTHORED",
+              "answer": "Each projectile has Delta p=0.050(-40-0)=-2 kg m/s. The average stream force is -10 N, the recoil force on the launcher is +10 N, and the external holding force on the launcher is -10 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-05",
+              "stem": "A held launcher ejects 120 identical 0.010 kg pellets from rest to +100 m/s during a 4.0 s interval. Compute the average force on the pellet stream. Then state whether this calculation proves that the instantaneous force is equal to that value at every moment of the 4.0 s interval.",
+              "origin": "AUTHORED",
+              "answer": "The rate is 30 pellets/s and each pellet gains 1 kg m/s, so the average stream force is +30 N. This does not determine the instantaneous force at every moment; the detailed pulses require additional time-profile information."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-AVERAGE-05",
+              "stem": "A repeated-launch calculation gives F_avg=30 N for a held launcher. A high-speed force sensor, however, shows short force pulses separated by intervals close to zero force. A learner says the sensor disproves the 30 N result because the force is not constantly 30 N. Decide whether the two observations are compatible and state what additional information would be needed to determine a peak force.",
+              "origin": "AUTHORED",
+              "answer": "They are compatible. The 30 N result is the time-average momentum-transfer force over many events, not an assertion of a constant instantaneous force. Determining a peak force requires additional pulse-duration or force-time-profile information."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-LOG-02",
+              "stem": "A test log records 600 identical projectiles during a 30 s run. Each has mass 5.0 g, enters the launcher at +50 m/s and leaves at +250 m/s. Convert the log into the quantities needed to determine the average holding force on a fixed launcher, and give that force.",
+              "origin": "AUTHORED",
+              "answer": "The log gives R=600/30=20 s^-1 and m=0.0050 kg. Each item gains 0.0050(250-50)=1.0 kg m/s, so the stream force is +20 N, the recoil is -20 N and the required holding force is +20 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-MODEL-01",
+              "stem": "A held launcher fires 0.004 kg projectiles from rest at 20 per second, each leaving at 500 m/s. No acceleration time or barrel length is supplied. A learner says the average holding force cannot be found because F=ma needs the projectile acceleration. Determine whether the requested average force is nevertheless fixed by the given information, and find it if it is.",
+              "origin": "AUTHORED",
+              "answer": "Yes. Each projectile gains 2 kg m/s of momentum and 20 are fired each second, so the projectile stream gains momentum at +40 N. The launcher recoil is -40 N and the required average holding force is +40 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-SUPPORT-03",
+              "stem": "A launcher ejects projectiles to the left while the laboratory x-axis is positive to the right. From the repeated stream calculation, the launcher experiences an average recoil force of +12 N. The launcher is held fixed by a support. State (i) the force of the support on the launcher and (ii) the force of the launcher on the support, with signs, and explain why these two forces must not be confused.",
+              "origin": "AUTHORED",
+              "answer": "The support must exert -12 N on the launcher so the launcher's average net force is zero. By Newton III, the launcher exerts +12 N on the support. These are an interaction pair on different bodies; the +12 N launcher recoil from the projectile stream is a different force acting on the launcher."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-ZERO-04",
+              "stem": "A device passes identical pellets through at a steady nonzero rate. In the chosen laboratory frame each pellet enters at +120 m/s and leaves at +120 m/s. A proposed shortcut says that because pellets emerge carrying momentum, the device must experience a nonzero average recoil equal to rate times m times 120 m/s. Decide whether that conclusion follows from the bounded momentum-transfer model.",
+              "origin": "AUTHORED",
+              "answer": "No. Each pellet has Delta p=m(120-120)=0, so the average momentum-transfer force from this through-stream is zero despite the nonzero momentum carried by the pellets."
             }
           ],
           "capabilities": [
@@ -5054,7 +5124,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 54,
+          "record_count": 65,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5062,17 +5132,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 1,
+            "questions": 10,
             "obligations": 5,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
