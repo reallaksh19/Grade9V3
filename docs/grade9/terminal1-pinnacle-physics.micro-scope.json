@@ -141,7 +141,8 @@
             "CAP-KIN-DISTANCE-DISPLACEMENT"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "average speed versus average velocity",
@@ -150,7 +151,8 @@
             "CAP-KIN-AVERAGE-RATES"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "position-time and velocity-time graph interpretation",
@@ -159,7 +161,8 @@
             "CAP-KIN-MOTION-GRAPHS"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "constant-acceleration model choice and equations",
@@ -168,7 +171,8 @@
             "CAP-KIN-CONSTANT-ACCELERATION"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "vertical one-dimensional motion under gravity / sign handling",
@@ -178,7 +182,8 @@
             "CAP-PHY-GRAV-FREE-FALL-G"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY"
+          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "zero velocity with nonzero acceleration at a turning point",
@@ -187,7 +192,8 @@
             "CAP-KIN-ZERO-V-NONZERO-A"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED"
+          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "elementary uniform circular motion speed / changing velocity direction",
