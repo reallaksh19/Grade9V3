@@ -125,7 +125,8 @@ class Grade9NlmExamSidePracticeAcceptance(unittest.TestCase):
             "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
         )
         self.assertIn("Q-PHY-NLM-MTR-2A-01", momentum["CORE2A"])
-        self.assertEqual(momentum["CORE2B"], [])
+        self.assertNotIn("Q-PHY-NLM-MTR-2A-01", momentum["CORE2B"])
+        self.assertEqual(len(momentum["CORE2B"]), 5)
 
     def test_real_examside_acceptance_fixture_routes_through_current_capability_graph(self):
         report = worksheet_study_plan.resolve(self.fixture)
