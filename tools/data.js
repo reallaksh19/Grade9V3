@@ -945,6 +945,31 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-OPTICS-REFRACTION-LENSES-GRADE10",
+          "title": "Grade 10 refraction, spherical-lens imaging, formula, magnification and power",
+          "grade": 10,
+          "chapter": "Light - Reflection and Refraction",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Refraction angles are measured from the surface normal; the incident ray, refracted ray and normal share a plane, and relative refractive index sets the oblique bend direction.",
+            "For one ordered media pair, n_21 = n_2/n_1 = sin(i)/sin(r) = v_1/v_2 connects relative index, refraction angles and inverse light-speed ratio.",
+            "A rectangular parallel-faced glass slab produces two refractions; ideally the emergent ray is parallel to the incident ray and laterally displaced for oblique incidence.",
+            "A thin spherical-lens image is located by consistent independent principal rays or their backward extensions, all governed by the same lens/focal geometry.",
+            "Under one Cartesian lens convention, 1/v - 1/u = 1/f and m = v/u = h_i/h_o describe one thin-lens paraxial image state, with magnification sign carrying orientation.",
+            "Lens power P = 1/f uses focal length in metres and retains sign; a distant-object sharp-screen image from a convex lens estimates focal length."
+          ],
+          "misconceptions": [
+            "Refraction angles are measured from the interface surface.",
+            "The higher-index medium also has the higher light speed.",
+            "A thin lens uses 1/v + 1/u = 1/f just like a mirror.",
+            "Centimetres can be substituted directly into P = 1/f to obtain dioptres."
+          ]
+        },
+        {
           "gate_id": "PHY-VEC-SCALAR-VECTOR",
           "title": "Magnitude, vector and signed component",
           "grade": 9,
@@ -3905,6 +3930,689 @@ window.GRADE9V3 = {
             "atoms": 76,
             "questions": 0,
             "obligations": 8,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+          "title": "Refraction and spherical lenses",
+          "topic": "Light - Reflection and Refraction",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-OPT-REFRACTION-LAWS",
+              "title": "Measure refraction from the normal and keep both media explicit",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Refraction errors often start before any formula: the wrong reference line or reversed medium order changes the predicted bend.",
+              "entry_assumptions": [
+                "Can draw a surface boundary, a normal and a directed light path."
+              ],
+              "inferential_jump": "At a boundary, incidence and refraction angles are measured from the normal; entering a higher-index medium bends the ray toward the normal, and entering a lower-index medium bends it away.",
+              "teaching_path": [
+                {
+                  "action": "Draw the interface and its perpendicular normal at the point where the incident ray arrives before marking any angle.",
+                  "why_valid": "The laws of refraction define i and r relative to the normal, not the surface.",
+                  "output": "interface + normal + incident ray"
+                },
+                {
+                  "action": "Name medium 1 and medium 2, compare their refractive indices, then place the refracted ray toward the normal if n2 > n1 and away if n2 < n1.",
+                  "why_valid": "The relative change in propagation speed sets the qualitative bend direction.",
+                  "output": "n2 > n1 -> smaller angle to normal; n2 < n1 -> larger angle"
+                },
+                {
+                  "action": "Reverse the ray direction through the same two media and check that the path retraces under the same geometry.",
+                  "why_valid": "Optical reversibility is an independent consistency check on the boundary construction.",
+                  "output": "reversed path retraces the same two segments"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Refraction angles are measured from the surface.",
+                  "diagnostic_prompt": "A ray makes 25° with a flat boundary. Is its incidence angle 25°?",
+                  "repair": "Draw the normal first; incidence and refraction angles are measured from that perpendicular, so the incidence angle is the complement of the surface angle."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A ray travels from air into glass at an oblique angle. Draw the normal, predict the refracted side and explain which line defines i and r.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The refracted ray remains in the incident plane and bends toward the normal on entering the higher-index glass; both angles are measured from the normal.",
+                  "reasoning": [
+                    "Draw the normal at the contact point.",
+                    "Identify air as medium 1 and glass as the higher-index medium 2.",
+                    "Place the refracted ray with a smaller normal-referenced angle."
+                  ],
+                  "check": "Reverse the constructed ray from glass to air; it should retrace the path.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This exit task is a qualitative construction and explanation, not a computed numerical claim."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-OPT-REFRACTIVE-INDEX",
+              "title": "Keep one medium order across angle, speed and refractive-index ratios",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The algebra is short, but inverting only one ratio silently changes the physical medium order.",
+              "entry_assumptions": [
+                "R1: incidence and refraction angles are measured from the normal and the two media are explicitly ordered."
+              ],
+              "inferential_jump": "For one ordered pair of media, relative refractive index n_21 can be written consistently as n_2/n_1 = sin(i)/sin(r) = v_1/v_2.",
+              "teaching_path": [
+                {
+                  "action": "Write the medium order explicitly as light going from medium 1 into medium 2 and keep that order in every symbol.",
+                  "why_valid": "The same physical transition must govern the index, angle and speed ratios.",
+                  "output": "1 -> 2 fixes n_21, i in medium 1, r in medium 2"
+                },
+                {
+                  "action": "Use n_21 = n_2/n_1 = sin(i)/sin(r) = v_1/v_2 for an oblique ray and solve only after the order is fixed.",
+                  "why_valid": "Snell's law and the speed definition of refractive index are two consistent descriptions of the same pair of media.",
+                  "output": "ordered media -> one dimensionless relative index"
+                },
+                {
+                  "action": "Check whether n_21 > 1 predicts v_2 < v_1 and a bend toward the normal for oblique incidence.",
+                  "why_valid": "The numerical ratio should agree with the qualitative geometry from R1.",
+                  "output": "n_21 > 1 -> slower second medium -> toward-normal bend"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The speed ratio has the same order as the refractive-index ratio.",
+                  "diagnostic_prompt": "If n_2 > n_1, is v_2/v_1 also greater than 1?",
+                  "repair": "Index is inversely related to light speed: n_2/n_1 = v_1/v_2, so the higher-index medium has the lower light speed."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Light travels from medium 1 to medium 2 with i = 45° and r = 30°. Without evaluating a decimal, write the correct expression for n_21 and state which medium has the lower light speed.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "n_21 = sin45°/sin30° = v_1/v_2, which is greater than 1; medium 2 therefore has the lower light speed.",
+                  "reasoning": [
+                    "Fix the direction 1 -> 2.",
+                    "Use the angle ratio with i in medium 1 and r in medium 2.",
+                    "Because the ratio exceeds 1, n_2 > n_1 and v_2 < v_1."
+                  ],
+                  "check": "The smaller refraction angle is consistent with bending toward the normal in the higher-index medium.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer compares symbolic ratios and ordering; no independently asserted decimal value is required."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-REFRACTION-LAWS"
+              ]
+            },
+            {
+              "id": "MIC-OPT-GLASS-SLAB-TRACE",
+              "title": "Trace both interfaces of a rectangular glass slab before interpreting i, r and e",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "A one-interface sketch misses the second refraction and therefore the defining parallel-emergence result of a parallel slab.",
+              "entry_assumptions": [
+                "R1-R2: normal-referenced refraction and ordered refractive-index reasoning."
+              ],
+              "inferential_jump": "The second parallel face reverses the angular change of the first, so the ideal emergent ray is parallel to the incident ray but shifted laterally for oblique incidence.",
+              "teaching_path": [
+                {
+                  "action": "Mark both parallel slab faces and draw a separate normal at each incidence point.",
+                  "why_valid": "Each refraction event has its own local normal even though the two normals are parallel.",
+                  "output": "two parallel faces + two normals"
+                },
+                {
+                  "action": "Bend the ray toward the first normal on entering glass and away from the second normal on leaving it.",
+                  "why_valid": "The ray crosses air-glass and then glass-air boundaries with reversed medium order.",
+                  "output": "incident -> refracted inside slab -> emergent"
+                },
+                {
+                  "action": "Measure the angle of incidence i, angle of refraction r and angle of emergence e, then compare the incident and emergent directions rather than only their positions.",
+                  "why_valid": "For an ideal parallel slab, e matches i and the emergent direction is parallel even though the path is laterally displaced.",
+                  "output": "e ≈ i; emergent ray parallel to incident"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "If the emergent ray is parallel to the incident ray, it must lie on the same straight line.",
+                  "diagnostic_prompt": "Can a ray leave a rectangular glass slab parallel to its incident direction but displaced sideways?",
+                  "repair": "Parallel faces restore the direction, not the original line; at oblique incidence the finite slab thickness produces lateral displacement."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Sketch a ray through a rectangular glass slab at oblique incidence; label the angle of incidence i, angle of refraction r and angle of emergence e, then state the two comparisons expected in the ideal model.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The ray bends toward the normal on entry and away on exit; e equals i in the ideal parallel-face model and the emergent ray is parallel to but laterally displaced from the incident ray.",
+                  "reasoning": [
+                    "Draw normals at both faces.",
+                    "Apply the correct medium order at each interface.",
+                    "Compare directions and angle measurements after the second refraction."
+                  ],
+                  "check": "Extend the incident and emergent rays; their directions should be parallel while their lines are distinct for oblique incidence.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This exit task asks for a geometric trace and qualitative ideal-model comparisons, not a measured numerical result."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-REFRACTION-LAWS",
+                "CAP-OPT-REFRACTIVE-INDEX"
+              ]
+            },
+            {
+              "id": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+              "title": "Make two independent principal rays agree on one thin-lens image",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Lens diagrams become memorized cartoons unless every ray obeys the same lens type, focal geometry and image intersection.",
+              "entry_assumptions": [
+                "R1-R2 refraction behaviour; real/virtual image geometry from CAP-OPT-REAL-VIRTUAL-IMAGE."
+              ],
+              "inferential_jump": "A thin spherical lens image is located by the common intersection of valid refracted principal rays or their backward extensions; convex and concave cases are variations of the same consistency demand.",
+              "teaching_path": [
+                {
+                  "action": "Label the principal axis, optical centre O, and focal points F1 and F2 before choosing rays.",
+                  "why_valid": "The principal-ray rules are defined by these geometric references.",
+                  "output": "axis + O + F1/F2 + object"
+                },
+                {
+                  "action": "Use any two consistent principal-ray rules: parallel-to-axis with focal refraction, optical-centre ray approximately undeviated for a thin lens, or the reciprocal focal rule.",
+                  "why_valid": "Each valid ray is constrained by the same thin-lens geometry and therefore must predict the same image point.",
+                  "output": "two independent rays -> one common image point or backward-extension point"
+                },
+                {
+                  "action": "Add a third valid principal ray or backward extension and reject the construction if it does not agree at the same image location.",
+                  "why_valid": "Independent ray redundancy catches a mixed lens type, wrong focus or reversed refraction rule.",
+                  "output": "third ray confirms the same image"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A principal ray can use the convex-lens rule at one step and the concave-lens rule at another if the sketch looks plausible.",
+                  "diagnostic_prompt": "Two rays from the same object point predict different image points. Can both be accepted?",
+                  "repair": "No. Recheck the lens type, focal points and each before/after ray rule until independent rays agree on one image location."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For a given thin convex or concave lens and object position, draw two principal rays, locate the image and classify it as real/virtual, erect/inverted and enlarged/diminished.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Use one consistent pair of principal-ray rules for the stated lens, locate the common actual or backward-extension intersection, then classify the image from that geometry.",
+                  "reasoning": [
+                    "Label axis, optical centre and focal points.",
+                    "Construct two valid rays for the same lens.",
+                    "Use their common intersection or backward-extension intersection to classify the image."
+                  ],
+                  "check": "A third valid principal ray should agree with the same image point within the ideal thin-lens model.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This exit task is a ray construction and classification rather than a computed numerical claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-REFRACTION-LAWS",
+                "CAP-OPT-REFRACTIVE-INDEX",
+                "CAP-OPT-REAL-VIRTUAL-IMAGE"
+              ]
+            },
+            {
+              "id": "MIC-OPT-LENS-SIGN-CONVENTION",
+              "title": "Assign lens signs from coordinates, not from memorized object/image labels",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The same lens equation gives wrong results if u, v or f signs are assigned by label instead of the declared Cartesian directions.",
+              "entry_assumptions": [
+                "R4: lens image geometry and optical centre are already explicit."
+              ],
+              "inferential_jump": "With optical centre as origin and the incident-light direction positive, each longitudinal coordinate and height gets its sign from direction; focal-length sign follows converging versus diverging lens behaviour.",
+              "teaching_path": [
+                {
+                  "action": "Place the optical centre at x = 0, declare the incident-light direction as positive x, and declare upward height positive.",
+                  "why_valid": "A Cartesian sign convention must exist before any lens quantity receives a sign.",
+                  "output": "O = origin; +x follows incident light; +h upward"
+                },
+                {
+                  "action": "Read u, v and each focal point as signed coordinates from O, then assign f positive for a converging convex lens and negative for a diverging concave lens in this convention.",
+                  "why_valid": "The signs follow coordinate location and lens action, not the words object or image.",
+                  "output": "diagram -> signed u, v, f, h_o, h_i"
+                },
+                {
+                  "action": "Move the same diagram to a rotated page while carrying the declared physical +x and +h directions with it and check that the signs remain physically unchanged.",
+                  "why_valid": "Page-left/page-right mnemonics are not the coordinate rule.",
+                  "output": "page rotation -> same physical signs"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Image distance is always positive and object distance is always negative because of their names.",
+                  "diagnostic_prompt": "A virtual image from a concave lens appears on the object side. Must v still be positive?",
+                  "repair": "No. Declare +x from the optical centre first; a point on the opposite side of +x has a negative coordinate regardless of its label."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For a left-to-right incident beam, a real object left of O and a virtual image also left of O, assign the signs of u and v and state the sign of f for a concave lens.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "With +x to the right, both object and virtual image coordinates on the left are negative, so u < 0 and v < 0; a concave/diverging lens has f < 0.",
+                  "reasoning": [
+                    "Set O as zero and +x to the right.",
+                    "Read object and image locations from that axis.",
+                    "Use diverging action to assign negative focal length."
+                  ],
+                  "check": "The signs follow coordinates and remain the same if the page is rotated with the physical +x direction preserved.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This exit task asks for sign classification from a declared coordinate system, not a numerical computation."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-LENS-RAY-CONSTRUCTION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-LENS-EQUATION",
+              "title": "Use the signed thin-lens equation only after geometry and signs agree",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The lens formula is easy to confuse with the mirror formula and easy to overclaim outside the thin-lens paraxial model.",
+              "entry_assumptions": [
+                "R5: signed u, v and f are assigned from one lens Cartesian convention."
+              ],
+              "inferential_jump": "For one thin lens in the paraxial model, signed distances satisfy 1/v - 1/u = 1/f; the equation and a ray construction must describe the same image state.",
+              "teaching_path": [
+                {
+                  "action": "Take 1/v - 1/u = 1/f as the governed Grade-10 thin-lens relation after signs are assigned; do not make formula derivation a learner requirement.",
+                  "why_valid": "The current Class X scope requires the lens formula and explicitly says derivation is not required.",
+                  "output": "1/v - 1/u = 1/f"
+                },
+                {
+                  "action": "Rearrange for the requested signed unknown while preserving the already assigned signs and common length unit.",
+                  "why_valid": "Algebra changes the form, not the physical convention or lens state.",
+                  "output": "for example 1/v = 1/f + 1/u"
+                },
+                {
+                  "action": "Compare the sign and approximate region of the computed image with a principal-ray construction for the same lens and object position.",
+                  "why_valid": "The formula and ray diagram are independent representations of the same thin-lens model.",
+                  "output": "equation image region agrees with ray image region"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A lens uses the mirror relation 1/v + 1/u = 1/f.",
+                  "diagnostic_prompt": "You substitute signed lens distances into 1/v + 1/u = 1/f. What should be checked before doing any arithmetic?",
+                  "repair": "Use the lens relation 1/v - 1/u = 1/f and keep the Cartesian signs; the plus-form mirror equation is a different governed relation."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A thin convex lens has a real object and a ray diagram predicting a real image on the outgoing side. Set up, but do not numerically evaluate, the signed lens equation and state the model checks you would apply to the result.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Use 1/v - 1/u = 1/f with signs from the lens coordinate system; the resulting v should have the sign/region of the ray-constructed image, and the relation is used only as a thin-lens paraxial model.",
+                  "reasoning": [
+                    "Assign u and f from the declared Cartesian convention.",
+                    "Use the minus-form lens equation.",
+                    "Cross-check the predicted image side with principal rays and keep the thin-lens/paraxial limit visible."
+                  ],
+                  "check": "If the algebra predicts an image on a side incompatible with a valid ray construction, recheck signs and formula before accepting the number.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task asks for a symbolic setup and model checks, not a numerical answer."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-LENS-SIGN-CONVENTION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-LENS-MAGNIFICATION",
+              "title": "Keep the sign of lens magnification because it carries orientation",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Unsigned magnification answers size but discards the erect-versus-inverted information the signed lens geometry provides.",
+              "entry_assumptions": [
+                "R6: u and v refer to the same signed thin-lens state."
+              ],
+              "inferential_jump": "For the same lens image, m = h_i/h_o = v/u; |m| gives relative size and sign(m) carries orientation.",
+              "teaching_path": [
+                {
+                  "action": "Write m = h_i/h_o = v/u for the same signed object-image state.",
+                  "why_valid": "The height and distance ratios describe one transverse magnification under the lens convention.",
+                  "output": "m = h_i/h_o = v/u"
+                },
+                {
+                  "action": "Use |m| to classify diminished, same-size or enlarged image and use the sign of m to classify erect or inverted orientation.",
+                  "why_valid": "Magnitude and sign encode different physical information.",
+                  "output": "|m| -> size; sign(m) -> orientation"
+                },
+                {
+                  "action": "Compare both size and orientation conclusions with the principal-ray image instead of checking only a numerical ratio.",
+                  "why_valid": "The ray diagram is an independent physical check on the signed magnification interpretation.",
+                  "output": "magnification agrees with ray image"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Magnification is only a positive size factor, so its sign may be dropped.",
+                  "diagnostic_prompt": "Two lens images have |m| = 2 but opposite signs. Are they physically equivalent?",
+                  "repair": "No. Both are enlarged by the same factor, but the sign distinguishes erect from inverted orientation under the declared convention."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A lens calculation gives u < 0 and v > 0. What sign does m = v/u have, and what orientation should the ray diagram show?",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "m is negative, so the image should be inverted; its size classification still depends on |m|.",
+                  "reasoning": [
+                    "Use the signed distance ratio v/u.",
+                    "Opposite signs make m negative.",
+                    "Check the ray diagram for inverted orientation."
+                  ],
+                  "check": "If the ray construction shows an erect image while m is negative, the sign convention or construction is inconsistent.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task asks for sign/orientation reasoning without asserting a new numerical magnitude."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-LENS-EQUATION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-LENS-POWER",
+              "title": "Compute lens power only after converting focal length to metres",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The most common power error is unit-scale rather than algebra: centimetres used directly in P = 1/f create a factor-of-100 mistake.",
+              "entry_assumptions": [
+                "R5: focal length sign for converging and diverging lenses is already declared."
+              ],
+              "inferential_jump": "Optical power P = 1/f when f is in metres; power is in dioptres, positive for converging lenses and negative for diverging lenses under the declared convention.",
+              "teaching_path": [
+                {
+                  "action": "Write focal length in metres with its Cartesian sign before taking a reciprocal.",
+                  "why_valid": "The dioptre is m^-1, so the numerical unit conversion and sign are part of the physical quantity.",
+                  "output": "signed f in metres"
+                },
+                {
+                  "action": "Compute P = 1/f and keep the sign of the focal length in the result.",
+                  "why_valid": "Power measures converging or diverging strength; dropping the sign removes that distinction.",
+                  "output": "f(m) -> P(D)"
+                },
+                {
+                  "action": "Check that a shorter-magnitude focal length gives larger |P| and that convex/converging versus concave/diverging applications match the sign.",
+                  "why_valid": "Reciprocal scaling and lens action provide independent qualitative checks.",
+                  "output": "smaller |f| -> larger |P|; sign matches lens action"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A focal length of +20 cm gives a power of +1/20 D.",
+                  "diagnostic_prompt": "What must be done to 20 cm before using P = 1/f in dioptres?",
+                  "repair": "Convert 20 cm to 0.20 m first; power in dioptres is the reciprocal of focal length in metres."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A convex lens has f = +0.50 m and a concave lens has f = -0.25 m. Without doing more than reciprocal reasoning, state the sign and relative magnitude of their powers and what those signs mean.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The convex lens has positive power and the concave lens negative power; the concave lens has the larger |P| because its |f| is smaller. Positive denotes converging action and negative diverging action.",
+                  "reasoning": [
+                    "Keep the signs of both focal lengths.",
+                    "Use reciprocal magnitude to compare strength.",
+                    "Interpret power sign using converging/diverging lens action."
+                  ],
+                  "check": "A lens with half the focal-length magnitude should have twice the power magnitude.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task can be checked by exact reciprocal comparison, but it asks only for sign and relative magnitude rather than a new rounded numeric claim."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-LENS-SIGN-CONVENTION"
+              ]
+            },
+            {
+              "id": "MIC-OPT-CONVEX-LENS-FOCAL-PRACTICAL",
+              "title": "Estimate convex-lens focal length from a sharp distant-object image",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The practical depends on recognizing the distant-object approximation and measuring from the optical centre, not merely finding any bright patch on a screen.",
+              "entry_assumptions": [
+                "R4: a convex lens can form a real image on a screen and its focal geometry is understood."
+              ],
+              "inferential_jump": "For a sufficiently distant object, incident rays are nearly parallel and a sharp real image forms near the principal focus, so optical-centre-to-screen distance estimates f.",
+              "teaching_path": [
+                {
+                  "action": "Choose a safe distant object, align the convex lens and screen, and never use direct eye viewing of the Sun as the target.",
+                  "why_valid": "A distant object supplies an approximately parallel incident bundle without introducing avoidable eye or fire hazard.",
+                  "output": "safe distant object + aligned lens + screen"
+                },
+                {
+                  "action": "Move the screen until the image is sharp, then measure from the lens optical-centre plane to the screen rather than from an arbitrary lens holder edge.",
+                  "why_valid": "For a distant object the sharp image lies close to the focal plane; the optical centre is the model's distance origin.",
+                  "output": "sharp image -> measured O-to-screen distance"
+                },
+                {
+                  "action": "Repeat the focus-and-measure cycle and compare readings; explain why finite object distance and alignment make this an estimate rather than an exact infinity-object measurement.",
+                  "why_valid": "Repeatability and model limitations distinguish a measured estimate from a memorized focal-length number.",
+                  "output": "repeated readings -> stable approximate f"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Any clear image distance from a convex lens is its focal length.",
+                  "diagnostic_prompt": "If the object is only a metre from the lens, can the lens-to-screen distance automatically be called f?",
+                  "repair": "No. The practical uses a distant object so incident rays are nearly parallel and the real image forms near the focal plane; finite-distance images obey the full lens relation."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Describe a safe procedure to estimate the focal length of an unknown convex lens using a distant building or window detail, including what distance you measure and why the result is approximate.",
+                "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Align lens and screen toward a safe distant object, focus a sharp inverted image, measure from the optical-centre plane to the screen, repeat, and treat the stable distance as an estimate of f because the object is very far but not mathematically at infinity.",
+                  "reasoning": [
+                    "Use a safe distant object to approximate parallel rays.",
+                    "Focus a real image on a screen.",
+                    "Measure from the optical-centre plane and repeat to assess stability."
+                  ],
+                  "check": "Moving to a much more distant object should make the measured image distance approach a stable value near f.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "This exit task is a procedural design and interpretation; it does not assert a specific measured focal length."
+                }
+              },
+              "prerequisites": [
+                "CAP-OPT-LENS-RAY-CONSTRUCTION"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-LENS-EQUATION",
+              "expression": "1/v - 1/u = 1/f",
+              "meaning": "For one thin spherical lens in the paraxial model, signed image distance minus signed object-distance reciprocal equals reciprocal signed focal length.",
+              "conditions": [
+                "u, v and f use one declared Cartesian lens convention with optical centre as origin.",
+                "The lens is treated as thin and rays are paraxial/small-angle.",
+                "u, v and f refer to the same lens and object-image state."
+              ]
+            },
+            {
+              "id": "REL-LENS-MAGNIFICATION",
+              "expression": "m = v/u = h_i/h_o",
+              "meaning": "For the same lens image, signed transverse magnification equals signed image distance divided by signed object distance and signed image height divided by object height.",
+              "conditions": [
+                "u, v, h_i and h_o use the same declared Cartesian lens convention.",
+                "Object and image describe one lens state.",
+                "h_o is nonzero when the height ratio is evaluated."
+              ]
+            },
+            {
+              "id": "REL-LENS-POWER",
+              "expression": "P = 1/f",
+              "meaning": "Lens power is the reciprocal of signed focal length when focal length is expressed in metres.",
+              "conditions": [
+                "f is expressed in metres before the reciprocal is taken.",
+                "The sign convention for converging positive and diverging negative focal length is retained."
+              ]
+            },
+            {
+              "id": "REL-REFRACTIVE-INDEX",
+              "expression": "n_21 = n_2/n_1 = sin(i)/sin(r) = v_1/v_2",
+              "meaning": "For light travelling from medium 1 into medium 2 at an oblique boundary, the relative refractive index of 2 with respect to 1 equals the index ratio, Snell angle ratio and inverse light-speed ratio.",
+              "conditions": [
+                "The same ordered media pair 1 -> 2 is used in every ratio.",
+                "i and r are measured from the local normal.",
+                "The angle-ratio form is used for a nonzero oblique incidence where sin(r) is nonzero."
+              ]
+            }
+          ],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-OPT-CONVEX-LENS-FOCAL-PRACTICAL",
+              "action": "Estimate the focal length of a convex lens by obtaining a sharp image of a distant object on a screen.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-GLASS-SLAB-TRACE",
+              "action": "Trace and interpret a light ray through a rectangular glass slab using normals at both parallel faces.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-LENS-EQUATION",
+              "action": "Use the signed thin-lens equation within its paraxial model and cross-check the predicted image with a ray construction.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-LENS-MAGNIFICATION",
+              "action": "Use signed lens magnification to connect image size and orientation with signed object and image distances.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-LENS-POWER",
+              "action": "Use signed focal length in metres to calculate lens power and connect sign and magnitude to converging or diverging action.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-LENS-RAY-CONSTRUCTION",
+              "action": "Construct and classify an image formed by a thin spherical lens using a consistent pair of principal rays.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-LENS-SIGN-CONVENTION",
+              "action": "Assign signs to thin-lens distances and heights from the optical centre using one declared Cartesian convention.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-NORMAL-REFLECTION",
+              "action": "Construct a reflected path by measuring both ray directions from the surface normal.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-REAL-VIRTUAL-IMAGE",
+              "action": "Classify an image point from actual reflected-path intersection versus backward-extension intersection.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-REFRACTION-LAWS",
+              "action": "Apply the laws of refraction at one boundary using the surface normal and the relative optical character of the two media.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-OPT-REFRACTIVE-INDEX",
+              "action": "Use relative refractive index to connect refraction angles and light speeds for the same pair of media.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 27,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 11,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -7676,6 +8384,11 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-OPTICS-REFLECTION-MIRRORS-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-OPTICS-REFRACTION-LENSES-AUTHORED",
           "status": "CANDIDATE",
           "admitted": true
         },
