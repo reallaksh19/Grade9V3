@@ -24,7 +24,7 @@ _MISSING = object()
 
 def resolve_pointer(document: Any, pointer: str) -> Any:
     if not pointer.startswith("/"):
-        raise BindingError(f"not an RFC-6901-style pointer: {pointer!r}")
+        raise BindingError(f"not an absolute JSON pointer: {pointer!r}")
     current = document
     for raw in pointer[1:].split("/"):
         token = raw.replace("~1", "/").replace("~0", "~")
