@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:f21e05474214a6dacc724b2993e171d44e6a7d6ff679f59c8dc8111facd8744e",
+  "digest": "sha256:c33e7b433aabdc65f9a77e45af67935fca0a2f5e550d15760cfce99d515b514a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -631,8 +631,8 @@
       "path": "tests/fixtures/agent_path_stress/cases.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9442,
-      "sha256": "a0edef7d61f5a40fe2f961d3e41402c2458751a37728ba1fed42d485f8d0b50c"
+      "bytes": 13249,
+      "sha256": "b14490f7c412b45815ab1ff33b03821a0180a1e2bcfafb6ff1c8a46aafb5f6cb"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
