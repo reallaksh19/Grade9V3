@@ -63,8 +63,8 @@ discarded or kept extension-only.
 | G9-1 Motion | **AUDITED** | `docs/grade9/G9-1-MOTION-AUTHORING-AUDIT.md`; existing six-rung spine reused, broad Vector Add/Sub bucket prerequisite removed |
 | G9-2 Force and Laws of Motion | **AUDITED** | `docs/grade9/G9-2-FORCE-LAWS-AUTHORING-AUDIT.md`; existing seven-rung matrix reused, frame choice bounded to extension demand, false turning-point prerequisite removed |
 | G9-3 Gravitation | **DONOR-ADAPTED / AUDITED** | `docs/grade9/G9-3-GRAVITATION-AUTHORING-AUDIT.md`; force/model-scope/local-g semantics copied and adapted locally; energy/orbit retained as extensions |
-| G9-4 Work, Energy and Power | NEXT | not yet audited under the Grade-9 freeze |
-| G9-5 Sound | QUEUED | not yet audited under the Grade-9 freeze |
+| G9-4 Work, Energy and Power | **DONOR-ADAPTED / AUDITED** | `docs/grade9/G9-4-WORK-ENERGY-POWER-AUTHORING-AUDIT.md`; existing seven-rung spine retained, system-boundary and conditional-conservation semantics strengthened |
+| G9-5 Sound | NEXT | not yet audited under the Grade-9 freeze |
 | G9-6 Simple Machines | SCOPE CONFIRMED; AUDIT QUEUED | current CBSE Class IX Science (2026-27), Standard explicitly includes simple machines and mechanical advantage; matrix audit remains deferred to G9-6 |
 
 ## Current Grade-9 Physics production order
