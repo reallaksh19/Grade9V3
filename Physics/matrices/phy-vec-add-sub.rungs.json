@@ -3,7 +3,7 @@
   "subject": "Physics",
   "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
   "topic": "Vectors / Motion in a Plane",
-  "subtopic": "Vector addition, subtraction and orientation",
+  "subtopic": "Vector addition, subtraction, orientation and magnitude-angle decomposition",
   "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
   "rungs": [
     {
@@ -95,15 +95,18 @@
       "microtopic_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
       "ceiling": [
         "inverse trigonometric direction recovery",
+        "later-time kinematic evolution after an initial velocity is represented",
         "dot product",
         "cross product",
-        "rotated basis"
+        "non-orthogonal basis resolution"
       ],
       "must_contain": [
+        "A decision whether the vector needs magnitude-angle decomposition or is already supplied as signed components.",
         "A magnitude-and-angle vector with the reference axis explicitly marked.",
         "An adjacent/opposite decision before sine/cosine is assigned.",
         "A sign check from the declared x/y directions.",
-        "A magnitude reconstruction check."
+        "Correct binding of the resolved pair to the vector role named by the problem, including u_x/u_y for an initial velocity.",
+        "A magnitude/quadrant reconstruction check and an explicit stop before later-time dynamics."
       ],
       "controlled_variation": [
         {
@@ -114,29 +117,53 @@
         },
         {
           "phase": 2,
+          "vary": "the reference axis from +x to +y while describing the same physical vector",
+          "hold": "the vector and coordinate frame",
+          "notice": "which component uses cosine changes, but the final physical component pair does not"
+        },
+        {
+          "phase": 3,
           "vary": "the quadrant/direction while holding the same acute reference angle and magnitude",
           "hold": "the component magnitudes",
           "notice": "component signs change while the vector magnitude does not"
+        },
+        {
+          "phase": 4,
+          "vary": "the vector role from velocity to force or displacement",
+          "hold": "the same magnitude-angle geometry",
+          "notice": "the projection rule is generic, while units and contextual component labels follow the vector role"
+        },
+        {
+          "phase": 5,
+          "vary": "the input representation from magnitude-angle form to an already-supplied signed component pair",
+          "hold": "the physical vector",
+          "notice": "decomposition is skipped when the component representation already exists"
+        },
+        {
+          "phase": 6,
+          "vary": "a velocity context from generic velocity to explicitly initial velocity",
+          "hold": "the same launch vector",
+          "notice": "decomposition produces u_x and u_y at the initial instant only; later evolution belongs to Motion-in-2D"
         }
       ]
     }
   ],
   "family": {
-    "invariant_demand": "Use one declared axis system, preserve signed directional information, combine corresponding vector components, impose any stated resultant-component constraint, preserve subtraction order, and resolve a magnitude-and-angle vector by explicit projection geometry when components are not already given.",
-    "difficult_move": "Keeping the requested direction attached to the correct signed component equation and identifying the angle reference before assigning sine/cosine, rather than using magnitude arithmetic or story-specific shortcuts.",
-    "independent_check": "Use an alternate representation: rough arrow geometry must agree with component signs; a constrained component must satisfy its target; swapping subtraction operands must negate the result; resolved components must reconstruct the original magnitude.",
+    "invariant_demand": "Use one declared axis system, preserve signed directional information, combine corresponding vector components, impose any stated resultant-component constraint, preserve subtraction order, and when a vector is given by magnitude plus angle, decide whether decomposition is needed before projecting it into an equivalent signed component representation.",
+    "difficult_move": "Keeping direction and representation roles separate: identify the angle reference before sine/cosine, attach signs from the declared axes, and stop vector decomposition at an equivalent component state rather than smuggling in later dynamics.",
+    "independent_check": "Use an alternate representation: rough arrow geometry must agree with component signs; a constrained component must satisfy its target; swapping subtraction operands must negate the result; resolved components must reconstruct the original vector; an initial component pair must not be treated as a later-time law without a separate motion model.",
     "support_ladder": [
       {
         "level": "high",
-        "handed_over": "The axis directions, relevant component equation, and requested vector operation are supplied."
+        "handed_over": "The axis directions, angle reference or component representation, and requested vector operation are supplied."
       },
       {
         "level": "medium",
-        "handed_over": "The axis directions and requested resultant condition are supplied."
+        "handed_over": "The axis directions are supplied; the learner must identify whether decomposition is needed and which component is adjacent/opposite."
       },
       {
         "level": "low",
-        "handed_over": "Only the physical/geometric description and requested resultant are supplied."
+        "handed_over": "Only the physical/geometric vector description and requested output are supplied; the learner chooses a consistent representation and stops at the capability boundary."
       }
     ]
   },
@@ -161,8 +188,20 @@
     },
     {
       "dimension": "representation_translation",
-      "changed_demand": "A vector is given only by magnitude, quadrant and an acute angle to one axis, so signed x/y components must be constructed before vector or kinematics equations can be used.",
-      "information_not_handed_over": "which component is adjacent/opposite to the stated angle and what signs the axes require",
+      "changed_demand": "A vector is described verbally or by a diagram, so the learner must identify the reference axis and convert it to signed components without being handed x/y labels.",
+      "information_not_handed_over": "the explicit angle reference and signed component pair",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A vector is already supplied as signed components, so the learner must decide that magnitude-angle decomposition is unnecessary.",
+      "information_not_handed_over": "whether trigonometric decomposition should be used at all",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "The same vector is described using complementary angles from different perpendicular axes and the learner must prove the decompositions are equivalent.",
+      "information_not_handed_over": "the equality of the two component descriptions",
       "repair_to": "R4"
     }
   ]
