@@ -75,6 +75,10 @@ class Grade9VectorDecompositionAgentAAtlas(unittest.TestCase):
         excluded = " ".join(self.package["buckets"][0]["scope"]["excluded"]).lower()
         self.assertIn("later-time evolution", excluded)
 
+        initial = self.questions["Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05"]
+        self.assertEqual(initial["primary_capability_ref"], "CAP-VEC-ANGLE-DECOMPOSITION")
+        self.assertEqual(initial["secondary_capability_refs"], [])
+
     def test_misconceptions_cover_reference_sign_need_and_boundary(self):
         micro = self.microtopics["MIC-PHY-VEC-ANGLE-DECOMPOSITION"]
         text = " ".join(row["wrong_idea"] for row in micro["misconceptions"]).lower()
