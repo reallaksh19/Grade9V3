@@ -72,7 +72,8 @@
       ],
       "must_contain": [
         "A velocity-time plot crossing zero with a nonzero slope.",
-        "The instant at the top of a vertical trip distinguished from an interval of rest."
+        "The instant at the top of a vertical trip distinguished from an interval of rest.",
+        "An apex event condition where instantaneous velocity is zero while the signed gravitational acceleration remains nonzero."
       ],
       "controlled_variation": [
         {
@@ -86,6 +87,12 @@
           "vary": "the initial upward speed",
           "hold": "the same downward acceleration",
           "notice": "the time of the zero-velocity instant changes but the acceleration at that instant does not"
+        },
+        {
+          "phase": 3,
+          "vary": "the positive vertical axis from upward to downward",
+          "hold": "the same physical turning point and downward gravity",
+          "notice": "v=0 at the apex in either representation while the sign of nonzero acceleration changes only because the coordinate axis changed"
         }
       ],
       "default_entry_eligible": false
@@ -134,7 +141,8 @@
       ],
       "must_contain": [
         "Two velocity-time plots over equal intervals, one straight and one curved.",
-        "A check of whether acceleration is constant before any constant-acceleration equation is selected."
+        "A check of whether acceleration is constant before any constant-acceleration equation is selected.",
+        "A bounded vertical-motion example where one declared axis fixes the sign of constant gravitational acceleration across both ascent and descent."
       ],
       "controlled_variation": [
         {
@@ -148,6 +156,18 @@
           "vary": "the graph from straight to curved",
           "hold": "the same starting velocity and total duration",
           "notice": "one acceleration value no longer describes every part of the motion"
+        },
+        {
+          "phase": 3,
+          "vary": "the declared positive vertical direction",
+          "hold": "the same physical launch, local downward gravity and event",
+          "notice": "u, v, s and a signs transform consistently; the physical time and speed/height predictions do not change"
+        },
+        {
+          "phase": 4,
+          "vary": "the velocity direction from upward through zero to downward",
+          "hold": "one fixed upward-positive axis and the same local gravitational field",
+          "notice": "velocity changes sign at the turning point while acceleration remains a=-g throughout the bounded constant-g interval"
         }
       ]
     },

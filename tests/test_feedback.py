@@ -437,7 +437,11 @@ class FeedbackRuntime(unittest.TestCase):
         )
         self.assertEqual(report["after_repair"]["next_action"], "VERIFY")
         verification = report["after_repair"]["verification"]
-        self.assertEqual(verification["kind"], "EXIT_TASK")
+        self.assertEqual(verification["kind"], "QUESTION")
+        self.assertEqual(
+            verification["question_ref"],
+            "Q-PHY-KIN-VERT-2A-APEX-05",
+        )
         self.assertNotIn("answer", verification)
 
     def test_arbitrary_worksheet_mapping_with_unknown_capability_stops(self):

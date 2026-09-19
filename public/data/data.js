@@ -2918,6 +2918,14 @@ window.GRADE9V3 = {
                   "role": "VERIFY",
                   "output": "turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison.",
                   "inputs": []
+                },
+                {
+                  "id": "KIN3-4",
+                  "action": "Use v=0 only as the event condition for the vertical turning point while keeping the signed gravitational acceleration nonzero in the same instant.",
+                  "why_valid": "Velocity describes the instantaneous state of motion; acceleration describes how that velocity is changing. At the apex the upward velocity has just decreased to zero and immediately continues toward negative values under the same downward acceleration.",
+                  "role": "VERIFY",
+                  "output": "apex event: v=0 at one instant; acceleration remains downward, so +up gives a=-g and +down gives a=+g",
+                  "inputs": []
                 }
               ],
               "misconceptions": [
@@ -3093,6 +3101,16 @@ window.GRADE9V3 = {
                   "role": "VERIFY",
                   "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval.",
                   "inputs": []
+                },
+                {
+                  "id": "KIN4-6",
+                  "action": "For bounded vertical motion in a region where local gravitational acceleration can be treated as constant, choose one positive vertical direction and translate the downward gravitational acceleration into one signed constant a before using any kinematic equation; do not change the sign of a when the velocity reverses.",
+                  "why_valid": "The sign of acceleration is set by the declared coordinate axis and the physical downward direction of gravity, not by whether the object is currently moving upward or downward.",
+                  "role": "DECLARE",
+                  "output": "+up -> a=-g; +down -> a=+g, where g>0 is the local acceleration magnitude; v may change sign while a keeps the same signed value over the constant-g interval",
+                  "inputs": [
+                    "CAP-PHY-GRAV-FREE-FALL-G"
+                  ]
                 }
               ],
               "misconceptions": [
@@ -3100,6 +3118,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
                   "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
                   "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
+                },
+                {
+                  "wrong_idea": "Gravitational acceleration is -g while the object rises and +g after it starts falling.",
+                  "diagnostic_prompt": "If +up is fixed for the whole trip, did the physical direction of gravity reverse when the object's velocity changed from upward to downward?",
+                  "repair": "No. Keep the chosen axis fixed. With +up, gravity remains a=-g throughout the bounded flight; only velocity changes sign at the turning point."
                 }
               ],
               "exit_task": {
@@ -3422,6 +3445,66 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
             }
           ],
           "capabilities": [
@@ -3460,9 +3543,39 @@ window.GRADE9V3 = {
               "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 46,
+          "record_count": 65,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -3470,17 +3583,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 6,
+            "questions": 16,
             "obligations": 10,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -3996,6 +4105,66 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
+            },
+            {
               "id": "Q-PHY-VECREP-2A-01",
               "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
               "origin": "AUTHORED",
@@ -4064,6 +4233,36 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -4082,7 +4281,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 91,
+          "record_count": 110,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -5469,6 +5668,66 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
+            },
+            {
               "id": "Q-PHY-NLM-2A-01",
               "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
               "origin": "AUTHORED",
@@ -5801,6 +6060,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-SIGNED-PAIR-BRIDGE",
               "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
               "provider": "Mathematics",
@@ -5831,7 +6108,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 121,
+          "record_count": 137,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6118,6 +6395,66 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
+            },
+            {
               "id": "Q-PHY-NLM-MTR-2A-01",
               "stem": "A fixed launcher processes identical pellets of mass m. In the laboratory frame each pellet enters moving in the positive direction with speed u and leaves in the same direction with speed v, where v > u. The steady processing rate is R pellets per second. Find the average force on the pellets, the interaction force on the launcher, and the external holding force required to keep the launcher fixed.",
               "origin": "AUTHORED",
@@ -6238,9 +6575,27 @@ window.GRADE9V3 = {
               "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 65,
+          "record_count": 81,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -8245,6 +8600,66 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
+            },
+            {
               "id": "Q-PHY-MACHINE-2A-01",
               "stem": "A simple machine supports a 150 N load with a 50 N effort. Find the mechanical advantage and state what that number does not tell you.",
               "origin": "AUTHORED",
@@ -8313,13 +8728,43 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-WEP-WORK-DIRECTION",
               "action": "Classify work as positive, zero, or negative from force and displacement directions.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 59,
+          "record_count": 77,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -8918,6 +9363,66 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
+            },
+            {
               "id": "Q-PHY-SOUND-2A-01",
               "stem": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
               "origin": "AUTHORED",
@@ -8986,6 +9491,36 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-SOUND-LONGITUDINAL",
               "action": "Distinguish local particle oscillation from longitudinal propagation of compressions and rarefactions.",
               "provider": null,
@@ -9016,7 +9551,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 85,
+          "record_count": 104,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -11058,6 +11593,66 @@ window.GRADE9V3 = {
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
             },
             {
+              "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+              "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+              "origin": "AUTHORED",
+              "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+              "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+              "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+              "origin": "AUTHORED",
+              "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+              "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+              "origin": "AUTHORED",
+              "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+              "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+              "origin": "AUTHORED",
+              "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+              "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+              "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+              "origin": "AUTHORED",
+              "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+              "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+              "origin": "AUTHORED",
+              "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+              "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+              "origin": "AUTHORED",
+              "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent."
+            },
+            {
+              "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+              "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+              "origin": "AUTHORED",
+              "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
+            },
+            {
               "id": "Q-PHY-WEP-2A-01",
               "stem": "Three forces act separately during the same rightward displacement: one rightward, one upward, and one leftward. Classify the work sign in each case without calculating a magnitude.",
               "origin": "AUTHORED",
@@ -11150,6 +11745,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-PHY-GRAV-FREE-FALL-G",
+              "action": "Relate local gravitational acceleration g to gravitational force per unit test mass, derive its test-mass independence from Newton II, and distinguish local g from the universal constant G.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "action": "Apply the Newtonian universal-law magnitude F = G m1 m2 / r^2 with the correct centre-to-centre separation and stated point-mass/external-spherical model scope.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-PHY-GRAV-R1",
+              "action": "Represent Newtonian gravitation as a persistent mutual attractive interaction between two bodies, with each force assigned to the correct receiver and directed by source-receiver geometry rather than by motion.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-WEP-ENERGY-DERIVATIONS",
               "action": "Derive K = 0.5 m v^2 and the near-Earth raised-body potential-energy expression from already-authored work, force and motion relations.",
               "provider": null,
@@ -11192,7 +11805,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 78,
+          "record_count": 94,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -14597,7 +15210,8 @@ window.GRADE9V3 = {
               ],
               "must_contain": [
                 "A velocity-time plot crossing zero with a nonzero slope.",
-                "The instant at the top of a vertical trip distinguished from an interval of rest."
+                "The instant at the top of a vertical trip distinguished from an interval of rest.",
+                "An apex event condition where instantaneous velocity is zero while the signed gravitational acceleration remains nonzero."
               ],
               "controlled_variation": [
                 {
@@ -14611,6 +15225,12 @@ window.GRADE9V3 = {
                   "vary": "the initial upward speed",
                   "hold": "the same downward acceleration",
                   "notice": "the time of the zero-velocity instant changes but the acceleration at that instant does not"
+                },
+                {
+                  "phase": 3,
+                  "vary": "the positive vertical axis from upward to downward",
+                  "hold": "the same physical turning point and downward gravity",
+                  "notice": "v=0 at the apex in either representation while the sign of nonzero acceleration changes only because the coordinate axis changed"
                 }
               ],
               "microtopic": {
@@ -14731,6 +15351,14 @@ window.GRADE9V3 = {
                     "why_valid": "Both can have zero velocity now, but only one immediately changes velocity, so zero velocity alone cannot determine acceleration.",
                     "output": "turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison.",
                     "inputs": []
+                  },
+                  {
+                    "id": "KIN3-4",
+                    "role": "VERIFY",
+                    "action": "Use v=0 only as the event condition for the vertical turning point while keeping the signed gravitational acceleration nonzero in the same instant.",
+                    "why_valid": "Velocity describes the instantaneous state of motion; acceleration describes how that velocity is changing. At the apex the upward velocity has just decreased to zero and immediately continues toward negative values under the same downward acceleration.",
+                    "output": "apex event: v=0 at one instant; acceleration remains downward, so +up gives a=-g and +down gives a=+g",
+                    "inputs": []
                   }
                 ]
               },
@@ -14743,7 +15371,24 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+                  "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+                  "answer": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN3-4"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+                  "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+                  "answer": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                }
+              ],
               "activities": []
             },
             {
@@ -14946,6 +15591,14 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-PRACTICE",
                   "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+                  "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+                  "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN3-4"
                 }
               ],
               "activities": []
@@ -14963,7 +15616,8 @@ window.GRADE9V3 = {
               ],
               "must_contain": [
                 "Two velocity-time plots over equal intervals, one straight and one curved.",
-                "A check of whether acceleration is constant before any constant-acceleration equation is selected."
+                "A check of whether acceleration is constant before any constant-acceleration equation is selected.",
+                "A bounded vertical-motion example where one declared axis fixes the sign of constant gravitational acceleration across both ascent and descent."
               ],
               "controlled_variation": [
                 {
@@ -14977,6 +15631,18 @@ window.GRADE9V3 = {
                   "vary": "the graph from straight to curved",
                   "hold": "the same starting velocity and total duration",
                   "notice": "one acceleration value no longer describes every part of the motion"
+                },
+                {
+                  "phase": 3,
+                  "vary": "the declared positive vertical direction",
+                  "hold": "the same physical launch, local downward gravity and event",
+                  "notice": "u, v, s and a signs transform consistently; the physical time and speed/height predictions do not change"
+                },
+                {
+                  "phase": 4,
+                  "vary": "the velocity direction from upward through zero to downward",
+                  "hold": "one fixed upward-positive axis and the same local gravitational field",
+                  "notice": "velocity changes sign at the turning point while acceleration remains a=-g throughout the bounded constant-g interval"
                 }
               ],
               "microtopic": {
@@ -14994,6 +15660,11 @@ window.GRADE9V3 = {
                     "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
                     "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
                     "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
+                  },
+                  {
+                    "wrong_idea": "Gravitational acceleration is -g while the object rises and +g after it starts falling.",
+                    "diagnostic_prompt": "If +up is fixed for the whole trip, did the physical direction of gravity reverse when the object's velocity changed from upward to downward?",
+                    "repair": "No. Keep the chosen axis fixed. With +up, gravity remains a=-g throughout the bounded flight; only velocity changes sign at the turning point."
                   }
                 ],
                 "exit_task": {
@@ -15139,6 +15810,16 @@ window.GRADE9V3 = {
                     "why_valid": "A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.",
                     "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval.",
                     "inputs": []
+                  },
+                  {
+                    "id": "KIN4-6",
+                    "role": "DECLARE",
+                    "action": "For bounded vertical motion in a region where local gravitational acceleration can be treated as constant, choose one positive vertical direction and translate the downward gravitational acceleration into one signed constant a before using any kinematic equation; do not change the sign of a when the velocity reverses.",
+                    "why_valid": "The sign of acceleration is set by the declared coordinate axis and the physical downward direction of gravity, not by whether the object is currently moving upward or downward.",
+                    "output": "+up -> a=-g; +down -> a=+g, where g>0 is the local acceleration magnitude; v may change sign while a keeps the same signed value over the constant-g interval",
+                    "inputs": [
+                      "CAP-PHY-GRAV-FREE-FALL-G"
+                    ]
                   }
                 ]
               },
@@ -15159,6 +15840,62 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-PRACTICE",
                   "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+                  "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+                  "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+                  "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+                  "answer": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+                  "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+                  "answer": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+                  "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+                  "answer": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+                  "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+                  "answer": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+                  "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+                  "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
+                },
+                {
+                  "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+                  "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+                  "answer": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+                  "repair_ref": "KIN4-6"
                 }
               ],
               "activities": []

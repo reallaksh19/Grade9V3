@@ -83,7 +83,9 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "agent_a:vertical_gravity_integration": "USES_EXISTING_OWNER"
+      },
       "action": "Distinguish travelled path length from the directed start-to-finish change.",
       "success_criterion": "Classify an out-and-back trip as nonzero distance with zero displacement.",
       "prerequisite_refs": [],
@@ -99,7 +101,9 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "agent_a:vertical_gravity_integration": "USES_EXISTING_OWNER"
+      },
       "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
       "success_criterion": "State that zero instantaneous velocity does not imply zero acceleration.",
       "prerequisite_refs": [
@@ -140,7 +144,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:vertical_gravity_integration": "USES_EXISTING_OWNER"
       },
       "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
       "success_criterion": "Uses graph slope for v = u + at, geometric area for s = ut + 0.5at^2, eliminates time graphically/algebraically for v^2 = u^2 + 2as, and rejects exact use when the velocity-time graph is curved.",
@@ -180,7 +185,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:vertical_gravity_integration": "USES_EXISTING_OWNER"
       },
       "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
       "success_criterion": "Reads axes and units first, uses two points from the same graph interval, and distinguishes position-time slope from velocity-time slope.",
@@ -239,7 +245,9 @@
       ],
       "relation_refs": [],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-KIN-VERTICAL-GRAVITY"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "Distance travelled and displacement are always the same number.",
@@ -333,7 +341,9 @@
         "SRC-AUTHOR-KIN-1D"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "agent_a:vertical_gravity_integration": "MOTION1D_VERTICAL_GRAVITY"
+      },
       "title": "Zero velocity at an instant does not mean zero acceleration",
       "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
       "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
@@ -367,11 +377,21 @@
           "why_valid": "Both can have zero velocity now, but only one immediately changes velocity, so zero velocity alone cannot determine acceleration.",
           "inputs": [],
           "output": "turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison."
+        },
+        {
+          "id": "KIN3-4",
+          "role": "VERIFY",
+          "action": "Use v=0 only as the event condition for the vertical turning point while keeping the signed gravitational acceleration nonzero in the same instant.",
+          "why_valid": "Velocity describes the instantaneous state of motion; acceleration describes how that velocity is changing. At the apex the upward velocity has just decreased to zero and immediately continues toward negative values under the same downward acceleration.",
+          "inputs": [],
+          "output": "apex event: v=0 at one instant; acceleration remains downward, so +up gives a=-g and +down gives a=+g"
         }
       ],
       "relation_refs": [],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-KIN-VERTICAL-GRAVITY"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "If velocity is zero at an instant, acceleration must also be zero at that instant.",
@@ -623,7 +643,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:vertical_gravity_integration": "MOTION1D_VERTICAL_GRAVITY"
       },
       "title": "Derive the constant-acceleration equations from one velocity-time graph",
       "bucket_id": "BUCKET-PHY-KIN-1D-MOTION",
@@ -687,6 +708,16 @@
           "why_valid": "A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.",
           "inputs": [],
           "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval."
+        },
+        {
+          "id": "KIN4-6",
+          "role": "DECLARE",
+          "action": "For bounded vertical motion in a region where local gravitational acceleration can be treated as constant, choose one positive vertical direction and translate the downward gravitational acceleration into one signed constant a before using any kinematic equation; do not change the sign of a when the velocity reverses.",
+          "why_valid": "The sign of acceleration is set by the declared coordinate axis and the physical downward direction of gravity, not by whether the object is currently moving upward or downward.",
+          "inputs": [
+            "CAP-PHY-GRAV-FREE-FALL-G"
+          ],
+          "output": "+up -> a=-g; +down -> a=+g, where g>0 is the local acceleration magnitude; v may change sign while a keeps the same signed value over the constant-g interval"
         }
       ],
       "relation_refs": [
@@ -699,12 +730,19 @@
       "representation_refs": [
         "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
       ],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-KIN-VERTICAL-GRAVITY"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
           "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
           "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
+        },
+        {
+          "wrong_idea": "Gravitational acceleration is -g while the object rises and +g after it starts falling.",
+          "diagnostic_prompt": "If +up is fixed for the whole trip, did the physical direction of gravity reverse when the object's velocity changed from upward to downward?",
+          "repair": "No. Keep the chosen axis fixed. With +up, gravity remains a=-g throughout the bounded flight; only velocity changes sign at the turning point."
         }
       ],
       "exit_task": {
@@ -1027,7 +1065,8 @@
         "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
       ],
       "question_family_refs": [
-        "FAM-PHY-KIN-PRACTICE"
+        "FAM-PHY-KIN-PRACTICE",
+        "FAM-PHY-KIN-VERTICAL-GRAVITY"
       ],
       "misconceptions": [
         {
@@ -2064,6 +2103,77 @@
         "Q-PHY-KIN-2A-COV-05",
         "Q-PHY-KIN-PRACTICAL-13"
       ]
+    },
+    {
+      "id": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/jee-main/physics/motion-in-a-straight-line",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "title": "Vertical one-dimensional constant-g kinematics",
+      "capability_refs": [
+        "CAP-KIN-CONSTANT-ACCELERATION",
+        "CAP-KIN-ZERO-V-NONZERO-A",
+        "CAP-KIN-DISTANCE-DISPLACEMENT",
+        "CAP-KIN-MOTION-GRAPHS",
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "solution_structure": [
+        "Declare the vertical axis and origin before assigning signs.",
+        "Represent local gravity as one signed constant acceleration for the whole bounded interval.",
+        "Translate the event into signed kinematic data, such as v=0 at an apex or a specified displacement at impact.",
+        "Choose a constant-acceleration relation from the known quantities rather than changing signs by verbal direction.",
+        "Interpret the signed solution physically and check the event, limiting case or graph representation."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide which event condition and constant-acceleration relation are justified without treating a direction change as an acceleration-sign change.",
+        "representation_translation": "Translate the same physical vertical motion between +up/+down axes, different origins, equations and velocity-time graphs.",
+        "reasoning_steps": "Carry sign convention, gravity model, event condition, equation selection and physical interpretation in dependency order.",
+        "novelty": "Change launch/impact height, direction or representation while preserving one-dimensional constant local gravity."
+      },
+      "safe_variations": [
+        "Reverse the positive vertical axis while preserving the same physical flight.",
+        "Move the coordinate origin while preserving the same two physical events.",
+        "Change from release to upward or downward launch while keeping gravity downward.",
+        "Ask for time, displacement, final velocity or an event comparison using the same constant-g model.",
+        "Translate a symbolic vertical-motion description into a velocity-time graph or vice versa."
+      ],
+      "transfer_boundaries": [
+        "Do not flip the sign of gravitational acceleration when velocity changes direction.",
+        "Do not treat v=0 at the apex as evidence that a=0.",
+        "Do not replace signed displacement by total distance when an equation uses displacement.",
+        "Do not treat the familiar near-Earth value of g as universal at all locations or heights.",
+        "Do not import two-dimensional projectile or variable-acceleration methods into this one-dimensional bounded context."
+      ],
+      "common_wrong_routes": [
+        "Use +g on the way down and -g on the way up despite keeping one fixed axis.",
+        "Set both v and a to zero at the highest point.",
+        "Use total path length in place of signed displacement in a constant-acceleration equation.",
+        "Choose a negative time root because it satisfies the algebra without checking the represented future event.",
+        "Treat equal height on ascent and descent as equal velocity rather than equal speed with opposite directions."
+      ],
+      "item_refs": [
+        "Q-PHY-KIN-VERT-2A-UPWARD-01",
+        "Q-PHY-KIN-VERT-2A-DROP-02",
+        "Q-PHY-KIN-VERT-2A-RETURN-03",
+        "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+        "Q-PHY-KIN-VERT-2A-APEX-05",
+        "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+        "Q-PHY-KIN-VERT-2B-BALCONY-02",
+        "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+        "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+        "Q-PHY-KIN-VERT-2B-VT-GRAPH-05"
+      ]
     }
   ],
   "questions": [
@@ -2449,6 +2559,809 @@
           "reveals": "METHOD"
         }
       ]
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2A-UPWARD-01",
+      "stem": "A ball is projected vertically upward from a marked launch point with speed u. Choose upward as positive and treat the local gravitational acceleration magnitude g as constant. Derive the time to the highest point and the maximum height above the launch point.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "u>0 and g>0.",
+        "Air resistance is neglected.",
+        "The represented height interval uses the local constant-g approximation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g).",
+        "reasoning": [
+          "Declare +up once, so the initial velocity is +u and gravity is a=-g.",
+          "At the apex use only the event condition v=0; acceleration remains -g.",
+          "From v=u+at, 0=u-g t_top, hence t_top=u/g.",
+          "From v^2=u^2+2as, 0=u^2-2gH, hence H=u^2/(2g)."
+        ],
+        "check": "Both results increase with launch speed; stronger local g shortens the rise time and reduces the maximum height.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G",
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "After choosing +up, which signed value must the downward gravitational acceleration have for the whole rise?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "At the top use v=0 as the event condition, then choose one relation for time and one that eliminates time for height.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2A-DROP-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2A-DROP-02",
+      "stem": "A stone is released from rest at height h above the ground. Put the origin at the release point and choose upward as positive. Find the time to reach the ground and the signed velocity just before impact.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "h>0 and g>0.",
+        "Air resistance is neglected.",
+        "Use the local constant-g approximation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The ground is at s=-h, u=0 and a=-g. From -h=-(1/2)gt^2, the future impact time is t=sqrt(2h/g). The impact velocity is v=-gt=-sqrt(2gh).",
+        "reasoning": [
+          "With the origin at release and +up, the ground displacement is -h and gravity is a=-g.",
+          "Use s=ut+0.5at^2 with u=0 to obtain -h=-0.5gt^2.",
+          "Time for the future event is the positive root sqrt(2h/g).",
+          "Then v=u+at=-gt, giving the negative impact velocity -sqrt(2gh)."
+        ],
+        "check": "The negative velocity means downward in the declared +up coordinate; changing the coordinate direction would change signs, not the physical impact speed.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "With the origin at release and +up, what is the signed displacement of the ground?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use u=0, s=-h and a=-g; select the positive time root because the question asks for a future impact.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2A-RETURN-03",
+      "stem": "A ball is projected vertically upward from a marked point with speed u and later returns to the same point. Choose upward as positive. Find the nonzero return time, the signed return velocity, the whole-trip displacement, and the whole-trip distance.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "u>0 and g>0.",
+        "Air resistance is neglected.",
+        "Local g is treated as constant."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "For the return event s=0 with a=-g. The nonzero solution of 0=ut-(1/2)gt^2 is t=2u/g. The return velocity is v=u-gt=-u. Whole-trip displacement is 0, while total distance is 2H=u^2/g.",
+        "reasoning": [
+          "The return point equals the launch point, so signed displacement for the whole trip is zero.",
+          "Solve 0=ut-0.5gt^2: t=0 is the launch event and t=2u/g is the later return.",
+          "Substitute the later time into v=u-gt to obtain v=-u.",
+          "Maximum height is H=u^2/(2g), so path length up plus down is 2H=u^2/g."
+        ],
+        "check": "The final speed equals the launch speed in this ideal model, but the velocity sign reverses; zero displacement does not mean zero distance.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G",
+        "CAP-KIN-DISTANCE-DISPLACEMENT"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Returning to the launch point fixes the signed displacement, not the total path length.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Set s=0 in the constant-acceleration displacement equation and keep the nonzero future-time root.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2A-DOWN-AXIS-04",
+      "stem": "A stone is released from rest h above the ground, but this time choose downward as positive and put the origin at the release point. Find the signed acceleration, ground displacement, time to impact and signed impact velocity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "h>0 and g>0.",
+        "Air resistance is neglected.",
+        "Use the same physical drop as an ordinary free-fall case."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "With +down, a=+g and the ground is at s=+h. The impact time is sqrt(2h/g) and the signed impact velocity is +sqrt(2gh). These describe the same physical drop as a +up solution with negative s, a and v.",
+        "reasoning": [
+          "The downward physical gravity direction now agrees with the positive axis, so a=+g.",
+          "The ground is h units in the positive direction, so s=+h.",
+          "From h=0.5gt^2, t=sqrt(2h/g).",
+          "Then v=gt=+sqrt(2gh)."
+        ],
+        "check": "The impact time and speed are coordinate-invariant; only the signs of directed quantities change when the axis is reversed.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The sign of g follows the declared axis. Does downward gravity align with or oppose a downward-positive coordinate?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use s=+h and a=+g consistently; compare the final physical speed with the +up representation afterward.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2A-APEX-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2A-APEX-05",
+      "stem": "A ball thrown vertically upward reaches its highest point. Choose upward as positive. State the instantaneous velocity and acceleration at the top, then describe the signs of velocity just before and just after that instant.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Local g is treated as constant and positive in magnitude."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "At the top v=0 but a=-g. Just before the top v>0; just after the top v<0. The downward acceleration does not vanish or reverse at the turning point.",
+        "reasoning": [
+          "The highest point is the instant when the upward velocity has decreased to zero.",
+          "Gravity still points downward, so with +up the acceleration remains -g.",
+          "A moment before the apex the ball moves upward, giving positive velocity.",
+          "A moment after it moves downward, giving negative velocity."
+        ],
+        "check": "A horizontal tangent through v=0 on a position-time graph would not imply zero acceleration; a velocity-time graph crosses zero with slope -g.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Does the gravitational interaction disappear at the instant the velocity reaches zero?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare velocity signs just before and after the top while keeping the gravitational acceleration direction fixed.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "KIN3-4"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2B-REVERSED-AXIS-01",
+      "stem": "A ball is physically launched upward with speed u from the origin, but a solver deliberately chooses downward as positive. Write the signed initial velocity and acceleration, derive the signed displacement to the highest point and the time to reach it, and show that the physical maximum height agrees with the usual +up calculation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "u>0 and g>0.",
+        "Downward is the declared positive direction.",
+        "The physical launch remains upward."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "With +down, initial velocity is -u and acceleration is +g. At the top v=0. From 0=u^2+2g s_top, s_top=-u^2/(2g), so the physical height is |s_top|=u^2/(2g). From 0=-u+gt, t_top=u/g.",
+        "reasoning": [
+          "The physical upward launch opposes the downward-positive axis, so u_signed=-u.",
+          "Gravity aligns with the axis, so a=+g for the whole flight.",
+          "Use v=0 at the top without changing a.",
+          "The top lies in the negative coordinate direction, giving negative signed displacement but positive physical height."
+        ],
+        "check": "The coordinate signs differ from a +up solution, but t_top and physical height are identical.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Assigns u_signed=-u and a=+g under the downward-positive convention.",
+            "evidence_of": "Transforms directed quantities with the coordinate choice rather than with verbal up/down rules."
+          },
+          {
+            "criterion": "Obtains a negative signed displacement to the apex.",
+            "evidence_of": "Keeps the apex physically above an origin whose positive axis points downward."
+          },
+          {
+            "criterion": "Recovers the same positive physical height and top time as the +up representation.",
+            "evidence_of": "Checks coordinate invariance of the physical event."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-VERT-2A-UPWARD-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Reverses the coordinate axis while holding the physical upward launch fixed, forcing a signed representation translation rather than a memorized -g rule."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "With downward positive, what signs represent an upward initial velocity and a downward acceleration?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the same apex condition v=0, then interpret a negative displacement as a physical point above the origin.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate the same physical vertical throw into the opposite coordinate convention and verify that physical height and time remain unchanged.",
+        "builds_on": [
+          "Q-PHY-KIN-VERT-2A-UPWARD-01",
+          "CTX-PHY-KIN-VERTICAL-GRAVITY"
+        ]
+      },
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2B-BALCONY-02",
+      "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "u>0, H>0 and g>0.",
+        "Air resistance is neglected.",
+        "Use the bounded constant-g model."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH).",
+        "reasoning": [
+          "The origin is at launch and +up, so the ground has negative displacement -H.",
+          "Insert s=-H, initial velocity +u and a=-g into the displacement equation.",
+          "The quadratic has one negative-time root and one positive future root; keep the positive root.",
+          "Substitute that time into v=u-gt, or use v^2=u^2+2gH and choose the negative sign because impact motion is downward."
+        ],
+        "check": "When H tends to zero, the future return time tends to 2u/g and the impact velocity tends to -u, matching return to the launch level.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses s=-H with +up and keeps a=-g throughout.",
+            "evidence_of": "Represents the changed origin/event without changing the gravity sign."
+          },
+          {
+            "criterion": "Chooses the positive future-time root from the quadratic.",
+            "evidence_of": "Interprets algebraic roots as physical events."
+          },
+          {
+            "criterion": "Reports a negative impact velocity under +up.",
+            "evidence_of": "Uses motion direction to interpret the square-root sign without altering acceleration."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-VERT-2A-DROP-02",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes release from rest into an upward launch from an elevated origin, requiring a quadratic future-event selection while preserving the same signed-gravity model."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "With the launch point as origin and +up, what signed displacement names the ground event?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "The displacement equation produces two algebraic roots; keep the one that represents a time after launch.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must carry the same constant-g sign model through a changed origin and choose the physically relevant future root for an impact event below the launch point.",
+        "builds_on": [
+          "Q-PHY-KIN-VERT-2A-DROP-02",
+          "CTX-PHY-KIN-VERTICAL-GRAVITY"
+        ]
+      },
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2B-SAME-HEIGHT-03",
+      "stem": "A ball projected vertically upward with speed u passes a point h above the launch level once on the way up and once on the way down. Choose upward as positive. Compare the two velocities at that same height without first solving for the two times.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "0<h<u^2/(2g).",
+        "Air resistance is neglected.",
+        "Local g is constant over the flight."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "At displacement s=+h, v^2=u^2-2gh. Therefore the two passages have the same speed sqrt(u^2-2gh) but opposite signed velocities: +sqrt(u^2-2gh) on ascent and -sqrt(u^2-2gh) on descent.",
+        "reasoning": [
+          "Use the no-time constant-acceleration relation with a=-g and the same displacement +h for both passages.",
+          "The equation determines v^2, so it fixes speed magnitude but not direction.",
+          "The ascent event has positive velocity under +up.",
+          "The descent event has negative velocity under +up."
+        ],
+        "check": "Equal height does not mean equal velocity; the signs differ even though the speed magnitudes agree in this ideal model.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses the same signed displacement +h for both passages.",
+            "evidence_of": "Recognizes that position is identical even though motion direction differs."
+          },
+          {
+            "criterion": "Obtains one common value for v^2.",
+            "evidence_of": "Uses the no-time relation without forcing a direction prematurely."
+          },
+          {
+            "criterion": "Assigns opposite signs to ascent and descent velocities.",
+            "evidence_of": "Distinguishes equal speed from equal velocity."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-VERT-2A-RETURN-03",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes the endpoint from the launch level to an intermediate height visited twice, requiring the learner to separate same position and same speed from same signed velocity."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "At the two passages the displacement from launch is the same, but is the direction of motion the same?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the relation containing v squared to get the common speed magnitude, then assign velocity signs from ascent versus descent.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must interpret a squared-velocity result at one position visited twice, preserving equal speed while assigning opposite velocity directions.",
+        "builds_on": [
+          "Q-PHY-KIN-VERT-2A-RETURN-03",
+          "CTX-PHY-KIN-VERTICAL-GRAVITY"
+        ]
+      },
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2B-DIRECTION-SWITCH-04",
+      "stem": "A solver chooses upward as positive for a vertical throw. They use a=-g until the ball reaches the top, then change to a=+g because the ball is moving downward. Decide whether this model change is valid and state the correct signed acceleration before, at and after the apex.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The same upward-positive axis is retained throughout.",
+        "Air resistance is neglected.",
+        "Local gravitational acceleration is treated as constant."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The model change is invalid. With one fixed +up axis, gravity is downward at all three stages, so a=-g before the apex, a=-g at the apex and a=-g after the apex. Velocity changes from positive through zero to negative; acceleration does not reverse.",
+        "reasoning": [
+          "The coordinate axis is fixed, so a physical downward vector always has a negative signed component.",
+          "Gravity does not reverse when the object's velocity reverses.",
+          "At the apex v=0 only instantaneously while a remains -g.",
+          "After the apex velocity becomes negative under the same negative acceleration."
+        ],
+        "check": "Changing to +g while keeping +up would describe an upward physical acceleration after the apex, contradicting the gravity model.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Rejects the acceleration-sign flip while the axis remains fixed.",
+            "evidence_of": "Makes acceleration sign depend on the coordinate convention and physical direction, not velocity direction."
+          },
+          {
+            "criterion": "Keeps a=-g at the apex despite v=0.",
+            "evidence_of": "Separates instantaneous velocity from acceleration."
+          },
+          {
+            "criterion": "Distinguishes the sign change of v from the unchanged sign of a.",
+            "evidence_of": "Represents the turning point correctly."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+      "secondary_capability_refs": [
+        "CAP-PHY-GRAV-FREE-FALL-G"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes from a consistent alternate axis to an inconsistent mid-flight sign switch, testing whether the learner selects acceleration sign from the fixed coordinate convention rather than the direction of velocity."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Did either the positive axis or the physical direction of gravity change when the ball passed through the top?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must reject a familiar but invalid acceleration-sign switch when velocity reverses, preserving one signed gravity model across the turning point.",
+        "builds_on": [
+          "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
+          "CTX-PHY-KIN-VERTICAL-GRAVITY"
+        ]
+      },
+      "repair_ref": "KIN4-6"
+    },
+    {
+      "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-1D",
+      "original_identifier": "AUTHOR-KIN-VERT-2B-VT-GRAPH-05",
+      "stem": "A ball is launched vertically upward from its starting level with speed u. Choose upward as positive. Describe the velocity-time graph from launch until the ball first returns to the launch level, and use the graph to identify the apex time and return time.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Local g is constant and positive in magnitude.",
+        "Only the interval from launch to first return is considered."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval.",
+        "reasoning": [
+          "Constant signed acceleration a=-g makes velocity decrease linearly with time.",
+          "The zero crossing occurs when 0=u-gt, so t=u/g.",
+          "The return event has equal positive and negative v-t areas because net displacement back to the start is zero.",
+          "The straight line therefore reaches -u at t=2u/g."
+        ],
+        "check": "The graph slope stays -g through the zero crossing; a horizontal slope at the apex would incorrectly imply zero acceleration there.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Describes one straight v-t line of slope -g across ascent and descent.",
+            "evidence_of": "Keeps constant gravitational acceleration through the direction reversal."
+          },
+          {
+            "criterion": "Identifies the zero crossing at u/g as the apex.",
+            "evidence_of": "Translates the turning-point event into graph form."
+          },
+          {
+            "criterion": "Uses equal positive/negative areas or the linear relation to place the return at 2u/g with v=-u.",
+            "evidence_of": "Connects graph representation to signed displacement and the return event."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-MOTION-GRAPHS",
+      "secondary_capability_refs": [
+        "CAP-KIN-CONSTANT-ACCELERATION",
+        "CAP-KIN-ZERO-V-NONZERO-A"
+      ],
+      "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+      "context_refs": [
+        "CTX-PHY-KIN-VERTICAL-GRAVITY"
+      ],
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-VERT-2A-APEX-05",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a local before/top/after turning-point description into a full velocity-time representation whose slope, zero crossing and signed areas encode the same constant-g flight."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "With constant a=-g, what shape must a velocity-time graph have, and what does its slope represent?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the zero crossing for the apex; for return to the starting level, the signed area under v(t) over the whole interval must be zero.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate the same vertical constant-g motion into a velocity-time graph, preserving the nonzero slope at the apex and using signed area for the return event.",
+        "builds_on": [
+          "Q-PHY-KIN-VERT-2A-APEX-05",
+          "CTX-PHY-KIN-VERTICAL-GRAVITY"
+        ]
+      },
+      "repair_ref": "KIN3-4"
     }
   ],
   "teaching_routes": [
@@ -2949,6 +3862,61 @@
       "symbol": "v_axis",
       "meaning": "Zero-velocity graph baseline for the authored area decomposition.",
       "locator": "Author-created exact Grade 9 graphical-derivation datum."
+    }
+  ],
+  "application_contexts": [
+    {
+      "id": "CTX-PHY-KIN-VERTICAL-GRAVITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-1D"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION1D_VERTICAL_GRAVITY",
+        "examside:demand_provenance": "Owner-approved ExamSIDE Motion-in-a-Straight-Line demand confirms vertical one-dimensional gravity questions; this context is Grade9V3-authored and does not copy external question text."
+      },
+      "title": "Bounded vertical one-dimensional motion under local gravity",
+      "description": "A one-dimensional vertical-motion context in one inertial frame, with air resistance neglected and local gravitational acceleration treated as constant over the represented height interval.",
+      "invariants": [
+        "Choose one vertical positive direction and keep it for the whole represented interval.",
+        "Use g>0 for the local gravitational-acceleration magnitude; the signed acceleration follows from the chosen axis.",
+        "Gravity points downward throughout the bounded flight even when velocity changes direction.",
+        "At a turning point the instantaneous velocity may be zero while gravitational acceleration remains nonzero.",
+        "The constant-g model is a bounded local approximation and does not claim that g has one universal value everywhere."
+      ],
+      "variation_dimensions": [
+        {
+          "name": "axis_direction",
+          "description": "Use +up or +down while preserving the same physical motion."
+        },
+        {
+          "name": "event",
+          "description": "Vary launch, apex, intermediate height, return to launch level and impact event."
+        },
+        {
+          "name": "origin",
+          "description": "Move the coordinate origin between launch point, ground or another marked height without changing the physical trajectory."
+        },
+        {
+          "name": "initial_state",
+          "description": "Vary upward launch, downward launch and release from rest while preserving the same signed-gravity logic."
+        }
+      ],
+      "task_objectives": [
+        "Translate local downward gravity into a signed constant acceleration after the axis is declared.",
+        "Choose an appropriate constant-acceleration equation from the known quantities and requested event.",
+        "Use event conditions such as v=0 at an apex or a specified displacement without changing the acceleration sign.",
+        "Interpret signed velocity and displacement physically and verify the result against the represented event."
+      ],
+      "scope_limits": [
+        "No air resistance or terminal velocity.",
+        "No large-altitude varying-g trajectory model.",
+        "No two-dimensional projectile decomposition.",
+        "No variable-acceleration calculus.",
+        "No new vertical-motion mastery capability."
+      ]
     }
   ]
 }
