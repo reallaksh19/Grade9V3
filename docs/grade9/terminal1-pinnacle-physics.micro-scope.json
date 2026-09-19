@@ -106,14 +106,27 @@
             "CAP-VEC-COMPONENT-SUM"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "ENRICH_OR_AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "ENRICH_OR_AUTHOR_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "unit-vector i/j notation",
           "local_state": "LOCAL_GAP",
           "local_refs": [],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "normalize a nonzero 2D vector to unit direction",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "priority_if_confirmed": "HIGH"
         }
       ]
     },
@@ -367,7 +380,8 @@
             "CAP-NLM-FBD-BODY-OWNERSHIP"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "friction direction from relative sliding/tendency",
@@ -376,7 +390,8 @@
             "CAP-NLM-FRICTION"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "Newton II with signed net external force",
@@ -385,7 +400,8 @@
             "CAP-NLM-SECOND-LAW"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "REUSE_IF_DEMANDED"
+          "action": "REUSE_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "Newton III interaction pairs on different bodies",
@@ -403,7 +419,8 @@
             "CAP-NLM-FRAME-CHOICE"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED"
+          "action": "KEEP_NONDEFAULT_USE_WHEN_EXPLICITLY_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "normal reaction in varied geometries",
@@ -413,7 +430,8 @@
             "CAP-NLM-SECOND-LAW"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY"
+          "action": "ENRICH_OR_REUSE_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "inclined-plane dynamics",
@@ -424,30 +442,35 @@
             "CAP-NLM-FRICTION"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "CONFIRM_VECTOR_DECOMPOSITION_DEMAND_FIRST"
+          "action": "REUSE_WITH_VECTOR_BRIDGE_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "two-body contact-force systems",
           "local_state": "LOCAL_GAP",
           "local_refs": [],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "string tension / connected bodies",
           "local_state": "LOCAL_GAP",
           "local_refs": [],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "pulley constraints / connected acceleration",
           "local_state": "LOCAL_GAP",
           "local_refs": [],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "coefficient-based static/kinetic friction calculations",
@@ -457,7 +480,21 @@
             "CAP-NLM-SECOND-LAW"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_OR_ENRICH_ONLY_IF_CONFIRMED"
+          "action": "ENRICH_OR_AUTHOR_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "momentum-transfer / rate-of-momentum force (recoil or ejection stream)",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "action": "AUTHOR_EXPLICIT_DEMAND_EXTENSION",
+          "priority_if_confirmed": "MEDIUM",
+          "demand_note": "Owner-supplied ExamSIDE machine-gun PYQ requires force as rate of momentum transfer; keep distinct from a full collision/momentum-conservation curriculum."
         },
         {
           "micro": "momentum / impulse / conservation under an NLM chapter",
