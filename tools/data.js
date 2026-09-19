@@ -4697,7 +4697,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 30,
+            "questions": 24,
             "obligations": 15,
             "authoring_requirements": [
               {
