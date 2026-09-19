@@ -215,7 +215,9 @@
         "grade9_track": "STANDARD",
         "curriculum_mapping_policy": "VERIFIED",
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:packet": "NLM_FRICTION",
+        "agent_a:semantic_boundary": "Owns qualitative contact-level friction existence and direction from relative sliding or slip tendency. It does not own coefficient-based magnitude/state selection; that belongs to CAP-NLM-FRICTION-QUANT."
       },
       "curriculum_mappings": [],
       "external_provider": null,
@@ -260,7 +262,9 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_FRICTION",
+        "agent_a:semantic_boundary": "Owns static-feasibility and kinetic-friction model selection after the body/contact model is declared: determine N, solve the no-slip friction demand, compare with the static bound, and switch models only when the contact state justifies it. It does not create separate capabilities for every incline, block-stack, or force-angle context."
       },
       "action": "Decide whether static friction can supply the tangential force required by the chosen-body dynamics; if relative sliding is established, use the declared kinetic-friction model.",
       "success_criterion": "Obtains the actual normal force from the free-body dynamics, computes the friction required for no slip, accepts static friction only when |f_required| <= mu_s N, uses equality only at impending slip, and switches to |f_k| = mu_k N only after relative sliding is established.",
@@ -1033,7 +1037,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:packet": "NLM_FRICTION"
       },
       "title": "Friction opposes relative sliding at a contact",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1070,6 +1075,14 @@
           "why_valid": "The counterexample falsifies the shortcut 'friction always points opposite velocity'.",
           "inputs": [],
           "output": "friction direction follows contact slip tendency, not a universal page-direction rule."
+        },
+        {
+          "id": "NLM5-4",
+          "role": "VERIFY",
+          "action": "Decide whether any tangential friction is required at all; allow friction to be zero when the contact has neither relative sliding nor a tendency to slide.",
+          "why_valid": "Friction is a responsive tangential contact force, not an automatic nonzero force merely because two rough surfaces touch.",
+          "inputs": [],
+          "output": "contact-state check -> friction may be zero when no tangential force is required."
         }
       ],
       "relation_refs": [],
@@ -1080,6 +1093,11 @@
           "wrong_idea": "Friction always points opposite the object's velocity.",
           "diagnostic_prompt": "A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box's motion?",
           "repair": "Decide the relative sliding tendency at the contact first; friction opposes that tendency."
+        },
+        {
+          "wrong_idea": "Two rough surfaces in contact must always exert a nonzero friction force.",
+          "diagnostic_prompt": "A crate and rough platform already move together at constant velocity. If no horizontal force is otherwise required, must the friction force be nonzero merely because the surfaces are rough?",
+          "repair": "No. Ask what relative sliding or slip tendency would occur without friction. If none exists and no tangential force is required, friction can be zero."
         }
       ],
       "exit_task": {
@@ -1312,7 +1330,8 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE"
+        "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
+        "agent_a:packet": "NLM_FRICTION"
       },
       "title": "Quantitative static and kinetic friction conditions",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1381,6 +1400,11 @@
           "wrong_idea": "The normal force is always mg.",
           "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
           "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+        },
+        {
+          "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+          "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+          "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
         }
       ],
       "exit_task": {
@@ -2324,7 +2348,12 @@
         "Pulley acceleration ratios are not imported from another geometry; derive the active string-length relation."
       ],
       "common_wrong_routes": [
-        "A force must keep acting in the direction of motion or the object must stop."
+        "A force must keep acting in the direction of motion or the object must stop.",
+        "Friction always points opposite the object's velocity.",
+        "Rough contact means the friction force must be nonzero.",
+        "Static friction always equals mu_s N instead of taking the value required up to that limit.",
+        "N is always mg even when another force has a perpendicular component.",
+        "A supplied mu_k is permission to use kinetic friction before sliding is established."
       ],
       "item_refs": [
         "Q-PHY-NLM-2A-01",
@@ -2343,7 +2372,14 @@
         "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
         "Q-PHY-NLM-2B-STRING-MODEL-03",
         "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
-        "Q-PHY-NLM-2B-FRAME-SELECTION-05"
+        "Q-PHY-NLM-2B-FRAME-SELECTION-05",
+        "Q-PHY-NLM-2A-FRICTION-ZERO-08",
+        "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+        "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
+        "Q-PHY-NLM-2B-FRICTION-WALKING-02",
+        "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+        "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
+        "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05"
       ]
     }
   ],
@@ -2589,7 +2625,8 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "agent_a:packet": "NLM_FRICTION"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -2633,7 +2670,8 @@
           "text": "Decide the relative sliding tendency at the contact first; friction opposes that tendency.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "repair_ref": "NLM5-2"
     },
     {
       "id": "Q-PHY-NLM-2A-COV-06",
@@ -2765,7 +2803,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "agent_a:packet": "NLM_FRICTION"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -2792,7 +2831,8 @@
         "check": "For F below this threshold, the required friction is below its maximum; setting f_s = mu_s N for every smaller F would incorrectly predict the same friction at all forces.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR"
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -2817,7 +2857,8 @@
           "text": "Now isolate only the upper block. What horizontal force must accelerate it at that same rate? Compare that required friction with the static limit.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "repair_ref": "NLM8-3"
     },
     {
       "id": "Q-PHY-NLM-2A-CONNECTED-02",
@@ -3085,7 +3126,8 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
-        "examside:demand_provenance": "ExamSIDE demand family—static-friction feasibility is not handed over; representative source https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w"
+        "examside:demand_provenance": "ExamSIDE demand family—static-friction feasibility is not handed over; representative source https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w",
+        "agent_a:packet": "NLM_FRICTION"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -3546,6 +3588,548 @@
         ]
       },
       "repair_ref": "NLM4-3"
+    },
+    {
+      "id": "Q-PHY-NLM-2A-FRICTION-ZERO-08",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-FRICTION-ZERO-08",
+      "stem": "A crate rests on a rough horizontal floor. No horizontal force acts on it, and there is no tendency for the crate to slide relative to the floor. What is the friction force on the crate?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The crate remains at rest.",
+        "No other horizontal interaction acts on the crate."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The friction force is zero.",
+        "reasoning": [
+          "Friction responds to relative sliding or a tendency to slide at the contact.",
+          "Here no horizontal force or other effect creates a tangential slip tendency.",
+          "Therefore no tangential contact force is required, so f=0."
+        ],
+        "check": "Roughness provides the ability to supply friction when needed; it does not require a nonzero friction force in every contact state.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Ask what relative sliding or slip tendency would appear at the contact if friction were absent.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "If no tangential force is required to prevent relative sliding, the friction value need not be nonzero.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM5-4"
+    },
+    {
+      "id": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-FRICTION-STATIC-09",
+      "stem": "A 5 kg block rests on a rough horizontal floor. A 12 N horizontal pull is applied, but the block remains at rest. The coefficient of static friction is 0.6 and take g=10 m/s^2. Find the actual static friction and its limiting value.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The pull is horizontal.",
+        "The block remains at rest."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The actual static friction is 12 N opposite the pull; the limiting value is 30 N.",
+        "reasoning": [
+          "Because the block remains at rest, the horizontal net force is zero.",
+          "Static friction therefore supplies the 12 N needed to balance the pull, rather than automatically taking its maximum value.",
+          "The vertical forces give N=mg=50 N.",
+          "The limiting static friction is mu_s N=0.6(50)=30 N, and 12 N is within that limit."
+        ],
+        "check": "The actual friction must change if the applied pull changes while the block remains static; the 30 N value is only the maximum available.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Because the block remains at rest, what horizontal force must friction balance?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find the required static friction first; compare it with mu_s N only afterward.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM8-2"
+    },
+    {
+      "id": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-FRICTION-KINETIC-10",
+      "stem": "A 5 kg block is already sliding to the right on a horizontal floor. A constant 18 N horizontal force pulls it to the right. The coefficient of kinetic friction is 0.20 and take g=10 m/s^2. Find the acceleration.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Relative sliding is already established.",
+        "The applied force is horizontal."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The block accelerates at 1.6 m/s^2 to the right.",
+        "reasoning": [
+          "The vertical force balance gives N=mg=50 N.",
+          "Because the block is sliding, kinetic friction has magnitude mu_k N=0.20(50)=10 N and points left, opposite the relative sliding.",
+          "The horizontal net force is 18-10=8 N to the right.",
+          "Newton's second law gives a=8/5=1.6 m/s^2 to the right."
+        ],
+        "check": "The kinetic model is justified by the stated sliding; no static-friction feasibility test is needed for this already-sliding state.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The contact state is already given: which friction model belongs to established sliding?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find N first, then f_k=mu_k N, set its direction opposite the sliding, and apply Newton II.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "NLM8-4"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-FRICTION-WALKING-02",
+      "stem": "A runner accelerates forward without the shoe slipping on the ground. Determine the direction of the static friction force exerted by the ground on the shoe, and justify it from the relative slip tendency at the contact.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The shoe does not slip on the ground during the instant considered."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The ground's static friction on the shoe points forward.",
+        "reasoning": [
+          "Without sufficient friction, the runner's foot would tend to slip backward relative to the ground while pushing against it.",
+          "Static friction opposes that relative slip tendency.",
+          "Therefore the ground exerts forward friction on the shoe, helping accelerate the runner forward."
+        ],
+        "check": "The friction direction may be the same as the runner's ground-frame velocity; the defining comparison is the contact-level relative slip tendency.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Identifies the backward relative slip tendency of the shoe at the contact if friction were absent.",
+            "evidence_of": "Uses the contact interaction rather than the runner's overall velocity as the direction rule."
+          },
+          {
+            "criterion": "Places the ground's friction force on the shoe forward.",
+            "evidence_of": "Applies the friction-direction rule consistently."
+          },
+          {
+            "criterion": "Does not invoke 'friction always opposes motion' as the justification.",
+            "evidence_of": "Distinguishes contact slip tendency from object velocity."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-COV-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Transfers the conveyor-belt contact rule to human locomotion, where the force on the moving body again need not oppose its ground-frame velocity."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Ignore the runner's overall velocity for a moment. Which way would the shoe tend to slip relative to the ground if the tangential contact force vanished?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Point static friction opposite that relative slip tendency.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate the same relative-slip rule from a belt-box contact to a shoe-ground interaction without using the object's ground-frame motion as the sign rule.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-COV-04",
+          "MIC-PHY-NLM-FRICTION"
+        ]
+      },
+      "repair_ref": "NLM5-2"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-FRICTION-ZERO-03",
+      "stem": "A rough horizontal platform and a crate on it are already moving together at constant velocity. At the instant considered there is no other horizontal force on the crate. Must a nonzero friction force act on the crate merely because the surfaces are rough?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The crate has no horizontal acceleration.",
+        "The crate and platform have no relative sliding or tendency to separate in speed at the instant considered."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "No. The friction force can be zero.",
+        "reasoning": [
+          "If friction vanished at this instant, the crate would continue with its current velocity because no other horizontal force changes it.",
+          "The platform is also moving at that same constant velocity, so no relative slip tendency is created.",
+          "Therefore no tangential contact force is required and static friction may be zero."
+        ],
+        "check": "Roughness sets the range of friction the contact can provide; it does not force the contact to use a nonzero value.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Tests the contact state by imagining friction removed.",
+            "evidence_of": "Recognizes that friction is responsive rather than automatic."
+          },
+          {
+            "criterion": "Concludes that no relative slip tendency appears in the stated constant-velocity state.",
+            "evidence_of": "Uses the correct contact-level criterion."
+          },
+          {
+            "criterion": "Allows f=0 despite a rough contact.",
+            "evidence_of": "Rejects the 'rough means nonzero friction' shortcut."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-FRICTION-ZERO-08",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a stationary zero-friction case into a moving rough-contact case where the learner must decide whether friction is needed rather than equating motion with friction."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "If the friction force vanished for an instant, would the crate begin sliding relative to the platform under the stated conditions?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide not to invoke a friction force despite rough moving contact; the contact model is selected from slip tendency, not from the presence of motion or a coefficient.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-FRICTION-ZERO-08",
+          "MIC-PHY-NLM-FRICTION"
+        ]
+      },
+      "repair_ref": "NLM5-4"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
+      "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "0 < theta < 90 degrees.",
+        "The block remains in contact with the floor.",
+        "Assume cos(theta)-mu_s sin(theta) > 0."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "At impending slip, N=mg+P sin(theta) and P cos(theta)=mu_s N, so P_max = mu_s m g / (cos(theta)-mu_s sin(theta)).",
+        "reasoning": [
+          "The downward component of P increases the normal reaction, so the vertical balance gives N=mg+P sin(theta).",
+          "For a static state, friction must oppose the horizontal push; the maximum available value is reached only at impending slip.",
+          "At the threshold, P cos(theta)=mu_s[mg+P sin(theta)].",
+          "Rearranging gives P[cos(theta)-mu_s sin(theta)]=mu_s mg and hence the stated P_max."
+        ],
+        "check": "Setting theta=0 reduces the result to P_max=mu_s mg, the ordinary horizontal-push threshold.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Computes N from the vertical force balance including the downward component of P.",
+            "evidence_of": "Does not assume N=mg."
+          },
+          {
+            "criterion": "Uses static-friction equality only at impending slip.",
+            "evidence_of": "Distinguishes a threshold condition from an unconditional friction law."
+          },
+          {
+            "criterion": "Derives the threshold expression with the force-angle term retained in both horizontal and vertical components.",
+            "evidence_of": "Carries the coupled normal-force/friction effect through the algebra."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a known sub-threshold horizontal pull into an angled-force threshold derivation where the applied force itself changes the normal reaction and therefore the friction limit."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Before using any friction limit, how does the downward component of the applied force change the normal reaction?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "At the largest no-slip force, the static inequality is exactly at its boundary; combine that threshold with the vertical force balance.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must carry a force that changes both the tangential demand and the normal reaction through the static-friction threshold instead of treating mu_s mg as a fixed limit.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+          "MIC-PHY-NLM-FRICTION-QUANT"
+        ]
+      },
+      "repair_ref": "NLM8-1"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "NLM_FRICTION",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-FRICTION-TOP-BLOCK-05",
+      "stem": "A block of mass m rests on a block of mass M on a smooth floor. A horizontal force F is applied to the upper block m. The coefficient of static friction between the blocks is mu_s. Derive the largest F for which the blocks move together without slipping.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The lower block has no other horizontal contact force from the floor.",
+        "The contact between the two blocks remains horizontal."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "If the blocks move together, a=F/(m+M). The lower block needs friction f_required=Ma. With N=mg at the interface, no slip requires MF/(m+M) <= mu_s m g, so F_max = mu_s m g (m+M)/M.",
+        "reasoning": [
+          "Under the no-slip assumption, treat both blocks as one system to obtain the common acceleration a=F/(m+M).",
+          "Now isolate the lower block M. Its only horizontal force is the friction from the upper block, so f_required=Ma=MF/(m+M).",
+          "The interface normal is N=mg because the upper block has no vertical acceleration or other vertical force.",
+          "Static contact is feasible only while f_required <= mu_s N; equality gives the threshold F_max."
+        ],
+        "check": "The friction needed to accelerate the lower block is the quantity tested against the static limit; using f=mu_s N for every smaller F would erase the dependence on F.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses one common acceleration only under the provisional no-slip constraint.",
+            "evidence_of": "Treats shared acceleration as a contact-state consequence rather than an automatic fact."
+          },
+          {
+            "criterion": "Isolates the lower block to identify the required friction as Ma.",
+            "evidence_of": "Assigns friction to the correct body and does not cancel the internal force on an individual-body FBD."
+          },
+          {
+            "criterion": "Compares the required friction with mu_s mg and solves the resulting threshold.",
+            "evidence_of": "Tests static feasibility rather than assuming limiting friction from the start."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-COMMON-ACCEL",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Moves the applied force from the lower block to the upper block, reversing which body needs friction for the shared acceleration while preserving the same no-slip feasibility logic."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Assume no slip provisionally. Which acceleration would the two-block system then have?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "After finding the common acceleration, isolate the lower block: what horizontal force must give that block its acceleration?",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must rebuild the no-slip force account after the applied force moves to the other body, rather than copying the friction equation from the earlier stacked-block threshold item.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+          "MIC-PHY-NLM-FRICTION-QUANT"
+        ]
+      },
+      "repair_ref": "NLM8-2"
     }
   ],
   "teaching_routes": [
