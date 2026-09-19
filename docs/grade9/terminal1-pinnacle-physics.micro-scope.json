@@ -443,19 +443,24 @@
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
           "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY",
-          "external_question_demand": "CONFIRMED_EXAMSIDE"
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "demand_note": "Inclined-plane and angled-force normal-reaction cases are now covered through the existing FBD/Newton-II/friction owners; broader geometry families remain demand-gated."
         },
         {
           "micro": "inclined-plane dynamics",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
           "local_refs": [
             "CAP-NLM-FBD-BODY-OWNERSHIP",
             "CAP-NLM-SECOND-LAW",
-            "CAP-NLM-FRICTION"
+            "CAP-NLM-FRICTION",
+            "CAP-NLM-FRICTION-QUANT",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "CONFIRM_VECTOR_DECOMPOSITION_DEMAND_FIRST",
-          "external_question_demand": "CONFIRMED_EXAMSIDE"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH",
+          "demand_note": "Local preparation now covers fixed smooth/rough inclined-plane modelling, contact-aligned axes, altered normal reaction under an applied force, friction-state reasoning and a rough-versus-smooth timing transfer. Moving wedges, rolling and broader constraint mechanics remain deferred."
         },
         {
           "micro": "two-body contact-force systems",
