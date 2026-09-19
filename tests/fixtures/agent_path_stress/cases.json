@@ -416,6 +416,91 @@
           "choose different target segments for CORE1A and CORE1B"
         ]
       }
+    },
+    {
+      "case_id": "APSTRESS-G9-MOTION-75-DEFAULT",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — One-dimensional motion. Student knowledge estimate: 75%. Use the estimate only to select the starting rung and preserve prerequisite checks. Keep the turning-point zero-velocity/nonzero-acceleration diagnostic available for explicit demand, but do not make that extension rung part of the ordinary Grade-9 teaching route.",
+      "request": {
+        "request_id": "APSTRESS-G9-MOTION-75-DEFAULT",
+        "subject": "Physics",
+        "subtopic": "One-dimensional motion",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 75,
+            "by": "owner",
+            "instruction": "Use 75% only as a conservative starting coordinate; ordinary routing must skip extension-only coordinates."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R2",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-KIN-DISTANCE-DISPLACEMENT"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "segment": [
+          "R2",
+          "R4G",
+          "R4",
+          "R5"
+        ],
+        "must_not": [
+          "treat 75% as mastery evidence",
+          "select extension-only R3 merely because 75% is above its ladder position",
+          "append R3 to the default CORE1A/CORE1B teaching segment",
+          "drop the distance/displacement prerequisite check",
+          "remove or delete the R3 diagnostic capability instead of keeping it reachable by explicit demand",
+          "choose different target segments for CORE1A and CORE1B"
+        ]
+      }
+    },
+    {
+      "case_id": "APSTRESS-G9-NLM-100-DEFAULT",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Newton's first law and free-body diagrams. Student knowledge estimate: 100%. Use the estimate only to select the starting rung and preserve prerequisite checks. Keep observer-frame/pseudo-force reasoning available only for explicit extension demand; an ordinary Grade-9 route must not enter or append that frame-choice rung.",
+      "request": {
+        "request_id": "APSTRESS-G9-NLM-100-DEFAULT",
+        "subject": "Physics",
+        "subtopic": "Newton's first law and free-body diagrams",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 100,
+            "by": "owner",
+            "instruction": "Use 100% only as the highest conservative default-route coordinate; do not infer mastery or enter the frame-choice extension."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R7",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-NLM-FBD-BODY-OWNERSHIP"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "segment": [
+          "R7"
+        ],
+        "must_not": [
+          "treat 100% as mastery evidence",
+          "select extension-only R4 at ladder position 100",
+          "append R4 after R7 in the default CORE1A/CORE1B teaching segment",
+          "skip the body-ownership prerequisite check for Newton's third law",
+          "delete the frame-choice capability instead of preserving explicit extension routing",
+          "choose different target segments for CORE1A and CORE1B"
+        ]
+      }
     }
   ]
 }

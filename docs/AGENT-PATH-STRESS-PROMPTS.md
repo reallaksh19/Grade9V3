@@ -431,6 +431,75 @@ Fail if the agent treats 90% as mastery, loses the cross-topic Work/Energy prere
 mixes measurements from different machine states, assumes all useful machines multiply
 force, or imports torque/pulley/efficiency formula catalogues into the Grade-9 route.
 
+---
+
+## APSTRESS-G9-MOTION-75-DEFAULT
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — One-dimensional motion. Student knowledge
+> estimate: 75%. Use the estimate only to select the starting rung and preserve prerequisite
+> checks. Keep the turning-point zero-velocity/nonzero-acceleration diagnostic available for
+> explicit demand, but do not make that extension rung part of the ordinary Grade-9
+> teaching route.
+
+### Expected path
+
+```text
+resolve current Grade-9 Motion matrix
+→ owner estimate 75
+→ extension-only R3 at ladder_position 70 is ignored for automatic entry
+→ conservative default floor = R2 at ladder_position 45
+→ prerequisite check:
+     CAP-KIN-DISTANCE-DISPLACEMENT
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B canonical segment:
+     R2 → R4G → R4 → R5
+→ R3 remains reachable only by explicit question/owner demand
+```
+
+This is the post-#88 Motion checkpoint. It proves the diagnostic turning-point capability is
+still retained without becoming ordinary Grade-9 placement merely because a rough owner
+estimate crosses its coordinate.
+
+Fail if the agent treats 75% as mastery, chooses R3 automatically, appends R3 to the default
+segment, skips the distance/displacement prerequisite check, deletes the R3 diagnostic
+instead of preserving explicit routing, or gives CORE1A and CORE1B different targets.
+
+---
+
+## APSTRESS-G9-NLM-100-DEFAULT
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Newton's first law and free-body diagrams.
+> Student knowledge estimate: 100%. Use the estimate only to select the starting rung and
+> preserve prerequisite checks. Keep observer-frame/pseudo-force reasoning available only
+> for explicit extension demand; an ordinary Grade-9 route must not enter or append that
+> frame-choice rung.
+
+### Expected path
+
+```text
+resolve current Grade-9 NLM matrix
+→ owner estimate 100
+→ extension-only frame-choice R4 at ladder_position 100 is ignored for automatic entry
+→ highest default coordinate = R7 at ladder_position 94
+→ prerequisite check:
+     CAP-NLM-FBD-BODY-OWNERSHIP
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B canonical segment = R7 only
+→ R4 remains reachable only by explicit question/owner demand
+```
+
+This is the post-#88 Force/Laws checkpoint. A 100% estimate reaches the highest ordinary
+Grade-9 coordinate; it does not convert the retained observer-frame extension into default
+teaching or into mastery evidence.
+
+Fail if the agent selects or appends R4 automatically, skips the body-ownership prerequisite
+check, treats 100% as mastery, deletes the frame-choice capability instead of preserving
+explicit extension routing, or gives CORE1A and CORE1B different targets.
+
 
 ---
 

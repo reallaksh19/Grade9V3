@@ -35,6 +35,14 @@ records remain available when an owner explicitly routes to that extension.
 This routing flag is operational only. It is not curriculum authority and does not replace the
 scope/source decisions in the topic audits.
 
+## Post-completion Grade-9 regression hardening
+
+The content pass stays complete. Regression work may still add **Grade-9-only frozen stress
+cases** when a shared routing fix exposes a durable boundary worth protecting. After PR #88,
+Motion's turning-point diagnostic rung and Force/Laws' observer-frame rung are both retained
+but excluded from automatic owner-estimate/default teaching routes. Frozen agent-path cases
+cover those boundaries without reopening content authoring or broadening curriculum scope.
+
 ## Subsequent workstream
 
 Grade-10 discovery subsequently began from current `main` in PR #85 using the same donor-first,

@@ -9,7 +9,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import plan_request, resolve_request  # noqa: E402
+from Shared.tools import compile_execution_packet, plan_request, resolve_request  # noqa: E402
 
 
 class FrozenAgentPathStressPrompts(unittest.TestCase):
@@ -88,6 +88,31 @@ class FrozenAgentPathStressPrompts(unittest.TestCase):
                 self.assertIn("CORE1A", products)
                 self.assertIn("CORE1B", products)
                 self.assertEqual(products["CORE1A"]["state"], products["CORE1B"]["state"])
+
+
+    def test_cases_with_frozen_segments_exclude_nondefault_extensions(self):
+        for case in self.suite()["cases"]:
+            expected_segment = case["expected"].get("segment")
+            if expected_segment is None:
+                continue
+            report = plan_request.plan(case["request"])
+            with self.subTest(case=case["case_id"]):
+                actual = [
+                    row["rung"] for row in compile_execution_packet._segment(report)
+                ]
+                self.assertEqual(actual, expected_segment)
+
+    def test_every_completed_grade9_production_slice_has_a_frozen_case(self):
+        ids = {case["case_id"] for case in self.suite()["cases"]}
+        required = {
+            "APSTRESS-G9-MOTION-75-DEFAULT",
+            "APSTRESS-G9-NLM-100-DEFAULT",
+            "APSTRESS-G9-GRAV-60-TEACH",
+            "APSTRESS-G9-WEP-95-DERIVATION",
+            "APSTRESS-G9-SOUND-95-REFLECTION",
+            "APSTRESS-G9-SIMPLE-MACHINES-90",
+        }
+        self.assertTrue(required <= ids, sorted(required - ids))
 
     def test_source_backed_practice_without_source_stays_explicit(self):
         for case in self.suite()["cases"]:
