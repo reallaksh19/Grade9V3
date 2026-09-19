@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 156,
-  "relation_count": 206,
+  "component_count": 158,
+  "relation_count": 207,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 63,
+    "TEST": 65,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:9cb7230b75aaf1b78d9378ec743b0466c754e587056acf9afb0b123ffe4170ff",
+  "digest": "sha256:978584c768a254c5013dfbd644e50e30f9df9b86ebb2f4f18a234ef1c98f7c4f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -635,6 +635,13 @@
       "sha256": "5e38f3254b812a483d3c81cb1fcd44b1362bcab4fb2cdbe0ae7c79b0ce06d548"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-comedk-nlm-momentum-rate.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 938,
+      "sha256": "723b68341bd7075d1344429e82c56b9c206db0d4e28d5d5b54e75d52fc01779d"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane-core.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -806,8 +813,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16773,
-      "sha256": "b611dec0aabf19a230caeaec162896c348f6ebd7fc85d4a2643ef5fe171e4bb2"
+      "bytes": 16915,
+      "sha256": "6bda2c02d162f4c4c90137f5601112ebef57507067b826e85575fa707c3590a4"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -857,6 +864,13 @@
       "role_description": "Executable checks",
       "bytes": 2623,
       "sha256": "ad8bf4f7f2040bd0e67d80775eed43efce49978179e59f7b1521dd2598f6be99"
+    },
+    {
+      "path": "tests/test_grade9_nlm_momentum_rate.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2212,
+      "sha256": "75f01dc27956922a4a58097ae2c01b8975b8761b185f9934845ff83043f00f67"
     },
     {
       "path": "tests/test_grade9_simple_machines_scope.py",
@@ -1044,8 +1058,8 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5308,
-      "sha256": "a5235106aecc427daf86ab21c2a9c042a50b2a8d9912156b48d5386d84f2f900"
+      "bytes": 5394,
+      "sha256": "93325c784596abf353b84e544a9997397833ef028c17c739c141e68f6ab3b8b6"
     },
     {
       "path": "tests/test_tools.py",
@@ -1079,8 +1093,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 546231,
-      "sha256": "cc2fcb2adc08fc84dc6b27f5e1a8986fb2599550876961b3ed2411380792ca1b"
+      "bytes": 563936,
+      "sha256": "e5ce7ed1442a2c7b7d60128ada4484c7d550ec26bbcac297560885aa3236373d"
     },
     {
       "path": "tools/index.html",
@@ -1824,6 +1838,11 @@
     },
     {
       "from": "tests/test_grade9_nlm_friction_connected.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_momentum_rate.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

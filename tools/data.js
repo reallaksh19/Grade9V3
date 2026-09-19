@@ -1153,6 +1153,25 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-PINNACLE-NLM-MOMENTUM-RATE",
+          "title": "Average force from momentum transferred per unit time",
+          "grade": 9,
+          "chapter": "NLM",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Average force requires momentum change per unit time; one item's momentum alone is not a force.",
+            "Identical per-item momentum changes add linearly over a steady counting interval.",
+            "Newton-third-law recoil is equal and opposite on the launcher/body, not a cancellation on the emitted item's FBD."
+          ],
+          "misconceptions": [
+            "One bullet's momentum can be equated directly to holding force."
+          ]
+        },
+        {
           "gate_id": "PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
           "title": "Direction recovery and unit-vector normalization",
           "grade": 9,
@@ -5119,6 +5138,300 @@ window.GRADE9V3 = {
             "atoms": 76,
             "questions": 0,
             "obligations": 5,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-PINNACLE-NLM-MOMENTUM-RATE",
+          "title": "Pinnacle NLM momentum-transfer-rate extension",
+          "topic": "NLM",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-NLM-FIRST-LAW"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+              "title": "Convert repeated-item momentum transfer into average recoil force",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The key failure is dimensional/model selection: one bullet's momentum is not a force until the learner introduces the transfer interval or firing rate.",
+              "entry_assumptions": [
+                "Can distinguish the bullet/item from the launcher and place Newton-third-law partners on different bodies.",
+                "Can multiply mass by velocity and preserve a one-dimensional sign convention."
+              ],
+              "inferential_jump": "Repeated per-item momentum changes accumulate over time, so a firing/ejection rate converts momentum per item into momentum per second and therefore average force.",
+              "teaching_path": [
+                {
+                  "action": "Choose the emitted item and signed direction; write p_i=m v_i and p_f=m v_f for that item.",
+                  "why_valid": "The rate calculation must start from a well-defined momentum change of one chosen item.",
+                  "output": "Example from rest to +v: Delta p_item = m v."
+                },
+                {
+                  "action": "If r identical items are emitted each second, sum their momentum changes over one second.",
+                  "why_valid": "Repeated identical changes add linearly in the counting interval.",
+                  "output": "In 1 s, Delta p_total = r Delta p_item."
+                },
+                {
+                  "action": "Divide the total momentum transfer by the interval to obtain average force.",
+                  "why_valid": "Momentum divided by time has force dimensions and is the interval-average rate of momentum change.",
+                  "output": "For the 1 s count: |F_avg| = r |Delta p_item| = r m |v_f-v_i|."
+                },
+                {
+                  "action": "Use Newton III to assign the equal-and-opposite average recoil to the launcher, then check units.",
+                  "why_valid": "The bullet force and launcher recoil are interaction partners on different bodies; kg m/s^2 is N.",
+                  "output": "Emitted momentum is forward; launcher recoil is opposite; r m Delta v has units N."
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The recoil force is numerically equal to one bullet's momentum.",
+                  "diagnostic_prompt": "A bullet momentum has units kg m/s. What factor is needed before it can equal a force?",
+                  "repair": "Introduce time: divide total momentum transfer by seconds, or multiply per-bullet momentum by bullets per second."
+                },
+                {
+                  "wrong_idea": "Bullet and launcher forces cancel on the bullet FBD.",
+                  "diagnostic_prompt": "Does the launcher recoil force act on the bullet?",
+                  "repair": "No. Third-law partners act on different bodies; calculate the bullet momentum transfer, then place the equal-and-opposite recoil on the launcher."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A launcher fires identical bullets from rest. Each bullet leaves with forward momentum p and the steady firing rate is r bullets per second. State the average recoil-force magnitude and direction.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The average recoil-force magnitude is r p, directed opposite the outgoing bullets.",
+                  "reasoning": [
+                    "Each bullet gains forward momentum p.",
+                    "In one second, r bullets gain total forward momentum r p.",
+                    "Average force magnitude is momentum transferred per second: r p.",
+                    "Newton III places an equal-and-opposite average interaction on the launcher."
+                  ],
+                  "check": "r has unit 1/s, so r p has kg m/s^2 = N; reversing the firing direction reverses recoil.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The symbolic result directly tests the steady repeated-item momentum-rate model."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-SECOND-LAW",
+                "CAP-NLM-THIRD-LAW"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-NLM-MOMENTUM-TRANSFER-RATE",
+              "expression": "p = m v; F_avg = Delta p / Delta t; steady identical items at rate r: |F_avg| = r |Delta p_item|",
+              "meaning": "Average external force equals momentum transferred per unit time; for identical emitted items at a steady rate, their per-item momentum changes add linearly over the counting interval.",
+              "conditions": [
+                "Momentum and velocity refer to the same chosen item/body and one inertial frame.",
+                "The first-slice relation treats the item mass as constant over its stated momentum change.",
+                "F_avg is the average net force associated with the stated momentum transfer over Delta t.",
+                "For a steady stream of identical items, the per-item momentum change and item rate refer to the same counting interval.",
+                "The equal-and-opposite recoil interpretation belongs to the launcher/body on the other side of the interaction, not to the emitted item's own free-body equation."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+              "action": "Relate a stated momentum change to average force, including steady repeated-item momentum transfer and equal-and-opposite recoil.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-THIRD-LAW",
+              "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 51,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 3,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -9130,6 +9443,11 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-PINNACLE-NLM-FRICTION-CONNECTED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-PINNACLE-NLM-MOMENTUM-RATE",
           "status": "CANDIDATE",
           "admitted": true
         },
