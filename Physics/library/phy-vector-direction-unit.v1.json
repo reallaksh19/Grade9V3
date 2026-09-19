@@ -377,7 +377,7 @@
           "action": "Place alpha in the previously identified quadrant and report the requested directed angle or verbal direction.",
           "why_valid": "Quadrant placement restores the signs discarded by the positive ratio.",
           "inputs": [],
-          "output": "directed angle consistent with both component signs"
+          "output": "quadrant I: theta=alpha; quadrant II: theta=180°-alpha; quadrant III: theta=180°+alpha; quadrant IV: theta=360°-alpha for standard 0°<=theta<360° reporting"
         },
         {
           "id": "VDR-4",
@@ -935,7 +935,7 @@
         "CAP-INVERSE-TRIG-DIRECTION-BRIDGE",
         "CAP-VEC-DIRECTION-FROM-COMPONENTS"
       ],
-      "classification": "DEPENDENCY_GAP",
+      "classification": "SCIENTIFIC_REVIEW_REQUIRED",
       "description": "Physics holds only a draft bridge for inverse-tangent reference-angle recovery; Mathematics-provider acceptance is still required before the dependency can be treated as locally demonstrated.",
       "next_action": "Keep the direction rung routable as READY_WITH_BRIDGE and accept Mathematics evidence when it becomes available; do not self-certify the bridge from Physics."
     }
