@@ -1,0 +1,446 @@
+{
+  "plan_id": "G9-TERMINAL1-PINNACLE-PHYSICS-MICRO-SCOPE-2026-27",
+  "status": "PLANNING_ONLY",
+  "subject": "Physics",
+  "grade": 9,
+  "track": "Pinnacle",
+  "exam": "Terminal Examination 1",
+  "exam_date": "2026-10-05",
+  "source_ref": "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md",
+  "source_scope": "CHAPTER_LEVEL_ONLY",
+  "rules": [
+    "The school sheet confirms the four Pinnacle chapter labels only.",
+    "No microtopic is marked school-confirmed without a school chapter/worksheet/revision/sample-paper source.",
+    "LOCAL_READY means Grade9V3 already owns usable teaching for the learner action; it does not prove the school will assess it.",
+    "LOCAL_GAP means Grade9V3 does not yet own a durable canonical teaching capability for the learner action; author only after school or real-question demand confirms it.",
+    "OWNER_ESTIMATE and stress fixtures remain routing evidence, never mastery evidence.",
+    "This planning file introduces no runtime readiness state, matrix field or curriculum-authority enum."
+  ],
+  "chapters": [
+    {
+      "school_label": "Vectors",
+      "school_demand": "CHAPTER_CONFIRMED",
+      "micro": [
+        {
+          "micro": "scalar versus vector information",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-VECTOR-VS-SCALAR"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "declared axes and signed vector components",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT",
+            "CAP-SIGNED-PAIR-BRIDGE"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "graphical vector subtraction / negative vector",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "component-wise vector addition in common axes",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-COMPONENT-SUM"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "resultant component constraint / cancellation",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-RESULTANT-CONSTRAINT"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "subtraction order A-B versus B-A",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-SUB-ORDER"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "magnitude from perpendicular components",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-RIGHT-TRIANGLE-BRIDGE",
+            "CAP-RIGHT-TRIANGLE"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "arbitrary-angle decomposition into x/y components",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "recover vector direction angle from components",
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-VEC-COMPONENT-SUM"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "ENRICH_OR_AUTHOR_ONLY_IF_CONFIRMED"
+        },
+        {
+          "micro": "unit-vector i/j notation",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+        }
+      ]
+    },
+    {
+      "school_label": "Motion 1 D",
+      "school_demand": "CHAPTER_CONFIRMED",
+      "micro": [
+        {
+          "micro": "distance versus displacement",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-DISTANCE-DISPLACEMENT"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "average speed versus average velocity",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-AVERAGE-RATES"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "position-time and velocity-time graph interpretation",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-MOTION-GRAPHS"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "constant-acceleration model choice and equations",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "vertical one-dimensional motion under gravity / sign handling",
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-KIN-CONSTANT-ACCELERATION",
+            "CAP-PHY-GRAV-FREE-FALL-G"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY"
+        },
+        {
+          "micro": "zero velocity with nonzero acceleration at a turning point",
+          "local_state": "LOCAL_EXTENSION_AVAILABLE",
+          "local_refs": [
+            "CAP-KIN-ZERO-V-NONZERO-A"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED"
+        },
+        {
+          "micro": "elementary uniform circular motion speed / changing velocity direction",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        }
+      ]
+    },
+    {
+      "school_label": "Motion in 2 D",
+      "school_demand": "CHAPTER_CONFIRMED",
+      "micro": [
+        {
+          "micro": "vector representation and signed components in a plane",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VECTOR-VS-SCALAR",
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "vector addition/subtraction in common axes",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-COMPONENT-SUM",
+            "CAP-GRAPHICAL-SUBTRACT",
+            "CAP-VEC-SUB-ORDER"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "relative position at the same time",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-SAME-TIME"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "relative velocity in a plane",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-RELATIVE-V",
+            "CAP-VECTOR-CHECK"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "resultant-direction/component constraints such as river crossing",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-RESULTANT-CONSTRAINT",
+            "CAP-RELATIVE-V"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "arbitrary-angle initial-vector decomposition",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "independence of orthogonal x/y motion coupled by common time",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "two-dimensional constant-acceleration component solving",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "horizontal projectile model",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "oblique projectile model",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "projectile time of flight / maximum height / range",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "TREAT_AS_APPLICATIONS_UNLESS_FAILURE_PROVES_SEPARATE_CAPABILITY"
+        },
+        {
+          "micro": "projectile velocity magnitude/direction at a later time",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+        },
+        {
+          "micro": "projectile trajectory equation",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+        },
+        {
+          "micro": "differentiate a time-dependent 2D position vector to obtain velocity",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "DEFER_UNLESS_EXPLICITLY_DEMANDED"
+        }
+      ]
+    },
+    {
+      "school_label": "NLM",
+      "school_demand": "CHAPTER_CONFIRMED",
+      "micro": [
+        {
+          "micro": "zero net force and unchanged velocity / Newton I",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-NET-ZERO-MOTION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "balanced versus unbalanced force / signed force sum",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-FORCES-SUM-ZERO"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "free-body diagram ownership for one chosen body",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "friction direction from relative sliding/tendency",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-FRICTION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "Newton II with signed net external force",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "Newton III interaction pairs on different bodies",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-THIRD-LAW"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "REUSE_IF_DEMANDED"
+        },
+        {
+          "micro": "accelerating observer / pseudo-force convention",
+          "local_state": "LOCAL_EXTENSION_AVAILABLE",
+          "local_refs": [
+            "CAP-NLM-FRAME-CHOICE"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED"
+        },
+        {
+          "micro": "normal reaction in varied geometries",
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY"
+        },
+        {
+          "micro": "inclined-plane dynamics",
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-FRICTION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "CONFIRM_VECTOR_DECOMPOSITION_DEMAND_FIRST"
+        },
+        {
+          "micro": "two-body contact-force systems",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+        },
+        {
+          "micro": "string tension / connected bodies",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "pulley constraints / connected acceleration",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "coefficient-based static/kinetic friction calculations",
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-NLM-FRICTION",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "AUTHOR_OR_ENRICH_ONLY_IF_CONFIRMED"
+        },
+        {
+          "micro": "momentum / impulse / conservation under an NLM chapter",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "DEFER_UNLESS_EXPLICITLY_DEMANDED"
+        }
+      ]
+    }
+  ],
+  "next_evidence": [
+    "Pinnacle Physics chapter contents/index for Vectors, Motion 1D, Motion 2D and NLM",
+    "school workbook or classwork pages for those chapters",
+    "Terminal-1 revision sheet or teacher topic list",
+    "sample paper / prior paper / question bank actually used for Terminal-1"
+  ]
+}
