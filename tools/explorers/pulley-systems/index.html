@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explorer 2 · Pulley Systems</title>
+<link rel="stylesheet" href="../../app.css">
+<style>
+  :root { --rope: var(--ink); --force: var(--accent); --mass: var(--chip); }
+  body { min-width: 320px; }
+  header .subtitle { color: var(--muted); font-size: 13px; }
+  main { max-width: 1240px; }
+  .hero { display: flex; justify-content: space-between; gap: 20px; align-items: start; }
+  .hero h2 { color: var(--ink); font-size: 22px; text-transform: none; letter-spacing: 0; margin-bottom: 4px; }
+  .mode-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .mode-tabs button[aria-pressed="true"], .toggle-row button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .grid-3 { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(360px, 1.35fr) minmax(260px, 1fr); gap: 16px; align-items: stretch; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 980px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+  .subpanel { border: 1px solid var(--line); border-radius: 7px; padding: 14px; background: var(--panel); }
+  .subpanel h3 { margin-top: 0; }
+  .control-grid { display: grid; grid-template-columns: 1fr auto; gap: 8px 10px; align-items: center; }
+  .control-grid label { font-size: 13px; color: var(--muted); }
+  input[type="number"] { width: 100px; font: inherit; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
+  input[type="range"] { width: 100%; }
+  .button-row, .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .equation { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--chip); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin: 7px 0; overflow-x: auto; }
+  .big-equation { font-size: 18px; font-weight: 700; }
+  .hidden { display: none !important; }
+  .reveal { border-left: 3px solid var(--accent); padding-left: 12px; }
+  .feedback { margin-top: 9px; padding: 9px 11px; border-radius: 6px; background: var(--chip); }
+  .feedback.good { border-left: 3px solid var(--ok); }
+  .feedback.bad { border-left: 3px solid var(--warn); }
+  .physics-svg { width: 100%; height: auto; min-height: 320px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); touch-action: none; }
+  .physics-svg text { fill: var(--ink); font: 13px system-ui, -apple-system, Segoe UI, sans-serif; }
+  .physics-svg .muted-text { fill: var(--muted); font-size: 12px; }
+  .physics-svg .rope { stroke: var(--rope); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .physics-svg .pulley { fill: var(--panel); stroke: var(--ink); stroke-width: 2; }
+  .physics-svg .mass { fill: var(--mass); stroke: var(--ink); stroke-width: 2; }
+  .physics-svg .force { stroke: var(--force); stroke-width: 3; fill: none; marker-end: url(#arrow); }
+  .physics-svg .guide { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+  .physics-svg .ghost { opacity: .38; stroke-dasharray: 5 4; }
+  .physics-svg .drag { cursor: ns-resize; }
+  .metric-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+  .metric { background: var(--chip); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+  .metric strong { display: block; font-size: 17px; }
+  .bar-row { display: grid; grid-template-columns: 64px 1fr 86px; gap: 8px; align-items: center; margin: 8px 0; }
+  .bar-track { height: 18px; background: var(--chip); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); transition: width .2s ease; }
+  .bar-fill.tension { opacity: .66; }
+  .callout { border-left: 3px solid var(--accent); background: var(--chip); padding: 9px 12px; border-radius: 0 6px 6px 0; margin: 10px 0; }
+  .diagnostic { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; }
+  .diagnostic fieldset { border: 0; padding: 0; margin: 8px 0; }
+  .diagnostic label { display: block; margin: 5px 0; }
+  .kicker { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+  .status-line { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .constraint-live { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin: 10px 0; }
+  @media (max-width: 700px) { .constraint-live, .metric-strip { grid-template-columns: 1fr 1fr; } }
+  .mini { font-size: 12px; color: var(--muted); }
+  .strong { font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Explorer 2 · Pulley Systems</h1>
+    <div class="subtitle">Tension is not automatically <code>mg</code>. Motion constraints come from rope geometry.</div>
+  </div>
+  <nav>
+    <a href="../../index.html">Workbench</a>
+    <a href="https://github.com/reallaksh19/Grade9V3/issues/121">Issue #121</a>
+  </nav>
+</header>
+
+<main>
+  <section class="panel hero">
+    <div>
+      <div class="kicker">Grade 9 physics · R10 / R11</div>
+      <h2>Separate dynamics from geometry</h2>
+      <p>Mode A uses Newton's second law to determine tension. Mode B uses fixed rope length to determine motion ratios. These are different invariants.</p>
+      <div class="mode-tabs" role="group" aria-label="Explorer mode">
+        <button id="modeAButton" class="primary" aria-pressed="true">A · Simple Atwood</button>
+        <button id="modeBButton" aria-pressed="false">B · Movable pulley</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="modeA" aria-labelledby="modeAButton">
+    <div class="grid-3">
+      <section class="subpanel">
+        <h3>Set the system</h3>
+        <div class="control-grid">
+          <label for="m1">m₁</label><div><input id="m1" type="number" min="0.1" step="0.1" value="2.0"> kg</div>
+          <label for="m2">m₂</label><div><input id="m2" type="number" min="0.1" step="0.1" value="6.0"> kg</div>
+          <label for="g">g</label><div><input id="g" type="number" min="0.1" step="0.01" value="9.81"> m/s²</div>
+        </div>
+        <div class="button-row">
+          <button id="releaseA" class="primary" disabled>Release</button>
+          <button id="resetA">Reset motion</button>
+        </div>
+        <p class="status-line" id="motionStatus">Make a prediction first.</p>
+      </section>
+
+      <section class="subpanel">
+        <h3>Physical model</h3>
+        <svg id="atwoodSvg" class="physics-svg" viewBox="0 0 520 360" role="img" aria-label="Simple Atwood machine with two masses over an ideal pulley">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+            </marker>
+          </defs>
+          <line x1="175" y1="48" x2="345" y2="48" class="guide"></line>
+          <circle cx="260" cy="90" r="42" class="pulley"></circle>
+          <path id="atwoodRope" class="rope" d="M218 90 Q260 30 302 90 M218 90 L218 190 M302 90 L302 190"></path>
+          <g id="mass1Group">
+            <rect x="178" y="190" width="80" height="64" rx="6" class="mass"></rect>
+            <text x="218" y="218" text-anchor="middle" class="strong">m₁</text>
+            <text id="mass1Label" x="218" y="239" text-anchor="middle" class="muted-text">2.0 kg</text>
+          </g>
+          <g id="mass2Group">
+            <rect x="262" y="190" width="80" height="64" rx="6" class="mass"></rect>
+            <text x="302" y="218" text-anchor="middle" class="strong">m₂</text>
+            <text id="mass2Label" x="302" y="239" text-anchor="middle" class="muted-text">6.0 kg</text>
+          </g>
+          <text x="260" y="98" text-anchor="middle" class="muted-text">ideal pulley</text>
+          <text x="218" y="286" text-anchor="middle" class="muted-text">same rope</text>
+          <text x="302" y="286" text-anchor="middle" class="muted-text">same rope</text>
+        </svg>
+      </section>
+
+      <section class="subpanel">
+        <h3>Predict first</h3>
+        <p id="predictionContext">For the current values, which statement about the ideal-rope tension is correct?</p>
+        <fieldset id="predictionChoices">
+          <label><input type="radio" name="tensionPrediction" value="m1"> T = m₁g</label>
+          <label><input type="radio" name="tensionPrediction" value="m2"> T = m₂g</label>
+          <label><input type="radio" name="tensionPrediction" value="neither"> neither equality</label>
+        </fieldset>
+        <button id="lockPrediction" class="primary">Lock prediction</button>
+        <div id="predictionFeedback" class="feedback hidden" aria-live="polite"></div>
+      </section>
+    </div>
+
+    <section id="atwoodReveal" class="panel hidden">
+      <div class="grid-2">
+        <div>
+          <h2>1 · Rope constraint</h2>
+          <p>Use one shared vertical coordinate convention, positive downward for both masses:</p>
+          <div class="equation big-equation">Δy₁ + Δy₂ = 0 &nbsp;⇒&nbsp; a₁ = −a₂</div>
+          <p class="mini">This equality comes from fixed rope length. It is not a Newton's-third-law result.</p>
+        </div>
+        <div>
+          <h2>2 · Separate force balances</h2>
+          <p>For the scalar equations below only, take m₁-upward and m₂-downward as the local positive directions. The signed scalar <code>a</code> is positive when m₂ descends.</p>
+          <div class="equation">T − m₁g = m₁a</div>
+          <div class="equation">m₂g − T = m₂a</div>
+          <div class="equation" id="atwoodSolved">a = … &nbsp;&nbsp; T = …</div>
+        </div>
+      </div>
+
+      <div class="subpanel" style="margin-top:16px;">
+        <h3>Separate free-body diagrams</h3>
+        <svg class="physics-svg" style="min-height:220px;" viewBox="0 0 700 230" role="img" aria-label="Separate free-body diagrams for mass 1 and mass 2">
+          <defs>
+            <marker id="fbdArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
+            </marker>
+          </defs>
+          <text x="175" y="24" text-anchor="middle" class="strong">FBD: m₁</text>
+          <rect x="135" y="92" width="80" height="48" rx="6" class="mass"></rect>
+          <text x="175" y="121" text-anchor="middle">m₁</text>
+          <line x1="175" y1="92" x2="175" y2="42" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <line x1="175" y1="140" x2="175" y2="194" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <text id="fbdM1T" x="190" y="56">T = —</text>
+          <text id="fbdM1W" x="190" y="186">m₁g = —</text>
+
+          <text x="525" y="24" text-anchor="middle" class="strong">FBD: m₂</text>
+          <rect x="485" y="92" width="80" height="48" rx="6" class="mass"></rect>
+          <text x="525" y="121" text-anchor="middle">m₂</text>
+          <line x1="525" y1="92" x2="525" y2="42" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <line x1="525" y1="140" x2="525" y2="194" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <text id="fbdM2T" x="540" y="56">T = —</text>
+          <text id="fbdM2W" x="540" y="186">m₂g = —</text>
+        </svg>
+        <p id="fbdAcceleration" class="mini">Force arrows show interactions only. Acceleration is inferred from the unequal force magnitudes.</p>
+      </div>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="subpanel">
+          <h3>Tension check</h3>
+          <div class="bar-row"><span>m₁g</span><div class="bar-track"><div id="barM1" class="bar-fill"></div></div><strong id="valM1">—</strong></div>
+          <div class="bar-row"><span>T</span><div class="bar-track"><div id="barT" class="bar-fill tension"></div></div><strong id="valT">—</strong></div>
+          <div class="bar-row"><span>m₂g</span><div class="bar-track"><div id="barM2" class="bar-fill"></div></div><strong id="valM2">—</strong></div>
+          <div id="inequality" class="equation big-equation">—</div>
+        </div>
+        <div class="subpanel">
+          <h3>Why the tension sits there</h3>
+          <div id="tensionReason" class="callout">—</div>
+          <p>Ideal-rope tension is equal along the same massless rope over an ideal pulley. That is an idealization, not a statement that <code>T = mg</code>.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="modeB" class="hidden" aria-labelledby="modeBButton">
+    <section class="panel">
+      <div class="kicker">Mode B · Movable pulley</div>
+      <h2 style="color:var(--ink);text-transform:none;font-size:20px;">One mass moves twice as far — but why?</h2>
+      <div class="grid-2">
+        <div>
+          <svg id="movableSvg" class="physics-svg" viewBox="0 0 520 390" role="img" aria-label="Movable pulley with a fixed support, a fixed pulley, a hanging free end mass and a load attached to the movable pulley">
+            <defs>
+              <marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+              </marker>
+            </defs>
+            <line x1="145" y1="35" x2="330" y2="35" class="guide"></line>
+            <circle cx="185" cy="35" r="6" fill="var(--ink)"></circle>
+            <text x="185" y="20" text-anchor="middle" class="muted-text">fixed support</text>
+            <circle cx="270" cy="65" r="25" class="pulley"></circle>
+            <text x="270" y="105" text-anchor="middle" class="muted-text">fixed pulley</text>
+
+            <path id="movableRope" class="rope" d=""></path>
+
+            <g id="initialMarkers" class="hidden">
+              <circle cx="215" cy="185" r="30" class="pulley ghost"></circle>
+              <rect x="175" y="225" width="80" height="56" rx="6" class="mass ghost"></rect>
+              <rect x="275" y="225" width="40" height="56" rx="6" class="mass ghost"></rect>
+              <line id="moveMarkerLine" x1="150" y1="185" x2="150" y2="185" class="guide"></line>
+              <line id="freeMarkerLine" x1="340" y1="225" x2="340" y2="225" class="guide"></line>
+              <text id="moveMarkerText" x="140" y="188" text-anchor="end" class="muted-text"></text>
+              <text id="freeMarkerText" x="350" y="228" class="muted-text"></text>
+            </g>
+
+            <g id="movableAssembly" class="drag" tabindex="0" aria-label="Movable pulley and load. Drag vertically.">
+              <circle id="movablePulley" cx="215" cy="185" r="30" class="pulley"></circle>
+              <line id="loadStem" x1="215" y1="215" x2="215" y2="225" stroke="var(--ink)" stroke-width="2"></line>
+              <rect id="loadMass" x="175" y="225" width="80" height="56" rx="6" class="mass"></rect>
+              <text id="loadText" x="215" y="249" text-anchor="middle" class="strong">m₂ load</text>
+              <text id="loadDeltaText" x="215" y="270" text-anchor="middle" class="muted-text">Δx₂ = 0.0 cm</text>
+            </g>
+
+            <g id="freeAssembly">
+              <rect id="freeMass" x="275" y="225" width="40" height="56" rx="6" class="mass"></rect>
+              <text id="freeText" x="295" y="249" text-anchor="middle" class="strong">m₁</text>
+              <text id="freeDeltaText" x="295" y="270" text-anchor="middle" class="muted-text">Δx₁ = 0.0 cm</text>
+            </g>
+
+            <g id="tensionArrows" class="hidden">
+              <line id="tensionLeft" x1="185" y1="175" x2="185" y2="125" stroke="var(--accent)" stroke-width="3" marker-end="url(#arrowB)"></line>
+              <line id="tensionRight" x1="245" y1="175" x2="245" y2="125" stroke="var(--accent)" stroke-width="3" marker-end="url(#arrowB)"></line>
+              <text id="tensionLeftLabel" x="174" y="130" text-anchor="end">T</text>
+              <text id="tensionRightLabel" x="256" y="130">T</text>
+              <text id="supportLabel" x="215" y="118" text-anchor="middle" class="muted-text">total upward support = 2T</text>
+            </g>
+          </svg>
+          <label class="field" style="margin-top:10px;">
+            <span>Movable pulley displacement, Δx₂ (downward positive)</span>
+            <input id="moveSlider" type="range" min="-4" max="6" step="0.1" value="0">
+          </label>
+          <div class="button-row">
+            <button id="showRope" aria-pressed="false">Show rope length</button>
+            <button id="showTension" aria-pressed="false">Show tension</button>
+            <button id="showMarkers" aria-pressed="false">Show displacement markers</button>
+            <button id="resetB">Reset geometry</button>
+          </div>
+          <p class="status-line">Drag the movable pulley vertically, or use the slider. Downward is positive for both x₁ and x₂.</p>
+        </div>
+
+        <div>
+          <section class="subpanel">
+            <h3>Rope-length accounting</h3>
+            <p>Only three straight segments change length. The curved contact lengths around ideal pulleys remain constant.</p>
+            <div id="ropeReveal" class="hidden reveal">
+              <div class="equation big-equation">L = 2x₂ + x₁ + constant</div>
+              <div class="constraint-live">
+                <div class="metric"><span class="mini">left support</span><strong id="dLeft">+0.0 cm</strong></div>
+                <div class="metric"><span class="mini">right support</span><strong id="dRight">+0.0 cm</strong></div>
+                <div class="metric"><span class="mini">free segment</span><strong id="dFree">0.0 cm</strong></div>
+                <div class="metric"><span class="mini">sum ΔL</span><strong id="dTotal">0.0 cm</strong></div>
+              </div>
+              <div class="equation">2Δx₂ + Δx₁ = 0</div>
+              <div class="equation">v₁ = −2v₂ &nbsp;&nbsp;&nbsp; a₁ = −2a₂</div>
+              <div class="callout"><strong>Magnitude:</strong> |a₁| = 2|a₂|. <strong>Direction:</strong> the accelerations are opposite.</div>
+              <p class="mini">This 2:1 result belongs to this specific rope configuration. It is not a universal Atwood-machine rule.</p>
+            </div>
+          </section>
+
+          <section class="subpanel" style="margin-top:16px;">
+            <h3>Force / displacement tradeoff</h3>
+            <p>Two rope segments pull upward on the movable pulley, so the ideal support is <strong>2T</strong>. The free end moves twice the load displacement.</p>
+            <div class="equation">free-end distance = 2 × load distance</div>
+            <div class="equation">ideal quasi-static comparison: F<sub>in</sub>(2d) ≈ F<sub>load</sub>(d)</div>
+            <p class="mini">The work correspondence above is the ideal force-advantage picture for holding or quasi-static motion. During acceleration, kinetic energy changes, so do not replace the full dynamics with that work equality.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Static vs accelerating load</h2>
+      <div class="toggle-row" role="group" aria-label="Movable load state">
+        <button id="holdingButton" class="primary" aria-pressed="true">○ Holding load</button>
+        <button id="acceleratingButton" aria-pressed="false">● Accelerating load</button>
+      </div>
+      <div class="grid-2" style="margin-top:14px;">
+        <div class="subpanel">
+          <div class="control-grid">
+            <label for="loadM">load mass m</label><div><input id="loadM" type="number" min="0.1" step="0.1" value="4.0"> kg</div>
+            <label for="loadG">g</label><div><input id="loadG" type="number" min="0.1" step="0.01" value="9.81"> m/s²</div>
+          </div>
+          <label class="field" style="margin-top:12px;">
+            <span>load acceleration a, downward positive</span>
+            <input id="loadA" type="range" min="-5" max="9" step="0.1" value="2.0" disabled>
+          </label>
+          <div class="metric-strip">
+            <div class="metric"><span class="mini">mg</span><strong id="loadWeight">—</strong></div>
+            <div class="metric"><span class="mini">T per segment</span><strong id="loadT">—</strong></div>
+            <div class="metric"><span class="mini">2T support</span><strong id="load2T">—</strong></div>
+          </div>
+        </div>
+        <div class="subpanel">
+          <div id="holdingEquation">
+            <div class="equation big-equation">2T = mg</div>
+            <p>Holding / quasi-static case: <code>a = 0</code>. The two upward tensions exactly balance the load weight.</p>
+          </div>
+          <div id="acceleratingEquation" class="hidden">
+            <div class="equation big-equation">mg − 2T = ma</div>
+            <p>Downward is positive. Therefore <code>T = m(g − a)/2</code> while the rope remains taut.</p>
+            <div id="accelGuardrail" class="callout"></div>
+          </div>
+          <p class="mini"><strong>Guardrail:</strong> <code>2T = mg</code> is not universal. It is the zero-acceleration case of the signed dynamics equation.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="panel">
+    <h2>Diagnostics</h2>
+    <p>These questions test the distinction between force balance and rope geometry. Feedback explains the reason, not only the answer.</p>
+
+    <div class="diagnostic" data-q="q1">
+      <h3>1 · A hanging mass accelerates upward. Which must be true?</h3>
+      <fieldset>
+        <label><input type="radio" name="q1" value="lt"> T &lt; mg</label>
+        <label><input type="radio" name="q1" value="eq"> T = mg</label>
+        <label><input type="radio" name="q1" value="gt"> T &gt; mg</label>
+      </fieldset>
+      <button class="checkDiagnostic">Check reasoning</button>
+      <div class="feedback hidden diagnosticFeedback"></div>
+    </div>
+
+    <div class="diagnostic" data-q="q2">
+      <h3>2 · The movable pulley moves down 5 cm. How far does the free end move in the ideal 2:1 geometry?</h3>
+      <fieldset>
+        <label><input type="radio" name="q2" value="5up"> 5 cm upward</label>
+        <label><input type="radio" name="q2" value="10up"> 10 cm upward</label>
+        <label><input type="radio" name="q2" value="10down"> 10 cm downward</label>
+      </fieldset>
+      <button class="checkDiagnostic">Check reasoning</button>
+      <div class="feedback hidden diagnosticFeedback"></div>
+    </div>
+
+    <div class="diagnostic" data-q="q3">
+      <h3>3 · Why does the free end move twice as far?</h3>
+      <fieldset>
+        <label><input type="radio" name="q3" value="n3"> Newton's third law doubles the motion</label>
+        <label><input type="radio" name="q3" value="segments"> Two supporting rope segments change length when the movable pulley moves</label>
+        <label><input type="radio" name="q3" value="tension"> The tension is twice the weight</label>
+      </fieldset>
+      <button class="checkDiagnostic">Check reasoning</button>
+      <div class="feedback hidden diagnosticFeedback"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Physics guardrails used by this page</h2>
+    <ul>
+      <li>Simple-Atwood equal-and-opposite accelerations come from fixed rope length, not Newton's third law.</li>
+      <li>The 2:1 movable-pulley relation is configuration-specific.</li>
+      <li>Equal tension along one ideal massless rope over ideal pulleys is an idealization.</li>
+      <li>Signed equations always state the positive direction.</li>
+      <li>Static support equations are not reused as accelerating-load equations.</li>
+    </ul>
+  </section>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fmt = (x, n = 2) => Number.isFinite(x) ? x.toFixed(n) : '—';
+  const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+
+  const state = {
+    mode: 'A',
+    predictionLocked: false,
+    atwoodAnimation: null,
+    atwoodStart: 0,
+    movableCm: 0,
+    showRope: false,
+    showTension: false,
+    showMarkers: false,
+    loadMode: 'holding'
+  };
+
+  function setMode(mode) {
+    state.mode = mode;
+    $('modeA').classList.toggle('hidden', mode !== 'A');
+    $('modeB').classList.toggle('hidden', mode !== 'B');
+    $('modeAButton').setAttribute('aria-pressed', String(mode === 'A'));
+    $('modeBButton').setAttribute('aria-pressed', String(mode === 'B'));
+    $('modeAButton').classList.toggle('primary', mode === 'A');
+    $('modeBButton').classList.toggle('primary', mode === 'B');
+  }
+  $('modeAButton').addEventListener('click', () => setMode('A'));
+  $('modeBButton').addEventListener('click', () => setMode('B'));
+
+  function atwoodValues() {
+    const m1 = Math.max(0.1, parseFloat($('m1').value) || 0.1);
+    const m2 = Math.max(0.1, parseFloat($('m2').value) || 0.1);
+    const g = Math.max(0.1, parseFloat($('g').value) || 9.81);
+    const a = (m2 - m1) * g / (m1 + m2); // positive => m2 down, m1 up
+    const T = 2 * m1 * m2 * g / (m1 + m2);
+    return { m1, m2, g, a, T, w1: m1 * g, w2: m2 * g };
+  }
+
+  function updateAtwoodReadout() {
+    const v = atwoodValues();
+    $('mass1Label').textContent = `${fmt(v.m1, 1)} kg`;
+    $('mass2Label').textContent = `${fmt(v.m2, 1)} kg`;
+    $('atwoodSolved').textContent = `a = ${fmt(v.a, 3)} m/s²   T = ${fmt(v.T, 2)} N`;
+    $('valM1').textContent = `${fmt(v.w1, 2)} N`;
+    $('valT').textContent = `${fmt(v.T, 2)} N`;
+    $('valM2').textContent = `${fmt(v.w2, 2)} N`;
+    $('fbdM1T').textContent = `T = ${fmt(v.T, 2)} N`;
+    $('fbdM1W').textContent = `m₁g = ${fmt(v.w1, 2)} N`;
+    $('fbdM2T').textContent = `T = ${fmt(v.T, 2)} N`;
+    $('fbdM2W').textContent = `m₂g = ${fmt(v.w2, 2)} N`;
+    $('fbdAcceleration').textContent = v.a > 1e-9
+      ? `m₁ accelerates up and m₂ accelerates down; |a| = ${fmt(Math.abs(v.a), 3)} m/s².`
+      : v.a < -1e-9
+        ? `m₁ accelerates down and m₂ accelerates up; |a| = ${fmt(Math.abs(v.a), 3)} m/s².`
+        : 'Equal masses: both net forces are zero and a = 0.';
+    const maxVal = Math.max(v.w1, v.w2, v.T, 0.001);
+    $('barM1').style.width = `${100 * v.w1 / maxVal}%`;
+    $('barT').style.width = `${100 * v.T / maxVal}%`;
+    $('barM2').style.width = `${100 * v.w2 / maxVal}%`;
+
+    const eps = 1e-9;
+    if (v.m2 > v.m1 + eps) {
+      $('inequality').textContent = `m₁g < T < m₂g`;
+      $('tensionReason').innerHTML = `m₁ accelerates upward, so its upward force must exceed its weight: <strong>T &gt; m₁g</strong>. m₂ accelerates downward, so its weight must exceed tension: <strong>m₂g &gt; T</strong>.`;
+      $('predictionContext').textContent = 'm₂ > m₁ for the current values. Which statement about the ideal-rope tension is correct?';
+    } else if (v.m1 > v.m2 + eps) {
+      $('inequality').textContent = `m₂g < T < m₁g`;
+      $('tensionReason').innerHTML = `m₂ accelerates upward, so <strong>T &gt; m₂g</strong>. m₁ accelerates downward, so <strong>m₁g &gt; T</strong>. The same rule applies with the roles reversed.`;
+      $('predictionContext').textContent = 'm₁ > m₂ for the current values. Which statement about the ideal-rope tension is correct?';
+    } else {
+      $('inequality').textContent = `T = m₁g = m₂g`;
+      $('tensionReason').innerHTML = `The masses are equal, so <strong>a = 0</strong>. Only in this balanced case does the tension equal each mass's weight.`;
+      $('predictionContext').textContent = 'The masses are equal. Which statement about the ideal-rope tension is correct?';
+    }
+  }
+
+  function resetAtwoodPrediction() {
+    state.predictionLocked = false;
+    document.querySelectorAll('input[name="tensionPrediction"]').forEach(r => r.checked = false);
+    $('predictionFeedback').classList.add('hidden');
+    $('atwoodReveal').classList.add('hidden');
+    $('releaseA').disabled = true;
+    $('motionStatus').textContent = 'Make a prediction first.';
+    resetAtwoodMotion();
+    updateAtwoodReadout();
+  }
+  ['m1', 'm2', 'g'].forEach(id => $(id).addEventListener('input', resetAtwoodPrediction));
+
+  $('lockPrediction').addEventListener('click', () => {
+    const choice = document.querySelector('input[name="tensionPrediction"]:checked');
+    const feedback = $('predictionFeedback');
+    if (!choice) {
+      feedback.textContent = 'Choose one prediction before revealing the equations.';
+      feedback.className = 'feedback bad';
+      return;
+    }
+    const v = atwoodValues();
+    const equal = Math.abs(v.m1 - v.m2) < 1e-9;
+    let correct = false;
+    if (equal) correct = choice.value === 'm1' || choice.value === 'm2';
+    else correct = choice.value === 'neither';
+    feedback.className = `feedback ${correct ? 'good' : 'bad'}`;
+    feedback.innerHTML = equal
+      ? (correct ? 'Correct. Equal masses give zero acceleration, so T = m₁g = m₂g.' : 'For equal masses the system has zero acceleration, so tension equals both weights.')
+      : (correct ? 'Correct. With nonzero acceleration, the force balance requires tension to differ from each individual weight.' : 'Not for unequal masses. A nonzero acceleration means each mass has a nonzero net force, so T cannot equal that mass\'s weight.');
+    state.predictionLocked = true;
+    $('atwoodReveal').classList.remove('hidden');
+    $('releaseA').disabled = false;
+    $('motionStatus').textContent = 'Prediction locked. Equations and motion are now available.';
+    updateAtwoodReadout();
+  });
+
+  function setAtwoodOffset(offset) {
+    const y1 = 190 - offset;
+    const y2 = 190 + offset;
+    $('mass1Group').setAttribute('transform', `translate(0 ${y1 - 190})`);
+    $('mass2Group').setAttribute('transform', `translate(0 ${y2 - 190})`);
+    $('atwoodRope').setAttribute('d', `M218 90 Q260 30 302 90 M218 90 L218 ${y1} M302 90 L302 ${y2}`);
+  }
+
+  function resetAtwoodMotion() {
+    if (state.atwoodAnimation) cancelAnimationFrame(state.atwoodAnimation);
+    state.atwoodAnimation = null;
+    setAtwoodOffset(0);
+  }
+
+  $('resetA').addEventListener('click', () => {
+    resetAtwoodMotion();
+    $('motionStatus').textContent = state.predictionLocked ? 'Motion reset; prediction remains locked.' : 'Make a prediction first.';
+  });
+
+  $('releaseA').addEventListener('click', () => {
+    if (!state.predictionLocked) return;
+    resetAtwoodMotion();
+    const v = atwoodValues();
+    state.atwoodStart = performance.now();
+    const pxPerMeter = 20;
+    const tick = now => {
+      const t = (now - state.atwoodStart) / 1000;
+      const displacement = 0.5 * v.a * t * t;
+      const offset = clamp(displacement * pxPerMeter, -72, 72);
+      setAtwoodOffset(offset);
+      $('motionStatus').textContent = `signed a = ${fmt(v.a, 3)} m/s² (positive means m₂ downward).`;
+      if (Math.abs(offset) < 71.9 && Math.abs(v.a) > 1e-9) state.atwoodAnimation = requestAnimationFrame(tick);
+    };
+    if (Math.abs(v.a) < 1e-9) {
+      $('motionStatus').textContent = 'a = 0: equal masses remain balanced in this ideal model.';
+    } else {
+      state.atwoodAnimation = requestAnimationFrame(tick);
+    }
+  });
+
+  // Movable-pulley geometry --------------------------------------------------
+  const PX_PER_CM = 6;
+  function signedCm(x) { return `${x >= 0 ? '+' : ''}${fmt(x, 1)} cm`; }
+
+  function updateMovableGeometry() {
+    const d = state.movableCm;
+    const dy = d * PX_PER_CM;
+    const movableY = 185 + dy;
+    const loadTop = 225 + dy;
+    const freeDy = -2 * dy;
+    const freeTop = 225 + freeDy;
+    const freeBottomRopeY = freeTop;
+
+    $('movablePulley').setAttribute('cy', movableY);
+    $('loadStem').setAttribute('y1', movableY + 30);
+    $('loadStem').setAttribute('y2', loadTop);
+    $('loadMass').setAttribute('y', loadTop);
+    $('loadText').setAttribute('y', loadTop + 24);
+    $('loadDeltaText').setAttribute('y', loadTop + 45);
+    $('loadDeltaText').textContent = `Δx₂ = ${signedCm(d)}`;
+
+    $('freeMass').setAttribute('y', freeTop);
+    $('freeText').setAttribute('y', freeTop + 24);
+    $('freeDeltaText').setAttribute('y', freeTop + 45);
+    $('freeDeltaText').textContent = `Δx₁ = ${signedCm(-2 * d)}`;
+
+    $('movableRope').setAttribute('d', `M185 35 L185 ${movableY} Q215 ${movableY + 45} 245 ${movableY} L245 65 Q270 25 295 65 L295 ${freeBottomRopeY}`);
+
+    ['tensionLeft','tensionRight'].forEach((id, i) => {
+      const x = i === 0 ? 185 : 245;
+      $(id).setAttribute('x1', x);
+      $(id).setAttribute('x2', x);
+      $(id).setAttribute('y1', movableY - 10);
+      $(id).setAttribute('y2', movableY - 60);
+    });
+    $('tensionLeftLabel').setAttribute('y', movableY - 55);
+    $('tensionRightLabel').setAttribute('y', movableY - 55);
+    $('supportLabel').setAttribute('y', movableY - 72);
+
+    $('moveMarkerLine').setAttribute('y2', movableY);
+    $('freeMarkerLine').setAttribute('y2', freeTop);
+    $('moveMarkerText').setAttribute('y', 185 + dy / 2 + 4);
+    $('moveMarkerText').textContent = d === 0 ? '' : `Δx₂ ${signedCm(d)}`;
+    $('freeMarkerText').setAttribute('y', 225 + freeDy / 2 + 4);
+    $('freeMarkerText').textContent = d === 0 ? '' : `Δx₁ ${signedCm(-2 * d)}`;
+
+    $('moveSlider').value = String(d);
+    $('dLeft').textContent = signedCm(d);
+    $('dRight').textContent = signedCm(d);
+    $('dFree').textContent = signedCm(-2 * d);
+    $('dTotal').textContent = signedCm(d + d - 2 * d);
+  }
+
+  $('moveSlider').addEventListener('input', e => {
+    state.movableCm = parseFloat(e.target.value);
+    updateMovableGeometry();
+  });
+
+  const svg = $('movableSvg');
+  let drag = null;
+  $('movableAssembly').addEventListener('pointerdown', e => {
+    drag = { id: e.pointerId, startY: e.clientY, startCm: state.movableCm };
+    svg.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  });
+  svg.addEventListener('pointermove', e => {
+    if (!drag || drag.id !== e.pointerId) return;
+    state.movableCm = Math.round(clamp(drag.startCm + (e.clientY - drag.startY) / PX_PER_CM, -4, 6) * 10) / 10;
+    updateMovableGeometry();
+  });
+  svg.addEventListener('pointerup', e => {
+    if (drag && drag.id === e.pointerId) drag = null;
+  });
+  svg.addEventListener('pointercancel', () => { drag = null; });
+  $('movableAssembly').addEventListener('keydown', e => {
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+    e.preventDefault();
+    state.movableCm = clamp(state.movableCm + (e.key === 'ArrowDown' ? 0.5 : -0.5), -4, 6);
+    updateMovableGeometry();
+  });
+
+  function toggleButton(id, key, targetId) {
+    $(id).addEventListener('click', () => {
+      state[key] = !state[key];
+      $(id).setAttribute('aria-pressed', String(state[key]));
+      if (targetId) $(targetId).classList.toggle('hidden', !state[key]);
+    });
+  }
+  toggleButton('showRope', 'showRope', 'ropeReveal');
+  toggleButton('showTension', 'showTension', 'tensionArrows');
+  toggleButton('showMarkers', 'showMarkers', 'initialMarkers');
+  $('resetB').addEventListener('click', () => { state.movableCm = 0; updateMovableGeometry(); });
+
+  // Static vs accelerating load --------------------------------------------
+  function setLoadMode(mode) {
+    state.loadMode = mode;
+    const holding = mode === 'holding';
+    $('holdingButton').setAttribute('aria-pressed', String(holding));
+    $('acceleratingButton').setAttribute('aria-pressed', String(!holding));
+    $('holdingButton').classList.toggle('primary', holding);
+    $('acceleratingButton').classList.toggle('primary', !holding);
+    $('loadA').disabled = holding;
+    $('holdingEquation').classList.toggle('hidden', !holding);
+    $('acceleratingEquation').classList.toggle('hidden', holding);
+    updateLoadDynamics();
+  }
+  $('holdingButton').addEventListener('click', () => setLoadMode('holding'));
+  $('acceleratingButton').addEventListener('click', () => setLoadMode('accelerating'));
+  ['loadM','loadG','loadA'].forEach(id => $(id).addEventListener('input', updateLoadDynamics));
+
+  function updateLoadDynamics() {
+    const m = Math.max(0.1, parseFloat($('loadM').value) || 0.1);
+    const g = Math.max(0.1, parseFloat($('loadG').value) || 9.81);
+    const a = state.loadMode === 'holding' ? 0 : parseFloat($('loadA').value);
+    const T = m * (g - a) / 2;
+    $('loadWeight').textContent = `${fmt(m * g, 2)} N`;
+    $('loadT').textContent = `${fmt(T, 2)} N`;
+    $('load2T').textContent = `${fmt(2 * T, 2)} N`;
+    if (state.loadMode === 'accelerating') {
+      $('accelGuardrail').innerHTML = a >= g
+        ? '<strong>Model boundary:</strong> this setting would require T ≤ 0. A rope cannot push, so the taut-rope/contact assumptions break down.'
+        : `With a = ${fmt(a, 1)} m/s² downward, the two-rope support is ${fmt(2*T, 2)} N while the weight is ${fmt(m*g, 2)} N.`;
+    }
+  }
+
+  // Diagnostics -------------------------------------------------------------
+  const diag = {
+    q1: {
+      correct: 'gt',
+      good: 'Correct. Upward acceleration requires an upward net force, so T − mg = ma > 0 and therefore T > mg.',
+      bad: 'Use Newton II on that mass. If it accelerates upward, the upward tension must exceed the downward weight: T > mg.'
+    },
+    q2: {
+      correct: '10up',
+      good: 'Correct. A 5 cm downward movement lengthens two support segments by 5 cm each, so the free segment must shorten by 10 cm: the free end moves 10 cm upward.',
+      bad: 'Count rope length: +5 cm on each of two supporting segments gives +10 cm total, so the free segment must change by −10 cm.'
+    },
+    q3: {
+      correct: 'segments',
+      good: 'Correct. The 2:1 motion ratio is a rope-length constraint: two supporting segments both change when the movable pulley moves.',
+      bad: 'The factor of 2 is geometric, not a Newton-III effect and not a statement about tension equaling twice the weight.'
+    }
+  };
+  document.querySelectorAll('.checkDiagnostic').forEach(button => {
+    button.addEventListener('click', () => {
+      const box = button.closest('.diagnostic');
+      const key = box.dataset.q;
+      const choice = box.querySelector(`input[name="${key}"]:checked`);
+      const feedback = box.querySelector('.diagnosticFeedback');
+      if (!choice) {
+        feedback.className = 'feedback bad diagnosticFeedback';
+        feedback.textContent = 'Choose an answer first.';
+        return;
+      }
+      const ok = choice.value === diag[key].correct;
+      feedback.className = `feedback ${ok ? 'good' : 'bad'} diagnosticFeedback`;
+      feedback.textContent = ok ? diag[key].good : diag[key].bad;
+    });
+  });
+
+  updateAtwoodReadout();
+  updateMovableGeometry();
+  updateLoadDynamics();
+})();
+</script>
+</body>
+</html>
