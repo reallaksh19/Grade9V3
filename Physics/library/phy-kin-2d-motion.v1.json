@@ -449,9 +449,7 @@
         }
       ],
       "relation_refs": [],
-      "representation_refs": [
-        "REP-KIN-2D-SHARED-CLOCK"
-      ],
+      "representation_refs": [],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
       ],
@@ -594,9 +592,7 @@
         "REL-KIN-2D-VELOCITY",
         "REL-KIN-2D-DISPLACEMENT"
       ],
-      "representation_refs": [
-        "REP-KIN-2D-EVENT-CLOCK"
-      ],
+      "representation_refs": [],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
       ],
@@ -773,12 +769,7 @@
       "relation_refs": [
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
-      "representation_refs": [
-        "REP-KIN-2D-PROJECTILE-MODEL-GATE",
-        "REP-KIN-2D-APEX-STATE",
-        "REP-KIN-2D-EQUAL-HEIGHT-STATE",
-        "REP-KIN-2D-LANDING-GEOMETRY"
-      ],
+      "representation_refs": [],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
       ],
@@ -1192,280 +1183,7 @@
       "gate_relation_ref": "REL-PROJECTILE-COMPONENT-MODEL"
     }
   ],
-  "representations": [
-    {
-      "id": "REP-KIN-2D-SHARED-CLOCK",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "topic_atlas": {
-          "activity_kind": "EXPLORER_VISUAL_CONTRACT"
-        }
-      },
-      "kind": "SYNCHRONIZED_COMPONENT_STATE",
-      "purpose": "Show that x(t) and y(t) are independent component histories of one object sampled at one shared instant.",
-      "required_elements": [
-        "one physical object",
-        "x projection/history",
-        "y projection/history",
-        "one master time marker",
-        "mixed-time ghost state"
-      ],
-      "relation_refs": [],
-      "read_order": [
-        "locate the object",
-        "read the shared time",
-        "inspect x(t) and y(t) at that time",
-        "compare with an invalid mixed-time state"
-      ],
-      "instance_constraints": [
-        "Both component current-state markers must move with the same master clock.",
-        "A mixed-time point may be displayed only as explicitly invalid/ghosted."
-      ],
-      "accessibility": [
-        "Do not rely on color alone; every changing vector/state must have a text or symbol label.",
-        "Maintain readable signed quantities alongside arrows or geometry."
-      ],
-      "misleading_alternatives": [
-        "Two independent clocks presented as equally valid for one state.",
-        "Separate x/y objects that hide their common physical identity."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [],
-      "correspondence": []
-    },
-    {
-      "id": "REP-KIN-2D-EVENT-CLOCK",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "topic_atlas": {
-          "activity_kind": "EXPLORER_VISUAL_CONTRACT"
-        }
-      },
-      "kind": "SYNCHRONIZED_EVENT_TIMELINE",
-      "purpose": "Show that one event has one time even when one axis supplies the condition used to find it.",
-      "required_elements": [
-        "named physical event",
-        "x history",
-        "y history",
-        "single event-time marker crossing both histories",
-        "when/where distinction"
-      ],
-      "relation_refs": [],
-      "read_order": [
-        "identify the physical event",
-        "identify the component condition defining it",
-        "read t_event",
-        "sample both histories at t_event"
-      ],
-      "instance_constraints": [
-        "Only one event-time marker may represent a named event.",
-        "The axis that solves time must not visually own a separate clock."
-      ],
-      "accessibility": [
-        "Do not rely on color alone; every changing vector/state must have a text or symbol label.",
-        "Maintain readable signed quantities alongside arrows or geometry."
-      ],
-      "misleading_alternatives": [
-        "Separate x-impact time and y-impact time for the same event."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [],
-      "correspondence": []
-    },
-    {
-      "id": "REP-KIN-2D-PROJECTILE-MODEL-GATE",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "topic_atlas": {
-          "activity_kind": "EXPLORER_VISUAL_CONTRACT"
-        }
-      },
-      "kind": "INTERACTION_MODEL_GATE",
-      "purpose": "Choose the ideal projectile specialization from post-release interactions rather than trajectory shape.",
-      "required_elements": [
-        "post-release object",
-        "retained interaction arrows",
-        "gravity-only decision gate",
-        "resulting a_x and a_y model"
-      ],
-      "relation_refs": [],
-      "read_order": [
-        "inspect interactions after release",
-        "decide whether only gravity is retained",
-        "select ideal projectile or general 2D model",
-        "read component accelerations"
-      ],
-      "instance_constraints": [
-        "a_x=0 and a_y=-g appear only after gravity-only free flight is established."
-      ],
-      "accessibility": [
-        "Do not rely on color alone; every changing vector/state must have a text or symbol label.",
-        "Maintain readable signed quantities alongside arrows or geometry."
-      ],
-      "misleading_alternatives": [
-        "Curved trajectory used as sufficient evidence for the projectile model."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [],
-      "correspondence": []
-    },
-    {
-      "id": "REP-KIN-2D-APEX-STATE",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "topic_atlas": {
-          "activity_kind": "EXPLORER_VISUAL_CONTRACT"
-        }
-      },
-      "kind": "SYNCHRONIZED_VECTOR_STATE",
-      "purpose": "Separate vertical velocity, horizontal velocity and acceleration at the apex.",
-      "required_elements": [
-        "apex position",
-        "horizontal velocity component",
-        "vertical velocity component",
-        "resultant velocity",
-        "downward acceleration",
-        "apex-time marker"
-      ],
-      "relation_refs": [],
-      "read_order": [
-        "locate apex",
-        "inspect v_y",
-        "inspect v_x",
-        "inspect acceleration",
-        "reconstruct total velocity"
-      ],
-      "instance_constraints": [
-        "For an oblique example with nonzero u_x, horizontal velocity remains visible at the apex.",
-        "Downward acceleration remains visible at the apex."
-      ],
-      "accessibility": [
-        "Do not rely on color alone; every changing vector/state must have a text or symbol label.",
-        "Maintain readable signed quantities alongside arrows or geometry."
-      ],
-      "misleading_alternatives": [
-        "A frozen object implying zero total velocity.",
-        "An absent acceleration arrow implying gravity stops."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [],
-      "correspondence": []
-    },
-    {
-      "id": "REP-KIN-2D-EQUAL-HEIGHT-STATE",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "topic_atlas": {
-          "activity_kind": "EXPLORER_VISUAL_CONTRACT"
-        }
-      },
-      "kind": "PAIRED_VECTOR_STATE",
-      "purpose": "Compare two equal-height events by signed velocity components, speed magnitude and direction.",
-      "required_elements": [
-        "equal-height markers A and B",
-        "v_x arrows at both points",
-        "opposite-sign v_y arrows",
-        "resultant velocity arrows",
-        "speed magnitudes",
-        "downward acceleration at both points"
-      ],
-      "relation_refs": [],
-      "read_order": [
-        "confirm equal height",
-        "compare v_x",
-        "compare v_y signs",
-        "compare resultant magnitudes",
-        "compare directions"
-      ],
-      "instance_constraints": [
-        "A and B must lie on the same ideal trajectory.",
-        "Equal speed must be derived from components rather than asserted without the component view."
-      ],
-      "accessibility": [
-        "Do not rely on color alone; every changing vector/state must have a text or symbol label.",
-        "Maintain readable signed quantities alongside arrows or geometry."
-      ],
-      "misleading_alternatives": [
-        "Identical velocity arrows at equal height."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [],
-      "correspondence": []
-    },
-    {
-      "id": "REP-KIN-2D-LANDING-GEOMETRY",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
-      ],
-      "evidence_refs": [],
-      "extensions": {
-        "topic_atlas": {
-          "activity_kind": "EXPLORER_VISUAL_CONTRACT"
-        }
-      },
-      "kind": "EVENT_GEOMETRY",
-      "purpose": "Show that changing landing height changes Delta y and the event condition while the projectile laws remain unchanged.",
-      "required_elements": [
-        "launch height y_i",
-        "draggable landing height y_f",
-        "Delta y=y_f-y_i",
-        "vertical event equation",
-        "same-height shortcut status",
-        "actual impact event marker"
-      ],
-      "relation_refs": [],
-      "read_order": [
-        "compare y_f with y_i",
-        "compute signed Delta y",
-        "select the landing condition",
-        "solve vertical event time",
-        "reuse that time horizontally"
-      ],
-      "instance_constraints": [
-        "u_y and Delta y must be displayed as independent descriptors.",
-        "Unequal-height landing must preserve arbitrary actual u_y.",
-        "Horizontal launch may set u_y=0 only as an initial-condition special case."
-      ],
-      "accessibility": [
-        "Do not rely on color alone; every changing vector/state must have a text or symbol label.",
-        "Maintain readable signed quantities alongside arrows or geometry."
-      ],
-      "misleading_alternatives": [
-        "Unequal-height landing shown as implying u_y=0.",
-        "Same-height shortcut enabled when Delta y is nonzero."
-      ],
-      "rendered_asset_refs": [],
-      "scene_instances": [],
-      "correspondence": []
-    }
-  ],
+  "representations": [],
   "question_families": [
     {
       "id": "FAM-PHY-KIN-2D-PRACTICE",
