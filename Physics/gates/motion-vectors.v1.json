@@ -1597,6 +1597,260 @@
           "expected_violation": "SYMBOL_FIELD_MISSING"
         }
       ]
+    },
+    {
+      "gate_id": "PHY-VEC-DIRECTION-UNIT",
+      "title": "Recover vector direction and normalize a 2-D unit direction",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Vectors",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-VEC-IJ-SAME-VECTOR",
+          "statement": "The signed component pair and v_x i-hat + v_y j-hat are equivalent descriptions of the same two-dimensional vector."
+        },
+        {
+          "concept_id": "CON-VEC-DIRECTION-TWO-STAGE",
+          "statement": "Component signs determine the quadrant or axis; inverse tangent of positive component magnitudes supplies only an acute reference angle to place inside that direction."
+        },
+        {
+          "concept_id": "CON-VEC-UNIT-NONZERO",
+          "statement": "A unit-direction vector is obtained by dividing a nonzero vector by its positive magnitude; the zero vector cannot be normalized because it has no direction and would require division by zero."
+        }
+      ],
+      "prerequisites": [
+        "PHY-VEC-SCALAR-VECTOR",
+        "PHY-VEC-AXIS-CONVENTION"
+      ],
+      "external_prerequisites": [
+        {
+          "capability_id": "MATH-INVERSE-TRIG-DIRECTION",
+          "provider_subject": "Mathematics",
+          "statement": "Use inverse tangent on a positive right-triangle ratio to recover an acute reference angle.",
+          "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-VEC-IJ-NOTATION",
+          "expression": "v = v_x i_hat + v_y j_hat",
+          "meaning": "A two-dimensional vector expressed on declared perpendicular x/y axes can be written equivalently as the signed x coefficient times the +x unit basis vector plus the signed y coefficient times the +y unit basis vector.",
+          "symbols": [
+            {
+              "symbol": "v",
+              "meaning": "The physical two-dimensional vector",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "v_x",
+              "meaning": "Signed x-component of v",
+              "unit": "same as v",
+              "dimension": "same as v"
+            },
+            {
+              "symbol": "v_y",
+              "meaning": "Signed y-component of v",
+              "unit": "same as v",
+              "dimension": "same as v"
+            },
+            {
+              "symbol": "i_hat",
+              "meaning": "Dimensionless unit basis vector along declared +x",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "j_hat",
+              "meaning": "Dimensionless unit basis vector along declared +y",
+              "unit": "1",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "The x and y axes are declared and perpendicular.",
+            "i_hat and j_hat name the positive unit directions of those axes.",
+            "The signed coefficients retain the physical units of the vector components."
+          ]
+        },
+        {
+          "relation_id": "REL-VEC-DIRECTION-FROM-COMPONENTS",
+          "expression": "alpha = arctan(|v_y|/|v_x|); component signs determine the quadrant",
+          "meaning": "For a nonzero vector with both perpendicular components nonzero, inverse tangent of the positive component-magnitude ratio gives an acute reference angle; the signed components independently determine the quadrant in which that reference angle must be placed.",
+          "symbols": [
+            {
+              "symbol": "alpha",
+              "meaning": "Acute reference angle to the x-axis",
+              "unit": "rad or degree",
+              "dimension": "1"
+            },
+            {
+              "symbol": "v_x",
+              "meaning": "Signed x-component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "v_y",
+              "meaning": "Signed y-component",
+              "unit": "context unit",
+              "dimension": "context"
+            }
+          ],
+          "conditions": [
+            "The vector is nonzero.",
+            "When both components are nonzero, use positive component magnitudes for the acute ratio.",
+            "If either component is zero, report the exact axis direction directly rather than dividing by zero.",
+            "Quadrant selection comes from component signs, not from the inverse-tangent output alone."
+          ]
+        },
+        {
+          "relation_id": "REL-VEC-UNIT-DIRECTION",
+          "expression": "v_hat = v/|v| = (v_x/|v|) i_hat + (v_y/|v|) j_hat",
+          "meaning": "Dividing a nonzero vector and every signed component by the same positive magnitude produces a dimensionless vector of magnitude 1 in the same direction.",
+          "symbols": [
+            {
+              "symbol": "v_hat",
+              "meaning": "Unit vector in the direction of v",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Original nonzero vector",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "|v|",
+              "meaning": "Positive magnitude of v",
+              "unit": "same as v",
+              "dimension": "same as v"
+            },
+            {
+              "symbol": "v_x",
+              "meaning": "Signed x-component of v",
+              "unit": "same as v",
+              "dimension": "same as v"
+            },
+            {
+              "symbol": "v_y",
+              "meaning": "Signed y-component of v",
+              "unit": "same as v",
+              "dimension": "same as v"
+            }
+          ],
+          "conditions": [
+            "|v|>0.",
+            "Every component is divided by the same magnitude.",
+            "The component axes and basis notation refer to the same declared frame."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Axes are declared and perpendicular before components or basis notation are interpreted.",
+        "Direction recovery applies only to a nonzero vector; exact-axis cases are handled directly.",
+        "Normalization applies only when |v|>0.",
+        "Dot product, scalar projection, cross product, three-dimensional vector algebra and calculus are outside this gate."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-VDU-NOTATION",
+          "sequence": 1,
+          "action": "Translate signed components into i-hat/j-hat notation without changing signs.",
+          "why_valid": "The basis symbols name the declared positive axis directions."
+        },
+        {
+          "step_id": "RS-VDU-QUADRANT",
+          "sequence": 2,
+          "action": "Use component signs to fix the quadrant or exact axis.",
+          "why_valid": "The signs preserve direction information before any ratio is formed.",
+          "depends_on": [
+            "RS-VDU-NOTATION"
+          ]
+        },
+        {
+          "step_id": "RS-VDU-REFERENCE",
+          "sequence": 3,
+          "action": "When both components are nonzero, obtain an acute reference angle from the positive component-magnitude ratio.",
+          "why_valid": "The component magnitudes are the legs of the right triangle and inverse tangent supplies the acute reference angle.",
+          "depends_on": [
+            "RS-VDU-QUADRANT"
+          ]
+        },
+        {
+          "step_id": "RS-VDU-NORMALIZE",
+          "sequence": 4,
+          "action": "For a nonzero vector, divide every signed component by the same positive magnitude and verify the resulting magnitude is 1.",
+          "why_valid": "A common positive scale factor preserves direction while setting the length to 1.",
+          "depends_on": [
+            "RS-VDU-NOTATION"
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "transformation_id": "TRF-VDU-COMPONENT-TO-IJ",
+          "statement": "(v_x,v_y) and v_x i_hat + v_y j_hat encode the same vector in the same declared axes."
+        },
+        {
+          "transformation_id": "TRF-VDU-NORMALIZE",
+          "statement": "For |v|>0, v -> v/|v| preserves direction and changes magnitude to 1."
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-VDU-ATAN-IS-DIRECTION",
+          "wrong_idea": "The raw value of tan^-1(v_y/v_x) is always the final direction.",
+          "counterexample": "A vector with v_x<0 and v_y>0 lies in quadrant II even though the signed ratio is negative; the quadrant must be fixed from the component signs.",
+          "repair": "Use signs first for quadrant, then use an acute reference angle from positive component magnitudes and place it in that quadrant."
+        },
+        {
+          "misconception_id": "MIS-VDU-ZERO-NORMALIZE",
+          "wrong_idea": "The zero vector can be normalized in the same way as any other vector.",
+          "counterexample": "For v=(0,0), |v|=0, so v/|v| would divide by zero and there is no direction to preserve.",
+          "repair": "Check |v|>0 before normalization; refuse the zero vector."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-VDU-DIRECTION",
+          "title": "Recover a quadrant-correct vector direction from signed components",
+          "hidden_invariants": [
+            "The final direction must reproduce the original component sign pattern."
+          ]
+        },
+        {
+          "family_id": "FAM-VDU-UNIT",
+          "title": "Normalize a nonzero 2-D vector to unit direction",
+          "hidden_invariants": [
+            "The normalized vector has magnitude 1 and the same component sign pattern as the original."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 2,
+        "note": "The formulas are short; the hard decisions are preserving quadrant information and respecting the zero-vector boundary."
+      },
+      "badges": [
+        "VECTOR-FOUNDATION",
+        "JEE-PREPARATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-VDU-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from one declared relation symbol.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
     }
   ]
 }
