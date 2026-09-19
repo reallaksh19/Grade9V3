@@ -1110,42 +1110,27 @@
       if (file) handleDiagnosticImport(file);
     },
     loadDemoPreset: function() {
-      // Demo preset loaded ONLY on explicit user action (GAP-WEB-002)
+      // Demo preset loaded ONLY on explicit user action (GAP-WEB-002).
+      // Build it from the currently loaded canonical matrix so the generic
+      // Atlas engine never carries subject/topic identifiers of its own.
       state.knowledge_percentage = 45;
-      state.diagnostic_rows = [
-        {
-          question_ref: "Q-PHY-NLM-2A-COV-02",
-          capability_ref: "CAP-NLM-FORCES-SUM-ZERO",
-          repair_ref: "NLM2-1",
-          result: "MISSING",
-          error_stage: "CONCEPT",
-          score: 25,
-          observed: "Answered that net zero force implies no forces are acting on the body."
-        },
-        {
-          question_ref: "Q-PHY-NLM-2A-COV-04",
-          capability_ref: "CAP-NLM-FRICTION",
-          repair_ref: "NLM5-2",
-          result: "MISSING",
-          error_stage: "CONCEPT",
-          score: 20,
-          observed: "Claimed friction always opposes ground-frame velocity instead of contact relative sliding."
-        },
-        {
-          question_ref: "Q-PHY-NLM-2A-08",
-          capability_ref: "CAP-NLM-FRICTION-QUANT",
-          repair_ref: "NLM8-2",
-          result: "MISSING",
-          error_stage: "SETUP",
-          score: 40,
-          observed: "Substituted limiting friction mu_s * N without evaluating equilibrium requirement."
-        }
-      ];
+      const eligible = (state.matrix.rungs || [])
+        .filter(r => r.capability && r.microtopic && (r.microtopic.teaching_path || []).length)
+        .slice(0, 3);
+      state.diagnostic_rows = eligible.map((rung, idx) => ({
+        question_ref: (rung.questions && rung.questions[0]) ? rung.questions[0].id : null,
+        capability_ref: rung.capability.id,
+        repair_ref: rung.microtopic.teaching_path[0].id,
+        result: "MISSING",
+        error_stage: idx === 2 ? "SETUP" : "CONCEPT",
+        score: [25, 20, 40][idx] || 30,
+        observed: "Demo gap generated from the active matrix for Topic Atlas routing validation."
+      }));
       state.validation_report = {
         accepted: state.diagnostic_rows,
         rejected: [],
         warnings: [],
-        provenance: "DEMO_SCENARIO (Issue #118 Gap Case)"
+        provenance: "DEMO_SCENARIO (matrix-derived)"
       };
       saveLocalStorageState();
       renderInputDrawer();
@@ -1153,7 +1138,7 @@
       renderMultiResolutionCards();
       renderNeedMap();
       renderCoreBuilder();
-      updateStorageStatusBadge("📥 Loaded 45% Gap Demo Scenario");
+      updateStorageStatusBadge("📥 Loaded matrix-derived gap demo");
     },
     resetCanonical: function() {
       localStorage.removeItem(getStorageKey());
