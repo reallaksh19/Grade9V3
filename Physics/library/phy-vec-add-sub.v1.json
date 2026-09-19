@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Authored vector-operation slice for real Motion-in-a-Plane demand: component composition, resultant constraints, subtraction order, and angle-based decomposition. Cross product and dot product remain outside this bounded route.",
+  "scope_summary": "Authored vector-operation slice for real Motion-in-a-Plane demand: component composition, resultant constraints, subtraction order, and magnitude-angle decomposition with an explicit boundary between generic vector resolution and later Motion-in-2D evolution. Dot product, cross product and inverse-direction recovery remain outside this bounded route.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -67,6 +67,45 @@
       ],
       "selection_reason": "Owner approved ExamSIDE as a reliable question-demand source. Selected JEE Main Motion-in-a-Plane items directly require angle-based components, x/y component motion, two-dimensional constant acceleration and projectile model use.",
       "fallback": []
+    },
+    {
+      "id": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "common:semantic_reference": "Common PR #350 head 9c7d363d2ae2866ac829ae6b8039eeb8c1abc2c0; projectile component REPRESENT step used only as semantic-boundary reference."
+      },
+      "title": "Agent A authored vector-decomposition and initial-state practice",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-vec-add-sub.v1.json",
+      "edition": "0.1.0",
+      "section": "R4 angle decomposition and Motion-in-2D boundary",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft. External sources establish demand only; no external question wording is copied.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "entry_capabilities": [
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "depth": [
+        "FOUNDATION",
+        "ADVANCED"
+      ],
+      "selection_reason": "Provides safe authored practice for the generic magnitude-angle-to-components action and a clean handoff to Motion-in-2D when those components are an initial velocity state.",
+      "fallback": []
     }
   ],
   "buckets": [
@@ -82,7 +121,7 @@
       "title": "Vector addition, subtraction and orientation",
       "topic": "Vectors / Motion in a Plane",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The active slice covers component composition, explicit resultant constraints, subtraction-order orientation, and angle-based decomposition needed by selected real Motion-in-a-Plane questions; dot/cross product material remains deferred.",
+      "badge_reason": "The active slice covers component composition, explicit resultant constraints, subtraction-order orientation, and magnitude-angle decomposition needed by selected Motion-in-a-Plane demand; the vector packet stops at a signed component state and does not own later kinematic evolution.",
       "depth_overlay": "FOUNDATION",
       "curriculum_mappings": [],
       "prerequisite_refs": [
@@ -95,11 +134,12 @@
         }
       ],
       "scope": {
-        "covers": "Component-wise vector addition in declared axes, choosing an input component to satisfy a resultant-component constraint, qualitative operand-order orientation for vector subtraction, and resolving a magnitude-and-angle vector into signed perpendicular components.",
+        "covers": "Component-wise vector addition in declared axes, choosing an input component to satisfy a resultant-component constraint, qualitative operand-order orientation for vector subtraction, and resolving a magnitude-and-angle vector into signed perpendicular components, including correct binding to an initial-vector state when the context names one.",
         "excluded": [
           "Inverse-trigonometric direction recovery when the angle itself is the unknown; this remains a separate learner action.",
           "Dot-product calculations.",
-          "Cross-product magnitude and axial-orientation calculations."
+          "Cross-product magnitude and axial-orientation calculations.",
+          "Later-time evolution of resolved initial-velocity components; that belongs to Motion-in-2D / projectile capabilities, not vector decomposition."
         ],
         "extension_refs": []
       }
@@ -170,9 +210,11 @@
         "SRC-EXAMSIDE-MIP-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {},
-      "action": "Resolve a vector of known magnitude and stated acute angle to a declared perpendicular axis pair into signed x/y components.",
-      "success_criterion": "Declare the positive axes and angle reference, use adjacent = V cos(theta) and opposite = V sin(theta) for component magnitudes, attach signs from the vector's quadrant/directions, and verify that the reconstructed magnitude agrees with V.",
+      "extensions": {
+        "agent_a:semantic_boundary": "Owns representation conversion only. If the vector is an initial velocity, later component evolution belongs to CAP-KIN-2D-INDEPENDENT-COMPONENTS / CAP-KIN-PROJECTILE-MODEL."
+      },
+      "action": "Convert a vector given by magnitude plus an angle relative to a declared perpendicular axis pair into the equivalent signed component representation.",
+      "success_criterion": "First decide that decomposition is actually required, declare the axes and angle reference, identify adjacent/opposite components, project their magnitudes with sine/cosine, attach signs from the declared directions, bind the pair to the vector role named by the problem, and verify that recombination represents the original vector.",
       "prerequisite_refs": [
         "CAP-VECTOR-SIGNED-COMPONENT",
         "CAP-TRIG-RATIO-BRIDGE"
@@ -619,55 +661,67 @@
       "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
       "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
       "intrinsic_badge": "MEDIUM",
-      "badge_reason": "The trigonometry is short, but angle-reference and quadrant mistakes can swap components or erase direction before any kinematics begins.",
+      "badge_reason": "The trigonometry is short, but learners must first decide whether decomposition is needed, identify the angle reference, preserve signs, and avoid treating an initial component pair as a later-time motion law.",
       "entry_assumptions": [
         "Can read signed components against declared axes.",
         "Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge."
       ],
-      "inferential_jump": "A magnitude-and-angle vector can be replaced by two perpendicular signed components without changing the physical vector; cosine belongs to the component adjacent to the stated reference angle and sine to the opposite component.",
+      "inferential_jump": "A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.",
       "teaching_path": [
         {
           "id": "VAD-1",
           "role": "DECLARE",
-          "action": "Draw the vector against declared +x/+y axes and mark exactly which axis the acute angle is measured from.",
-          "why_valid": "Sine/cosine component labels depend on the stated reference angle, not on a memorized x=cos rule.",
+          "action": "Decide whether the vector still needs decomposition. If it is given by magnitude plus angle, declare the perpendicular axes and mark exactly which axis the angle is measured from; if signed components are already supplied, keep them rather than applying trigonometry again.",
+          "why_valid": "Projection is a representation conversion, not a compulsory formula step. The angle reference and axis convention determine which projection geometry is relevant.",
           "inputs": [],
-          "output": "axes + vector + angle reference"
+          "output": "representation decision + declared axes + explicit angle reference"
         },
         {
           "id": "VAD-2",
+          "role": "DECLARE",
+          "action": "Identify which component direction is adjacent to the stated angle and which is opposite before writing sine or cosine.",
+          "why_valid": "Cosine and sine attach to adjacent/opposite geometry; x and y receive those labels only after the reference axis is known.",
+          "inputs": [
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
+          "output": "adjacent component identified; opposite component identified"
+        },
+        {
+          "id": "VAD-3",
           "role": "TRANSFORM",
-          "action": "Use V cos(theta) for the adjacent component magnitude and V sin(theta) for the opposite component magnitude.",
-          "why_valid": "These are the right-triangle projections of the vector on perpendicular axes.",
+          "action": "Compute the component magnitudes with V cos(theta) for the adjacent leg and V sin(theta) for the opposite leg.",
+          "why_valid": "The original vector magnitude is the right-triangle hypotenuse and the perpendicular component magnitudes are its projections.",
           "inputs": [
             "CAP-TRIG-RATIO-BRIDGE"
           ],
           "output": "V_adj = V cos(theta); V_opp = V sin(theta)"
         },
         {
-          "id": "VAD-3",
+          "id": "VAD-4",
           "role": "TRANSFORM",
-          "action": "Attach each component sign from whether the vector points with or against the declared positive axis.",
-          "why_valid": "Trigonometric ratios give magnitudes here; axis direction carries the physical sign.",
+          "action": "Attach signs from the declared positive directions and label the pair with the vector role named by the problem; for an initial velocity this means u_x and u_y at the chosen initial instant.",
+          "why_valid": "Projection gives component magnitudes, while the coordinate frame supplies signs and the problem context supplies the state label. The decomposition itself does not license any later-time evolution claim.",
           "inputs": [
             "CAP-VECTOR-SIGNED-COMPONENT"
           ],
-          "output": "For a first-quadrant vector measured from +x: (V_x,V_y)=(+V cos(theta),+V sin(theta)); other quadrants change signs from the declared axes"
+          "output": "signed, role-bound component pair such as (V_x,V_y) or initial (u_x,u_y)"
         },
         {
-          "id": "VAD-4",
+          "id": "VAD-5",
           "role": "VERIFY",
-          "action": "Reconstruct sqrt(Vx^2+Vy^2) and compare with the original magnitude V.",
-          "why_valid": "The resolved components must describe the same vector magnitude.",
+          "action": "Reconstruct the original magnitude and check that the component signs/quadrant agree with the drawn vector.",
+          "why_valid": "A correct decomposition is an equivalent representation of the same vector, so magnitude and orientation must be consistent.",
           "inputs": [],
-          "output": "reconstructed magnitude agrees with V"
+          "output": "component pair independently checked against original vector"
         }
       ],
       "relation_refs": [
         "REL-VEC-ANGLE-COMPONENTS"
       ],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "The x-component is always V cos(theta), regardless of which axis theta is measured from.",
@@ -677,30 +731,41 @@
         {
           "wrong_idea": "Sine and cosine automatically provide the component signs.",
           "diagnostic_prompt": "A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?",
-          "repair": "Use trig for component magnitudes, then use the declared axis directions to attach signs. Left is negative x when right is +x."
+          "repair": "Use trigonometry for component magnitudes, then use the declared axis directions to attach signs."
+        },
+        {
+          "wrong_idea": "Whenever a vector question contains components, trigonometric decomposition must be performed.",
+          "diagnostic_prompt": "A velocity is already supplied as (-6 i + 8 j) m/s. Is another sine/cosine decomposition required before using those components?",
+          "repair": "No. The vector is already in component form. Decomposition is needed when converting from a magnitude-angle description to components."
+        },
+        {
+          "wrong_idea": "After an initial velocity is resolved into u_x and u_y, vector decomposition proves that both components keep those same values later.",
+          "diagnostic_prompt": "Does writing u_y=u sin(theta) at launch prove that v_y remains u_y during later projectile motion?",
+          "repair": "No. Decomposition describes the initial vector only. Later velocity components are determined by the motion model; vector decomposition does not supply that evolution."
         }
       ],
       "exit_task": {
-        "prompt": "A vector of magnitude 20 points 30 degrees above the +x axis. Resolve it into x and y components symbolically using sin/cos, state their signs, and give one independent check.",
-        "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+        "prompt": "A launch velocity of magnitude 20 m/s points 30 degrees above +x. Resolve only the initial velocity into signed components, label them correctly, and state what this calculation does not yet tell you about later motion.",
+        "source_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
         "answer": {
           "kind": "MODEL_RESPONSE",
-          "summary": "Vx = 20 cos(30°) and Vy = 20 sin(30°), both positive.",
+          "summary": "u_x=20 cos(30°)=10√3 m/s and u_y=20 sin(30°)=10 m/s, both positive. These are the t=0 velocity components; decomposition alone does not determine their later values.",
           "reasoning": [
-            "The 30° angle is measured from +x, so x is adjacent and y is opposite.",
-            "The vector points right and up, so both component signs are positive.",
-            "The component pair must reconstruct magnitude 20."
+            "The angle is measured from +x, so x is adjacent and y is opposite.",
+            "The vector points right and up, so both initial component signs are positive.",
+            "Label the pair u_x,u_y because the problem names an initial velocity.",
+            "Any later v_x,v_y requires a motion model in addition to this representation step."
           ],
-          "check": "Check sqrt(Vx^2+Vy^2)=20 using sin^2(theta)+cos^2(theta)=1.",
+          "check": "sqrt(u_x^2+u_y^2)=20 m/s and the signs place the vector in the first quadrant.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The task is intentionally symbolic; exact decimal component values are not required."
+          "no_numeric_claim": "The exact components follow directly from the declared 20 m/s, 30° vector; the final sentence is a scope boundary, not a claim about a particular projectile model."
         }
       },
-      "research_contribution": "Selected ExamSIDE projectile questions make angle-based initial-velocity components a real question-demand prerequisite. The teaching sequence is locally authored and does not import JEE readiness or school-syllabus authority.",
+      "research_contribution": "Selected Motion-in-a-Plane demand makes magnitude-angle decomposition a genuine upstream prerequisite. Common PR #350 also separates the projectile REPRESENT step from later model evolution. This packet keeps that boundary: Vectors owns representation conversion; Motion-in-2D owns time evolution.",
       "prerequisite_refs": [
         "CAP-VECTOR-SIGNED-COMPONENT",
         "CAP-TRIG-RATIO-BRIDGE"
@@ -708,48 +773,67 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "For a vector at a small angle above +x, should the x-component or y-component be larger?",
-          "defensible_answer": "The x-component should be larger because it is adjacent to the small angle."
+          "prompt": "Before calculating, if an acute angle is measured from +y, which component should use cosine: x or y?",
+          "defensible_answer": "The y-component magnitude, because y is adjacent to the stated angle."
         },
         "attempt": {
-          "produces": "A labelled right-triangle/vector sketch and signed component pair.",
+          "produces": "A representation decision, labelled vector sketch, and signed component pair with the correct contextual labels.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "The angle reference is explicitly tied to an axis before choosing sine/cosine.",
-              "evidence_of": "Correct projection geometry rather than memorized labels."
+              "criterion": "Checks whether decomposition is needed before applying trigonometry.",
+              "evidence_of": "Distinguishing representation choice from mechanical formula use."
             },
             {
-              "criterion": "Component signs come from declared axis directions.",
-              "evidence_of": "Direction information is preserved."
+              "criterion": "Identifies the angle reference and adjacent/opposite components before sine/cosine.",
+              "evidence_of": "Correct projection geometry."
+            },
+            {
+              "criterion": "Applies signs from the declared axes and uses the problem's vector-role labels.",
+              "evidence_of": "Preserving direction and state meaning."
             }
           ],
           "accepted": [
-            "From +x: Vx=V cos(theta), Vy=V sin(theta), then apply quadrant signs."
+            "From +x in quadrant I: V_x=V cos(theta), V_y=V sin(theta); for launch velocity label these u_x,u_y at t=0."
           ],
           "rejected": [
-            "Always write x=V cos(theta) without checking the angle reference."
+            "Always write x=V cos(theta) without checking the angle reference, or assume resolved initial components are automatically later-time constants."
           ]
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Which component lies adjacent to the stated angle?",
-              "why_this_ask": "It recovers the cosine assignment from geometry.",
+              "ask": "Is the vector already given as signed components, or does it need conversion from magnitude plus angle?",
+              "why_this_ask": "Prevents unnecessary or inappropriate trigonometric decomposition.",
               "from_step_ref": "VAD-1"
             },
             {
-              "ask": "Which direction does each component point relative to the positive axes?",
-              "why_this_ask": "It restores signs after the magnitude projection.",
-              "from_step_ref": "VAD-3"
+              "ask": "Which axis is the angle measured from, and which component is adjacent to it?",
+              "why_this_ask": "Recovers the cosine/sine assignment from geometry.",
+              "from_step_ref": "VAD-2"
+            },
+            {
+              "ask": "Which way does each component point relative to the declared positive axes?",
+              "why_this_ask": "Restores component signs.",
+              "from_step_ref": "VAD-4"
+            },
+            {
+              "ask": "What does the problem call this vector—initial velocity, force, displacement, or something else?",
+              "why_this_ask": "Binds the numerical pair to the correct physical state without adding dynamics.",
+              "from_step_ref": "VAD-4"
+            },
+            {
+              "ask": "Does the reconstructed magnitude and quadrant match the original vector?",
+              "why_this_ask": "Closes the representation conversion with an independent check.",
+              "from_step_ref": "VAD-5"
             }
           ],
-          "differs_from_teaching_path": "The declarative route states the projection rule; reconstruction starts from adjacent/opposite geometry and asks the learner to rebuild it."
+          "differs_from_teaching_path": "Teaching presents the conversion sequence; reconstruction begins by deciding whether conversion is needed, then rebuilds the projection from geometry and closes by checking equivalence."
         },
         "boundary_test": {
-          "prompt": "If the same vector is described by an acute angle measured from +y instead, do the physical components change?",
-          "answer": "No. The physical components are the same; only which component is adjacent/opposite to the named angle changes.",
-          "confirms": "Component values belong to the vector and axes, not to a memorized sine/cosine label."
+          "prompt": "A launch velocity is already given as u=(12 i + 5 j) m/s. What should vector decomposition do before the Motion-in-2D solver begins?",
+          "answer": "Nothing further is required for magnitude-angle decomposition: the initial velocity is already in signed component form. Motion-in-2D may now use u_x=12 and u_y=5 in its own model.",
+          "confirms": "The vector capability owns representation conversion, not later kinematic evolution."
         }
       }
     }
@@ -765,7 +849,7 @@
       "evidence_refs": [],
       "extensions": {},
       "expression": "V_adj = V cos(theta); V_opp = V sin(theta)",
-      "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values then follow from the declared directions.",
+      "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values and contextual labels then follow from the declared directions and vector role.",
       "symbols": [
         {
           "symbol": "V",
@@ -812,12 +896,15 @@
         }
       ],
       "limits": [
+        "Do not apply this relation when the vector is already supplied as signed components; no conversion is needed.",
         "This relation does not by itself recover an unknown direction angle from components.",
         "It does not define dot or cross products.",
-        "For non-acute standard-position angles, use the same projections with signs supplied consistently by the axis/quadrant convention rather than blindly treating both values as positive."
+        "If the vector is an initial velocity, these equations define u_x and u_y at the initial instant only; later v_x and v_y belong to the relevant motion model.",
+        "For non-acute standard-position angles, use consistent projection/sign conventions rather than blindly treating both values as positive."
       ],
       "checks": [
         "sqrt(V_adj^2+V_opp^2)=V.",
+        "The component signs place the reconstructed vector in the same quadrant/directions as the original.",
         "A small angle from an axis gives a larger adjacent than opposite component."
       ],
       "gate_relation_ref": "REL-VEC-ANGLE-COMPONENTS"
@@ -863,6 +950,67 @@
       ],
       "item_refs": [
         "Q-PHY-VECOPS-2A-01"
+      ]
+    },
+    {
+      "id": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "agent_a:semantic_reference": "Common PR #350 projectile REPRESENT step: resolve initial velocity into components before model evolution.",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "title": "Magnitude-angle vector decomposition and initial-state representation practice",
+      "capability_refs": [
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "solution_structure": [
+        "Decide whether conversion from magnitude-angle form is actually required.",
+        "Declare perpendicular axes and identify the angle reference.",
+        "Identify adjacent/opposite component directions before assigning sine/cosine.",
+        "Project component magnitudes, then attach signs and contextual labels.",
+        "Reconstruct magnitude/quadrant and stop at representation unless another capability explicitly owns later evolution."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Distinguish a vector that needs magnitude-angle decomposition from one already supplied in signed component form.",
+        "representation_translation": "Translate diagrams or verbal directions into a declared magnitude-angle/component representation without changing the vector.",
+        "reasoning_steps": "Recover sine/cosine placement from adjacent/opposite geometry, then attach signs and state labels before checking equivalence.",
+        "novelty": "Reuse the same generic vector conversion for velocity, force and displacement contexts without importing their later dynamics."
+      },
+      "safe_variations": [
+        "Change the reference axis while preserving the same physical vector.",
+        "Change the vector quadrant/direction while holding magnitude and acute reference angle fixed.",
+        "Change the vector role among velocity, force and displacement while keeping the same projection geometry.",
+        "Supply the vector directly in components to test whether the learner correctly declines unnecessary decomposition."
+      ],
+      "transfer_boundaries": [
+        "If signed components are already supplied, do not perform magnitude-angle decomposition again.",
+        "For an initial velocity, decomposition stops after producing signed u_x,u_y; later v_x,v_y belong to Motion-in-2D / projectile modelling.",
+        "Inverse-trigonometric direction recovery from components is a separate learner action.",
+        "Dot product, cross product and non-orthogonal basis resolution remain outside this family."
+      ],
+      "common_wrong_routes": [
+        "Use x=V cos(theta) without checking which axis theta is measured from.",
+        "Use sine/cosine signs instead of the declared axis directions.",
+        "Apply trigonometry to a vector already given in component form.",
+        "Treat initial component values as later-time constants merely because the vector was decomposed."
+      ],
+      "item_refs": [
+        "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+        "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
+        "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
+        "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
+        "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
+        "Q-PHY-VEC-DECOMP-2B-VERBAL-NW-01",
+        "Q-PHY-VEC-DECOMP-2B-ALREADY-COMPONENTS-02",
+        "Q-PHY-VEC-DECOMP-2B-COMPLEMENTARY-ANGLES-03",
+        "Q-PHY-VEC-DECOMP-2B-FORCE-CONTEXT-04",
+        "Q-PHY-VEC-DECOMP-2B-REVERSED-X-AXIS-05"
       ]
     }
   ],
@@ -922,6 +1070,700 @@
           "reveals": "METHOD"
         }
       ]
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2A-FROM-X-01",
+      "stem": "A vector has magnitude 20 and points 30 degrees above +x. Resolve it into signed x and y components.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Axes are perpendicular.",
+        "The angle is measured from +x."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "V_x=20 cos(30°)=10√3 and V_y=20 sin(30°)=10, both positive.",
+        "reasoning": [
+          "The angle is measured from +x, so x is adjacent and y is opposite.",
+          "The vector points toward +x and +y, so both signs are positive.",
+          "Use the component pair (10√3,10)."
+        ],
+        "check": "sqrt((10√3)^2+10^2)=20 and the signs place the vector in quadrant I.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which component is adjacent to the stated 30° angle?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use cosine for the adjacent magnitude, sine for the opposite magnitude, then apply the quadrant signs.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-5"
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2A-FROM-Y-02",
+      "stem": "A vector of magnitude 12 points 30 degrees to the right of +y. Resolve it into signed x and y components.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The angle reference is +y, not +x."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "V_x=12 sin(30°)=6 and V_y=12 cos(30°)=6√3, both positive.",
+        "reasoning": [
+          "The angle is measured from +y, so y is adjacent and x is opposite.",
+          "Both component directions are positive.",
+          "Do not use x=V cos(theta) merely because x is named first."
+        ],
+        "check": "Reconstruction gives magnitude 12 and a vector closer to +y than +x.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The angle is measured from which axis?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Assign cosine to the component adjacent to +y and sine to the opposite component.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-2"
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2A-QUADRANT-II-03",
+      "stem": "A vector of magnitude 15 points 40 degrees above the -x direction. With +x right and +y up, resolve the vector into signed components.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "+x is right and +y is up."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "V_x=-15 cos(40°) and V_y=+15 sin(40°).",
+        "reasoning": [
+          "The 40° reference is the leftward horizontal direction, so the horizontal magnitude is adjacent.",
+          "The vector points left, so x is negative; it points up, so y is positive."
+        ],
+        "check": "The signs place the vector in quadrant II and the reconstructed magnitude is 15.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Before applying signs, which component magnitude is adjacent to the 40° angle?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "After projecting magnitudes, use left/right and up/down relative to the declared axes for the signs.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-4"
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2A-QUADRANT-IV-04",
+      "stem": "A vector of magnitude 18 points 25 degrees below +x. Resolve it into signed components.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use the standard +x right, +y up convention."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "V_x=+18 cos(25°) and V_y=-18 sin(25°).",
+        "reasoning": [
+          "The reference angle is from +x, so x is adjacent and y is opposite.",
+          "Rightward is positive x and downward is negative y."
+        ],
+        "check": "The signs place the vector in quadrant IV and the reconstructed magnitude is 18.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which signs follow from 'below +x'?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Project the magnitudes first, then attach + to x and - to y.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-4"
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2A-INITIAL-STATE-05",
+      "stem": "A particle is launched with initial speed u at an angle theta above +x. Write only the signed initial velocity components needed by a later Motion-in-2D calculation, and state what this decomposition has not yet determined.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The task asks only for representation of the initial velocity, not later projectile motion."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "u_x=u cos(theta), u_y=u sin(theta), both positive for the stated direction. This is only the initial component state; later velocity components require a motion model.",
+        "reasoning": [
+          "The launch angle is measured from +x, so x is adjacent and y is opposite.",
+          "Because the vector is explicitly an initial velocity, label the components u_x and u_y.",
+          "Vector decomposition does not determine how those components change after t=0."
+        ],
+        "check": "sqrt(u_x^2+u_y^2)=u and both signs agree with the launch direction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What symbol should distinguish an initial velocity component from a later velocity component?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Resolve the launch vector into u_x and u_y; stop before applying any time-evolution equation.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-4"
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2B-VERBAL-NW-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2B-VERBAL-NW-01",
+      "stem": "A velocity vector has magnitude V and points northwest, 35 degrees west of north. Choose +x east and +y north, then write its signed components.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use +x east and +y north."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "V_x=-V sin(35°) and V_y=+V cos(35°).",
+        "reasoning": [
+          "'West of north' means the angle is measured from +y toward -x.",
+          "The y magnitude is adjacent, so it uses cosine; the x magnitude is opposite, so it uses sine.",
+          "West is negative x and north is positive y."
+        ],
+        "check": "The signs place the vector northwest and the magnitude reconstructs to V.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Interprets west of north as an angle from +y toward -x.",
+            "evidence_of": "Correct verbal-to-geometric representation."
+          },
+          {
+            "criterion": "Uses sine/cosine according to adjacent/opposite and then assigns signs.",
+            "evidence_of": "Separates projection magnitude from direction sign."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes an explicit +y-angle statement into a verbal compass representation."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Translate 'west of north' into an angle measured from which positive axis?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "repair_ref": "VAD-2",
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must convert compass-language direction into an explicit axis-and-angle representation before projection.",
+        "builds_on": [
+          "Q-PHY-VEC-DECOMP-2A-FROM-Y-02"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2B-ALREADY-COMPONENTS-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2B-ALREADY-COMPONENTS-02",
+      "stem": "A velocity is already given as v=(-6 i + 8 j) m/s. Before a later calculation, decide whether magnitude-angle trigonometric decomposition is required. Give one check on the supplied component representation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "No direction angle is needed for the requested decision."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "No additional magnitude-angle decomposition is required; the vector is already in signed component form. A magnitude check gives |v|=10 m/s.",
+        "reasoning": [
+          "The purpose of decomposition is to convert a magnitude-angle description into components.",
+          "Here the signed x and y components are already explicit.",
+          "The magnitude sqrt((-6)^2+8^2)=10 m/s is a valid independent check."
+        ],
+        "check": "Do not invent an angle or re-project a representation that is already usable.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Declines unnecessary sine/cosine decomposition.",
+            "evidence_of": "Treating decomposition as a representation choice rather than a compulsory formula."
+          },
+          {
+            "criterion": "Uses the existing signed components in the check.",
+            "evidence_of": "Preserving the supplied representation."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Starts from the initial-state representation practice but supplies the velocity directly as signed components, so the learner must decide that magnitude-angle decomposition is unnecessary."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What representation is the vector already in, and what conversion would decomposition normally perform?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "repair_ref": "VAD-1",
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide whether decomposition applies rather than being told to use it.",
+        "builds_on": [
+          "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2B-COMPLEMENTARY-ANGLES-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2B-COMPLEMENTARY-ANGLES-03",
+      "stem": "The same first-quadrant vector of magnitude V is described once as 30 degrees above +x and once as 60 degrees to the right of +y. Show, without decimals, that both descriptions produce the same x and y components.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The two angle descriptions refer to the same vector in the same axes."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "From +x: (V cos30°, V sin30°). From +y: (V sin60°, V cos60°). Since sin60°=cos30° and cos60°=sin30°, the pairs are identical.",
+        "reasoning": [
+          "Resolve each description from its own reference axis.",
+          "Compare the x expressions and y expressions using complementary-angle identities.",
+          "The physical vector and axes are unchanged, so the component pair must be unchanged."
+        ],
+        "check": "Both descriptions reconstruct magnitude V in quadrant I.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Builds each component pair from its stated reference axis.",
+            "evidence_of": "Reference-aware projection."
+          },
+          {
+            "criterion": "Uses complementary-angle identities to show equality.",
+            "evidence_of": "Checks representation equivalence rather than trusting labels."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Keeps the physical vector from the +x-reference practice but redescribes it from the perpendicular axis, requiring an equivalence proof rather than another routine projection."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Do the physical vector and axes change when the reference angle is described from the other perpendicular axis?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Write both component pairs before using complementary-angle identities.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-5",
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must build two valid decompositions and prove they are equivalent representations.",
+        "builds_on": [
+          "Q-PHY-VEC-DECOMP-2A-FROM-X-01"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2B-FORCE-CONTEXT-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2B-FORCE-CONTEXT-04",
+      "stem": "A force of magnitude 50 N acts 37 degrees below +x. Resolve the force into signed Cartesian components. Do not use any motion equations.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Axes are Cartesian and perpendicular.",
+        "No acceleration or motion inference is requested."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "F_x=+50 cos(37°) N and F_y=-50 sin(37°) N.",
+        "reasoning": [
+          "The vector role changed from velocity to force, but the projection geometry did not.",
+          "The force points right and down, so x is positive and y is negative."
+        ],
+        "check": "The reconstructed force magnitude is 50 N and its signs match the stated direction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses the same generic decomposition rule in a force context.",
+            "evidence_of": "Transfers representation skill without importing velocity-specific rules."
+          },
+          {
+            "criterion": "Preserves the correct force units and signs.",
+            "evidence_of": "Binds the component pair to the named vector role."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes the physical vector role while preserving the same projection geometry."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which part of the task depends on this being a force rather than a velocity?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use the same projection geometry, preserve N as the component unit, and do not introduce kinematics.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "VAD-4",
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must reuse vector decomposition outside a velocity context without adding motion-specific reasoning.",
+        "builds_on": [
+          "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-VEC-DECOMP-2B-REVERSED-X-AXIS-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "VECTOR_DECOMPOSITION_INITIAL_STATE",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+      "original_identifier": "AUTHOR-VEC-DECOMP-2B-REVERSED-X-AXIS-05",
+      "stem": "A physical velocity of magnitude u points 20 degrees above east. A solver deliberately declares +x west and +y north. Resolve the velocity into signed components in that declared frame.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use the solver's declared +x west, +y north frame consistently."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "u_x=-u cos(20°) and u_y=+u sin(20°).",
+        "reasoning": [
+          "The physical direction is east/up, but +x has been declared west.",
+          "The horizontal magnitude is u cos20° and points opposite +x, so its sign is negative.",
+          "The vertical component points with +y, so it is positive."
+        ],
+        "check": "Changing the coordinate convention changes component signs, not the physical vector magnitude or direction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses the declared axes rather than defaulting to east-positive.",
+            "evidence_of": "Separates physical direction from coordinate sign."
+          },
+          {
+            "criterion": "Keeps the same projection magnitudes while changing only the required sign.",
+            "evidence_of": "Understands coordinate representation invariance."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Builds on signed-quadrant practice while changing the coordinate convention, so the learner must separate physical direction from coordinate sign."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Does choosing +x west change the physical vector, or only how its horizontal component is signed?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "repair_ref": "VAD-4",
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must resolve the same physical vector in a non-default but valid coordinate frame.",
+        "builds_on": [
+          "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03"
+        ]
+      }
     }
   ],
   "teaching_routes": [

@@ -7964,32 +7964,37 @@ window.GRADE9V3 = {
               "title": "Resolve magnitude-and-angle vectors into signed perpendicular components",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "The trigonometry is short, but angle-reference and quadrant mistakes can swap components or erase direction before any kinematics begins.",
+              "badge_reason": "The trigonometry is short, but learners must first decide whether decomposition is needed, identify the angle reference, preserve signs, and avoid treating an initial component pair as a later-time motion law.",
               "entry_assumptions": [
                 "Can read signed components against declared axes.",
                 "Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge."
               ],
-              "inferential_jump": "A magnitude-and-angle vector can be replaced by two perpendicular signed components without changing the physical vector; cosine belongs to the component adjacent to the stated reference angle and sine to the opposite component.",
+              "inferential_jump": "A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.",
               "teaching_path": [
                 {
-                  "action": "Draw the vector against declared +x/+y axes and mark exactly which axis the acute angle is measured from.",
-                  "why_valid": "Sine/cosine component labels depend on the stated reference angle, not on a memorized x=cos rule.",
-                  "output": "axes + vector + angle reference"
+                  "action": "Decide whether the vector still needs decomposition. If it is given by magnitude plus angle, declare the perpendicular axes and mark exactly which axis the angle is measured from; if signed components are already supplied, keep them rather than applying trigonometry again.",
+                  "why_valid": "Projection is a representation conversion, not a compulsory formula step. The angle reference and axis convention determine which projection geometry is relevant.",
+                  "output": "representation decision + declared axes + explicit angle reference"
                 },
                 {
-                  "action": "Use V cos(theta) for the adjacent component magnitude and V sin(theta) for the opposite component magnitude.",
-                  "why_valid": "These are the right-triangle projections of the vector on perpendicular axes.",
+                  "action": "Identify which component direction is adjacent to the stated angle and which is opposite before writing sine or cosine.",
+                  "why_valid": "Cosine and sine attach to adjacent/opposite geometry; x and y receive those labels only after the reference axis is known.",
+                  "output": "adjacent component identified; opposite component identified"
+                },
+                {
+                  "action": "Compute the component magnitudes with V cos(theta) for the adjacent leg and V sin(theta) for the opposite leg.",
+                  "why_valid": "The original vector magnitude is the right-triangle hypotenuse and the perpendicular component magnitudes are its projections.",
                   "output": "V_adj = V cos(theta); V_opp = V sin(theta)"
                 },
                 {
-                  "action": "Attach each component sign from whether the vector points with or against the declared positive axis.",
-                  "why_valid": "Trigonometric ratios give magnitudes here; axis direction carries the physical sign.",
-                  "output": "For a first-quadrant vector measured from +x: (V_x,V_y)=(+V cos(theta),+V sin(theta)); other quadrants change signs from the declared axes"
+                  "action": "Attach signs from the declared positive directions and label the pair with the vector role named by the problem; for an initial velocity this means u_x and u_y at the chosen initial instant.",
+                  "why_valid": "Projection gives component magnitudes, while the coordinate frame supplies signs and the problem context supplies the state label. The decomposition itself does not license any later-time evolution claim.",
+                  "output": "signed, role-bound component pair such as (V_x,V_y) or initial (u_x,u_y)"
                 },
                 {
-                  "action": "Reconstruct sqrt(Vx^2+Vy^2) and compare with the original magnitude V.",
-                  "why_valid": "The resolved components must describe the same vector magnitude.",
-                  "output": "reconstructed magnitude agrees with V"
+                  "action": "Reconstruct the original magnitude and check that the component signs/quadrant agree with the drawn vector.",
+                  "why_valid": "A correct decomposition is an equivalent representation of the same vector, so magnitude and orientation must be consistent.",
+                  "output": "component pair independently checked against original vector"
                 }
               ],
               "misconceptions": [
@@ -8001,27 +8006,38 @@ window.GRADE9V3 = {
                 {
                   "wrong_idea": "Sine and cosine automatically provide the component signs.",
                   "diagnostic_prompt": "A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?",
-                  "repair": "Use trig for component magnitudes, then use the declared axis directions to attach signs. Left is negative x when right is +x."
+                  "repair": "Use trigonometry for component magnitudes, then use the declared axis directions to attach signs."
+                },
+                {
+                  "wrong_idea": "Whenever a vector question contains components, trigonometric decomposition must be performed.",
+                  "diagnostic_prompt": "A velocity is already supplied as (-6 i + 8 j) m/s. Is another sine/cosine decomposition required before using those components?",
+                  "repair": "No. The vector is already in component form. Decomposition is needed when converting from a magnitude-angle description to components."
+                },
+                {
+                  "wrong_idea": "After an initial velocity is resolved into u_x and u_y, vector decomposition proves that both components keep those same values later.",
+                  "diagnostic_prompt": "Does writing u_y=u sin(theta) at launch prove that v_y remains u_y during later projectile motion?",
+                  "repair": "No. Decomposition describes the initial vector only. Later velocity components are determined by the motion model; vector decomposition does not supply that evolution."
                 }
               ],
               "exit_task": {
-                "prompt": "A vector of magnitude 20 points 30 degrees above the +x axis. Resolve it into x and y components symbolically using sin/cos, state their signs, and give one independent check.",
-                "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+                "prompt": "A launch velocity of magnitude 20 m/s points 30 degrees above +x. Resolve only the initial velocity into signed components, label them correctly, and state what this calculation does not yet tell you about later motion.",
+                "source_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "Vx = 20 cos(30°) and Vy = 20 sin(30°), both positive.",
+                  "summary": "u_x=20 cos(30°)=10√3 m/s and u_y=20 sin(30°)=10 m/s, both positive. These are the t=0 velocity components; decomposition alone does not determine their later values.",
                   "reasoning": [
-                    "The 30° angle is measured from +x, so x is adjacent and y is opposite.",
-                    "The vector points right and up, so both component signs are positive.",
-                    "The component pair must reconstruct magnitude 20."
+                    "The angle is measured from +x, so x is adjacent and y is opposite.",
+                    "The vector points right and up, so both initial component signs are positive.",
+                    "Label the pair u_x,u_y because the problem names an initial velocity.",
+                    "Any later v_x,v_y requires a motion model in addition to this representation step."
                   ],
-                  "check": "Check sqrt(Vx^2+Vy^2)=20 using sin^2(theta)+cos^2(theta)=1.",
+                  "check": "sqrt(u_x^2+u_y^2)=20 m/s and the signs place the vector in the first quadrant.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The task is intentionally symbolic; exact decimal component values are not required."
+                  "no_numeric_claim": "The exact components follow directly from the declared 20 m/s, 30° vector; the final sentence is a scope boundary, not a claim about a particular projectile model."
                 }
               },
               "prerequisites": [
@@ -8034,7 +8050,7 @@ window.GRADE9V3 = {
             {
               "id": "REL-VEC-ANGLE-COMPONENTS",
               "expression": "V_adj = V cos(theta); V_opp = V sin(theta)",
-              "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values then follow from the declared directions.",
+              "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values and contextual labels then follow from the declared directions and vector role.",
               "conditions": [
                 "The component axes are perpendicular.",
                 "The reference axis for theta is explicitly identified.",
@@ -8053,6 +8069,66 @@ window.GRADE9V3 = {
             }
           ],
           "questions": [
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+              "stem": "A vector has magnitude 20 and points 30 degrees above +x. Resolve it into signed x and y components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=20 cos(30°)=10√3 and V_y=20 sin(30°)=10, both positive."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
+              "stem": "A vector of magnitude 12 points 30 degrees to the right of +y. Resolve it into signed x and y components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=12 sin(30°)=6 and V_y=12 cos(30°)=6√3, both positive."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
+              "stem": "A particle is launched with initial speed u at an angle theta above +x. Write only the signed initial velocity components needed by a later Motion-in-2D calculation, and state what this decomposition has not yet determined.",
+              "origin": "AUTHORED",
+              "answer": "u_x=u cos(theta), u_y=u sin(theta), both positive for the stated direction. This is only the initial component state; later velocity components require a motion model."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
+              "stem": "A vector of magnitude 15 points 40 degrees above the -x direction. With +x right and +y up, resolve the vector into signed components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=-15 cos(40°) and V_y=+15 sin(40°)."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
+              "stem": "A vector of magnitude 18 points 25 degrees below +x. Resolve it into signed components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=+18 cos(25°) and V_y=-18 sin(25°)."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-ALREADY-COMPONENTS-02",
+              "stem": "A velocity is already given as v=(-6 i + 8 j) m/s. Before a later calculation, decide whether magnitude-angle trigonometric decomposition is required. Give one check on the supplied component representation.",
+              "origin": "AUTHORED",
+              "answer": "No additional magnitude-angle decomposition is required; the vector is already in signed component form. A magnitude check gives |v|=10 m/s."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-COMPLEMENTARY-ANGLES-03",
+              "stem": "The same first-quadrant vector of magnitude V is described once as 30 degrees above +x and once as 60 degrees to the right of +y. Show, without decimals, that both descriptions produce the same x and y components.",
+              "origin": "AUTHORED",
+              "answer": "From +x: (V cos30°, V sin30°). From +y: (V sin60°, V cos60°). Since sin60°=cos30° and cos60°=sin30°, the pairs are identical."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-FORCE-CONTEXT-04",
+              "stem": "A force of magnitude 50 N acts 37 degrees below +x. Resolve the force into signed Cartesian components. Do not use any motion equations.",
+              "origin": "AUTHORED",
+              "answer": "F_x=+50 cos(37°) N and F_y=-50 sin(37°) N."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-REVERSED-X-AXIS-05",
+              "stem": "A physical velocity of magnitude u points 20 degrees above east. A solver deliberately declares +x west and +y north. Resolve the velocity into signed components in that declared frame.",
+              "origin": "AUTHORED",
+              "answer": "u_x=-u cos(20°) and u_y=+u sin(20°)."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-VERBAL-NW-01",
+              "stem": "A velocity vector has magnitude V and points northwest, 35 degrees west of north. Choose +x east and +y north, then write its signed components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=-V sin(35°) and V_y=+V cos(35°)."
+            },
             {
               "id": "Q-PHY-VECREP-2A-01",
               "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
@@ -8081,7 +8157,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VEC-ANGLE-DECOMPOSITION",
-              "action": "Resolve a vector of known magnitude and stated acute angle to a declared perpendicular axis pair into signed x/y components.",
+              "action": "Convert a vector given by magnitude plus an angle relative to a declared perpendicular axis pair into the equivalent signed component representation.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -8116,7 +8192,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 39,
+          "record_count": 51,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -8124,17 +8200,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 1,
+            "questions": 11,
             "obligations": 8,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
