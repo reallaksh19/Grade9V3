@@ -4687,50 +4687,61 @@ window.GRADE9V3 = {
             },
             {
               "id": "MIC-PHY-SOUND-LONGITUDINAL",
-              "title": "Sound in a fluid travels as longitudinal compressions and rarefactions",
+              "title": "Sound propagates through a medium as longitudinal compressions and rarefactions",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "Learners often confuse particle motion with the direction the wave travels.",
+              "badge_reason": "A transverse-looking sketch is tempting; the learner must keep local particle displacement parallel to propagation and read compression/rarefaction as density/pressure-pattern changes rather than travelling particles.",
               "entry_assumptions": [
                 "Can distinguish a local particle from a propagating disturbance in a medium."
               ],
-              "inferential_jump": "In a simple sound wave through a fluid, particles oscillate back and forth mainly parallel to the propagation direction, producing moving regions of compression and rarefaction while each particle remains near its equilibrium position.",
+              "inferential_jump": "In a simple sound wave through a fluid, neighboring particles oscillate locally mainly parallel to propagation, creating alternating high-density/high-pressure compressions and low-density/low-pressure rarefactions while the disturbance advances.",
               "teaching_path": [
                 {
-                  "action": "Choose one line through the medium and mark equilibrium positions of neighboring particles.",
-                  "why_valid": "A longitudinal description needs a propagation axis and local reference positions.",
-                  "output": "propagation axis; particle equilibrium positions."
+                  "action": "Draw one propagation axis through the medium, mark particle equilibrium positions, and label the propagation direction.",
+                  "why_valid": "Longitudinal motion is defined relative to the propagation axis and local equilibrium positions.",
+                  "output": "propagation axis plus local equilibrium positions"
                 },
                 {
-                  "action": "Displace neighboring particles back and forth along the axis so crowded and spread-out regions form and move onward.",
-                  "why_valid": "Parallel local oscillation changes local density/pressure, creating compressions and rarefactions that propagate.",
-                  "output": "compression and rarefaction pattern moves; particles oscillate locally."
+                  "action": "Displace neighboring particles back and forth mainly parallel to that axis and mark where particles bunch together and spread apart.",
+                  "why_valid": "Local longitudinal oscillation creates alternating regions of higher and lower particle density/pressure.",
+                  "output": "compression = denser/higher-pressure region; rarefaction = less-dense/lower-pressure region"
                 },
                 {
-                  "action": "Track one marked particle while a compression passes it.",
-                  "why_valid": "The marked particle should move around equilibrium rather than accompany the compression over a long distance.",
-                  "output": "particle local motion != propagation distance of the disturbance."
+                  "action": "Advance the compression-rarefaction pattern while keeping one marked particle near its equilibrium region.",
+                  "why_valid": "The wave/disturbance propagates through successive interactions; matter oscillates locally rather than travelling source-to-listener with the pattern.",
+                  "output": "pattern travels; marked particle oscillates locally"
+                },
+                {
+                  "action": "Compare the particle-oscillation arrow with the propagation arrow and reject any sketch that makes the fluid particles oscillate primarily perpendicular to propagation.",
+                  "why_valid": "For the simple longitudinal sound model in a fluid, particle displacement is parallel to the propagation direction.",
+                  "output": "particle motion parallel to propagation in the model"
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "Air particles move from the source to the listener at the speed of sound.",
-                  "diagnostic_prompt": "After one compression passes, should a marked air particle remain displaced far toward the listener?",
-                  "repair": "Track the marked particle: it oscillates around its local equilibrium while successive compressions/rarefactions travel onward."
+                  "wrong_idea": "Air particles travel from the source to the listener at the speed of sound.",
+                  "diagnostic_prompt": "Follow one marked air particle while a compression travels across the room. Does that same particle travel to the listener?",
+                  "repair": "Keep the particle near its equilibrium region, oscillating locally while the compression/rarefaction pattern passes onward."
+                },
+                {
+                  "wrong_idea": "Because wave diagrams often look sinusoidal, air particles in sound must move up and down perpendicular to the wave direction.",
+                  "diagnostic_prompt": "In a simple sound wave travelling right through air, which direction is the local particle displacement mainly along?",
+                  "repair": "Use the propagation axis itself: particles oscillate back and forth mainly parallel to it, producing compressions and rarefactions."
                 }
               ],
               "exit_task": {
-                "prompt": "A compression in a sound wave travels to the right through air. Describe the motion of one marked air particle as the compression passes.",
+                "prompt": "A sound wave travels right through air. Sketch or describe one compression and one rarefaction, then describe the motion of one marked air particle as the pattern passes. State whether the particle motion is parallel or perpendicular to propagation.",
                 "source_ref": "SRC-AUTHOR-SOUND-G9",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "The particle oscillates back and forth roughly parallel to the right-left propagation axis and remains near its equilibrium position; it does not travel with the compression to the listener.",
+                  "summary": "The compression is a locally denser/higher-pressure region and the rarefaction a less-dense/lower-pressure region. A marked air particle oscillates locally back and forth mainly parallel to the rightward propagation direction rather than travelling with the wave.",
                   "reasoning": [
-                    "The wave is longitudinal in the simple fluid model.",
-                    "Particle displacement is mainly parallel to propagation.",
-                    "The travelling feature is the compression/rarefaction pattern, not a parcel of air moving across the room."
+                    "Neighboring particle displacements create alternating crowded and spread-out regions.",
+                    "Those regions form the travelling disturbance pattern.",
+                    "Each particle remains near its equilibrium region while oscillating.",
+                    "The local oscillation is mainly parallel to propagation in the longitudinal model."
                   ],
-                  "check": "After many cycles the particle can still be near its original equilibrium region even though the sound disturbance has propagated far away.",
+                  "check": "If the marked particle is redrawn kilometres downstream with the same compression, the sketch has confused matter motion with wave propagation.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
@@ -4750,9 +4761,9 @@ window.GRADE9V3 = {
               "status": "CANDIDATE",
               "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common.",
               "entry_assumptions": [
-                "Can distinguish a spatial snapshot from a time trace and can measure horizontal and vertical coordinate differences."
+                "Can distinguish the wave pattern from local particle motion and can read labelled graph axes."
               ],
-              "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, frequency is 1/T, and a travelling pattern advances one wavelength in one period so v = lambda/T = f lambda.",
+              "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, f=1/T, and for one wave in one medium/state v=fλ; changing medium can change v.",
               "teaching_path": [
                 {
                   "action": "Compare the sampled spatial snapshot with the sampled time trace and read each horizontal-axis label before naming a repeat interval.",
@@ -4778,8 +4789,13 @@ window.GRADE9V3 = {
               "misconceptions": [
                 {
                   "wrong_idea": "A taller wave automatically has a higher frequency.",
-                  "diagnostic_prompt": "Can two waves have the same period but different amplitudes?",
-                  "repair": "Yes. Amplitude is disturbance size; period/frequency measure repetition rate. Keep vertical size separate from time spacing."
+                  "diagnostic_prompt": "Two traces have the same horizontal repeat time but different vertical amplitudes. Must their frequencies differ?",
+                  "repair": "Read the horizontal time spacing for period/frequency; amplitude comes from vertical extent."
+                },
+                {
+                  "wrong_idea": "The same frequency and wavelength values can be mixed across different media to infer one universal sound speed.",
+                  "diagnostic_prompt": "A sound enters a different medium. Can you keep the old wavelength and the new frequency in v=fλ without checking that they describe the same wave state?",
+                  "repair": "Use f and λ from the same wave/medium state. Medium change can change propagation speed and wavelength."
                 }
               ],
               "exit_task": {
@@ -4887,38 +4903,43 @@ window.GRADE9V3 = {
               "title": "Reflected sound can form echoes, reverberation and echolocation cues",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "Echo distance contains a round-trip factor of two, and echo/reverberation are easily confused as the same phenomenon.",
+              "badge_reason": "The common arithmetic error is forgetting the round trip; a second modeling error is treating one memorized delay/distance threshold as universally defining an echo.",
               "entry_assumptions": [
                 "Can use wave speed and elapsed time and can distinguish one-way from round-trip travel."
               ],
-              "inferential_jump": "A reflected sound that returns after enough delay can be heard as a separate echo; many overlapping reflections produce reverberation; organisms or devices can use return timing as an echolocation cue, with one-way distance equal to half the total reflected path.",
+              "inferential_jump": "Reflected-sound timing measures an outward-and-return path. One-way range is half that path for a stationary simple geometry; whether a return is heard as a distinct echo versus reverberation depends on delay/conditions rather than one universal distance constant.",
               "teaching_path": [
                 {
-                  "action": "Draw or describe the sound path from source to reflector and back to receiver.",
-                  "why_valid": "Echo timing measures a round trip, not a one-way path.",
-                  "output": "total reflected path = outward leg + return leg."
+                  "action": "Trace the sound path from source to reflector and back to the receiver before writing a timing relation.",
+                  "why_valid": "The measured echo delay covers both outward and return legs.",
+                  "output": "total reflected path = outward leg + return leg"
                 },
                 {
-                  "action": "Use d = v t_echo / 2 for a stationary reflector and one round-trip delay.",
-                  "why_valid": "REL-ECHO-DISTANCE owns the factor-of-two path relation.",
-                  "output": "one-way reflector distance = v t_echo / 2."
+                  "action": "For a stationary reflector and one clear round-trip delay in the same medium, use d = v t_echo / 2.",
+                  "why_valid": "v times the full delay gives the total path length; the one-way range is half that in the simple geometry.",
+                  "output": "one-way reflector distance = v t_echo / 2"
                 },
                 {
-                  "action": "Distinguish one clearly delayed return from many closely spaced overlapping reflections.",
-                  "why_valid": "A distinct echo and reverberation differ primarily in whether reflected sound is perceived as separate or merged/extended.",
-                  "output": "distinct delayed reflection -> echo; dense overlapping reflections -> reverberation."
+                  "action": "Classify clearly separated returns as echo-like and densely overlapping returns as reverberation, while treating the perceptual boundary as condition-dependent.",
+                  "why_valid": "Echo and reverberation are distinguished by temporal separation/overlap of reflected sound, not by one universal wall distance.",
+                  "output": "distinct return vs overlapping reflected sound"
                 },
                 {
-                  "action": "Interpret echolocation as estimating location from emitted sound and reflected return timing rather than from sound travelling instantaneously.",
-                  "why_valid": "The return delay carries path-length information when wave speed is known.",
-                  "output": "known sound speed + round-trip timing -> range cue."
+                  "action": "Use echolocation/ranging as a transfer case: emitted sound plus measured return delay provides a range cue only after the round-trip path is recognized.",
+                  "why_valid": "The factor-of-two geometry is the reusable invariant across simple echo-ranging contexts.",
+                  "output": "known v + round-trip delay -> range cue"
                 }
               ],
               "misconceptions": [
                 {
                   "wrong_idea": "Echo delay time corresponds to one-way travel from source to wall.",
-                  "diagnostic_prompt": "A clap returns after 0.4 s. Did the sound spend all 0.4 s travelling only from the source to the wall?",
-                  "repair": "No. The measured delay includes the outward and return paths, so divide the total travelled distance by two for one-way range."
+                  "diagnostic_prompt": "A clap returns after 0.4 s. Did the sound spend all 0.4 s travelling only outward?",
+                  "repair": "No. The delay includes outward and return travel, so v t is the round-trip path and one-way range is half."
+                },
+                {
+                  "wrong_idea": "A single memorized reflector distance universally decides whether any reflected sound is heard as a separate echo.",
+                  "diagnostic_prompt": "If sound speed, listener/source geometry or perceptual conditions change, must one memorized wall distance still be the universal echo boundary?",
+                  "repair": "Use the actual reflection delay and conditions. The simple calculation concerns round-trip timing; a distinct-echo threshold is not a universal geometry constant."
                 }
               ],
               "exit_task": {
