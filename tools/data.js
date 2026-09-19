@@ -5928,6 +5928,14 @@ window.GRADE9V3 = {
                   "role": "VERIFY",
                   "output": "R Delta p_item units = (1/s)(kg m/s) = kg m/s^2 = N; recoil sign is opposite ejecta momentum gain",
                   "inputs": []
+                },
+                {
+                  "id": "NLM-MTR-6",
+                  "action": "State the time meaning of the computed stream force: R Delta p_item is an average over the repeated events, not a claim that the force on the launcher or on each item is constant at every instant.",
+                  "why_valid": "A rate of repeated discrete momentum changes fixes the average momentum transferred per unit time. The detailed force pulse during one launch requires additional force-versus-time or interaction-time information that this bounded model does not provide.",
+                  "role": "VERIFY",
+                  "output": "known repeated-event data -> F_avg = R Delta p_item; instantaneous force waveform remains undetermined without extra time-profile information",
+                  "inputs": []
                 }
               ],
               "misconceptions": [
@@ -5945,6 +5953,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Once a momentum-rate formula appears, the problem should be treated as rocket or continuously varying-mass dynamics.",
                   "diagnostic_prompt": "Does this task require solving how a launcher's mass and velocity evolve continuously, or only the average momentum transferred by repeated fixed-mass items?",
                   "repair": "Stay with the discrete stream: momentum change per item times items per second. Do not import a rocket equation or variable-mass differential model."
+                },
+                {
+                  "wrong_idea": "The value R Delta p_item is the instantaneous force at every moment during firing.",
+                  "diagnostic_prompt": "If each launch produces a short force pulse followed by a gap, can the event rate and momentum change alone determine the peak force inside the pulse?",
+                  "repair": "No. R Delta p_item gives the average force over the repeated stream. Peak or instantaneous force needs additional interaction-time or force-time information."
                 }
               ],
               "exit_task": {
@@ -6103,6 +6116,66 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-01",
+              "stem": "A fixed launcher processes identical pellets of mass m. In the laboratory frame each pellet enters moving in the positive direction with speed u and leaves in the same direction with speed v, where v > u. The steady processing rate is R pellets per second. Find the average force on the pellets, the interaction force on the launcher, and the external holding force required to keep the launcher fixed.",
+              "origin": "AUTHORED",
+              "answer": "Each pellet gains Delta p = m(v-u), so the average force on the pellets is +Rm(v-u). The pellets exert -Rm(v-u) on the launcher. To keep the launcher fixed, the external holding force is +Rm(v-u)."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-02",
+              "stem": "A launcher is held fixed and ejects 0.020 kg projectiles from rest at 8 projectiles per second. Each leaves at 300 m/s in the positive direction. Find the average force on the projectile stream, the average recoil force on the launcher, and the external holding force.",
+              "origin": "AUTHORED",
+              "answer": "Each projectile gains 6 kg m/s of momentum, so the average force on the stream is +48 N. The stream exerts -48 N on the launcher, and the holding force on the fixed launcher is +48 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-03",
+              "stem": "During a 6.0 s interval, a fixed launcher processes 90 identical 0.010 kg pellets. In the laboratory frame each pellet enters at +20 m/s and leaves at +140 m/s. Find the average force on the pellet stream over the interval.",
+              "origin": "AUTHORED",
+              "answer": "The rate is 90/6=15 pellets/s. Each pellet gains 0.010(140-20)=1.2 kg m/s, so the average force on the stream is +18 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-04",
+              "stem": "A fixed launcher ejects 0.050 kg projectiles to the left from rest at 5 projectiles per second. The coordinate axis is chosen positive to the right, and each projectile leaves with velocity -40 m/s. Give the signed average force on the projectile stream, the signed recoil force on the launcher, and the signed external holding force.",
+              "origin": "AUTHORED",
+              "answer": "Each projectile has Delta p=0.050(-40-0)=-2 kg m/s. The average stream force is -10 N, the recoil force on the launcher is +10 N, and the external holding force on the launcher is -10 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2A-05",
+              "stem": "A held launcher ejects 120 identical 0.010 kg pellets from rest to +100 m/s during a 4.0 s interval. Compute the average force on the pellet stream. Then state whether this calculation proves that the instantaneous force is equal to that value at every moment of the 4.0 s interval.",
+              "origin": "AUTHORED",
+              "answer": "The rate is 30 pellets/s and each pellet gains 1 kg m/s, so the average stream force is +30 N. This does not determine the instantaneous force at every moment; the detailed pulses require additional time-profile information."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-AVERAGE-05",
+              "stem": "A repeated-launch calculation gives F_avg=30 N for a held launcher. A high-speed force sensor, however, shows short force pulses separated by intervals close to zero force. A learner says the sensor disproves the 30 N result because the force is not constantly 30 N. Decide whether the two observations are compatible and state what additional information would be needed to determine a peak force.",
+              "origin": "AUTHORED",
+              "answer": "They are compatible. The 30 N result is the time-average momentum-transfer force over many events, not an assertion of a constant instantaneous force. Determining a peak force requires additional pulse-duration or force-time-profile information."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-LOG-02",
+              "stem": "A test log records 600 identical projectiles during a 30 s run. Each has mass 5.0 g, enters the launcher at +50 m/s and leaves at +250 m/s. Convert the log into the quantities needed to determine the average holding force on a fixed launcher, and give that force.",
+              "origin": "AUTHORED",
+              "answer": "The log gives R=600/30=20 s^-1 and m=0.0050 kg. Each item gains 0.0050(250-50)=1.0 kg m/s, so the stream force is +20 N, the recoil is -20 N and the required holding force is +20 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-MODEL-01",
+              "stem": "A held launcher fires 0.004 kg projectiles from rest at 20 per second, each leaving at 500 m/s. No acceleration time or barrel length is supplied. A learner says the average holding force cannot be found because F=ma needs the projectile acceleration. Determine whether the requested average force is nevertheless fixed by the given information, and find it if it is.",
+              "origin": "AUTHORED",
+              "answer": "Yes. Each projectile gains 2 kg m/s of momentum and 20 are fired each second, so the projectile stream gains momentum at +40 N. The launcher recoil is -40 N and the required average holding force is +40 N."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-SUPPORT-03",
+              "stem": "A launcher ejects projectiles to the left while the laboratory x-axis is positive to the right. From the repeated stream calculation, the launcher experiences an average recoil force of +12 N. The launcher is held fixed by a support. State (i) the force of the support on the launcher and (ii) the force of the launcher on the support, with signs, and explain why these two forces must not be confused.",
+              "origin": "AUTHORED",
+              "answer": "The support must exert -12 N on the launcher so the launcher's average net force is zero. By Newton III, the launcher exerts +12 N on the support. These are an interaction pair on different bodies; the +12 N launcher recoil from the projectile stream is a different force acting on the launcher."
+            },
+            {
+              "id": "Q-PHY-NLM-MTR-2B-ZERO-04",
+              "stem": "A device passes identical pellets through at a steady nonzero rate. In the chosen laboratory frame each pellet enters at +120 m/s and leaves at +120 m/s. A proposed shortcut says that because pellets emerge carrying momentum, the device must experience a nonzero average recoil equal to rate times m times 120 m/s. Decide whether that conclusion follows from the bounded momentum-transfer model.",
+              "origin": "AUTHORED",
+              "answer": "No. Each pellet has Delta p=m(120-120)=0, so the average momentum-transfer force from this through-stream is zero despite the nonzero momentum carried by the pellets."
             }
           ],
           "capabilities": [
@@ -6167,7 +6240,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 54,
+          "record_count": 65,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6175,17 +6248,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 1,
+            "questions": 10,
             "obligations": 5,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -9566,25 +9635,35 @@ window.GRADE9V3 = {
               "title": "Resolve magnitude-and-angle vectors into signed perpendicular components",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "The trigonometry is short, but angle-reference and quadrant mistakes can swap components or erase direction before any kinematics begins.",
+              "badge_reason": "The trigonometry is short, but learners must first decide whether decomposition is needed, identify the angle reference, preserve signs, and avoid treating an initial component pair as a later-time motion law.",
               "entry_assumptions": [
                 "Can read signed components against declared axes.",
                 "Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge."
               ],
-              "inferential_jump": "A magnitude-and-angle vector can be replaced by two perpendicular signed components without changing the physical vector; cosine belongs to the component adjacent to the stated reference angle and sine to the opposite component.",
+              "inferential_jump": "A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.",
               "teaching_path": [
                 {
                   "id": "VAD-1",
-                  "action": "Draw the vector against declared +x/+y axes and mark exactly which axis the acute angle is measured from.",
-                  "why_valid": "Sine/cosine component labels depend on the stated reference angle, not on a memorized x=cos rule.",
+                  "action": "Decide whether the vector still needs decomposition. If it is given by magnitude plus angle, declare the perpendicular axes and mark exactly which axis the angle is measured from; if signed components are already supplied, keep them rather than applying trigonometry again.",
+                  "why_valid": "Projection is a representation conversion, not a compulsory formula step. The angle reference and axis convention determine which projection geometry is relevant.",
                   "role": "DECLARE",
-                  "output": "axes + vector + angle reference",
+                  "output": "representation decision + declared axes + explicit angle reference",
                   "inputs": []
                 },
                 {
                   "id": "VAD-2",
-                  "action": "Use V cos(theta) for the adjacent component magnitude and V sin(theta) for the opposite component magnitude.",
-                  "why_valid": "These are the right-triangle projections of the vector on perpendicular axes.",
+                  "action": "Identify which component direction is adjacent to the stated angle and which is opposite before writing sine or cosine.",
+                  "why_valid": "Cosine and sine attach to adjacent/opposite geometry; x and y receive those labels only after the reference axis is known.",
+                  "role": "DECLARE",
+                  "output": "adjacent component identified; opposite component identified",
+                  "inputs": [
+                    "CAP-TRIG-RATIO-BRIDGE"
+                  ]
+                },
+                {
+                  "id": "VAD-3",
+                  "action": "Compute the component magnitudes with V cos(theta) for the adjacent leg and V sin(theta) for the opposite leg.",
+                  "why_valid": "The original vector magnitude is the right-triangle hypotenuse and the perpendicular component magnitudes are its projections.",
                   "role": "TRANSFORM",
                   "output": "V_adj = V cos(theta); V_opp = V sin(theta)",
                   "inputs": [
@@ -9592,21 +9671,21 @@ window.GRADE9V3 = {
                   ]
                 },
                 {
-                  "id": "VAD-3",
-                  "action": "Attach each component sign from whether the vector points with or against the declared positive axis.",
-                  "why_valid": "Trigonometric ratios give magnitudes here; axis direction carries the physical sign.",
+                  "id": "VAD-4",
+                  "action": "Attach signs from the declared positive directions and label the pair with the vector role named by the problem; for an initial velocity this means u_x and u_y at the chosen initial instant.",
+                  "why_valid": "Projection gives component magnitudes, while the coordinate frame supplies signs and the problem context supplies the state label. The decomposition itself does not license any later-time evolution claim.",
                   "role": "TRANSFORM",
-                  "output": "For a first-quadrant vector measured from +x: (V_x,V_y)=(+V cos(theta),+V sin(theta)); other quadrants change signs from the declared axes",
+                  "output": "signed, role-bound component pair such as (V_x,V_y) or initial (u_x,u_y)",
                   "inputs": [
                     "CAP-VECTOR-SIGNED-COMPONENT"
                   ]
                 },
                 {
-                  "id": "VAD-4",
-                  "action": "Reconstruct sqrt(Vx^2+Vy^2) and compare with the original magnitude V.",
-                  "why_valid": "The resolved components must describe the same vector magnitude.",
+                  "id": "VAD-5",
+                  "action": "Reconstruct the original magnitude and check that the component signs/quadrant agree with the drawn vector.",
+                  "why_valid": "A correct decomposition is an equivalent representation of the same vector, so magnitude and orientation must be consistent.",
                   "role": "VERIFY",
-                  "output": "reconstructed magnitude agrees with V",
+                  "output": "component pair independently checked against original vector",
                   "inputs": []
                 }
               ],
@@ -9619,27 +9698,38 @@ window.GRADE9V3 = {
                 {
                   "wrong_idea": "Sine and cosine automatically provide the component signs.",
                   "diagnostic_prompt": "A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?",
-                  "repair": "Use trig for component magnitudes, then use the declared axis directions to attach signs. Left is negative x when right is +x."
+                  "repair": "Use trigonometry for component magnitudes, then use the declared axis directions to attach signs."
+                },
+                {
+                  "wrong_idea": "Whenever a vector question contains components, trigonometric decomposition must be performed.",
+                  "diagnostic_prompt": "A velocity is already supplied as (-6 i + 8 j) m/s. Is another sine/cosine decomposition required before using those components?",
+                  "repair": "No. The vector is already in component form. Decomposition is needed when converting from a magnitude-angle description to components."
+                },
+                {
+                  "wrong_idea": "After an initial velocity is resolved into u_x and u_y, vector decomposition proves that both components keep those same values later.",
+                  "diagnostic_prompt": "Does writing u_y=u sin(theta) at launch prove that v_y remains u_y during later projectile motion?",
+                  "repair": "No. Decomposition describes the initial vector only. Later velocity components are determined by the motion model; vector decomposition does not supply that evolution."
                 }
               ],
               "exit_task": {
-                "prompt": "A vector of magnitude 20 points 30 degrees above the +x axis. Resolve it into x and y components symbolically using sin/cos, state their signs, and give one independent check.",
-                "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+                "prompt": "A launch velocity of magnitude 20 m/s points 30 degrees above +x. Resolve only the initial velocity into signed components, label them correctly, and state what this calculation does not yet tell you about later motion.",
+                "source_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "Vx = 20 cos(30°) and Vy = 20 sin(30°), both positive.",
+                  "summary": "u_x=20 cos(30°)=10√3 m/s and u_y=20 sin(30°)=10 m/s, both positive. These are the t=0 velocity components; decomposition alone does not determine their later values.",
                   "reasoning": [
-                    "The 30° angle is measured from +x, so x is adjacent and y is opposite.",
-                    "The vector points right and up, so both component signs are positive.",
-                    "The component pair must reconstruct magnitude 20."
+                    "The angle is measured from +x, so x is adjacent and y is opposite.",
+                    "The vector points right and up, so both initial component signs are positive.",
+                    "Label the pair u_x,u_y because the problem names an initial velocity.",
+                    "Any later v_x,v_y requires a motion model in addition to this representation step."
                   ],
-                  "check": "Check sqrt(Vx^2+Vy^2)=20 using sin^2(theta)+cos^2(theta)=1.",
+                  "check": "sqrt(u_x^2+u_y^2)=20 m/s and the signs place the vector in the first quadrant.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
                 },
                 "oracle": {
-                  "no_numeric_claim": "The task is intentionally symbolic; exact decimal component values are not required."
+                  "no_numeric_claim": "The exact components follow directly from the declared 20 m/s, 30° vector; the final sentence is a scope boundary, not a claim about a particular projectile model."
                 }
               },
               "prerequisites": [
@@ -9652,7 +9742,7 @@ window.GRADE9V3 = {
             {
               "id": "REL-VEC-ANGLE-COMPONENTS",
               "expression": "V_adj = V cos(theta); V_opp = V sin(theta)",
-              "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values then follow from the declared directions.",
+              "meaning": "For a vector of magnitude V forming an acute angle theta with one declared perpendicular axis, the adjacent and opposite component magnitudes are V cos(theta) and V sin(theta); signed x/y values and contextual labels then follow from the declared directions and vector role.",
               "conditions": [
                 "The component axes are perpendicular.",
                 "The reference axis for theta is explicitly identified.",
@@ -9671,6 +9761,66 @@ window.GRADE9V3 = {
             }
           ],
           "questions": [
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+              "stem": "A vector has magnitude 20 and points 30 degrees above +x. Resolve it into signed x and y components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=20 cos(30°)=10√3 and V_y=20 sin(30°)=10, both positive."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
+              "stem": "A vector of magnitude 12 points 30 degrees to the right of +y. Resolve it into signed x and y components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=12 sin(30°)=6 and V_y=12 cos(30°)=6√3, both positive."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
+              "stem": "A particle is launched with initial speed u at an angle theta above +x. Write only the signed initial velocity components needed by a later Motion-in-2D calculation, and state what this decomposition has not yet determined.",
+              "origin": "AUTHORED",
+              "answer": "u_x=u cos(theta), u_y=u sin(theta), both positive for the stated direction. This is only the initial component state; later velocity components require a motion model."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
+              "stem": "A vector of magnitude 15 points 40 degrees above the -x direction. With +x right and +y up, resolve the vector into signed components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=-15 cos(40°) and V_y=+15 sin(40°)."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
+              "stem": "A vector of magnitude 18 points 25 degrees below +x. Resolve it into signed components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=+18 cos(25°) and V_y=-18 sin(25°)."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-ALREADY-COMPONENTS-02",
+              "stem": "A velocity is already given as v=(-6 i + 8 j) m/s. Before a later calculation, decide whether magnitude-angle trigonometric decomposition is required. Give one check on the supplied component representation.",
+              "origin": "AUTHORED",
+              "answer": "No additional magnitude-angle decomposition is required; the vector is already in signed component form. A magnitude check gives |v|=10 m/s."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-COMPLEMENTARY-ANGLES-03",
+              "stem": "The same first-quadrant vector of magnitude V is described once as 30 degrees above +x and once as 60 degrees to the right of +y. Show, without decimals, that both descriptions produce the same x and y components.",
+              "origin": "AUTHORED",
+              "answer": "From +x: (V cos30°, V sin30°). From +y: (V sin60°, V cos60°). Since sin60°=cos30° and cos60°=sin30°, the pairs are identical."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-FORCE-CONTEXT-04",
+              "stem": "A force of magnitude 50 N acts 37 degrees below +x. Resolve the force into signed Cartesian components. Do not use any motion equations.",
+              "origin": "AUTHORED",
+              "answer": "F_x=+50 cos(37°) N and F_y=-50 sin(37°) N."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-REVERSED-X-AXIS-05",
+              "stem": "A physical velocity of magnitude u points 20 degrees above east. A solver deliberately declares +x west and +y north. Resolve the velocity into signed components in that declared frame.",
+              "origin": "AUTHORED",
+              "answer": "u_x=-u cos(20°) and u_y=+u sin(20°)."
+            },
+            {
+              "id": "Q-PHY-VEC-DECOMP-2B-VERBAL-NW-01",
+              "stem": "A velocity vector has magnitude V and points northwest, 35 degrees west of north. Choose +x east and +y north, then write its signed components.",
+              "origin": "AUTHORED",
+              "answer": "V_x=-V sin(35°) and V_y=+V cos(35°)."
+            },
             {
               "id": "Q-PHY-VECREP-2A-01",
               "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
@@ -9699,7 +9849,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-VEC-ANGLE-DECOMPOSITION",
-              "action": "Resolve a vector of known magnitude and stated acute angle to a declared perpendicular axis pair into signed x/y components.",
+              "action": "Convert a vector given by magnitude plus an angle relative to a declared perpendicular axis pair into the equivalent signed component representation.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -9734,7 +9884,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 39,
+          "record_count": 51,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -9742,17 +9892,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 1,
+            "questions": 11,
             "obligations": 8,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -16885,7 +17031,8 @@ window.GRADE9V3 = {
                   "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
                   "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 }
               ],
               "activities": []
@@ -17049,7 +17196,8 @@ window.GRADE9V3 = {
                   "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
                   "answer": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 }
               ],
               "activities": []
@@ -17237,7 +17385,8 @@ window.GRADE9V3 = {
                   "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
                   "answer": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
@@ -17701,14 +17850,16 @@ window.GRADE9V3 = {
                   "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
                   "answer": "The acceleration is +3 m/s^2.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 },
                 {
                   "id": "Q-PHY-NLM-PRACTICAL-12",
                   "stem": "Plan a trolley–pulley–hanging-mass experiment to verify Newton’s second law. Describe one controlled variation that tests the effect of net force at fixed system mass, what you measure, and what result would support F_net = m a.",
                   "answer": "Keep the total moving mass approximately fixed while transferring masses between trolley and hanger so the driving force changes, measure acceleration for each trial, and test whether acceleration changes in direct proportion to the corrected net driving force.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
@@ -18853,7 +19004,8 @@ window.GRADE9V3 = {
                   "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
                   "answer": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 }
               ],
               "activities": [
@@ -19034,7 +19186,8 @@ window.GRADE9V3 = {
                   "stem": "A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.",
                   "answer": "The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton's laws can be written in that non-inertial frame.",
                   "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-NLM-PRACTICE"
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
@@ -19094,7 +19247,9 @@ window.GRADE9V3 = {
                 "Momentum change per item as final minus initial, not final momentum alone.",
                 "A finite-count reconstruction of momentum transferred per unit time before the compact rate formula.",
                 "Separate signs for force on ejecta, recoil on launcher and holding force.",
-                "A unit check reducing rate times momentum to newtons."
+                "A unit check reducing rate times momentum to newtons.",
+                "An explicit zero-momentum-change case where a nonzero item stream produces zero transfer force.",
+                "A time-scale boundary stating that R Delta p_item is an average repeated-event force, not an instantaneous pulse value."
               ],
               "controlled_variation": [
                 {
@@ -19114,6 +19269,12 @@ window.GRADE9V3 = {
                   "vary": "the declared positive direction",
                   "hold": "the same physical ejection",
                   "notice": "all signed momentum and force values reverse consistently while magnitudes remain unchanged"
+                },
+                {
+                  "phase": 4,
+                  "vary": "whether the requested quantity is long-time average force or the instantaneous/peak force during one launch",
+                  "hold": "the same event rate and per-item momentum change",
+                  "notice": "the repeated-event data determine the average force but do not determine the force-time pulse or peak without additional temporal information"
                 }
               ],
               "microtopic": {
@@ -19142,6 +19303,11 @@ window.GRADE9V3 = {
                     "wrong_idea": "Once a momentum-rate formula appears, the problem should be treated as rocket or continuously varying-mass dynamics.",
                     "diagnostic_prompt": "Does this task require solving how a launcher's mass and velocity evolve continuously, or only the average momentum transferred by repeated fixed-mass items?",
                     "repair": "Stay with the discrete stream: momentum change per item times items per second. Do not import a rocket equation or variable-mass differential model."
+                  },
+                  {
+                    "wrong_idea": "The value R Delta p_item is the instantaneous force at every moment during firing.",
+                    "diagnostic_prompt": "If each launch produces a short force pulse followed by a gap, can the event rate and momentum change alone determine the peak force inside the pulse?",
+                    "repair": "No. R Delta p_item gives the average force over the repeated stream. Peak or instantaneous force needs additional interaction-time or force-time information."
                   }
                 ],
                 "exit_task": {
@@ -19259,6 +19425,14 @@ window.GRADE9V3 = {
                     "why_valid": "The rate-times-momentum product must reduce to force units and the launcher/holding directions must be consistent with the chosen positive ejection direction.",
                     "output": "R Delta p_item units = (1/s)(kg m/s) = kg m/s^2 = N; recoil sign is opposite ejecta momentum gain",
                     "inputs": []
+                  },
+                  {
+                    "id": "NLM-MTR-6",
+                    "role": "VERIFY",
+                    "action": "State the time meaning of the computed stream force: R Delta p_item is an average over the repeated events, not a claim that the force on the launcher or on each item is constant at every instant.",
+                    "why_valid": "A rate of repeated discrete momentum changes fixes the average momentum transferred per unit time. The detailed force pulse during one launch requires additional force-versus-time or interaction-time information that this bounded model does not provide.",
+                    "output": "known repeated-event data -> F_avg = R Delta p_item; instantaneous force waveform remains undetermined without extra time-profile information",
+                    "inputs": []
                   }
                 ]
               },
@@ -19280,7 +19454,79 @@ window.GRADE9V3 = {
                   "answer": "Each pellet gains Delta p = m(v-u), so the average force on the pellets is +Rm(v-u). The pellets exert -Rm(v-u) on the launcher. To keep the launcher fixed, the external holding force is +Rm(v-u).",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
-                  "repair_ref": null
+                  "repair_ref": "NLM-MTR-2"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2A-02",
+                  "stem": "A launcher is held fixed and ejects 0.020 kg projectiles from rest at 8 projectiles per second. Each leaves at 300 m/s in the positive direction. Find the average force on the projectile stream, the average recoil force on the launcher, and the external holding force.",
+                  "answer": "Each projectile gains 6 kg m/s of momentum, so the average force on the stream is +48 N. The stream exerts -48 N on the launcher, and the holding force on the fixed launcher is +48 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-3"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2A-03",
+                  "stem": "During a 6.0 s interval, a fixed launcher processes 90 identical 0.010 kg pellets. In the laboratory frame each pellet enters at +20 m/s and leaves at +140 m/s. Find the average force on the pellet stream over the interval.",
+                  "answer": "The rate is 90/6=15 pellets/s. Each pellet gains 0.010(140-20)=1.2 kg m/s, so the average force on the stream is +18 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-3"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2A-04",
+                  "stem": "A fixed launcher ejects 0.050 kg projectiles to the left from rest at 5 projectiles per second. The coordinate axis is chosen positive to the right, and each projectile leaves with velocity -40 m/s. Give the signed average force on the projectile stream, the signed recoil force on the launcher, and the signed external holding force.",
+                  "answer": "Each projectile has Delta p=0.050(-40-0)=-2 kg m/s. The average stream force is -10 N, the recoil force on the launcher is +10 N, and the external holding force on the launcher is -10 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-4"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2A-05",
+                  "stem": "A held launcher ejects 120 identical 0.010 kg pellets from rest to +100 m/s during a 4.0 s interval. Compute the average force on the pellet stream. Then state whether this calculation proves that the instantaneous force is equal to that value at every moment of the 4.0 s interval.",
+                  "answer": "The rate is 30 pellets/s and each pellet gains 1 kg m/s, so the average stream force is +30 N. This does not determine the instantaneous force at every moment; the detailed pulses require additional time-profile information.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-6"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2B-MODEL-01",
+                  "stem": "A held launcher fires 0.004 kg projectiles from rest at 20 per second, each leaving at 500 m/s. No acceleration time or barrel length is supplied. A learner says the average holding force cannot be found because F=ma needs the projectile acceleration. Determine whether the requested average force is nevertheless fixed by the given information, and find it if it is.",
+                  "answer": "Yes. Each projectile gains 2 kg m/s of momentum and 20 are fired each second, so the projectile stream gains momentum at +40 N. The launcher recoil is -40 N and the required average holding force is +40 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-3"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2B-LOG-02",
+                  "stem": "A test log records 600 identical projectiles during a 30 s run. Each has mass 5.0 g, enters the launcher at +50 m/s and leaves at +250 m/s. Convert the log into the quantities needed to determine the average holding force on a fixed launcher, and give that force.",
+                  "answer": "The log gives R=600/30=20 s^-1 and m=0.0050 kg. Each item gains 0.0050(250-50)=1.0 kg m/s, so the stream force is +20 N, the recoil is -20 N and the required holding force is +20 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-3"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2B-SUPPORT-03",
+                  "stem": "A launcher ejects projectiles to the left while the laboratory x-axis is positive to the right. From the repeated stream calculation, the launcher experiences an average recoil force of +12 N. The launcher is held fixed by a support. State (i) the force of the support on the launcher and (ii) the force of the launcher on the support, with signs, and explain why these two forces must not be confused.",
+                  "answer": "The support must exert -12 N on the launcher so the launcher's average net force is zero. By Newton III, the launcher exerts +12 N on the support. These are an interaction pair on different bodies; the +12 N launcher recoil from the projectile stream is a different force acting on the launcher.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-4"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2B-ZERO-04",
+                  "stem": "A device passes identical pellets through at a steady nonzero rate. In the chosen laboratory frame each pellet enters at +120 m/s and leaves at +120 m/s. A proposed shortcut says that because pellets emerge carrying momentum, the device must experience a nonzero average recoil equal to rate times m times 120 m/s. Decide whether that conclusion follows from the bounded momentum-transfer model.",
+                  "answer": "No. Each pellet has Delta p=m(120-120)=0, so the average momentum-transfer force from this through-stream is zero despite the nonzero momentum carried by the pellets.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-2"
+                },
+                {
+                  "id": "Q-PHY-NLM-MTR-2B-AVERAGE-05",
+                  "stem": "A repeated-launch calculation gives F_avg=30 N for a held launcher. A high-speed force sensor, however, shows short force pulses separated by intervals close to zero force. A learner says the sensor disproves the 30 N result because the force is not constantly 30 N. Decide whether the two observations are compatible and state what additional information would be needed to determine a peak force.",
+                  "answer": "They are compatible. The 30 N result is the time-average momentum-transfer force over many events, not an assertion of a constant instantaneous force. Determining a peak force requires additional pulse-duration or force-time-profile information.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+                  "repair_ref": "NLM-MTR-6"
                 }
               ],
               "activities": []
@@ -24680,24 +24926,24 @@ window.GRADE9V3 = {
           "subject": "Physics",
           "bucket_id": "BUCKET-PHY-VEC-ADD-SUB",
           "topic": "Vectors / Motion in a Plane",
-          "subtopic": "Vector addition, subtraction and orientation",
+          "subtopic": "Vector addition, subtraction, orientation and magnitude-angle decomposition",
           "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; teaching depth is intrinsic while practice support is routed separately.",
           "family": {
-            "invariant_demand": "Use one declared axis system, preserve signed directional information, combine corresponding vector components, impose any stated resultant-component constraint, preserve subtraction order, and resolve a magnitude-and-angle vector by explicit projection geometry when components are not already given.",
-            "difficult_move": "Keeping the requested direction attached to the correct signed component equation and identifying the angle reference before assigning sine/cosine, rather than using magnitude arithmetic or story-specific shortcuts.",
-            "independent_check": "Use an alternate representation: rough arrow geometry must agree with component signs; a constrained component must satisfy its target; swapping subtraction operands must negate the result; resolved components must reconstruct the original magnitude.",
+            "invariant_demand": "Use one declared axis system, preserve signed directional information, combine corresponding vector components, impose any stated resultant-component constraint, preserve subtraction order, and when a vector is given by magnitude plus angle, decide whether decomposition is needed before projecting it into an equivalent signed component representation.",
+            "difficult_move": "Keeping direction and representation roles separate: identify the angle reference before sine/cosine, attach signs from the declared axes, and stop vector decomposition at an equivalent component state rather than smuggling in later dynamics.",
+            "independent_check": "Use an alternate representation: rough arrow geometry must agree with component signs; a constrained component must satisfy its target; swapping subtraction operands must negate the result; resolved components must reconstruct the original vector; an initial component pair must not be treated as a later-time law without a separate motion model.",
             "support_ladder": [
               {
                 "level": "high",
-                "handed_over": "The axis directions, relevant component equation, and requested vector operation are supplied."
+                "handed_over": "The axis directions, angle reference or component representation, and requested vector operation are supplied."
               },
               {
                 "level": "medium",
-                "handed_over": "The axis directions and requested resultant condition are supplied."
+                "handed_over": "The axis directions are supplied; the learner must identify whether decomposition is needed and which component is adjacent/opposite."
               },
               {
                 "level": "low",
-                "handed_over": "Only the physical/geometric description and requested resultant are supplied."
+                "handed_over": "Only the physical/geometric vector description and requested output are supplied; the learner chooses a consistent representation and stops at the capability boundary."
               }
             ]
           },
@@ -25212,15 +25458,18 @@ window.GRADE9V3 = {
               "microtopic_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
               "ceiling": [
                 "inverse trigonometric direction recovery",
+                "later-time kinematic evolution after an initial velocity is represented",
                 "dot product",
                 "cross product",
-                "rotated basis"
+                "non-orthogonal basis resolution"
               ],
               "must_contain": [
+                "A decision whether the vector needs magnitude-angle decomposition or is already supplied as signed components.",
                 "A magnitude-and-angle vector with the reference axis explicitly marked.",
                 "An adjacent/opposite decision before sine/cosine is assigned.",
                 "A sign check from the declared x/y directions.",
-                "A magnitude reconstruction check."
+                "Correct binding of the resolved pair to the vector role named by the problem, including u_x/u_y for an initial velocity.",
+                "A magnitude/quadrant reconstruction check and an explicit stop before later-time dynamics."
               ],
               "controlled_variation": [
                 {
@@ -25231,21 +25480,45 @@ window.GRADE9V3 = {
                 },
                 {
                   "phase": 2,
+                  "vary": "the reference axis from +x to +y while describing the same physical vector",
+                  "hold": "the vector and coordinate frame",
+                  "notice": "which component uses cosine changes, but the final physical component pair does not"
+                },
+                {
+                  "phase": 3,
                   "vary": "the quadrant/direction while holding the same acute reference angle and magnitude",
                   "hold": "the component magnitudes",
                   "notice": "component signs change while the vector magnitude does not"
+                },
+                {
+                  "phase": 4,
+                  "vary": "the vector role from velocity to force or displacement",
+                  "hold": "the same magnitude-angle geometry",
+                  "notice": "the projection rule is generic, while units and contextual component labels follow the vector role"
+                },
+                {
+                  "phase": 5,
+                  "vary": "the input representation from magnitude-angle form to an already-supplied signed component pair",
+                  "hold": "the physical vector",
+                  "notice": "decomposition is skipped when the component representation already exists"
+                },
+                {
+                  "phase": 6,
+                  "vary": "a velocity context from generic velocity to explicitly initial velocity",
+                  "hold": "the same launch vector",
+                  "notice": "decomposition produces u_x and u_y at the initial instant only; later evolution belongs to Motion-in-2D"
                 }
               ],
               "microtopic": {
                 "id": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
                 "title": "Resolve magnitude-and-angle vectors into signed perpendicular components",
                 "intrinsic_badge": "MEDIUM",
-                "badge_reason": "The trigonometry is short, but angle-reference and quadrant mistakes can swap components or erase direction before any kinematics begins.",
+                "badge_reason": "The trigonometry is short, but learners must first decide whether decomposition is needed, identify the angle reference, preserve signs, and avoid treating an initial component pair as a later-time motion law.",
                 "entry_assumptions": [
                   "Can read signed components against declared axes.",
                   "Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge."
                 ],
-                "inferential_jump": "A magnitude-and-angle vector can be replaced by two perpendicular signed components without changing the physical vector; cosine belongs to the component adjacent to the stated reference angle and sine to the opposite component.",
+                "inferential_jump": "A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.",
                 "misconceptions": [
                   {
                     "wrong_idea": "The x-component is always V cos(theta), regardless of which axis theta is measured from.",
@@ -25255,73 +25528,103 @@ window.GRADE9V3 = {
                   {
                     "wrong_idea": "Sine and cosine automatically provide the component signs.",
                     "diagnostic_prompt": "A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?",
-                    "repair": "Use trig for component magnitudes, then use the declared axis directions to attach signs. Left is negative x when right is +x."
+                    "repair": "Use trigonometry for component magnitudes, then use the declared axis directions to attach signs."
+                  },
+                  {
+                    "wrong_idea": "Whenever a vector question contains components, trigonometric decomposition must be performed.",
+                    "diagnostic_prompt": "A velocity is already supplied as (-6 i + 8 j) m/s. Is another sine/cosine decomposition required before using those components?",
+                    "repair": "No. The vector is already in component form. Decomposition is needed when converting from a magnitude-angle description to components."
+                  },
+                  {
+                    "wrong_idea": "After an initial velocity is resolved into u_x and u_y, vector decomposition proves that both components keep those same values later.",
+                    "diagnostic_prompt": "Does writing u_y=u sin(theta) at launch prove that v_y remains u_y during later projectile motion?",
+                    "repair": "No. Decomposition describes the initial vector only. Later velocity components are determined by the motion model; vector decomposition does not supply that evolution."
                   }
                 ],
                 "exit_task": {
-                  "prompt": "A vector of magnitude 20 points 30 degrees above the +x axis. Resolve it into x and y components symbolically using sin/cos, state their signs, and give one independent check.",
-                  "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+                  "prompt": "A launch velocity of magnitude 20 m/s points 30 degrees above +x. Resolve only the initial velocity into signed components, label them correctly, and state what this calculation does not yet tell you about later motion.",
+                  "source_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
                   "answer": {
                     "kind": "MODEL_RESPONSE",
-                    "summary": "Vx = 20 cos(30°) and Vy = 20 sin(30°), both positive.",
+                    "summary": "u_x=20 cos(30°)=10√3 m/s and u_y=20 sin(30°)=10 m/s, both positive. These are the t=0 velocity components; decomposition alone does not determine their later values.",
                     "reasoning": [
-                      "The 30° angle is measured from +x, so x is adjacent and y is opposite.",
-                      "The vector points right and up, so both component signs are positive.",
-                      "The component pair must reconstruct magnitude 20."
+                      "The angle is measured from +x, so x is adjacent and y is opposite.",
+                      "The vector points right and up, so both initial component signs are positive.",
+                      "Label the pair u_x,u_y because the problem names an initial velocity.",
+                      "Any later v_x,v_y requires a motion model in addition to this representation step."
                     ],
-                    "check": "Check sqrt(Vx^2+Vy^2)=20 using sin^2(theta)+cos^2(theta)=1.",
+                    "check": "sqrt(u_x^2+u_y^2)=20 m/s and the signs place the vector in the first quadrant.",
                     "acceptable_alternatives": [],
                     "subpart_answers": [],
                     "verification_status": "CHECKED_BY_AUTHOR"
                   },
                   "oracle": {
-                    "no_numeric_claim": "The task is intentionally symbolic; exact decimal component values are not required."
+                    "no_numeric_claim": "The exact components follow directly from the declared 20 m/s, 30° vector; the final sentence is a scope boundary, not a claim about a particular projectile model."
                   }
                 },
                 "elicitation": {
                   "predict": {
-                    "prompt": "For a vector at a small angle above +x, should the x-component or y-component be larger?",
-                    "defensible_answer": "The x-component should be larger because it is adjacent to the small angle."
+                    "prompt": "Before calculating, if an acute angle is measured from +y, which component should use cosine: x or y?",
+                    "defensible_answer": "The y-component magnitude, because y is adjacent to the stated angle."
                   },
                   "attempt": {
-                    "produces": "A labelled right-triangle/vector sketch and signed component pair.",
+                    "produces": "A representation decision, labelled vector sketch, and signed component pair with the correct contextual labels.",
                     "closure": "RUBRIC",
                     "rubric": [
                       {
-                        "criterion": "The angle reference is explicitly tied to an axis before choosing sine/cosine.",
-                        "evidence_of": "Correct projection geometry rather than memorized labels."
+                        "criterion": "Checks whether decomposition is needed before applying trigonometry.",
+                        "evidence_of": "Distinguishing representation choice from mechanical formula use."
                       },
                       {
-                        "criterion": "Component signs come from declared axis directions.",
-                        "evidence_of": "Direction information is preserved."
+                        "criterion": "Identifies the angle reference and adjacent/opposite components before sine/cosine.",
+                        "evidence_of": "Correct projection geometry."
+                      },
+                      {
+                        "criterion": "Applies signs from the declared axes and uses the problem's vector-role labels.",
+                        "evidence_of": "Preserving direction and state meaning."
                       }
                     ],
                     "accepted": [
-                      "From +x: Vx=V cos(theta), Vy=V sin(theta), then apply quadrant signs."
+                      "From +x in quadrant I: V_x=V cos(theta), V_y=V sin(theta); for launch velocity label these u_x,u_y at t=0."
                     ],
                     "rejected": [
-                      "Always write x=V cos(theta) without checking the angle reference."
+                      "Always write x=V cos(theta) without checking the angle reference, or assume resolved initial components are automatically later-time constants."
                     ]
                   },
                   "reconstruct": {
                     "route": [
                       {
-                        "ask": "Which component lies adjacent to the stated angle?",
-                        "why_this_ask": "It recovers the cosine assignment from geometry.",
+                        "ask": "Is the vector already given as signed components, or does it need conversion from magnitude plus angle?",
+                        "why_this_ask": "Prevents unnecessary or inappropriate trigonometric decomposition.",
                         "from_step_ref": "VAD-1"
                       },
                       {
-                        "ask": "Which direction does each component point relative to the positive axes?",
-                        "why_this_ask": "It restores signs after the magnitude projection.",
-                        "from_step_ref": "VAD-3"
+                        "ask": "Which axis is the angle measured from, and which component is adjacent to it?",
+                        "why_this_ask": "Recovers the cosine/sine assignment from geometry.",
+                        "from_step_ref": "VAD-2"
+                      },
+                      {
+                        "ask": "Which way does each component point relative to the declared positive axes?",
+                        "why_this_ask": "Restores component signs.",
+                        "from_step_ref": "VAD-4"
+                      },
+                      {
+                        "ask": "What does the problem call this vector—initial velocity, force, displacement, or something else?",
+                        "why_this_ask": "Binds the numerical pair to the correct physical state without adding dynamics.",
+                        "from_step_ref": "VAD-4"
+                      },
+                      {
+                        "ask": "Does the reconstructed magnitude and quadrant match the original vector?",
+                        "why_this_ask": "Closes the representation conversion with an independent check.",
+                        "from_step_ref": "VAD-5"
                       }
                     ],
-                    "differs_from_teaching_path": "The declarative route states the projection rule; reconstruction starts from adjacent/opposite geometry and asks the learner to rebuild it."
+                    "differs_from_teaching_path": "Teaching presents the conversion sequence; reconstruction begins by deciding whether conversion is needed, then rebuilds the projection from geometry and closes by checking equivalence."
                   },
                   "boundary_test": {
-                    "prompt": "If the same vector is described by an acute angle measured from +y instead, do the physical components change?",
-                    "answer": "No. The physical components are the same; only which component is adjacent/opposite to the named angle changes.",
-                    "confirms": "Component values belong to the vector and axes, not to a memorized sine/cosine label."
+                    "prompt": "A launch velocity is already given as u=(12 i + 5 j) m/s. What should vector decomposition do before the Motion-in-2D solver begins?",
+                    "answer": "Nothing further is required for magnitude-angle decomposition: the initial velocity is already in signed component form. Motion-in-2D may now use u_x=12 and u_y=5 in its own model.",
+                    "confirms": "The vector capability owns representation conversion, not later kinematic evolution."
                   }
                 },
                 "prerequisite_refs": [
@@ -25332,17 +25635,17 @@ window.GRADE9V3 = {
                   {
                     "id": "VAD-1",
                     "role": "DECLARE",
-                    "action": "Draw the vector against declared +x/+y axes and mark exactly which axis the acute angle is measured from.",
-                    "why_valid": "Sine/cosine component labels depend on the stated reference angle, not on a memorized x=cos rule.",
-                    "output": "axes + vector + angle reference",
+                    "action": "Decide whether the vector still needs decomposition. If it is given by magnitude plus angle, declare the perpendicular axes and mark exactly which axis the angle is measured from; if signed components are already supplied, keep them rather than applying trigonometry again.",
+                    "why_valid": "Projection is a representation conversion, not a compulsory formula step. The angle reference and axis convention determine which projection geometry is relevant.",
+                    "output": "representation decision + declared axes + explicit angle reference",
                     "inputs": []
                   },
                   {
                     "id": "VAD-2",
-                    "role": "TRANSFORM",
-                    "action": "Use V cos(theta) for the adjacent component magnitude and V sin(theta) for the opposite component magnitude.",
-                    "why_valid": "These are the right-triangle projections of the vector on perpendicular axes.",
-                    "output": "V_adj = V cos(theta); V_opp = V sin(theta)",
+                    "role": "DECLARE",
+                    "action": "Identify which component direction is adjacent to the stated angle and which is opposite before writing sine or cosine.",
+                    "why_valid": "Cosine and sine attach to adjacent/opposite geometry; x and y receive those labels only after the reference axis is known.",
+                    "output": "adjacent component identified; opposite component identified",
                     "inputs": [
                       "CAP-TRIG-RATIO-BRIDGE"
                     ]
@@ -25350,34 +25653,125 @@ window.GRADE9V3 = {
                   {
                     "id": "VAD-3",
                     "role": "TRANSFORM",
-                    "action": "Attach each component sign from whether the vector points with or against the declared positive axis.",
-                    "why_valid": "Trigonometric ratios give magnitudes here; axis direction carries the physical sign.",
-                    "output": "For a first-quadrant vector measured from +x: (V_x,V_y)=(+V cos(theta),+V sin(theta)); other quadrants change signs from the declared axes",
+                    "action": "Compute the component magnitudes with V cos(theta) for the adjacent leg and V sin(theta) for the opposite leg.",
+                    "why_valid": "The original vector magnitude is the right-triangle hypotenuse and the perpendicular component magnitudes are its projections.",
+                    "output": "V_adj = V cos(theta); V_opp = V sin(theta)",
+                    "inputs": [
+                      "CAP-TRIG-RATIO-BRIDGE"
+                    ]
+                  },
+                  {
+                    "id": "VAD-4",
+                    "role": "TRANSFORM",
+                    "action": "Attach signs from the declared positive directions and label the pair with the vector role named by the problem; for an initial velocity this means u_x and u_y at the chosen initial instant.",
+                    "why_valid": "Projection gives component magnitudes, while the coordinate frame supplies signs and the problem context supplies the state label. The decomposition itself does not license any later-time evolution claim.",
+                    "output": "signed, role-bound component pair such as (V_x,V_y) or initial (u_x,u_y)",
                     "inputs": [
                       "CAP-VECTOR-SIGNED-COMPONENT"
                     ]
                   },
                   {
-                    "id": "VAD-4",
+                    "id": "VAD-5",
                     "role": "VERIFY",
-                    "action": "Reconstruct sqrt(Vx^2+Vy^2) and compare with the original magnitude V.",
-                    "why_valid": "The resolved components must describe the same vector magnitude.",
-                    "output": "reconstructed magnitude agrees with V",
+                    "action": "Reconstruct the original magnitude and check that the component signs/quadrant agree with the drawn vector.",
+                    "why_valid": "A correct decomposition is an equivalent representation of the same vector, so magnitude and orientation must be consistent.",
+                    "output": "component pair independently checked against original vector",
                     "inputs": []
                   }
                 ]
               },
               "capability": {
                 "id": "CAP-VEC-ANGLE-DECOMPOSITION",
-                "action": "Resolve a vector of known magnitude and stated acute angle to a declared perpendicular axis pair into signed x/y components.",
-                "success_criterion": "Declare the positive axes and angle reference, use adjacent = V cos(theta) and opposite = V sin(theta) for component magnitudes, attach signs from the vector's quadrant/directions, and verify that the reconstructed magnitude agrees with V.",
+                "action": "Convert a vector given by magnitude plus an angle relative to a declared perpendicular axis pair into the equivalent signed component representation.",
+                "success_criterion": "First decide that decomposition is actually required, declare the axes and angle reference, identify adjacent/opposite components, project their magnitudes with sine/cosine, attach signs from the declared directions, bind the pair to the vector role named by the problem, and verify that recombination represents the original vector.",
                 "prerequisite_refs": [
                   "CAP-VECTOR-SIGNED-COMPONENT",
                   "CAP-TRIG-RATIO-BRIDGE"
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+                  "stem": "A vector has magnitude 20 and points 30 degrees above +x. Resolve it into signed x and y components.",
+                  "answer": "V_x=20 cos(30°)=10√3 and V_y=20 sin(30°)=10, both positive.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-5"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
+                  "stem": "A vector of magnitude 12 points 30 degrees to the right of +y. Resolve it into signed x and y components.",
+                  "answer": "V_x=12 sin(30°)=6 and V_y=12 cos(30°)=6√3, both positive.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-2"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
+                  "stem": "A vector of magnitude 15 points 40 degrees above the -x direction. With +x right and +y up, resolve the vector into signed components.",
+                  "answer": "V_x=-15 cos(40°) and V_y=+15 sin(40°).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-4"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
+                  "stem": "A vector of magnitude 18 points 25 degrees below +x. Resolve it into signed components.",
+                  "answer": "V_x=+18 cos(25°) and V_y=-18 sin(25°).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-4"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
+                  "stem": "A particle is launched with initial speed u at an angle theta above +x. Write only the signed initial velocity components needed by a later Motion-in-2D calculation, and state what this decomposition has not yet determined.",
+                  "answer": "u_x=u cos(theta), u_y=u sin(theta), both positive for the stated direction. This is only the initial component state; later velocity components require a motion model.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-4"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2B-VERBAL-NW-01",
+                  "stem": "A velocity vector has magnitude V and points northwest, 35 degrees west of north. Choose +x east and +y north, then write its signed components.",
+                  "answer": "V_x=-V sin(35°) and V_y=+V cos(35°).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-2"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2B-ALREADY-COMPONENTS-02",
+                  "stem": "A velocity is already given as v=(-6 i + 8 j) m/s. Before a later calculation, decide whether magnitude-angle trigonometric decomposition is required. Give one check on the supplied component representation.",
+                  "answer": "No additional magnitude-angle decomposition is required; the vector is already in signed component form. A magnitude check gives |v|=10 m/s.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-1"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2B-COMPLEMENTARY-ANGLES-03",
+                  "stem": "The same first-quadrant vector of magnitude V is described once as 30 degrees above +x and once as 60 degrees to the right of +y. Show, without decimals, that both descriptions produce the same x and y components.",
+                  "answer": "From +x: (V cos30°, V sin30°). From +y: (V sin60°, V cos60°). Since sin60°=cos30° and cos60°=sin30°, the pairs are identical.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-5"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2B-FORCE-CONTEXT-04",
+                  "stem": "A force of magnitude 50 N acts 37 degrees below +x. Resolve the force into signed Cartesian components. Do not use any motion equations.",
+                  "answer": "F_x=+50 cos(37°) N and F_y=-50 sin(37°) N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-4"
+                },
+                {
+                  "id": "Q-PHY-VEC-DECOMP-2B-REVERSED-X-AXIS-05",
+                  "stem": "A physical velocity of magnitude u points 20 degrees above east. A solver deliberately declares +x west and +y north. Resolve the velocity into signed components in that declared frame.",
+                  "answer": "u_x=-u cos(20°) and u_y=+u sin(20°).",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+                  "repair_ref": "VAD-4"
+                }
+              ],
               "activities": []
             }
           ]
