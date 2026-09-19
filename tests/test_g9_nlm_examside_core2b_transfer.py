@@ -9,7 +9,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.library import practice_inventory  # noqa: E402
+from Shared.library import compile_inputs, practice_inventory  # noqa: E402
 from Shared.tools import feedback, resolve_request  # noqa: E402
 
 
@@ -170,6 +170,36 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
             dimensions,
             {"model_choice", "reasoning_steps", "representation_translation"},
         )
+
+    def test_compiler_carries_transfer_rubric_and_repair_payload(self):
+        compiled = compile_inputs.compile_bucket(
+            self.records,
+            "BUCKET-PHY-NLM-FIRST-LAW",
+            topic_id="g9-nlm-core2b-transfer",
+            title="Grade 9 NLM transfer",
+            subject="Physics",
+            practice_control={"mode": "DESIGN_PREVIEW", "purpose": "COMPETITION"},
+        )
+        product = next(
+            row for row in compiled["plan"]["products"]
+            if row["core"] == "CORE2B"
+        )
+        blocks = {
+            row["source_question_id"]: row
+            for row in product["units"][0]["blocks"]
+            if row["kind"] == "QUESTION"
+        }
+        self.assertEqual(set(blocks), set(self.transfer_ids))
+        for question_id in self.transfer_ids:
+            with self.subTest(question_id=question_id):
+                original = self.questions[question_id]
+                block = blocks[question_id]
+                self.assertEqual(block["transfer"], original["transfer"])
+                self.assertEqual(block["repair_ref"], original["repair_ref"])
+                self.assertEqual(
+                    block["answer"]["rubric"],
+                    original["answer"]["rubric"],
+                )
 
     def test_nondefault_frame_rung_remains_nondefault(self):
         frame = next(
