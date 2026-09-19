@@ -908,7 +908,7 @@
           "inputs": [
             "REL-MIRROR-MAGNIFICATION"
           ],
-          "output": "signed m with |m| interpreted as relative size"
+          "output": "m = -v/u = h_i/h_o; |m| gives the image/object size ratio while sign(m) is retained for orientation."
         },
         {
           "id": "OPT-R6-3",
@@ -1197,8 +1197,8 @@
       "source_preferences": [
         {
           "resource_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
-          "purpose": "Grade-10 reflection and spherical-mirror teaching",
-          "reason": "The local adapted source now closes all six mirror rungs without a runtime donor dependency."
+          "purpose": "Declarative Grade-10 spherical-mirror construction",
+          "reason": "The local adapted source exposes all six mirror rungs with coordinate, ray, equation and magnification checks."
         }
       ],
       "when_not_suitable": [
@@ -1250,8 +1250,8 @@
       "source_preferences": [
         {
           "resource_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
-          "purpose": "Grade-10 reflection and spherical-mirror teaching",
-          "reason": "The local adapted source now closes all six mirror rungs without a runtime donor dependency."
+          "purpose": "Elicited Grade-10 spherical-mirror reconstruction",
+          "reason": "The local adapted source supplies predictions, rubrics, reconstruction questions and boundary tests across all six mirror rungs."
         }
       ],
       "when_not_suitable": [
