@@ -392,7 +392,7 @@
           "action": "Write one signed Newton-II equation per body, then eliminate shared unknowns.",
           "why_valid": "Coupled unknowns are solved from simultaneous equations.",
           "inputs": [],
-          "output": "separate equations linked by T and acceleration constraint"
+          "output": "Body 1: sum(F_1)=m_1 a_1; Body 2: sum(F_2)=m_2 a_2; for one ideal fixed-pulley string use the derived constraint a_2=-a_1 in a common signed convention, with one shared tension magnitude T."
         },
         {
           "id": "NCON-4",
