@@ -4209,50 +4209,61 @@ window.GRADE9V3 = {
           "microtopics": [
             {
               "id": "MIC-PHY-MACHINE-TRADEOFF",
-              "title": "A machine trades force or direction for distance; it does not create work",
+              "title": "An ideal machine trades force or direction for distance; real machines can also lose useful mechanical work",
               "badge": "MEDIUM",
               "status": "CANDIDATE",
-              "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked.",
+              "badge_reason": "A larger output force looks like free energy unless input distance is tracked, while the ideal equality can also be overgeneralized to real machines with losses.",
               "entry_assumptions": [
                 "Can distinguish force from work and identify work as a force acting through displacement."
               ],
-              "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
+              "inferential_jump": "A simple machine can reduce effort force or change direction by requiring a different input distance. In the ideal lossless model input work equals useful output work; real machines may require greater input work because of losses, but still do not create energy.",
               "teaching_path": [
                 {
-                  "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
-                  "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
-                  "output": "input: F_effort, d_effort; output: F_load, d_load."
+                  "action": "Name the effort point, load point, effort force, load force, effort distance and load distance for one machine state.",
+                  "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides for the same event.",
+                  "output": "input: F_effort, d_effort; output: F_load, d_load"
                 },
                 {
-                  "action": "For an ideal machine, compare the effort and load work using F_effort d_effort = F_load d_load.",
-                  "why_valid": "REL-IDEAL-MACHINE-WORK owns the lossless input-output work equality.",
-                  "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
+                  "action": "For an ideal lossless machine, compare input and useful output work with F_effort d_effort = F_load d_load.",
+                  "why_valid": "The ideal model transfers work without loss; it does not create extra work.",
+                  "output": "ideal input work = useful output work"
                 },
                 {
-                  "action": "Double the load force advantage while keeping ideal useful output work fixed and ask what must happen to effort distance.",
-                  "why_valid": "The boundary exposes why force multiplication does not create energy.",
-                  "output": "greater force advantage -> compensating greater input distance in the ideal tradeoff."
+                  "action": "Increase force advantage in the ideal model and identify the compensating effort-distance change.",
+                  "why_valid": "The force-distance product exposes why force multiplication does not imply energy creation.",
+                  "output": "greater ideal force advantage -> greater input distance for the same useful output work"
+                },
+                {
+                  "action": "Now label the machine real rather than ideal and ask whether exact equality between input and useful output work is still guaranteed.",
+                  "why_valid": "Real losses can make required input work exceed useful output work; the ideal relation is a model condition, not a universal equality for every real device.",
+                  "output": "real machine: input work may exceed useful output work; no free energy"
                 }
               ],
               "misconceptions": [
                 {
                   "wrong_idea": "If a machine gives a larger output force than the effort force, it creates energy.",
-                  "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still conserve work?",
-                  "repair": "Track both force and distance. In an ideal machine, a force advantage requires a compensating distance tradeoff."
+                  "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still preserve the ideal work account?",
+                  "repair": "Track both force and distance. In the ideal model, force advantage requires a compensating distance tradeoff."
+                },
+                {
+                  "wrong_idea": "Because ideal input work equals useful output work, every real machine must also have exactly equal input and useful output work.",
+                  "diagnostic_prompt": "A real machine has friction and heating. Must its useful output work exactly equal the work supplied by the user?",
+                  "repair": "No. The exact equality is the ideal lossless model. Real losses can make required input work larger than useful output work; energy is transferred to other stores rather than created or destroyed."
                 }
               ],
               "exit_task": {
-                "prompt": "An ideal machine lets a person use a smaller effort force to raise a load. Without numbers, what must happen to the effort distance relative to the load distance if useful output work is unchanged?",
+                "prompt": "An ideal machine uses a smaller effort force to raise a load. Explain the compensating distance tradeoff. Then state what changes in the work account if the same device is real and has frictional losses.",
                 "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "The effort point must move farther than the load point when the effort force is smaller than the load force.",
+                  "summary": "In the ideal model, the smaller effort force requires a larger effort distance so input work equals useful output work. In a real lossy machine, input work can exceed useful output work because some energy is transferred to other stores.",
                   "reasoning": [
-                    "Ideal input work equals useful output work.",
-                    "Reducing input force while keeping output work fixed requires a larger input distance.",
-                    "The machine trades force for distance rather than creating energy."
+                    "Force advantage alone does not measure work or energy gain.",
+                    "Ideal lossless input and useful output work are equal.",
+                    "Reducing effort force at fixed useful output therefore requires greater input distance.",
+                    "Real losses can divert part of the input energy, so exact useful-output equality is not guaranteed."
                   ],
-                  "check": "If both force and distance were multiplied at the output with no extra input, output work would exceed input work and violate the ideal model.",
+                  "check": "If both output force and output distance increased with no extra input in the ideal model, the proposed account would create work and fail.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
