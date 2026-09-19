@@ -14,15 +14,18 @@ import json
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
-from Shared.tools import explorer_design_guard
-
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO))
+
+from Shared.tools import explorer_design_guard  # noqa: E402
+
 KIND = explorer_design_guard.KIND
 PLACEHOLDER_RE = re.compile(r"\b(undefined|null|todo|tbd|placeholder)\b", re.I)
 RUNTIME_CHECKS = {
