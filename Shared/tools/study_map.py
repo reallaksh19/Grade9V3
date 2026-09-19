@@ -78,6 +78,7 @@ def capability_locations(subject: str, repo: Path = REPO) -> dict[str, list[dict
                 "subtopic": board.get("subtopic"),
                 "rung": row.get("rung"),
                 "ladder_position": row.get("ladder_position"),
+                "default_entry_eligible": row.get("default_entry_eligible", True),
                 "microtopic_ref": mic_ref,
                 "matrix_path": str(path.relative_to(repo)),
             })

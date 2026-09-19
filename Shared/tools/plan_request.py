@@ -159,6 +159,7 @@ def _rung_inventory(board: dict, mics: dict) -> list[dict]:
         rows.append({
             "rung": row["rung"],
             "position": row["ladder_position"],
+            "default_entry_eligible": row.get("default_entry_eligible", True),
             "microtopic": row.get("microtopic_ref"),
             "existence": "PRESENT" if record else "ABSENT",
             "matrix_provenance": row.get("provenance"),

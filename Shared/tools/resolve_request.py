@@ -75,12 +75,25 @@ def library_records(subject: str, repo: Path = REPO) -> dict:
     return build_index(load_packages(paths))
 
 
+
+def automatic_entry_rows(rows: list[dict]) -> list[dict]:
+    """Rows eligible for generic profile/estimate placement and the default route.
+
+    A false flag keeps a canonical rung available for explicit extension/question demand
+    while preventing missing evidence or a rough percentage from turning that extension
+    into an ordinary learner requirement. Absence means eligible for backward compatibility.
+    """
+    return [row for row in rows if row.get("default_entry_eligible", True)]
+
+
 def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dict:
-    """The lowest rung this learner cannot yet do, read from the per-capability map.
+    """The lowest default-route rung this learner cannot yet do.
 
     Never from `knowledge_percentage`: reading placement off an aggregate is the inference
     the role specs forbid, and the field exists to be stored rather than consulted.
+    Non-default extension rungs remain canonical but do not gate ordinary progression.
     """
+    rows = automatic_entry_rows(rows)
     held = profile.get("held", {})
     for row in rows:
         state = rung_state(row, caps, mics)
@@ -99,13 +112,14 @@ def entry_from_profile(rows: list, profile: dict, caps: dict, mics: dict) -> dic
 
 
 def entry_from_position(rows: list, position: int) -> dict:
-    """Use an owner estimate as a conservative routing coordinate, never as mastery.
+    """Use an owner estimate as a conservative default-route coordinate, never as mastery.
 
     A parent's "about 60%" is useful even when the ladder happens to use 20/55/70/85.
-    Select the greatest declared position not above the estimate; below the first rung,
-    start at the first rung. This chooses where to try first. It does not mark earlier
-    capabilities as demonstrated.
+    Select the greatest default-entry position not above the estimate; below the first rung,
+    start at the first rung. Extension-only coordinates do not become ordinary targets merely
+    because a percentage crosses them. Earlier capabilities are never marked demonstrated.
     """
+    rows = automatic_entry_rows(rows)
     if not rows:
         return {"rung": None, "why": "EMPTY_LADDER",
                 "detail": "the ladder has no positions to route against"}
@@ -190,6 +204,7 @@ def plan(request: dict, repo: Path = REPO) -> dict:
     # --- entry rung -------------------------------------------------------------
     learner = request.get("learner", {})
     entry, provenance = {"rung": None, "why": "NO_LEARNER_BLOCK"}, "NONE"
+    explicit_nondefault = False
     if "profile_ref" in learner:
         profile = store.get(learner["profile_ref"])
         if profile is None:
@@ -208,10 +223,13 @@ def plan(request: dict, repo: Path = REPO) -> dict:
     elif "owner_entry" in learner:
         provenance, named = "OWNER_DECISION", learner["owner_entry"]["rung"]
         entry = {"rung": named, "why": "OWNER_NAMED"}
-        if named not in {r["rung"] for r in rows}:
+        named_row = next((row for row in rows if row["rung"] == named), None)
+        if named_row is None:
             fail("ENTRY_RUNG_NOT_ON_THE_LADDER", named,
                  f'this ladder runs {", ".join(r["rung"] for r in rows) or "empty"}')
             entry = {"rung": None, "why": "OWNER_NAMED_AN_ABSENT_RUNG"}
+        else:
+            explicit_nondefault = not named_row.get("default_entry_eligible", True)
     elif "owner_estimate" in learner:
         provenance = "OWNER_ESTIMATE"
         entry = resolve_owner_estimate(
@@ -256,8 +274,10 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             fail("ENTRY_PREREQUISITE_UNRESOLVED", entry["rung"],
                  "prerequisites have no recorded bridge: " + ", ".join(safe["unresolved"]))
 
-    positions = {r["rung"]: r.get("ladder_position", 0) for r in rows}
-    segment = ([r["rung"] for r in rows if positions[r["rung"]] >= positions[entry["rung"]]]
+    segment_rows = rows if explicit_nondefault else automatic_entry_rows(rows)
+    positions = {r["rung"]: r.get("ladder_position", 0) for r in segment_rows}
+    segment = ([r["rung"] for r in segment_rows
+                if positions[r["rung"]] >= positions[entry["rung"]]]
                if entry.get("rung") in positions else [])
     # Practice varies instances of what teaching established, and transfer changes the
     # demand while holding truth already taught. Both presuppose a taught rung, so a

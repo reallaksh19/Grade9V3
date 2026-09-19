@@ -37,12 +37,23 @@ def _boards(subject: str, repo: Path = REPO) -> dict[str, dict]:
     return found
 
 
-def _teaching_positions(index: dict) -> dict[str, list[dict]]:
-    """Existing teaching locations by matrix; record-less rungs are not start points."""
+def _teaching_positions(index: dict,
+                        explicit_nondefault: set[str] | None = None) -> dict[str, list[dict]]:
+    """Existing teaching locations by matrix; record-less rungs are not start points.
+
+    Non-default rungs are excluded from generic estimate coordinates unless this worksheet
+    explicitly demands that capability as a question target or declared extension.
+    """
     found: dict[str, list[dict]] = {}
     seen = set()
-    for rows in index["locations"].values():
+    explicit_nondefault = explicit_nondefault or set()
+    for capability_ref, rows in index["locations"].items():
         for row in rows:
+            if (
+                row.get("default_entry_eligible", True) is False
+                and capability_ref not in explicit_nondefault
+            ):
+                continue
             key = (
                 row.get("matrix_id"),
                 row.get("rung"),
@@ -122,7 +133,12 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     subject = mapping.get("subject")
     index = study_map.subject_index(subject, repo)
     boards = _boards(subject, repo)
-    positions = _teaching_positions(index)
+    explicit_nondefault = {
+        row["capability_ref"]
+        for row in route.get("route", [])
+        if {"QUESTION_DEMAND", "DECLARED_EXTENSION"} & set(row.get("reasons", []))
+    }
+    positions = _teaching_positions(index, explicit_nondefault)
 
     decisions: dict[str, dict] = {}
     for estimate in owner_estimates or []:

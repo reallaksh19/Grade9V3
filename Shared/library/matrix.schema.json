@@ -183,6 +183,10 @@
                 }
               }
             }
+          },
+          "default_entry_eligible": {
+            "type": "boolean",
+            "description": "Whether generic learner placement (profile or owner estimate) and its default teaching segment may select/include this rung. Omitted or true preserves normal ladder behavior. false keeps the canonical rung available for explicit owner/question/extension routing without making it a default learner requirement. This is routing eligibility, not curriculum authority."
           }
         }
       }
