@@ -373,6 +373,49 @@
           "choose different target segments for CORE1A and CORE1B"
         ]
       }
+    },
+    {
+      "case_id": "APSTRESS-G10-MIRRORS-85",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Reflection and spherical mirrors. Student knowledge estimate: 85%. Use the estimate only to select the starting rung and preserve prerequisite checks. Keep the ray construction, Cartesian sign convention, paraxial mirror-equation model and signed magnification mutually consistent; do not pull refraction, lenses, human-eye optics or later optics into this bounded Grade-10 slice.",
+      "request": {
+        "request_id": "APSTRESS-G10-MIRRORS-85",
+        "subject": "Physics",
+        "subtopic": "Reflection and spherical mirrors",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 85,
+            "by": "owner",
+            "instruction": "Use 85% only as a conservative starting coordinate; do not infer mastery or broaden the bounded mirror slice."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R6",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-OPT-NORMAL-REFLECTION",
+          "CAP-OPT-REAL-VIRTUAL-IMAGE",
+          "CAP-OPT-SIGN-CONVENTION",
+          "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION",
+          "CAP-OPT-MIRROR-EQUATION"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "treat 85% as mastery evidence",
+          "skip the reflection/image/sign/ray/equation prerequisite chain",
+          "drop the sign of magnification and keep only its absolute value",
+          "apply the spherical-mirror equation as exact for arbitrary wide-aperture rays",
+          "assign optical signs from object/image labels without the declared Cartesian convention",
+          "pull refraction, lenses, human-eye optics, dispersion or later optics into G10-1A",
+          "choose different target segments for CORE1A and CORE1B"
+        ]
+      }
     }
   ]
 }
