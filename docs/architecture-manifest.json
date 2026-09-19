@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 161,
-  "relation_count": 210,
+  "component_count": 162,
+  "relation_count": 212,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 68,
+    "TEST": 69,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:e0cb447496bbd89247f969c88300090b2c784a8f1df47a80bc5f393da66af067",
+  "digest": "sha256:70e4d7391948132d3a7396f0dd175ea3e285088578bdff3cdcadef8a5016840d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -64,8 +64,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 42814,
-      "sha256": "9a4c0d86dd7fadfa9bcab276d8323b1d6bfb3f8e615b977b706f5765d285c17c"
+      "bytes": 43409,
+      "sha256": "682715cf073045092b60cbb9f77d5114ab1178f5c4110ddedaf4606c0adf080e"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -260,8 +260,8 @@
       "path": "Shared/publication_host/compose.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 12193,
-      "sha256": "5cf50fd9debabcdb812c07197295a03266de25c2cab88638b5bb2ab0fa854f65"
+      "bytes": 13161,
+      "sha256": "491177645d4d1984d2d1bd58550a1ac78b00f90fef5b3422f06532ba484db281"
     },
     {
       "path": "Shared/publication_host/drawing.py",
@@ -817,6 +817,13 @@
       "sha256": "9466a6b44392abc9896c8bc164a4ea59fadc6a7d3af30d39ed73efde9c9ae13e"
     },
     {
+      "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9079,
+      "sha256": "f043d143f28d35373c39b1ff50f5c0686d7c5dd386050470f31c3ddb072038f7"
+    },
+    {
       "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1114,8 +1121,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 607766,
-      "sha256": "dbc7386233c265970d6ed9f26a2d14f860e2beaaa86584e21591900ac0703e7a"
+      "bytes": 612516,
+      "sha256": "109c0f6d6ba5439aa73700b5b5993683613382b3013d9a145898bef13ace2145"
     },
     {
       "path": "tools/index.html",
@@ -1824,6 +1831,16 @@
     },
     {
       "from": "tests/test_feedback.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_nlm_examside_core2b_transfer.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_nlm_examside_core2b_transfer.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
