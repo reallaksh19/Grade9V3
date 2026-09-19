@@ -1338,9 +1338,7 @@
         "verification_status": "CHECKED_BY_AUTHOR"
       },
       "primary_capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
-      "secondary_capability_refs": [
-        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
-      ],
+      "secondary_capability_refs": [],
       "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
       "adaptation": null,
       "exposure": [
