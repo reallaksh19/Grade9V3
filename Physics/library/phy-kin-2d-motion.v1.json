@@ -153,7 +153,7 @@
               "fresh_transfer_without_scaffold": false
             },
             "state_fidelity_contract": {
-              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "source_of_truth": "The authoritative state is the pair of component clock values, their synchronization status, x(t_x), y(t_y), and whether the reconstructed ordered pair is a valid simultaneous particle state.",
               "external_state_mapping": "NOT_APPLICABLE",
               "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
               "fidelity_labels": [
@@ -162,8 +162,8 @@
                 "CONCEPT_ONLY",
                 "UNAVAILABLE"
               ],
-              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
-              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+              "unit_constant_policy": "Time units and the x(t), y(t) coordinate units must be shared by both component histories and the reconstructed particle readout; no representation may apply an independent conversion.",
+              "reset_policy": "Reset must return both component clocks to the documented common initial instant, clear any ghost-state mismatch, and redraw the particle and both histories from that same state."
             },
             "quality_audit": {
               "checklist_version": "1.0.0",
@@ -346,7 +346,7 @@
               "fresh_transfer_without_scaffold": false
             },
             "state_fidelity_contract": {
-              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "source_of_truth": "The authoritative state is the selected named physical event and its solved t_event; the trajectory highlight and every component evaluation must sample that same event time.",
               "external_state_mapping": "NOT_APPLICABLE",
               "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
               "fidelity_labels": [
@@ -355,8 +355,8 @@
                 "CONCEPT_ONLY",
                 "UNAVAILABLE"
               ],
-              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
-              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+              "unit_constant_policy": "The event-time unit and the units used by every component function must agree, and any event marker must be recomputed from the same t_event rather than a separately stored display value.",
+              "reset_policy": "Reset must restore the default named event, recompute its event time, and resample both components from that one time instead of merely resetting visible selectors."
             },
             "quality_audit": {
               "checklist_version": "1.0.0",
@@ -539,7 +539,7 @@
               "fresh_transfer_without_scaffold": false
             },
             "state_fidelity_contract": {
-              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "source_of_truth": "The authoritative state is the active set of post-release interactions; it must drive the force view, model-status gate, component accelerations, trajectory assumptions, and whether projectile equations are unlocked.",
               "external_state_mapping": "NOT_APPLICABLE",
               "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
               "fidelity_labels": [
@@ -548,8 +548,8 @@
                 "CONCEPT_ONLY",
                 "UNAVAILABLE"
               ],
-              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
-              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+              "unit_constant_policy": "Force, mass, gravitational-field and acceleration quantities must use one declared unit system, with the same gravity magnitude and sign convention feeding both the interaction audit and acceleration readouts.",
+              "reset_policy": "Reset must restore the documented default interaction set and recompute model eligibility, force arrows, acceleration components, and equation visibility from that interaction state."
             },
             "quality_audit": {
               "checklist_version": "1.0.0",
@@ -733,7 +733,7 @@
               "fresh_transfer_without_scaffold": false
             },
             "state_fidelity_contract": {
-              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "source_of_truth": "The authoritative state is one projectile state at the scrubbed time t; trajectory position, v_x, v_y, acceleration, speed, and apex status must all be derived from that same instant.",
               "external_state_mapping": "NOT_APPLICABLE",
               "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
               "fidelity_labels": [
@@ -742,8 +742,8 @@
                 "CONCEPT_ONLY",
                 "UNAVAILABLE"
               ],
-              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
-              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+              "unit_constant_policy": "The same gravity value, time unit, coordinate scale, and velocity units must feed trajectory position, v_y evolution, speed magnitude and apex detection; no apex-only constant may diverge.",
+              "reset_policy": "Reset must restore the documented launch state and scrub time, then recompute position, velocity components, acceleration, speed, and apex indicator from the reset time."
             },
             "quality_audit": {
               "checklist_version": "1.0.0",
@@ -926,7 +926,7 @@
               "fresh_transfer_without_scaffold": false
             },
             "state_fidelity_contract": {
-              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "source_of_truth": "The authoritative state is the chosen ascent event plus its computed equal-height descent partner on the same ideal trajectory; both markers, signed components, resultant vectors and speed comparison derive from that pair.",
               "external_state_mapping": "NOT_APPLICABLE",
               "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
               "fidelity_labels": [
@@ -935,8 +935,8 @@
                 "CONCEPT_ONLY",
                 "UNAVAILABLE"
               ],
-              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
-              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+              "unit_constant_policy": "Both paired events must share one coordinate and velocity unit system, and each speed magnitude must be recomputed from its displayed signed components rather than stored independently.",
+              "reset_policy": "Reset must restore the documented ascent event, recompute the matching descent event, and rebuild both component/vector readouts and the equal-speed comparison from the paired states."
             },
             "quality_audit": {
               "checklist_version": "1.0.0",
@@ -1122,7 +1122,7 @@
               "fresh_transfer_without_scaffold": false
             },
             "state_fidelity_contract": {
-              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "source_of_truth": "The authoritative state is the fixed launch state together with the movable landing-surface height; signed Δy, vertical event equation, impact time, impact marker and horizontal range all derive from those values.",
               "external_state_mapping": "NOT_APPLICABLE",
               "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
               "fidelity_labels": [
@@ -1131,8 +1131,8 @@
                 "CONCEPT_ONLY",
                 "UNAVAILABLE"
               ],
-              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
-              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+              "unit_constant_policy": "Launch and landing heights, signed Δy, u_y, g, event time and horizontal range must use one declared unit/constant convention, with the same g feeding both the vertical event solver and trajectory.",
+              "reset_policy": "Reset must restore the documented launch and landing heights, recompute signed Δy and event time, and redraw the impact and range from that recomputed geometry."
             },
             "quality_audit": {
               "checklist_version": "1.0.0",
