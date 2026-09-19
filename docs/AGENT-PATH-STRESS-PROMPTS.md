@@ -316,3 +316,79 @@ Fail the stress test if the agent:
 - skips Newton II because its capability is owned by another matrix;
 - jumps from the 60% estimate into the R4/R5 orbit/energy extension route;
 - creates different conceptual targets for CORE1A and CORE1B.
+
+
+---
+
+## APSTRESS-G9-WEP-95-DERIVATION
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Work, energy and power. Student knowledge
+> estimate: 95%. Use the estimate only to select the starting rung. Preserve all
+> prerequisite checks needed by the Grade-9 energy-derivation rung, keep the
+> constant-acceleration/near-Earth model conditions explicit, and do not turn the
+> derivation into a calculus or variable-force treatment.
+
+### Expected path
+
+```text
+resolve current Grade-9 Work / Energy / Power matrix
+→ owner estimate 95
+→ conservative floor = R5D at ladder_position 95
+→ prerequisite checks:
+     CAP-WEP-WORK-DIRECTION
+     CAP-NLM-FBD-BODY-OWNERSHIP
+     CAP-NLM-SECOND-LAW
+     CAP-KIN-DISTANCE-DISPLACEMENT
+     CAP-KIN-AVERAGE-RATES
+     CAP-KIN-MOTION-GRAPHS
+     CAP-KIN-CONSTANT-ACCELERATION
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B use the same canonical target segment
+→ keep the algebraic derivation inside its stated model conditions
+```
+
+This case is the post-G9-4 checkpoint. It specifically tests the donor-adapted boundary from
+PR #79: useful system/model validity is retained, but Grade-9 algebra is not silently
+promoted into a universal variable-force derivation.
+
+Fail if the agent treats 95% as mastery, skips the Newton-II/kinematics prerequisite chain,
+or broadens the route into calculus/variable-force integration.
+
+---
+
+## APSTRESS-G9-SOUND-95-REFLECTION
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Production, propagation, wave quantities and
+> reflection. Student knowledge estimate: 95%. Use the estimate only to select the starting
+> rung and preserve prerequisite checks. For reflected-sound reasoning, trace the full
+> outward-and-return path and do not hard-code one universal echo threshold; keep
+> Doppler/interference and other excluded acoustics out of the Grade-9 route.
+
+### Expected path
+
+```text
+resolve current Grade-9 Sound matrix
+→ owner estimate 95
+→ conservative floor = R5 at ladder_position 95
+→ prerequisite checks:
+     CAP-SOUND-SOURCE-MEDIUM
+     CAP-SOUND-LONGITUDINAL
+     CAP-SOUND-WAVE-QUANTITIES
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B use the same canonical target segment
+→ reflected path remains round trip
+→ no universal echo threshold is invented
+→ excluded higher-depth acoustics stay out
+```
+
+This is the post-G9-5 checkpoint after PR #80. It preserves the useful reflected-sound and
+echolocation invariant while explicitly rejecting the donor-specific universal-threshold
+shortcut.
+
+Fail if the agent treats 95% as mastery, omits the prerequisite chain, halves/doubles the
+wrong echo path, invents one universal echo threshold, or imports Doppler/interference,
+standing-wave formulae or decibel logarithms into the Grade-9 route.

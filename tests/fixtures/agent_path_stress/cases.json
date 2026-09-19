@@ -249,6 +249,89 @@
           "choose different target segments for CORE1A and CORE1B"
         ]
       }
+    },
+    {
+      "case_id": "APSTRESS-G9-WEP-95-DERIVATION",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Work, energy and power. Student knowledge estimate: 95%. Use the estimate only to select the starting rung. Preserve all prerequisite checks needed by the Grade-9 energy-derivation rung, keep the constant-acceleration/near-Earth model conditions explicit, and do not turn the derivation into a calculus or variable-force treatment.",
+      "request": {
+        "request_id": "APSTRESS-G9-WEP-95-DERIVATION",
+        "subject": "Physics",
+        "subtopic": "Work, energy and power",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 95,
+            "by": "owner",
+            "instruction": "Use 95% only as a conservative starting coordinate; preserve prerequisite checks and model conditions."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R5D",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-WEP-WORK-DIRECTION",
+          "CAP-NLM-FBD-BODY-OWNERSHIP",
+          "CAP-NLM-SECOND-LAW",
+          "CAP-KIN-DISTANCE-DISPLACEMENT",
+          "CAP-KIN-AVERAGE-RATES",
+          "CAP-KIN-MOTION-GRAPHS",
+          "CAP-KIN-CONSTANT-ACCELERATION"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "treat 95% as mastery evidence",
+          "skip Newton-II or constant-acceleration prerequisites because they live in other matrices",
+          "present the algebraic derivation as valid for arbitrary variable-force motion",
+          "pull calculus or variable-force integration into the Grade-9 teaching path",
+          "choose different target segments for CORE1A and CORE1B"
+        ]
+      }
+    },
+    {
+      "case_id": "APSTRESS-G9-SOUND-95-REFLECTION",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Production, propagation, wave quantities and reflection. Student knowledge estimate: 95%. Use the estimate only to select the starting rung and preserve prerequisite checks. For reflected-sound reasoning, trace the full outward-and-return path and do not hard-code one universal echo threshold; keep Doppler/interference and other excluded acoustics out of the Grade-9 route.",
+      "request": {
+        "request_id": "APSTRESS-G9-SOUND-95-REFLECTION",
+        "subject": "Physics",
+        "subtopic": "Production, propagation, wave quantities and reflection",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 95,
+            "by": "owner",
+            "instruction": "Use 95% only as a conservative starting coordinate; do not infer mastery or broaden the Sound scope."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R5",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-SOUND-SOURCE-MEDIUM",
+          "CAP-SOUND-LONGITUDINAL",
+          "CAP-SOUND-WAVE-QUANTITIES"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "treat 95% as mastery evidence",
+          "skip the wave-quantity prerequisite chain",
+          "use a hard-coded universal echo distance or time threshold",
+          "forget that echo timing contains both outward and return paths",
+          "pull Doppler effect, interference, standing-wave formulae or decibel logarithms into the Grade-9 route",
+          "choose different target segments for CORE1A and CORE1B"
+        ]
+      }
     }
   ]
 }
