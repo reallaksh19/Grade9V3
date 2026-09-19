@@ -31,6 +31,7 @@ EXPECTED_PHYSICS_GATE_IDS = {
     "PHY-REL-VELOCITY",
     "PHY-REL-OBSERVER-REVERSAL",
     "PHY-VEC-ANGLE-DECOMPOSITION",
+    "PHY-VEC-DIRECTION-UNIT",
     "PHY-KIN-2D-COMPONENT-MOTION",
     "PHY-KIN-PROJECTILE-MODEL",
 }
@@ -288,6 +289,11 @@ def _drop_first_symbol_unit(data, gate_id):
 @mutates("FAL-VAD-SYMBOL-NO-UNIT")
 def _vad_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-VEC-ANGLE-DECOMPOSITION")
+
+
+@mutates("FAL-VDU-SYMBOL-NO-UNIT")
+def _vdu_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-VEC-DIRECTION-UNIT")
 
 
 @mutates("FAL-K2D-SYMBOL-NO-UNIT")

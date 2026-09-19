@@ -1,0 +1,147 @@
+{
+  "matrix_id": "MATRIX-PHY-VEC-DIRECTION-UNIT",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+  "topic": "Vectors",
+  "subtopic": "Vector direction and unit representation",
+  "axis_note": "ladder_position is a curriculum coordinate, never a learner estimate; the three rungs are a bounded owner-approved preparation slice and do not imply full JEE Vector Algebra coverage.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 30,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+      "ceiling": [
+        "inverse trigonometric direction recovery",
+        "unit-vector normalization",
+        "dot product",
+        "cross product",
+        "three-dimensional basis"
+      ],
+      "must_contain": [
+        "Declared +x/+y axes tied explicitly to i-hat and j-hat.",
+        "At least one negative component whose sign is preserved as a basis-vector coefficient.",
+        "A reverse translation back to the original signed component pair."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the sign of one component",
+          "hold": "the axis convention and the other component",
+          "notice": "only the coefficient of the matching basis vector changes sign"
+        },
+        {
+          "phase": 2,
+          "vary": "whether one component is zero",
+          "hold": "the same basis and physical vector description",
+          "notice": "a zero basis term may be written explicitly or omitted without changing the vector"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 65,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+      "ceiling": [
+        "unit-vector normalization",
+        "dot product",
+        "scalar projection",
+        "cross product",
+        "three-dimensional vector algebra"
+      ],
+      "must_contain": [
+        "A quadrant or exact-axis decision made from signed components before inverse tangent is used.",
+        "An acute reference-angle expression based on positive component magnitudes.",
+        "A check that the reported direction has the original component sign pattern.",
+        "An axis case that avoids division by a zero component."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the signs of v_x and v_y while keeping their magnitudes fixed",
+          "hold": "the acute reference-angle magnitude",
+          "notice": "the reference angle stays the same while the final directed quadrant changes"
+        },
+        {
+          "phase": 2,
+          "vary": "one component from nonzero to zero",
+          "hold": "the other component sign",
+          "notice": "the direction becomes an exact axis and the inverse-tangent ratio is no longer needed"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+      "ceiling": [
+        "dot product",
+        "scalar projection",
+        "cross product",
+        "three-dimensional vector algebra",
+        "calculus"
+      ],
+      "must_contain": [
+        "An explicit |v|>0 domain check before normalization.",
+        "The same positive magnitude dividing every signed component.",
+        "A magnitude-one verification.",
+        "A zero-vector boundary case that refuses normalization."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the overall positive scale of the original nonzero vector",
+          "hold": "its component ratio and direction",
+          "notice": "the normalized vector is unchanged"
+        },
+        {
+          "phase": 2,
+          "vary": "the original vector from nonzero to zero",
+          "hold": "the normalization request",
+          "notice": "the operation becomes undefined because the denominator is zero and no direction exists"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Preserve one declared 2-D axis system while translating signed components into compact basis notation, recovering a quadrant-correct direction, or removing scale to obtain a nonzero unit direction.",
+    "difficult_move": "Keeping directional information separate from calculator output or scale: signs fix the quadrant, basis coefficients keep their signs, and normalization uses one positive common denominator only after excluding the zero vector.",
+    "independent_check": "Translate back to signed components, compare the reported direction with the component sign pattern, and verify a normalized vector has magnitude 1.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The axes, basis meanings, target operation and the relevant symbolic relation are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The axes and target operation are supplied, but the learner must choose the sign/quadrant or common normalization factor."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the signed vector information and requested output are supplied; the learner must select notation, quadrant handling and normalization checks independently."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A vector is given as an ordered pair and must be rewritten in i-hat/j-hat notation before another step.",
+      "information_not_handed_over": "which signed component multiplies each basis vector",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A resultant is given only by signed components and the direction must be reported from +x without a method label.",
+      "information_not_handed_over": "the quadrant-first decision and whether an axis case bypasses inverse tangent",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "A nonzero vector appears in an unfamiliar physical context and the learner is asked only for a direction vector of magnitude 1.",
+      "information_not_handed_over": "that the requested object is obtained by one common positive normalization factor",
+      "repair_to": "R3"
+    }
+  ]
+}

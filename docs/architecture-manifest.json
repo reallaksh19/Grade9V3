@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 152,
-  "relation_count": 204,
+  "component_count": 154,
+  "relation_count": 205,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 59,
+    "TEST": 61,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:fc7ec945141f4567e2f3ad1cdf122af7eb5106da800ed76a04feb2b45207f460",
+  "digest": "sha256:23e7bb961c81e8b04d6ac213cab30a2b6987b3fa35c139e1145c428232346a92",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -649,6 +649,13 @@
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-vector-algebra.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1760,
+      "sha256": "b1241d578e39cd8af5963ccf9f8ca9ee4763414fdf1793c6b0a800f9de74e080"
+    },
+    {
       "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -789,11 +796,18 @@
       "sha256": "9466a6b44392abc9896c8bc164a4ea59fadc6a7d3af30d39ed73efde9c9ae13e"
     },
     {
+      "path": "tests/test_g9_vector_direction_unit.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6919,
+      "sha256": "b8f3339b3e208bed2472a425a730c42925ce870c0528ee3d6f63532b2d3804f6"
+    },
+    {
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16476,
-      "sha256": "cbe820388961ce6a24e767ea96dec5ec82d5089ea2892c5c2efce3d9084d475c"
+      "bytes": 16634,
+      "sha256": "94334b672c6cd23e7735f2f7b095b79b480101147940c1a18fbf155d794aae86"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -1051,8 +1065,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 498893,
-      "sha256": "6227238c48e35c6de85db660c85a75fe8347412752d52f698dbe7a249dfe9e1f"
+      "bytes": 520419,
+      "sha256": "444d680ad0fe3e04c444c530e3c2b4e88ffa2f56926ee48a2036b2b6f7ab0b5c"
     },
     {
       "path": "tools/index.html",
@@ -1761,6 +1775,11 @@
     },
     {
       "from": "tests/test_feedback.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_vector_direction_unit.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
