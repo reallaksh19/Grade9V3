@@ -499,7 +499,73 @@
   ],
   "representations": [],
   "question_families": [],
-  "questions": [],
+  "questions": [
+    {
+      "id": "Q-PHY-NLM-MTR-2A-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:scope_class": "QUESTION_DEMAND",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "original_identifier": "AUTHOR-NLM-MTR-2A-01",
+      "stem": "A fixed launcher processes identical pellets of mass m. In the laboratory frame each pellet enters moving in the positive direction with speed u and leaves in the same direction with speed v, where v > u. The steady processing rate is R pellets per second. Find the average force on the pellets, the interaction force on the launcher, and the external holding force required to keep the launcher fixed.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use one laboratory inertial frame.",
+        "Take the pellet exit direction as positive.",
+        "Treat the stream as repeated identical fixed-mass pellets with steady rate R."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Each pellet gains Delta p = m(v-u), so the average force on the pellets is +Rm(v-u). The pellets exert -Rm(v-u) on the launcher. To keep the launcher fixed, the external holding force is +Rm(v-u).",
+        "reasoning": [
+          "Use final minus initial momentum for one pellet: Delta p_item = m(v-u).",
+          "R pellets per second multiply that per-item change into the momentum-change rate Rm(v-u).",
+          "That rate is the average force on the pellet stream in the positive direction.",
+          "The launcher receives the equal-and-opposite interaction force.",
+          "A fixed launcher requires an external holding force that balances the recoil."
+        ],
+        "check": "If v=u, the force from this momentum transfer must become zero even though the pellets still carry nonzero momentum.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "family_ref": null,
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Do not start with the pellet's final momentum. What is the change in momentum of one pellet in the chosen frame?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Multiply the per-pellet momentum change by pellets per second, then keep the force on the pellets separate from the reaction on the launcher.",
+          "reveals": "METHOD"
+        }
+      ]
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-PHY-NLM-MOMENTUM-TRANSFER-A",
