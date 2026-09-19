@@ -111,7 +111,7 @@
       "extensions": {},
       "title": "Pinnacle Vector Algebra question-demand extension",
       "topic": "Vectors",
-      "intrinsic_badge": "HIGH",
+      "intrinsic_badge": "HARD",
       "badge_reason": "The main difficulty is preserving representation meaning: quadrant-aware direction, scalar versus vector products, projection, and axial direction.",
       "depth_overlay": "ADVANCED",
       "curriculum_mappings": [],
