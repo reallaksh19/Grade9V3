@@ -2749,8 +2749,7 @@
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
-        "SRC-AUTHOR-NLM",
-        "SRC-EXAMSIDE-NLM-DEMAND"
+        "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
@@ -2815,8 +2814,7 @@
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
-        "SRC-AUTHOR-NLM",
-        "SRC-EXAMSIDE-NLM-DEMAND"
+        "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
@@ -2880,8 +2878,7 @@
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
-        "SRC-AUTHOR-NLM",
-        "SRC-EXAMSIDE-NLM-DEMAND"
+        "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
@@ -2948,8 +2945,7 @@
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
-        "SRC-AUTHOR-NLM",
-        "SRC-EXAMSIDE-NLM-DEMAND"
+        "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
