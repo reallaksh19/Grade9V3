@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 150,
-  "relation_count": 203,
+  "component_count": 152,
+  "relation_count": 204,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 57,
+    "TEST": 59,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:d68e25a99248b5e50826e01e5d7531b323a310575a215183b31642636d7128dc",
+  "digest": "sha256:62bd0bfd1fdc12cc3686aa4c878449b404dd05f6a2045c5b4916ecb61b39a52c",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -635,6 +635,13 @@
       "sha256": "172bdc1ecb89e56de906756bbd3508ce6f460032fddafaadf7526777c090d90d"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-motion-in-plane-core.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2798,
+      "sha256": "721b9303940964f5696941987b77295f9143219642e9872c7de046bbf0e219f9"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -817,6 +824,13 @@
       "sha256": "cf3b2c7be63a54b0e367f57482bb94a25a0cd9c83c2d9a7cfcd412af15126b0c"
     },
     {
+      "path": "tests/test_grade9_motion2d_examside.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4220,
+      "sha256": "c0516c711c21581eefad2b623ee0b74864af73d0cfbd17273b92b44552aa4707"
+    },
+    {
       "path": "tests/test_grade9_motion_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -978,18 +992,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session_scenario_scan.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 26000,
-      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
-    },
-    {
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 29339,
       "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
+    },
+    {
+      "path": "tests/test_study_session_scenario_scan.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 26000,
+      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1002,8 +1016,8 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3890,
-      "sha256": "80a28d6ad6a0aed71f60f47aacd32a6f0302d8fd7d2775eb86c84bd709d7fea2"
+      "bytes": 4675,
+      "sha256": "ad791764aa822b2b42abeb2b2b85e70eebb8de4ac0db71877d15f1d73842b0e8"
     },
     {
       "path": "tests/test_tools.py",
@@ -1016,8 +1030,8 @@
       "path": "tests/test_vector_foundations_modernization.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7036,
-      "sha256": "8e812422b78698e767e135e75a47d2c6ff0a12612cce7323b3d576b7397ca16c"
+      "bytes": 7622,
+      "sha256": "4578635bbe72da972cd8ca52d0f25b3a1bf3cf3d80a7e9f585ec1361209a5b16"
     },
     {
       "path": "tests/test_worksheet_study_plan.py",
@@ -1037,8 +1051,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 463931,
-      "sha256": "3e1fdc6f0a960e3292e6dcf36137700628fdb08c1ea0667fb7957bbd79e97a5d"
+      "bytes": 498893,
+      "sha256": "6227238c48e35c6de85db660c85a75fe8347412752d52f698dbe7a249dfe9e1f"
     },
     {
       "path": "tools/index.html",
@@ -1055,18 +1069,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run_agent_path_stress.py",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 6932,
-      "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
-    },
-    {
       "path": "tools/run-builder/index.html",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 7041,
       "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
+    },
+    {
+      "path": "tools/run_agent_path_stress.py",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 6932,
+      "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
     }
   ],
   "relations": [
@@ -1772,6 +1786,11 @@
     },
     {
       "from": "tests/test_grade9_gravitation_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_motion2d_examside.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
