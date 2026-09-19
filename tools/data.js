@@ -4362,6 +4362,12 @@ window.GRADE9V3 = {
               "answer": "The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley."
             },
             {
+              "id": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+              "stem": "A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.",
+              "origin": "AUTHORED",
+              "answer": "The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton's laws can be written in that non-inertial frame."
+            },
+            {
               "id": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
               "stem": "A small block of mass m rests on a larger block of mass M. The floor under the larger block is smooth. A horizontal force F is applied to the larger block. The coefficient of static friction between the blocks is mu_s. Derive the largest value of F for which the two blocks can move together without slipping.",
               "origin": "AUTHORED",
@@ -4372,6 +4378,36 @@ window.GRADE9V3 = {
               "stem": "Two carts A and B of masses m_A and m_B are connected by one taut massless inextensible string on a smooth horizontal track. A horizontal force F pulls cart A away from B along the string. Derive the common acceleration and the string tension. Then name one model change that would make equal tension throughout the connector no longer guaranteed.",
               "origin": "AUTHORED",
               "answer": "The string constraint gives one acceleration a = F/(m_A+m_B). For B, T = m_B a, so T = m_B F/(m_A+m_B). Equal tension relies on the ideal massless-string model; a connector with significant mass or a nonideal redirection can invalidate one common T."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
+              "stem": "Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.",
+              "origin": "AUTHORED",
+              "answer": "Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C's equation."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
+              "stem": "A small bob hangs from the roof of a car that accelerates horizontally to the right. A student wants the bob to be at rest in the chosen coordinates while finding the string direction. Decide which observer description makes that possible, state the extra modelling term required there, and give an independent inertial-frame alternative without solving for a numerical angle.",
+              "origin": "AUTHORED",
+              "answer": "To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
+              "stem": "A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate's acceleration or justify that it remains at rest.",
+              "origin": "AUTHORED",
+              "answer": "First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| <= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
+              "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates.",
+              "origin": "AUTHORED",
+              "answer": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
+              "stem": "Two masses are connected by one rope over a fixed pulley. The pulley axle is explicitly stated to have appreciable friction. A proposed solution writes the same tension T on both sides of the pulley before doing any calculation. Decide whether that step is justified by the Grade9V3 ideal-string model and explain what can still be said without introducing a new pulley model.",
+              "origin": "AUTHORED",
+              "answer": "The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice."
             },
             {
               "id": "Q-PHY-NLM-PRACTICAL-12",
@@ -4484,7 +4520,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 83,
+          "record_count": 89,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4492,17 +4528,13 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 11,
+            "questions": 17,
             "obligations": 15,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",

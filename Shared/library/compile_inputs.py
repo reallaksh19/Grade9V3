@@ -677,8 +677,17 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
                         "check": answer["check"],
                         **({"difficult_move": answer["difficult_move"]}
                            if answer.get("difficult_move") is not None else {}),
-                        **({"numeric": answer["numeric"]} if answer.get("numeric") else {})},
+                        **({"numeric": answer["numeric"]} if answer.get("numeric") else {}),
+                        **({"rubric": deepcopy(answer["rubric"])}
+                           if answer.get("rubric") else {})},
              "hints": [dict(hint) for hint in record.get("hints") or []],
+             # Core2B's changed-demand claim, exposure lineage and repair route are
+             # authored assessment content. Dropping them turns a transfer task into
+             # ordinary practice even though the library still appears complete.
+             **({"transfer": deepcopy(record["transfer"])}
+                if record.get("transfer") else {}),
+             **({"repair_ref": record["repair_ref"]}
+                if record.get("repair_ref") else {}),
              "family": record["family_ref"],
              "learner_action": "solve", "exposure_role": role}
     return block

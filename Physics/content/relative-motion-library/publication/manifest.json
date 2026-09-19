@@ -1,6 +1,6 @@
 {
   "basis_digest": "e5270dba6f9234eb297dae5dd2b25b3be17aef71ba72c882bf0a1809b750f689",
-  "runtime_digest": "989df7d45f563b3cde002867e825edd2197ca31c28b48bb22660314e6a0833ad",
+  "runtime_digest": "e41a368c863f02e2aeae3ac542c179b3a5634e4da224fadcf1b44b4b39ddefbb",
   "files": [
     {
       "path": "CORE1.html",
@@ -92,7 +92,7 @@
     },
     {
       "path": "runtime/Shared/publication_host/compose.py",
-      "sha256": "5cf50fd9debabcdb812c07197295a03266de25c2cab88638b5bb2ab0fa854f65"
+      "sha256": "491177645d4d1984d2d1bd58550a1ac78b00f90fef5b3422f06532ba484db281"
     },
     {
       "path": "runtime/Shared/publication_host/drawing.py",

@@ -145,7 +145,26 @@ def _question(ctx, block, numeric_assessment):
         n = answer["numeric"]
         reveal += f'<p class="numeric"><span data-answer-value="{qid}" data-unit="{escape(n["unit"], quote=True)}">{escape(str(n["value"]))}</span> {escape(n["unit"])}</p>'
     reveal += _list(answer["steps"]) + _list(answer.get("subparts", []))
-    reveal += '<p><strong>Check:</strong> ' + escape(answer["check"]) + '</p></article>'
+    reveal += '<p><strong>Check:</strong> ' + escape(answer["check"]) + '</p>'
+    rubric = answer.get("rubric") or []
+    if rubric:
+        reveal += '<p><strong>What a strong justification contains:</strong></p><ul>'
+        for row in rubric:
+            reveal += ('<li>' + escape(row["criterion"]) +
+                       '<br><span class="source">This shows: ' +
+                       escape(row["evidence_of"]) + '</span></li>')
+        reveal += '</ul>'
+    transfer = block.get("transfer") or {}
+    if transfer:
+        reveal += ('<p><strong>What changed in this transfer:</strong> ' +
+                   escape(transfer["statement"]) + '</p>')
+        reveal += ('<p class="source">Transfer dimension: ' +
+                   escape(transfer["dimension"]) + '. Builds on: ' +
+                   escape(", ".join(transfer.get("builds_on") or [])) + '</p>')
+    if block.get("repair_ref"):
+        reveal += ('<p><strong>Repair route:</strong> <code>' +
+                   escape(block["repair_ref"]) + '</code></p>')
+    reveal += '</article>'
     return body, reveal
 
 

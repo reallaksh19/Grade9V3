@@ -105,19 +105,20 @@ class Grade9NlmExamSidePracticeAcceptance(unittest.TestCase):
             "DEMAND_FAMILY_ONLY_NOT_COPIED",
         )
 
-    def test_practice_inventory_closes_core2a_but_does_not_prematurely_open_core2b(self):
+    def test_practice_inventory_closes_core2a_without_mislabeling_those_items_as_transfer(self):
         nlm = practice_inventory.coverage(
             self.records,
             "BUCKET-PHY-NLM-FIRST-LAW",
         )
-        for question_id in (
+        core2a_ids = (
             "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
             "Q-PHY-NLM-2A-CONNECTED-02",
             "Q-PHY-NLM-2A-IDEAL-STRING-03",
             "Q-PHY-NLM-2A-FIXED-PULLEY-04",
-        ):
+        )
+        for question_id in core2a_ids:
             self.assertIn(question_id, nlm["CORE2A"])
-        self.assertEqual(nlm["CORE2B"], [])
+            self.assertNotIn(question_id, nlm["CORE2B"])
 
         momentum = practice_inventory.coverage(
             self.records,
@@ -178,11 +179,22 @@ class Grade9NlmExamSidePracticeAcceptance(unittest.TestCase):
             self.momentum_matrix["rungs"][0]["default_entry_eligible"]
         )
 
-    def test_no_core2b_question_was_added_as_a_side_effect(self):
-        for package in (self.nlm, self.momentum):
-            for q in package["questions"]:
-                cores = {row["core"] for row in q.get("exposure", [])}
-                self.assertNotIn("CORE2B", cores)
+    def test_core2a_acceptance_questions_remain_core2a_after_later_transfer_work(self):
+        for question_id in (
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+            "Q-PHY-NLM-2A-CONNECTED-02",
+            "Q-PHY-NLM-2A-IDEAL-STRING-03",
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+        ):
+            q = self.nlm_questions[question_id]
+            cores = {row["core"] for row in q.get("exposure", [])}
+            self.assertEqual(cores, {"CORE2A"})
+
+        q = self.momentum_questions["Q-PHY-NLM-MTR-2A-01"]
+        self.assertEqual(
+            {row["core"] for row in q.get("exposure", [])},
+            {"CORE2A"},
+        )
 
 
 if __name__ == "__main__":
