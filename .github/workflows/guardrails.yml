@@ -27,6 +27,12 @@ jobs:
       - name: Topic independence guard — scan engine and tooling
         run: python3 Shared/tools/topic_independence_guard.py
 
+      # Heavy-graphical support routes are governed separately from the academic graph.
+      # The guard validates their design contract, semantic-leaf/capability bindings,
+      # honest conformance status and implementation locator without granting human review.
+      - name: Graphical cognitive deconstruction contracts are valid
+        run: python3 Shared/tools/explorer_design_guard.py --enforce
+
       # A role spec may not require content the schema has nowhere to keep. Enforcing:
       # the 68 findings this first reported are closed, 28 by correcting the spec's path
       # and 40 by adding the field. It is its own step rather than part of the subject
