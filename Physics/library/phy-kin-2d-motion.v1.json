@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "status": "CANDIDATE",
   "subject": "Physics",
-  "scope_summary": "Owner-approved ExamSIDE question-demand slice for plane motion: independent x/y component reasoning, 2D constant-acceleration component solving, and projectile model selection. Calculus-style position-vector differentiation, trajectory-equation derivation, drag and advanced projectile geometry remain outside the first slice.",
+  "scope_summary": "Owner-approved ExamSIDE question-demand slice for plane motion, now semantically decomposed for the Topic Atlas: one-frame/two-component motion, componentwise constant acceleration, and the gravity-only projectile model with explicit apex, same-height and horizontal/unequal-height event reasoning. Trajectory-equation derivation, drag, variable gravity, moving-launcher/relative-motion cases and advanced projectile geometry remain outside this bounded packet.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -167,36 +167,53 @@
         {
           "id": "K2D1-1",
           "role": "DECLARE",
-          "action": "Choose one fixed x-y frame and write the initial position/velocity/acceleration as signed component pairs.",
-          "why_valid": "Component equations have meaning only in one common frame.",
+          "action": "Choose one fixed x-y frame, one origin and one time origin for the whole plane-motion event.",
+          "why_valid": "A component value is meaningful only after its frame and sign convention are fixed.",
           "inputs": [],
-          "output": "declared x/y state"
+          "output": "one declared frame, origin, axis orientation and t=0"
         },
         {
           "id": "K2D1-2",
           "role": "TRANSFORM",
-          "action": "Separate the x equation from the y equation without transferring a component from one axis into the other.",
-          "why_valid": "Perpendicular component equations evolve independently in Cartesian kinematics.",
-          "inputs": [],
-          "output": "x history uses only x, u_x, v_x, a_x; y history uses only y, u_y, v_y, a_y"
+          "action": "Represent position, velocity and acceleration as signed x and y components in that same frame.",
+          "why_valid": "A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)"
         },
         {
           "id": "K2D1-3",
-          "role": "VERIFY",
-          "action": "Use the same elapsed time when comparing or recombining the two component states.",
-          "why_valid": "Both equations describe the same object at the same instant.",
+          "role": "TRANSFORM",
+          "action": "Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.",
+          "why_valid": "The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.",
           "inputs": [],
-          "output": "one common time -> one plane state"
+          "output": "two axis histories coupled by one clock"
+        },
+        {
+          "id": "K2D1-4",
+          "role": "VERIFY",
+          "action": "Recombine only component values that refer to the same frame and the same instant.",
+          "why_valid": "Mixing x at one time with y at another does not describe any single physical state of the object.",
+          "inputs": [],
+          "output": "one physically valid plane state reconstructed from simultaneous components"
         }
       ],
       "relation_refs": [],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-KIN-2D-PRACTICE"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "Independent x and y motions may use different elapsed times.",
           "diagnostic_prompt": "At one instant 2 s after launch, may the x equation use t=2 s while the y equation uses another time?",
-          "repair": "No. Independence means the axis equations do not directly mix components; the same physical event still has one shared elapsed time."
+          "repair": "No. Independence separates the axis equations; it does not give the same object two clocks."
+        },
+        {
+          "wrong_idea": "The x-motion and y-motion are two different objects that can be paired arbitrarily later.",
+          "diagnostic_prompt": "May x(2 s) be combined with y(3 s) to describe the particle's position?",
+          "repair": "No. A plane state is a simultaneous pair. Recombine x(t) and y(t) only at the same t in the same frame."
         }
       ],
       "exit_task": {
@@ -248,14 +265,19 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "What information must be common because both equations describe the same object at one instant?",
-              "why_this_ask": "Recovers the shared-time invariant.",
+              "ask": "What must be declared before any component can have a sign?",
+              "why_this_ask": "Recovers the common frame and axis convention.",
               "from_step_ref": "K2D1-1"
             },
             {
-              "ask": "Which quantities are allowed to differ independently between axes?",
-              "why_this_ask": "Separates component dynamics from common event structure.",
-              "from_step_ref": "K2D1-2"
+              "ask": "What separates between axes, and what must stay common because both descriptions belong to one event?",
+              "why_this_ask": "Distinguishes component independence from the shared-clock invariant.",
+              "from_step_ref": "K2D1-3"
+            },
+            {
+              "ask": "Which x and y values may be recombined into one state?",
+              "why_this_ask": "Makes simultaneity observable rather than implicit.",
+              "from_step_ref": "K2D1-4"
             }
           ],
           "differs_from_teaching_path": "Teaching states the independence/common-time rule; reconstruction makes the learner distinguish what separates from what stays shared."
@@ -290,28 +312,31 @@
         {
           "id": "K2D2-1",
           "role": "DECLARE",
-          "action": "Check that each acceleration component is constant and list u_x,u_y,a_x,a_y for the same interval.",
-          "why_valid": "The component equations inherit the same constant-acceleration condition as the 1D model.",
-          "inputs": [],
-          "output": "component initial state + model check"
+          "action": "Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.",
+          "why_valid": "The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "per-axis model-validity decision"
         },
         {
           "id": "K2D2-2",
           "role": "TRANSFORM",
-          "action": "Apply v=u+at and/or displacement=u t+0.5 a t^2 separately to x and y using the same t.",
-          "why_valid": "Each axis follows the 1D relation using only its own signed values.",
+          "action": "Apply the one-dimensional constant-acceleration relations independently to x and y using only that axis's signed values and the same t.",
+          "why_valid": "Each Cartesian component obeys the same one-dimensional relation when its acceleration component is constant.",
           "inputs": [
+            "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
             "CAP-KIN-CONSTANT-ACCELERATION"
           ],
-          "output": "v_x=u_x+a_x t and v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2 and Delta y=u_y t+0.5a_y t^2"
+          "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2"
         },
         {
           "id": "K2D2-3",
           "role": "VERIFY",
-          "action": "Recombine or compare the solved components only after checking signs, units and common time.",
-          "why_valid": "The pair must represent one physically consistent plane state.",
+          "action": "If one axis determines an event time, reuse that same time on the other axis before recombining and checking the plane state.",
+          "why_valid": "The event occurs once for the object; a time obtained from one component is the clock value for every component at that same event.",
           "inputs": [],
-          "output": "checked component pair"
+          "output": "event time transferred across axes, then one checked plane state"
         }
       ],
       "relation_refs": [
@@ -319,12 +344,24 @@
         "REL-KIN-2D-DISPLACEMENT"
       ],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-KIN-2D-PRACTICE"
+      ],
       "misconceptions": [
         {
           "wrong_idea": "The magnitude of acceleration should be inserted unchanged into both x and y equations.",
           "diagnostic_prompt": "If a=(10 i + 4 j) m/s², should both component equations use a=√116?",
           "repair": "No. Use a_x=10 only in the x equation and a_y=4 only in the y equation; the magnitude is not either component."
+        },
+        {
+          "wrong_idea": "If one acceleration component is constant, the constant-acceleration equations are automatically valid on both axes.",
+          "diagnostic_prompt": "If a_x is constant but a_y changes with time, may the same constant-acceleration displacement formula be used exactly on y over the whole interval?",
+          "repair": "No. Model validity is checked per axis. A constant a_x does not make a_y constant."
+        },
+        {
+          "wrong_idea": "A time found from the x equation may be replaced by a different convenient time in the y equation.",
+          "diagnostic_prompt": "If x-motion says an event occurs at t=3 s, what time belongs in the y equation for that same event?",
+          "repair": "Use t=3 s. Both components describe the same event and therefore share one clock."
         }
       ],
       "exit_task": {
@@ -377,14 +414,19 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "What does the familiar 1D equation become when you apply it only along x?",
-              "why_this_ask": "Transfers an existing model instead of introducing a new formula.",
+              "ask": "Before using a constant-acceleration formula, what must be true about that axis's acceleration component?",
+              "why_this_ask": "Makes model validity explicit rather than formula-driven.",
               "from_step_ref": "K2D2-1"
             },
             {
-              "ask": "What must be identical in the y equation because both describe the same event?",
-              "why_this_ask": "Recovers the common-time coupling.",
+              "ask": "What does the 1D relation become when written only along x, and what changes for y?",
+              "why_this_ask": "Transfers an existing model one axis at a time.",
               "from_step_ref": "K2D2-2"
+            },
+            {
+              "ask": "If one component equation finds the event time, what time must the other component use?",
+              "why_this_ask": "Recovers the shared-clock coupling at an event.",
+              "from_step_ref": "K2D2-3"
             }
           ],
           "differs_from_teaching_path": "Teaching supplies component forms; reconstruction derives them by applying the existing 1D model separately to each axis."
@@ -419,45 +461,99 @@
         {
           "id": "K2D3-1",
           "role": "DECLARE",
-          "action": "Decide that the object is in free flight after release, neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
-          "why_valid": "Projectile equations are justified only by this model choice.",
+          "action": "Decide whether the object is in ideal near-Earth free flight after release; neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
+          "why_valid": "The standard projectile equations are a conditional specialization of 2D constant acceleration, not an automatic label for every launched object.",
           "inputs": [],
-          "output": "projectile acceleration state"
+          "output": "gravity-only projectile acceleration state"
         },
         {
           "id": "K2D3-2",
           "role": "TRANSFORM",
-          "action": "Use supplied/resolved u_x,u_y and one common t in the component equations.",
-          "why_valid": "Horizontal and vertical launch cases differ only in initial component values, not in the underlying model.",
+          "action": "Use supplied or separately resolved u_x and u_y with one common t in the horizontal and vertical component equations.",
+          "why_valid": "Horizontal, oblique and downward/upward initial components change the initial state, not the gravity-only model.",
           "inputs": [
             "CAP-KIN-2D-CONSTANT-ACCELERATION"
           ],
-          "output": "v_x=u_x, v_y=u_y-g t, Delta x=u_x t, Delta y=u_y t-0.5 g t^2 for the same t"
+          "output": "v_x=u_x; v_y=u_y-g t; Delta x=u_x t; Delta y=u_y t-0.5g t^2"
         },
         {
           "id": "K2D3-3",
-          "role": "VERIFY",
-          "action": "Reconstruct the requested speed/direction/position and check qualitative limits: v_x constant, vertical velocity decreases linearly until/through the top.",
-          "why_valid": "Independent component behaviour supplies physical checks before accepting a range/height/time result.",
+          "role": "DECLARE",
+          "action": "Translate the requested event into the component condition that defines it before solving for time.",
+          "why_valid": "Apex, same-height return, ground impact and a specified later instant are different events; each is identified by a different component condition.",
           "inputs": [],
-          "output": "checked projectile consequence"
+          "output": "event condition chosen before calculation"
+        },
+        {
+          "id": "K2D3-4",
+          "role": "TRANSFORM",
+          "action": "For an apex event, set v_y=0 while keeping v_x=u_x and a_y=-g.",
+          "why_valid": "At the highest point only the vertical velocity component is momentarily zero; gravity still accelerates downward and horizontal motion continues.",
+          "inputs": [],
+          "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration"
+        },
+        {
+          "id": "K2D3-5",
+          "role": "TRANSFORM",
+          "action": "For a return to the launch height, set Delta y=0 and treat any same-height flight-time/range shortcut as conditional on that equality.",
+          "why_valid": "The shortcut follows from the vertical displacement returning to its initial value; it is not valid when the landing height differs.",
+          "inputs": [],
+          "output": "same-height event condition and its validity boundary"
+        },
+        {
+          "id": "K2D3-6",
+          "role": "TRANSFORM",
+          "action": "For a horizontal launch or unequal-height landing, use u_y=0 only as the initial vertical condition and obtain the event time from the vertical position equation.",
+          "why_valid": "Gravity immediately builds vertical velocity; the fall/landing condition, not the horizontal speed, determines the flight time.",
+          "inputs": [],
+          "output": "vertical event time for horizontal or unequal-height launch"
+        },
+        {
+          "id": "K2D3-7",
+          "role": "VERIFY",
+          "action": "At the selected event time, reconstruct the requested velocity, speed, direction, displacement or range from simultaneous components and check qualitative limits.",
+          "why_valid": "The reported projectile result is a consequence of one component model and one event, so its components must refer to the same instant and satisfy a_x=0, a_y=-g.",
+          "inputs": [],
+          "output": "checked projectile consequence at one physical event"
         }
       ],
       "relation_refs": [
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
       "representation_refs": [],
-      "question_family_refs": [],
+      "question_family_refs": [
+        "FAM-PHY-KIN-2D-PRACTICE"
+      ],
       "misconceptions": [
-        {
-          "wrong_idea": "Horizontal projectile motion has no vertical velocity because it was launched horizontally.",
-          "diagnostic_prompt": "One second after a horizontal launch, is v_y still zero under gravity?",
-          "repair": "No. u_y=0 initially, but a_y=-g makes v_y=-gt after release."
-        },
         {
           "wrong_idea": "A projectile needs a horizontal force to keep moving horizontally.",
           "diagnostic_prompt": "If a_x=0 after release, can v_x still be nonzero?",
           "repair": "Yes. Zero horizontal acceleration means horizontal velocity stays constant, not that it becomes zero."
+        },
+        {
+          "wrong_idea": "A horizontal launch has no vertical velocity throughout the flight.",
+          "diagnostic_prompt": "One second after a horizontal launch, is v_y still zero under gravity?",
+          "repair": "No. u_y=0 only at release; a_y=-g makes v_y=-gt afterward."
+        },
+        {
+          "wrong_idea": "At the highest point the whole velocity and the acceleration are both zero.",
+          "diagnostic_prompt": "At the apex of an oblique projectile, which of v_x, v_y and a_y is zero?",
+          "repair": "Only v_y is zero at that instant. v_x remains u_x and a_y remains -g."
+        },
+        {
+          "wrong_idea": "Same-height flight formulas may be used whenever the question is about a projectile range or flight time.",
+          "diagnostic_prompt": "A ball launched from a roof lands on the ground below. May the same-height time-of-flight shortcut be used without checking the vertical displacement?",
+          "repair": "No. Same-height shortcuts require Delta y=0 between launch and landing. For unequal heights, solve the vertical position condition."
+        },
+        {
+          "wrong_idea": "At two points of the same height on an ideal trajectory, the velocity vectors are identical.",
+          "diagnostic_prompt": "On ascent and descent at the same height, how do the horizontal and vertical velocity components compare?",
+          "repair": "v_x is the same, while v_y has equal magnitude and opposite sign; the speed matches but the velocity vector does not."
+        },
+        {
+          "wrong_idea": "Horizontal speed determines how long a horizontally launched object takes to fall.",
+          "diagnostic_prompt": "If the horizontal launch speed doubles from the same height, does the ideal fall time change?",
+          "repair": "No. The vertical position equation determines the fall time; horizontal speed changes the range, not the fall time."
         }
       ],
       "exit_task": {
@@ -514,22 +610,32 @@
               "from_step_ref": "K2D3-1"
             },
             {
-              "ask": "What does that imply for a_x and a_y in the declared frame?",
-              "why_this_ask": "Builds the projectile specialization from acceleration.",
+              "ask": "What are the horizontal and vertical component equations, and what clock do they share?",
+              "why_this_ask": "Rebuilds the projectile specialization from 2D constant acceleration.",
               "from_step_ref": "K2D3-2"
             },
             {
-              "ask": "What is shared between horizontal and vertical component equations?",
-              "why_this_ask": "Recovers the one-time invariant.",
+              "ask": "What exact component condition identifies the event the question asks about?",
+              "why_this_ask": "Separates model selection from event selection.",
               "from_step_ref": "K2D3-3"
+            },
+            {
+              "ask": "If the event is the apex, what becomes zero and what definitely does not?",
+              "why_this_ask": "Protects against the common full-velocity/full-acceleration zero shortcut.",
+              "from_step_ref": "K2D3-4"
+            },
+            {
+              "ask": "Does launch height equal landing height? If not, which shortcut becomes invalid?",
+              "why_this_ask": "Makes the same-height boundary explicit.",
+              "from_step_ref": "K2D3-5"
             }
           ],
           "differs_from_teaching_path": "Teaching states the projectile specialization; reconstruction derives it from the post-release interaction model and coordinate choice."
         },
         "boundary_test": {
-          "prompt": "If air resistance is important, is a_x=0 still justified?",
-          "answer": "Not generally. Drag can produce a horizontal acceleration, so the ideal projectile model no longer applies exactly.",
-          "confirms": "Projectile formulas are conditional model consequences."
+          "prompt": "A launched object continues under significant horizontal thrust after release. May the standard a_x=0 projectile specialization be used?",
+          "answer": "No. The object is not in gravity-only free flight; its horizontal acceleration is not zero under that model.",
+          "confirms": "Projectile equations are conditional consequences of a declared force/model state."
         }
       }
     }
@@ -829,8 +935,814 @@
     }
   ],
   "representations": [],
-  "question_families": [],
-  "questions": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-KIN-2D-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "agent_a:semantic_reference": "Common PR #350 Motion in a Plane concept map; used as decomposition evidence, not source-question custody."
+      },
+      "title": "Motion in 2D component and projectile practice",
+      "capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-KIN-2D-CONSTANT-ACCELERATION",
+        "CAP-KIN-PROJECTILE-MODEL"
+      ],
+      "solution_structure": [
+        "Declare one frame, axes and one common elapsed time.",
+        "Choose or reject a constant-acceleration/projectile model before selecting equations.",
+        "Solve only the relevant signed x/y component equations.",
+        "Translate the requested event into an explicit component condition before solving for its time.",
+        "Recombine simultaneous components and check the result against the model boundary."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether componentwise constant acceleration or the gravity-only projectile specialization is valid before applying it.",
+        "representation_translation": "Convert a verbal or vector story into signed x/y states in one declared frame and common clock.",
+        "reasoning_steps": "Choose the event condition, obtain its time from the relevant component, reuse that time across axes, and reconstruct the requested plane quantity.",
+        "novelty": "Map horizontal launch, oblique launch, apex, same-height return and unequal-height landing onto the same component model without inventing separate physical laws."
+      },
+      "safe_variations": [
+        "Change signed initial components and acceleration components while preserving one frame and one clock.",
+        "Change the requested projectile event among apex, same-height return, unequal-height landing and specified later time while preserving gravity-only free flight.",
+        "Change launch from horizontal to oblique by changing the initial vertical component rather than changing the physical law."
+      ],
+      "transfer_boundaries": [
+        "Do not use constant-acceleration equations on an axis whose acceleration component varies materially over the interval.",
+        "Do not use same-height flight-time or range shortcuts when launch and landing heights differ.",
+        "Do not use the standard projectile specialization when drag, propulsion or another retained force makes a_x=0 and a_y=-g invalid.",
+        "Do not duplicate relative-motion/moving-observer decisions in this bucket; those belong to the existing relative-motion capability graph."
+      ],
+      "common_wrong_routes": [
+        "Give x and y different clocks for the same event.",
+        "Insert the acceleration magnitude into both component equations.",
+        "Set the whole velocity or acceleration to zero at the apex.",
+        "Treat horizontal launch as zero vertical motion for the whole flight.",
+        "Use same-height shortcuts for unequal-height landings."
+      ],
+      "item_refs": [
+        "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+        "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+        "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+        "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+        "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+        "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+        "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+        "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+        "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+        "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2A-SHARED-CLOCK-01",
+      "stem": "A tracker reports x(t)=4t metres and y(t)=10-2t^2 metres for one particle in one fixed frame. Find the particle's position at t=2 s, and explain why x(2 s) may not be paired with y(3 s) to describe one position.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The two functions refer to the same particle and the same time coordinate.",
+        "Use the declared fixed x-y frame."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "At t=2 s, x=8 m and y=2 m, so the position is (8,2) m in the declared frame. x(2 s) and y(3 s) cannot form one position because they refer to different instants.",
+        "reasoning": [
+          "Evaluate both component descriptions at the same requested time.",
+          "x(2)=4(2)=8.",
+          "y(2)=10-2(2^2)=2.",
+          "A physical plane state is a simultaneous component pair."
+        ],
+        "check": "The answer must use one t for both components; mixing timestamps produces no real single-time state.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What must be the same when x(t) and y(t) describe one particle at one instant?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Evaluate both component functions at the requested t before pairing them.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D1-4"
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2A-CONSTANT-ACCEL-02",
+      "stem": "A particle starts with velocity (3 i + 4 j) m/s and has constant acceleration (2 i - 1 j) m/s^2 for 3 s. Find its velocity and displacement after 3 s.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Both acceleration components are constant over the 3 s interval.",
+        "The initial position is irrelevant because the question asks for displacement."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "v=(9 i + 1 j) m/s and Delta r=(18 i + 7.5 j) m.",
+        "reasoning": [
+          "Use v_x=3+2(3)=9 and v_y=4-1(3)=1.",
+          "Use Delta x=3(3)+0.5(2)(3^2)=18.",
+          "Use Delta y=4(3)+0.5(-1)(3^2)=7.5.",
+          "Both axes use the same 3 s interval."
+        ],
+        "check": "Each axis uses only its own signed component values; units are m/s for velocity and m for displacement.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Write the x and y initial velocity and acceleration values separately before calculating.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Apply the same 1D constant-acceleration relation independently on each axis using the common 3 s.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D2-2"
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2A-PROJECTILE-APEX-03",
+      "stem": "An ideal projectile is launched with already-resolved components u_x=12 m/s and u_y=20 m/s. Take +y upward and g=10 m/s^2. Find the time to the apex, the velocity at the apex, the acceleration at the apex, and the height gained above launch.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "After release, gravity is the only retained force.",
+        "The given initial components are already resolved."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The apex occurs at t=2 s. There v=(12 i + 0 j) m/s, a=(0 i - 10 j) m/s^2, and the height gained is 20 m.",
+        "reasoning": [
+          "At the apex set v_y=u_y-gt=0, so t=20/10=2 s.",
+          "Horizontal acceleration is zero, so v_x remains 12 m/s.",
+          "Gravity still acts at the apex, so a_y=-10 m/s^2.",
+          "Delta y=20(2)-0.5(10)(2^2)=20 m."
+        ],
+        "check": "Only v_y is zero at the apex; neither the full velocity nor the acceleration is zero.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which component condition defines the apex?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Set only v_y to zero, solve for the shared time, then evaluate the other requested quantities at that time.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D3-4"
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+      "stem": "A stone is launched horizontally at 15 m/s from a cliff 20 m above level ground. Take +y upward and g=10 m/s^2. Find the flight time, horizontal range and impact velocity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "The launch has u_y=0.",
+        "Ground is 20 m below the launch point."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The flight time is 2 s, the horizontal range is 30 m, and the impact velocity is (15 i - 20 j) m/s.",
+        "reasoning": [
+          "Use the vertical condition Delta y=-20=0*t-0.5(10)t^2, giving t=2 s.",
+          "Then Delta x=15(2)=30 m.",
+          "v_x=15 m/s and v_y=-10(2)=-20 m/s at impact."
+        ],
+        "check": "The fall time comes from vertical motion; changing only horizontal speed would change range but not the ideal fall time.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which component equation contains the known 20 m drop?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find the common impact time from y first, then use that same time in x and in the velocity components.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D3-6"
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2A-SAME-HEIGHT-05",
+      "stem": "An ideal projectile is launched and later lands at the same height with u_x=12 m/s, u_y=16 m/s and g=8 m/s^2. Find the total flight time, range and landing velocity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Launch and landing heights are equal.",
+        "Take +y upward."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The flight time is 4 s, the range is 48 m, and the landing velocity is (12 i - 16 j) m/s.",
+        "reasoning": [
+          "At landing Delta y=0=16t-0.5(8)t^2; the nonzero root is t=4 s.",
+          "Horizontal velocity stays 12 m/s, so range=12(4)=48 m.",
+          "v_y=16-8(4)=-16 m/s at landing."
+        ],
+        "check": "At the same height, the horizontal component matches launch and the vertical component has equal magnitude with opposite sign.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What vertical displacement condition is true at a same-height landing?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Use Delta y=0 to obtain the nonzero landing time, then reuse that time in x and v_y.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D3-5"
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2B-REPRESENTATION-01",
+      "stem": "A particle is described verbally: at t=0 it is at the origin, moving east at 6 m/s and north at 2 m/s; during the next interval its acceleration is 3 m/s^2 south and zero east-west. Without being given component equations, choose a coordinate convention and write the signed component state that should be used for later calculation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use one fixed Cartesian frame.",
+        "The verbal directions must be translated into signed components before calculation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "One valid choice is +x east and +y north, giving u_x=+6 m/s, u_y=+2 m/s, a_x=0 and a_y=-3 m/s^2, all with one common t.",
+        "reasoning": [
+          "Declare +x east and +y north.",
+          "Translate each direction into a sign in that frame.",
+          "Keep the same frame and clock for both component histories."
+        ],
+        "check": "Any consistently declared perpendicular axis convention is acceptable if all signs are transformed consistently.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Declares a single Cartesian frame before assigning signs.",
+            "evidence_of": "Representation is chosen rather than assumed."
+          },
+          {
+            "criterion": "Translates east/north/south statements into consistent signed components.",
+            "evidence_of": "Verbal motion is converted into canonical x/y state."
+          },
+          {
+            "criterion": "Keeps one common time for the two component histories.",
+            "evidence_of": "Independent components are still one event."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a ready-made component-function exercise into an unlabeled representation task while preserving one-frame/one-clock physics."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Before writing numbers, which two perpendicular positive directions will you declare?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Translate each directional word into a sign only after that frame is fixed.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D1-2",
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must convert a verbal direction description into signed x/y state without being handed the component representation.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2B-MODEL-VALIDITY-02",
+      "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The acceleration components are given as functions of time.",
+        "No numerical integration is required; the task is model selection."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval.",
+        "reasoning": [
+          "Check each acceleration component separately.",
+          "a_x=2 is constant, so the 1D constant-acceleration x relations are valid.",
+          "a_y=3t varies with time, so the constant-a y relations are not exact over the whole interval."
+        ],
+        "check": "A constant total direction or a constant x component does not make the y component constant.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Checks x and y acceleration components separately.",
+            "evidence_of": "Model validity is treated per component."
+          },
+          {
+            "criterion": "Accepts constant-acceleration equations only on x.",
+            "evidence_of": "Does not let one valid axis license the other."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a guaranteed constant-acceleration calculation into a model-validity decision."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Is 'constant acceleration' one global label here, or must each component be checked over the interval?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "repair_ref": "K2D2-1",
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide component-by-component whether the constant-acceleration model is valid instead of being told that it applies.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+      "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Ground is 15 m below the launch point.",
+        "The initial velocity components are already resolved."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+        "reasoning": [
+          "Use the vertical impact condition Delta y=-15=10t-5t^2.",
+          "Solve 5t^2-10t-15=0, giving the physical root t=3 s.",
+          "Reuse t=3 s horizontally: Delta x=10(3)=30 m.",
+          "The same-height shortcut would use the wrong event condition here."
+        ],
+        "check": "Substitution into the vertical displacement gives -15 m; the nonzero same-height time 2u_y/g=2 s is not the ground-impact time.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Uses the actual vertical displacement -15 m rather than a same-height shortcut.",
+            "evidence_of": "Selects the event condition from geometry."
+          },
+          {
+            "criterion": "Reuses the physical impact time in the horizontal equation.",
+            "evidence_of": "Preserves the one-clock invariant."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes the landing geometry while preserving the same gravity-only projectile model."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "What vertical displacement identifies ground impact relative to the launch point?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find the physical root from the y equation, then use that same time in x.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D3-5",
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+      "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "The horizontal rocket thrust remains active after release.",
+        "The question asks for model selection, not a full trajectory calculation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant.",
+        "reasoning": [
+          "The standard projectile specialization requires gravity-only free flight.",
+          "The active rocket motor adds a retained horizontal acceleration.",
+          "Therefore use the parent 2D constant-acceleration capability rather than the gravity-only projectile specialization."
+        ],
+        "check": "If the motor is switched off after release and drag remains negligible, the standard a_x=0 projectile model becomes valid from that later instant.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Rejects the gravity-only projectile specialization.",
+            "evidence_of": "Checks model conditions before formula use."
+          },
+          {
+            "criterion": "Falls back to the general component constant-acceleration model.",
+            "evidence_of": "Chooses the smallest valid parent model rather than inventing a new law."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-CONSTANT-ACCELERATION"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a gravity-only horizontal-launch practice item into a post-release force-model validity decision by keeping horizontal propulsion active."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which post-release assumption makes a_x=0 in the standard projectile model, and is it true here?",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "repair_ref": "K2D3-1",
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must reject the familiar projectile specialization because one of its defining force/model conditions is explicitly broken.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
+        ]
+      }
+    },
+    {
+      "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "agent_a:packet": "MOTION_IN_2D",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+      "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Both events occur on the same trajectory at the same vertical position.",
+        "Take +y upward."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+        "reasoning": [
+          "Horizontal velocity remains constant because a_x=0.",
+          "At equal height in the same gravity-only trajectory, the vertical speed magnitude matches on ascent and descent, with opposite signs.",
+          "Combining the components gives equal speed magnitudes but different velocity directions.",
+          "Gravity gives the same downward acceleration at both events."
+        ],
+        "check": "The two velocity vectors cannot be identical because one has upward v_y and the other downward v_y.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Keeps v_x unchanged across the two events.",
+            "evidence_of": "Uses the horizontal component invariant."
+          },
+          {
+            "criterion": "Gives v_y equal magnitude and opposite sign.",
+            "evidence_of": "Understands same-height vertical-state symmetry without confusing vector equality."
+          },
+          {
+            "criterion": "Distinguishes equal speed from equal velocity.",
+            "evidence_of": "Recombines components conceptually rather than comparing only magnitudes."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ],
+        "reason": "Changes a single apex-state calculation into a two-event equal-height state comparison requiring component invariants rather than event-time computation."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "At the same height, which horizontal quantity is unchanged throughout ideal flight, and what must differ between ascent and descent?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare component signs first; only then compare speed magnitudes.",
+          "reveals": "METHOD"
+        }
+      ],
+      "repair_ref": "K2D3-7",
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
+        ]
+      }
+    }
+  ],
   "teaching_routes": [
     {
       "id": "ROUTE-KIN-2D-CORE1A",
