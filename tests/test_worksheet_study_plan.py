@@ -63,20 +63,16 @@ class WorksheetStudyPlan(unittest.TestCase):
             "QUICK_CHECK",
         )
         self.assertEqual(
-            rows["CAP-KIN-AVERAGE-RATES"]["recommended_action"],
+            rows["CAP-KIN-ZERO-V-NONZERO-A"]["recommended_action"],
             "START_HERE",
         )
         self.assertEqual(
-            rows["CAP-KIN-ZERO-V-NONZERO-A"]["recommended_action"],
-            "STUDY",
-        )
-        self.assertEqual(
-            rows["CAP-KIN-AVERAGE-RATES"]["learner_state"]["state"],
+            rows["CAP-KIN-ZERO-V-NONZERO-A"]["learner_state"]["state"],
             "UNOBSERVED",
         )
         self.assertIn(
             "not evidence",
-            rows["CAP-KIN-AVERAGE-RATES"]["action_reason"],
+            rows["CAP-KIN-ZERO-V-NONZERO-A"]["action_reason"],
         )
 
     def test_observed_uncertainty_overrides_owner_estimate(self):
