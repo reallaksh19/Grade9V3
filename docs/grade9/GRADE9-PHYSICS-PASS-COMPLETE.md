@@ -1,7 +1,7 @@
 # Grade-9 Physics authoring pass — completion record
 
-The sequential Grade-9 Physics authoring pass is complete once the G9-6 merge passes normal
-repository guardrails.
+The sequential Grade-9 Physics authoring pass is complete. G9-6 merged after clean push and
+pull-request guardrails, closing the Grade-9-only authoring freeze.
 
 ## Completed slices
 
