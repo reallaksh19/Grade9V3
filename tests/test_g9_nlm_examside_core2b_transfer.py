@@ -151,11 +151,9 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
                     q["extensions"]["examside:use"],
                     "DEMAND_FAMILY_ONLY_NOT_COPIED",
                 )
-                self.assertTrue(
-                    q["extensions"]["examside:demand_source"].startswith(
-                        "https://questions.examside.com/past-years/jee/question/"
-                    )
-                )
+                provenance = q["extensions"]["examside:demand_provenance"]
+                self.assertIn("ExamSIDE demand family", provenance)
+                self.assertIn("https://questions.examside.com/past-years/jee/", provenance)
 
     def test_core2b_inventory_is_now_representative_not_a_single_token_item(self):
         inventory = practice_inventory.coverage(
