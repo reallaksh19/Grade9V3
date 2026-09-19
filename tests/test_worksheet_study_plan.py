@@ -46,7 +46,9 @@ class WorksheetStudyPlan(unittest.TestCase):
         self.assertTrue(q1["what_is_being_learned"])
         rendered = worksheet_study_plan.readable(report)
         self.assertIn("Question -> study map", rendered)
-        self.assertIn("Core (1) lesson", rendered)
+        self.assertIn("Core lesson", rendered)
+        self.assertIn("Difficulty (source)", rendered)
+        self.assertIn("Canonical matrix", rendered)
         self.assertIn("Why extra attention?", rendered)
         self.assertIn("Ordered study route", rendered)
 
