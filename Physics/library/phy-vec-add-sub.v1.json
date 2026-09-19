@@ -694,7 +694,7 @@
           "inputs": [
             "CAP-TRIG-RATIO-BRIDGE"
           ],
-          "output": "unsigned perpendicular component magnitudes"
+          "output": "V_adj = V cos(theta); V_opp = V sin(theta)"
         },
         {
           "id": "VAD-4",
@@ -1490,13 +1490,13 @@
       "secondary_capability_refs": [],
       "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
       "adaptation": {
-        "parent_ref": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
         "changed_fields": [
           "stem",
           "conditions",
           "answer"
         ],
-        "reason": "Removes the magnitude-angle input so the learner must decide that the decomposition model is not needed."
+        "reason": "Starts from the initial-state representation practice but supplies the velocity directly as signed components, so the learner must decide that magnitude-angle decomposition is unnecessary."
       },
       "exposure": [
         {
@@ -1516,7 +1516,7 @@
         "dimension": "model_choice",
         "statement": "The learner must decide whether decomposition applies rather than being told to use it.",
         "builds_on": [
-          "Q-PHY-VEC-DECOMP-2A-FROM-X-01"
+          "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05"
         ]
       }
     },
@@ -1575,7 +1575,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Requires the learner to reconcile two angle references for one unchanged vector."
+        "reason": "Keeps the physical vector from the +x-reference practice but redescribes it from the perpendicular axis, requiring an equivalence proof rather than another routine projection."
       },
       "exposure": [
         {
@@ -1599,8 +1599,7 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must build two valid decompositions and prove they are equivalent representations.",
         "builds_on": [
-          "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
-          "Q-PHY-VEC-DECOMP-2A-FROM-Y-02"
+          "Q-PHY-VEC-DECOMP-2A-FROM-X-01"
         ]
       }
     },
@@ -1738,13 +1737,13 @@
       ],
       "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
       "adaptation": {
-        "parent_ref": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
+        "parent_ref": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
         "changed_fields": [
           "stem",
           "conditions",
           "answer"
         ],
-        "reason": "Changes the coordinate convention while holding the physical vector fixed."
+        "reason": "Builds on signed-quadrant practice while changing the coordinate convention, so the learner must separate physical direction from coordinate sign."
       },
       "exposure": [
         {
@@ -1764,7 +1763,7 @@
         "dimension": "representation_translation",
         "statement": "The learner must resolve the same physical vector in a non-default but valid coordinate frame.",
         "builds_on": [
-          "Q-PHY-VEC-DECOMP-2A-FROM-X-01"
+          "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03"
         ]
       }
     }
