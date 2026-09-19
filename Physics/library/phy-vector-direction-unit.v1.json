@@ -147,7 +147,7 @@
       "evidence_refs": [],
       "extensions": {},
       "action": "Use an inverse tangent on a positive right-triangle ratio to recover an acute reference angle, leaving quadrant selection to the consuming subject.",
-      "success_criterion": "Given positive leg magnitudes a and b, evaluate or represent alpha = tan^-1(b/a) as an acute reference angle and distinguish that reference angle from a full directed angle. Draft bridge only; Mathematics-provider acceptance remains required.",
+      "success_criterion": "Given positive leg magnitudes a and b, evaluate or represent alpha = tan^-1(b/a) as an acute reference angle and state that this reference angle still requires the consuming subject to place it in the directed geometry. Draft bridge only; Mathematics-provider acceptance remains required.",
       "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": "Mathematics",
