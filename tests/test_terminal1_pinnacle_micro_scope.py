@@ -104,6 +104,7 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
         for name in (
             "zero velocity with nonzero acceleration at a turning point",
             "accelerating observer / pseudo-force convention",
+            "momentum-transfer / rate-of-momentum force (recoil or ejection stream)",
         ):
             with self.subTest(micro=name):
                 row = rows[name]

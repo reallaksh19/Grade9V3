@@ -1,0 +1,77 @@
+{
+  "matrix_id": "MATRIX-PHY-PINNACLE-NLM-MOMENTUM-RATE",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-PINNACLE-NLM-MOMENTUM-RATE",
+  "topic": "NLM",
+  "subtopic": "Explicit-demand momentum-transfer and recoil rate",
+  "axis_note": "Single-rung owner-approved question-demand extension. It is deliberately non-default and does not participate in ordinary Grade-9 NLM progression.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 100,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+      "default_entry_eligible": false,
+      "ceiling": [
+        "collision conservation",
+        "centre of mass",
+        "rocket equation",
+        "impulse integral",
+        "time-varying force integration"
+      ],
+      "must_contain": [
+        "One chosen emitted item/body and inertial frame.",
+        "A per-item momentum change.",
+        "A stated time interval or item rate converting momentum to average force.",
+        "A Newton-third-law recoil body check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the steady item/firing rate",
+          "hold": "per-item momentum change",
+          "notice": "average momentum-transfer force changes in direct proportion"
+        },
+        {
+          "phase": 2,
+          "vary": "the per-item momentum change",
+          "hold": "the item rate",
+          "notice": "average force changes in direct proportion and recoil direction follows the opposite interaction"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Choose the item/body and frame, compute per-item momentum change, convert it to a per-time transfer, and assign the recoil partner to the other body.",
+    "difficult_move": "Recognizing that momentum itself is not force: the missing decision is the time/rate conversion.",
+    "independent_check": "The final expression has force units, scales linearly with item rate, and places equal-and-opposite recoil on the launcher.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Per-item momentum change and item rate are stated."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Mass, initial/final velocity and item rate are stated; learner forms Delta p."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the repeated-emission physical story and requested holding/recoil force are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A repeated-emission story gives mass, speed and items per second without naming momentum rate.",
+      "information_not_handed_over": "that per-item Delta p must be accumulated per unit time",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "question_direction",
+      "changed_demand": "The emitted-stream momentum is easy to compute but the question asks for holding/recoil force on the launcher.",
+      "information_not_handed_over": "which body receives the third-law partner and its direction",
+      "repair_to": "R1"
+    }
+  ]
+}

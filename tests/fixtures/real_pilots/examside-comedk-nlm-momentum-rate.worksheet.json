@@ -1,0 +1,16 @@
+{
+  "worksheet_id": "EXAMSIDE-COMEDK-NLM-MOMENTUM-RATE",
+  "subject": "Physics",
+  "source_note": "User-supplied owner-approved ExamSIDE COMEDK machine-gun item. The fixture stores only the durable demand summary and URL, not copied question text.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-COMEDK-2026-MACHINE-GUN-MOMENTUM-RATE",
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Machine gun fires repeated bullets at a stated speed while the holder supplies a stated force; solving requires momentum carried by each bullet times bullets per second and the opposite recoil/holding force. Source: https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5"
+    }
+  ]
+}

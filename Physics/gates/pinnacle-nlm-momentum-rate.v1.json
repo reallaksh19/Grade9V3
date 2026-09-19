@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHYSICS-GATES-PINNACLE-NLM-MOMENTUM-RATE-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "scope": "Single explicit-demand momentum-transfer-rate relation for the owner-supplied ExamSIDE COMEDK machine-gun question.",
+    "deliberately_partial": "Collision conservation, centre of mass, rockets and time-varying-force integration are intentionally absent.",
+    "source_authority": "The individual ExamSIDE item is owner-approved preparation demand, not Pinnacle school-issued micro-scope.",
+    "review_status": "Author-created adaptation; independent academic review remains separate."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-PINNACLE-NLM-MOMENTUM-RATE",
+      "title": "Average force from momentum transferred per unit time",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "NLM",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-PIN-MOM-RATE",
+          "statement": "Average force requires momentum change per unit time; one item's momentum alone is not a force."
+        },
+        {
+          "concept_id": "CON-PIN-MOM-STREAM",
+          "statement": "Identical per-item momentum changes add linearly over a steady counting interval."
+        },
+        {
+          "concept_id": "CON-PIN-MOM-RECOIL",
+          "statement": "Newton-third-law recoil is equal and opposite on the launcher/body, not a cancellation on the emitted item's FBD."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-NLM-MOMENTUM-TRANSFER-RATE",
+          "expression": "p = m v; F_avg = Delta p / Delta t; steady identical items at rate r: |F_avg| = r |Delta p_item|",
+          "meaning": "Average external force equals momentum transferred per unit time; steady identical item changes add linearly over the counting interval.",
+          "symbols": [
+            {
+              "symbol": "p",
+              "meaning": "Linear momentum",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Constant item/body mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Velocity",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "Delta p",
+              "meaning": "Momentum change",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Time interval",
+              "unit": "s",
+              "dimension": "T"
+            },
+            {
+              "symbol": "F_avg",
+              "meaning": "Average net force",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "r",
+              "meaning": "Steady item rate",
+              "unit": "1/s",
+              "dimension": "T^-1"
+            },
+            {
+              "symbol": "Delta p_item",
+              "meaning": "Momentum change per item",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            }
+          ],
+          "conditions": [
+            "Momentum and velocity refer to the same chosen item/body and one inertial frame.",
+            "The first-slice relation treats the item mass as constant over its stated momentum change.",
+            "F_avg is the average net force associated with the stated momentum transfer over Delta t.",
+            "For a steady stream of identical items, the per-item momentum change and item rate refer to the same counting interval.",
+            "The equal-and-opposite recoil interpretation belongs to the launcher/body on the other side of the interaction, not to the emitted item's own free-body equation."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose the item/body and frame before Delta p.",
+        "A time interval or item rate is present before momentum is interpreted as force.",
+        "Use the recoil partner on the launcher only after the emitted item's momentum transfer is established."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-PIN-MR-ITEM",
+          "sequence": 1,
+          "action": "Compute the momentum change of one emitted item in one frame.",
+          "why_valid": "The repeated transfer is built from a definite per-item change."
+        },
+        {
+          "step_id": "RS-PIN-MR-RATE",
+          "sequence": 2,
+          "action": "Accumulate identical item changes over the stated time/rate and divide by time.",
+          "why_valid": "Average force is momentum change per unit time.",
+          "depends_on": [
+            "RS-PIN-MR-ITEM"
+          ]
+        },
+        {
+          "step_id": "RS-PIN-MR-RECOIL",
+          "sequence": 3,
+          "action": "Place the equal-and-opposite interaction on the launcher and check force units.",
+          "why_valid": "Newton III determines the partner body/direction while dimensional analysis checks the rate conversion.",
+          "depends_on": [
+            "RS-PIN-MR-RATE"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-PIN-MR-MOMENTUM-IS-FORCE",
+          "wrong_idea": "One bullet's momentum can be equated directly to holding force.",
+          "counterexample": "Momentum has units kg m/s while force has kg m/s^2.",
+          "repair": "Introduce the time interval or bullets-per-second rate before interpreting the result as average force."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-PIN-NLM-MOMENTUM-RATE",
+          "title": "Machine-gun / steady ejection average recoil-force questions",
+          "hidden_invariants": [
+            "Force scales linearly with item rate.",
+            "Per-item momentum is accumulated before time division.",
+            "Recoil belongs to the launcher."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 2
+      },
+      "badges": [
+        "NLM",
+        "PINNACLE-EXPLICIT-DEMAND"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-PIN-MR-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from the first symbol of the relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    }
+  ]
+}

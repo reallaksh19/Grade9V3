@@ -1,0 +1,495 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-PINNACLE-NLM-MOMENTUM-RATE",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Explicit-demand Grade-9 Pinnacle NLM extension for the owner-supplied ExamSIDE COMEDK machine-gun item: linear momentum of an emitted item, average force as momentum transferred per unit time, and steady repeated-item recoil. This is non-default and does not open collision conservation, centre-of-mass methods, rockets or force-time integration.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-EXAMSIDE-COMEDK-MACHINE-GUN-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE COMEDK machine-gun momentum-transfer question",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5",
+      "edition": "COMEDK 2026 Morning Shift; supplied by owner 2026-09-19",
+      "section": "Repeated bullets / holder force / momentum-transfer rate",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question source used as owner-approved preparation-demand evidence. Grade9V3 stores a concise demand summary and URL, not copied question text.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "The supplied item cannot be solved from F=ma alone without representing momentum carried by repeated bullets per unit time; the merged NLM reconnaissance identifies it as a distinct explicit-demand extension candidate.",
+      "fallback": [
+        "https://questions.examside.com/past-years/jee/comedk/physics/laws-of-motion"
+      ]
+    },
+    {
+      "id": "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 bounded momentum-transfer-rate adaptation",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-nlm-momentum-rate-pinnacle.v1.json",
+      "edition": "0.1.0",
+      "section": "Single explicit-demand momentum-transfer learner action",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created teaching adaptation; no school-issued micro-scope authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Adds only the independently fail-able rate-of-momentum action exposed by the supplied question, after the friction/connected NLM slice is already separately authored.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-PINNACLE-NLM-MOMENTUM-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-COMEDK-MACHINE-GUN-DEMAND",
+        "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Pinnacle NLM momentum-transfer-rate extension",
+      "topic": "NLM",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The arithmetic is modest, but the learner must convert per-item momentum into a per-time transfer and keep recoil forces assigned to the correct body.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-NLM-FIRST-LAW"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-PIN-MOM-BODY",
+          "statement": "Choose the item/body and inertial frame before calculating momentum change."
+        },
+        {
+          "id": "CONV-PIN-MOM-RATE",
+          "statement": "Momentum becomes an average force only after a time interval or item rate is introduced."
+        },
+        {
+          "id": "CONV-PIN-MOM-RECOIL",
+          "statement": "Use Newton III to place the equal-and-opposite recoil interaction on the launcher, not on the bullet's own FBD."
+        }
+      ],
+      "scope": {
+        "covers": "p=mv for one emitted item, Delta p over a stated interval, F_avg=Delta p/Delta t, and steady identical-item momentum flow such as bullets per second with equal-and-opposite average recoil interpretation.",
+        "excluded": [
+          "Full collision or explosion momentum-conservation curriculum.",
+          "Centre-of-mass motion.",
+          "Rocket equation or continuously varying-mass dynamics.",
+          "Instantaneous force reconstruction from a general time-dependent momentum function.",
+          "Impulse-integral techniques.",
+          "Default placement in ordinary Grade-9 NLM progression."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate a stated momentum change to average force, including steady repeated-item momentum transfer and equal-and-opposite recoil.",
+      "success_criterion": "Computes p=mv for the chosen item, forms Delta p in one frame, converts total momentum change over a stated interval or repeated-item rate into F_avg=Delta p/Delta t, checks force units, and assigns the recoil partner to the launcher/body rather than cancelling forces on one FBD.",
+      "prerequisite_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Convert repeated-item momentum transfer into average recoil force",
+      "bucket_id": "BUCKET-PHY-PINNACLE-NLM-MOMENTUM-RATE",
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The key failure is dimensional/model selection: one bullet's momentum is not a force until the learner introduces the transfer interval or firing rate.",
+      "entry_assumptions": [
+        "Can distinguish the bullet/item from the launcher and place Newton-third-law partners on different bodies.",
+        "Can multiply mass by velocity and preserve a one-dimensional sign convention."
+      ],
+      "inferential_jump": "Repeated per-item momentum changes accumulate over time, so a firing/ejection rate converts momentum per item into momentum per second and therefore average force.",
+      "teaching_path": [
+        {
+          "id": "NMR-1",
+          "role": "DECLARE",
+          "action": "Choose the emitted item and signed direction; write p_i=m v_i and p_f=m v_f for that item.",
+          "why_valid": "The rate calculation must start from a well-defined momentum change of one chosen item.",
+          "inputs": [],
+          "output": "Example from rest to +v: Delta p_item = m v."
+        },
+        {
+          "id": "NMR-2",
+          "role": "TRANSFORM",
+          "action": "If r identical items are emitted each second, sum their momentum changes over one second.",
+          "why_valid": "Repeated identical changes add linearly in the counting interval.",
+          "inputs": [],
+          "output": "In 1 s, Delta p_total = r Delta p_item."
+        },
+        {
+          "id": "NMR-3",
+          "role": "TRANSFORM",
+          "action": "Divide the total momentum transfer by the interval to obtain average force.",
+          "why_valid": "Momentum divided by time has force dimensions and is the interval-average rate of momentum change.",
+          "inputs": [],
+          "output": "For the 1 s count: |F_avg| = r |Delta p_item| = r m |v_f-v_i|."
+        },
+        {
+          "id": "NMR-4",
+          "role": "VERIFY",
+          "action": "Use Newton III to assign the equal-and-opposite average recoil to the launcher, then check units.",
+          "why_valid": "The bullet force and launcher recoil are interaction partners on different bodies; kg m/s^2 is N.",
+          "inputs": [],
+          "output": "Emitted momentum is forward; launcher recoil is opposite; r m Delta v has units N."
+        }
+      ],
+      "relation_refs": [
+        "REL-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The recoil force is numerically equal to one bullet's momentum.",
+          "diagnostic_prompt": "A bullet momentum has units kg m/s. What factor is needed before it can equal a force?",
+          "repair": "Introduce time: divide total momentum transfer by seconds, or multiply per-bullet momentum by bullets per second."
+        },
+        {
+          "wrong_idea": "Bullet and launcher forces cancel on the bullet FBD.",
+          "diagnostic_prompt": "Does the launcher recoil force act on the bullet?",
+          "repair": "No. Third-law partners act on different bodies; calculate the bullet momentum transfer, then place the equal-and-opposite recoil on the launcher."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A launcher fires identical bullets from rest. Each bullet leaves with forward momentum p and the steady firing rate is r bullets per second. State the average recoil-force magnitude and direction.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The average recoil-force magnitude is r p, directed opposite the outgoing bullets.",
+          "reasoning": [
+            "Each bullet gains forward momentum p.",
+            "In one second, r bullets gain total forward momentum r p.",
+            "Average force magnitude is momentum transferred per second: r p.",
+            "Newton III places an equal-and-opposite average interaction on the launcher."
+          ],
+          "check": "r has unit 1/s, so r p has kg m/s^2 = N; reversing the firing direction reverses recoil.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The symbolic result directly tests the steady repeated-item momentum-rate model."
+        }
+      },
+      "research_contribution": "Directly answers the distinct learner action identified by the owner-supplied machine-gun item, after the first friction/connected NLM production slice has been separated.",
+      "prerequisite_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If momentum per bullet is unchanged but the firing rate doubles, what happens to average recoil-force magnitude?",
+          "defensible_answer": "It doubles."
+        },
+        "attempt": {
+          "produces": "Per-item momentum change, conversion to per-second momentum transfer, and recoil-body interpretation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Introduces a time/rate before calling the result a force.",
+              "evidence_of": "Momentum-rate model selection."
+            },
+            {
+              "criterion": "Places recoil on the launcher rather than cancelling it on the bullet.",
+              "evidence_of": "Newton-third-law body ownership."
+            }
+          ],
+          "accepted": [
+            "F_avg=(momentum change per bullet)*(bullets per second), with opposite recoil on launcher."
+          ],
+          "rejected": [
+            "Set force equal to one bullet momentum without a time/rate factor."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What quantity does one bullet gain?",
+              "why_this_ask": "Builds the per-item transfer.",
+              "from_step_ref": "NMR-1"
+            },
+            {
+              "ask": "How much of that quantity is transferred in one second at rate r?",
+              "why_this_ask": "Builds the rate without handing over the final formula.",
+              "from_step_ref": "NMR-2"
+            },
+            {
+              "ask": "Which body receives the opposite interaction?",
+              "why_this_ask": "Preserves force ownership.",
+              "from_step_ref": "NMR-4"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching states the momentum-rate sequence; reconstruction starts from one item and one second, then lets the learner infer the force relation."
+        },
+        "boundary_test": {
+          "prompt": "Does this capability by itself determine two unknown final velocities after a collision?",
+          "answer": "No. That requires an additional system momentum-conservation model, which is outside this extension.",
+          "confirms": "The extension is momentum-transfer rate, not a collision curriculum."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-NLM-MOMENTUM-TRANSFER-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p = m v; F_avg = Delta p / Delta t; steady identical items at rate r: |F_avg| = r |Delta p_item|",
+      "meaning": "Average external force equals momentum transferred per unit time; for identical emitted items at a steady rate, their per-item momentum changes add linearly over the counting interval.",
+      "symbols": [
+        {
+          "symbol": "p",
+          "meaning": "Linear momentum of the chosen item/body",
+          "unit_or_domain": "kg m/s"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Constant item/body mass for the stated change",
+          "unit_or_domain": "kg"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Velocity in the chosen inertial frame",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "Delta p",
+          "meaning": "Momentum change over the stated interval",
+          "unit_or_domain": "kg m/s"
+        },
+        {
+          "symbol": "Delta t",
+          "meaning": "Time interval",
+          "unit_or_domain": "s"
+        },
+        {
+          "symbol": "F_avg",
+          "meaning": "Average net force associated with the momentum change",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "r",
+          "meaning": "Steady number of identical items transferred per second",
+          "unit_or_domain": "1/s"
+        },
+        {
+          "symbol": "Delta p_item",
+          "meaning": "Momentum change of one emitted item",
+          "unit_or_domain": "kg m/s"
+        }
+      ],
+      "conditions": [
+        "Momentum and velocity refer to the same chosen item/body and one inertial frame.",
+        "The first-slice relation treats the item mass as constant over its stated momentum change.",
+        "F_avg is the average net force associated with the stated momentum transfer over Delta t.",
+        "For a steady stream of identical items, the per-item momentum change and item rate refer to the same counting interval.",
+        "The equal-and-opposite recoil interpretation belongs to the launcher/body on the other side of the interaction, not to the emitted item's own free-body equation."
+      ],
+      "derivation": [
+        {
+          "id": "NMR-REL-1",
+          "role": "DECLARE",
+          "action": "Choose one emitted item and one inertial frame, then calculate its initial and final momentum p_i=m v_i and p_f=m v_f.",
+          "why_valid": "Momentum change is meaningful only for a specified body/item in one frame.",
+          "inputs": [],
+          "output": "Delta p_item = m(v_f-v_i)."
+        },
+        {
+          "id": "NMR-REL-2",
+          "role": "TRANSFORM",
+          "action": "For one interval, sum the item momentum changes and divide by Delta t.",
+          "why_valid": "Average force is momentum transferred per unit time over the interval.",
+          "inputs": [],
+          "output": "F_avg = (sum Delta p_item)/Delta t."
+        },
+        {
+          "id": "NMR-REL-3",
+          "role": "TRANSFORM",
+          "action": "For a steady rate r identical items per second, replace the count over one second by r.",
+          "why_valid": "Each item contributes the same Delta p_item, so total momentum transferred in one second is r Delta p_item.",
+          "inputs": [],
+          "output": "|F_avg| = r |Delta p_item| for the emitted stream; recoil has equal magnitude and opposite direction on the launcher."
+        },
+        {
+          "id": "NMR-REL-4",
+          "role": "VERIFY",
+          "action": "Check units and body ownership.",
+          "why_valid": "(1/s)(kg m/s)=kg m/s^2=N, and Newton III puts the reaction on the other body.",
+          "inputs": [],
+          "output": "Momentum-rate result has force units; recoil arrow is on the launcher FBD."
+        }
+      ],
+      "limits": [
+        "This relation is used here for interval-average/steady-rate reasoning, not general instantaneous force histories.",
+        "No collision-conservation law is implied by this single-body momentum-transfer calculation.",
+        "Variable-mass rocket dynamics require additional system-boundary analysis and are excluded."
+      ],
+      "checks": [
+        "Doubling r with per-item Delta p fixed doubles |F_avg|.",
+        "If Delta p_item is zero, the corresponding average momentum-transfer force is zero.",
+        "Recoil direction is opposite the emitted stream's momentum gain."
+      ],
+      "gate_relation_ref": "REL-NLM-MOMENTUM-TRANSFER-RATE"
+    }
+  ],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PIN-NLM-MOM-RATE-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal explicit-demand momentum-transfer-rate extension",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_needs": [
+        "Newton-II force meaning and Newton-third-law body ownership are available; this route is entered only for explicit momentum-transfer/recoil demand."
+      ],
+      "learner_actions": [
+        "Compute one item's momentum change.",
+        "Convert repeated identical changes per second into average force.",
+        "Assign equal-and-opposite recoil to the launcher."
+      ],
+      "help_plan": [
+        "Ask for momentum per item first.",
+        "Ask what changes in one second at the stated item rate.",
+        "Use the unit kg m/s per s to verify force."
+      ],
+      "reveal_plan": "The full steady-rate relation is revealed after body, frame and per-item momentum change are explicit.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-COMEDK-MACHINE-GUN-DEMAND",
+          "purpose": "Concrete explicit-demand question",
+          "reason": "The supplied machine-gun item directly requires momentum carried away per unit time."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use as an ordinary Grade-9 NLM prerequisite or to teach collisions, centre of mass, rockets or impulse integration."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PIN-NLM-MOM-RATE-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-MOMENTUM-RATE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reconstruct explicit-demand momentum-transfer-rate extension",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_needs": [
+        "Learner can identify one emitted item and reason over a one-second counting interval before the final formula is shown."
+      ],
+      "learner_actions": [
+        "Build total momentum change from repeated items.",
+        "Infer force from per-second transfer.",
+        "Use Newton III for recoil direction."
+      ],
+      "help_plan": [
+        "Keep the one-item and one-second quantities separate.",
+        "Ask for dimensions before naming the result force.",
+        "Ask which FBD contains the recoil partner."
+      ],
+      "reveal_plan": "Learner reconstructs r Delta p_item from repeated addition and dimensional reasoning.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-COMEDK-MACHINE-GUN-DEMAND",
+          "purpose": "Question-driven reconstruction",
+          "reason": "The machine-gun story naturally exposes the missing rate factor."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not infer momentum conservation or variable-mass dynamics from this reconstruction."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}
