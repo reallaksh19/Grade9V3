@@ -205,7 +205,9 @@
       "must_contain": [
         "A physical statement of the connection that fixes relative separation.",
         "One signed Newton-II equation per body before any system-level cancellation.",
-        "A whole-system check that removes only internal partner forces."
+        "A whole-system check that removes only internal partner forces.",
+        "An explicit choice of system boundary based on whether the target is shared acceleration or an internal interaction force.",
+        "A case where the fixed-separation/contact constraint is lost and common acceleration must be withdrawn."
       ],
       "controlled_variation": [
         {
@@ -219,6 +221,12 @@
           "vary": "whether the bodies are solved separately or as one system",
           "hold": "the same physical interaction",
           "notice": "the internal force is present in body equations but cancels from the combined system sum"
+        },
+        {
+          "phase": 3,
+          "vary": "the requested quantity from shared acceleration to one internal contact force",
+          "hold": "the same active connection and common acceleration",
+          "notice": "the efficient system boundary changes: the whole system removes internal forces, while a body or subsystem must expose the requested interaction"
         }
       ]
     },
@@ -235,7 +243,8 @@
       "must_contain": [
         "An explicit ideal-string/redirection model declaration before one common T is used.",
         "Separate tension arrows on the body-specific FBDs.",
-        "A nonideal boundary where equal tension is refused."
+        "A nonideal boundary where equal tension is refused.",
+        "A hanging-body case showing that one common string tension is not automatically equal to weight when the body accelerates."
       ],
       "controlled_variation": [
         {
@@ -249,6 +258,12 @@
           "vary": "the pulley from ideal to explicitly frictional",
           "hold": "the same two bodies and rope path",
           "notice": "equal tension is no longer guaranteed by the bounded model"
+        },
+        {
+          "phase": 3,
+          "vary": "the signed vertical acceleration of a hanging body",
+          "hold": "the same ideal string and gravity",
+          "notice": "Newton II makes T greater than, equal to, or less than mg depending on acceleration; uniform tension does not mean T=mg"
         }
       ]
     },
@@ -266,7 +281,8 @@
         "Coordinates declared along the two string segments.",
         "The fixed-length equation y_A + y_B = constant.",
         "The derived signed acceleration relation a_A + a_B = 0.",
-        "A boundary case that forces re-derivation when the pulley itself moves."
+        "A boundary case that forces re-derivation when the pulley itself moves.",
+        "An explicit separation between the fixed-length acceleration constraint and the independent equal-tension idealization."
       ],
       "controlled_variation": [
         {
@@ -280,6 +296,12 @@
           "vary": "the pulley from fixed to movable",
           "hold": "the string remains inextensible",
           "notice": "the old two-segment length equation is no longer sufficient and must be rebuilt"
+        },
+        {
+          "phase": 3,
+          "vary": "whether the pulley/redirection still licenses the ideal equal-tension assumption",
+          "hold": "one fixed pulley, a taut inextensible no-slip string, and the same segment geometry",
+          "notice": "the fixed-length acceleration relation is a kinematic claim and must not be treated as a consequence of equal tension"
         }
       ]
     },

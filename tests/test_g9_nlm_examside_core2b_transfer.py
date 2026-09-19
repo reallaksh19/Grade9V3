@@ -39,11 +39,17 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
             "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
             "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
         ]
+        cls.agent_a_connected_string_transfer_ids = [
+            "Q-PHY-NLM-2B-CONTACT-LOSS-06",
+            "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
+        ]
         cls.transfer_ids = (
-            cls.examside_transfer_ids + cls.agent_a_friction_transfer_ids
+            cls.examside_transfer_ids
+            + cls.agent_a_friction_transfer_ids
+            + cls.agent_a_connected_string_transfer_ids
         )
 
-    def test_nlm_core2b_inventory_contains_examside_and_agent_a_friction_sets(self):
+    def test_nlm_core2b_inventory_contains_all_authored_transfer_sets(self):
         inventory = practice_inventory.coverage(
             self.records, "BUCKET-PHY-NLM-FIRST-LAW"
         )
@@ -169,7 +175,7 @@ class Grade9NlmExamSideCore2BTransfer(unittest.TestCase):
         inventory = practice_inventory.coverage(
             self.records, "BUCKET-PHY-NLM-FIRST-LAW"
         )
-        self.assertEqual(len(inventory["CORE2B"]), 9)
+        self.assertEqual(len(inventory["CORE2B"]), 11)
         dimensions = {
             self.questions[qid]["transfer"]["dimension"]
             for qid in inventory["CORE2B"]

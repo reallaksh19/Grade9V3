@@ -4097,6 +4097,11 @@ window.GRADE9V3 = {
                   "action": "If treating A+B as one system, add the two body equations and cancel only the internal A-on-B/B-on-A pair in that system sum.",
                   "why_valid": "Internal partner forces cancel in the combined system equation because both members are included, not because either force is absent from a body FBD.",
                   "output": "system: Sigma F_external = (m_A + m_B) a; internal pair absent only after equations are combined"
+                },
+                {
+                  "action": "Match the chosen system boundary to the requested quantity: use the combined constrained system when internal forces are irrelevant to the shared acceleration, then isolate the body or subsystem that makes a requested interaction force external.",
+                  "why_valid": "An internal interaction disappears from a whole-system force sum, so that boundary is efficient for acceleration but cannot by itself determine the internal force that was cancelled.",
+                  "output": "target shared acceleration -> whole constrained system; target internal/contact force -> isolate a body or subsystem while carrying the same justified acceleration."
                 }
               ],
               "misconceptions": [
@@ -4109,6 +4114,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "The contact force between two bodies can be cancelled from each individual FBD because it is an internal force of the pair.",
                   "diagnostic_prompt": "On body A alone, is the force from body B external to A?",
                   "repair": "Yes. Keep it in A's equation. It cancels only after A and B are deliberately combined into one system equation."
+                },
+                {
+                  "wrong_idea": "Bodies with the same acceleration must have the same net force.",
+                  "diagnostic_prompt": "Two connected bodies of different masses share acceleration a. Must their individual net forces be equal?",
+                  "repair": "No. The constraint can make their accelerations equal while Newton II gives different net forces m_A a and m_B a when the masses differ."
                 }
               ],
               "exit_task": {
@@ -4166,6 +4176,11 @@ window.GRADE9V3 = {
                   "action": "Check whether the problem introduces rope mass, elasticity, pulley friction, or rotational inertia; if it does, stop using equal tension unless a different model justifies it.",
                   "why_valid": "Those changes alter the force transmission assumptions that supported one common T.",
                   "output": "nonideal feature present -> equal-tension relation not licensed by this capability"
+                },
+                {
+                  "action": "Determine the tension magnitude from a chosen body's signed Newton-II equation; do not replace T by mg or by an applied force merely because those forces appear in the same setup.",
+                  "why_valid": "Uniform tension says the ideal string transmits one magnitude throughout itself; it does not say that magnitude equals some different force. For a hanging body, T=mg only in the special zero-acceleration case.",
+                  "output": "for +y upward on a hanging mass: T - mg = ma_y; therefore a_y=0 -> T=mg, a_y>0 -> T>mg, and a_y<0 -> T<mg."
                 }
               ],
               "misconceptions": [
@@ -4178,6 +4193,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Every rope over every pulley has the same tension on both sides.",
                   "diagnostic_prompt": "What model assumptions justify using one symbol T throughout the rope?",
                   "repair": "State the ideal massless string and frictionless/massless redirection assumptions first. Without them, equal tension is not automatic."
+                },
+                {
+                  "wrong_idea": "The tension in a string holding a hanging mass is always equal to the mass's weight.",
+                  "diagnostic_prompt": "A hanging mass accelerates upward. Can T still equal mg while Newton II gives a nonzero upward net force?",
+                  "repair": "Write the signed body equation. With upward positive, T-mg=ma, so upward acceleration requires T>mg; equality belongs only to zero vertical acceleration."
                 }
               ],
               "exit_task": {
@@ -4236,6 +4256,11 @@ window.GRADE9V3 = {
                   "action": "Translate the signed result back into motion: if A accelerates farther from the pulley, B accelerates toward it with equal magnitude.",
                   "why_valid": "The two segment changes must cancel to preserve total string length.",
                   "output": "|a_A| = |a_B| with opposite signs in the declared away-from-pulley coordinates"
+                },
+                {
+                  "action": "Keep the kinematic string-length claim separate from the force-transmission claim: derive the acceleration relation from inextensibility and fixed geometry, and use equal tension only when the independent ideal-string/redirection assumptions license it.",
+                  "why_valid": "The acceleration relation comes from constant string length, whereas tension equality comes from the force model. One statement is not the proof of the other.",
+                  "output": "fixed-length geometry -> a_A + a_B = 0 in the declared coordinates; ideal force-transmission model -> T_A = T_B. Treat these as separate justified statements."
                 }
               ],
               "misconceptions": [
@@ -4248,6 +4273,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Bodies on opposite sides of a fixed pulley have the same signed acceleration.",
                   "diagnostic_prompt": "If both coordinates are positive away from the pulley, can both segment lengths increase while total string length stays fixed?",
                   "repair": "No. Their signed changes are opposite: a_A + a_B = 0 in these coordinates."
+                },
+                {
+                  "wrong_idea": "The two end accelerations are equal and opposite because the string tension is equal on both sides.",
+                  "diagnostic_prompt": "If equal tension were no longer guaranteed but the same fixed, taut, inextensible string still could not change length, which relation would you re-check from geometry?",
+                  "repair": "Derive the acceleration relation from the fixed-length equation. Equal tension is a separate force-model statement and is not the cause of the kinematic constraint."
                 }
               ],
               "exit_task": {
@@ -4443,10 +4473,22 @@ window.GRADE9V3 = {
               "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged."
             },
             {
+              "id": "Q-PHY-NLM-2A-ATWOOD-12",
+              "stem": "Masses m_A and m_B, with m_B > m_A, hang from the two ends of one taut massless inextensible string over one fixed frictionless massless pulley. Derive the acceleration magnitude a and the common string tension T. State explicitly why T is not equal to either hanging weight during the acceleration.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration magnitude is a=(m_B-m_A)g/(m_A+m_B), and the common tension is T=2m_A m_B g/(m_A+m_B). During the motion T>m_A g and T<m_B g, so it is not equal to either weight unless the corresponding acceleration is zero."
+            },
+            {
               "id": "Q-PHY-NLM-2A-CONNECTED-02",
               "stem": "Two blocks A and B of masses m_A and m_B remain in contact on a smooth horizontal floor. A horizontal force F pushes A toward B, and the contact is maintained. Derive their common acceleration and the magnitude of the contact force exerted by A on B.",
               "origin": "AUTHORED",
               "answer": "The fixed contact keeps the blocks at one common acceleration a = F/(m_A+m_B). For block B alone, the contact force is its only horizontal force, so N_AB = m_B a = m_B F/(m_A+m_B)."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
+              "stem": "Blocks A and B are side by side on a smooth horizontal floor, with A to the left of B and no adhesive connection. Compare two cases. In case 1 a horizontal force pushes A to the right into B and contact is maintained. In case 2 the same force pulls A to the left, away from B. In which case may one common horizontal acceleration be imposed, and why?",
+              "origin": "AUTHORED",
+              "answer": "A common acceleration is justified in case 1 while maintained contact fixes the separation. It is not justified in case 2: the normal contact cannot pull B after A is pulled away, so the contact constraint is lost."
             },
             {
               "id": "Q-PHY-NLM-2A-COV-02",
@@ -4525,6 +4567,18 @@ window.GRADE9V3 = {
               "stem": "Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.",
               "origin": "AUTHORED",
               "answer": "Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C's equation."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
+              "stem": "Two masses remain attached to one taut inextensible string that does not slip on a fixed pulley. The pulley is now stated to have appreciable rotational inertia, and no rotational-dynamics relation is supplied. A student claims that both T_A=T_B and a_A+a_B=0 must either survive together or fail together. Decide which statement can still be obtained from the bounded material, and which statement is no longer licensed.",
+              "origin": "AUTHORED",
+              "answer": "The kinematic relation a_A+a_B=0 still follows from the fixed total string length. Equal tension T_A=T_B is no longer guaranteed by the taught ideal redirection model once appreciable pulley rotational inertia is introduced. A quantitative tension difference is outside this packet."
+            },
+            {
+              "id": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
+              "stem": "Two blocks A and B are initially touching on a smooth horizontal floor, with A to the left of B. A horizontal force F is suddenly applied to A toward the left, away from B. A proposed solution treats A+B as one connected system and writes a=F/(m_A+m_B). Decide whether that model is valid immediately after the force is applied. If it is not, state the two accelerations.",
+              "origin": "AUTHORED",
+              "answer": "The common-acceleration model is invalid because the force makes A separate from B and an ordinary normal contact cannot pull them together. Immediately after contact is lost, a_A=-F/m_A and a_B=0."
             },
             {
               "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
@@ -4685,7 +4739,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 96,
+          "record_count": 100,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4697,7 +4751,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 24,
+            "questions": 28,
             "obligations": 15,
             "authoring_requirements": [
               {
