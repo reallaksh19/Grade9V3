@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:70e4d7391948132d3a7396f0dd175ea3e285088578bdff3cdcadef8a5016840d",
+  "digest": "sha256:ce7c3bafe0f446a165a61ea7f7f796dc814f55d46033352c5104dcaf7a94652d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -820,8 +820,8 @@
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9079,
-      "sha256": "f043d143f28d35373c39b1ff50f5c0686d7c5dd386050470f31c3ddb072038f7"
+      "bytes": 9085,
+      "sha256": "450e66f50bcc1f4620b43b468484d2217a31c440e04358fc774dadb86f274a7a"
     },
     {
       "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
@@ -1121,8 +1121,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 612516,
-      "sha256": "109c0f6d6ba5439aa73700b5b5993683613382b3013d9a145898bef13ace2145"
+      "bytes": 612515,
+      "sha256": "593869551314ea1a9a71490bc5a051ca639b611e667a3f0b7bfe15b8ab5d9040"
     },
     {
       "path": "tools/index.html",
