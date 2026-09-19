@@ -276,3 +276,43 @@ A useful later instruction is:
 > Run frozen stress case `APSTRESS-REL-60-TEACH` blind. Execute it from current repository
 > truth. After the work is complete, compare the path actually taken against the saved
 > expected path and report every deviation. Do not reveal the answer key before execution.
+
+
+---
+
+## APSTRESS-G9-GRAV-60-TEACH
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Universal gravitation, free fall and orbital
+> motion. Student knowledge estimate: 60%. Use the estimate only to select the starting
+> rung; preserve prerequisite checks across the current Grade-9 gravitation chain and do
+> not pull extension-only orbit/energy content into the ordinary teaching route.
+
+### Expected path
+
+```text
+resolve current Grade-9 Gravitation matrix
+→ owner estimate 60
+→ conservative floor = R3W at ladder_position 58
+→ prerequisite checks:
+     CAP-PHY-GRAV-R1
+     CAP-PHY-GRAV-INVERSE-SQUARE
+     CAP-NLM-FBD-BODY-OWNERSHIP
+     CAP-NLM-SECOND-LAW
+     CAP-PHY-GRAV-FREE-FALL-G
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B use the same canonical target segment
+→ R4/R5 remain extension-only for ordinary Grade-9 routing
+```
+
+This case checks a cross-matrix prerequisite without broadening the Gravitation bucket. The
+Newton-II dependency remains a prerequisite check; it is not copied into the Gravitation
+matrix as duplicate teaching.
+
+Fail the stress test if the agent:
+
+- treats 60% as mastery evidence;
+- skips Newton II because its capability is owned by another matrix;
+- jumps from the 60% estimate into the R4/R5 orbit/energy extension route;
+- creates different conceptual targets for CORE1A and CORE1B.
