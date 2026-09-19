@@ -123,6 +123,57 @@ owner-estimate rule.
 
 ---
 
+## APSTRESS-G9-MOTION2D-70-DEFAULT
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Two-dimensional constant acceleration and
+> projectile model. Student knowledge estimate: 70%. Use the estimate only as a conservative
+> starting coordinate and preserve prerequisite checks. This route is an owner-approved
+> ExamSIDE question-demand preparation slice; do not treat it as proof that Pinnacle explicitly
+> prescribed every microtopic. Keep horizontal/oblique launch and
+> range/height/flight-time/later-velocity outputs as applications of one projectile model,
+> and do not pull in calculus, trajectory-equation derivation, drag, inclined-target projectile
+> geometry or unrelated higher-grade content.
+
+### Expected path
+
+```text
+resolve current Motion-in-2-D preparation matrix
+→ owner estimate 70
+→ conservative floor = R2 at ladder_position 60
+→ prerequisite checks:
+     CAP-VECTOR-VS-SCALAR
+     CAP-SIGNED-PAIR-BRIDGE
+     CAP-VECTOR-SIGNED-COMPONENT
+     CAP-KIN-2D-INDEPENDENT-COMPONENTS
+     CAP-KIN-DISTANCE-DISPLACEMENT
+     CAP-KIN-AVERAGE-RATES
+     CAP-KIN-MOTION-GRAPHS
+     CAP-KIN-CONSTANT-ACCELERATION
+→ READY_WITH_CHECKS
+→ selected teaching segment:
+     R2 → R3
+→ CORE1A / CORE1B use the same canonical segment
+→ no learner evidence is written
+```
+
+The checkpoint freezes the route added from owner-approved ExamSIDE question demand. It does
+not turn that external preparation authority into a claim that Pinnacle explicitly prescribed
+every Motion-in-2-D microtopic.
+
+Fail the stress test if the agent:
+
+- treats 70% as mastery evidence;
+- converts ExamSIDE preparation demand into a false Pinnacle-issued micro-syllabus claim;
+- creates separate capabilities for horizontal launch, oblique launch, range, maximum height,
+  time of flight or later velocity;
+- pulls calculus, trajectory-equation derivation, drag or inclined-target projectile geometry
+  into the bounded route;
+- chooses different conceptual targets for CORE1A and CORE1B.
+
+---
+
 ## APSTRESS-G9-NLM-70-PRACTICE
 
 ### Prompt
