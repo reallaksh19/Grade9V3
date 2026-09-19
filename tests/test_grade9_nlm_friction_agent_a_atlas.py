@@ -82,7 +82,7 @@ class Grade9NlmFrictionAgentAAtlas(unittest.TestCase):
     def test_friction_packet_has_five_core2a_and_five_core2b_items(self):
         friction_questions = [
             row for row in self.package["questions"]
-            if row["primary_capability_ref"] in self.friction_caps
+            if row["extensions"].get("agent_a:packet") == "NLM_FRICTION"
         ]
         core2a = [
             row for row in friction_questions
@@ -107,7 +107,7 @@ class Grade9NlmFrictionAgentAAtlas(unittest.TestCase):
     def test_transfer_set_spans_materially_different_demands(self):
         transfers = [
             row for row in self.package["questions"]
-            if row["primary_capability_ref"] in self.friction_caps
+            if row["extensions"].get("agent_a:packet") == "NLM_FRICTION"
             and any(e["core"] == "CORE2B" for e in row["exposure"])
         ]
         self.assertEqual(
@@ -134,7 +134,7 @@ class Grade9NlmFrictionAgentAAtlas(unittest.TestCase):
     def test_model_choice_hints_do_not_hand_over_the_method(self):
         for row in self.package["questions"]:
             if (
-                row["primary_capability_ref"] not in self.friction_caps
+                row["extensions"].get("agent_a:packet") != "NLM_FRICTION"
                 or not row.get("transfer")
                 or row["transfer"]["dimension"] != "model_choice"
             ):
@@ -151,7 +151,7 @@ class Grade9NlmFrictionAgentAAtlas(unittest.TestCase):
     def test_all_friction_packet_questions_are_authored(self):
         rows = [
             row for row in self.package["questions"]
-            if row["primary_capability_ref"] in self.friction_caps
+            if row["extensions"].get("agent_a:packet") == "NLM_FRICTION"
         ]
         self.assertEqual(len(rows), 10)
         for row in rows:
@@ -191,7 +191,7 @@ class Grade9NlmFrictionAgentAAtlas(unittest.TestCase):
     def test_connected_systems_remain_secondary_context_not_reauthored_here(self):
         packet_rows = [
             row for row in self.package["questions"]
-            if row["primary_capability_ref"] in self.friction_caps
+            if row["extensions"].get("agent_a:packet") == "NLM_FRICTION"
         ]
         self.assertTrue(
             any(
