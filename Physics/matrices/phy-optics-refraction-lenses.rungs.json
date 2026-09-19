@@ -1,0 +1,271 @@
+{
+  "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+  "topic": "Light - Reflection and Refraction",
+  "subtopic": "Refraction and spherical lenses",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate, and Core1A/Core1B may not consult one.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 10,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-OPT-REFRACTION-NORMAL",
+      "ceiling": [
+        "Snell's-law arithmetic",
+        "lens ray construction",
+        "lens formula",
+        "lens power"
+      ],
+      "must_contain": [
+        "A surface normal at every refracting boundary before angle language is used.",
+        "The incident and refracted media named before deciding toward-normal or away-from-normal bending.",
+        "A parallel-sided glass-slab example showing two boundary events rather than one memorized kink."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the incident angle",
+          "hold": "the same two transparent media and boundary orientation",
+          "notice": "the refracted angle changes but both angles remain normal-referenced"
+        },
+        {
+          "phase": 2,
+          "vary": "which medium is entered first",
+          "hold": "the same pair of media",
+          "notice": "the toward/away bending reverses when the speed/index change reverses"
+        },
+        {
+          "phase": 3,
+          "vary": "the slab thickness",
+          "hold": "parallel slab faces and incident direction",
+          "notice": "the emergent ray remains parallel in the simple model while lateral displacement changes"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 25,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
+      "ceiling": [
+        "lens ray construction",
+        "lens formula",
+        "lens magnification",
+        "lens power"
+      ],
+      "must_contain": [
+        "n = c/v interpreted as a speed ratio, not a material score with no physical meaning.",
+        "Snell's law written with the medium labels attached to n1 and n2 and angles measured from the normal.",
+        "A limiting comparison that higher refractive index means lower light speed in the ordinary transparent-medium model."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the refractive-index ratio",
+          "hold": "the same incidence angle",
+          "notice": "the refraction angle adjusts through n1 sin(i) = n2 sin(r)"
+        },
+        {
+          "phase": 2,
+          "vary": "the angle of incidence",
+          "hold": "the same pair of media",
+          "notice": "sin(i)/sin(r) remains fixed for the same model conditions"
+        },
+        {
+          "phase": 3,
+          "vary": "the unit system used for c and v",
+          "hold": "their ratio represents the same medium",
+          "notice": "refractive index stays dimensionless when compatible speed units are used"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 40,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+      "ceiling": [
+        "lens formula",
+        "magnification",
+        "power",
+        "human-eye correction"
+      ],
+      "must_contain": [
+        "Principal axis, optical centre and both focal points labelled before principal rays are used.",
+        "At least two independent valid principal rays locating one common image or backward-extension point.",
+        "A convex-lens focal-length practical interpretation using a distant object without making the Sun the required source."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which valid pair of principal rays is used",
+          "hold": "the same object point and thin lens",
+          "notice": "every valid pair locates the same image point within the model"
+        },
+        {
+          "phase": 2,
+          "vary": "object position for a convex lens",
+          "hold": "the same lens",
+          "notice": "image position, size and real/virtual character change systematically"
+        },
+        {
+          "phase": 3,
+          "vary": "convex versus concave lens",
+          "hold": "the same principal-axis language",
+          "notice": "converging and diverging ray rules differ but still use one optical centre and paired foci"
+        }
+      ]
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 55,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-OPT-LENS-EQUATION",
+      "ceiling": [
+        "magnification",
+        "power",
+        "human-eye correction",
+        "thick-lens principal planes"
+      ],
+      "must_contain": [
+        "The optical centre, incident-light direction and vertical sign convention declared before u, v and f receive signs.",
+        "1/v - 1/u = 1/f used without making derivation a learner requirement.",
+        "A ray-diagram image-region prediction compared with the algebraic result.",
+        "Thin-lens/paraxial model conditions stated before treating the equation as authoritative."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "object distance within the paraxial thin-lens model",
+          "hold": "lens focal length and sign convention",
+          "notice": "the equation prediction tracks the ray construction"
+        },
+        {
+          "phase": 2,
+          "vary": "convex versus concave focal-length sign",
+          "hold": "the same Cartesian convention",
+          "notice": "the signed result changes consistently with converging versus diverging behavior"
+        },
+        {
+          "phase": 3,
+          "vary": "ray angle away from the principal axis",
+          "hold": "the physical lens",
+          "notice": "the simple equation is a model whose geometric accuracy is tied to the paraxial approximation"
+        }
+      ]
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 70,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-OPT-LENS-MAGNIFICATION",
+      "ceiling": [
+        "lens power",
+        "human-eye correction",
+        "multi-element optics"
+      ],
+      "must_contain": [
+        "m = v/u and m = h_i/h_o connected for the same lens image.",
+        "One negative-magnification and one positive-magnification interpretation.",
+        "Magnitude separated from sign: |m| controls relative size while sign controls orientation."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "object position for one convex lens",
+          "hold": "lens and object height",
+          "notice": "magnification magnitude and sign follow the same image-state change seen in the ray diagram"
+        },
+        {
+          "phase": 2,
+          "vary": "convex versus concave lens",
+          "hold": "the same object orientation and sign convention",
+          "notice": "the magnification sign and magnitude remain physical predictions rather than formula decorations"
+        }
+      ]
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 85,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-OPT-LENS-POWER",
+      "ceiling": [
+        "human-eye defect correction",
+        "lens combinations",
+        "optical instruments",
+        "wave optics"
+      ],
+      "must_contain": [
+        "Focal length converted to metres before P = 1/f is evaluated in dioptres.",
+        "The focal-length sign retained so converging and diverging lenses have opposite power signs.",
+        "At least one conversion in both directions between focal length and power."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "focal-length magnitude",
+          "hold": "converging-lens sign",
+          "notice": "shorter focal length gives larger positive power magnitude"
+        },
+        {
+          "phase": 2,
+          "vary": "convex versus concave lens",
+          "hold": "the same focal-length magnitude",
+          "notice": "power changes sign while magnitude stays the same"
+        },
+        {
+          "phase": 3,
+          "vary": "centimetres versus metres in the stated focal length",
+          "hold": "the same physical lens",
+          "notice": "the numerical power is unchanged only after the unit conversion is handled correctly"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Translate the optical setup into normal-referenced refraction or a thin-lens ray construction, preserve the declared medium/coordinate semantics, and cross-check signed formula results against the physical ray picture.",
+    "difficult_move": "Keeping the boundary normal, medium order, thin-lens Cartesian signs and paraxial model consistent across diagrams and equations instead of selecting formulas from surface keywords.",
+    "independent_check": "Snell geometry must agree with the index comparison; a valid lens ray construction, signed lens equation and magnification must predict compatible image location/orientation; power must match signed focal length in metres.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The boundary normal or lens principal axis/optical centre is drawn, media or focal points are labelled, and the relevant sign directions are declared."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The optical elements and requested quantities are labelled, but the learner chooses the normal/principal rays, signs and relation."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical optical setup and requested result are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Convert a glass-slab or lens ray drawing into normal-referenced angles or signed u, v and f values without changing the physical prediction.",
+      "information_not_handed_over": "which angles/signs follow from the drawn normal, media and incident-light direction",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Use a thick lens or strongly non-paraxial rays and decide whether the Grade-10 thin-lens equation is an adequate model.",
+      "information_not_handed_over": "whether the thin-lens/paraxial conditions are satisfied",
+      "repair_to": "R4"
+    },
+    {
+      "dimension": "novelty",
+      "changed_demand": "Given only a signed power, infer lens type and focal length without a lens sketch.",
+      "information_not_handed_over": "the focal-length sign and metre conversion implied by the power",
+      "repair_to": "R6"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A convex lens produces a real image with known signed u and v; infer magnification and check orientation against an independently drawn ray pair.",
+      "information_not_handed_over": "the orientation encoded by the sign of m",
+      "repair_to": "R5"
+    }
+  ]
+}
