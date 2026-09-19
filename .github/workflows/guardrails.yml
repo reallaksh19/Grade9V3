@@ -6,9 +6,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   guardrails:
     runs-on: ubuntu-latest
@@ -157,19 +154,6 @@ jobs:
           path: |
             tools/data.js
             docs/architecture-manifest.json
-
-      - name: Persist exact derived artifacts on helper branch
-        if: github.event_name == 'push' && github.event.head_commit.message != 'CI helper: persist generated artifacts'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tools/data.js docs/architecture-manifest.json
-          if git diff --cached --quiet; then
-            echo "generated artifacts already committed"
-            exit 0
-          fi
-          git commit -m "CI helper: persist generated artifacts"
-          git push origin HEAD:"${GITHUB_REF_NAME}"
 
       # Render the expected architecture index as an artifact without modifying the
       # checkout. This makes drift repair inspectable while the following --check remains
