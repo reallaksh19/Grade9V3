@@ -72,7 +72,8 @@
       ],
       "must_contain": [
         "The same interaction shown on two separate body diagrams.",
-        "A rule that every arrow on one diagram must name an external agent acting on that chosen body."
+        "A rule that every arrow on one diagram must name an external agent acting on that chosen body.",
+        "An explicit representation case where resolving one physical force into components does not create additional force interactions."
       ],
       "controlled_variation": [
         {
@@ -86,6 +87,12 @@
           "vary": "an additional external horizontal force on one body",
           "hold": "the same contact between the two bodies",
           "notice": "the two bodies can have different net forces even though the two partner forces remain equal and opposite"
+        },
+        {
+          "phase": 3,
+          "vary": "the coordinate representation of one physical force from an unresolved vector to parallel/perpendicular components",
+          "hold": "the same chosen body and the same physical interactions",
+          "notice": "components replace the vector's coordinate representation in the equations; they are not extra forces"
         }
       ],
       "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
@@ -138,7 +145,8 @@
       ],
       "must_contain": [
         "One chosen body with all signed external forces summed before using F = ma.",
-        "A zero-net-force boundary that recovers zero acceleration."
+        "A zero-net-force boundary that recovers zero acceleration.",
+        "A contact-aligned axis choice where maintained contact gives zero perpendicular acceleration while tangential acceleration may remain nonzero."
       ],
       "controlled_variation": [
         {
@@ -152,6 +160,12 @@
           "vary": "the mass",
           "hold": "the same net force",
           "notice": "larger mass gives smaller acceleration magnitude"
+        },
+        {
+          "phase": 3,
+          "vary": "the coordinate axes between laboratory horizontal/vertical and contact-aligned parallel/perpendicular directions",
+          "hold": "the same fixed-plane physical forces and motion",
+          "notice": "Newton II is unchanged; the contact-aligned representation makes a_perp = 0 explicit and reduces unnecessary component coupling"
         }
       ]
     },
@@ -189,6 +203,12 @@
           "vary": "an applied force component perpendicular to the contact",
           "hold": "mass, friction coefficients and contact state logic",
           "notice": "the normal reaction must be solved from the actual perpendicular dynamics before any friction limit is evaluated"
+        },
+        {
+          "phase": 4,
+          "vary": "the incline angle or a tangential applied force so the no-friction slip tendency reverses",
+          "hold": "the same rough fixed contact and static-friction feasibility rule",
+          "notice": "static friction may point uphill, downhill, or be zero depending on the signed force required for no slip"
         }
       ]
     },
