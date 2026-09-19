@@ -54,7 +54,7 @@ class Grade9NlmMomentumTransferExtension(unittest.TestCase):
         )
         self.assertEqual(
             second["action"],
-            "Use F_net = m a to connect signed net external force, mass, and acceleration for one chosen body.",
+            "Relate signed net external force to acceleration with F_net = m a.",
         )
         self.assertNotIn("momentum", second["action"].lower())
         self.assertNotIn("dp/dt", second["success_criterion"])
