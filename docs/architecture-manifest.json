@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 162,
-  "relation_count": 212,
+  "component_count": 163,
+  "relation_count": 214,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 69,
+    "TEST": 70,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:eca81ab3450a3fcf56b492d14d70e169dd5084f92ea961b7b40fac49156ce6a3",
+  "digest": "sha256:b28abd3b3f3488c26f11377a4de048e7413d12c7ff98d26bd6ad4bce2a5c4b5c",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -894,6 +894,13 @@
       "sha256": "cf3b2c7be63a54b0e367f57482bb94a25a0cd9c83c2d9a7cfcd412af15126b0c"
     },
     {
+      "path": "tests/test_grade9_motion2d_agent_a_atlas.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8889,
+      "sha256": "65810a41fc5abb2faea6e18d98469635bd53fe44615f155826352b2391735098"
+    },
+    {
       "path": "tests/test_grade9_motion2d_examside.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1121,8 +1128,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 612515,
-      "sha256": "593869551314ea1a9a71490bc5a051ca639b611e667a3f0b7bfe15b8ab5d9040"
+      "bytes": 623086,
+      "sha256": "8d9f6f3eb87801e81cb8b8dd28b206d808b9aa011d96528bc1179ee62bd2599d"
     },
     {
       "path": "tools/index.html",
@@ -1896,6 +1903,16 @@
     },
     {
       "from": "tests/test_grade9_gravitation_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_motion2d_agent_a_atlas.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_motion2d_agent_a_atlas.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

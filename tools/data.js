@@ -2774,26 +2774,36 @@ window.GRADE9V3 = {
               "inferential_jump": "Perpendicular components may be solved separately because each axis equation contains only that axis's quantities, but they still describe one object at one physical time.",
               "teaching_path": [
                 {
-                  "action": "Choose one fixed x-y frame and write the initial position/velocity/acceleration as signed component pairs.",
-                  "why_valid": "Component equations have meaning only in one common frame.",
-                  "output": "declared x/y state"
+                  "action": "Choose one fixed x-y frame, one origin and one time origin for the whole plane-motion event.",
+                  "why_valid": "A component value is meaningful only after its frame and sign convention are fixed.",
+                  "output": "one declared frame, origin, axis orientation and t=0"
                 },
                 {
-                  "action": "Separate the x equation from the y equation without transferring a component from one axis into the other.",
-                  "why_valid": "Perpendicular component equations evolve independently in Cartesian kinematics.",
-                  "output": "x history uses only x, u_x, v_x, a_x; y history uses only y, u_y, v_y, a_y"
+                  "action": "Represent position, velocity and acceleration as signed x and y components in that same frame.",
+                  "why_valid": "A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.",
+                  "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)"
                 },
                 {
-                  "action": "Use the same elapsed time when comparing or recombining the two component states.",
-                  "why_valid": "Both equations describe the same object at the same instant.",
-                  "output": "one common time -> one plane state"
+                  "action": "Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.",
+                  "why_valid": "The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.",
+                  "output": "two axis histories coupled by one clock"
+                },
+                {
+                  "action": "Recombine only component values that refer to the same frame and the same instant.",
+                  "why_valid": "Mixing x at one time with y at another does not describe any single physical state of the object.",
+                  "output": "one physically valid plane state reconstructed from simultaneous components"
                 }
               ],
               "misconceptions": [
                 {
                   "wrong_idea": "Independent x and y motions may use different elapsed times.",
                   "diagnostic_prompt": "At one instant 2 s after launch, may the x equation use t=2 s while the y equation uses another time?",
-                  "repair": "No. Independence means the axis equations do not directly mix components; the same physical event still has one shared elapsed time."
+                  "repair": "No. Independence separates the axis equations; it does not give the same object two clocks."
+                },
+                {
+                  "wrong_idea": "The x-motion and y-motion are two different objects that can be paired arbitrarily later.",
+                  "diagnostic_prompt": "May x(2 s) be combined with y(3 s) to describe the particle's position?",
+                  "repair": "No. A plane state is a simultaneous pair. Recombine x(t) and y(t) only at the same t in the same frame."
                 }
               ],
               "exit_task": {
@@ -2833,19 +2843,19 @@ window.GRADE9V3 = {
               "inferential_jump": "The one-dimensional constant-acceleration equations can be applied to each perpendicular component independently when a_x and a_y are each constant over the same interval.",
               "teaching_path": [
                 {
-                  "action": "Check that each acceleration component is constant and list u_x,u_y,a_x,a_y for the same interval.",
-                  "why_valid": "The component equations inherit the same constant-acceleration condition as the 1D model.",
-                  "output": "component initial state + model check"
+                  "action": "Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.",
+                  "why_valid": "The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.",
+                  "output": "per-axis model-validity decision"
                 },
                 {
-                  "action": "Apply v=u+at and/or displacement=u t+0.5 a t^2 separately to x and y using the same t.",
-                  "why_valid": "Each axis follows the 1D relation using only its own signed values.",
-                  "output": "v_x=u_x+a_x t and v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2 and Delta y=u_y t+0.5a_y t^2"
+                  "action": "Apply the one-dimensional constant-acceleration relations independently to x and y using only that axis's signed values and the same t.",
+                  "why_valid": "Each Cartesian component obeys the same one-dimensional relation when its acceleration component is constant.",
+                  "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2"
                 },
                 {
-                  "action": "Recombine or compare the solved components only after checking signs, units and common time.",
-                  "why_valid": "The pair must represent one physically consistent plane state.",
-                  "output": "checked component pair"
+                  "action": "If one axis determines an event time, reuse that same time on the other axis before recombining and checking the plane state.",
+                  "why_valid": "The event occurs once for the object; a time obtained from one component is the clock value for every component at that same event.",
+                  "output": "event time transferred across axes, then one checked plane state"
                 }
               ],
               "misconceptions": [
@@ -2853,6 +2863,16 @@ window.GRADE9V3 = {
                   "wrong_idea": "The magnitude of acceleration should be inserted unchanged into both x and y equations.",
                   "diagnostic_prompt": "If a=(10 i + 4 j) m/s², should both component equations use a=√116?",
                   "repair": "No. Use a_x=10 only in the x equation and a_y=4 only in the y equation; the magnitude is not either component."
+                },
+                {
+                  "wrong_idea": "If one acceleration component is constant, the constant-acceleration equations are automatically valid on both axes.",
+                  "diagnostic_prompt": "If a_x is constant but a_y changes with time, may the same constant-acceleration displacement formula be used exactly on y over the whole interval?",
+                  "repair": "No. Model validity is checked per axis. A constant a_x does not make a_y constant."
+                },
+                {
+                  "wrong_idea": "A time found from the x equation may be replaced by a different convenient time in the y equation.",
+                  "diagnostic_prompt": "If x-motion says an event occurs at t=3 s, what time belongs in the y equation for that same event?",
+                  "repair": "Use t=3 s. Both components describe the same event and therefore share one clock."
                 }
               ],
               "exit_task": {
@@ -2893,31 +2913,71 @@ window.GRADE9V3 = {
               "inferential_jump": "After release in the ideal near-Earth model, projectile motion is not a new set of laws: it is the same component kinematics with a_x=0 and a_y=-g (for +y upward).",
               "teaching_path": [
                 {
-                  "action": "Decide that the object is in free flight after release, neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
-                  "why_valid": "Projectile equations are justified only by this model choice.",
-                  "output": "projectile acceleration state"
+                  "action": "Decide whether the object is in ideal near-Earth free flight after release; neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
+                  "why_valid": "The standard projectile equations are a conditional specialization of 2D constant acceleration, not an automatic label for every launched object.",
+                  "output": "gravity-only projectile acceleration state"
                 },
                 {
-                  "action": "Use supplied/resolved u_x,u_y and one common t in the component equations.",
-                  "why_valid": "Horizontal and vertical launch cases differ only in initial component values, not in the underlying model.",
-                  "output": "v_x=u_x, v_y=u_y-g t, Delta x=u_x t, Delta y=u_y t-0.5 g t^2 for the same t"
+                  "action": "Use supplied or separately resolved u_x and u_y with one common t in the horizontal and vertical component equations.",
+                  "why_valid": "Horizontal, oblique and downward/upward initial components change the initial state, not the gravity-only model.",
+                  "output": "v_x=u_x; v_y=u_y-g t; Delta x=u_x t; Delta y=u_y t-0.5g t^2"
                 },
                 {
-                  "action": "Reconstruct the requested speed/direction/position and check qualitative limits: v_x constant, vertical velocity decreases linearly until/through the top.",
-                  "why_valid": "Independent component behaviour supplies physical checks before accepting a range/height/time result.",
-                  "output": "checked projectile consequence"
+                  "action": "Translate the requested event into the component condition that defines it before solving for time.",
+                  "why_valid": "Apex, same-height return, ground impact and a specified later instant are different events; each is identified by a different component condition.",
+                  "output": "event condition chosen before calculation"
+                },
+                {
+                  "action": "For an apex event, set v_y=0 while keeping v_x=u_x and a_y=-g.",
+                  "why_valid": "At the highest point only the vertical velocity component is momentarily zero; gravity still accelerates downward and horizontal motion continues.",
+                  "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration"
+                },
+                {
+                  "action": "For a return to the launch height, set Delta y=0 and treat any same-height flight-time/range shortcut as conditional on that equality.",
+                  "why_valid": "The shortcut follows from the vertical displacement returning to its initial value; it is not valid when the landing height differs.",
+                  "output": "same-height event condition and its validity boundary"
+                },
+                {
+                  "action": "For a horizontal launch or unequal-height landing, use u_y=0 only as the initial vertical condition and obtain the event time from the vertical position equation.",
+                  "why_valid": "Gravity immediately builds vertical velocity; the fall/landing condition, not the horizontal speed, determines the flight time.",
+                  "output": "vertical event time for horizontal or unequal-height launch"
+                },
+                {
+                  "action": "At the selected event time, reconstruct the requested velocity, speed, direction, displacement or range from simultaneous components and check qualitative limits.",
+                  "why_valid": "The reported projectile result is a consequence of one component model and one event, so its components must refer to the same instant and satisfy a_x=0, a_y=-g.",
+                  "output": "checked projectile consequence at one physical event"
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "Horizontal projectile motion has no vertical velocity because it was launched horizontally.",
-                  "diagnostic_prompt": "One second after a horizontal launch, is v_y still zero under gravity?",
-                  "repair": "No. u_y=0 initially, but a_y=-g makes v_y=-gt after release."
-                },
-                {
                   "wrong_idea": "A projectile needs a horizontal force to keep moving horizontally.",
                   "diagnostic_prompt": "If a_x=0 after release, can v_x still be nonzero?",
                   "repair": "Yes. Zero horizontal acceleration means horizontal velocity stays constant, not that it becomes zero."
+                },
+                {
+                  "wrong_idea": "A horizontal launch has no vertical velocity throughout the flight.",
+                  "diagnostic_prompt": "One second after a horizontal launch, is v_y still zero under gravity?",
+                  "repair": "No. u_y=0 only at release; a_y=-g makes v_y=-gt afterward."
+                },
+                {
+                  "wrong_idea": "At the highest point the whole velocity and the acceleration are both zero.",
+                  "diagnostic_prompt": "At the apex of an oblique projectile, which of v_x, v_y and a_y is zero?",
+                  "repair": "Only v_y is zero at that instant. v_x remains u_x and a_y remains -g."
+                },
+                {
+                  "wrong_idea": "Same-height flight formulas may be used whenever the question is about a projectile range or flight time.",
+                  "diagnostic_prompt": "A ball launched from a roof lands on the ground below. May the same-height time-of-flight shortcut be used without checking the vertical displacement?",
+                  "repair": "No. Same-height shortcuts require Delta y=0 between launch and landing. For unequal heights, solve the vertical position condition."
+                },
+                {
+                  "wrong_idea": "At two points of the same height on an ideal trajectory, the velocity vectors are identical.",
+                  "diagnostic_prompt": "On ascent and descent at the same height, how do the horizontal and vertical velocity components compare?",
+                  "repair": "v_x is the same, while v_y has equal magnitude and opposite sign; the speed matches but the velocity vector does not."
+                },
+                {
+                  "wrong_idea": "Horizontal speed determines how long a horizontally launched object takes to fall.",
+                  "diagnostic_prompt": "If the horizontal launch speed doubles from the same height, does the ideal fall time change?",
+                  "repair": "No. The vertical position equation determines the fall time; horizontal speed changes the range, not the fall time."
                 }
               ],
               "exit_task": {
@@ -3075,6 +3135,66 @@ window.GRADE9V3 = {
               "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
             },
             {
+              "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+              "stem": "A particle starts with velocity (3 i + 4 j) m/s and has constant acceleration (2 i - 1 j) m/s^2 for 3 s. Find its velocity and displacement after 3 s.",
+              "origin": "AUTHORED",
+              "answer": "v=(9 i + 1 j) m/s and Delta r=(18 i + 7.5 j) m."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+              "stem": "A stone is launched horizontally at 15 m/s from a cliff 20 m above level ground. Take +y upward and g=10 m/s^2. Find the flight time, horizontal range and impact velocity.",
+              "origin": "AUTHORED",
+              "answer": "The flight time is 2 s, the horizontal range is 30 m, and the impact velocity is (15 i - 20 j) m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+              "stem": "An ideal projectile is launched with already-resolved components u_x=12 m/s and u_y=20 m/s. Take +y upward and g=10 m/s^2. Find the time to the apex, the velocity at the apex, the acceleration at the apex, and the height gained above launch.",
+              "origin": "AUTHORED",
+              "answer": "The apex occurs at t=2 s. There v=(12 i + 0 j) m/s, a=(0 i - 10 j) m/s^2, and the height gained is 20 m."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+              "stem": "An ideal projectile is launched and later lands at the same height with u_x=12 m/s, u_y=16 m/s and g=8 m/s^2. Find the total flight time, range and landing velocity.",
+              "origin": "AUTHORED",
+              "answer": "The flight time is 4 s, the range is 48 m, and the landing velocity is (12 i - 16 j) m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+              "stem": "A tracker reports x(t)=4t metres and y(t)=10-2t^2 metres for one particle in one fixed frame. Find the particle's position at t=2 s, and explain why x(2 s) may not be paired with y(3 s) to describe one position.",
+              "origin": "AUTHORED",
+              "answer": "At t=2 s, x=8 m and y=2 m, so the position is (8,2) m in the declared frame. x(2 s) and y(3 s) cannot form one position because they refer to different instants."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+              "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+              "origin": "AUTHORED",
+              "answer": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+              "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+              "origin": "AUTHORED",
+              "answer": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+              "stem": "A particle is described verbally: at t=0 it is at the origin, moving east at 6 m/s and north at 2 m/s; during the next interval its acceleration is 3 m/s^2 south and zero east-west. Without being given component equations, choose a coordinate convention and write the signed component state that should be used for later calculation.",
+              "origin": "AUTHORED",
+              "answer": "One valid choice is +x east and +y north, giving u_x=+6 m/s, u_y=+2 m/s, a_x=0 and a_y=-3 m/s^2, all with one common t."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+              "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+              "origin": "AUTHORED",
+              "answer": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+              "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+              "origin": "AUTHORED",
+              "answer": "Ground impact occurs at t=3 s and the horizontal range is 30 m."
+            },
+            {
               "id": "Q-PHY-KIN-PRACTICAL-13",
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
@@ -3167,33 +3287,21 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 79,
+          "record_count": 91,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1",
+              "CORE2",
               "CORE1A",
-              "CORE1B"
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
             ],
             "atoms": 76,
-            "questions": 0,
-            "obligations": 5,
+            "questions": 10,
+            "obligations": 7,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2A",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
-              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
