@@ -144,10 +144,33 @@ def findings(repo: Path = REPO) -> list[dict]:
                 for name, status in quality[group].items()
             }
 
+            waivable_checks = {
+                "audit_2_graphical_state_fidelity.control_state_mapping",
+                "audit_2_graphical_state_fidelity.no_invented_exact_parameters",
+                "audit_2_graphical_state_fidelity.interaction_fidelity_disclosed",
+            }
+            external_mapping = contract["state_fidelity_contract"]["external_state_mapping"]
+
             for check_id, status in audit_checks.items():
-                if status == "NOT_APPLICABLE" and check_id not in quality["waivers"]:
+                if status != "NOT_APPLICABLE":
+                    continue
+                if check_id not in quality["waivers"]:
                     add(path, rid, "UNJUSTIFIED_NOT_APPLICABLE",
                         f"{check_id} is NOT_APPLICABLE but has no waiver rationale")
+                if check_id not in waivable_checks:
+                    add(path, rid, "UNWAIVABLE_QUALITY_CHECK",
+                        f"{check_id} is a core GCDR quality check and cannot be waived")
+                elif external_mapping != "NOT_APPLICABLE":
+                    add(path, rid, "INVALID_EXTERNAL_MAPPING_WAIVER",
+                        f"{check_id} may be waived only when external_state_mapping=NOT_APPLICABLE")
+
+            for waived_id in quality["waivers"]:
+                if waived_id not in audit_checks:
+                    add(path, rid, "UNKNOWN_AUDIT_WAIVER",
+                        f"waiver references unknown quality check {waived_id}")
+                elif audit_checks[waived_id] != "NOT_APPLICABLE":
+                    add(path, rid, "STALE_AUDIT_WAIVER",
+                        f"waiver exists for {waived_id} but the check is not NOT_APPLICABLE")
 
             if quality["audit_status"] == "PASS":
                 incomplete = [
