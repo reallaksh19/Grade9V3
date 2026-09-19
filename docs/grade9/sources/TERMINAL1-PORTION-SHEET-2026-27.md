@@ -9,6 +9,10 @@
 > This file is a narrow transcription of the Physics portion needed for Grade9V3 planning.
 > It is **not** source custody for the original PDF and it does not expand the chapter titles
 > into unprinted microtopics.
+>
+> Owner-uploaded PDF fingerprint for this planning event:
+> `sha256:e48213b7d7d233cf7c90f1151a78078ec2a7171aa22dd7c0e97f72d36e409179`
+> — 129119 bytes, 3 pages. The Physics portion appears on page 1.
 
 ## Science examination
 
