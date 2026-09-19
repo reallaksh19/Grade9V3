@@ -392,3 +392,41 @@ shortcut.
 Fail if the agent treats 95% as mastery, omits the prerequisite chain, halves/doubles the
 wrong echo path, invents one universal echo threshold, or imports Doppler/interference,
 standing-wave formulae or decibel logarithms into the Grade-9 route.
+
+
+---
+
+## APSTRESS-G9-SIMPLE-MACHINES-90
+
+### Prompt
+
+> Prepare CORE1A and CORE1B for Physics — Simple machines. Student knowledge estimate:
+> 90%. Use the estimate only to select the starting rung and preserve prerequisite checks.
+> Keep mechanical advantage tied to same-state load/effort measurements and the ideal
+> force-distance tradeoff; do not import torque equations, pulley-count formulae,
+> efficiency catalogues, or story-specific machine capabilities.
+
+### Expected path
+
+```text
+resolve current Grade-9 Simple Machines matrix
+→ owner estimate 90
+→ conservative floor = R3 at ladder_position 90
+→ prerequisite checks:
+     CAP-WEP-WORK-DIRECTION
+     CAP-MACHINE-TRADEOFF
+     CAP-MACHINE-MA
+→ READY_WITH_CHECKS
+→ CORE1A / CORE1B use the same canonical target segment
+→ same-state load/effort semantics remain intact
+→ fixed-pulley counterexample prevents "all machines reduce force"
+→ no undeclared higher-depth machine formulae are imported
+```
+
+This is the post-G9-6 checkpoint. It protects the smallest durable decision from PR #82:
+Simple Machines remains a three-capability Grade-9 spine rather than splitting into
+story-specific lever/pulley/incline capabilities.
+
+Fail if the agent treats 90% as mastery, loses the cross-topic Work/Energy prerequisite,
+mixes measurements from different machine states, assumes all useful machines multiply
+force, or imports torque/pulley/efficiency formula catalogues into the Grade-9 route.
