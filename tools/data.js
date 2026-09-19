@@ -1132,6 +1132,31 @@ window.GRADE9V3 = {
             "A projectile needs a horizontal force to keep moving horizontally.",
             "Horizontal and vertical projectile motions can use different flight times."
           ]
+        },
+        {
+          "gate_id": "PHY-VEC-DIRECTION-UNIT",
+          "title": "Recover vector direction and normalize a 2-D unit direction",
+          "grade": 9,
+          "chapter": "Vectors",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "PHY-VEC-SCALAR-VECTOR",
+            "PHY-VEC-AXIS-CONVENTION"
+          ],
+          "external_prerequisites": [
+            "MATH-INVERSE-TRIG-DIRECTION"
+          ],
+          "concepts": [
+            "The signed component pair and v_x i-hat + v_y j-hat are equivalent descriptions of the same two-dimensional vector.",
+            "Component signs determine the quadrant or axis; inverse tangent of positive component magnitudes supplies only an acute reference angle to place inside that direction.",
+            "A unit-direction vector is obtained by dividing a nonzero vector by its positive magnitude; the zero vector cannot be normalized because it has no direction and would require division by zero."
+          ],
+          "misconceptions": [
+            "The raw value of tan^-1(v_y/v_x) is always the final direction.",
+            "The zero vector can be normalized in the same way as any other vector."
+          ]
         }
       ],
       "buckets": [
@@ -6687,6 +6712,355 @@ window.GRADE9V3 = {
           }
         },
         {
+          "id": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+          "title": "Vector direction and unit representation",
+          "topic": "Vectors",
+          "badge": "MEDIUM",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-VECTOR-REPRESENTATION"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-VEC-UNIT-NOTATION",
+              "title": "Translate signed components to i-hat/j-hat notation",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The notation is compact but can tempt learners to drop a negative coefficient or treat basis labels as extra vector magnitudes.",
+              "entry_assumptions": [
+                "Can read signed x/y components against declared positive axes."
+              ],
+              "inferential_jump": "The component pair and v_x i-hat + v_y j-hat are two notations for the same 2-D vector; coefficients carry the same signs and units as the original components.",
+              "teaching_path": [
+                {
+                  "action": "Declare +x and +y and identify i-hat with the +x unit direction and j-hat with the +y unit direction.",
+                  "why_valid": "The basis symbols are meaningless without the axes they name.",
+                  "output": "i-hat = +x unit direction; j-hat = +y unit direction"
+                },
+                {
+                  "action": "Replace the ordered pair (v_x,v_y) by v_x i-hat + v_y j-hat, carrying each coefficient sign unchanged.",
+                  "why_valid": "The coefficients are exactly the signed components along the two basis directions.",
+                  "output": "(v_x,v_y) <-> v_x i-hat + v_y j-hat"
+                },
+                {
+                  "action": "Read the two coefficients back from the i-hat/j-hat expression and compare with the original component pair.",
+                  "why_valid": "A notation translation is correct only if the original signed components are recovered.",
+                  "output": "recovered pair equals the starting pair"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A negative coefficient should be made positive because i-hat and j-hat already contain the direction.",
+                  "diagnostic_prompt": "If v_x is negative while +x is declared to the right, what sign must multiply i-hat?",
+                  "repair": "Keep the coefficient sign. The hat symbol names the positive basis direction; a negative coefficient reverses that component."
+                }
+              ],
+              "exit_task": {
+                "prompt": "With declared +x/+y axes, a vector has components (a,-b), where a and b are positive. Write it in i-hat/j-hat notation and state how you would recover the component pair.",
+                "source_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "v = a i-hat - b j-hat, and the coefficients recover the pair (a,-b).",
+                  "reasoning": [
+                    "i-hat names +x and j-hat names +y.",
+                    "The x component is +a, so its coefficient is +a.",
+                    "The y component is -b, so its coefficient is -b."
+                  ],
+                  "check": "Read the two signed coefficients back; they must be exactly (a,-b).",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer is a symbolic representation translation and asserts no computed numerical value."
+                }
+              },
+              "prerequisites": [
+                "CAP-VECTOR-SIGNED-COMPONENT"
+              ]
+            },
+            {
+              "id": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+              "title": "Recover direction from signed components",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The ratio is simple, but a calculator's inverse tangent does not by itself preserve quadrant information.",
+              "entry_assumptions": [
+                "Can read signed x/y components.",
+                "Can use an inverse tangent to obtain an acute reference angle through the declared Mathematics bridge."
+              ],
+              "inferential_jump": "Direction recovery is two-stage: component signs locate the quadrant or axis, while inverse tangent of the positive component-magnitude ratio supplies only an acute reference angle to place inside that quadrant.",
+              "teaching_path": [
+                {
+                  "action": "Use the signs of v_x and v_y to identify the quadrant or an exact axis before taking any ratio.",
+                  "why_valid": "The signs retain directional information that a ratio can lose.",
+                  "output": "quadrant or axis fixed from signs"
+                },
+                {
+                  "action": "When both components are nonzero, form the positive ratio |v_y|/|v_x| and obtain the acute reference angle alpha = tan^-1(|v_y|/|v_x|).",
+                  "why_valid": "The absolute component magnitudes form the legs of the right triangle; inverse tangent returns the acute reference angle, not the full directed angle.",
+                  "output": "alpha = tan^-1(|v_y|/|v_x|), 0<alpha<90 degrees"
+                },
+                {
+                  "action": "Place alpha in the previously identified quadrant and report the requested directed angle or verbal direction.",
+                  "why_valid": "Quadrant placement restores the signs discarded by the positive ratio.",
+                  "output": "directed angle consistent with both component signs"
+                },
+                {
+                  "action": "Check that the reported direction has the same x/y sign pattern as the original components.",
+                  "why_valid": "Any correct direction must point into the same quadrant or axis as the signed component pair.",
+                  "output": "direction sign pattern matches (v_x,v_y)"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The value tan^-1(v_y/v_x) is always the final direction angle.",
+                  "diagnostic_prompt": "If v_x<0 and v_y>0, can a negative raw ratio by itself tell you that the vector lies in quadrant II?",
+                  "repair": "Fix the quadrant from the component signs first. Use an acute reference angle from absolute component magnitudes, then place it in that quadrant."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A nonzero vector has v_x<0, v_y>0 and |v_y|<|v_x|. State its quadrant, write the acute reference-angle expression, and show how the directed angle from +x is obtained symbolically.",
+                "source_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "It lies in quadrant II. Let alpha = tan^-1(|v_y|/|v_x|); the standard directed angle from +x is 180 degrees - alpha.",
+                  "reasoning": [
+                    "Negative x and positive y place the vector in quadrant II.",
+                    "The positive magnitude ratio gives only the acute reference angle alpha.",
+                    "Quadrant II places that reference angle above the -x direction, giving 180 degrees - alpha from +x."
+                  ],
+                  "check": "The final angle must have cosine negative and sine positive, matching the original component signs.",
+                  "acceptable_alternatives": [
+                    "State the direction as alpha above the -x axis instead of using a 0-360 degree angle."
+                  ],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer is symbolic and asserts no computed numerical angle."
+                }
+              },
+              "prerequisites": [
+                "CAP-VECTOR-SIGNED-COMPONENT",
+                "CAP-INVERSE-TRIG-DIRECTION-BRIDGE"
+              ]
+            },
+            {
+              "id": "MIC-PHY-VEC-UNIT-DIRECTION",
+              "title": "Normalize a nonzero vector to unit direction",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The division is simple, but the same magnitude must divide every component and the zero vector is a hard domain boundary.",
+              "entry_assumptions": [
+                "Can express the vector in signed components or i-hat/j-hat notation.",
+                "Can obtain the nonnegative magnitude from perpendicular components through the declared Mathematics bridge."
+              ],
+              "inferential_jump": "Dividing every component of the same nonzero vector by its positive magnitude removes units and scale while preserving the component ratio and therefore the direction.",
+              "teaching_path": [
+                {
+                  "action": "Confirm that the vector is nonzero and identify its positive magnitude |v|.",
+                  "why_valid": "Normalization divides by |v|, so |v| must be greater than zero.",
+                  "output": "|v|>0"
+                },
+                {
+                  "action": "Divide every signed component by the same magnitude: v_hat = (v_x/|v|) i-hat + (v_y/|v|) j-hat.",
+                  "why_valid": "Multiplication by the same positive scalar reciprocal changes length but preserves direction and component signs.",
+                  "output": "v_hat = v/|v|"
+                },
+                {
+                  "action": "Recompute the magnitude of the normalized components and confirm it is 1.",
+                  "why_valid": "A unit vector is defined to have magnitude 1.",
+                  "output": "sqrt((v_x/|v|)^2+(v_y/|v|)^2)=1"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A unit vector keeps the original physical unit because it points in the same direction.",
+                  "diagnostic_prompt": "If every component is divided by a magnitude carrying the same unit, what unit remains in the ratio?",
+                  "repair": "The units cancel. A unit vector carries direction and has magnitude 1; it is dimensionless in this representation."
+                },
+                {
+                  "wrong_idea": "The zero vector can be normalized by dividing each zero component by its magnitude.",
+                  "diagnostic_prompt": "What is the magnitude of the zero vector, and what denominator would normalization require?",
+                  "repair": "Its magnitude is zero, so normalization would divide by zero. The zero vector has no unit direction."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A nonzero vector has symbolic components (a,b) and magnitude M>0. Write its unit-direction vector in component and i-hat/j-hat form, then give the magnitude check.",
+                "source_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The unit direction is (a/M,b/M) = (a/M)i-hat + (b/M)j-hat, and its magnitude is 1.",
+                  "reasoning": [
+                    "M is the positive magnitude of the original nonzero vector.",
+                    "Dividing both components by the same positive M preserves direction.",
+                    "sqrt((a/M)^2+(b/M)^2)=sqrt(a^2+b^2)/M=M/M=1."
+                  ],
+                  "check": "Confirm M>0 first; if M=0 the normalization is undefined.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The answer is symbolic; the magnitude-one check is algebraic and asserts no computed numerical measurement."
+                }
+              },
+              "prerequisites": [
+                "CAP-VEC-UNIT-NOTATION",
+                "CAP-RIGHT-TRIANGLE-BRIDGE"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-VEC-DIRECTION-FROM-COMPONENTS",
+              "expression": "alpha = arctan(|v_y|/|v_x|); component signs determine the quadrant",
+              "meaning": "For a nonzero vector with both perpendicular components nonzero, inverse tangent of the positive component-magnitude ratio gives an acute reference angle; the signed components independently determine the quadrant in which that reference angle must be placed.",
+              "conditions": [
+                "The vector is nonzero.",
+                "When both components are nonzero, use positive component magnitudes for the acute ratio.",
+                "If either component is zero, report the exact axis direction directly rather than dividing by zero.",
+                "Quadrant selection comes from component signs, not from the inverse-tangent output alone."
+              ]
+            },
+            {
+              "id": "REL-VEC-IJ-NOTATION",
+              "expression": "v = v_x i_hat + v_y j_hat",
+              "meaning": "A two-dimensional vector expressed on declared perpendicular x/y axes can be written equivalently as the signed x coefficient times the +x unit basis vector plus the signed y coefficient times the +y unit basis vector.",
+              "conditions": [
+                "The x and y axes are declared and perpendicular.",
+                "i_hat and j_hat name the positive unit directions of those axes.",
+                "The signed coefficients retain the physical units of the vector components."
+              ]
+            },
+            {
+              "id": "REL-VEC-UNIT-DIRECTION",
+              "expression": "v_hat = v/|v| = (v_x/|v|) i_hat + (v_y/|v|) j_hat",
+              "meaning": "Dividing a nonzero vector and every signed component by the same positive magnitude produces a dimensionless vector of magnitude 1 in the same direction.",
+              "conditions": [
+                "|v|>0.",
+                "Every component is divided by the same magnitude.",
+                "The component axes and basis notation refer to the same declared frame."
+              ]
+            },
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-INVERSE-TRIG-DIRECTION-BRIDGE",
+              "action": "Use an inverse tangent on a positive right-triangle ratio to recover an acute reference angle, leaving quadrant selection to the consuming subject.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+              "action": "Recover the direction of a nonzero 2-D vector from its signed x/y components using quadrant information plus an acute inverse-trigonometric reference angle.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VEC-UNIT-DIRECTION",
+              "action": "Normalize a nonzero 2-D vector to a dimensionless unit vector in the same direction.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VEC-UNIT-NOTATION",
+              "action": "Translate a 2-D signed component pair into i-hat/j-hat notation and back without changing the vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-SIGNED-COMPONENT",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 41,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 5,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
           "id": "BUCKET-PHY-WORK-ENERGY-POWER",
           "title": "Work, energy and power",
           "topic": "Work and Energy",
@@ -8316,6 +8690,11 @@ window.GRADE9V3 = {
           "package_id": "LIB-PHY-VEC-ADD-SUB-AUTHORED",
           "status": "CANDIDATE",
           "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-VEC-DIRECTION-UNIT-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": false
         },
         {
           "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
