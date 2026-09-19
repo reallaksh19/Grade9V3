@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:72bc505ecba7387fc6518ef29108ad2ff15d4b7bb10424f37e8c5249bd9949b4",
+  "digest": "sha256:4d48423155878a0c6d14bfdf3cdcda09f4c9ffd30d3f72df474bcff7d714843f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -995,8 +995,8 @@
       "path": "tests/test_study_start.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8899,
-      "sha256": "145b8a81bbc2f1fec55161059f36772fc3b765ca9bd1467447cf7ef3a4c860ce"
+      "bytes": 8982,
+      "sha256": "4651a53e074f8af36370198083e8ab3bfc12886823b17ef3912300b98abb0009"
     },
     {
       "path": "tests/test_tools.py",
@@ -1016,8 +1016,8 @@
       "path": "tests/test_worksheet_study_plan.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 10584,
-      "sha256": "6166fd7df2c25d8c85723409a1b91460c967cb2a32c5cbf586527da92f356b92"
+      "bytes": 10700,
+      "sha256": "85034b1ec3b1053abc8f39ccd89d6b4c6363ca966235964a948f7e5db1b87beb"
     },
     {
       "path": "tools/app.css",
