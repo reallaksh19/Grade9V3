@@ -114,6 +114,29 @@
     }
   }
 
+  // Resolve canonical public/... resource locators from any Topic Atlas page.
+  // This keeps the same activity registry usable from file:// and hosted builds.
+  function activityHref(locator) {
+    if (!locator || !locator.startsWith('public/')) return locator || '#';
+
+    const target = locator.replace(/^public\//, '').split('/').filter(Boolean);
+    const current = window.location.pathname.split('/').filter(Boolean);
+    const publicIdx = current.lastIndexOf('public');
+    if (publicIdx === -1) return '../../' + target.join('/');
+
+    const currentDir = current.slice(publicIdx + 1, -1);
+    let common = 0;
+    while (common < currentDir.length && common < target.length && currentDir[common] === target[common]) {
+      common += 1;
+    }
+    const up = Array(Math.max(0, currentDir.length - common)).fill('..');
+    return [...up, ...target.slice(common)].join('/') || './';
+  }
+
+  function activityMatchesStep(activity, stepId) {
+    return Boolean(stepId && (activity.teaching_step_refs || []).includes(stepId));
+  }
+
   // --- Need Resolver & Fallback Ladder (GAP-WEB-010) ---
   function resolveNeedTargets() {
     const rungs = state.matrix.rungs;
@@ -465,6 +488,14 @@
       // Level 2 & 3: Semantic Leaves & Diagnostic Dimension Cells
       let semanticLeavesHtml = tpath.map((step, idx) => {
         const stepTarget = resolved.targets.find(t => t.rung === r.rung && t.repair_ref === step.id);
+        const stepActivities = (r.activities || []).filter(act => activityMatchesStep(act, step.id));
+        const stepActivitiesHtml = stepActivities.map(act => `
+          <a href="${activityHref(act.locator)}" class="btn primary-phy"
+             style="font-size: 11px; padding: 4px 9px; margin-right: 6px; margin-top: 6px;"
+             title="Exact repair activity for ${step.id}">
+            🧪 ${act.title} ↗
+          </a>
+        `).join('');
         
         // Level 3 Dimensions
         const dimensions = ['CONCEPT', 'SETUP', 'EXECUTION', 'CARELESS', 'UNKNOWN'];
@@ -497,6 +528,14 @@
               <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">Diagnostic Dimensions:</span>
               ${dimCellsHtml}
             </div>
+            ${stepActivitiesHtml ? `
+              <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border);">
+                <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: 600;">
+                  Exact Repair Surface:
+                </span>
+                <div>${stepActivitiesHtml}</div>
+              </div>
+            ` : ''}
           </div>
         `;
       }).join('');
@@ -505,22 +544,20 @@
       let activitiesHtml = '';
       if (r.activities && r.activities.length > 0) {
         activitiesHtml = r.activities.map(act => {
-          let href = act.locator;
-          if (href.startsWith('public/physics/nlm/')) {
-            href = href.replace('public/physics/nlm/', '');
-          } else if (href.startsWith('public/')) {
-            href = '../../' + href.replace('public/', '');
-          }
+          const leafText = (act.teaching_step_refs || []).length
+            ? ` · Leaves: ${act.teaching_step_refs.join(', ')}`
+            : '';
           return `
             <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 12px; margin-top: 12px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
                 <span class="badge phy">Governed Activity Resource</span>
+                ${act.activity_kind ? `<span class="badge neutral">${act.activity_kind}</span>` : ''}
                 <strong style="color: #fff; font-size: 13px;">${act.title}</strong>
               </div>
               <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
-                ${act.section || 'Interactive explorer canonically registered in library records.'}
+                ${act.section || 'Interactive explorer canonically registered in library records.'}${leafText}
               </p>
-              <a href="${href}" class="btn primary-phy" style="font-size: 11px; padding: 4px 10px;">
+              <a href="${activityHref(act.locator)}" class="btn primary-phy" style="font-size: 11px; padding: 4px 10px;">
                 Launch Activity ↗
               </a>
             </div>
@@ -648,7 +685,16 @@
         <span class="count">${resolved.targets.length} Identified Need(s)</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
-        ${resolved.targets.map((t, idx) => `
+        ${resolved.targets.map((t, idx) => {
+          const exactActivities = ((t.rung_obj && t.rung_obj.activities) || [])
+            .filter(act => activityMatchesStep(act, t.repair_ref));
+          const exactActivityHtml = exactActivities.map(act => `
+            <a href="${activityHref(act.locator)}" class="btn primary-phy"
+               style="font-size: 11px; padding: 4px 9px; margin-top: 8px; margin-right: 6px;">
+              Open exact repair: ${act.title} ↗
+            </a>
+          `).join('');
+          return `
           <div style="background: var(--bg-panel); border: 1px solid ${idx === 0 ? 'var(--accent)' : 'var(--border)'}; border-radius: 8px; padding: 14px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 10px;">
@@ -665,8 +711,10 @@
               ${t.repair_ref ? `<span><strong>Repair Target:</strong> <code>${t.repair_ref}</code></span>` : ''}
               ${t.error_stage ? `<span><strong>Failure Stage:</strong> <code>${t.error_stage}</code></span>` : ''}
             </div>
+            ${exactActivityHtml ? `<div>${exactActivityHtml}</div>` : ''}
           </div>
-        `).join('')}
+        `;
+        }).join('')}
       </div>
     `;
   }
