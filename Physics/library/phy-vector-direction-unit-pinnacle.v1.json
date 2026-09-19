@@ -251,7 +251,7 @@
           "inputs": [
             "CAP-INVERSE-TRIG-BRIDGE"
           ],
-          "output": "reference angle"
+          "output": "theta_ref = atan(|Ay/Ax|), an acute/reference angle before quadrant placement."
         },
         {
           "id": "VDIR-3",
@@ -288,7 +288,11 @@
         "answer": {
           "kind": "MODEL_RESPONSE",
           "summary": "The vector is in quadrant II. Use atan(4/3) as a reference angle and place that reference in quadrant II.",
-          "reasoning": "Ax<0 and Ay>0 fix quadrant II.",
+          "reasoning": [
+            "Ax<0 and Ay>0 fix quadrant II.",
+            "Use |Ay/Ax|=4/3 to obtain an acute/reference angle.",
+            "Place that reference angle in quadrant II rather than reporting the principal calculator value alone."
+          ],
           "check": "A quadrant-II direction must reproduce negative x and positive y components.",
           "acceptable_alternatives": [],
           "subpart_answers": [],
@@ -366,7 +370,7 @@
       "intrinsic_badge": "EASY",
       "badge_reason": "This is representation translation, not a new physical model, but sign loss in compact notation is a common execution failure.",
       "entry_assumptions": [
-        "Can read signed x/y components against declared axes."
+        "Can interpret an ordered component pair (Ax,Ay) in already-declared x/y axes."
       ],
       "inferential_jump": "The coefficients of i-hat and j-hat are exactly the signed x/y components; notation changes, the physical vector does not.",
       "teaching_path": [
