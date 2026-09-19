@@ -5406,7 +5406,6 @@
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
-        "CAP-NLM-SECOND-LAW",
         "CAP-KIN-CONSTANT-ACCELERATION",
         "CAP-VEC-ANGLE-DECOMPOSITION"
       ],
