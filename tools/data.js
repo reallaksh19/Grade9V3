@@ -890,6 +890,29 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-NLM-MOMENTUM-TRANSFER-RATE",
+          "title": "Force from discrete momentum transfer per unit time",
+          "grade": 9,
+          "chapter": "Force and Laws of Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "PHY-NEWTON-SECOND-LAW"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "For one fixed-mass item in a declared inertial frame, linear momentum is directed and changes by final minus initial momentum.",
+            "Net external force is the directed rate of momentum change for the same chosen system and frame.",
+            "For repeated identical item momentum changes, items per unit time times momentum change per item gives the average momentum-transfer force on the stream."
+          ],
+          "misconceptions": [
+            "Use m v_out per item even when v_in is nonzero in the chosen frame.",
+            "The ejecta force and launcher recoil point in the same direction.",
+            "Any ejection-rate problem requires a rocket equation or full variable-mass dynamics."
+          ]
+        },
+        {
           "gate_id": "PHY-WORK-ENERGY-GRADE9",
           "title": "Grade 9 work, kinetic energy and gravitational potential energy",
           "grade": 9,
@@ -4427,6 +4450,333 @@ window.GRADE9V3 = {
             "questions": 7,
             "obligations": 15,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+          "title": "Momentum-transfer force rate",
+          "topic": "Force and Laws of Motion",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-NLM-FIRST-LAW"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+              "title": "Force from a steady stream of discrete momentum changes",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The key decisions are the system/direction choice and distinguishing force on the ejecta from equal-and-opposite launcher recoil and the external support force that balances it.",
+              "entry_assumptions": [
+                "Can assign forces to the body they act on.",
+                "Can use Newton II as a force-motion relation for a chosen body.",
+                "Can keep Newton-third-law interaction partners on different bodies."
+              ],
+              "inferential_jump": "A repeated stream converts a momentum change per item into a momentum change per unit time: if each fixed-mass item receives signed Delta p_item and R such items are ejected per second, the average force on the ejecta is R Delta p_item; the launcher receives the opposite interaction force, so a stationary launcher requires an external holding force that balances that recoil.",
+              "teaching_path": [
+                {
+                  "action": "Choose one inertial frame and declare the positive ejection direction before writing any momentum or force sign.",
+                  "why_valid": "Momentum and force are directed quantities; the recoil/holding-force signs are only meaningful relative to a declared frame and axis.",
+                  "output": "+ direction = ejection direction; v_in and v_out are signed in the same inertial frame"
+                },
+                {
+                  "action": "For one fixed-mass ejected item, compute its signed momentum change from Delta p_item = m(v_out - v_in).",
+                  "why_valid": "Linear momentum of that item is p = m v, so its change is final momentum minus initial momentum in the same frame.",
+                  "output": "p_in = m v_in; p_out = m v_out; Delta p_item = m(v_out - v_in)"
+                },
+                {
+                  "action": "If R identical items are ejected per second with the same represented momentum change, multiply the per-item change by the ejection rate.",
+                  "why_valid": "Over a time Delta t containing n = R Delta t items, the ejecta gain total momentum n Delta p_item; dividing by Delta t gives the average momentum-change rate and therefore the average external force on the ejecta.",
+                  "output": "F_avg,on_ejecta = Delta p_total/Delta t = (n/Delta t) Delta p_item = R Delta p_item"
+                },
+                {
+                  "action": "Use the interaction-pair direction to assign the launcher's average recoil force opposite the force on the ejecta; if the launcher is held stationary, assign the external holding force opposite the recoil.",
+                  "why_valid": "The launcher-on-ejecta and ejecta-on-launcher forces are interaction partners on different bodies; a stationary launcher needs zero net average force.",
+                  "output": "F_avg,on_launcher_by_ejecta = -R Delta p_item; held stationary -> F_avg,holding_on_launcher = +R Delta p_item"
+                },
+                {
+                  "action": "Check units and signs before reporting the force.",
+                  "why_valid": "The rate-times-momentum product must reduce to force units and the launcher/holding directions must be consistent with the chosen positive ejection direction.",
+                  "output": "R Delta p_item units = (1/s)(kg m/s) = kg m/s^2 = N; recoil sign is opposite ejecta momentum gain"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The force magnitude is firing rate times m v_out even when the item already had nonzero velocity in the chosen frame.",
+                  "diagnostic_prompt": "If an item enters the launch process with v_in not equal to zero, which momentum determines the transferred amount: final momentum alone or final minus initial?",
+                  "repair": "Use the momentum change per item: Delta p_item = m(v_out - v_in). Final momentum alone works only when the chosen-frame initial momentum is zero."
+                },
+                {
+                  "wrong_idea": "The force that accelerates the ejecta and the recoil force on the launcher point in the same direction.",
+                  "diagnostic_prompt": "With ejection defined positive, which body receives the positive interaction force and which receives its partner?",
+                  "repair": "The ejecta gain positive momentum and receive a positive force. The launcher receives the equal-and-opposite interaction force. A holding force that keeps the launcher fixed points opposite the recoil."
+                },
+                {
+                  "wrong_idea": "Once a momentum-rate formula appears, the problem should be treated as rocket or continuously varying-mass dynamics.",
+                  "diagnostic_prompt": "Does this task require solving how a launcher's mass and velocity evolve continuously, or only the average momentum transferred by repeated fixed-mass items?",
+                  "repair": "Stay with the discrete stream: momentum change per item times items per second. Do not import a rocket equation or variable-mass differential model."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A launcher is held fixed. Identical items of mass m enter the launch process with signed velocity v_in and leave with signed velocity v_out in the same inertial frame. The steady ejection rate is R items per second, and positive is the exit direction. Give the average force on the ejecta, the interaction force on the launcher, the external holding force required to keep the launcher fixed, and the unit check.",
+                "source_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Delta p_item = m(v_out-v_in). The average force on the ejecta is F_ejecta = R Delta p_item. The ejecta exert -R Delta p_item on the launcher, so the holding force required for a fixed launcher is +R Delta p_item. The units are N.",
+                  "reasoning": [
+                    "Use one declared inertial frame and the same positive direction for both item velocities.",
+                    "One item's momentum change is final minus initial: m(v_out-v_in).",
+                    "R items each second multiply the per-item momentum change into an average momentum-transfer rate R Delta p_item.",
+                    "The launcher receives the opposite interaction force; a stationary launcher requires an external holding force that balances that recoil."
+                  ],
+                  "check": "(1/s)(kg m/s) = kg m/s^2 = N. If v_out = v_in, Delta p_item and this transfer force are zero; reversing the ejection direction reverses all signed force directions.",
+                  "acceptable_alternatives": [
+                    "State only magnitudes after explicitly naming the corresponding directions."
+                  ],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit derives symbolic momentum-transfer and force relations and checks dimensions; it asserts no computed numerical force."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW",
+                "CAP-NLM-THIRD-LAW"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-NLM-DISCRETE-MOMENTUM-TRANSFER",
+              "expression": "F_avg,on_ejecta = R Delta p_item",
+              "meaning": "If identical fixed-mass items undergo the same signed momentum change and are ejected at steady rate R items per second, the ejecta stream's average momentum-change rate and average force equal R times the momentum change per item.",
+              "conditions": [
+                "The represented items are identical for the calculation or share the same Delta p_item.",
+                "R is the number ejected per unit time over the averaging interval.",
+                "Delta p_item uses the same inertial frame and positive direction for every item.",
+                "The reported force is an average over the repeated discrete ejections."
+              ]
+            },
+            {
+              "id": "REL-NLM-FORCE-MOMENTUM-RATE",
+              "expression": "F_ext = dp/dt",
+              "meaning": "The net external force on a chosen system equals its directed rate of change of linear momentum; this bounded Grade-9 extension evaluates that rate through a steady discrete transfer rather than calculus.",
+              "conditions": [
+                "System boundary, inertial frame and positive direction are declared.",
+                "The momentum and force refer to the same chosen system and frame.",
+                "For the learner route here, the rate is evaluated from repeated finite momentum transfers; no derivative calculation is required."
+              ]
+            },
+            {
+              "id": "REL-NLM-LINEAR-MOMENTUM-ITEM",
+              "expression": "p = m v",
+              "meaning": "The signed one-dimensional linear momentum of one fixed-mass item equals its mass times its signed velocity in the declared inertial frame.",
+              "conditions": [
+                "The item mass is positive and fixed during the compared states.",
+                "Velocity and momentum use the same declared one-dimensional positive direction.",
+                "Initial and final velocities are measured in the same inertial frame."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+              "action": "Relate an external average force to momentum transferred per unit time and, for repeated identical fixed-mass ejecta, compute the signed force from ejection rate times momentum change per item before inferring the opposite launcher reaction and any balancing holding force.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-THIRD-LAW",
+              "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 54,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 3,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -9075,6 +9425,11 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-NLM-MOMENTUM-TRANSFER-AUTHORED",
           "status": "CANDIDATE",
           "admitted": true
         },

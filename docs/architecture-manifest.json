@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 156,
-  "relation_count": 206,
+  "component_count": 158,
+  "relation_count": 207,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 63,
+    "TEST": 65,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:6ce1fe5071f78c8e0eaefd0b82286e1842eeccda0fd15ed8404a6171065f05c9",
+  "digest": "sha256:334225bec98cec0d283fac2edd920f14baa44626caa612fdd3596fb8be593174",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -656,6 +656,13 @@
       "sha256": "ef8192e140f15a9e41d1d55ab99409dc48836ec21e5ba9d10e4baac713c7ca39"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-nlm-momentum-transfer.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1071,
+      "sha256": "76149dc65d9452bf67b11d4b588c3324553454a27bf05f4c63b2d14336bb1de5"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-vector-algebra.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -810,6 +817,13 @@
       "sha256": "53a76e1ebd9857eb55aaae33e78858aa9ed5ce70508435641f2169935c297443"
     },
     {
+      "path": "tests/test_g9_nlm_momentum_transfer.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8834,
+      "sha256": "4e26176f69f9c07153f90c3a2d78e48b433ad72392d67dcedd49a5245083470d"
+    },
+    {
       "path": "tests/test_g9_vector_direction_unit.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -820,8 +834,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16771,
-      "sha256": "bfdad49d7f475fbd13dfd83172032980a87282d9f23d034365e25eac7419bff5"
+      "bytes": 16913,
+      "sha256": "a09fc5ceebaa15c14f0abb889979e3626beac90d3b2ec73818ac3ccb87d28a93"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -911,8 +925,8 @@
       "path": "tests/test_issue19_physics_content.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13514,
-      "sha256": "c2bc052f1f1d73a105f35b88cd90710b2eeff250df2d0ec52dddb04a83b2c5be"
+      "bytes": 13564,
+      "sha256": "4f7dc434d2b382c14d4d5ace84426f44c1c3e9ef25b8da4a969c4f9b6701bd9f"
     },
     {
       "path": "tests/test_library.py",
@@ -1044,15 +1058,15 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4739,
-      "sha256": "66353f2d3fb91c9a67195ecfb9d62756738601060ee8e1223d230c6085506769"
+      "bytes": 4678,
+      "sha256": "720a41fb15be660acbffa100e922b397ea538bb4d7360db2993af2224430f3d9"
     },
     {
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 87027,
-      "sha256": "3c9d8c3f1f1ffe49e441de7f49ed90b8e03d722cf470f7db44fa0b59d92535a8"
+      "bytes": 87114,
+      "sha256": "98096d19d3c437b8d479f1dc52330e1d715d2be5e4e203f9d84916d4e97a1d63"
     },
     {
       "path": "tests/test_vector_foundations_modernization.py",
@@ -1079,8 +1093,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 550861,
-      "sha256": "d0fb0e5e7f8fbc865c4b708429eece7f99fa2e9fae5d54eaa5d6bd4330fd5e41"
+      "bytes": 573079,
+      "sha256": "86ffe4a9dc940bf9e41eb70f2a7e3c86362f620bd91fe1acbd5dbc4c57ca4a51"
     },
     {
       "path": "tools/index.html",
@@ -1794,6 +1808,11 @@
     },
     {
       "from": "tests/test_g9_nlm_friction_connected.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_nlm_momentum_transfer.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

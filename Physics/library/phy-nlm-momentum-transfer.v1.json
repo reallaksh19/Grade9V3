@@ -1,0 +1,612 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-NLM-MOMENTUM-TRANSFER-AUTHORED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Explicit-demand Grade-9 Pinnacle preparation extension for force as momentum transferred per unit time in a repeated discrete ejection stream. It supports the owner-supplied ExamSIDE machine-gun demand without importing a general collision, impulse-integral, rocket-equation or variable-mass curriculum.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE owner-supplied machine-gun momentum-transfer force item",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5",
+      "edition": "Owner-supplied JEE past-year item inspected in the 2026-09-19 NLM reconnaissance",
+      "section": "Momentum carried away per bullet and per-unit-time recoil/holding-force demand",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question-bank demand evidence only. Grade9V3 stores the locator and a short demand summary, not copied question text or canonical question custody.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "This specific owner-approved item cannot be honestly reduced to the current constant-mass F_net = m a learner action; it requires momentum transferred per unit time with an explicit recoil/holding-force direction.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 bounded discrete momentum-transfer construction",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-nlm-momentum-transfer.v1.json",
+      "edition": "0.1.0",
+      "section": "Explicit-demand Core1A/Core1B teaching and reconstruction route",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created project draft; no external curriculum or scientific-review authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supplies the smallest stable learner action for the approved discrete-ejection demand while keeping collisions, impulse integrals, rocket dynamics and variable-mass methods outside the slice.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND",
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+      },
+      "title": "Momentum-transfer force rate",
+      "topic": "Force and Laws of Motion",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The arithmetic is short, but the learner must distinguish momentum change of one ejected item, transfer rate, force direction on the ejecta, reaction on the launcher, and the external holding force.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-NLM-FIRST-LAW"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-NLM-MTR-DIRECTION",
+          "statement": "Declare one positive ejection direction before assigning signs to item momentum change, launcher recoil and holding force."
+        },
+        {
+          "id": "CONV-NLM-MTR-RATE",
+          "statement": "Use an ejection rate in items per second and a momentum change per item measured in one declared inertial frame."
+        }
+      ],
+      "scope": {
+        "covers": "Linear momentum p = m v for one fixed-mass item, external force as momentum-change rate, and the average force from a steady discrete stream R Delta p_item including opposite launcher reaction and balancing holding-force direction.",
+        "excluded": [
+          "General collision taxonomy or coefficient of restitution.",
+          "Momentum-conservation derivations unrelated to the approved ejection-stream demand.",
+          "Impulse integrals or force-time curve integration.",
+          "Rocket equation, continuously varying-mass dynamics or exhaust-relative-velocity derivations.",
+          "Center-of-mass collision methods."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND",
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+      },
+      "action": "Relate an external average force to momentum transferred per unit time and, for repeated identical fixed-mass ejecta, compute the signed force from ejection rate times momentum change per item before inferring the opposite launcher reaction and any balancing holding force.",
+      "success_criterion": "Declares a positive direction and one inertial frame, forms Delta p_item = m(v_out - v_in), uses F_avg,on_ejecta = R Delta p_item for a steady repeated stream, gives the launcher interaction force the opposite sign, gives the external holding force the sign required to balance recoil when the launcher is held fixed, and verifies (1/s)(kg m/s) = N without invoking collision conservation, impulse integration or rocket dynamics.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND",
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+      },
+      "title": "Force from a steady stream of discrete momentum changes",
+      "bucket_id": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The key decisions are the system/direction choice and distinguishing force on the ejecta from equal-and-opposite launcher recoil and the external support force that balances it.",
+      "entry_assumptions": [
+        "Can assign forces to the body they act on.",
+        "Can use Newton II as a force-motion relation for a chosen body.",
+        "Can keep Newton-third-law interaction partners on different bodies."
+      ],
+      "inferential_jump": "A repeated stream converts a momentum change per item into a momentum change per unit time: if each fixed-mass item receives signed Delta p_item and R such items are ejected per second, the average force on the ejecta is R Delta p_item; the launcher receives the opposite interaction force, so a stationary launcher requires an external holding force that balances that recoil.",
+      "teaching_path": [
+        {
+          "id": "NLM-MTR-1",
+          "role": "DECLARE",
+          "action": "Choose one inertial frame and declare the positive ejection direction before writing any momentum or force sign.",
+          "why_valid": "Momentum and force are directed quantities; the recoil/holding-force signs are only meaningful relative to a declared frame and axis.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "+ direction = ejection direction; v_in and v_out are signed in the same inertial frame"
+        },
+        {
+          "id": "NLM-MTR-2",
+          "role": "TRANSFORM",
+          "action": "For one fixed-mass ejected item, compute its signed momentum change from Delta p_item = m(v_out - v_in).",
+          "why_valid": "Linear momentum of that item is p = m v, so its change is final momentum minus initial momentum in the same frame.",
+          "inputs": [],
+          "output": "p_in = m v_in; p_out = m v_out; Delta p_item = m(v_out - v_in)"
+        },
+        {
+          "id": "NLM-MTR-3",
+          "role": "TRANSFORM",
+          "action": "If R identical items are ejected per second with the same represented momentum change, multiply the per-item change by the ejection rate.",
+          "why_valid": "Over a time Delta t containing n = R Delta t items, the ejecta gain total momentum n Delta p_item; dividing by Delta t gives the average momentum-change rate and therefore the average external force on the ejecta.",
+          "inputs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "F_avg,on_ejecta = Delta p_total/Delta t = (n/Delta t) Delta p_item = R Delta p_item"
+        },
+        {
+          "id": "NLM-MTR-4",
+          "role": "TRANSFORM",
+          "action": "Use the interaction-pair direction to assign the launcher's average recoil force opposite the force on the ejecta; if the launcher is held stationary, assign the external holding force opposite the recoil.",
+          "why_valid": "The launcher-on-ejecta and ejecta-on-launcher forces are interaction partners on different bodies; a stationary launcher needs zero net average force.",
+          "inputs": [
+            "CAP-NLM-THIRD-LAW"
+          ],
+          "output": "F_avg,on_launcher_by_ejecta = -R Delta p_item; held stationary -> F_avg,holding_on_launcher = +R Delta p_item"
+        },
+        {
+          "id": "NLM-MTR-5",
+          "role": "VERIFY",
+          "action": "Check units and signs before reporting the force.",
+          "why_valid": "The rate-times-momentum product must reduce to force units and the launcher/holding directions must be consistent with the chosen positive ejection direction.",
+          "inputs": [],
+          "output": "R Delta p_item units = (1/s)(kg m/s) = kg m/s^2 = N; recoil sign is opposite ejecta momentum gain"
+        }
+      ],
+      "relation_refs": [
+        "REL-NLM-LINEAR-MOMENTUM-ITEM",
+        "REL-NLM-FORCE-MOMENTUM-RATE",
+        "REL-NLM-DISCRETE-MOMENTUM-TRANSFER"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The force magnitude is firing rate times m v_out even when the item already had nonzero velocity in the chosen frame.",
+          "diagnostic_prompt": "If an item enters the launch process with v_in not equal to zero, which momentum determines the transferred amount: final momentum alone or final minus initial?",
+          "repair": "Use the momentum change per item: Delta p_item = m(v_out - v_in). Final momentum alone works only when the chosen-frame initial momentum is zero."
+        },
+        {
+          "wrong_idea": "The force that accelerates the ejecta and the recoil force on the launcher point in the same direction.",
+          "diagnostic_prompt": "With ejection defined positive, which body receives the positive interaction force and which receives its partner?",
+          "repair": "The ejecta gain positive momentum and receive a positive force. The launcher receives the equal-and-opposite interaction force. A holding force that keeps the launcher fixed points opposite the recoil."
+        },
+        {
+          "wrong_idea": "Once a momentum-rate formula appears, the problem should be treated as rocket or continuously varying-mass dynamics.",
+          "diagnostic_prompt": "Does this task require solving how a launcher's mass and velocity evolve continuously, or only the average momentum transferred by repeated fixed-mass items?",
+          "repair": "Stay with the discrete stream: momentum change per item times items per second. Do not import a rocket equation or variable-mass differential model."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A launcher is held fixed. Identical items of mass m enter the launch process with signed velocity v_in and leave with signed velocity v_out in the same inertial frame. The steady ejection rate is R items per second, and positive is the exit direction. Give the average force on the ejecta, the interaction force on the launcher, the external holding force required to keep the launcher fixed, and the unit check.",
+        "source_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Delta p_item = m(v_out-v_in). The average force on the ejecta is F_ejecta = R Delta p_item. The ejecta exert -R Delta p_item on the launcher, so the holding force required for a fixed launcher is +R Delta p_item. The units are N.",
+          "reasoning": [
+            "Use one declared inertial frame and the same positive direction for both item velocities.",
+            "One item's momentum change is final minus initial: m(v_out-v_in).",
+            "R items each second multiply the per-item momentum change into an average momentum-transfer rate R Delta p_item.",
+            "The launcher receives the opposite interaction force; a stationary launcher requires an external holding force that balances that recoil."
+          ],
+          "check": "(1/s)(kg m/s) = kg m/s^2 = N. If v_out = v_in, Delta p_item and this transfer force are zero; reversing the ejection direction reverses all signed force directions.",
+          "acceptable_alternatives": [
+            "State only magnitudes after explicitly naming the corresponding directions."
+          ],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit derives symbolic momentum-transfer and force relations and checks dimensions; it asserts no computed numerical force."
+        }
+      },
+      "research_contribution": "The owner-supplied ExamSIDE machine-gun demand requires momentum transferred per unit time and cannot be represented honestly by the existing constant-mass F_net = m a learner action alone. This microtopic adds only the discrete ejection-stream extension needed by that demand.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A held launcher sends identical items forward at a steady rate. Before calculating, should the interaction force on the launcher point with the ejection direction or opposite it?",
+          "defensible_answer": "Opposite the ejection direction. The ejecta gain forward momentum, while the launcher receives the interaction partner force backward."
+        },
+        "attempt": {
+          "produces": "A declared sign convention, one-item momentum change, rate-to-force calculation, recoil direction, holding-force direction and unit check.",
+          "closure": "MODEL_RESPONSE",
+          "model_response": "Choose + along ejection; compute Delta p_item=m(v_out-v_in); use F_on_ejecta=R Delta p_item; launcher recoil is the negative of that interaction force; a holding force for a fixed launcher balances the recoil; verify newtons."
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the signed momentum change of one item in the declared frame?",
+              "why_this_ask": "The force depends on momentum transferred, so the per-item change must be correct before any rate is used.",
+              "from_step_ref": "NLM-MTR-2"
+            },
+            {
+              "ask": "How much total item momentum changes during a time interval containing n identical ejections?",
+              "why_this_ask": "It makes the rate relation a count of repeated changes rather than a memorized formula.",
+              "from_step_ref": "NLM-MTR-3"
+            },
+            {
+              "ask": "After dividing by the interval, what force acts on the ejecta and what is the interaction-partner force on the launcher?",
+              "why_this_ask": "It separates the force on the stream from the recoil force on a different body.",
+              "from_step_ref": "NLM-MTR-4"
+            },
+            {
+              "ask": "If the launcher remains fixed, what external force must balance the recoil?",
+              "why_this_ask": "The requested holding force is not the recoil itself; it is the external force that cancels it.",
+              "from_step_ref": "NLM-MTR-4"
+            }
+          ],
+          "differs_from_teaching_path": "The learner reconstructs the rate relation from a finite count of repeated item momentum changes before seeing the compact R Delta p_item expression."
+        },
+        "boundary_test": {
+          "prompt": "If the ejected item leaves with exactly the same signed velocity it had on entry in the chosen frame, what momentum-transfer force does this bounded model predict?",
+          "answer": "Zero, because Delta p_item = m(v_out-v_in) = 0, so R Delta p_item = 0.",
+          "confirms": "The relation responds to momentum change per item, not merely to the fact that items are being emitted."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-NLM-LINEAR-MOMENTUM-ITEM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p = m v",
+      "meaning": "The signed one-dimensional linear momentum of one fixed-mass item equals its mass times its signed velocity in the declared inertial frame.",
+      "symbols": [
+        {
+          "symbol": "p",
+          "meaning": "Signed linear momentum of one item",
+          "unit_or_domain": "kg m/s"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Positive fixed mass of that item",
+          "unit_or_domain": "kg, m > 0"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Signed velocity of the item in the declared inertial frame",
+          "unit_or_domain": "m/s"
+        }
+      ],
+      "conditions": [
+        "The item mass is positive and fixed during the compared states.",
+        "Velocity and momentum use the same declared one-dimensional positive direction.",
+        "Initial and final velocities are measured in the same inertial frame."
+      ],
+      "derivation": [
+        {
+          "id": "REL-MTR-P-1",
+          "role": "DECLARE",
+          "action": "Use p=m v for the same fixed-mass item in its initial and final states.",
+          "why_valid": "The relation defines the bounded linear-momentum quantity used by this extension.",
+          "inputs": [],
+          "output": "p_in=m v_in; p_out=m v_out"
+        },
+        {
+          "id": "REL-MTR-P-2",
+          "role": "TRANSFORM",
+          "action": "Subtract the initial value from the final value.",
+          "why_valid": "A change is final minus initial in the same sign convention.",
+          "inputs": [],
+          "output": "Delta p_item=m(v_out-v_in)"
+        }
+      ],
+      "limits": [
+        "This relation alone is not a momentum-conservation law.",
+        "This extension does not introduce relativistic momentum."
+      ],
+      "checks": [
+        "Momentum units are kg m/s.",
+        "Reversing the velocity sign reverses the momentum sign."
+      ],
+      "gate_relation_ref": "REL-NLM-LINEAR-MOMENTUM-ITEM"
+    },
+    {
+      "id": "REL-NLM-FORCE-MOMENTUM-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "F_ext = dp/dt",
+      "meaning": "The net external force on a chosen system equals its directed rate of change of linear momentum; this bounded Grade-9 extension evaluates that rate through a steady discrete transfer rather than calculus.",
+      "symbols": [
+        {
+          "symbol": "F_ext",
+          "meaning": "Signed net external force on the chosen system",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "p",
+          "meaning": "Signed linear momentum of the chosen system or stream",
+          "unit_or_domain": "kg m/s"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Time",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "System boundary, inertial frame and positive direction are declared.",
+        "The momentum and force refer to the same chosen system and frame.",
+        "For the learner route here, the rate is evaluated from repeated finite momentum transfers; no derivative calculation is required."
+      ],
+      "derivation": [
+        {
+          "id": "REL-MTR-F-1",
+          "role": "DECLARE",
+          "action": "Over a finite interval Delta t, total the directed momentum change of the chosen ejecta stream.",
+          "why_valid": "A force rate must be tied to the momentum of the same chosen system over the same interval.",
+          "inputs": [],
+          "output": "Delta p_total over Delta t"
+        },
+        {
+          "id": "REL-MTR-F-2",
+          "role": "TRANSFORM",
+          "action": "Use the momentum change per unit time as the average force over that interval.",
+          "why_valid": "The discrete average is the finite-interval evaluation of the force-momentum-rate principle used in this extension.",
+          "inputs": [],
+          "output": "F_avg = Delta p_total/Delta t"
+        }
+      ],
+      "limits": [
+        "No impulse integral is required.",
+        "No continuously varying-mass differential equation is introduced.",
+        "This relation is not itself a collision-conservation rule."
+      ],
+      "checks": [
+        "(kg m/s)/s = kg m/s^2 = N.",
+        "The force sign follows the sign of the momentum-change rate for the chosen system."
+      ],
+      "gate_relation_ref": "REL-NLM-FORCE-MOMENTUM-RATE"
+    },
+    {
+      "id": "REL-NLM-DISCRETE-MOMENTUM-TRANSFER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "F_avg,on_ejecta = R Delta p_item",
+      "meaning": "If identical fixed-mass items undergo the same signed momentum change and are ejected at steady rate R items per second, the ejecta stream's average momentum-change rate and average force equal R times the momentum change per item.",
+      "symbols": [
+        {
+          "symbol": "F_avg,on_ejecta",
+          "meaning": "Signed average force on the ejecta stream",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Steady number of identical items ejected per unit time",
+          "unit_or_domain": "s^-1, R >= 0"
+        },
+        {
+          "symbol": "Delta p_item",
+          "meaning": "Signed momentum change of one ejected item",
+          "unit_or_domain": "kg m/s"
+        }
+      ],
+      "conditions": [
+        "The represented items are identical for the calculation or share the same Delta p_item.",
+        "R is the number ejected per unit time over the averaging interval.",
+        "Delta p_item uses the same inertial frame and positive direction for every item.",
+        "The reported force is an average over the repeated discrete ejections."
+      ],
+      "derivation": [
+        {
+          "id": "REL-MTR-R-1",
+          "role": "DECLARE",
+          "action": "For n identical items in interval Delta t, add their equal signed momentum changes.",
+          "why_valid": "Momentum change of the represented ejecta stream is the sum of the item momentum changes.",
+          "inputs": [
+            "REL-NLM-LINEAR-MOMENTUM-ITEM"
+          ],
+          "output": "Delta p_total = n Delta p_item"
+        },
+        {
+          "id": "REL-MTR-R-2",
+          "role": "TRANSFORM",
+          "action": "Divide by Delta t and use R=n/Delta t.",
+          "why_valid": "Items per unit time converts the per-item transfer into a momentum-transfer rate.",
+          "inputs": [
+            "REL-NLM-FORCE-MOMENTUM-RATE"
+          ],
+          "output": "F_avg,on_ejecta = (n/Delta t) Delta p_item = R Delta p_item"
+        }
+      ],
+      "limits": [
+        "Do not apply one common Delta p_item when the ejected items have materially different momentum changes without averaging them appropriately.",
+        "This is not a rocket equation or a continuously varying-mass solution."
+      ],
+      "checks": [
+        "R Delta p_item has newton units.",
+        "Doubling R while holding Delta p_item fixed doubles the average force.",
+        "If Delta p_item=0, the transfer force is zero."
+      ],
+      "gate_relation_ref": "REL-NLM-DISCRETE-MOMENTUM-TRANSFER"
+    }
+  ],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PHY-NLM-MOMENTUM-TRANSFER-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+      },
+      "title": "Completed discrete momentum-transfer force construction",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_needs": [
+        "Body-specific force ownership, Newton-II force reasoning and Newton-third-law interaction-pair direction remain explicit prerequisites from the ordinary NLM spine.",
+        "This route is entered only when a real question or owner request explicitly demands momentum-transfer force."
+      ],
+      "learner_actions": [
+        "Declare frame and positive direction.",
+        "Compute one item's signed momentum change.",
+        "Convert repeated item changes into momentum transferred per unit time.",
+        "Separate force on ejecta, launcher recoil and external holding force.",
+        "Verify force units and boundary cases."
+      ],
+      "help_plan": [
+        "Ask for final-minus-initial momentum of one item before giving the rate relation.",
+        "Ask how many identical transfers occur during a finite time interval before revealing R Delta p_item.",
+        "Ask which body each interaction force acts on before asking for the holding-force direction."
+      ],
+      "reveal_plan": "The completed symbolic construction is shown only after the sign convention, item momentum change and system/body distinction are explicit.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND",
+          "purpose": "Explicit preparation-demand boundary",
+          "reason": "Justifies why this non-default extension exists without turning the external item into canonical curriculum or question custody."
+        },
+        {
+          "resource_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+          "purpose": "Bounded self-study construction",
+          "reason": "Supplies the exact teaching route while preserving the issue's non-goals."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not use this route for general collisions, coefficient of restitution or center-of-mass methods.",
+        "Do not infer a rocket equation or continuously varying-mass model.",
+        "Do not use it in the ordinary default NLM path when no momentum-transfer demand exists."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PHY-NLM-MOMENTUM-TRANSFER-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+        "SRC-EXAMSIDE-NLM-MOMENTUM-RATE-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+      },
+      "title": "Reconstruct discrete momentum-transfer force from repeated item changes",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "entry_needs": [
+        "Same NLM prerequisites as Core1A; no rough percentage or generic NLM request may silently activate this extension."
+      ],
+      "learner_actions": [
+        "Predict recoil direction before calculation.",
+        "Build Delta p_item from signed initial and final item velocities.",
+        "Reconstruct force as repeated momentum change per unit time.",
+        "Infer the holding force only after identifying the launcher reaction."
+      ],
+      "help_plan": [
+        "Keep the per-item momentum change separate from the ejection rate.",
+        "If signs are confused, return to the declared positive ejection direction and body ownership.",
+        "If the learner invokes collisions or rockets, ask which requested quantity actually requires those models."
+      ],
+      "reveal_plan": "The compact rate formula is withheld until the learner has reconstructed it from n repeated momentum changes over Delta t.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER",
+          "purpose": "Self-tutor reconstruction",
+          "reason": "The route is authored to expose the system/sign decision without broadening into a momentum unit."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not treat the derivative notation as a request for calculus.",
+        "Do not turn this extension into a prerequisite of friction, connected-body, string or ordinary Newton-II work."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

@@ -326,6 +326,11 @@ def _nlmcc_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-NLM-CONTACT-CONSTRAINTS")
 
 
+@mutates("FAL-NLMMTR-SYMBOL-NO-UNIT")
+def _nlmmtr_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-NLM-MOMENTUM-TRANSFER-RATE")
+
+
 @mutates("FAL-WEP9-SYMBOL-NO-UNIT")
 def _wep9_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-WORK-ENERGY-GRADE9")

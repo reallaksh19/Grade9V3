@@ -1,0 +1,18 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-NLM-MOMENTUM-TRANSFER-DEMAND-PILOT",
+  "subject": "Physics",
+  "source_note": "Owner-supplied approved ExamSIDE item: https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5 . This fixture stores only the demand-family mapping needed to test routing. It does not reproduce the external question, claim Pinnacle-issued micro-scope, or create canonical question custody.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-NLM-DEMAND-MOMENTUM-TRANSFER-RATE",
+      "primary_capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: compute average recoil/holding force from repeated fixed-mass ejecta by momentum change per item times ejection rate, with explicit force direction."
+    }
+  ]
+}

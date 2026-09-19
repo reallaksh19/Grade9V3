@@ -512,15 +512,18 @@
         },
         {
           "micro": "momentum-transfer / rate-of-momentum force (recoil or ejection stream)",
-          "local_state": "LOCAL_GAP",
+          "local_state": "LOCAL_EXTENSION_AVAILABLE",
           "local_refs": [
-            "CAP-NLM-SECOND-LAW"
+            "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-THIRD-LAW"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
           "external_question_demand": "CONFIRMED_EXAMSIDE",
-          "action": "AUTHOR_EXPLICIT_DEMAND_EXTENSION",
+          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED",
           "priority_if_confirmed": "MEDIUM",
-          "demand_note": "Owner-supplied ExamSIDE machine-gun PYQ requires force as rate of momentum transfer; keep distinct from a full collision/momentum-conservation curriculum."
+          "demand_note": "Owner-supplied ExamSIDE machine-gun PYQ requires force as rate of momentum transfer. Local support is an explicit-demand discrete-ejection extension only; full collision/momentum-conservation, impulse-integral and rocket/variable-mass curricula remain outside this slice."
         },
         {
           "micro": "momentum / impulse / conservation under an NLM chapter",
