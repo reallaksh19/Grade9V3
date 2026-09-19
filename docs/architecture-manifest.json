@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 149,
+  "component_count": 150,
   "relation_count": 203,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 56,
+    "TEST": 57,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:68ebfd720bea0238b4ecb754cb555ba54c726032cacabe9be0dd7b0b6173b586",
+  "digest": "sha256:d68e25a99248b5e50826e01e5d7531b323a310575a215183b31642636d7128dc",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -978,13 +978,6 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 29339,
-      "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
-    },
-    {
       "path": "tests/test_study_session_scenario_scan.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -992,11 +985,25 @@
       "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
     },
     {
+      "path": "tests/test_study_session.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 29339,
+      "sha256": "d9a399d139c745b4a813b2a1c3ac22a0c4ac40b6699e415b624e00782a6c8330"
+    },
+    {
       "path": "tests/test_study_start.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 8899,
       "sha256": "145b8a81bbc2f1fec55161059f36772fc3b765ca9bd1467447cf7ef3a4c860ce"
+    },
+    {
+      "path": "tests/test_terminal1_pinnacle_micro_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3890,
+      "sha256": "80a28d6ad6a0aed71f60f47aacd32a6f0302d8fd7d2775eb86c84bd709d7fea2"
     },
     {
       "path": "tests/test_tools.py",
@@ -1048,18 +1055,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run-builder/index.html",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 7041,
-      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
-    },
-    {
       "path": "tools/run_agent_path_stress.py",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 6932,
       "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
+    },
+    {
+      "path": "tools/run-builder/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 7041,
+      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
     }
   ],
   "relations": [
