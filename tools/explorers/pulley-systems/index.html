@@ -158,6 +158,33 @@
         </div>
       </div>
 
+      <div class="subpanel" style="margin-top:16px;">
+        <h3>Separate free-body diagrams</h3>
+        <svg class="physics-svg" style="min-height:220px;" viewBox="0 0 700 230" role="img" aria-label="Separate free-body diagrams for mass 1 and mass 2">
+          <defs>
+            <marker id="fbdArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
+            </marker>
+          </defs>
+          <text x="175" y="24" text-anchor="middle" class="strong">FBD: m₁</text>
+          <rect x="135" y="92" width="80" height="48" rx="6" class="mass"></rect>
+          <text x="175" y="121" text-anchor="middle">m₁</text>
+          <line x1="175" y1="92" x2="175" y2="42" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <line x1="175" y1="140" x2="175" y2="194" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <text id="fbdM1T" x="190" y="56">T = —</text>
+          <text id="fbdM1W" x="190" y="186">m₁g = —</text>
+
+          <text x="525" y="24" text-anchor="middle" class="strong">FBD: m₂</text>
+          <rect x="485" y="92" width="80" height="48" rx="6" class="mass"></rect>
+          <text x="525" y="121" text-anchor="middle">m₂</text>
+          <line x1="525" y1="92" x2="525" y2="42" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <line x1="525" y1="140" x2="525" y2="194" stroke="var(--accent)" stroke-width="3" marker-end="url(#fbdArrow)"></line>
+          <text id="fbdM2T" x="540" y="56">T = —</text>
+          <text id="fbdM2W" x="540" y="186">m₂g = —</text>
+        </svg>
+        <p id="fbdAcceleration" class="mini">Force arrows show interactions only. Acceleration is inferred from the unequal force magnitudes.</p>
+      </div>
+
       <div class="grid-2" style="margin-top:16px;">
         <div class="subpanel">
           <h3>Tension check</h3>
@@ -405,6 +432,15 @@
     $('valM1').textContent = `${fmt(v.w1, 2)} N`;
     $('valT').textContent = `${fmt(v.T, 2)} N`;
     $('valM2').textContent = `${fmt(v.w2, 2)} N`;
+    $('fbdM1T').textContent = `T = ${fmt(v.T, 2)} N`;
+    $('fbdM1W').textContent = `m₁g = ${fmt(v.w1, 2)} N`;
+    $('fbdM2T').textContent = `T = ${fmt(v.T, 2)} N`;
+    $('fbdM2W').textContent = `m₂g = ${fmt(v.w2, 2)} N`;
+    $('fbdAcceleration').textContent = v.a > 1e-9
+      ? `m₁ accelerates up and m₂ accelerates down; |a| = ${fmt(Math.abs(v.a), 3)} m/s².`
+      : v.a < -1e-9
+        ? `m₁ accelerates down and m₂ accelerates up; |a| = ${fmt(Math.abs(v.a), 3)} m/s².`
+        : 'Equal masses: both net forces are zero and a = 0.';
     const maxVal = Math.max(v.w1, v.w2, v.T, 0.001);
     $('barM1').style.width = `${100 * v.w1 / maxVal}%`;
     $('barT').style.width = `${100 * v.T / maxVal}%`;
