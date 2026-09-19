@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 152,
-  "relation_count": 204,
+  "component_count": 155,
+  "relation_count": 205,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 59,
+    "TEST": 62,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:82332a8742ff265876bbd85cb675fb160d4ba9be764e1b51391d806f33f7f58d",
+  "digest": "sha256:4c705f0120b501e4e704388753046378dd61215f4c6df7adb19d7126b93e1fb0",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -649,6 +649,20 @@
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-nlm-pinnacle-core.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2344,
+      "sha256": "b6d0a6b8d83a2cd0466b970bb9c942f8d5be2e8da39da534ad30fd4686c66e71"
+    },
+    {
+      "path": "tests/fixtures/real_pilots/examside-vector-algebra-core.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2108,
+      "sha256": "181f1869fba9277b13a45289af549ae63319049e5bd213e5483e35b1f863d408"
+    },
+    {
       "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -792,8 +806,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16476,
-      "sha256": "cbe820388961ce6a24e767ea96dec5ec82d5089ea2892c5c2efce3d9084d475c"
+      "bytes": 16755,
+      "sha256": "2c85f55ca75cddb821a4279d1900060d5e9720d752723d67f7c3c7556eb1721a"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -850,6 +864,13 @@
       "role_description": "Executable checks",
       "bytes": 2242,
       "sha256": "9591db27e1ce43375602e86e4a22071ef69d3d3c5fc4f70f49b44d5f1ee5e657"
+    },
+    {
+      "path": "tests/test_grade9_vector_nlm_examside.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4775,
+      "sha256": "ae0621294cd08256387ea3684a9dfc94bae9a633b4740d6af560b6ae99058850"
     },
     {
       "path": "tests/test_grade9_work_energy_scope.py",
@@ -1016,8 +1037,8 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4675,
-      "sha256": "ad791764aa822b2b42abeb2b2b85e70eebb8de4ac0db71877d15f1d73842b0e8"
+      "bytes": 5764,
+      "sha256": "0b9ae745f032010207e530f4ee2cf2525e079a4f9378e09adc8d6c706905415a"
     },
     {
       "path": "tests/test_tools.py",
@@ -1051,8 +1072,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 498893,
-      "sha256": "6227238c48e35c6de85db660c85a75fe8347412752d52f698dbe7a249dfe9e1f"
+      "bytes": 545361,
+      "sha256": "f3bbae079dc146b4653fcb2476fc022b02ad5a1ebc2415c52c86a4a2b6a813a4"
     },
     {
       "path": "tools/index.html",
@@ -1801,6 +1822,11 @@
     },
     {
       "from": "tests/test_grade9_sound_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_vector_nlm_examside.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
