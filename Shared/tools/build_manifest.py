@@ -87,7 +87,7 @@ def generated_files() -> dict[str, bytes]:
     regeneration order converged on. Rendering in memory fixes that without making
     a check write to the tree.
     """
-    return {str(build_web_data.OUT.relative_to(REPO)):
+    return {build_web_data.OUT.relative_to(REPO).as_posix():
             build_web_data.render(build_web_data.build()).encode("utf-8")}
 
 
@@ -176,7 +176,7 @@ def main() -> int:
         return 0
     build_web_data.write()
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    MANIFEST.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {MANIFEST.relative_to(REPO)}: {current['component_count']} components, "
           f"{current['relation_count']} relations, {current['digest']}")
     return 0

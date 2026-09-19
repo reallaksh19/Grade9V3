@@ -81,8 +81,9 @@ class Grade9Motion2DAgentAAtlas(unittest.TestCase):
         by_id = {row["id"]: row for row in micro["teaching_path"]}
         self.assertIn("v_y=0", by_id["K2D3-4"]["action"])
         self.assertIn("Delta y=0", by_id["K2D3-5"]["action"])
-        self.assertIn("u_y=0", by_id["K2D3-6"]["action"])
-        self.assertIn("unequal-height", by_id["K2D3-6"]["action"])
+        self.assertIn("actual Delta y=y_f-y_i", by_id["K2D3-6"]["action"])
+        self.assertIn("actual u_y", by_id["K2D3-6"]["action"])
+        self.assertIn("horizontal launch specifically", by_id["K2D3-6"]["action"])
 
         misconception_text = " ".join(
             row["wrong_idea"] for row in micro["misconceptions"]
@@ -91,6 +92,15 @@ class Grade9Motion2DAgentAAtlas(unittest.TestCase):
         self.assertIn("same-height", misconception_text)
         self.assertIn("horizontal launch", misconception_text)
         self.assertIn("horizontal speed", misconception_text)
+
+    def test_unequal_height_transfer_repairs_to_actual_landing_geometry_leaf(self):
+        q = next(
+            row for row in self.package["questions"]
+            if row["id"] == "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03"
+        )
+        self.assertEqual(q["repair_ref"], "K2D3-6")
+        self.assertIn("u_y=10", q["stem"])
+        self.assertIn("15 m above level ground", q["stem"])
 
     def test_outputs_remain_semantic_leaves_not_new_capabilities(self):
         caps = {row["id"] for row in self.package["capabilities"]}
