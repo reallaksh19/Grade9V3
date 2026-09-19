@@ -1,0 +1,2602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NLM Topic Atlas · Laws of Motion (Owner Review)</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --bg-card-hover: #2d333b;
+      --border: #30363d;
+      --border-accent: #388bfd;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --text-dim: #6e7681;
+      --accent: #58a6ff;
+      --accent-glow: rgba(56, 139, 253, 0.15);
+      --chip-ok-bg: #1f3b2b;
+      --chip-ok-border: #2ea043;
+      --chip-ok-text: #56d364;
+      --chip-warn-bg: #382c16;
+      --chip-warn-border: #9e6a03;
+      --chip-warn-text: #f0883e;
+      --chip-hold-bg: #3d1c24;
+      --chip-hold-border: #a42c3d;
+      --chip-hold-text: #f85149;
+      --chip-purple-bg: #2b1d3d;
+      --chip-purple-border: #8957e5;
+      --chip-purple-text: #d2a8ff;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 0 0 80px 0;
+    }
+
+    /* Top Sticky Header */
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .header-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge.ok { background: var(--chip-ok-bg); border: 1px solid var(--chip-ok-border); color: var(--chip-ok-text); }
+    .badge.warn { background: var(--chip-warn-bg); border: 1px solid var(--chip-warn-border); color: var(--chip-warn-text); }
+    .badge.hold { background: var(--chip-hold-bg); border: 1px solid var(--chip-hold-border); color: var(--chip-hold-text); }
+    .badge.purple { background: var(--chip-purple-bg); border: 1px solid var(--chip-purple-border); color: var(--chip-purple-text); }
+    .badge.neutral { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); }
+
+    /* Quick jump nav */
+    nav.jump-nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    nav.jump-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(88, 166, 255, 0.08);
+      border: 1px solid rgba(88, 166, 255, 0.2);
+      transition: all 0.15s ease;
+    }
+    nav.jump-nav a:hover {
+      background: rgba(88, 166, 255, 0.18);
+      border-color: var(--accent);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Section styling */
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 32px 0 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .section-title span.count {
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    /* Summary Strip Panel */
+    .summary-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-detail {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Visual Progression Map */
+    .progression-container {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+    .lane-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lane-heading.default { color: #58a6ff; }
+    .lane-heading.non-default { color: #d2a8ff; }
+
+    .cluster-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .cluster-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+    .cluster-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 6px;
+    }
+    .rung-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rung-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .rung-node:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    .node-id {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-right: 8px;
+    }
+    .node-title {
+      font-size: 12px;
+      font-weight: 600;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .non-default-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .extension-box {
+      background: var(--bg);
+      border: 1px solid rgba(137, 87, 229, 0.4);
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+    }
+    .extension-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0; width: 4px;
+      background: var(--chip-purple-border);
+      border-radius: 8px 0 0 8px;
+    }
+
+    /* Detailed Rung Cards */
+    .rungs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    details.rung-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    details.rung-card[open] {
+      border-color: var(--border-accent);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    details.rung-card.non-default[open] {
+      border-color: var(--chip-purple-border);
+    }
+    summary.rung-summary {
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      background: var(--bg-card);
+      gap: 12px;
+      transition: background 0.15s;
+    }
+    summary.rung-summary:hover {
+      background: var(--bg-card-hover);
+    }
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+    .rung-num-pill {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: #1c2128;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      min-width: 44px;
+      text-align: center;
+    }
+    .rung-card.non-default .rung-num-pill {
+      color: var(--chip-purple-text);
+      border-color: var(--chip-purple-border);
+    }
+    .summary-title-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .summary-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-body {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .meta-item-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .meta-item-val {
+      font-family: var(--font-mono);
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    .block-subcard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .subcard-heading {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quote-box {
+      background: rgba(0,0,0,0.2);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 0 4px 4px 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .quote-box.misconception {
+      border-left-color: var(--chip-hold-border);
+      background: rgba(248, 81, 73, 0.05);
+    }
+    .quote-box.repair {
+      border-left-color: var(--chip-ok-border);
+      background: rgba(46, 160, 67, 0.05);
+    }
+
+    .variation-step {
+      font-size: 12px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .variation-step:last-child { border-bottom: none; }
+    .variation-label {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Practice & Transfer section */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn.active {
+      background: var(--bg-card);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .q-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .q-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .q-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .q-stem {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .q-ans {
+      background: var(--bg-card);
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-left: 2px solid var(--chip-ok-border);
+    }
+
+    .transfer-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .transfer-table th {
+      background: var(--bg-card);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .transfer-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .transfer-table tr:last-child td { border-bottom: none; }
+
+    /* Out of scope box */
+    .boundary-box {
+      background: #121d2f;
+      border: 1px solid #1f3b5c;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 32px;
+    }
+    .boundary-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #79c0ff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .boundary-list {
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .boundary-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 13px;
+      color: #c9d1d9;
+    }
+    .boundary-list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: #f85149;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1280px;
+      margin: 40px auto 0 auto;
+      padding: 20px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-title-group">
+    <div class="header-title">
+      NLM Topic Atlas
+      <span class="badge purple">Owner Review</span>
+    </div>
+    <div class="header-subtitle">Topic: Laws of Motion &middot; <code>MATRIX-PHY-NLM-FIRST-LAW</code></div>
+  </div>
+  <nav class="jump-nav">
+    <a href="#summary">Summary</a>
+    <a href="#progression">Progression Lane</a>
+    <a href="#rungs">Rung Cards (11)</a>
+    <a href="#practice">Practice & Transfer</a>
+    <a href="#boundaries">Boundaries</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- Section 1: Summary Strip -->
+  <section id="summary">
+    <div class="summary-panel">
+      <div class="stat-card">
+        <div class="stat-label">Governed Topic & Matrix</div>
+        <div class="stat-value">Laws of Motion</div>
+        <div class="stat-detail"><code>MATRIX-PHY-NLM-FIRST-LAW</code></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Rungs & Capabilities</div>
+        <div class="stat-value">
+          11 Rungs <span class="badge ok">10 Default</span> <span class="badge purple">1 Non-Default</span>
+        </div>
+        <div class="stat-detail">11 Defined Instructional Capabilities</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Difficulty Mix</div>
+        <div class="stat-value">
+          <span class="badge hold">6 Hard</span>
+          <span class="badge warn">5 Medium</span>
+          <span class="badge neutral">0 Easy</span>
+        </div>
+        <div class="stat-detail">No low-demand filler rungs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Practice & Transfer Inventory</div>
+        <div class="stat-value">17 Questions</div>
+        <div class="stat-detail">12 Core 2A Practice + 5 Core 2B Transfer Items</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Visual Progression Map -->
+  <section id="progression">
+    <div class="section-title">
+      Visual Progression Lane
+      <span class="count">Default lane order: R1 → R2 → R3 → R5 → R6 → R8 → R9 → R10 → R11 → R7</span>
+    </div>
+
+    <div class="progression-container">
+      <div class="lane-heading default">
+        <span>●</span> Default Instructional Route (10 Rungs)
+      </div>
+
+      <div class="cluster-wrapper">
+        <!-- Cluster 1: Foundation -->
+        <div class="cluster-box">
+          <div class="cluster-title">
+            <span>1. Foundation</span>
+            <span>Pos: 20–70</span>
+          </div>
+          <div class="rung-flow">
+            <div class="rung-node" onclick="openRung('R1')">
+              <span class="node-id">R1</span>
+              <span class="node-title">Net-Zero Motion</span>
+              <span class="badge warn">Medium</span>
+            </div>
+            <div class="rung-node" onclick="openRung('R2')">
+              <span class="node-id">R2</span>
+              <span class="node-title">Forces Sum Zero</span>
+              <span class="badge warn">Medium</span>
+            </div>
+            <div class="rung-node" onclick="openRung('R3')">
+              <span class="node-id">R3</span>
+              <span class="node-title">FBD Body Ownership</span>
+              <span class="badge hold">Hard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cluster 2: Force-Model Applications -->
+        <div class="cluster-box">
+          <div class="cluster-title">
+            <span>2. Force-Model Applications</span>
+            <span>Pos: 78–86</span>
+          </div>
+          <div class="rung-flow">
+            <div class="rung-node" onclick="openRung('R5')">
+              <span class="node-id">R5</span>
+              <span class="node-title">Friction (Rel Sliding)</span>
+              <span class="badge warn">Medium</span>
+            </div>
+            <div class="rung-node" onclick="openRung('R6')">
+              <span class="node-id">R6</span>
+              <span class="node-title">Second Law (F_net = ma)</span>
+              <span class="badge warn">Medium</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cluster 3: Quantitative & Contact Chain -->
+        <div class="cluster-box" style="flex: 1.3;">
+          <div class="cluster-title">
+            <span>3. Quantitative & Constraints</span>
+            <span>Pos: 88–93</span>
+          </div>
+          <div class="rung-flow">
+            <div class="rung-node" onclick="openRung('R8')">
+              <span class="node-id">R8</span>
+              <span class="node-title">Quantitative Friction</span>
+              <span class="badge hold">Hard</span>
+            </div>
+            <div class="rung-node" onclick="openRung('R9')">
+              <span class="node-id">R9</span>
+              <span class="node-title">Connected Common Accel</span>
+              <span class="badge hold">Hard</span>
+            </div>
+            <div class="rung-node" onclick="openRung('R10')">
+              <span class="node-id">R10</span>
+              <span class="node-title">Ideal-String Tension</span>
+              <span class="badge hold">Hard</span>
+            </div>
+            <div class="rung-node" onclick="openRung('R11')">
+              <span class="node-id">R11</span>
+              <span class="node-title">Fixed-Pulley Constraint</span>
+              <span class="badge hold">Hard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cluster 4: Interaction Closure -->
+        <div class="cluster-box">
+          <div class="cluster-title">
+            <span>4. Interaction Closure</span>
+            <span>Pos: 94</span>
+          </div>
+          <div class="rung-flow">
+            <div class="rung-node" onclick="openRung('R7')">
+              <span class="node-id">R7</span>
+              <span class="node-title">Third-Law Partner Forces</span>
+              <span class="badge warn">Medium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Default and Side Cards -->
+      <div class="lane-heading non-default">
+        <span>◆</span> Non-Default Explicit-Demand Extensions
+      </div>
+
+      <div class="non-default-grid">
+        <!-- R4 Panel -->
+        <div class="extension-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div>
+              <span class="badge purple" style="margin-bottom: 4px;">Branch Extension</span>
+              <h4 style="font-size: 14px; font-weight: 700;">R4 · Frame Choice / Pseudo-Force</h4>
+            </div>
+            <span class="badge hold">Hard</span>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            <code>CAP-NLM-FRAME-CHOICE</code> (Ladder Pos: 100) &middot; Prereq: <code>R3</code>
+          </p>
+          <div class="quote-box" style="border-left-color: var(--chip-purple-border); font-size: 12px;">
+            Accelerating observers require a declared pseudo-force convention. Quarantined from default route to prevent unprompted pseudo-force usage.
+          </div>
+          <div style="margin-top: 12px;">
+            <button class="tab-btn active" style="font-size: 11px; padding: 3px 8px;" onclick="openRung('R4')">View Rung Card ↓</button>
+          </div>
+        </div>
+
+        <!-- Momentum Transfer Card -->
+        <div class="extension-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div>
+              <span class="badge purple" style="margin-bottom: 4px;">Separate Package</span>
+              <h4 style="font-size: 14px; font-weight: 700;">Momentum-Transfer Rate / Recoil Force</h4>
+            </div>
+            <span class="badge warn">Medium</span>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            <code>LIB-PHY-NLM-MOMENTUM-TRANSFER-AUTHORED</code> &middot; Microtopic: <code>MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE</code>
+          </p>
+          <div class="quote-box" style="border-left-color: var(--chip-purple-border); font-size: 12px;">
+            Teaches force from a steady stream of discrete momentum changes (&Delta;p / &Delta;t). Carried as an independent explicit-demand extension.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Detailed Rung Cards -->
+  <section id="rungs">
+    <div class="section-title">
+      Detailed Rung Cards
+      <span class="count">Click to expand/collapse full pedagogical contracts</span>
+    </div>
+
+    <div class="rungs-list">
+
+      <details class="rung-card" id="card-R1">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R1</span>
+            <div>
+              <div class="summary-title-text">Zero net force allows steady motion</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-NET-ZERO-MOTION &middot; CAP-NLM-NET-ZERO-MOTION
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge warn">MEDIUM</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 20</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-NET-ZERO-MOTION</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Relate zero net force to unchanged velocity.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">None</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Everyday friction makes continued motion look as if it needs a continuing push.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  Zero net force does not mean zero motion; it means velocity does not change, so rest and steady motion are both compatible with the same condition.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>A case that keeps moving after the push has ended.</li><li>A case at rest with no change in motion, treated by the same rule.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>whether a brief push is still in contact</em> while holding <em>the cart&#x27;s direction and an approximately frictionless surface after release</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the cart can continue moving after the applied push becomes zero</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the initial velocity from zero to nonzero</em> while holding <em>zero net horizontal force</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>both rest and steady motion fit the same zero-change condition</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "A force must keep acting in the direction of motion or the object must stop."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> A low-friction cart is pushed and then released. After the hand loses contact, what horizontal force is required merely to keep it moving steadily?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> Zero net force is compatible with both. Each cart can keep its current velocity unchanged.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> Ask whether the motion description contains speeding up, slowing down, or turning. If none occurs, zero net force remains compatible.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">A low-friction cart is already moving when the push ends. Must a new forward force keep acting just to preserve that motion?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A two-case prediction for a released moving cart and an initially resting cart under the same zero-net-force condition.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path presents the moving and resting cases as a finished comparison. The learner route first removes the push, defines what change would look like, then discovers that both cases share unchanged velocity.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">A cart moving east begins to slow down. Can zero net force still describe that interval?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R2">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R2</span>
+            <div>
+              <div class="summary-title-text">Nonzero forces can cancel</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-FORCES-SUM-ZERO &middot; CAP-NLM-FORCES-SUM-ZERO
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge warn">MEDIUM</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 45</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-FORCES-SUM-ZERO</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Distinguish zero net force from the absence of individual forces.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-NET-ZERO-MOTION</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Learners often read a zero total as evidence that nothing is present instead of as cancellation among directed contributions.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  Several nonzero forces can act on one body while their directed sum is zero; the motion responds to the net result rather than to the mere presence of forces.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>At least two nonzero force arrows whose vector sum is zero.</li><li>A comparison between &#x27;no force&#x27; and &#x27;zero net force&#x27;.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>the magnitudes of two opposite collinear forces together</em> while holding <em>their equality and opposite directions</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the individual arrows can grow while the net arrow remains zero</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "If the net force is zero, no forces are acting."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> A book rests on a table. Are there no forces on the book, or can nonzero forces add to zero?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> List every interaction force on the body, then combine their directions; cancellation belongs to the net result, not to the individual forces.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> Increase both forces equally; the net remains zero even though neither individual force disappears.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">Two people push the same box equally hard in opposite directions. If the box has zero net force, does that mean neither person is exerting a force?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A force inventory that keeps both opposite contributions visible plus a separate statement of the net result.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path lists and combines the forces. The learner route commits to the inventory first, then derives cancellation and tests it by changing both contributions together.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">One of the two equal opposite pushes is removed. Is the net force still zero?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R3">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R3</span>
+            <div>
+              <div class="summary-title-text">A free-body diagram belongs to one chosen body</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-FBD-BODY-OWNERSHIP &middot; CAP-NLM-FBD-BODY-OWNERSHIP
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge hold">HARD</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 70</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-FBD-BODY-OWNERSHIP</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Assign each force arrow to the body on which that force acts.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">None</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Equal-and-opposite partner forces look like natural cancellations until the learner asks which body each arrow actually acts on.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  A free-body diagram contains forces acting on one chosen body only; the equal-and-opposite partner of an interaction acts on the other body and belongs on that other body&#x27;s diagram.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>The same interaction shown on two separate body diagrams.</li><li>A rule that every arrow on one diagram must name an external agent acting on that chosen body.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>which interacting body is isolated</em> while holding <em>the same horse-cart interaction</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the equal-and-opposite partner arrow moves to the other body&#x27;s diagram rather than cancelling on one diagram</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>an additional external horizontal force on one body</em> while holding <em>the same contact between the two bodies</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the two bodies can have different net forces even though the two partner forces remain equal and opposite</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Equal and opposite partner forces cancel each other on one body&#x27;s free-body diagram."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box&#x27;s free-body diagram.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The person&#x27;s force on the box belongs on the box diagram. The box&#x27;s equal-and-opposite force on the person belongs on the person&#x27;s diagram.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> Switch the chosen body to the person; the membership of the two partner arrows must switch with it.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">A horse pulls a cart while the cart pulls back on the horse. If you draw only the cart, should both of those horizontal forces appear on the cart&#x27;s free-body diagram?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">Two separate body inventories, one for the cart and one for the horse, with the contact partner arrows assigned to the body each arrow acts on.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path demonstrates two correct diagrams. The learner route begins from one chosen body and repeatedly applies the receiver test until the separation of partner arrows is forced.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">Two hands push the same box equally in opposite directions. Can those two forces both appear on the box&#x27;s free-body diagram?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R5">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R5</span>
+            <div>
+              <div class="summary-title-text">Friction opposes relative sliding at a contact</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-FRICTION &middot; CAP-NLM-FRICTION
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge warn">MEDIUM</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 78</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-FRICTION</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Identify friction as a contact force that opposes relative sliding or the tendency to slide.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-FBD-BODY-OWNERSHIP</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Friction is often memorized as &#x27;opposite motion&#x27;, which fails for driven or rolling contacts.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  Friction is a contact force along the surface that opposes relative sliding, or the tendency for relative sliding, between the contacting surfaces; it is not defined by the object&#x27;s overall velocity alone.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>A named contact surface and a relative-sliding or slip-tendency statement.</li><li>A conveyor-belt counterexample where friction need not point opposite the object&#x27;s ground-frame velocity.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>the belt speed relative to the box</em> while holding <em>the same contact pair</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>friction direction follows relative slip tendency at the contact</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the object&#x27;s ground-frame motion direction</em> while holding <em>the same relative slip tendency</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>friction is not defined by the object&#x27;s velocity alone</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Friction always points opposite the object&#x27;s velocity."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box&#x27;s motion?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Decide the relative sliding tendency at the contact first; friction opposes that tendency.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The friction force on the box points to the right.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> The answer is allowed to point with the box&#x27;s motion because friction is defined by the contact slip tendency, not by the box&#x27;s velocity alone.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">Must friction on a moving object always point opposite the object&#x27;s motion?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A contact-level slip-tendency statement and a friction arrow.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path begins from the contact; the learner route begins from the misleading object-velocity shortcut and repairs it through relative slip.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">If there is no relative sliding and no tendency to slide at a contact, must friction be nonzero?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R6">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R6</span>
+            <div>
+              <div class="summary-title-text">Net force, not any one force, sets acceleration</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-SECOND-LAW &middot; CAP-NLM-SECOND-LAW
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge warn">MEDIUM</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 86</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-SECOND-LAW</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Relate signed net external force to acceleration with F_net = m a.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-FBD-BODY-OWNERSHIP</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">The difficult step is completing a one-body force inventory before using the simple equation.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  For a chosen body of positive mass in the Grade 9 inertial-frame model, acceleration points with the signed net external force and satisfies F_net = m a.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>One chosen body with all signed external forces summed before using F = ma.</li><li>A zero-net-force boundary that recovers zero acceleration.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>the signed net external force</em> while holding <em>the same positive mass</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>acceleration changes in direct proportion and follows the net-force sign</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the mass</em> while holding <em>the same net force</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>larger mass gives smaller acceleration magnitude</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Acceleration points with whichever individual force looks largest in the diagram."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Add all signed external forces first; acceleration follows the net force, not an isolated arrow.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The acceleration is +3 m/s^2.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> Multiplying 4 kg by +3 m/s^2 recovers +12 N.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">A body moves right while its net external force points left. Which way is its acceleration?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A one-body signed force sum and a signed acceleration.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path builds the force sum directly; the learner route starts from the body choice and uses the zero-force boundary as a final falsifier.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">If the net external force is zero on a positive-mass body, what acceleration does F_net = ma give?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R8">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R8</span>
+            <div>
+              <div class="summary-title-text">Quantitative static and kinetic friction conditions</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-FRICTION-QUANT &middot; CAP-NLM-FRICTION-QUANT
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge hold">HARD</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 88</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-FRICTION-QUANT</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Decide whether static friction can supply the tangential force required by the chosen-body dynamics; if relative sliding is established, use the declared kinetic-friction model.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-FRICTION, CAP-NLM-SECOND-LAW</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">The difficult decision is not substituting mu N; it is determining the required tangential force, the actual normal reaction, and whether the contact can remain static.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>A no-slip friction requirement compared against the static limit.</li><li>An explicit case where static friction is below its maximum.</li><li>A normal reaction obtained from the actual FBD rather than assumed equal to mg.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>the applied tangential force below the slip threshold</em> while holding <em>the same contact, N and mu_s</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>static friction changes to match the required no-slip value while remaining below its limit</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the contact state from impending slip to established sliding</em> while holding <em>the same surface pair and normal reaction</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the governing relation changes from the static threshold to the kinetic model</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Friction always equals mu N."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip.
+                    </div>
+                  </div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "The normal force is always mg."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Determine N from the perpendicular free-body equation. N = mg is only a special case.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  A contact has known normal reaction N and coefficient mu_s. The no-slip force equation requires tangential friction f_required. State the test for whether static contact is possible, when equality with mu_s N is justified, and what changes once sliding is established.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> Static contact is possible when |f_required| &lt;= mu_s N. Equality |f_s| = mu_s N is justified only at impending slip. After relative sliding is established, use the kinetic model |f_k| = mu_k N with direction opposite the relative sliding.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> If f_required = 0, the rule must allow f_s = 0 even when mu_s N is nonzero; that falsifies the unconditional f = mu N shortcut.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">A block remains at rest while the applied tangential force is gradually increased. Before impending slip, must static friction already equal mu_s N?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A contact-state decision that computes the no-slip friction requirement, compares it with the static limit, and selects the correct model.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The learner begins by testing an assumed no-slip state and lets the inequality accept or reject it; the completed teaching path states the contact-state rules explicitly.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">If the no-slip equation requires zero friction while mu_s N is positive, what is the static-friction magnitude?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R9">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R9</span>
+            <div>
+              <div class="summary-title-text">Connected bodies and a justified common acceleration</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-CONNECTED-COMMON-ACCEL &middot; CAP-NLM-CONNECTED-COMMON-ACCEL
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge hold">HARD</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 90</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-CONNECTED-COMMON-ACCEL</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Identify which bodies are constrained to share one acceleration component and write consistent body-specific or whole-system Newton-II equations.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-SECOND-LAW</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Learners must distinguish a kinematic constraint from a force interaction and must not cancel internal forces inside individual-body equations.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  Bodies share an acceleration component only when a physical constraint keeps their relative separation fixed along that coordinate; the shared acceleration can link separate Newton-II equations, while internal partner forces cancel only if the bodies are deliberately treated as one system.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>A physical statement of the connection that fixes relative separation.</li><li>One signed Newton-II equation per body before any system-level cancellation.</li><li>A whole-system check that removes only internal partner forces.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>whether the connection/contact remains active</em> while holding <em>the same two bodies and external forces</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the common-acceleration relation disappears when the constraint is lost</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>whether the bodies are solved separately or as one system</em> while holding <em>the same physical interaction</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the internal force is present in body equations but cancels from the combined system sum</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Any two touching or connected bodies automatically have the same acceleration."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> If two blocks are touching but one loses contact, what keeps their accelerations equal after separation?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Name the active constraint first. Equal acceleration is justified only while the relative-separation condition remains enforced.
+                    </div>
+                  </div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "The contact force between two bodies can be cancelled from each individual FBD because it is an internal force of the pair."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> On body A alone, is the force from body B external to A?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Yes. Keep it in A&#x27;s equation. It cancels only after A and B are deliberately combined into one system equation.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  Two bodies are constrained to keep a fixed separation along one straight coordinate. State the acceleration relation, write the form of the two body equations, and explain when their interaction force can disappear from an equation.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> With same-sense coordinates the constraint gives a_A = a_B = a. Each body keeps the interaction force in its own Newton-II equation; the equal-and-opposite pair cancels only in a combined A+B system equation.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> If the connection breaks, the acceleration equality must no longer be asserted automatically.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">Two blocks move together without separating. Can you assign different accelerations along their common line while their separation stays fixed?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A declared connection constraint plus one signed Newton-II equation per body and an optional combined-system equation.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The learner first proves the acceleration relation from the connection and only then decides whether to keep separate body equations or add them into a system equation.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">The contact between the bodies is lost. May a_A = a_B still be imposed from the old connection?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R10">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R10</span>
+            <div>
+              <div class="summary-title-text">Ideal-string tension belongs to each body-specific FBD</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-IDEAL-STRING-TENSION &middot; CAP-NLM-IDEAL-STRING-TENSION
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge hold">HARD</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 92</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-IDEAL-STRING-TENSION</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Use one declared ideal-string model to assign tension forces and, where justified, one common tension magnitude throughout that same string.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-FBD-BODY-OWNERSHIP, CAP-NLM-SECOND-LAW</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Equal tension is a model consequence, not a property of every rope/pulley setup, and the two tension arrows act on different bodies.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  For one taut massless ideal string, with any redirection treated as frictionless and massless, the tension magnitude can be represented by one T throughout that same string; each body still receives its own tension force along the local string direction.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>An explicit ideal-string/redirection model declaration before one common T is used.</li><li>Separate tension arrows on the body-specific FBDs.</li><li>A nonideal boundary where equal tension is refused.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>which attached body is isolated</em> while holding <em>the same ideal string</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the tension magnitude stays T while the force arrow belongs to the selected body and follows its local string direction</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the pulley from ideal to explicitly frictional</em> while holding <em>the same two bodies and rope path</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>equal tension is no longer guaranteed by the bounded model</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Tension forces at the two ends of a string cancel because they are equal and opposite."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> Do the two end tensions act on the same chosen body?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> No. Put the tension force acting on each body in that body&#x27;s own FBD. Equal magnitudes across the ideal string do not make them a cancelling pair on one body.
+                    </div>
+                  </div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Every rope over every pulley has the same tension on both sides."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> What model assumptions justify using one symbol T throughout the rope?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> State the ideal massless string and frictionless/massless redirection assumptions first. Without them, equal tension is not automatic.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  Two bodies are attached to the same taut ideal string, redirected only by a frictionless massless fixed pulley. State the tension relation and explain where the two tension forces appear.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> Under the declared ideal model, both string segments have the same tension magnitude T. Each body has its own string-on-body tension force on its own FBD; the forces are not cancelled across separate body diagrams.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> If the pulley is explicitly frictional or the rope has significant mass, this capability must refuse to assume equal tension.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">Two masses hang from the ends of one ideal string over a fixed ideal pulley. May the same symbol T be used for the tension magnitude on both sides?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The learner has to earn the single tension symbol by first stating the model and assigning the two forces to their bodies.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">The pulley axle has significant friction. Does this capability still guarantee equal tension on the two sides?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R11">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R11</span>
+            <div>
+              <div class="summary-title-text">One fixed-pulley string gives one length constraint</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT &middot; CAP-NLM-SINGLE-STRING-CONSTRAINT
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge hold">HARD</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 93</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-SINGLE-STRING-CONSTRAINT</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Convert constant length of one taut inextensible string over one fixed ideal pulley into the corresponding displacement, velocity, or acceleration relation.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-CONNECTED-COMMON-ACCEL, CAP-NLM-IDEAL-STRING-TENSION</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">The learner must translate geometry into one fixed-length equation rather than memorize a pulley-count rule.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  For one taut inextensible string over one fixed ideal pulley, the two changing straight segment lengths add to a constant; with coordinates measured away from the pulley this gives y_A + y_B = constant and therefore a_A + a_B = 0.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>Coordinates declared along the two string segments.</li><li>The fixed-length equation y_A + y_B = constant.</li><li>The derived signed acceleration relation a_A + a_B = 0.</li><li>A boundary case that forces re-derivation when the pulley itself moves.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>which end moves farther from the fixed pulley</em> while holding <em>the same taut inextensible string and coordinate convention</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the other straight segment shortens by the same amount</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the pulley from fixed to movable</em> while holding <em>the string remains inextensible</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the old two-segment length equation is no longer sufficient and must be rebuilt</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Every pulley problem has the same acceleration ratio."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> What part of the string length changes in this exact geometry, and is any pulley itself moving?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> Write the string-length equation from the actual geometry. The equal-magnitude result here is only for one fixed pulley with two changing straight segments.
+                    </div>
+                  </div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Bodies on opposite sides of a fixed pulley have the same signed acceleration."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> If both coordinates are positive away from the pulley, can both segment lengths increase while total string length stays fixed?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> No. Their signed changes are opposite: a_A + a_B = 0 in these coordinates.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  One taut inextensible string passes over one fixed ideal pulley, with y_A and y_B measured away from the pulley along the two hanging segments. Write the length relation and its acceleration consequence.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The variable string length is y_A + y_B = constant, so a_A + a_B = 0. The two acceleration magnitudes are equal and their signs are opposite in the declared coordinates.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> If one pulley becomes movable, this two-segment relation must be rebuilt rather than reused.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">If mass A moves 1 cm farther from a fixed pulley on one side of a taut inextensible string, what must happen to the straight segment on the other side?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">A coordinate declaration, fixed-length equation, and derived velocity/acceleration relation for one fixed-pulley string.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The learner reconstructs the acceleration relation directly from the visible changing string segments rather than being handed an acceleration ratio.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">A pulley itself is allowed to move. Can you keep using y_A + y_B = constant without re-deriving the geometry?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card" id="card-R7">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R7</span>
+            <div>
+              <div class="summary-title-text">Third-law partner forces act on different bodies</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-THIRD-LAW &middot; CAP-NLM-THIRD-LAW
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge ok">Default Lane</span>
+            <span class="badge warn">MEDIUM</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 94</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-THIRD-LAW</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-FBD-BODY-OWNERSHIP</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">Equal-and-opposite wording invites learners to cancel a pair that belongs to two different bodies.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  One interaction produces two partner forces of equal magnitude and opposite direction, but they act on different bodies and therefore do not cancel in a single body&#x27;s net-force sum.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>The same interaction named twice as A-on-B and B-on-A.</li><li>Equal-and-opposite partner arrows placed on different body diagrams.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>which body is selected for the free-body diagram</em> while holding <em>the same interaction pair</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>only the force acting on the selected body appears in that diagram</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the strength of the interaction</em> while holding <em>the same two bodies and interaction</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>both partner magnitudes change together while remaining opposite</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "Action and reaction cancel each other, so interacting bodies cannot accelerate."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> When a person pushes a cart, do the person&#x27;s force on the cart and the cart&#x27;s force on the person both appear on the cart&#x27;s free-body diagram?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> No. Put each partner on the body it acts on; only then sum forces for one body.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> Only the water-on-swimmer force belongs on the swimmer&#x27;s free-body diagram.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">If action and reaction are equal and opposite, why do they not automatically make the net force on one object zero?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">Two agent-target force statements and one arrow on each body.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path names agent-target pairs before drawing; the learner route starts from the cancellation paradox and resolves it by body ownership.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">Can a third-law partner force ever be the force that balances another force on the same body?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+      <details class="rung-card non-default" id="card-R4">
+        <summary class="rung-summary">
+          <div class="summary-left">
+            <span class="rung-num-pill">R4</span>
+            <div>
+              <div class="summary-title-text">An accelerating observer needs a declared pseudo-force convention</div>
+              <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);">
+                MIC-PHY-NLM-FRAME-CHOICE &middot; CAP-NLM-FRAME-CHOICE
+              </div>
+            </div>
+          </div>
+          <div class="summary-right">
+            <span class="badge purple">Explicit Branch</span>
+            <span class="badge hold">HARD</span>
+            <span style="color: var(--text-dim); font-size: 11px;">Pos: 100</span>
+          </div>
+        </summary>
+
+        <div class="card-body">
+          <div class="card-meta-row">
+            <div class="meta-item">
+              <span class="meta-item-label">Primary Capability</span>
+              <span class="meta-item-val">CAP-NLM-FRAME-CHOICE</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Capability Action</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans);">Decide whether an observer description requires a pseudo-force.</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Prerequisites</span>
+              <span class="meta-item-val">CAP-NLM-FBD-BODY-OWNERSHIP</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">Intrinsic Rationale</span>
+              <span class="meta-item-val" style="font-family: var(--font-sans); color: var(--text-muted);">The same physical interactions can be described by observers with different accelerations, and the extra convention is easy to omit when the observer is inside the accelerating vehicle.</span>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <!-- Left col: Pedagogical intent & controlled variation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🎯 What It Teaches (Inferential Jump)</div>
+                <div class="quote-box">
+                  A force-based account depends on the observer: a non-accelerating observer uses the physical interaction forces, while an accelerating observer must add the corresponding pseudo-force convention to describe the same observed motion consistently.
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚖️ Controlled Variation (Rung Must Contain)</div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">MUST CONTAIN:</div>
+                  <ul style="padding-left: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+                    <li>Two observers describing the same object, one in a non-accelerating frame and one in an accelerating frame.</li><li>An explicit declaration of the chosen frame before the force sum is written.</li>
+                  </ul>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 4px;">CONTROLLED PHASES:</div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 1:</span> Vary <em>the observer from roadside to steadily moving bus</em> while holding <em>the physical interactions and the bus&#x27;s zero acceleration</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>no extra force is needed when the frames differ only by constant velocity</strong></div>
+                    </div>
+                  
+                    <div class="variation-step">
+                      <div><span class="variation-label">Phase 2:</span> Vary <em>the bus from steady speed to forward acceleration</em> while holding <em>the same object and physical interactions</em>.</div>
+                      <div style="color: var(--text-muted); margin-top: 2px;">→ Notice: <strong>the bus-frame account now needs an added backward pseudo-force</strong></div>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="block-subcard">
+                <div class="subcard-heading">⚠️ Common Misconception & Repair</div>
+                
+                  <div style="margin-bottom: 8px;">
+                    <div class="quote-box misconception">
+                      <strong>Wrong Idea:</strong> "The same ordinary-force diagram can be used unchanged in any accelerating observer&#x27;s frame."
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> A loose mass appears to accelerate backward inside a bus that starts forward. Can the bus observer use only the same physical-force inventory as the roadside observer?</div>
+                    <div class="quote-box repair" style="margin-top: 4px;">
+                      <strong>Repair:</strong> State the observer first. Use physical interactions alone for a non-accelerating observer; for an accelerating observer include the corresponding pseudo-force consistently.
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <!-- Right col: Exit Task & Core1B Elicitation -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="block-subcard">
+                <div class="subcard-heading">🏁 Exit Task & Success Criterion</div>
+                <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                  A bus accelerates forward and a loose object appears to move backward relative to the bus. Compare the roadside and bus-observer force descriptions without calculating any magnitude.
+                </div>
+                <div class="quote-box repair" style="font-size: 12px;">
+                  <strong>Model Response:</strong> The roadside description uses the physical interactions only. The accelerating bus description adds a backward pseudo-force convention to account for the observer&#x27;s acceleration.
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                  <strong>Check:</strong> Repeat the comparison once the bus moves at steady speed; the extra pseudo-force should no longer be needed for the observer change alone.
+                </div>
+              </div>
+
+              
+              <div class="block-subcard">
+                <div class="subcard-heading">⚡ Core1B Elicitation Contract</div>
+                <div style="font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">1. Predict:</span>
+                    <span style="color: var(--text-muted);">A bus starts forward and a loose object seems to shift backward to a passenger. Before adding any new force, did a new physical agent suddenly begin pulling the object backward?</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">2. Attempt Expectation:</span>
+                    <span style="color: var(--text-muted);">Two labelled observer descriptions of the same object: roadside and accelerating bus, with a statement of where the pseudo-force convention appears.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">3. Reconstruct Strategy:</span>
+                    <span style="color: var(--text-muted);">The teaching path compares two observer accounts directly. The learner route first rules out a new physical agent, identifies which observer accelerates, then introduces the pseudo-force as a modelling convention.</span>
+                  </div>
+                  <div>
+                    <span style="color: var(--accent); font-weight: 600;">4. Boundary Test:</span>
+                    <span style="color: var(--text-muted);">The bus now travels at constant velocity. Does changing from the roadside observer to the bus observer by itself require the added pseudo-force?</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </details>
+    
+    </div>
+  </section>
+
+  <!-- Section 4: Practice and Transfer Inventory -->
+  <section id="practice">
+    <div class="section-title">
+      Practice & Transfer Inventory
+      <span class="count">12 Practice Questions &middot; 5 Core2B Transfer Questions &middot; 7 Matrix Transfer Dimensions</span>
+    </div>
+
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="showTab('tab-practice', this)">Practice Questions (12)</button>
+      <button class="tab-btn" onclick="showTab('tab-transfer', this)">Core 2B Transfer & Dimensions (5 + 7)</button>
+    </div>
+
+    <!-- Practice Tab -->
+    <div id="tab-practice" class="tab-pane active">
+      <div class="questions-grid">
+
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">1. Q-PHY-NLM-2A-COV-05</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The acceleration is +3 m/s^2.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">2. Q-PHY-NLM-2A-01</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> Zero net force is compatible with both. Each cart can keep its current velocity unchanged.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">3. Q-PHY-NLM-2A-COV-02</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">4. Q-PHY-NLM-2A-COV-03</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box&#x27;s free-body diagram.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The person&#x27;s force on the box belongs on the box diagram. The box&#x27;s equal-and-opposite force on the person belongs on the person&#x27;s diagram.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">5. Q-PHY-NLM-2A-COV-04</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The friction force on the box points to the right.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">6. Q-PHY-NLM-2A-COV-06</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">7. Q-PHY-NLM-PRACTICAL-12</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">Plan a trolley–pulley–hanging-mass experiment to verify Newton’s second law. Describe one controlled variation that tests the effect of net force at fixed system mass, what you measure, and what result would support F_net = m a.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> Keep the total moving mass approximately fixed while transferring masses between trolley and hanger so the driving force changes, measure acceleration for each trial, and test whether acceleration changes in direct proportion to the corrected net driving force.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">8. Q-PHY-NLM-2A-FRICTION-THRESHOLD-01</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">A small block of mass m rests on a larger block of mass M. The floor under the larger block is smooth. A horizontal force F is applied to the larger block. The coefficient of static friction between the blocks is mu_s. Derive the largest value of F for which the two blocks can move together without slipping.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> While there is no slip, both blocks have a = F/(M+m). The upper block needs friction f_required = m a. Since N = m g here, no slip requires mF/(M+m) &lt;= mu_s m g, so F &lt;= mu_s(M+m)g. Therefore F_max = mu_s(M+m)g.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">9. Q-PHY-NLM-2A-CONNECTED-02</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">Two blocks A and B of masses m_A and m_B remain in contact on a smooth horizontal floor. A horizontal force F pushes A toward B, and the contact is maintained. Derive their common acceleration and the magnitude of the contact force exerted by A on B.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The fixed contact keeps the blocks at one common acceleration a = F/(m_A+m_B). For block B alone, the contact force is its only horizontal force, so N_AB = m_B a = m_B F/(m_A+m_B).</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">10. Q-PHY-NLM-2A-IDEAL-STRING-03</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">Two carts A and B of masses m_A and m_B are connected by one taut massless inextensible string on a smooth horizontal track. A horizontal force F pulls cart A away from B along the string. Derive the common acceleration and the string tension. Then name one model change that would make equal tension throughout the connector no longer guaranteed.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The string constraint gives one acceleration a = F/(m_A+m_B). For B, T = m_B a, so T = m_B F/(m_A+m_B). Equal tension relies on the ideal massless-string model; a connector with significant mass or a nonideal redirection can invalidate one common T.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">11. Q-PHY-NLM-2A-FIXED-PULLEY-04</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">One taut inextensible string passes over one fixed pulley. Let y_A and y_B be the two straight segment lengths measured positive away from the pulley. Write the string-length relation and derive the corresponding velocity and acceleration relations. If A accelerates away from the pulley with magnitude a, state B&#x27;s signed acceleration in these coordinates.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley.</div>
+        </div>
+    
+        <div class="q-card">
+          <div class="q-card-header">
+            <span class="q-id">12. Q-PHY-NLM-2A-FRAME-CHOICE-07</span>
+            <span class="badge neutral">General NLM</span>
+          </div>
+          <div class="q-stem">A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.</div>
+          <div class="q-ans"><strong>Solution / Key:</strong> The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton&#x27;s laws can be written in that non-inertial frame.</div>
+        </div>
+    
+      </div>
+    </div>
+
+    <!-- Transfer Tab -->
+    <div id="tab-transfer" class="tab-pane">
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Core 2B Transfer Items (5 Questions)</h4>
+        <div class="questions-grid">
+
+          <div class="q-card" style="border-color: rgba(137, 87, 229, 0.4);">
+            <div class="q-card-header">
+              <span class="q-id" style="color: var(--chip-purple-text);">1. Q-PHY-NLM-2B-FRICTION-STATE-01</span>
+              <span class="badge purple">Core 2B Transfer</span>
+            </div>
+            <div class="q-stem">A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate&#x27;s acceleration or justify that it remains at rest.</div>
+            <div class="q-ans"><strong>Transfer Demand:</strong> First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| &lt;= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration.</div>
+          </div>
+    
+          <div class="q-card" style="border-color: rgba(137, 87, 229, 0.4);">
+            <div class="q-card-header">
+              <span class="q-id" style="color: var(--chip-purple-text);">2. Q-PHY-NLM-2B-CONNECTED-SYSTEM-02</span>
+              <span class="badge purple">Core 2B Transfer</span>
+            </div>
+            <div class="q-stem">Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.</div>
+            <div class="q-ans"><strong>Transfer Demand:</strong> Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C&#x27;s equation.</div>
+          </div>
+    
+          <div class="q-card" style="border-color: rgba(137, 87, 229, 0.4);">
+            <div class="q-card-header">
+              <span class="q-id" style="color: var(--chip-purple-text);">3. Q-PHY-NLM-2B-STRING-MODEL-03</span>
+              <span class="badge purple">Core 2B Transfer</span>
+            </div>
+            <div class="q-stem">Two masses are connected by one rope over a fixed pulley. The pulley axle is explicitly stated to have appreciable friction. A proposed solution writes the same tension T on both sides of the pulley before doing any calculation. Decide whether that step is justified by the Grade9V3 ideal-string model and explain what can still be said without introducing a new pulley model.</div>
+            <div class="q-ans"><strong>Transfer Demand:</strong> The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice.</div>
+          </div>
+    
+          <div class="q-card" style="border-color: rgba(137, 87, 229, 0.4);">
+            <div class="q-card-header">
+              <span class="q-id" style="color: var(--chip-purple-text);">4. Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04</span>
+              <span class="badge purple">Core 2B Transfer</span>
+            </div>
+            <div class="q-stem">A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates.</div>
+            <div class="q-ans"><strong>Transfer Demand:</strong> Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude.</div>
+          </div>
+    
+          <div class="q-card" style="border-color: rgba(137, 87, 229, 0.4);">
+            <div class="q-card-header">
+              <span class="q-id" style="color: var(--chip-purple-text);">5. Q-PHY-NLM-2B-FRAME-SELECTION-05</span>
+              <span class="badge purple">Core 2B Transfer</span>
+            </div>
+            <div class="q-stem">A small bob hangs from the roof of a car that accelerates horizontally to the right. A student wants the bob to be at rest in the chosen coordinates while finding the string direction. Decide which observer description makes that possible, state the extra modelling term required there, and give an independent inertial-frame alternative without solving for a numerical angle.</div>
+            <div class="q-ans"><strong>Transfer Demand:</strong> To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction.</div>
+          </div>
+    
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Matrix Transfer Dimensions & Repair Map</h4>
+        <table class="transfer-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Changed Demand / Situation</th>
+              <th>Information Not Handed Over</th>
+              <th>Repair Rung</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td><span class="badge warn">model_choice</span></td>
+              <td><strong>The problem is described from inside an accelerating vehicle and the learner must choose an inertial-frame analysis or add a pseudo-force.</strong></td>
+              <td style="color: var(--text-muted);">whether the chosen observer frame is inertial</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R4')">
+                  Repair to R4 →
+                </button>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><span class="badge warn">representation_translation</span></td>
+              <td><strong>A contact-and-motion sketch must be converted into separate free-body diagrams before any equations are written.</strong></td>
+              <td style="color: var(--text-muted);">which interactions act on each chosen body</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R3')">
+                  Repair to R3 →
+                </button>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><span class="badge warn">reasoning_steps</span></td>
+              <td><strong>Two connected bodies must be analysed with one free-body diagram per body and the shared interaction linked across the equations.</strong></td>
+              <td style="color: var(--text-muted);">which equal-and-opposite forces belong to different equations</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R3')">
+                  Repair to R3 →
+                </button>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><span class="badge warn">model_choice</span></td>
+              <td><strong>A friction problem gives a coefficient but does not say whether the contact slips; the learner must test the static state before selecting an equality.</strong></td>
+              <td style="color: var(--text-muted);">whether the contact is static, impending slip, or already sliding</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R8')">
+                  Repair to R8 →
+                </button>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><span class="badge warn">reasoning_steps</span></td>
+              <td><strong>Two bodies are linked but the problem does not state whether they should be solved separately or as one system.</strong></td>
+              <td style="color: var(--text-muted);">which connection creates a shared acceleration and where internal-force cancellation is legitimate</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R9')">
+                  Repair to R9 →
+                </button>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><span class="badge warn">model_choice</span></td>
+              <td><strong>A string/pulley problem omits any statement that the rope/pulley is ideal.</strong></td>
+              <td style="color: var(--text-muted);">whether one common tension magnitude is licensed by the model</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R10')">
+                  Repair to R10 →
+                </button>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><span class="badge warn">representation_translation</span></td>
+              <td><strong>A fixed-pulley sketch must be converted into a string-length equation before acceleration equations are written.</strong></td>
+              <td style="color: var(--text-muted);">which straight string segments vary and what coordinate signs they use</td>
+              <td>
+                <button class="tab-btn active" style="font-size: 11px; padding: 2px 8px;" onclick="openRung('R11')">
+                  Repair to R11 →
+                </button>
+              </td>
+            </tr>
+    
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Deliberate Boundaries -->
+  <section id="boundaries">
+    <div class="boundary-box">
+      <div class="boundary-title">
+        🛡️ Deliberate Curriculum & Model Boundaries (Strictly Out of Scope)
+      </div>
+      <p style="font-size: 13px; color: #8b949e;">
+        To prevent scope creep and preserve pedagogical fidelity, the following mechanics domains are explicitly declared out-of-scope for the NLM First Law matrix slice:
+      </p>
+      <ul class="boundary-list">
+        <li><strong>No broad collision-conservation course:</strong> Isolated to dedicated momentum and impulse packages.</li>
+        <li><strong>No rocket equation:</strong> Variable-mass systems are strictly excluded from basic second-law analysis.</li>
+        <li><strong>No general compound / movable pulley systems:</strong> Bound strictly to 1 fixed pulley and 1 continuous string.</li>
+        <li><strong>No full non-inertial mechanics course:</strong> Bounded to 1D linear accelerating frame choice with declared pseudo-force.</li>
+        <li><strong>No rotational dynamics:</strong> Torque and moment of inertia remain in rigid-body rotation matrices.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Grade9V3 Repository &middot; Source-Grounded NLM Topic Atlas &middot; Governed by <code>Physics/matrices/phy-nlm-first-law.rungs.json</code>
+</footer>
+
+<script>
+function openRung(rungId) {
+  const el = document.getElementById('card-' + rungId);
+  if (el) {
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function showTab(tabId, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
