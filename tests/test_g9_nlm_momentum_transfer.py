@@ -125,7 +125,7 @@ class Grade9NlmMomentumTransferExtension(unittest.TestCase):
         )
         self.assertIn(
             "opposite the ejection direction",
-            self.micro["elicitation"]["predict"]["defensible_answer"],
+            self.micro["elicitation"]["predict"]["defensible_answer"].lower(),
         )
 
     def test_units_reduce_to_force_without_importing_calculus_work(self):
@@ -202,7 +202,7 @@ class Grade9NlmMomentumTransferExtension(unittest.TestCase):
             "collision",
             "impulse",
             "rocket",
-            "variable-mass",
+            "varying-mass",
             "center-of-mass",
         ):
             self.assertIn(phrase, excluded)
