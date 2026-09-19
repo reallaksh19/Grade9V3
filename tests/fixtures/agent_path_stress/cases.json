@@ -164,6 +164,47 @@
       }
     },
     {
+      "case_id": "APSTRESS-G9-NLM-100-DEFAULT",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Newton's first law and free-body diagrams. Student knowledge estimate: 100%. Use the estimate only to select the starting rung and preserve prerequisite checks. Keep observer-frame/pseudo-force reasoning available only for explicit extension demand; an ordinary Grade-9 route must not enter or append that frame-choice rung.",
+      "request": {
+        "request_id": "APSTRESS-G9-NLM-100-DEFAULT",
+        "subject": "Physics",
+        "subtopic": "Newton's first law and free-body diagrams",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 100,
+            "by": "owner",
+            "instruction": "Use 100% only as the highest conservative default-route coordinate; do not infer mastery or enter the frame-choice extension."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R7",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-NLM-FBD-BODY-OWNERSHIP"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "treat 100% as mastery evidence",
+          "select extension-only R4 at ladder position 100",
+          "append R4 after R7 in the default CORE1A/CORE1B teaching segment",
+          "skip the body-ownership prerequisite check for Newton's third law",
+          "delete the frame-choice capability instead of preserving explicit extension routing",
+          "choose different target segments for CORE1A and CORE1B"
+        ],
+        "selected_segment": [
+          "R7"
+        ]
+      }
+    },
+    {
       "case_id": "APSTRESS-G9-WEP-80-TRANSFER",
       "prompt": "Prepare CORE1A, CORE1B, CORE2A and CORE2B for Physics — Work, energy and power. Student knowledge estimate: 80%. CORE2A purpose: REVISION. CORE2B purpose: COMPETITION. Use the estimate only to choose the initial rung; preserve prerequisite checks and report missing source basis instead of guessing.",
       "request": {
