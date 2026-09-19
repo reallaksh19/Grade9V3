@@ -37,6 +37,31 @@ class AgentPathStressRunner(unittest.TestCase):
                 self.assertEqual(report["evidence_class"], "SYSTEM_STRESS_ONLY")
                 self.assertTrue(report["actual"]["no_content_authored"])
 
+    def test_grade9_completion_has_one_frozen_checkpoint_per_slice(self):
+        cases = runner.by_id(runner.load_suite())
+        expected = {
+            "APSTRESS-G9-MOTION-70-DEFAULT",
+            "APSTRESS-G9-NLM-70-PRACTICE",
+            "APSTRESS-G9-GRAV-60-TEACH",
+            "APSTRESS-G9-WEP-95-DERIVATION",
+            "APSTRESS-G9-SOUND-95-REFLECTION",
+            "APSTRESS-G9-SIMPLE-MACHINES-90",
+        }
+        self.assertTrue(expected.issubset(cases))
+
+    def test_grade9_default_segments_exclude_retained_extensions(self):
+        cases = runner.by_id(runner.load_suite())
+        expectations = {
+            "APSTRESS-G9-MOTION-70-DEFAULT": ["R2", "R4G", "R4", "R5"],
+            "APSTRESS-G9-NLM-70-PRACTICE": ["R3", "R5", "R6", "R7"],
+            "APSTRESS-G9-GRAV-60-TEACH": ["R3W"],
+        }
+        for case_id, expected_segment in expectations.items():
+            with self.subTest(case=case_id):
+                report = runner.run_case(cases[case_id])
+                self.assertEqual(report["status"], "PASS", report["differences"])
+                self.assertEqual(report["actual"]["selected_segment"], expected_segment)
+
     def test_prompt_only_source_is_the_frozen_fixture(self):
         suite = runner.load_suite()
         cases = runner.by_id(suite)
