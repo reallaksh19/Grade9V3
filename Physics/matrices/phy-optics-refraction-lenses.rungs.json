@@ -238,13 +238,13 @@
       "repair_to": "R5"
     },
     {
-      "dimension": "practical_interpretation",
+      "dimension": "representation_translation",
       "changed_demand": "Explain why the emergent ray from a parallel glass slab can be parallel to the incident ray without being collinear.",
       "information_not_handed_over": "the second refraction restores direction but finite thickness permits lateral displacement",
       "repair_to": "R3"
     },
     {
-      "dimension": "measurement",
+      "dimension": "reasoning_steps",
       "changed_demand": "Explain why a distant-object convex-lens focal-length measurement is approximate and how to improve it.",
       "information_not_handed_over": "the role of finite object distance, alignment and repeated readings",
       "repair_to": "R9"
