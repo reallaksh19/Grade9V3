@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:9c1e0fb2ac63eb1bac3edef8c2a53789018b7a5d858a1f24b69d4116626e1ade",
+  "digest": "sha256:6ce1fe5071f78c8e0eaefd0b82286e1842eeccda0fd15ed8404a6171065f05c9",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -806,8 +806,8 @@
       "path": "tests/test_g9_nlm_friction_connected.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9558,
-      "sha256": "1a739fbaed4f3f4a37396f90e09ab98771d2559d0381a5561e505255a1c30937"
+      "bytes": 9544,
+      "sha256": "53a76e1ebd9857eb55aaae33e78858aa9ed5ce70508435641f2169935c297443"
     },
     {
       "path": "tests/test_g9_vector_direction_unit.py",
@@ -1044,8 +1044,8 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4675,
-      "sha256": "ad791764aa822b2b42abeb2b2b85e70eebb8de4ac0db71877d15f1d73842b0e8"
+      "bytes": 4739,
+      "sha256": "66353f2d3fb91c9a67195ecfb9d62756738601060ee8e1223d230c6085506769"
     },
     {
       "path": "tests/test_tools.py",
