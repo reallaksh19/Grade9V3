@@ -1379,17 +1379,17 @@
         {
           "case_id": "FAL-OPT-MIRROR-SIGN-CONVENTION",
           "mutation": "Assign signs from object/image labels without declaring the pole and positive directions.",
-          "expected_violation": "Signed mirror quantities must come from one declared Cartesian coordinate convention."
+          "expected_violation": "MIRROR_SIGN_CONVENTION_REQUIRED"
         },
         {
           "case_id": "FAL-OPT-MIRROR-NO-PARAXIAL-LIMIT",
           "mutation": "Present 1/v + 1/u = 1/f as exact for arbitrary wide-aperture spherical-mirror rays.",
-          "expected_violation": "The mirror equation requires the paraxial/small-angle model."
+          "expected_violation": "MIRROR_PARAXIAL_MODEL_REQUIRED"
         },
         {
           "case_id": "FAL-OPT-MIRROR-DROP-MAGNIFICATION-SIGN",
           "mutation": "Replace signed magnification with an unsigned size ratio and infer orientation from magnitude alone.",
-          "expected_violation": "Magnification sign is required to distinguish erect and inverted image orientation."
+          "expected_violation": "MIRROR_MAGNIFICATION_SIGN_REQUIRED"
         }
       ]
     }
