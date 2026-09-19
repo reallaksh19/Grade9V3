@@ -239,27 +239,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     observations = _observation_lookup(profile, repo)
 
     if profile is not None and profile.get("provenance") == "SYNTHETIC_TEST":
-        relevant_matrix_ids = []
-    for question in question_rows:
-        for capability in question.get("capabilities", []):
-            for lesson in capability.get("lessons", []):
-                matrix_id = lesson.get("matrix_id")
-                if matrix_id and matrix_id not in relevant_matrix_ids:
-                    relevant_matrix_ids.append(matrix_id)
-    for row in route_rows:
-        for lesson in row.get("lessons", []):
-            matrix_id = lesson.get("matrix_id")
-            if matrix_id and matrix_id not in relevant_matrix_ids:
-                relevant_matrix_ids.append(matrix_id)
-    canonical_matrices = _matrix_views(
-        subject,
-        index,
-        relevant_matrix_ids,
-        started.get("start_decisions", []),
-        repo,
-    )
-
-    findings = list(started.get("findings", []))
+        findings = list(started.get("findings", []))
         findings.append({
             "point": "WORKSHEET_STUDY_PLAN_SYNTHETIC_PROFILE_REFUSED",
             "profile_id": profile.get("profile_id"),
@@ -269,6 +249,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "worksheet_id": mapping.get("worksheet_id"),
             "subject": subject,
             "profile_id": profile.get("profile_id"),
+            "canonical_matrices": [],
             "questions": [],
             "route": [],
             "start_decisions": started.get("start_decisions", []),
@@ -366,6 +347,26 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "action_reason": reason,
             "lessons": locations,
         })
+
+    relevant_matrix_ids = []
+    for question in question_rows:
+        for capability in question.get("capabilities", []):
+            for lesson in capability.get("lessons", []):
+                matrix_id = lesson.get("matrix_id")
+                if matrix_id and matrix_id not in relevant_matrix_ids:
+                    relevant_matrix_ids.append(matrix_id)
+    for row in route_rows:
+        for lesson in row.get("lessons", []):
+            matrix_id = lesson.get("matrix_id")
+            if matrix_id and matrix_id not in relevant_matrix_ids:
+                relevant_matrix_ids.append(matrix_id)
+    canonical_matrices = _matrix_views(
+        subject,
+        index,
+        relevant_matrix_ids,
+        started.get("start_decisions", []),
+        repo,
+    )
 
     findings = list(started.get("findings", []))
     warnings = list(started.get("warnings", []))
