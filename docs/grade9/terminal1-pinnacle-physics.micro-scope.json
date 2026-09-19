@@ -106,14 +106,27 @@
             "CAP-VEC-COMPONENT-SUM"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "ENRICH_OR_AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "ENRICH_OR_AUTHOR_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "unit-vector i/j notation",
           "local_state": "LOCAL_GAP",
           "local_refs": [],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "normalize a nonzero 2D vector to unit direction",
+          "local_state": "LOCAL_GAP",
+          "local_refs": [],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "action": "AUTHOR_BOUNDED_FROM_CONFIRMED_DEMAND",
+          "priority_if_confirmed": "HIGH"
         }
       ]
     },
