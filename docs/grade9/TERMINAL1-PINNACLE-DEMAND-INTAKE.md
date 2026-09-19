@@ -14,10 +14,14 @@ Two evidence classes are intentionally distinct:
 - **owner-approved reliable external question banks** may authorize bounded question-demand
   capability work without being relabelled as school/curriculum authority.
 
-As of 2026-09-19, the owner explicitly accepts ExamSIDE past-year question pages for the
-second class. Selected ExamSIDE questions may therefore justify `REUSE`, `ENRICH`,
-`AUTHOR` or `QUESTION_VARIATION` decisions while the Pinnacle school micro-scope remains
-separately tracked.
+As of 2026-09-19, the owner explicitly accepts matching ExamSIDE past-year chapter pages
+and individual PYQs as reliable Pinnacle **preparation-demand** evidence. They may therefore
+justify `REUSE`, `ENRICH`, `AUTHOR` or `QUESTION_VARIATION` decisions without waiting
+for a Pinnacle worksheet to repeat the same micro-demand. The Pinnacle-issued
+`school_micro_demand` remains separately tracked and is not promoted by ExamSIDE alone.
+
+The governing owner instruction is recorded in
+`docs/grade9/PINNACLE-EXAMSIDE-PREPARATION-AUTHORITY.md`.
 
 
 Use any of the following when supplied by the owner:
@@ -104,7 +108,7 @@ Do not use ENRICH merely because a school question is harder.
 
 Use only when the school material demands an independently fail-able learner action that the repository does not currently own.
 
-The current likely examples, **only if school evidence confirms them**, are:
+Current examples that require real demand evidence before AUTHOR are:
 
 - arbitrary-angle vector decomposition;
 - independent orthogonal x/y motion;
@@ -112,6 +116,9 @@ The current likely examples, **only if school evidence confirms them**, are:
 - projectile model selection;
 - connected-body/tension reasoning;
 - pulley-constraint reasoning.
+
+The evidence may be either direct Pinnacle micro-demand or owner-approved matching ExamSIDE
+preparation demand. Do not require both.
 
 Before AUTHOR, apply the counterfactual:
 
@@ -219,6 +226,8 @@ When new school material arrives, produce a compact table:
 | p.X / Q.Y | learner action | capability or — | REUSE / ENRICH / AUTHOR / QUESTION_VARIATION / HOLD_UNCONFIRMED | none / named prerequisite | HIGH / MEDIUM / LOW |
 
 A row becomes actionable only when the source locator and learner action are explicit.
+For ExamSIDE-driven preparation work, record the exact chapter page or individual PYQ locator
+and keep the evidence class visibly external rather than school-issued.
 
 ## Stop conditions
 
