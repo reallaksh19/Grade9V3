@@ -1,0 +1,984 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-PINNACLE-VECTOR-ALGEBRA",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Owner-approved ExamSIDE Vector Algebra question-demand extension for Grade-9 Pinnacle preparation: component-to-direction/unit-vector reconstruction, dot-product/perpendicularity/projection, and cross-product magnitude/direction. This is external question-demand content, not Pinnacle school-issued micro-scope.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE JEE Main Vector Algebra past-year question bank",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra",
+      "edition": "2002-2026 JEE Main PYQ page inspected 2026-09-19",
+      "section": "Selected unit-vector, perpendicularity, projection, dot-product and cross-product demand",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question bank. Grade9V3 retains short demand summaries, identifiers and URLs; it does not copy the bank or claim school/curriculum custody.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-VEC-DIRECTION-UNIT",
+        "CAP-VEC-DOT-PRODUCT",
+        "CAP-VEC-CROSS-PRODUCT"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Owner explicitly approved ExamSIDE as reliable question-demand evidence. Selected JEE Main Vector Algebra items directly require direction/unit-vector, dot-product/projection, and cross-product reasoning.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 bounded Vector Algebra adaptation",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-vector-algebra-pinnacle.v1.json",
+      "edition": "0.1.0",
+      "section": "Direction/unit-vector, dot-product and cross-product learner actions",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created teaching adaptation from owner-approved external question demand; no school-issued curriculum authority claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-VEC-DIRECTION-UNIT",
+        "CAP-VEC-DOT-PRODUCT",
+        "CAP-VEC-CROSS-PRODUCT"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Converts selected real question demands into durable learner actions without importing the full JEE Vector Algebra chapter.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-MATH-INVERSE-TRIG-BRIDGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Author-drafted inverse-trigonometry bridge for vector direction recovery",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-vector-algebra-pinnacle.v1.json#CAP-INVERSE-TRIG-BRIDGE",
+      "edition": "0.1.0",
+      "section": "CAP-INVERSE-TRIG-BRIDGE",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created Mathematics bridge draft; not Mathematics-provider accepted.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [],
+      "selection_reason": "Keeps inverse-trigonometric evaluation visibly external to Physics rather than silently treating it as demonstrated Mathematics.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-PINNACLE-VECTOR-ALGEBRA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Pinnacle Vector Algebra question-demand extension",
+      "topic": "Vectors",
+      "intrinsic_badge": "HIGH",
+      "badge_reason": "The main difficulty is preserving representation meaning: quadrant-aware direction, scalar versus vector products, projection, and axial direction.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-VEC-ADD-SUB"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-PIN-VEC-BASIS",
+          "statement": "Declare an orthonormal right-handed i/j/k basis before reading or constructing component products."
+        },
+        {
+          "id": "CONV-PIN-VEC-ANGLE",
+          "statement": "Angles recovered from components or dot products must be reconciled with signs/quadrant rather than accepted from an inverse-trig principal value alone."
+        }
+      ],
+      "scope": {
+        "covers": "Magnitude/direction/unit vector from components, dot product for angle/perpendicularity/projection, and cross product for magnitude plus right-hand axial direction in selected ExamSIDE questions.",
+        "excluded": [
+          "Scalar/vector triple products and coplanarity determinants beyond the selected first slice.",
+          "Vector calculus, differentiation of vector fields, and coordinate-basis transformations.",
+          "General tensor or matrix treatments of rotations."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-INVERSE-TRIG-BRIDGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MATH-INVERSE-TRIG-BRIDGE"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Recover an acute reference angle from a known trigonometric ratio using inverse sine, cosine or tangent.",
+      "success_criterion": "Given a valid ratio in its domain, evaluate the corresponding principal acute/reference angle; Physics must still determine the physical quadrant/direction from vector signs.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": "Mathematics",
+      "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "CAP-VEC-DIRECTION-UNIT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Reconstruct a vector's magnitude, direction and unit direction from signed Cartesian components.",
+      "success_criterion": "Compute the nonnegative magnitude, use component signs plus an inverse-trig reference angle to identify physical direction, and form a unit direction vector by dividing every component by the same nonzero magnitude.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-RIGHT-TRIANGLE-BRIDGE",
+        "CAP-INVERSE-TRIG-BRIDGE"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-DOT-PRODUCT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use the dot product to test perpendicularity, recover an angle, or calculate scalar/vector projection.",
+      "success_criterion": "Compute A·B consistently from components or |A||B|cos(theta), interpret zero dot product for nonzero perpendicular vectors, and use the correct magnitude denominator for the requested projection.",
+      "prerequisite_refs": [
+        "CAP-VEC-DIRECTION-UNIT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-VEC-CROSS-PRODUCT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use the cross product to obtain a vector perpendicular to two vectors with the correct magnitude and axial orientation.",
+      "success_criterion": "Compute A×B with signed components or |A||B|sin(theta), apply right-hand orientation, verify anti-commutativity and perpendicularity, and normalize when a unit normal is requested.",
+      "prerequisite_refs": [
+        "CAP-VEC-DIRECTION-UNIT"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-VEC-DIRECTION-UNIT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Recover magnitude, physical direction and unit vector from components",
+      "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-ALGEBRA",
+      "primary_capability_ref": "CAP-VEC-DIRECTION-UNIT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The main failure is accepting an inverse-trig principal angle without using signed components to place direction in the correct quadrant.",
+      "entry_assumptions": [
+        "Can read signed Cartesian components.",
+        "Pythagorean magnitude and inverse-trig evaluation are available through declared Mathematics bridges."
+      ],
+      "inferential_jump": "Magnitude discards signs, so valid direction reconstruction must combine a reference angle with the component sign pattern.",
+      "teaching_path": [
+        {
+          "id": "VDU-1",
+          "role": "DECLARE",
+          "action": "Write the vector in one declared i/j/k basis and retain every component sign.",
+          "why_valid": "Signs locate the physical quadrant/octant.",
+          "inputs": [],
+          "output": "A=Ax i + Ay j + Az k"
+        },
+        {
+          "id": "VDU-2",
+          "role": "TRANSFORM",
+          "action": "Compute |A| and divide each component by that nonzero magnitude.",
+          "why_valid": "Uniform positive rescaling preserves direction.",
+          "inputs": [],
+          "output": "A_hat=(Ax i+Ay j+Az k)/sqrt(Ax^2+Ay^2+Az^2)"
+        },
+        {
+          "id": "VDU-3",
+          "role": "TRANSFORM",
+          "action": "For 2D, compute a reference angle from |Ay/Ax| then place it using signs.",
+          "why_valid": "Inverse trig supplies a reference value; signs supply quadrant.",
+          "inputs": [
+            "CAP-INVERSE-TRIG-BRIDGE"
+          ],
+          "output": "theta_ref=atan(|Ay/Ax|), then quadrant placement"
+        },
+        {
+          "id": "VDU-4",
+          "role": "VERIFY",
+          "action": "Check |A_hat|=1 and |A|A_hat=A.",
+          "why_valid": "These verify normalization and retained direction.",
+          "inputs": [],
+          "output": "|A_hat|=1; |A|A_hat=A"
+        }
+      ],
+      "relation_refs": [
+        "REL-VEC-UNIT-DIRECTION"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "The calculator value atan(Ay/Ax) is always the physical direction angle.",
+          "diagnostic_prompt": "A vector has Ax<0 and Ay>0. Can a raw principal arctangent alone identify its quadrant?",
+          "repair": "Use inverse trig for a reference angle, then component signs for the physical quadrant."
+        },
+        {
+          "wrong_idea": "A unit vector keeps the original magnitude.",
+          "diagnostic_prompt": "If |A|=5, what must |A/5| be?",
+          "repair": "Dividing by |A| preserves direction but makes magnitude exactly one."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A 2D vector has components (-3,4). State its magnitude, quadrant information needed for direction, and unit direction vector.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Magnitude 5; quadrant II; unit vector (-3/5)i+(4/5)j.",
+          "reasoning": [
+            "Magnitude is sqrt(9+16)=5.",
+            "Signs (-,+) locate quadrant II.",
+            "Divide both components by 5.",
+            "Any inverse-trig reference angle must be placed in quadrant II."
+          ],
+          "check": "The unit-vector magnitude is 1 and multiplying by 5 restores (-3,4).",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Exact inverse-tangent decimal is intentionally unnecessary."
+        }
+      },
+      "research_contribution": "ExamSIDE Vector Algebra repeatedly requires unit-vector notation and direction recovery; this makes the representation change explicit.",
+      "prerequisite_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT",
+        "CAP-RIGHT-TRIANGLE-BRIDGE",
+        "CAP-INVERSE-TRIG-BRIDGE"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "A vector has components (-3,4). First or second quadrant?",
+          "defensible_answer": "Second quadrant."
+        },
+        "attempt": {
+          "produces": "Magnitude, quadrant-aware direction description and normalized component vector.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses signed components to place the direction after inverse trig.",
+              "evidence_of": "Physical quadrant reasoning."
+            },
+            {
+              "criterion": "Divides every component by one common magnitude.",
+              "evidence_of": "Correct unit-vector normalization."
+            }
+          ],
+          "accepted": [
+            "Magnitude first, retain signs for quadrant, then normalize."
+          ],
+          "rejected": [
+            "Report atan(Ay/Ax) without a quadrant check."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which information did squaring remove when computing magnitude?",
+              "why_this_ask": "Recovers why signs are retained.",
+              "from_step_ref": "VDU-2"
+            },
+            {
+              "ask": "What must be true after normalization?",
+              "why_this_ask": "Rebuilds the unit-vector check.",
+              "from_step_ref": "VDU-4"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching supplies the full conversion; reconstruction starts from information lost by magnitude."
+        },
+        "boundary_test": {
+          "prompt": "Can a zero vector be assigned a unique unit direction?",
+          "answer": "No; division by |A| would divide by zero and the direction is not unique.",
+          "confirms": "Unit-vector construction requires a nonzero vector."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-VEC-DOT-PRODUCT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Use dot product for angle, perpendicularity and projection",
+      "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-ALGEBRA",
+      "primary_capability_ref": "CAP-VEC-DOT-PRODUCT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often memorize A·B=ABcos(theta) without connecting it to signed components or projection normalization.",
+      "entry_assumptions": [
+        "Can represent vectors in one Cartesian basis and compute magnitudes."
+      ],
+      "inferential_jump": "One scalar can be obtained from component alignment or geometric angle, so perpendicularity, angle and projection questions share one model.",
+      "teaching_path": [
+        {
+          "id": "VDOT-1",
+          "role": "DECLARE",
+          "action": "Write both vectors in one basis and compute A·B by multiplying and summing corresponding components.",
+          "why_valid": "Orthonormal basis directions separate component contributions.",
+          "inputs": [],
+          "output": "A·B=AxBx+AyBy+AzBz"
+        },
+        {
+          "id": "VDOT-2",
+          "role": "TRANSFORM",
+          "action": "Interpret with A·B=|A||B|cos(theta).",
+          "why_valid": "Sign and magnitude encode relative alignment.",
+          "inputs": [],
+          "output": "cos(theta)=(A·B)/(|A||B|)"
+        },
+        {
+          "id": "VDOT-3",
+          "role": "TRANSFORM",
+          "action": "For projection of A onto B use (A·B/|B|^2)B.",
+          "why_valid": "The normalization makes projection independent of B's scale.",
+          "inputs": [],
+          "output": "proj_B(A)=(A·B/|B|^2)B"
+        },
+        {
+          "id": "VDOT-4",
+          "role": "VERIFY",
+          "action": "Check symmetry and self-dot identity.",
+          "why_valid": "These catch sign/component mistakes.",
+          "inputs": [],
+          "output": "A·B=B·A; A·A=|A|^2"
+        }
+      ],
+      "relation_refs": [
+        "REL-VEC-DOT-PRODUCT"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A zero dot product means one vector must be zero.",
+          "diagnostic_prompt": "Can two nonzero perpendicular unit vectors have A·B=0?",
+          "repair": "Yes. cos(90°)=0."
+        },
+        {
+          "wrong_idea": "Vector projection is simply (A·B)B.",
+          "diagnostic_prompt": "If B is doubled, should projection onto the same direction double?",
+          "repair": "No. Divide by |B|^2 so rescaling B does not change the physical projection."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Let A=(1,1,1) and B=(1,1,0). Compute A·B and the vector projection of A onto B.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A·B=2 and proj_B(A)=B.",
+          "reasoning": [
+            "A·B=1+1+0=2.",
+            "|B|^2=2.",
+            "Projection coefficient is 2/2=1."
+          ],
+          "check": "A-proj_B(A)=(0,0,1), whose dot product with B is zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "All values are exact."
+        }
+      },
+      "research_contribution": "ExamSIDE includes direct projection, perpendicularity and angle questions, so dot product is supported by real question demand.",
+      "prerequisite_refs": [
+        "CAP-VEC-DIRECTION-UNIT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two nonzero vectors are perpendicular. What should A·B be?",
+          "defensible_answer": "Zero."
+        },
+        "attempt": {
+          "produces": "A component dot product followed by the requested interpretation.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Computes corresponding-component products before interpretation.",
+              "evidence_of": "Correct scalar model."
+            },
+            {
+              "criterion": "Uses |B|^2 in vector projection.",
+              "evidence_of": "Scale-invariant projection."
+            }
+          ],
+          "accepted": [
+            "Compute dot first, then interpret zero/cosine/projection."
+          ],
+          "rejected": [
+            "Treat dot product as a vector or omit the projection denominator."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What scalar is unchanged if A and B are swapped?",
+              "why_this_ask": "Recovers symmetry.",
+              "from_step_ref": "VDOT-4"
+            },
+            {
+              "ask": "What denominator prevents projection from depending on B's scale?",
+              "why_this_ask": "Recovers |B|^2 normalization.",
+              "from_step_ref": "VDOT-3"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching names the identities; reconstruction recovers them from invariance checks."
+        },
+        "boundary_test": {
+          "prompt": "Does A·B=0 identify a unique perpendicular direction in 3D?",
+          "answer": "No; many nonzero vectors can be perpendicular to a given vector in 3D.",
+          "confirms": "Dot product gives a scalar constraint, not a unique new direction."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-VEC-CROSS-PRODUCT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Compute and verify cross-product magnitude and axial direction",
+      "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-ALGEBRA",
+      "primary_capability_ref": "CAP-VEC-CROSS-PRODUCT",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Determinant signs, operand order and axial direction create distinct failure modes beyond component addition.",
+      "entry_assumptions": [
+        "Can read i/j/k components and normalize a nonzero vector."
+      ],
+      "inferential_jump": "A×B is an ordered axial vector perpendicular to the input plane, not another component sum.",
+      "teaching_path": [
+        {
+          "id": "VCROSS-1",
+          "role": "DECLARE",
+          "action": "Keep the ordered pair A then B and one right-handed basis visible.",
+          "why_valid": "Changing operand order reverses axial direction.",
+          "inputs": [],
+          "output": "ordered component triples"
+        },
+        {
+          "id": "VCROSS-2",
+          "role": "TRANSFORM",
+          "action": "Use the signed component formula.",
+          "why_valid": "The expansion produces a perpendicular axial vector.",
+          "inputs": [],
+          "output": "A×B=(AyBz-AzBy)i+(AzBx-AxBz)j+(AxBy-AyBx)k"
+        },
+        {
+          "id": "VCROSS-3",
+          "role": "TRANSFORM",
+          "action": "If a unit normal is requested, divide the nonzero cross product by its magnitude.",
+          "why_valid": "Normalization preserves axial direction.",
+          "inputs": [],
+          "output": "n_hat=(A×B)/|A×B|"
+        },
+        {
+          "id": "VCROSS-4",
+          "role": "VERIFY",
+          "action": "Check zero dot products with A and B and reverse operands.",
+          "why_valid": "Perpendicularity and anti-commutativity independently test the calculation.",
+          "inputs": [],
+          "output": "(A×B)·A=(A×B)·B=0; B×A=-(A×B)"
+        }
+      ],
+      "relation_refs": [
+        "REL-VEC-CROSS-PRODUCT"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "A×B equals B×A.",
+          "diagnostic_prompt": "If A×B points +k, where must B×A point?",
+          "repair": "It reverses: B×A=-(A×B)."
+        },
+        {
+          "wrong_idea": "Either perpendicular direction is acceptable.",
+          "diagnostic_prompt": "What fixes the sign of the normal to the A-B plane?",
+          "repair": "The right-hand rule applied to ordered A then B fixes orientation."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Given A=(1,0,0) and B=(0,1,0) in a right-handed basis, determine A×B and B×A.",
+        "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A×B=k and B×A=-k.",
+          "reasoning": [
+            "i×j=k.",
+            "Reversing operands reverses the result.",
+            "k is perpendicular to both inputs."
+          ],
+          "check": "Dot each result with A and B; both dot products are zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Exact basis-vector check."
+        }
+      },
+      "research_contribution": "ExamSIDE now provides direct cross-product and unit-normal demand, removing the prior no-demand reason for deferral.",
+      "prerequisite_refs": [
+        "CAP-VEC-DIRECTION-UNIT"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If A×B points upward, what happens after swapping operands?",
+          "defensible_answer": "The result points downward."
+        },
+        "attempt": {
+          "produces": "A signed cross-product vector with order and perpendicularity checks.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Preserves operand order through expansion.",
+              "evidence_of": "Correct axial orientation."
+            },
+            {
+              "criterion": "Checks result against both inputs.",
+              "evidence_of": "Independent perpendicularity verification."
+            }
+          ],
+          "accepted": [
+            "Compute ordered cross product, then verify perpendicularity/reversal."
+          ],
+          "rejected": [
+            "Treat A×B as commutative or scalar."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What changes if A,B order is reversed?",
+              "why_this_ask": "Recovers anti-commutativity.",
+              "from_step_ref": "VCROSS-1"
+            },
+            {
+              "ask": "How can you test the result without repeating the expansion?",
+              "why_this_ask": "Elicits zero-dot checks.",
+              "from_step_ref": "VCROSS-4"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching gives the component rule; reconstruction emphasizes order and geometric checks."
+        },
+        "boundary_test": {
+          "prompt": "What is the direction of A×B for parallel nonzero A and B?",
+          "answer": "The cross product is zero and has no unique direction.",
+          "confirms": "Axial direction exists only for a nonzero cross product."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-VEC-UNIT-DIRECTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "|A| = sqrt(Ax^2 + Ay^2 + Az^2); A_hat = A/|A|; tan(theta_ref)=|Ay/Ax|",
+      "meaning": "Cartesian components determine vector magnitude and normalized direction; in two dimensions a reference angle is placed in the physical quadrant using component signs.",
+      "symbols": [
+        {
+          "symbol": "|A|",
+          "meaning": "Magnitude of vector A",
+          "unit_or_domain": "same unit as A components"
+        },
+        {
+          "symbol": "Ax",
+          "meaning": "Signed x component",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "Ay",
+          "meaning": "Signed y component",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "Az",
+          "meaning": "Signed z component, zero in a 2D problem",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "A_hat",
+          "meaning": "Unit vector in the direction of A",
+          "unit_or_domain": "dimensionless"
+        },
+        {
+          "symbol": "theta_ref",
+          "meaning": "Acute/reference angle before quadrant placement",
+          "unit_or_domain": "angle"
+        }
+      ],
+      "conditions": [
+        "The i/j/k basis is orthonormal.",
+        "|A| is nonzero before A_hat=A/|A| is formed.",
+        "For a 2D direction angle, component signs are retained to place the inverse-trig reference angle in the physical quadrant."
+      ],
+      "derivation": [
+        {
+          "id": "VUNIT-REL-1",
+          "role": "DECLARE",
+          "action": "Compute |A| from the perpendicular signed components.",
+          "why_valid": "Orthogonal Cartesian components form perpendicular legs.",
+          "inputs": [],
+          "output": "|A|=sqrt(Ax^2+Ay^2+Az^2)"
+        },
+        {
+          "id": "VUNIT-REL-2",
+          "role": "TRANSFORM",
+          "action": "Divide every component by |A| to form A_hat.",
+          "why_valid": "Uniform positive rescaling preserves direction and normalization sets magnitude to one.",
+          "inputs": [],
+          "output": "A_hat=(Ax i+Ay j+Az k)/|A|"
+        },
+        {
+          "id": "VUNIT-REL-3",
+          "role": "VERIFY",
+          "action": "For 2D direction, combine atan(|Ay/Ax|) with component signs.",
+          "why_valid": "Inverse tangent gives a reference value; signs supply physical quadrant.",
+          "inputs": [],
+          "output": "reference angle plus quadrant -> physical direction"
+        }
+      ],
+      "limits": [
+        "If Ax=0, the 2D direction is vertical and should be read directly from Ay.",
+        "A zero vector has no unique unit direction."
+      ],
+      "checks": [
+        "A_hat must have magnitude 1.",
+        "Multiplying A_hat by |A| must reproduce the original components."
+      ],
+      "gate_relation_ref": "REL-VEC-UNIT-DIRECTION"
+    },
+    {
+      "id": "REL-VEC-DOT-PRODUCT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "A·B = AxBx + AyBy + AzBz = |A||B| cos(theta); proj_B(A) = (A·B/|B|^2) B",
+      "meaning": "The dot product links Cartesian components to angle and supplies perpendicularity and projection tests.",
+      "symbols": [
+        {
+          "symbol": "A·B",
+          "meaning": "Scalar dot product",
+          "unit_or_domain": "product of A and B units"
+        },
+        {
+          "symbol": "Ax,Ay,Az",
+          "meaning": "Signed components of A",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "Bx,By,Bz",
+          "meaning": "Signed components of B",
+          "unit_or_domain": "same unit as B"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "Angle between nonzero vectors A and B",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "proj_B(A)",
+          "meaning": "Vector projection of A onto nonzero B",
+          "unit_or_domain": "same unit as A"
+        }
+      ],
+      "conditions": [
+        "A and B are expressed in the same orthonormal Cartesian basis.",
+        "The angle form requires nonzero magnitudes for both vectors.",
+        "The vector projection formula requires |B| nonzero."
+      ],
+      "derivation": [
+        {
+          "id": "VDOT-REL-1",
+          "role": "DECLARE",
+          "action": "Multiply corresponding components and add them.",
+          "why_valid": "In an orthonormal basis, same-axis products form the scalar dot product.",
+          "inputs": [],
+          "output": "A·B=AxBx+AyBy+AzBz"
+        },
+        {
+          "id": "VDOT-REL-2",
+          "role": "TRANSFORM",
+          "action": "Relate the scalar to |A||B|cos(theta).",
+          "why_valid": "The dot product measures relative alignment.",
+          "inputs": [],
+          "output": "cos(theta)=(A·B)/(|A||B|)"
+        },
+        {
+          "id": "VDOT-REL-3",
+          "role": "VERIFY",
+          "action": "For projection onto B, scale B by (A·B)/|B|^2.",
+          "why_valid": "The denominator removes dependence on B's arbitrary scale.",
+          "inputs": [],
+          "output": "proj_B(A)=(A·B/|B|^2)B"
+        }
+      ],
+      "limits": [
+        "The dot product is a scalar; it does not produce an axial direction.",
+        "A zero dot product is a perpendicularity statement only when the nonzero-vector geometry is interpreted."
+      ],
+      "checks": [
+        "A·B must equal B·A.",
+        "A·A must equal |A|^2 and be nonnegative."
+      ],
+      "gate_relation_ref": "REL-VEC-DOT-PRODUCT"
+    },
+    {
+      "id": "REL-VEC-CROSS-PRODUCT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "A×B = (AyBz-AzBy)i + (AzBx-AxBz)j + (AxBy-AyBx)k; |A×B|=|A||B|sin(theta)",
+      "meaning": "The cross product is an axial vector perpendicular to A and B; magnitude gives parallelogram area and orientation follows the right-hand rule.",
+      "symbols": [
+        {
+          "symbol": "A×B",
+          "meaning": "Cross-product axial vector",
+          "unit_or_domain": "product of A and B units"
+        },
+        {
+          "symbol": "Ax,Ay,Az",
+          "meaning": "Signed components of A",
+          "unit_or_domain": "same unit as A"
+        },
+        {
+          "symbol": "Bx,By,Bz",
+          "meaning": "Signed components of B",
+          "unit_or_domain": "same unit as B"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "Angle between A and B",
+          "unit_or_domain": "angle"
+        }
+      ],
+      "conditions": [
+        "A and B are expressed in one right-handed orthonormal i/j/k basis.",
+        "The magnitude relation uses the smaller angle theta between the vector directions.",
+        "Right-hand orientation is applied to the ordered pair A then B; reversing the order reverses the result."
+      ],
+      "derivation": [
+        {
+          "id": "VCROSS-REL-1",
+          "role": "DECLARE",
+          "action": "Write A and B in the same right-handed basis and preserve order.",
+          "why_valid": "Cross-product orientation depends on basis handedness and operand order.",
+          "inputs": [],
+          "output": "ordered component triples"
+        },
+        {
+          "id": "VCROSS-REL-2",
+          "role": "TRANSFORM",
+          "action": "Evaluate the signed component formula for A×B.",
+          "why_valid": "The expansion produces the perpendicular axial vector.",
+          "inputs": [],
+          "output": "A×B=(AyBz-AzBy)i+(AzBx-AxBz)j+(AxBy-AyBx)k"
+        },
+        {
+          "id": "VCROSS-REL-3",
+          "role": "VERIFY",
+          "action": "Check perpendicularity and order reversal.",
+          "why_valid": "A×B must have zero dot product with both inputs and B×A=-(A×B).",
+          "inputs": [],
+          "output": "(A×B)·A=0; (A×B)·B=0; B×A=-(A×B)"
+        }
+      ],
+      "limits": [
+        "This relation is the ordinary three-dimensional Euclidean cross product.",
+        "Parallel vectors give the zero vector, which has no unique axial direction."
+      ],
+      "checks": [
+        "B×A must negate A×B.",
+        "Magnitude must agree with |A||B|sin(theta) when theta is known."
+      ],
+      "gate_relation_ref": "REL-VEC-CROSS-PRODUCT"
+    }
+  ],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PIN-VEC-ALG-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal selected Vector Algebra operations",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-DIRECTION-UNIT",
+        "MIC-PHY-VEC-DOT-PRODUCT",
+        "MIC-PHY-VEC-CROSS-PRODUCT"
+      ],
+      "entry_needs": [
+        "Signed components are available; inverse-trig evaluation remains a visible Mathematics bridge."
+      ],
+      "learner_actions": [
+        "Reconstruct magnitude/direction/unit vector from components.",
+        "Use dot product for perpendicularity, angle and projection.",
+        "Use ordered cross product for an axial perpendicular vector."
+      ],
+      "help_plan": [
+        "Keep signs visible through direction recovery.",
+        "Separate scalar dot output from vector projection output.",
+        "Keep A then B visible before cross-product expansion."
+      ],
+      "reveal_plan": "Each operation is introduced from the real question decision it supports, followed by an invariant check.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+          "purpose": "Real Vector Algebra question demand",
+          "reason": "Selected JEE Main PYQs require these operations directly."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not extend into triple products, coplanarity determinants or vector calculus in this first slice."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PIN-VEC-ALG-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit selected Vector Algebra operation choices",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-VEC-DIRECTION-UNIT",
+        "MIC-PHY-VEC-DOT-PRODUCT",
+        "MIC-PHY-VEC-CROSS-PRODUCT"
+      ],
+      "entry_needs": [
+        "Learner can attempt a sign/quadrant or operation choice before seeing the completed relation."
+      ],
+      "learner_actions": [
+        "Place recovered direction using signs.",
+        "Explain zero dot product at perpendicularity.",
+        "Predict cross-product reversal."
+      ],
+      "help_plan": [
+        "Ask what magnitude loses.",
+        "Ask what dot-product symmetry preserves.",
+        "Ask what reverses when cross operands swap."
+      ],
+      "reveal_plan": "Prediction and reconstruction precede formula closure.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-VECTOR-ALGEBRA-DEMAND",
+          "purpose": "Question-driven reconstruction",
+          "reason": "The source questions expose representation and operation choices."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not treat these prompts as Mathematics-provider mastery or school-issued micro-scope."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

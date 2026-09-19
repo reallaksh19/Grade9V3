@@ -1,0 +1,985 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "LIB-PHY-PINNACLE-NLM-APPLIED",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Physics",
+  "scope_summary": "Owner-approved ExamSIDE question-demand extension for Grade-9 Pinnacle NLM preparation: quantitative friction limits, ideal connected-string/pulley constraints, and impulse/rate-of-momentum reasoning. Inclined-plane and multi-block stories reuse these capabilities with existing FBD, vector-resolution and Newton-II content.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-EXAMSIDE-JEE-NLM-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE JEE Main Laws of Motion past-year question bank",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion",
+      "edition": "2002-2026 JEE Main PYQ page inspected 2026-09-19",
+      "section": "Selected friction, incline, connected-body, pulley and tension questions",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question bank. Grade9V3 retains concise demand summaries, identifiers and URLs rather than copying the bank.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FRICTION-MAGNITUDE",
+        "CAP-NLM-CONNECTED-SYSTEMS"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "The JEE Main Laws-of-Motion bank repeatedly requires coefficient-based friction, rough inclines, common-acceleration connected bodies, and ideal string/pulley tension reasoning.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-EXAMSIDE-COMEDK-NLM-DEMAND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "ExamSIDE COMEDK machine-gun momentum-rate demand",
+      "origin": "WEB",
+      "locator": "https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5",
+      "edition": "COMEDK 2026 Morning Shift; category listing inspected 2026-09-19",
+      "section": "Machine-gun repeated-bullet force / momentum-rate question",
+      "last_checked": "2026-09-19",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "External question source. Grade9V3 retains a short demand summary and URL, not copied question text.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "CAP-NLM-IMPULSE-MOMENTUM-RATE"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "The user explicitly supplied this item; it requires force as rate of momentum transfer from repeated bullets.",
+      "fallback": [
+        "https://questions.examside.com/past-years/jee/comedk/physics/laws-of-motion"
+      ]
+    },
+    {
+      "id": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Grade9V3 bounded applied-NLM adaptation",
+      "origin": "AUTHORED",
+      "locator": "Physics/library/phy-nlm-applied-pinnacle.v1.json",
+      "edition": "0.1.0",
+      "section": "Quantitative friction, connected systems and momentum-rate learner actions",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created adaptation from owner-approved external question demand; no school-issued scope claim.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FRICTION-MAGNITUDE",
+        "CAP-NLM-CONNECTED-SYSTEMS",
+        "CAP-NLM-IMPULSE-MOMENTUM-RATE"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Adds independently fail-able decisions while leaving incline, normal-reaction and multi-block stories as applications where existing capabilities suffice.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-PHY-PINNACLE-NLM-APPLIED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-JEE-NLM-DEMAND",
+        "SRC-EXAMSIDE-COMEDK-NLM-DEMAND",
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Pinnacle applied Laws of Motion question-demand extension",
+      "topic": "NLM",
+      "intrinsic_badge": "HIGH",
+      "badge_reason": "These problems combine model choice, body ownership, contact constraints and quantitative relations; setup is usually the failure point.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [
+        "BUCKET-PHY-NLM-FIRST-LAW"
+      ],
+      "conventions": [
+        {
+          "id": "CONV-PIN-NLM-BODY",
+          "statement": "Use one free-body diagram and one Newton-II equation per chosen body before eliminating internal interaction forces."
+        },
+        {
+          "id": "CONV-PIN-NLM-IDEAL-STRING",
+          "statement": "Equal tension/shared acceleration claims require an explicitly ideal massless inextensible string and stated smooth-pulley geometry."
+        }
+      ],
+      "scope": {
+        "covers": "Coefficient-based static/kinetic friction, ideal connected-body/string/pulley constraints, and impulse/average-force/rate-of-momentum questions including repeated projectiles.",
+        "excluded": [
+          "Massive strings, pulley rotational inertia, elastic strings and other non-ideal connection models.",
+          "General collision and centre-of-mass conservation algebra.",
+          "Rocket equation or continuous variable-mass dynamics.",
+          "A separate capability for every incline, normal-force or multi-block story when existing actions already compose to solve it."
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-NLM-FRICTION-MAGNITUDE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Choose and use the correct quantitative friction magnitude model after identifying contact sliding state or tendency.",
+      "success_criterion": "Distinguish self-adjusting static friction from its limiting value and from kinetic friction, obtain the relevant normal reaction from the chosen body's perpendicular dynamics, and apply the correct relation only under the appropriate contact model.",
+      "prerequisite_refs": [
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-NLM-CONNECTED-SYSTEMS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Solve ideal connected-body/string/pulley systems with one free-body equation per body and an explicit kinematic constraint.",
+      "success_criterion": "Draw separate FBDs, preserve action-reaction ownership, state ideal-string/pulley assumptions before equating tension or acceleration magnitudes, write one Newton-II equation per body, and combine without cancelling forces that act on different bodies.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-NLM-IMPULSE-MOMENTUM-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Relate impulse and average force to momentum change, including repeated-object momentum flow such as bullets fired per second.",
+      "success_criterion": "Compute p=mv, use J=Delta p=F_avg Delta t for a stated interval, and for repeated identical emissions convert momentum change per item times items per second into average force while keeping the reaction force on the launcher on the other body.",
+      "prerequisite_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Choose static-limit or kinetic friction only after deciding contact state",
+      "bucket_id": "BUCKET-PHY-PINNACLE-NLM-APPLIED",
+      "primary_capability_ref": "CAP-NLM-FRICTION-MAGNITUDE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The common error is treating f=mu N as automatic, which destroys static-threshold and multi-body reasoning.",
+      "entry_assumptions": [
+        "Can identify friction direction from relative sliding/tendency.",
+        "Can write Newton-II component equations."
+      ],
+      "inferential_jump": "A friction coefficient supplies a bound/model, not automatically the actual static force; N must be solved in the current geometry.",
+      "teaching_path": [
+        {
+          "id": "NFR-1",
+          "role": "DECLARE",
+          "action": "Name the contact, friction direction and state: sticking, impending slip or sliding.",
+          "why_valid": "The quantitative relation depends on contact state.",
+          "inputs": [],
+          "output": "contact state and direction"
+        },
+        {
+          "id": "NFR-2",
+          "role": "TRANSFORM",
+          "action": "Solve the perpendicular force equation for normal reaction N.",
+          "why_valid": "N is determined by actual force geometry.",
+          "inputs": [],
+          "output": "N from perpendicular Newton-II equation"
+        },
+        {
+          "id": "NFR-3",
+          "role": "TRANSFORM",
+          "action": "Use the appropriate static bound/limit or kinetic relation.",
+          "why_valid": "This keeps static friction self-adjusting until the threshold.",
+          "inputs": [],
+          "output": "state-appropriate friction magnitude"
+        },
+        {
+          "id": "NFR-4",
+          "role": "VERIFY",
+          "action": "Test the assumed contact state against the result.",
+          "why_valid": "If required static friction exceeds the limit, sticking is inconsistent.",
+          "inputs": [],
+          "output": "consistent contact state"
+        }
+      ],
+      "relation_refs": [
+        "REL-NLM-FRICTION-MAGNITUDE"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Static friction always equals mu_s N.",
+          "diagnostic_prompt": "A small force acts but a rough block stays at rest. Must friction already be maximum?",
+          "repair": "No. Static friction adjusts to the needed value up to the limit."
+        },
+        {
+          "wrong_idea": "Normal reaction always equals mg.",
+          "diagnostic_prompt": "If the surface is inclined or another force has a normal component, must N equal mg?",
+          "repair": "No. Solve the perpendicular force equation."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A rough-table block remains at rest under a 3 N horizontal force; limiting static friction is 8 N. What friction acts?",
+        "source_ref": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "3 N opposite the applied force, not 8 N.",
+          "reasoning": [
+            "The block is sticking.",
+            "Zero acceleration requires horizontal balance.",
+            "3 N is below the 8 N limit."
+          ],
+          "check": "Net horizontal force is zero and required static friction is below its limit.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The limiting value is used only as a consistency bound."
+        }
+      },
+      "research_contribution": "The JEE Main Laws-of-Motion bank repeatedly requires coefficient-friction and limiting-state reasoning, including rough inclines and blocks moving together.",
+      "prerequisite_refs": [
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Does static friction jump immediately to its maximum as applied force rises from zero?",
+          "defensible_answer": "No; it adjusts until the limit is reached."
+        },
+        "attempt": {
+          "produces": "Contact-state decision, normal reaction and state-appropriate friction magnitude.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Does not set f_s=mu_sN unless limiting.",
+              "evidence_of": "Correct static-friction model."
+            },
+            {
+              "criterion": "Obtains N from actual perpendicular dynamics.",
+              "evidence_of": "Geometry-sensitive contact reasoning."
+            }
+          ],
+          "accepted": [
+            "Choose state -> find N -> choose relation -> verify."
+          ],
+          "rejected": [
+            "Write f=mu N before deciding sticking/sliding."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What does mu_s tell you before slipping begins?",
+              "why_this_ask": "Recovers a bound rather than automatic equality.",
+              "from_step_ref": "NFR-3"
+            },
+            {
+              "ask": "Which equation determines N?",
+              "why_this_ask": "Prevents memorized N=mg.",
+              "from_step_ref": "NFR-2"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching states the models; reconstruction asks which equality is justified."
+        },
+        "boundary_test": {
+          "prompt": "If required static friction equals mu_sN exactly, what state is represented?",
+          "answer": "Limiting/impending slip.",
+          "confirms": "Equality is a boundary condition, not the default static state."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-CONNECTED-SYSTEMS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Solve connected bodies with one FBD per body and an explicit string constraint",
+      "bucket_id": "BUCKET-PHY-PINNACLE-NLM-APPLIED",
+      "primary_capability_ref": "CAP-NLM-CONNECTED-SYSTEMS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners often cancel third-law pairs across bodies or assume equal tension/acceleration without checking the ideal connection model.",
+      "entry_assumptions": [
+        "Can draw body-owned FBDs and apply Newton II.",
+        "Can identify Newton-third-law partners."
+      ],
+      "inferential_jump": "Bodies are dynamically coupled but Newton II still applies to each body separately; the ideal connection then links unknowns.",
+      "teaching_path": [
+        {
+          "id": "NCON-1",
+          "role": "DECLARE",
+          "action": "Draw one FBD per body and label every interaction on the body it acts on.",
+          "why_valid": "Forces on different bodies belong to different equations.",
+          "inputs": [],
+          "output": "separate body-owned force lists"
+        },
+        {
+          "id": "NCON-2",
+          "role": "DECLARE",
+          "action": "State massless/inextensible string and smooth/fixed pulley assumptions before equal-tension/acceleration claims.",
+          "why_valid": "Connection relations are model assumptions tied to hardware geometry.",
+          "inputs": [],
+          "output": "declared ideal connection model"
+        },
+        {
+          "id": "NCON-3",
+          "role": "TRANSFORM",
+          "action": "Write one signed Newton-II equation per body, then eliminate shared unknowns.",
+          "why_valid": "Coupled unknowns are solved from simultaneous equations.",
+          "inputs": [],
+          "output": "separate equations linked by T and acceleration constraint"
+        },
+        {
+          "id": "NCON-4",
+          "role": "VERIFY",
+          "action": "Check acceleration against string length and T against each body equation.",
+          "why_valid": "Dynamics and kinematics must describe the same connected motion.",
+          "inputs": [],
+          "output": "constraint-consistent solution"
+        }
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Equal-and-opposite tension forces cancel even when they act on different bodies.",
+          "diagnostic_prompt": "If one body is isolated, does tension on the other body belong on this FBD?",
+          "repair": "No. Keep one FBD per body."
+        },
+        {
+          "wrong_idea": "Every pulley problem has equal acceleration magnitudes and equal tension automatically.",
+          "diagnostic_prompt": "Would a moving or massive pulley preserve the same constraints?",
+          "repair": "State the ideal model and derive the actual length constraint."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two masses are joined by one massless inextensible string over a smooth fixed pulley. What structure is needed before solving?",
+        "source_ref": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "One FBD and Newton-II equation per mass, one ideal-string tension magnitude, and the fixed-pulley acceleration constraint.",
+          "reasoning": [
+            "Each tension acts on a different body.",
+            "The ideal string gives one T.",
+            "Inextensibility links motion along the string."
+          ],
+          "check": "Substitute solved T and acceleration into both body equations and the string constraint.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "No numeric masses are required; the task checks setup."
+        }
+      },
+      "research_contribution": "ExamSIDE JEE Main questions explicitly use hanging blocks and table-pulley systems, making connected-system setup a genuine new learner action.",
+      "prerequisite_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Should tension forces on two connected bodies be cancelled before writing their individual equations?",
+          "defensible_answer": "No."
+        },
+        "attempt": {
+          "produces": "Separate FBD equations plus an explicit connection constraint.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Keeps one equation per body before elimination.",
+              "evidence_of": "Correct force ownership."
+            },
+            {
+              "criterion": "States ideal assumptions before equalities.",
+              "evidence_of": "Model-bounded connection reasoning."
+            }
+          ],
+          "accepted": [
+            "Separate body equations + stated ideal connection + constraint."
+          ],
+          "rejected": [
+            "Cancel tension across bodies before writing equations."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which body does each tension arrow act on?",
+              "why_this_ask": "Recovers FBD ownership.",
+              "from_step_ref": "NCON-1"
+            },
+            {
+              "ask": "Which assumptions make one T valid?",
+              "why_this_ask": "Makes idealization explicit.",
+              "from_step_ref": "NCON-2"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching supplies the ideal connection rule; reconstruction makes the learner justify it."
+        },
+        "boundary_test": {
+          "prompt": "If pulley rotational inertia matters, may string-side tensions differ?",
+          "answer": "Yes; the equal-tension idealization can fail.",
+          "confirms": "Equal tension is conditional, not universal."
+        }
+      }
+    },
+    {
+      "id": "MIC-PHY-NLM-IMPULSE-MOMENTUM-RATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Use momentum change per time for impulse and repeated-bullet recoil",
+      "bucket_id": "BUCKET-PHY-PINNACLE-NLM-APPLIED",
+      "primary_capability_ref": "CAP-NLM-IMPULSE-MOMENTUM-RATE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The challenge is choosing the transfer interval/body correctly; repeated bullets turn per-shot momentum into a force rate.",
+      "entry_assumptions": [
+        "Can apply Newton II conceptually and distinguish third-law forces on different bodies."
+      ],
+      "inferential_jump": "Force over time can be read from momentum transfer; repeated identical momentum changes add over one second.",
+      "teaching_path": [
+        {
+          "id": "NIMP-1",
+          "role": "DECLARE",
+          "action": "Choose the body/item and one inertial frame, then compute p_i and p_f.",
+          "why_valid": "Momentum change requires one object and one frame.",
+          "inputs": [],
+          "output": "Delta p=p_f-p_i"
+        },
+        {
+          "id": "NIMP-2",
+          "role": "TRANSFORM",
+          "action": "Use J=Delta p and F_avg=Delta p/Delta t.",
+          "why_valid": "Impulse is momentum transferred by average net force.",
+          "inputs": [],
+          "output": "J=Delta p=F_avg Delta t"
+        },
+        {
+          "id": "NIMP-3",
+          "role": "TRANSFORM",
+          "action": "For n identical bullets each second, multiply per-bullet momentum change by n.",
+          "why_valid": "Repeated identical momentum changes add linearly over the interval.",
+          "inputs": [],
+          "output": "|F_avg|=n|Delta p_bullet| for n per second"
+        },
+        {
+          "id": "NIMP-4",
+          "role": "VERIFY",
+          "action": "Place equal-and-opposite recoil on the launcher and check force units.",
+          "why_valid": "Newton III changes the body receiving the partner force; dimensions verify the rate.",
+          "inputs": [],
+          "output": "reaction force + N=kg m/s^2"
+        }
+      ],
+      "relation_refs": [
+        "REL-NLM-IMPULSE-MOMENTUM"
+      ],
+      "representation_refs": [],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Gun recoil force equals one bullet's momentum.",
+          "diagnostic_prompt": "Momentum is kg m/s; force is N. What rate information is missing?",
+          "repair": "Divide by time or multiply momentum per bullet by bullets per second."
+        },
+        {
+          "wrong_idea": "Bullet and gun forces cancel on one bullet FBD.",
+          "diagnostic_prompt": "Do both forces act on the same body?",
+          "repair": "No. Third-law partners act on different bodies."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A launcher fires identical bullets, each gaining forward momentum p from rest, at rate r bullets/s. What average recoil-force magnitude acts on the launcher?",
+        "source_ref": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "r p.",
+          "reasoning": [
+            "Each bullet gains p.",
+            "In one second r bullets gain total momentum rp.",
+            "Force is momentum transfer per second.",
+            "Launcher receives opposite direction."
+          ],
+          "check": "(1/s)(kg m/s)=kg m/s^2=N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Symbolic result directly tests repeated-item momentum rate."
+        }
+      },
+      "research_contribution": "The user-supplied COMEDK machine-gun item directly requires momentum-transfer rate; this no longer needs to be treated as an unevidenced historical add-on.",
+      "prerequisite_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If momentum per bullet stays fixed and firing rate doubles, what happens to average recoil force?",
+          "defensible_answer": "It doubles."
+        },
+        "attempt": {
+          "produces": "Per-item momentum change, conversion to momentum per unit time, and correct reaction-force body.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses time/rate to convert momentum to force.",
+              "evidence_of": "Rate-of-momentum reasoning."
+            },
+            {
+              "criterion": "Keeps bullet and launcher forces on different bodies.",
+              "evidence_of": "Newton-III ownership."
+            }
+          ],
+          "accepted": [
+            "F_avg=(momentum change per bullet)*(bullets per second)."
+          ],
+          "rejected": [
+            "Set force equal to momentum without time/rate."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What quantity does one bullet gain, and what happens for many bullets in one second?",
+              "why_this_ask": "Builds momentum flow.",
+              "from_step_ref": "NIMP-3"
+            },
+            {
+              "ask": "Which body receives the opposite interaction force?",
+              "why_this_ask": "Preserves third-law ownership.",
+              "from_step_ref": "NIMP-4"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching states impulse/rate relations; reconstruction starts from per-item transfer and units."
+        },
+        "boundary_test": {
+          "prompt": "Does this alone solve a two-body collision with both final velocities unknown?",
+          "answer": "No; that requires an additional system/conservation model.",
+          "confirms": "Momentum-rate demand is separate from full collision conservation."
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-NLM-FRICTION-MAGNITUDE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "0 <= f_s <= mu_s N; f_s,max = mu_s N; f_k = mu_k N",
+      "meaning": "Static friction adjusts to the value needed to prevent relative slip up to a limiting magnitude; once the kinetic model applies, friction magnitude is mu_k N.",
+      "symbols": [
+        {
+          "symbol": "f_s",
+          "meaning": "Static-friction magnitude actually acting",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "mu_s",
+          "meaning": "Coefficient of static friction",
+          "unit_or_domain": "dimensionless"
+        },
+        {
+          "symbol": "N",
+          "meaning": "Normal-reaction magnitude",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "f_k",
+          "meaning": "Kinetic-friction magnitude",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "mu_k",
+          "meaning": "Coefficient of kinetic friction",
+          "unit_or_domain": "dimensionless"
+        }
+      ],
+      "conditions": [
+        "The contact pair and relative sliding/tendency have been identified first.",
+        "The normal reaction N belongs to the same contact and current force state.",
+        "Use f_s=mu_s N only at impending slip; otherwise static friction may be smaller.",
+        "Use f_k=mu_k N only when the adopted kinetic-friction model applies during sliding."
+      ],
+      "derivation": [
+        {
+          "id": "FRICQ-REL-1",
+          "role": "DECLARE",
+          "action": "Determine sticking, impending slip or sliding and friction direction.",
+          "why_valid": "The selected quantitative relation depends on contact state.",
+          "inputs": [],
+          "output": "contact state + direction"
+        },
+        {
+          "id": "FRICQ-REL-2",
+          "role": "TRANSFORM",
+          "action": "Find normal reaction from perpendicular dynamics.",
+          "why_valid": "Friction scale depends on N in the current geometry.",
+          "inputs": [],
+          "output": "N from perpendicular Newton-II equation"
+        },
+        {
+          "id": "FRICQ-REL-3",
+          "role": "VERIFY",
+          "action": "Apply matching bound/limit/kinetic relation and check self-consistency.",
+          "why_valid": "A static solution requiring more than mu_s N falsifies sticking.",
+          "inputs": [],
+          "output": "state-consistent friction magnitude"
+        }
+      ],
+      "limits": [
+        "The proportional kinetic model is idealized dry-contact physics, not a universal material law.",
+        "Static friction is not automatically at its maximum."
+      ],
+      "checks": [
+        "A sticking solution must satisfy |f_s|<=mu_s N.",
+        "Friction direction must oppose relative slip or tendency."
+      ],
+      "gate_relation_ref": "REL-NLM-FRICTION-MAGNITUDE"
+    },
+    {
+      "id": "REL-NLM-IDEAL-STRING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "T is equal along one massless string over a smooth fixed pulley; connected endpoints have equal acceleration magnitude along the string constraint",
+      "meaning": "Under the ideal-string/smooth-pulley model, tension is transmitted uniformly and inextensibility links endpoint motions.",
+      "symbols": [
+        {
+          "symbol": "T",
+          "meaning": "Tension magnitude in one continuous ideal string",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "a_1",
+          "meaning": "Acceleration component of one connected endpoint",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "a_2",
+          "meaning": "Acceleration component of the other connected endpoint",
+          "unit_or_domain": "m/s^2"
+        }
+      ],
+      "conditions": [
+        "The string is massless and inextensible.",
+        "The pulley is smooth and fixed unless the problem states a different geometry.",
+        "Tension equality is asserted only along the same continuous ideal string.",
+        "Acceleration relation follows the actual string-length constraint and may involve opposite signed directions even when magnitudes match."
+      ],
+      "derivation": [
+        {
+          "id": "STR-REL-1",
+          "role": "DECLARE",
+          "action": "Identify each body and one continuous ideal string geometry.",
+          "why_valid": "Connection constraints belong to geometry, not Newton III by itself.",
+          "inputs": [],
+          "output": "body FBDs + string geometry"
+        },
+        {
+          "id": "STR-REL-2",
+          "role": "TRANSFORM",
+          "action": "Use equal tension along the ideal string and derive signed acceleration relation from fixed total length.",
+          "why_valid": "Masslessness/smooth redirection supports uniform T; inextensibility supplies kinematic link.",
+          "inputs": [],
+          "output": "shared T and linked accelerations"
+        },
+        {
+          "id": "STR-REL-3",
+          "role": "VERIFY",
+          "action": "Write one Newton-II equation per body before eliminating T or acceleration.",
+          "why_valid": "Tension forces act on different bodies and do not cancel in one body's equation.",
+          "inputs": [],
+          "output": "coupled body equations"
+        }
+      ],
+      "limits": [
+        "A massive string or pulley with rotational inertia can have unequal tensions.",
+        "Moving-pulley geometries can give acceleration ratios other than one-to-one."
+      ],
+      "checks": [
+        "Every tension arrow must belong to the body it acts on.",
+        "The solved accelerations must satisfy the string-length constraint."
+      ],
+      "gate_relation_ref": "REL-NLM-IDEAL-STRING"
+    },
+    {
+      "id": "REL-NLM-IMPULSE-MOMENTUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p = m v; J = Delta p = F_avg Delta t; F_avg = Delta p/Delta t",
+      "meaning": "Momentum change over an interval equals impulse; average force equals momentum change per unit time. Repeated identical emissions produce average recoil through momentum transferred per item times firing rate.",
+      "symbols": [
+        {
+          "symbol": "p",
+          "meaning": "Linear momentum",
+          "unit_or_domain": "kg m/s"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass",
+          "unit_or_domain": "kg"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "J",
+          "meaning": "Impulse",
+          "unit_or_domain": "N s"
+        },
+        {
+          "symbol": "F_avg",
+          "meaning": "Average net force",
+          "unit_or_domain": "N"
+        },
+        {
+          "symbol": "Delta t",
+          "meaning": "Time interval",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "Momentum and velocity refer to the same chosen body/item and inertial frame.",
+        "F_avg is the average net force associated with the stated momentum change over Delta t.",
+        "For repeated-item momentum flow, the item momentum change and item rate are defined over the same steady counting interval."
+      ],
+      "derivation": [
+        {
+          "id": "IMP-REL-1",
+          "role": "DECLARE",
+          "action": "Choose the body/item and compute initial/final momentum in one frame.",
+          "why_valid": "Momentum change requires one object and one frame.",
+          "inputs": [],
+          "output": "p_i and p_f"
+        },
+        {
+          "id": "IMP-REL-2",
+          "role": "TRANSFORM",
+          "action": "Subtract for Delta p and divide by interval, or multiply per-item Delta p by items per second.",
+          "why_valid": "Impulse is accumulated momentum change and repeated identical changes add linearly.",
+          "inputs": [],
+          "output": "J=Delta p; F_avg=Delta p/Delta t"
+        },
+        {
+          "id": "IMP-REL-3",
+          "role": "VERIFY",
+          "action": "Check units and reaction-force body when interpreting recoil.",
+          "why_valid": "kg m/s per second is N; Newton III places the partner on the launcher.",
+          "inputs": [],
+          "output": "force magnitude/direction on correct body"
+        }
+      ],
+      "limits": [
+        "This first slice does not teach general collision conservation or centre-of-mass methods.",
+        "F_avg is an interval average; instantaneous force history requires additional information."
+      ],
+      "checks": [
+        "J and Delta p must share direction and units.",
+        "Doubling firing rate doubles average momentum-transfer force when momentum per shot is unchanged."
+      ],
+      "gate_relation_ref": "REL-NLM-IMPULSE-MOMENTUM"
+    }
+  ],
+  "representations": [],
+  "question_families": [],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-PIN-NLM-APPLIED-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Reveal quantitative friction, connected systems and momentum rate",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+        "MIC-PHY-NLM-CONNECTED-SYSTEMS",
+        "MIC-PHY-NLM-IMPULSE-MOMENTUM-RATE"
+      ],
+      "entry_needs": [
+        "Core NLM FBD/Newton-II/friction-direction/third-law actions are available; angle decomposition is added only when an incline question requires it."
+      ],
+      "learner_actions": [
+        "Choose friction magnitude model from contact state.",
+        "Build one equation per connected body plus an ideal connection constraint.",
+        "Convert momentum change per interval/item rate into average force."
+      ],
+      "help_plan": [
+        "Ask whether contact is sticking or sliding before using muN.",
+        "Keep one body per FBD until equations are written.",
+        "Check units when converting momentum to force."
+      ],
+      "reveal_plan": "Complete model assumptions and equations appear after body/contact/connection choice.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-JEE-NLM-DEMAND",
+          "purpose": "Real applied-NLM demand",
+          "reason": "Selected JEE Main questions require friction thresholds and connected/pulley setups."
+        },
+        {
+          "resource_ref": "SRC-EXAMSIDE-COMEDK-NLM-DEMAND",
+          "purpose": "Momentum-rate demand",
+          "reason": "The supplied machine-gun question directly requires force as momentum transferred per second."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not infer massive-string/pulley-inertia, collision-conservation or rocket-equation content."
+      ],
+      "practice_profile_ref": null
+    },
+    {
+      "id": "ROUTE-PIN-NLM-APPLIED-B",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PINNACLE-NLM-APPLIED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elicit applied-NLM model choices before equations",
+      "cores": [
+        "CORE1B"
+      ],
+      "microtopic_refs": [
+        "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+        "MIC-PHY-NLM-CONNECTED-SYSTEMS",
+        "MIC-PHY-NLM-IMPULSE-MOMENTUM-RATE"
+      ],
+      "entry_needs": [
+        "Learner can commit to contact state, body boundary or transfer interval before seeing the final relation."
+      ],
+      "learner_actions": [
+        "Explain why static friction need not equal maximum.",
+        "Justify ideal connection equalities.",
+        "Derive repeated-bullet recoil from momentum per shot times firing rate."
+      ],
+      "help_plan": [
+        "Ask what falsifies sticking.",
+        "Ask which forces live on different FBDs.",
+        "Ask what converts kg m/s into N."
+      ],
+      "reveal_plan": "Prediction and model reconstruction precede the quantitative relation.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-EXAMSIDE-JEE-NLM-DEMAND",
+          "purpose": "Setup-focused reconstruction",
+          "reason": "Selected questions vary geometry while preserving contact/connection invariants."
+        },
+        {
+          "resource_ref": "SRC-EXAMSIDE-COMEDK-NLM-DEMAND",
+          "purpose": "Rate reconstruction",
+          "reason": "The machine-gun item exposes the missing per-second factor."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not convert another incline angle or block arrangement into a new capability."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": []
+}

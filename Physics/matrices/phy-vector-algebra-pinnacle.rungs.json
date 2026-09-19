@@ -1,0 +1,139 @@
+{
+  "matrix_id": "MATRIX-PHY-PINNACLE-VECTOR-ALGEBRA",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-PINNACLE-VECTOR-ALGEBRA",
+  "topic": "Vectors",
+  "subtopic": "Question-demand Vector Algebra extensions",
+  "axis_note": "Owner-approved external-question-demand extension matrix; ladder_position orders this slice only and does not promote it into ordinary Grade-9 routing.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 30,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-DIRECTION-UNIT",
+      "ceiling": [
+        "dot product",
+        "cross product",
+        "triple product"
+      ],
+      "must_contain": [
+        "A signed component vector in a declared basis.",
+        "Magnitude followed by retained-sign direction reasoning.",
+        "A normalized unit direction with a magnitude-one check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "component sign pattern/quadrant",
+          "hold": "component magnitudes",
+          "notice": "magnitude can stay fixed while physical direction changes"
+        },
+        {
+          "phase": 2,
+          "vary": "overall vector scale",
+          "hold": "direction",
+          "notice": "unit direction stays unchanged"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-DOT-PRODUCT",
+      "ceiling": [
+        "cross product",
+        "triple product",
+        "vector calculus"
+      ],
+      "must_contain": [
+        "A component dot-product calculation.",
+        "At least one angle/perpendicularity/projection interpretation.",
+        "A symmetry or self-dot check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "angle from acute to right to obtuse",
+          "hold": "both magnitudes",
+          "notice": "dot product changes positive to zero to negative"
+        },
+        {
+          "phase": 2,
+          "vary": "scale of projection direction B",
+          "hold": "its direction and A",
+          "notice": "physical vector projection stays unchanged"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-VEC-CROSS-PRODUCT",
+      "ceiling": [
+        "triple product",
+        "coplanarity determinant",
+        "vector calculus"
+      ],
+      "must_contain": [
+        "An ordered component cross-product calculation.",
+        "A right-hand/operand-order orientation statement.",
+        "A perpendicularity check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "operand order",
+          "hold": "same two vectors",
+          "notice": "cross-product vector reverses"
+        },
+        {
+          "phase": 2,
+          "vary": "angle toward parallel",
+          "hold": "magnitudes",
+          "notice": "cross-product magnitude approaches zero"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Represent vectors in one basis, preserve sign and operand order, choose the correct scalar or axial operation, and verify with normalization, symmetry or perpendicularity.",
+    "difficult_move": "Recognizing which representation/operation the question demands instead of treating every vector problem as component addition.",
+    "independent_check": "Unit vectors have magnitude one; dot products are symmetric; cross products are perpendicular to both inputs and reverse under operand swap.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Operation and basis are named and the relation is displayed."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Basis and requested geometric condition are supplied; learner chooses the operation."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only vector statements and requested conclusion are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Signed components must become magnitude, direction and unit direction.",
+      "information_not_handed_over": "quadrant placement after inverse trig",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A question asks perpendicularity or projection without naming dot product.",
+      "information_not_handed_over": "which scalar operation encodes the condition",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A question requests a perpendicular axial direction or reverses cross-product order.",
+      "information_not_handed_over": "ordered right-hand orientation",
+      "repair_to": "R3"
+    }
+  ]
+}

@@ -1,0 +1,462 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "PHYSICS-GATES-PINNACLE-QUESTION-DEMAND-V1",
+  "subject": "Physics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "scope": "Owner-approved ExamSIDE question-demand relations for bounded Grade-9 Pinnacle Vector Algebra and applied-NLM extension matrices.",
+    "deliberately_partial": "Only selected external question-demand relations; not a full JEE or grades 9-11 registry.",
+    "source_authority": "ExamSIDE is reliable question-demand evidence by owner instruction, not Pinnacle school-issued curriculum authority.",
+    "review_status": "Author-created adaptation; independent academic review remains separate."
+  },
+  "gates": [
+    {
+      "gate_id": "PHY-PINNACLE-VECTOR-ALGEBRA",
+      "title": "Vector Algebra operations demanded by selected ExamSIDE PYQs",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Vectors",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-PIN-VEC-NORMALIZE",
+          "statement": "A nonzero vector divided by its magnitude preserves direction and becomes a unit vector."
+        },
+        {
+          "concept_id": "CON-PIN-VEC-DOT",
+          "statement": "The dot product is a scalar encoding alignment and projection; for nonzero vectors it is zero at perpendicularity."
+        },
+        {
+          "concept_id": "CON-PIN-VEC-CROSS",
+          "statement": "The cross product is an ordered axial vector perpendicular to the input plane and reverses under operand swap."
+        }
+      ],
+      "prerequisites": [],
+      "external_prerequisites": [
+        {
+          "capability_id": "MATH-INVERSE-TRIG",
+          "provider_subject": "Mathematics",
+          "statement": "Recover a reference angle from a valid trigonometric ratio.",
+          "acceptance_status": "PROVIDER_REVIEW_REQUIRED"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-VEC-UNIT-DIRECTION",
+          "expression": "|A| = sqrt(Ax^2 + Ay^2 + Az^2); A_hat = A/|A|; tan(theta_ref)=|Ay/Ax|",
+          "meaning": "Cartesian components determine vector magnitude and normalized direction; in two dimensions a reference angle is placed in the physical quadrant using component signs.",
+          "symbols": [
+            {
+              "symbol": "|A|",
+              "meaning": "Magnitude of vector A",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "Ax",
+              "meaning": "Signed x component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "Ay",
+              "meaning": "Signed y component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "Az",
+              "meaning": "Signed z component",
+              "unit": "context unit",
+              "dimension": "context"
+            },
+            {
+              "symbol": "A_hat",
+              "meaning": "Unit vector in direction A",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "theta_ref",
+              "meaning": "Reference angle before quadrant placement",
+              "unit": "rad or degree",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "The i/j/k basis is orthonormal.",
+            "|A| is nonzero before A_hat=A/|A| is formed.",
+            "For a 2D direction angle, component signs are retained to place the inverse-trig reference angle in the physical quadrant."
+          ]
+        },
+        {
+          "relation_id": "REL-VEC-DOT-PRODUCT",
+          "expression": "A·B = AxBx + AyBy + AzBz = |A||B| cos(theta); proj_B(A) = (A·B/|B|^2) B",
+          "meaning": "The dot product links Cartesian components to angle and supplies perpendicularity and projection tests.",
+          "symbols": [
+            {
+              "symbol": "A·B",
+              "meaning": "Scalar dot product",
+              "unit": "A-unit × B-unit",
+              "dimension": "A-dimension × B-dimension"
+            },
+            {
+              "symbol": "Ax,Ay,Az",
+              "meaning": "Signed components of A",
+              "unit": "A-unit",
+              "dimension": "A-dimension"
+            },
+            {
+              "symbol": "Bx,By,Bz",
+              "meaning": "Signed components of B",
+              "unit": "B-unit",
+              "dimension": "B-dimension"
+            },
+            {
+              "symbol": "theta",
+              "meaning": "Angle between nonzero vectors",
+              "unit": "rad or degree",
+              "dimension": "1"
+            },
+            {
+              "symbol": "proj_B(A)",
+              "meaning": "Projection of A onto B",
+              "unit": "A-unit",
+              "dimension": "A-dimension"
+            }
+          ],
+          "conditions": [
+            "A and B are expressed in the same orthonormal Cartesian basis.",
+            "The angle form requires nonzero magnitudes for both vectors.",
+            "The vector projection formula requires |B| nonzero."
+          ]
+        },
+        {
+          "relation_id": "REL-VEC-CROSS-PRODUCT",
+          "expression": "A×B = (AyBz-AzBy)i + (AzBx-AxBz)j + (AxBy-AyBx)k; |A×B|=|A||B|sin(theta)",
+          "meaning": "The cross product is an axial vector perpendicular to A and B; magnitude gives parallelogram area and orientation follows the right-hand rule.",
+          "symbols": [
+            {
+              "symbol": "A×B",
+              "meaning": "Cross-product axial vector",
+              "unit": "A-unit × B-unit",
+              "dimension": "A-dimension × B-dimension"
+            },
+            {
+              "symbol": "Ax,Ay,Az",
+              "meaning": "Signed components of A",
+              "unit": "A-unit",
+              "dimension": "A-dimension"
+            },
+            {
+              "symbol": "Bx,By,Bz",
+              "meaning": "Signed components of B",
+              "unit": "B-unit",
+              "dimension": "B-dimension"
+            },
+            {
+              "symbol": "theta",
+              "meaning": "Angle between A and B",
+              "unit": "rad or degree",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "A and B are expressed in one right-handed orthonormal i/j/k basis.",
+            "The magnitude relation uses the smaller angle theta between the vector directions.",
+            "Right-hand orientation is applied to the ordered pair A then B; reversing the order reverses the result."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Use one declared orthonormal basis.",
+        "Keep scalar dot output distinct from axial cross output.",
+        "Direction recovery from inverse trig remains quadrant-aware."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-PIN-VEC-REP",
+          "sequence": 1,
+          "action": "Write vectors/components in one basis and identify requested output type.",
+          "why_valid": "Operation choice depends on the requested scalar/vector geometry."
+        },
+        {
+          "step_id": "RS-PIN-VEC-OP",
+          "sequence": 2,
+          "action": "Apply the corresponding unit/dot/cross relation preserving signs and operand order.",
+          "why_valid": "Each relation encodes a different invariant and output type.",
+          "depends_on": [
+            "RS-PIN-VEC-REP"
+          ]
+        },
+        {
+          "step_id": "RS-PIN-VEC-CHECK",
+          "sequence": 3,
+          "action": "Use normalization, symmetry or perpendicularity to verify.",
+          "why_valid": "Operation-specific invariants detect sign/order errors.",
+          "depends_on": [
+            "RS-PIN-VEC-OP"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-PIN-VEC-OPS-INTERCHANGEABLE",
+          "wrong_idea": "Dot and cross products are notation choices for the same combination.",
+          "counterexample": "A·B is scalar and symmetric; A×B is axial and reverses under operand swap.",
+          "repair": "Name requested output and invariant before choosing the operation."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-PIN-VEC-ALGEBRA",
+          "title": "Selected unit/dot/cross Vector Algebra questions",
+          "hidden_invariants": [
+            "Unit direction has magnitude one.",
+            "Dot product is symmetric.",
+            "Cross product is perpendicular and anti-commutative."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 6,
+        "prerequisite_depth": 3
+      },
+      "badges": [
+        "VECTOR-ALGEBRA",
+        "PINNACLE-QUESTION-DEMAND"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-PIN-VEC-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from the first symbol of the first relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
+      "gate_id": "PHY-PINNACLE-NLM-APPLIED",
+      "title": "Applied NLM relations demanded by selected ExamSIDE PYQs",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "NLM",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-PIN-FRIC-STATE",
+          "statement": "A friction coefficient supplies a state-dependent bound/model; static friction is not automatically limiting."
+        },
+        {
+          "concept_id": "CON-PIN-CONNECTION-CONDITIONAL",
+          "statement": "Equal tension and linked acceleration claims are conditional on the stated ideal connection model."
+        },
+        {
+          "concept_id": "CON-PIN-MOMENTUM-RATE",
+          "statement": "Average force is momentum change per unit time; repeated identical changes create an average momentum-flow force."
+        }
+      ],
+      "prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-NLM-FRICTION-MAGNITUDE",
+          "expression": "0 <= f_s <= mu_s N; f_s,max = mu_s N; f_k = mu_k N",
+          "meaning": "Static friction adjusts up to a limit; once the kinetic model applies, friction magnitude is mu_k N.",
+          "symbols": [
+            {
+              "symbol": "f_s",
+              "meaning": "Static-friction magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "mu_s",
+              "meaning": "Static friction coefficient",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "N",
+              "meaning": "Normal-reaction magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "f_k",
+              "meaning": "Kinetic-friction magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "mu_k",
+              "meaning": "Kinetic friction coefficient",
+              "unit": "1",
+              "dimension": "1"
+            }
+          ],
+          "conditions": [
+            "The contact pair and relative sliding/tendency have been identified first.",
+            "The normal reaction N belongs to the same contact and current force state.",
+            "Use f_s=mu_s N only at impending slip; otherwise static friction may be smaller.",
+            "Use f_k=mu_k N only when the adopted kinetic-friction model applies during sliding."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-IDEAL-STRING",
+          "expression": "T is equal along one massless string over a smooth fixed pulley; connected endpoints have equal acceleration magnitude along the string constraint",
+          "meaning": "In the stated ideal-string/smooth-pulley model, tension is uniform and inextensibility links endpoint motions.",
+          "symbols": [
+            {
+              "symbol": "T",
+              "meaning": "Tension magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "a_1",
+              "meaning": "First endpoint acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_2",
+              "meaning": "Second endpoint acceleration component",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The string is massless and inextensible.",
+            "The pulley is smooth and fixed unless the problem states a different geometry.",
+            "Tension equality is asserted only along the same continuous ideal string.",
+            "Acceleration relation follows the actual string-length constraint and may involve opposite signed directions even when magnitudes match."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-IMPULSE-MOMENTUM",
+          "expression": "p = m v; J = Delta p = F_avg Delta t; F_avg = Delta p/Delta t",
+          "meaning": "Momentum change equals impulse; average force equals momentum change per time, including repeated-item momentum transfer.",
+          "symbols": [
+            {
+              "symbol": "p",
+              "meaning": "Linear momentum",
+              "unit": "kg m/s",
+              "dimension": "M L T^-1"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "v",
+              "meaning": "Velocity",
+              "unit": "m/s",
+              "dimension": "L T^-1"
+            },
+            {
+              "symbol": "J",
+              "meaning": "Impulse",
+              "unit": "N s",
+              "dimension": "M L T^-1"
+            },
+            {
+              "symbol": "F_avg",
+              "meaning": "Average net force",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "Delta t",
+              "meaning": "Time interval",
+              "unit": "s",
+              "dimension": "T"
+            }
+          ],
+          "conditions": [
+            "Momentum and velocity refer to the same chosen body/item and inertial frame.",
+            "F_avg is the average net force associated with the stated momentum change over Delta t.",
+            "For repeated-item momentum flow, the item momentum change and item rate are defined over the same steady counting interval."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose body/contact/connection before equations.",
+        "Use ideal string/pulley equalities only under declared model.",
+        "Momentum-rate force is tied to a stated interval or steady item rate."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-PIN-NLM-MODEL",
+          "sequence": 1,
+          "action": "Identify body/contact/connection/interval and state assumptions.",
+          "why_valid": "The quantitative relation is conditional on the physical model."
+        },
+        {
+          "step_id": "RS-PIN-NLM-EQ",
+          "sequence": 2,
+          "action": "Write friction, connected-body or momentum-rate relation with Newton-II body equations as needed.",
+          "why_valid": "Extension relations supplement rather than replace body-specific mechanics.",
+          "depends_on": [
+            "RS-PIN-NLM-MODEL"
+          ]
+        },
+        {
+          "step_id": "RS-PIN-NLM-CHECK",
+          "sequence": 3,
+          "action": "Check state/constraint/units and body ownership.",
+          "why_valid": "A solved result can still violate the assumed contact/connection model.",
+          "depends_on": [
+            "RS-PIN-NLM-EQ"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-PIN-NLM-AUTOMATIC-EQUALITY",
+          "wrong_idea": "Every coefficient/string/rate number can be inserted into an automatic formula before checking state.",
+          "counterexample": "Static friction can be below mu_sN; nonideal pulleys can have unequal tensions; momentum becomes force only through time.",
+          "repair": "State contact/connection/time model before selecting equality."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-PIN-NLM-APPLIED",
+          "title": "Selected friction, pulley and momentum-rate questions",
+          "hidden_invariants": [
+            "Static friction obeys a bound before the limit.",
+            "Each connected body keeps its own force equation.",
+            "Average force is momentum change per time."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 7,
+        "prerequisite_depth": 4
+      },
+      "badges": [
+        "NLM",
+        "PINNACLE-QUESTION-DEMAND"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-PIN-NLM-SYMBOL-NO-UNIT",
+          "mutation": "Remove the unit field from the first symbol of the first relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    }
+  ]
+}
