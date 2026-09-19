@@ -15,7 +15,7 @@ Each check is one of:
 - `PASS` — checked with evidence;
 - `FAIL` — checked and found non-conformant;
 - `PENDING` — not yet checked or evidence is incomplete;
-- `NOT_APPLICABLE` — genuinely outside this activity, with a mandatory waiver rationale.
+- `NOT_APPLICABLE` — genuinely outside this activity, with a mandatory waiver rationale. Core GCDR checks are non-waivable; this state is reserved for the three external-state mapping checks when `external_state_mapping=NOT_APPLICABLE`.
 
 `quality_audit.audit_status=PASS` is valid only when every check is `PASS` or justified
 `NOT_APPLICABLE`, at least one `audit_evidence_ref` is present, and
@@ -90,6 +90,8 @@ The learner-facing fidelity vocabulary is fixed:
 - `UNAVAILABLE` — the task cannot be represented safely by the activity.
 
 The mandatory missing-parameter policy is `NEVER_INVENT_AS_EXACT`.
+
+Only `control_state_mapping`, `no_invented_exact_parameters`, and `interaction_fidelity_disclosed` may be `NOT_APPLICABLE`, and only when the activity declares `external_state_mapping=NOT_APPLICABLE`. A waiver for any other check is a guard failure; stale or unknown waiver keys also fail the guard.
 
 ## Certification rule
 
