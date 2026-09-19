@@ -71,7 +71,7 @@ class TopicAtlasContractTest(unittest.TestCase):
 
         # Steps must carry stable step IDs (GAP-WEB-008)
         step_ids = [s["id"] for s in r5["microtopic"]["teaching_path"]]
-        self.assertEqual(step_ids, ["NLM5-1", "NLM5-2", "NLM5-3"])
+        self.assertEqual(step_ids, ["NLM5-1", "NLM5-2", "NLM5-3", "NLM5-4"])
 
         # Activity binding must come from canonical library resource (GAP-WEB-017)
         activities = r5["activities"]
