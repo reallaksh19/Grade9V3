@@ -498,7 +498,53 @@
     }
   ],
   "representations": [],
-  "question_families": [],
+  "question_families": [
+    {
+      "id": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM-MOMENTUM-TRANSFER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue107:routing": "EXPLICIT_DEMAND_ONLY"
+      },
+      "title": "Discrete momentum-transfer force practice",
+      "capability_refs": [
+        "CAP-NLM-MOMENTUM-TRANSFER-RATE"
+      ],
+      "solution_structure": [
+        "Declare one inertial frame and positive ejection direction.",
+        "Compute one item's final-minus-initial momentum change.",
+        "Convert repeated item changes into momentum transferred per unit time.",
+        "Separate force on ejecta, launcher recoil, and any external holding force.",
+        "Check force units and a zero-transfer/sign-reversal boundary."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Recognize repeated discrete momentum transfer without being told to use a momentum-rate relation.",
+        "representation_translation": "Convert item counts over an interval into an ejection rate or vice versa before applying the same momentum-transfer structure.",
+        "reasoning_steps": "Keep per-item momentum change, stream force, launcher recoil and holding-force balance distinct.",
+        "novelty": "Map a new discrete-ejection story onto the same fixed-mass-per-item rate structure without importing collision or rocket methods."
+      },
+      "safe_variations": [
+        "Change item mass, entry velocity, exit velocity or ejection rate while preserving one inertial frame and repeated fixed-mass items.",
+        "Change the physical story from pellets to another discrete stream while preserving the same per-item momentum change and rate structure."
+      ],
+      "transfer_boundaries": [
+        "Do not replace Delta p_item with final momentum unless initial momentum is zero in the chosen frame.",
+        "Do not import collision-conservation, impulse-integral or rocket/continuously varying-mass methods unless explicitly demanded."
+      ],
+      "common_wrong_routes": [
+        "Use m v_out instead of m(v_out-v_in).",
+        "Give launcher recoil and holding force the same role or body.",
+        "Treat the derivative notation as a requirement to perform calculus."
+      ],
+      "item_refs": [
+        "Q-PHY-NLM-MTR-2A-01"
+      ]
+    }
+  ],
   "questions": [
     {
       "id": "Q-PHY-NLM-MTR-2A-01",
@@ -544,7 +590,7 @@
       "secondary_capability_refs": [
         "CAP-NLM-THIRD-LAW"
       ],
-      "family_ref": null,
+      "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
       "adaptation": null,
       "exposure": [
         {
