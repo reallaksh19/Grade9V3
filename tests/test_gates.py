@@ -272,6 +272,11 @@ def _machine_ma_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-SIMPLE-MACHINES-GRADE9")
 
 
+@mutates("FAL-OPT-MIRROR-SYMBOL-NO-UNIT")
+def _opt_mirror_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-OPTICS-MIRRORS-GRADE10")
+
+
 @mutates("FAL-EQ-SYMBOL-NO-DOMAIN")
 def _eq_symbol_no_domain(data):
     del gate(data, "MATH-EQ-CONSTRAINT")["relations"][0]["symbols"][0]["domain"]
