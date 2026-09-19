@@ -23,6 +23,18 @@ from Shared.gates.validate import validate  # noqa: E402
 REGISTRY = REPO / "Physics/gates/motion-vectors.v1.json"
 BINDINGS = REPO / "Physics/gates/curriculum-bindings.v1.json"
 
+EXPECTED_PHYSICS_GATE_IDS = {
+    "PHY-VEC-SCALAR-VECTOR",
+    "PHY-VEC-AXIS-CONVENTION",
+    "PHY-VEC-SUBTRACTION",
+    "PHY-REL-POSITION",
+    "PHY-REL-VELOCITY",
+    "PHY-REL-OBSERVER-REVERSAL",
+    "PHY-VEC-ANGLE-DECOMPOSITION",
+    "PHY-KIN-2D-COMPONENT-MOTION",
+    "PHY-KIN-PROJECTILE-MODEL",
+}
+
 
 def registry():
     return json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -40,7 +52,11 @@ class RegistryValidates(unittest.TestCase):
     def test_physics_registry_passes(self):
         report = validate(registry(), load_physics(), bindings())
         self.assertEqual(report["status"], "PASS")
-        self.assertEqual(report["gate_count"], 6)
+        self.assertEqual(
+            {row["gate_id"] for row in registry()["gates"]},
+            EXPECTED_PHYSICS_GATE_IDS,
+        )
+        self.assertEqual(report["gate_count"], len(EXPECTED_PHYSICS_GATE_IDS))
         self.assertEqual(report["held"], [])
         self.assertEqual(report["release_authority"], "NOT_GRANTED_BY_GATE_VALIDATION")
 
@@ -55,7 +71,10 @@ class CurriculumAuthorityFailsClosed(unittest.TestCase):
     def test_all_shipped_gates_are_owner_extension_not_prescribed(self):
         report = validate(registry(), load_physics(), bindings())
         self.assertEqual(report["curriculum_scope"]["authorised_prescribed"], [])
-        self.assertEqual(len(report["curriculum_scope"]["owner_extension"]), 6)
+        self.assertEqual(
+            set(report["curriculum_scope"]["owner_extension"]),
+            EXPECTED_PHYSICS_GATE_IDS,
+        )
 
     def test_prescribed_claim_without_a_binding_is_held(self):
         data = registry()
@@ -68,10 +87,31 @@ class CurriculumAuthorityFailsClosed(unittest.TestCase):
         data = registry()
         for row in data["gates"]:
             row["curriculum"]["scope_class"] = "PRESCRIBED"
-        exact = {"bindings": [{"board": "CBSE", "grade": 9, "chapter": "Motion",
-                               "gate_ids": sorted(g["gate_id"] for g in data["gates"])}]}
+        grouped = {}
+        for row in data["gates"]:
+            curriculum = row["curriculum"]
+            key = (
+                curriculum["board"],
+                curriculum["grade"],
+                curriculum["chapter"],
+            )
+            grouped.setdefault(key, []).append(row["gate_id"])
+        exact = {
+            "bindings": [
+                {
+                    "board": board,
+                    "grade": grade,
+                    "chapter": chapter,
+                    "gate_ids": sorted(gate_ids),
+                }
+                for (board, grade, chapter), gate_ids in grouped.items()
+            ]
+        }
         report = validate(data, load_physics(), exact)
-        self.assertEqual(len(report["curriculum_scope"]["authorised_prescribed"]), 6)
+        self.assertEqual(
+            set(report["curriculum_scope"]["authorised_prescribed"]),
+            EXPECTED_PHYSICS_GATE_IDS,
+        )
         self.assertEqual(report["curriculum_scope"]["held_insufficient_authority"], [])
 
     def test_a_partial_binding_does_not_authorise_the_chapter(self):
@@ -82,7 +122,10 @@ class CurriculumAuthorityFailsClosed(unittest.TestCase):
                                  "gate_ids": ["PHY-REL-VELOCITY"]}]}
         report = validate(data, load_physics(), partial)
         self.assertEqual(report["curriculum_scope"]["authorised_prescribed"], [])
-        self.assertEqual(len(report["curriculum_scope"]["held_insufficient_authority"]), 6)
+        self.assertEqual(
+            set(report["curriculum_scope"]["held_insufficient_authority"]),
+            EXPECTED_PHYSICS_GATE_IDS,
+        )
 
 
 class DeclaredFalsifiersReallyFail(unittest.TestCase):
@@ -240,6 +283,21 @@ def _rev_prereq_unknown(data):
 
 def _drop_first_symbol_unit(data, gate_id):
     del gate(data, gate_id)["relations"][0]["symbols"][0]["unit"]
+
+
+@mutates("FAL-VAD-SYMBOL-NO-UNIT")
+def _vad_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-VEC-ANGLE-DECOMPOSITION")
+
+
+@mutates("FAL-K2D-SYMBOL-NO-UNIT")
+def _k2d_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-KIN-2D-COMPONENT-MOTION")
+
+
+@mutates("FAL-PROJ-SYMBOL-NO-UNIT")
+def _proj_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-KIN-PROJECTILE-MODEL")
 
 
 @mutates("FAL-KIN-AVG-SYMBOL-NO-UNIT")

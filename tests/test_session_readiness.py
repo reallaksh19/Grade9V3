@@ -305,6 +305,7 @@ class SessionReadiness(unittest.TestCase):
                 "CAP-VEC-COMPONENT-SUM",
                 "CAP-VEC-RESULTANT-CONSTRAINT",
                 "CAP-VEC-SUB-ORDER",
+                "CAP-VEC-ANGLE-DECOMPOSITION",
             ],
         )
         self.assertTrue(all(row["state"] == "READY" for row in report["rungs"]))
@@ -313,7 +314,7 @@ class SessionReadiness(unittest.TestCase):
         self.assertNotIn("READINESS_PREREQUISITE_AMBIGUOUS", points)
         self.assertEqual(
             {row["capability_ref"] for row in report["external_bridges"]},
-            {"CAP-SIGNED-PAIR-BRIDGE"},
+            {"CAP-SIGNED-PAIR-BRIDGE", "CAP-TRIG-RATIO-BRIDGE"},
         )
 
 
