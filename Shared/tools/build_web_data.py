@@ -132,16 +132,18 @@ def matrix_summary(subject: str, records: dict) -> list[dict]:
                     if res.get("_collection") == "resources" and "ACTIVITY" in res.get("role", []):
                         if cap_id in res.get("supports_claims", []):
                             atlas_ext = res.get("extensions", {}).get("topic_atlas", {})
-                            activities.append({
+                            activity = {
                                 "id": res["id"],
                                 "title": res["title"],
                                 "locator": res["locator"],
                                 "section": res.get("section"),
-                                "supports_claims": res.get("supports_claims", []),
-                                "teaching_step_refs": atlas_ext.get("teaching_step_refs", []),
-                                "activity_kind": atlas_ext.get("activity_kind"),
-                                "design_issue_ref": atlas_ext.get("design_issue_ref")
-                            })
+                                "supports_claims": res.get("supports_claims", [])
+                            }
+                            if atlas_ext:
+                                activity["teaching_step_refs"] = atlas_ext.get("teaching_step_refs", [])
+                                activity["activity_kind"] = atlas_ext.get("activity_kind")
+                                activity["design_issue_ref"] = atlas_ext.get("design_issue_ref")
+                            activities.append(activity)
 
             tpath = []
             for idx, s in enumerate(m.get("teaching_path", [])):
