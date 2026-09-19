@@ -15176,8 +15176,25 @@ window.GRADE9V3 = {
                     "K2D1-3",
                     "K2D1-4"
                   ],
-                  "activity_kind": "REPAIR_EXPLORER",
-                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/128"
+                  "activity_kind": "GRAPHICAL_COGNITIVE_DECONSTRUCTION",
+                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/128",
+                  "support_route": {
+                    "kind": "GCDR",
+                    "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "recommended_when": [
+                      "RELATIONAL",
+                      "MULTI_REPRESENTATION",
+                      "COUNTERINTUITIVE"
+                    ],
+                    "learner_evidence_triggers": [
+                      "LOW_MASTERY_CONFIRMED",
+                      "REPEATED_FAILURE",
+                      "MISCONCEPTION_DETECTED",
+                      "NORMAL_REPAIR_FAILED"
+                    ],
+                    "auto_route_policy": "RECOMMEND_ONLY",
+                    "rejoin_step_ref": "K2D1-4"
+                  }
                 }
               ]
             },
@@ -15387,8 +15404,25 @@ window.GRADE9V3 = {
                   "teaching_step_refs": [
                     "K2D2-3"
                   ],
-                  "activity_kind": "REPAIR_EXPLORER",
-                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/129"
+                  "activity_kind": "GRAPHICAL_COGNITIVE_DECONSTRUCTION",
+                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/129",
+                  "support_route": {
+                    "kind": "GCDR",
+                    "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "recommended_when": [
+                      "RELATIONAL",
+                      "MULTI_REPRESENTATION",
+                      "BOUNDARY_SENSITIVE"
+                    ],
+                    "learner_evidence_triggers": [
+                      "LOW_MASTERY_CONFIRMED",
+                      "REPEATED_FAILURE",
+                      "MISCONCEPTION_DETECTED",
+                      "NORMAL_REPAIR_FAILED"
+                    ],
+                    "auto_route_policy": "RECOMMEND_ONLY",
+                    "rejoin_step_ref": "K2D2-3"
+                  }
                 }
               ]
             },
@@ -15695,8 +15729,25 @@ window.GRADE9V3 = {
                   "teaching_step_refs": [
                     "K2D3-1"
                   ],
-                  "activity_kind": "REPAIR_EXPLORER",
-                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/130"
+                  "activity_kind": "GRAPHICAL_COGNITIVE_DECONSTRUCTION",
+                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/130",
+                  "support_route": {
+                    "kind": "GCDR",
+                    "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "recommended_when": [
+                      "HIDDEN_MECHANISM",
+                      "COUNTERINTUITIVE",
+                      "BOUNDARY_SENSITIVE"
+                    ],
+                    "learner_evidence_triggers": [
+                      "LOW_MASTERY_CONFIRMED",
+                      "MISCONCEPTION_DETECTED",
+                      "NORMAL_REPAIR_FAILED",
+                      "RECONSTRUCTION_FAILED"
+                    ],
+                    "auto_route_policy": "RECOMMEND_ONLY",
+                    "rejoin_step_ref": "K2D3-1"
+                  }
                 },
                 {
                   "id": "ACT-KIN-2D-APEX-FALLACY",
@@ -15709,8 +15760,25 @@ window.GRADE9V3 = {
                   "teaching_step_refs": [
                     "K2D3-4"
                   ],
-                  "activity_kind": "REPAIR_EXPLORER",
-                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/131"
+                  "activity_kind": "GRAPHICAL_COGNITIVE_DECONSTRUCTION",
+                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/131",
+                  "support_route": {
+                    "kind": "GCDR",
+                    "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "recommended_when": [
+                      "COUNTERINTUITIVE",
+                      "MULTI_REPRESENTATION",
+                      "RELATIONAL"
+                    ],
+                    "learner_evidence_triggers": [
+                      "LOW_MASTERY_CONFIRMED",
+                      "REPEATED_FAILURE",
+                      "MISCONCEPTION_DETECTED",
+                      "NORMAL_REPAIR_FAILED"
+                    ],
+                    "auto_route_policy": "RECOMMEND_ONLY",
+                    "rejoin_step_ref": "K2D3-4"
+                  }
                 },
                 {
                   "id": "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
@@ -15723,8 +15791,25 @@ window.GRADE9V3 = {
                   "teaching_step_refs": [
                     "K2D3-7"
                   ],
-                  "activity_kind": "REPAIR_EXPLORER",
-                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/132"
+                  "activity_kind": "GRAPHICAL_COGNITIVE_DECONSTRUCTION",
+                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/132",
+                  "support_route": {
+                    "kind": "GCDR",
+                    "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "recommended_when": [
+                      "RELATIONAL",
+                      "MULTI_REPRESENTATION",
+                      "COUNTERINTUITIVE"
+                    ],
+                    "learner_evidence_triggers": [
+                      "LOW_MASTERY_CONFIRMED",
+                      "MISCONCEPTION_DETECTED",
+                      "RECONSTRUCTION_FAILED",
+                      "NORMAL_REPAIR_FAILED"
+                    ],
+                    "auto_route_policy": "RECOMMEND_ONLY",
+                    "rejoin_step_ref": "K2D3-7"
+                  }
                 },
                 {
                   "id": "ACT-KIN-2D-LANDING-GEOMETRY",
@@ -15739,8 +15824,25 @@ window.GRADE9V3 = {
                     "K2D3-5",
                     "K2D3-6"
                   ],
-                  "activity_kind": "REPAIR_EXPLORER",
-                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/133"
+                  "activity_kind": "GRAPHICAL_COGNITIVE_DECONSTRUCTION",
+                  "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/133",
+                  "support_route": {
+                    "kind": "GCDR",
+                    "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "recommended_when": [
+                      "BOUNDARY_SENSITIVE",
+                      "MULTI_REPRESENTATION",
+                      "COUNTERINTUITIVE"
+                    ],
+                    "learner_evidence_triggers": [
+                      "LOW_MASTERY_CONFIRMED",
+                      "REPEATED_FAILURE",
+                      "MISCONCEPTION_DETECTED",
+                      "NORMAL_REPAIR_FAILED"
+                    ],
+                    "auto_route_policy": "RECOMMEND_ONLY",
+                    "rejoin_step_ref": "K2D3-6"
+                  }
                 }
               ]
             }
