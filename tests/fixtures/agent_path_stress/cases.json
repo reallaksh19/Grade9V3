@@ -332,6 +332,47 @@
           "choose different target segments for CORE1A and CORE1B"
         ]
       }
+    },
+    {
+      "case_id": "APSTRESS-G9-SIMPLE-MACHINES-90",
+      "prompt": "Prepare CORE1A and CORE1B for Physics — Simple machines. Student knowledge estimate: 90%. Use the estimate only to select the starting rung and preserve prerequisite checks. Keep mechanical advantage tied to same-state load/effort measurements and the ideal force-distance tradeoff; do not import torque equations, pulley-count formulae, efficiency catalogues, or story-specific machine capabilities.",
+      "request": {
+        "request_id": "APSTRESS-G9-SIMPLE-MACHINES-90",
+        "subject": "Physics",
+        "subtopic": "Simple machines",
+        "requested_cores": [
+          "CORE1A",
+          "CORE1B"
+        ],
+        "learner": {
+          "owner_estimate": {
+            "knowledge_percentage": 90,
+            "by": "owner",
+            "instruction": "Use 90% only as a conservative starting coordinate; do not infer mastery or broaden the Grade-9 simple-machines scope."
+          }
+        }
+      },
+      "expected": {
+        "entry": "R3",
+        "selected_by": "OWNER_ESTIMATE_CONSERVATIVE_FLOOR",
+        "route_state": "READY_WITH_CHECKS",
+        "prerequisite_checks": [
+          "CAP-WEP-WORK-DIRECTION",
+          "CAP-MACHINE-TRADEOFF",
+          "CAP-MACHINE-MA"
+        ],
+        "required_owner_inputs": [],
+        "practice_support": {},
+        "must_not": [
+          "treat 90% as mastery evidence",
+          "skip the work-direction or machine-tradeoff prerequisite chain",
+          "mix load and effort readings from different machine states",
+          "claim every useful simple machine must reduce effort force",
+          "pull torque equations, pulley-count formulae, velocity-ratio or efficiency catalogues into the Grade-9 route",
+          "create separate capabilities merely for lever, pulley and inclined-plane stories",
+          "choose different target segments for CORE1A and CORE1B"
+        ]
+      }
     }
   ]
 }
