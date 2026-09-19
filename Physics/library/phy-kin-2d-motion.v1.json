@@ -1393,8 +1393,7 @@
         "dimension": "representation_translation",
         "statement": "The learner must convert a verbal direction description into signed x/y state without being handed the component representation.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
-          "K2D1-2"
+          "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01"
         ]
       }
     },
@@ -1476,8 +1475,7 @@
         "dimension": "model_choice",
         "statement": "The learner must decide component-by-component whether the constant-acceleration model is valid instead of being told that it applies.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
-          "K2D2-1"
+          "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02"
         ]
       }
     },
@@ -1565,8 +1563,7 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
-          "K2D3-5"
+          "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
         ]
       }
     },
@@ -1649,8 +1646,7 @@
         "dimension": "model_choice",
         "statement": "The learner must reject the familiar projectile specialization because one of its defining force/model conditions is explicitly broken.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
-          "K2D3-1"
+          "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
         ]
       }
     },
@@ -1742,8 +1738,7 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
-          "K2D3-7"
+          "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
         ]
       }
     }
