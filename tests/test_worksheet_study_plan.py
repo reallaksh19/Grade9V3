@@ -16,6 +16,7 @@ from Shared.tools import learner_evidence, worksheet_study_plan  # noqa: E402
 
 class WorksheetStudyPlan(unittest.TestCase):
     FIXTURE = REPO / "tests/fixtures/study_route/physics-cross-matrix.worksheet.json"
+    NLM_FIXTURE = REPO / "tests/fixtures/real_pilots/examside-nlm-constraints.worksheet.json"
 
     def mapping(self):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
@@ -48,6 +49,61 @@ class WorksheetStudyPlan(unittest.TestCase):
         self.assertIn("Core (1) lesson", rendered)
         self.assertIn("Why extra attention?", rendered)
         self.assertIn("Ordered study route", rendered)
+
+    def test_detailed_nlm_view_reuses_matrix_difficulty_estimate_and_evidence_layers(self):
+        mapping = json.loads(self.NLM_FIXTURE.read_text(encoding="utf-8"))
+        report = worksheet_study_plan.resolve(
+            mapping,
+            owner_estimates=[{
+                "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+                "knowledge_percentage": 60,
+            }],
+        )
+
+        matrix = next(
+            row for row in report["canonical_matrices"]
+            if row["matrix_id"] == "MATRIX-PHY-NLM-FIRST-LAW"
+        )
+        self.assertEqual(
+            [row["ladder_position"] for row in matrix["rungs"]],
+            [20, 45, 70, 78, 86, 88, 90, 92, 93, 94, 100],
+        )
+        self.assertEqual(
+            [row["rung"] for row in matrix["rungs"]],
+            ["R1", "R2", "R3", "R5", "R6", "R8", "R9", "R10", "R11", "R7", "R4"],
+        )
+        r8 = next(row for row in matrix["rungs"] if row["rung"] == "R8")
+        self.assertEqual(r8["capability_ref"], "CAP-NLM-FRICTION-QUANT")
+        self.assertEqual(r8["intrinsic_difficulty"], "HARD")
+        self.assertEqual(r8["microtopic_ref"], "MIC-PHY-NLM-FRICTION-QUANT")
+        r4 = next(row for row in matrix["rungs"] if row["rung"] == "R4")
+        self.assertFalse(r4["default_entry_eligible"])
+        self.assertIn("Choose the body and frame", matrix["family_invariant"])
+
+        friction = next(
+            row for row in report["questions"]
+            if row["primary_capability_ref"] == "CAP-NLM-FRICTION-QUANT"
+        )
+        self.assertEqual(friction["intrinsic_difficulty"], "HARD")
+        self.assertEqual(
+            friction["difficulty_source"],
+            "MIC-PHY-NLM-FRICTION-QUANT",
+        )
+        self.assertEqual(friction["learner_state"], "UNOBSERVED")
+
+        rendered = worksheet_study_plan.readable(report)
+        self.assertIn("Rough starting estimates", rendered)
+        self.assertIn("starting-point routing only", rendered)
+        self.assertIn("does not create DEMONSTRATED", rendered)
+        self.assertIn("Canonical matrix", rendered)
+        self.assertIn("Difficulty (source)", rendered)
+        self.assertIn("MIC-PHY-NLM-FRICTION-QUANT", rendered)
+        self.assertIn("R5", rendered)
+        self.assertIn("R6", rendered)
+        self.assertIn("R8", rendered)
+        self.assertIn("R7", rendered)
+        self.assertIn("R4", rendered)
+        self.assertIn("Learner route", rendered)
 
     def test_rough_estimate_survives_only_when_no_real_evidence_exists(self):
         report = worksheet_study_plan.resolve(
