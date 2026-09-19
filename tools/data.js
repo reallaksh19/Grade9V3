@@ -1132,6 +1132,46 @@ window.GRADE9V3 = {
             "A projectile needs a horizontal force to keep moving horizontally.",
             "Horizontal and vertical projectile motions can use different flight times."
           ]
+        },
+        {
+          "gate_id": "PHY-PINNACLE-VECTOR-ALGEBRA",
+          "title": "Vector Algebra operations demanded by selected ExamSIDE PYQs",
+          "grade": 9,
+          "chapter": "Vectors",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [
+            "MATH-INVERSE-TRIG"
+          ],
+          "concepts": [
+            "A nonzero vector divided by its magnitude preserves direction and becomes a unit vector.",
+            "The dot product is a scalar encoding alignment and projection; for nonzero vectors it is zero at perpendicularity.",
+            "The cross product is an ordered axial vector perpendicular to the input plane and reverses under operand swap."
+          ],
+          "misconceptions": [
+            "Dot and cross products are notation choices for the same combination."
+          ]
+        },
+        {
+          "gate_id": "PHY-PINNACLE-NLM-APPLIED",
+          "title": "Applied NLM relations demanded by selected ExamSIDE PYQs",
+          "grade": 9,
+          "chapter": "NLM",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "A friction coefficient supplies a state-dependent bound/model; static friction is not automatically limiting.",
+            "Equal tension and linked acceleration claims are conditional on the stated ideal connection model.",
+            "Average force is momentum change per unit time; repeated identical changes create an average momentum-flow force."
+          ],
+          "misconceptions": [
+            "Every coefficient/string/rate number can be inserted into an automatic formula before checking state."
+          ]
         }
       ],
       "buckets": [
@@ -4610,6 +4650,844 @@ window.GRADE9V3 = {
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
               },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-PINNACLE-NLM-APPLIED",
+          "title": "Pinnacle applied Laws of Motion question-demand extension",
+          "topic": "NLM",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-NLM-FIRST-LAW"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+              "title": "Choose static-limit or kinetic friction only after deciding contact state",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The common error is treating f=mu N as automatic, which destroys static-threshold and multi-body reasoning.",
+              "entry_assumptions": [
+                "Can identify friction direction from relative sliding/tendency.",
+                "Can write Newton-II component equations."
+              ],
+              "inferential_jump": "A friction coefficient supplies a bound/model, not automatically the actual static force; N must be solved in the current geometry.",
+              "teaching_path": [
+                {
+                  "action": "Name the contact, friction direction and state: sticking, impending slip or sliding.",
+                  "why_valid": "The quantitative relation depends on contact state.",
+                  "output": "contact state and direction"
+                },
+                {
+                  "action": "Solve the perpendicular force equation for normal reaction N.",
+                  "why_valid": "N is determined by actual force geometry.",
+                  "output": "N from perpendicular Newton-II equation"
+                },
+                {
+                  "action": "Use the appropriate static bound/limit or kinetic relation.",
+                  "why_valid": "This keeps static friction self-adjusting until the threshold.",
+                  "output": "state-appropriate friction magnitude"
+                },
+                {
+                  "action": "Test the assumed contact state against the result.",
+                  "why_valid": "If required static friction exceeds the limit, sticking is inconsistent.",
+                  "output": "consistent contact state"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Static friction always equals mu_s N.",
+                  "diagnostic_prompt": "A small force acts but a rough block stays at rest. Must friction already be maximum?",
+                  "repair": "No. Static friction adjusts to the needed value up to the limit."
+                },
+                {
+                  "wrong_idea": "Normal reaction always equals mg.",
+                  "diagnostic_prompt": "If the surface is inclined or another force has a normal component, must N equal mg?",
+                  "repair": "No. Solve the perpendicular force equation."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A rough-table block remains at rest under a 3 N horizontal force; limiting static friction is 8 N. What friction acts?",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "3 N opposite the applied force, not 8 N.",
+                  "reasoning": [
+                    "The block is sticking.",
+                    "Zero acceleration requires horizontal balance.",
+                    "3 N is below the 8 N limit."
+                  ],
+                  "check": "Net horizontal force is zero and required static friction is below its limit.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The limiting value is used only as a consistency bound."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FRICTION",
+                "CAP-NLM-SECOND-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-CONNECTED-SYSTEMS",
+              "title": "Solve connected bodies with one FBD per body and an explicit string constraint",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often cancel third-law pairs across bodies or assume equal tension/acceleration without checking the ideal connection model.",
+              "entry_assumptions": [
+                "Can draw body-owned FBDs and apply Newton II.",
+                "Can identify Newton-third-law partners."
+              ],
+              "inferential_jump": "Bodies are dynamically coupled but Newton II still applies to each body separately; the ideal connection then links unknowns.",
+              "teaching_path": [
+                {
+                  "action": "Draw one FBD per body and label every interaction on the body it acts on.",
+                  "why_valid": "Forces on different bodies belong to different equations.",
+                  "output": "separate body-owned force lists"
+                },
+                {
+                  "action": "State massless/inextensible string and smooth/fixed pulley assumptions before equal-tension/acceleration claims.",
+                  "why_valid": "Connection relations are model assumptions tied to hardware geometry.",
+                  "output": "declared ideal connection model"
+                },
+                {
+                  "action": "Write one signed Newton-II equation per body, then eliminate shared unknowns.",
+                  "why_valid": "Coupled unknowns are solved from simultaneous equations.",
+                  "output": "Body 1: sum(F_1)=m_1 a_1; Body 2: sum(F_2)=m_2 a_2; for one ideal fixed-pulley string use the derived constraint a_2=-a_1 in a common signed convention, with one shared tension magnitude T."
+                },
+                {
+                  "action": "Check acceleration against string length and T against each body equation.",
+                  "why_valid": "Dynamics and kinematics must describe the same connected motion.",
+                  "output": "constraint-consistent solution"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Equal-and-opposite tension forces cancel even when they act on different bodies.",
+                  "diagnostic_prompt": "If one body is isolated, does tension on the other body belong on this FBD?",
+                  "repair": "No. Keep one FBD per body."
+                },
+                {
+                  "wrong_idea": "Every pulley problem has equal acceleration magnitudes and equal tension automatically.",
+                  "diagnostic_prompt": "Would a moving or massive pulley preserve the same constraints?",
+                  "repair": "State the ideal model and derive the actual length constraint."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two masses are joined by one massless inextensible string over a smooth fixed pulley. What structure is needed before solving?",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "One FBD and Newton-II equation per mass, one ideal-string tension magnitude, and the fixed-pulley acceleration constraint.",
+                  "reasoning": [
+                    "Each tension acts on a different body.",
+                    "The ideal string gives one T.",
+                    "Inextensibility links motion along the string."
+                  ],
+                  "check": "Substitute solved T and acceleration into both body equations and the string constraint.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "No numeric masses are required; the task checks setup."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW",
+                "CAP-NLM-THIRD-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-IMPULSE-MOMENTUM-RATE",
+              "title": "Use momentum change per time for impulse and repeated-bullet recoil",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The challenge is choosing the transfer interval/body correctly; repeated bullets turn per-shot momentum into a force rate.",
+              "entry_assumptions": [
+                "Can apply Newton II conceptually and distinguish third-law forces on different bodies."
+              ],
+              "inferential_jump": "Force over time can be read from momentum transfer; repeated identical momentum changes add over one second.",
+              "teaching_path": [
+                {
+                  "action": "Choose the body/item and one inertial frame, then compute p_i and p_f.",
+                  "why_valid": "Momentum change requires one object and one frame.",
+                  "output": "Delta p=p_f-p_i"
+                },
+                {
+                  "action": "Use J=Delta p and F_avg=Delta p/Delta t.",
+                  "why_valid": "Impulse is momentum transferred by average net force.",
+                  "output": "J=Delta p=F_avg Delta t"
+                },
+                {
+                  "action": "For n identical bullets each second, multiply per-bullet momentum change by n.",
+                  "why_valid": "Repeated identical momentum changes add linearly over the interval.",
+                  "output": "|F_avg|=n|Delta p_bullet| for n per second"
+                },
+                {
+                  "action": "Place equal-and-opposite recoil on the launcher and check force units.",
+                  "why_valid": "Newton III changes the body receiving the partner force; dimensions verify the rate.",
+                  "output": "reaction force + N=kg m/s^2"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Gun recoil force equals one bullet's momentum.",
+                  "diagnostic_prompt": "Momentum is kg m/s; force is N. What rate information is missing?",
+                  "repair": "Divide by time or multiply momentum per bullet by bullets per second."
+                },
+                {
+                  "wrong_idea": "Bullet and gun forces cancel on one bullet FBD.",
+                  "diagnostic_prompt": "Do both forces act on the same body?",
+                  "repair": "No. Third-law partners act on different bodies."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A launcher fires identical bullets, each gaining forward momentum p from rest, at rate r bullets/s. What average recoil-force magnitude acts on the launcher?",
+                "source_ref": "SRC-AUTHOR-PINNACLE-NLM-APPLIED",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "r p.",
+                  "reasoning": [
+                    "Each bullet gains p.",
+                    "In one second r bullets gain total momentum rp.",
+                    "Force is momentum transfer per second.",
+                    "Launcher receives opposite direction."
+                  ],
+                  "check": "(1/s)(kg m/s)=kg m/s^2=N.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Symbolic result directly tests repeated-item momentum rate."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-SECOND-LAW",
+                "CAP-NLM-THIRD-LAW"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-AVERAGE-ACCELERATION",
+              "expression": "a_avg = Delta v / Delta t",
+              "meaning": "Average acceleration over an interval is signed velocity change divided by the positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Velocity values use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-AVERAGE-VELOCITY",
+              "expression": "v_avg = Delta x / Delta t",
+              "meaning": "Average velocity is signed displacement divided by the same positive elapsed time.",
+              "conditions": [
+                "Delta t > 0.",
+                "Delta x uses one declared axis/sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+              "expression": "s = u t + 0.5 a t^2",
+              "meaning": "For constant acceleration, signed displacement equals the initial-velocity contribution plus the acceleration contribution.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "s, u and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+              "expression": "s = u t + 0.5 (v-u) t = 0.5 (u+v) t",
+              "meaning": "For constant acceleration, signed displacement over the interval is the signed geometric area under the straight velocity-time segment.",
+              "conditions": [
+                "Acceleration is constant over the whole interval, so the velocity-time segment is straight.",
+                "u, v and s use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+              "expression": "v^2 = u^2 + 2 a s",
+              "meaning": "For constant acceleration, squared velocities and signed displacement satisfy the no-time kinematic relation.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v, a and s use one declared one-dimensional sign convention."
+              ]
+            },
+            {
+              "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+              "expression": "v = u + a t",
+              "meaning": "For constant acceleration over the interval, final velocity equals initial velocity plus acceleration times elapsed time.",
+              "conditions": [
+                "Acceleration is constant over the whole interval.",
+                "u, v and a use one declared one-dimensional sign convention.",
+                "t >= 0."
+              ]
+            },
+            {
+              "id": "REL-NLM-FRICTION-MAGNITUDE",
+              "expression": "0 <= f_s <= mu_s N; f_s,max = mu_s N; f_k = mu_k N",
+              "meaning": "Static friction adjusts to the value needed to prevent relative slip up to a limiting magnitude; once the kinetic model applies, friction magnitude is mu_k N.",
+              "conditions": [
+                "The contact pair and relative sliding/tendency have been identified first.",
+                "The normal reaction N belongs to the same contact and current force state.",
+                "Use f_s=mu_s N only at impending slip; otherwise static friction may be smaller.",
+                "Use f_k=mu_k N only when the adopted kinetic-friction model applies during sliding."
+              ]
+            },
+            {
+              "id": "REL-NLM-IDEAL-STRING",
+              "expression": "T is equal along one massless string over a smooth fixed pulley; connected endpoints have equal acceleration magnitude along the string constraint",
+              "meaning": "Under the ideal-string/smooth-pulley model, tension is transmitted uniformly and inextensibility links endpoint motions.",
+              "conditions": [
+                "The string is massless and inextensible.",
+                "The pulley is smooth and fixed unless the problem states a different geometry.",
+                "Tension equality is asserted only along the same continuous ideal string.",
+                "Acceleration relation follows the actual string-length constraint and may involve opposite signed directions even when magnitudes match."
+              ]
+            },
+            {
+              "id": "REL-NLM-IMPULSE-MOMENTUM",
+              "expression": "p = m v; J = Delta p = F_avg Delta t; F_avg = Delta p/Delta t",
+              "meaning": "Momentum change over an interval equals impulse; average force equals momentum change per unit time. Repeated identical emissions produce average recoil through momentum transferred per item times firing rate.",
+              "conditions": [
+                "Momentum and velocity refer to the same chosen body/item and inertial frame.",
+                "F_avg is the average net force associated with the stated momentum change over Delta t.",
+                "For repeated-item momentum flow, the item momentum change and item rate are defined over the same steady counting interval."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-KIN-2A-01",
+              "stem": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+              "origin": "AUTHORED",
+              "answer": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-02",
+              "stem": "A trip covers 120 m of total path, finishes 40 m in the positive direction from its start, and lasts 20 s. Find the average speed and average velocity.",
+              "origin": "AUTHORED",
+              "answer": "Average speed is 6 m/s and average velocity is +2 m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-03",
+              "stem": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+              "origin": "AUTHORED",
+              "answer": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-04",
+              "stem": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+              "origin": "AUTHORED",
+              "answer": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre."
+            },
+            {
+              "id": "Q-PHY-KIN-2A-COV-05",
+              "stem": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+              "origin": "AUTHORED",
+              "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
+            },
+            {
+              "id": "Q-PHY-KIN-PRACTICAL-13",
+              "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-KIN-AVERAGE-RATES",
+              "action": "Compute average speed from total distance and average velocity from signed displacement over one common interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-CONSTANT-ACCELERATION",
+              "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "action": "Distinguish travelled path length from the directed start-to-finish change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-MOTION-GRAPHS",
+              "action": "Plot and interpret position-time and velocity-time graphs, using interval slope to obtain average velocity or average acceleration.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "action": "Explain why uniform circular motion can have constant speed while velocity changes continuously, and calculate that speed from radius and revolution period.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-KIN-ZERO-V-NONZERO-A",
+              "action": "Distinguish instantaneous velocity from acceleration at a turning point.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-CONNECTED-SYSTEMS",
+              "action": "Solve ideal connected-body/string/pulley systems with one free-body equation per body and an explicit kinematic constraint.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "action": "Assign each force arrow to the body on which that force acts.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FRICTION",
+              "action": "Identify friction as a contact force that opposes relative sliding or the tendency to slide.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-FRICTION-MAGNITUDE",
+              "action": "Choose and use the correct quantitative friction magnitude model after identifying contact sliding state or tendency.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-IMPULSE-MOMENTUM-RATE",
+              "action": "Relate impulse and average force to momentum change, including repeated-object momentum flow such as bullets fired per second.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-SECOND-LAW",
+              "action": "Relate signed net external force to acceleration with F_net = m a.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-THIRD-LAW",
+              "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 59,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 5,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the library holds no question for this bucket to take custody of"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              },
+              {
+                "kind": "PROSE_AUTHORING",
+                "core": "CORE1B",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-PHY-PINNACLE-VECTOR-ALGEBRA",
+          "title": "Pinnacle Vector Algebra question-demand extension",
+          "topic": "Vectors",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [
+            "BUCKET-PHY-VEC-ADD-SUB"
+          ],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-PHY-VEC-DIRECTION-UNIT",
+              "title": "Recover magnitude, physical direction and unit vector from components",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The main failure is accepting an inverse-trig principal angle without using signed components to place direction in the correct quadrant.",
+              "entry_assumptions": [
+                "Can read signed Cartesian components.",
+                "Pythagorean magnitude and inverse-trig evaluation are available through declared Mathematics bridges."
+              ],
+              "inferential_jump": "Magnitude discards signs, so valid direction reconstruction must combine a reference angle with the component sign pattern.",
+              "teaching_path": [
+                {
+                  "action": "Write the vector in one declared i/j/k basis and retain every component sign.",
+                  "why_valid": "Signs locate the physical quadrant/octant.",
+                  "output": "A=Ax i + Ay j + Az k"
+                },
+                {
+                  "action": "Compute |A| and divide each component by that nonzero magnitude.",
+                  "why_valid": "Uniform positive rescaling preserves direction.",
+                  "output": "A_hat=(Ax i+Ay j+Az k)/sqrt(Ax^2+Ay^2+Az^2)"
+                },
+                {
+                  "action": "For 2D, compute a reference angle from |Ay/Ax| then place it using signs.",
+                  "why_valid": "Inverse trig supplies a reference value; signs supply quadrant.",
+                  "output": "theta_ref=atan(|Ay/Ax|), then quadrant placement"
+                },
+                {
+                  "action": "Check |A_hat|=1 and |A|A_hat=A.",
+                  "why_valid": "These verify normalization and retained direction.",
+                  "output": "|A_hat|=1; |A|A_hat=A"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The calculator value atan(Ay/Ax) is always the physical direction angle.",
+                  "diagnostic_prompt": "A vector has Ax<0 and Ay>0. Can a raw principal arctangent alone identify its quadrant?",
+                  "repair": "Use inverse trig for a reference angle, then component signs for the physical quadrant."
+                },
+                {
+                  "wrong_idea": "A unit vector keeps the original magnitude.",
+                  "diagnostic_prompt": "If |A|=5, what must |A/5| be?",
+                  "repair": "Dividing by |A| preserves direction but makes magnitude exactly one."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A 2D vector has components (-3,4). State its magnitude, quadrant information needed for direction, and unit direction vector.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Magnitude 5; quadrant II; unit vector (-3/5)i+(4/5)j.",
+                  "reasoning": [
+                    "Magnitude is sqrt(9+16)=5.",
+                    "Signs (-,+) locate quadrant II.",
+                    "Divide both components by 5.",
+                    "Any inverse-trig reference angle must be placed in quadrant II."
+                  ],
+                  "check": "The unit-vector magnitude is 1 and multiplying by 5 restores (-3,4).",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Exact inverse-tangent decimal is intentionally unnecessary."
+                }
+              },
+              "prerequisites": [
+                "CAP-VECTOR-SIGNED-COMPONENT",
+                "CAP-RIGHT-TRIANGLE-BRIDGE",
+                "CAP-INVERSE-TRIG-BRIDGE"
+              ]
+            },
+            {
+              "id": "MIC-PHY-VEC-DOT-PRODUCT",
+              "title": "Use dot product for angle, perpendicularity and projection",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners often memorize A·B=ABcos(theta) without connecting it to signed components or projection normalization.",
+              "entry_assumptions": [
+                "Can represent vectors in one Cartesian basis and compute magnitudes."
+              ],
+              "inferential_jump": "One scalar can be obtained from component alignment or geometric angle, so perpendicularity, angle and projection questions share one model.",
+              "teaching_path": [
+                {
+                  "action": "Write both vectors in one basis and compute A·B by multiplying and summing corresponding components.",
+                  "why_valid": "Orthonormal basis directions separate component contributions.",
+                  "output": "A·B=AxBx+AyBy+AzBz"
+                },
+                {
+                  "action": "Interpret with A·B=|A||B|cos(theta).",
+                  "why_valid": "Sign and magnitude encode relative alignment.",
+                  "output": "cos(theta)=(A·B)/(|A||B|)"
+                },
+                {
+                  "action": "For projection of A onto B use (A·B/|B|^2)B.",
+                  "why_valid": "The normalization makes projection independent of B's scale.",
+                  "output": "proj_B(A)=(A·B/|B|^2)B"
+                },
+                {
+                  "action": "Check symmetry and self-dot identity.",
+                  "why_valid": "These catch sign/component mistakes.",
+                  "output": "A·B=B·A; A·A=|A|^2"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A zero dot product means one vector must be zero.",
+                  "diagnostic_prompt": "Can two nonzero perpendicular unit vectors have A·B=0?",
+                  "repair": "Yes. cos(90°)=0."
+                },
+                {
+                  "wrong_idea": "Vector projection is simply (A·B)B.",
+                  "diagnostic_prompt": "If B is doubled, should projection onto the same direction double?",
+                  "repair": "No. Divide by |B|^2 so rescaling B does not change the physical projection."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Let A=(1,1,1) and B=(1,1,0). Compute A·B and the vector projection of A onto B.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "A·B=2 and proj_B(A)=B.",
+                  "reasoning": [
+                    "A·B=1+1+0=2.",
+                    "|B|^2=2.",
+                    "Projection coefficient is 2/2=1."
+                  ],
+                  "check": "A-proj_B(A)=(0,0,1), whose dot product with B is zero.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "All values are exact."
+                }
+              },
+              "prerequisites": [
+                "CAP-VEC-DIRECTION-UNIT"
+              ]
+            },
+            {
+              "id": "MIC-PHY-VEC-CROSS-PRODUCT",
+              "title": "Compute and verify cross-product magnitude and axial direction",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Determinant signs, operand order and axial direction create distinct failure modes beyond component addition.",
+              "entry_assumptions": [
+                "Can read i/j/k components and normalize a nonzero vector."
+              ],
+              "inferential_jump": "A×B is an ordered axial vector perpendicular to the input plane, not another component sum.",
+              "teaching_path": [
+                {
+                  "action": "Keep the ordered pair A then B and one right-handed basis visible.",
+                  "why_valid": "Changing operand order reverses axial direction.",
+                  "output": "ordered component triples"
+                },
+                {
+                  "action": "Use the signed component formula.",
+                  "why_valid": "The expansion produces a perpendicular axial vector.",
+                  "output": "A×B=(AyBz-AzBy)i+(AzBx-AxBz)j+(AxBy-AyBx)k"
+                },
+                {
+                  "action": "If a unit normal is requested, divide the nonzero cross product by its magnitude.",
+                  "why_valid": "Normalization preserves axial direction.",
+                  "output": "n_hat=(A×B)/|A×B|"
+                },
+                {
+                  "action": "Check zero dot products with A and B and reverse operands.",
+                  "why_valid": "Perpendicularity and anti-commutativity independently test the calculation.",
+                  "output": "(A×B)·A=(A×B)·B=0; B×A=-(A×B)"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A×B equals B×A.",
+                  "diagnostic_prompt": "If A×B points +k, where must B×A point?",
+                  "repair": "It reverses: B×A=-(A×B)."
+                },
+                {
+                  "wrong_idea": "Either perpendicular direction is acceptable.",
+                  "diagnostic_prompt": "What fixes the sign of the normal to the A-B plane?",
+                  "repair": "The right-hand rule applied to ordered A then B fixes orientation."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Given A=(1,0,0) and B=(0,1,0) in a right-handed basis, determine A×B and B×A.",
+                "source_ref": "SRC-AUTHOR-PINNACLE-VECTOR-ALGEBRA",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "A×B=k and B×A=-k.",
+                  "reasoning": [
+                    "i×j=k.",
+                    "Reversing operands reverses the result.",
+                    "k is perpendicular to both inputs."
+                  ],
+                  "check": "Dot each result with A and B; both dot products are zero.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Exact basis-vector check."
+                }
+              },
+              "prerequisites": [
+                "CAP-VEC-DIRECTION-UNIT"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "id": "REL-VEC-CROSS-PRODUCT",
+              "expression": "A×B = (AyBz-AzBy)i + (AzBx-AxBz)j + (AxBy-AyBx)k; |A×B|=|A||B|sin(theta)",
+              "meaning": "The cross product is an axial vector perpendicular to A and B; magnitude gives parallelogram area and orientation follows the right-hand rule.",
+              "conditions": [
+                "A and B are expressed in one right-handed orthonormal i/j/k basis.",
+                "The magnitude relation uses the smaller angle theta between the vector directions.",
+                "Right-hand orientation is applied to the ordered pair A then B; reversing the order reverses the result."
+              ]
+            },
+            {
+              "id": "REL-VEC-DOT-PRODUCT",
+              "expression": "A·B = AxBx + AyBy + AzBz = |A||B| cos(theta); proj_B(A) = (A·B/|B|^2) B",
+              "meaning": "The dot product links Cartesian components to angle and supplies perpendicularity and projection tests.",
+              "conditions": [
+                "A and B are expressed in the same orthonormal Cartesian basis.",
+                "The angle form requires nonzero magnitudes for both vectors.",
+                "The vector projection formula requires |B| nonzero."
+              ]
+            },
+            {
+              "id": "REL-VEC-UNIT-DIRECTION",
+              "expression": "|A| = sqrt(Ax^2 + Ay^2 + Az^2); A_hat = A/|A|; tan(theta_ref)=|Ay/Ax|",
+              "meaning": "Cartesian components determine vector magnitude and normalized direction; in two dimensions a reference angle is placed in the physical quadrant using component signs.",
+              "conditions": [
+                "The i/j/k basis is orthonormal.",
+                "|A| is nonzero before A_hat=A/|A| is formed.",
+                "For a 2D direction angle, component signs are retained to place the inverse-trig reference angle in the physical quadrant."
+              ]
+            },
+            {
+              "id": "REL-VECTOR-SUBTRACTION",
+              "expression": "P - Q = P + (-Q)",
+              "meaning": "Subtracting a vector means adding its reverse; component-wise this is (P-Q)_x = P_x - Q_x and (P-Q)_y = P_y - Q_y.",
+              "conditions": [
+                "P and Q are expressed along the same declared axes.",
+                "Reversal preserves magnitude and negates every component.",
+                "Free vectors may be translated without rotation for the graphical construction."
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "id": "Q-PHY-VECREP-2A-01",
+              "stem": "Two directed arrows have the same length but point in opposite directions. Can the shared magnitude alone make them the same vector? Explain what information signed components preserve that magnitude does not.",
+              "origin": "AUTHORED",
+              "answer": "No. Equal magnitude does not make opposite arrows the same vector; signed components preserve direction relative to declared axes while magnitude keeps only nonnegative size."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-GRAPHICAL-SUBTRACT",
+              "action": "Construct the graphical subtraction of two vectors as addition of the reversed second vector.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-INVERSE-TRIG-BRIDGE",
+              "action": "Recover an acute reference angle from a known trigonometric ratio using inverse sine, cosine or tangent.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-RIGHT-TRIANGLE-BRIDGE",
+              "action": "Obtain the hypotenuse length from two perpendicular leg lengths.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VEC-CROSS-PRODUCT",
+              "action": "Use the cross product to obtain a vector perpendicular to two vectors with the correct magnitude and axial orientation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VEC-DIRECTION-UNIT",
+              "action": "Reconstruct a vector's magnitude, direction and unit direction from signed Cartesian components.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VEC-DOT-PRODUCT",
+              "action": "Use the dot product to test perpendicularity, recover an angle, or calculate scalar/vector projection.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-SIGNED-COMPONENT",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 43,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B"
+            ],
+            "atoms": 76,
+            "questions": 0,
+            "obligations": 5,
+            "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -8278,6 +9156,11 @@ window.GRADE9V3 = {
           "admitted": true
         },
         {
+          "package_id": "LIB-PHY-PINNACLE-NLM-APPLIED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
           "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
           "status": "CANDIDATE",
           "admitted": true
@@ -8314,6 +9197,11 @@ window.GRADE9V3 = {
         },
         {
           "package_id": "LIB-PHY-VEC-ADD-SUB-AUTHORED",
+          "status": "CANDIDATE",
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-PHY-PINNACLE-VECTOR-ALGEBRA",
           "status": "CANDIDATE",
           "admitted": true
         },
