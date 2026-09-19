@@ -4096,13 +4096,13 @@
       ],
       "family_ref": "FAM-PHY-NLM-PRACTICE",
       "adaptation": {
-        "parent_ref": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+        "parent_ref": "Q-PHY-NLM-2A-CONNECTED-02",
         "changed_fields": [
           "stem",
           "conditions",
           "answer"
         ],
-        "reason": "Moves the applied force from the lower block to the upper block, reversing which body needs friction for the shared acceleration while preserving the same no-slip feasibility logic."
+        "reason": "Builds from the existing connected-body common-acceleration exercise by adding a rough interface whose required contact friction must be tested against a static limit."
       },
       "exposure": [
         {
@@ -4125,7 +4125,7 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must rebuild the no-slip force account after the applied force moves to the other body, rather than copying the friction equation from the earlier stacked-block threshold item.",
         "builds_on": [
-          "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+          "Q-PHY-NLM-2A-CONNECTED-02",
           "MIC-PHY-NLM-FRICTION-QUANT"
         ]
       },
