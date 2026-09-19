@@ -4642,7 +4642,6 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
       },
       "origin": "AUTHORED",
@@ -4712,7 +4711,6 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
       },
       "origin": "AUTHORED",
@@ -4781,7 +4779,6 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
       },
       "origin": "AUTHORED",
@@ -4850,7 +4847,6 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
       },
       "origin": "AUTHORED",
@@ -5172,7 +5168,6 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
       },
       "origin": "AUTHORED",
@@ -5366,7 +5361,6 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/when-a-body-slides-down-from-rest-along-a-smooth-inclined-pl-jee-main-physics-units-and-measurements-5asegnfevgdck4i3",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
       },
       "origin": "AUTHORED",
@@ -5450,8 +5444,7 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must combine the established rough-incline dynamics with an independent timing representation to infer the friction coefficient, rather than being asked directly for acceleration.",
         "builds_on": [
-          "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
-          "CAP-KIN-CONSTANT-ACCELERATION"
+          "Q-PHY-NLM-INCLINE-2A-SLIDING-03"
         ]
       },
       "repair_ref": "NLM8-4"
