@@ -1,0 +1,145 @@
+{
+  "matrix_id": "MATRIX-PHY-PINNACLE-NLM-APPLIED",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-PINNACLE-NLM-APPLIED",
+  "topic": "NLM",
+  "subtopic": "Applied friction, connected systems and momentum-rate extensions",
+  "axis_note": "Owner-approved external-question-demand matrix. It supplements rather than replaces MATRIX-PHY-NLM-FIRST-LAW and does not make these microtopics school-issued by default.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 30,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION-MAGNITUDE",
+      "ceiling": [
+        "rolling-resistance model",
+        "adhesion model",
+        "fluid drag"
+      ],
+      "must_contain": [
+        "An explicit sticking/impending/sliding decision.",
+        "Normal reaction from actual geometry.",
+        "A state-consistency check."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "applied force below static limit",
+          "hold": "contact and N",
+          "notice": "actual static friction changes while mu_sN remains only the ceiling"
+        },
+        {
+          "phase": 2,
+          "vary": "horizontal to incline geometry",
+          "hold": "same contact coefficients",
+          "notice": "normal reaction and friction scale can change"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-CONNECTED-SYSTEMS",
+      "ceiling": [
+        "massive-string dynamics",
+        "pulley rotational inertia",
+        "elastic-string oscillation"
+      ],
+      "must_contain": [
+        "At least two separate FBD equations.",
+        "Explicit ideal string/pulley assumptions.",
+        "A derived or geometry-appropriate acceleration constraint."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "one body mass",
+          "hold": "ideal string and geometry",
+          "notice": "common acceleration and tension change through coupled equations"
+        },
+        {
+          "phase": 2,
+          "vary": "connection geometry",
+          "hold": "body ownership",
+          "notice": "acceleration relation must be re-derived rather than memorized"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 90,
+      "provenance": "SOURCE",
+      "microtopic_ref": "MIC-PHY-NLM-IMPULSE-MOMENTUM-RATE",
+      "ceiling": [
+        "collision conservation algebra",
+        "rocket equation",
+        "time-varying-force integration"
+      ],
+      "must_contain": [
+        "A momentum change for one chosen body/item.",
+        "A time interval or item rate converting momentum to average force.",
+        "A Newton-III body check for recoil when relevant."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "firing/item rate",
+          "hold": "momentum change per item",
+          "notice": "average force scales linearly with rate"
+        },
+        {
+          "phase": 2,
+          "vary": "interaction interval",
+          "hold": "same Delta p",
+          "notice": "average force changes inversely with interval"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Choose body/contact/connection/interval first, state model assumptions, write the local force or momentum relation, and verify state/constraint consistency.",
+    "difficult_move": "Avoiding automatic formulas: muN is not always actual friction, tension equality is conditional, and momentum becomes force only through time/rate.",
+    "independent_check": "Static friction must satisfy its bound; connected-body solutions satisfy every body equation/string constraint; momentum-rate results have force units and correct reaction-body ownership.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Contact state, body boundaries and connection assumptions are named."
+      },
+      {
+        "level": "medium",
+        "handed_over": "Body boundaries and geometry are supplied; learner chooses relations."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only setup and requested quantity are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A coefficient is given but learner must decide below-limit, limiting or sliding state.",
+      "information_not_handed_over": "which friction bound/equality is justified",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "An incline or multi-block story requires normal/friction equations from existing FBD/vector capabilities.",
+      "information_not_handed_over": "which component determines N and which contact is limiting",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Several bodies and an ideal connection require separate equations linked by a constraint.",
+      "information_not_handed_over": "force ownership and allowed connection equalities",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Repeated-emission story gives mass, speed and items/s without naming momentum rate.",
+      "information_not_handed_over": "conversion from per-item momentum to per-time transfer",
+      "repair_to": "R3"
+    }
+  ]
+}

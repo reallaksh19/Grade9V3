@@ -101,19 +101,60 @@
         },
         {
           "micro": "recover vector direction angle from components",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
           "local_refs": [
-            "CAP-VEC-COMPONENT-SUM"
+            "CAP-VEC-DIRECTION-UNIT",
+            "CAP-INVERSE-TRIG-BRIDGE"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "ENRICH_OR_AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "unit-vector i/j notation",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-DIRECTION-UNIT"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "normalize a nonzero 2D vector to unit direction",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-VEC-DIRECTION-UNIT",
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH"
+        },
+        {
+          "micro": "dot product for angle / perpendicularity / projection",
+          "local_state": "LOCAL_EXTENSION_AVAILABLE",
+          "local_refs": [
+            "CAP-VEC-DOT-PRODUCT",
+            "CAP-VEC-DIRECTION-UNIT"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
+        },
+        {
+          "micro": "cross product magnitude / axial direction / unit normal",
+          "local_state": "LOCAL_EXTENSION_AVAILABLE",
+          "local_refs": [
+            "CAP-VEC-CROSS-PRODUCT",
+            "CAP-VEC-DIRECTION-UNIT"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         }
       ]
     },
@@ -407,64 +448,84 @@
         },
         {
           "micro": "normal reaction in varied geometries",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
           "local_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "QUESTION_VARIATION",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
+        },
+        {
+          "micro": "inclined-plane dynamics",
+          "local_state": "LOCAL_READY_WITH_BRIDGE",
+          "local_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-FRICTION-MAGNITUDE",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "school_micro_demand": "MICRO_TO_CONFIRM",
+          "action": "QUESTION_VARIATION",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
+        },
+        {
+          "micro": "two-body contact-force systems",
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-CONNECTED-SYSTEMS",
             "CAP-NLM-FBD-BODY-OWNERSHIP",
             "CAP-NLM-SECOND-LAW"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "MAP_REAL_QUESTIONS_BEFORE_NEW_CAPABILITY"
-        },
-        {
-          "micro": "inclined-plane dynamics",
-          "local_state": "LOCAL_PARTIAL",
-          "local_refs": [
-            "CAP-NLM-FBD-BODY-OWNERSHIP",
-            "CAP-NLM-SECOND-LAW",
-            "CAP-NLM-FRICTION"
-          ],
-          "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "CONFIRM_VECTOR_DECOMPOSITION_DEMAND_FIRST"
-        },
-        {
-          "micro": "two-body contact-force systems",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
-          "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED"
+          "action": "QUESTION_VARIATION",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "string tension / connected bodies",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-CONNECTED-SYSTEMS"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "pulley constraints / connected acceleration",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-CONNECTED-SYSTEMS"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
-          "priority_if_confirmed": "HIGH"
+          "action": "REUSE_IF_DEMANDED",
+          "priority_if_confirmed": "HIGH",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "coefficient-based static/kinetic friction calculations",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY",
           "local_refs": [
+            "CAP-NLM-FRICTION-MAGNITUDE",
             "CAP-NLM-FRICTION",
             "CAP-NLM-SECOND-LAW"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_OR_ENRICH_ONLY_IF_CONFIRMED"
+          "action": "REUSE_IF_DEMANDED",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "momentum / impulse / conservation under an NLM chapter",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-NLM-IMPULSE-MOMENTUM-RATE"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "DEFER_UNLESS_EXPLICITLY_DEMANDED"
+          "action": "REUSE_IMPULSE_RATE_DEFER_COLLISION_CONSERVATION",
+          "external_question_demand": "CONFIRMED_EXAMSIDE"
         }
       ]
     }

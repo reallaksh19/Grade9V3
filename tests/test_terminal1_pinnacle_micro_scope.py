@@ -41,12 +41,7 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
             for chapter in scope["chapters"]
             for micro in chapter["micro"]
         }
-        guarded = {
-            ("NLM", "string tension / connected bodies"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("NLM", "pulley constraints / connected acceleration"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-        }
+        guarded = {}
         for key, action in guarded.items():
             with self.subTest(chapter=key[0], micro=key[1]):
                 row = lookup[key]
@@ -65,6 +60,16 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
         expected = {
             ("Vectors", "arbitrary-angle decomposition into x/y components"):
                 "CAP-VEC-ANGLE-DECOMPOSITION",
+            ("Vectors", "recover vector direction angle from components"):
+                "CAP-VEC-DIRECTION-UNIT",
+            ("Vectors", "unit-vector i/j notation"):
+                "CAP-VEC-DIRECTION-UNIT",
+            ("Vectors", "normalize a nonzero 2D vector to unit direction"):
+                "CAP-VEC-DIRECTION-UNIT",
+            ("Vectors", "dot product for angle / perpendicularity / projection"):
+                "CAP-VEC-DOT-PRODUCT",
+            ("Vectors", "cross product magnitude / axial direction / unit normal"):
+                "CAP-VEC-CROSS-PRODUCT",
             ("Motion in 2 D", "independence of orthogonal x/y motion coupled by common time"):
                 "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
             ("Motion in 2 D", "two-dimensional constant-acceleration component solving"):
@@ -73,6 +78,14 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
                 "CAP-KIN-PROJECTILE-MODEL",
             ("Motion in 2 D", "oblique projectile model"):
                 "CAP-KIN-PROJECTILE-MODEL",
+            ("NLM", "coefficient-based static/kinetic friction calculations"):
+                "CAP-NLM-FRICTION-MAGNITUDE",
+            ("NLM", "string tension / connected bodies"):
+                "CAP-NLM-CONNECTED-SYSTEMS",
+            ("NLM", "pulley constraints / connected acceleration"):
+                "CAP-NLM-CONNECTED-SYSTEMS",
+            ("NLM", "momentum / impulse / conservation under an NLM chapter"):
+                "CAP-NLM-IMPULSE-MOMENTUM-RATE",
         }
         for key, cap in expected.items():
             with self.subTest(chapter=key[0], micro=key[1]):
@@ -80,7 +93,24 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
                 self.assertEqual(row["school_micro_demand"], "MICRO_TO_CONFIRM")
                 self.assertEqual(row["external_question_demand"], "CONFIRMED_EXAMSIDE")
                 self.assertIn(cap, row["local_refs"])
-                self.assertEqual(row["action"], "REUSE_IF_DEMANDED")
+                if key == ("NLM", "momentum / impulse / conservation under an NLM chapter"):
+                    self.assertEqual(
+                        row["action"],
+                        "REUSE_IMPULSE_RATE_DEFER_COLLISION_CONSERVATION",
+                    )
+                elif key in {
+                    ("Vectors", "dot product for angle / perpendicularity / projection"),
+                    ("Vectors", "cross product magnitude / axial direction / unit normal"),
+                }:
+                    self.assertEqual(
+                        row["action"],
+                        "KEEP_NONDEFAULT_UNLESS_EXPLICITLY_DEMANDED",
+                    )
+                else:
+                    self.assertIn(
+                        row["action"],
+                        {"REUSE_IF_DEMANDED", "QUESTION_VARIATION"},
+                    )
 
     def test_existing_extensions_stay_nondefault_until_explicit_demand(self):
         scope = self.scope()

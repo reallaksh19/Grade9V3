@@ -1,0 +1,46 @@
+{
+  "worksheet_id": "EXAMSIDE-NLM-PINNACLE-CORE",
+  "subject": "Physics",
+  "source_note": "Owner-approved reliable external question-demand sources: ExamSIDE JEE Main Laws of Motion and user-supplied ExamSIDE COMEDK machine-gun item. Concise demand summaries/URLs only; neither is Pinnacle school authority.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-NLM-2026-04-06-ROUGH-INCLINE",
+      "primary_capability_ref": "CAP-NLM-FRICTION-MAGNITUDE",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-VEC-ANGLE-DECOMPOSITION"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2026 Apr 6: rough-vs-smooth incline timing used to infer friction coefficient. Source: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2024-04-05-THREE-BLOCK",
+      "primary_capability_ref": "CAP-NLM-CONNECTED-SYSTEMS",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2024 Apr 5: three hanging blocks/smooth pulley, requested rope tension. Source: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-2021-08-26-MOVE-TOGETHER",
+      "primary_capability_ref": "CAP-NLM-FRICTION-MAGNITUDE",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-SYSTEMS",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2021 Aug 26: two blocks with static friction must move together under maximum horizontal force. Source: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion"
+    },
+    {
+      "question_id": "EXAMSIDE-COMEDK-2026-MACHINE-GUN",
+      "primary_capability_ref": "CAP-NLM-IMPULSE-MOMENTUM-RATE",
+      "secondary_capability_refs": [
+        "CAP-NLM-THIRD-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "COMEDK 2026 machine-gun item supplied by the user: repeated bullets plus holder force require momentum-transfer rate. Source: https://questions.examside.com/past-years/jee/question/pa-machine-gun-fires-a-bullet-of-mass-m-with-a-velocity-of-comedk-physics-units-and-measurements-k8pkjfk78zobjtd5"
+    }
+  ]
+}

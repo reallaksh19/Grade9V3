@@ -56,10 +56,13 @@ learner-evidence states or curriculum-authority enums.
 
 Owner approval on 2026-09-19 accepts ExamSIDE past-year questions as a reliable external question-demand source. Selected Motion-in-a-Plane questions now justify `CAP-VEC-ANGLE-DECOMPOSITION`, backed by an explicit Mathematics trigonometric-ratio bridge.
 
-Still unconfirmed for Pinnacle school scope:
+Owner-approved ExamSIDE Vector Algebra demand now also supports:
 
-- a separate inverse-trig direction-angle reconstruction capability;
-- unit-vector `i/j` notation, unless school material or a selected reliable question requires it.
+- `CAP-VEC-DIRECTION-UNIT` for magnitude/direction/unit-vector reconstruction, with inverse-trig evaluation kept as a visible Mathematics bridge;
+- `CAP-VEC-DOT-PRODUCT` for angle, perpendicularity and projection, retained as a **non-default explicit-demand extension**;
+- `CAP-VEC-CROSS-PRODUCT` for ordered axial direction and unit-normal questions, also **non-default explicit-demand extension**.
+
+The immediate Vector preparation foundation is direction recovery / i-j notation / unit-direction normalization. Dot/cross are authored because the approved ExamSIDE page demonstrates real demand, but they are not inserted into ordinary Grade-9 progression. Triple products, coplanarity determinants and vector calculus remain outside this slice.
 
 ## Motion 1 D
 
@@ -130,18 +133,17 @@ material explicitly demands it.
 
 The accelerating-frame/pseudo-force capability remains a non-default extension.
 
-### Demand to confirm before authoring
+### Owner-approved external question-demand slice
 
-- quantitative normal-reaction families beyond the existing FBD action;
-- inclined-plane dynamics;
-- two-body contact systems;
-- tension / connected bodies;
-- pulley constraints;
-- coefficient-based static/kinetic friction calculations;
-- momentum/impulse if the school's NLM chapter includes it.
+The supplied ExamSIDE JEE Main Laws-of-Motion bank now justifies:
 
-Connected systems and pulley constraints are local gaps, but **a gap is not automatically a
-school requirement**.
+- `CAP-NLM-FRICTION-MAGNITUDE` for static bounds/limits and kinetic friction;
+- `CAP-NLM-CONNECTED-SYSTEMS` for separate-body equations plus ideal string/pulley constraints;
+- incline, normal-reaction and two-body-contact problems as **applications** of those capabilities together with existing FBD, vector-resolution and Newton-II actions.
+
+The user-supplied ExamSIDE COMEDK machine-gun question additionally justifies `CAP-NLM-IMPULSE-MOMENTUM-RATE`: `p=mv`, impulse/average-force reasoning, and repeated-item momentum transfer per second.
+
+This does **not** pull general collision/centre-of-mass conservation, massive-string dynamics or pulley rotational inertia into the first slice. School micro-demand remains independently `MICRO_TO_CONFIRM`.
 
 ## Practical priority once school micro-demand arrives
 

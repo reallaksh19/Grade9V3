@@ -256,3 +256,26 @@ and update:
 `docs/grade9/terminal1-pinnacle-physics.micro-scope.json`
 
 Only confirmed rows should move out of `MICRO_TO_CONFIRM`.
+
+
+## Additional owner-approved ExamSIDE intake — 2026-09-19
+
+The owner supplied the ExamSIDE JEE Main **Vector Algebra** and **Laws of Motion** pages plus a COMEDK machine-gun momentum-rate item. These are accepted under the existing external question-demand evidence class.
+
+Bounded authoring response:
+
+```text
+Vectors:
+components -> magnitude/direction/unit vector
+          -> dot product / projection / perpendicularity
+          -> cross product / unit normal
+
+NLM:
+qualitative friction -> quantitative friction state/limit
+one-body FBD + F=ma -> connected-body ideal string/pulley constraints
+Newton II/III -> impulse and momentum-transfer rate
+```
+
+Incline angle, normal-reaction geometry, block arrangement and bullet/gun story are question variations when they do not add another independently fail-able model decision.
+
+Still held outside this first slice: triple products/vector calculus, massive-string or pulley inertia models, rocket equation, and general collision/centre-of-mass conservation.

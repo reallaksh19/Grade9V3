@@ -1,0 +1,44 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-VECTOR-ALGEBRA-CORE",
+  "subject": "Physics",
+  "source_note": "Owner-approved reliable external question-demand source: ExamSIDE JEE Main Vector Algebra. Concise demand summaries and source URLs only; source is not Pinnacle school authority.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-VEC-2024-01-30-DIRECTION",
+      "primary_capability_ref": "CAP-VEC-DIRECTION-UNIT",
+      "secondary_capability_refs": [
+        "CAP-VECTOR-SIGNED-COMPONENT"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2024 Jan 30: vector with specified magnitude and direction parallel to another vector; demands component/unit-direction reconstruction. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    },
+    {
+      "question_id": "EXAMSIDE-VEC-2023-01-24-PERP",
+      "primary_capability_ref": "CAP-VEC-DOT-PRODUCT",
+      "secondary_capability_refs": [
+        "CAP-VEC-DIRECTION-UNIT"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2023 Jan 24: component vectors are perpendicular and an unknown parameter is solved. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    },
+    {
+      "question_id": "EXAMSIDE-VEC-2022-07-26-PROJECTION",
+      "primary_capability_ref": "CAP-VEC-DOT-PRODUCT",
+      "secondary_capability_refs": [
+        "CAP-VEC-DIRECTION-UNIT"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2022 Jul 26: component/projection of one vector along another. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    },
+    {
+      "question_id": "EXAMSIDE-VEC-2023-01-25-CROSS-UNIT",
+      "primary_capability_ref": "CAP-VEC-CROSS-PRODUCT",
+      "secondary_capability_refs": [
+        "CAP-VEC-DIRECTION-UNIT",
+        "CAP-VEC-DOT-PRODUCT"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "JEE Main 2023 Jan 25: unit vector in direction of P cross Q. Source: https://questions.examside.com/past-years/jee/jee-main/physics/vector-algebra"
+    }
+  ]
+}
