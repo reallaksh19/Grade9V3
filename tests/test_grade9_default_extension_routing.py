@@ -116,6 +116,22 @@ class Grade9DefaultExtensionRouting(unittest.TestCase):
                 actual = {row["rung"] for row in positions[matrix_id]}
                 self.assertFalse(actual & excluded)
 
+    def test_explicit_worksheet_question_demand_can_reach_nondefault_rung(self):
+        mapping = json.loads(
+            (REPO / "tests/fixtures/study_route/physics-cross-matrix.worksheet.json")
+            .read_text(encoding="utf-8")
+        )
+        report = study_start.resolve(mapping, [{
+            "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+            "knowledge_percentage": 75,
+        }])
+        rows = {row["capability_ref"]: row for row in report["route"]}
+        self.assertEqual(
+            rows["CAP-KIN-ZERO-V-NONZERO-A"]["learner_action"],
+            "START_HERE",
+        )
+        self.assertEqual(report["start_decisions"][0]["selected_rung"], "R3")
+
     def test_default_grade9_rungs_do_not_depend_on_nondefault_rungs(self):
         caps, mics = capability_graph.subject_graph("Physics")
         for relative in self.TARGETS:
