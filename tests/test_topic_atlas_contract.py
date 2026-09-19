@@ -80,6 +80,51 @@ class TopicAtlasContractTest(unittest.TestCase):
         self.assertEqual(activities[0]["locator"], "public/physics/nlm/explorers/friction-threshold/index.html")
         self.assertIn("CAP-NLM-FRICTION", activities[0]["supports_claims"])
 
+    def test_motion2d_semantic_leaf_activity_bindings(self):
+        phy_matrices = self.payload["subjects"]["Physics"]["matrices"]
+        motion = next(
+            (m for m in phy_matrices if m["matrix_id"] == "MATRIX-PHY-KIN-2D-MOTION"),
+            None,
+        )
+        self.assertIsNotNone(motion, "Motion-in-2D matrix must be projected")
+
+        expected = {
+            "K2D1-3": "ACT-KIN-2D-SHARED-CLOCK",
+            "K2D1-4": "ACT-KIN-2D-SHARED-CLOCK",
+            "K2D2-3": "ACT-KIN-2D-EVENT-CLOCK",
+            "K2D3-1": "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
+            "K2D3-4": "ACT-KIN-2D-APEX-FALLACY",
+            "K2D3-7": "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
+            "K2D3-3": "ACT-KIN-2D-LANDING-GEOMETRY",
+            "K2D3-5": "ACT-KIN-2D-LANDING-GEOMETRY",
+            "K2D3-6": "ACT-KIN-2D-LANDING-GEOMETRY",
+        }
+
+        by_step = {}
+        for rung in motion["rungs"]:
+            for activity in rung.get("activities", []):
+                for step_ref in activity.get("teaching_step_refs", []):
+                    by_step.setdefault(step_ref, set()).add(activity["id"])
+                if activity["id"].startswith("ACT-KIN-2D-"):
+                    self.assertEqual(activity["activity_kind"], "GRAPHICAL_COGNITIVE_DECONSTRUCTION")
+                    self.assertEqual(activity["support_route"]["kind"], "GCDR")
+                    self.assertEqual(activity["support_route"]["conformance_status"], "IMPLEMENTATION_PARTIAL")
+                    self.assertEqual(activity["support_route"]["auto_route_policy"], "RECOMMEND_ONLY")
+                    self.assertTrue(activity["support_route"]["recommended_when"])
+                    self.assertTrue(activity["support_route"]["learner_evidence_triggers"])
+                    self.assertTrue(activity["locator"].startswith("public/physics/motion-2d/explorers/"))
+                    self.assertTrue((REPO / activity["locator"]).exists())
+
+        for step_ref, activity_id in expected.items():
+            with self.subTest(step_ref=step_ref):
+                self.assertIn(activity_id, by_step.get(step_ref, set()))
+
+        r3 = next(r for r in motion["rungs"] if r["rung"] == "R3")
+        k6 = next(s for s in r3["microtopic"]["teaching_path"] if s["id"] == "K2D3-6")
+        self.assertIn("actual Delta y=y_f-y_i", k6["action"])
+        self.assertIn("actual u_y", k6["action"])
+        self.assertTrue((REPO / "public/physics/motion-2d/index.html").exists())
+
     def test_mathematics_linear_equations_proof_case(self):
         math_matrices = self.payload["subjects"]["Mathematics"]["matrices"]
         lin = next((m for m in math_matrices if m["matrix_id"] == "MATRIX-MATH-LINEAR-EQUATIONS"), None)
