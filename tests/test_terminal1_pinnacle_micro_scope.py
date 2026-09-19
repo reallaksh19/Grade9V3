@@ -42,8 +42,6 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
             for micro in chapter["micro"]
         }
         guarded = {
-            ("NLM", "momentum-transfer / rate-of-momentum force (recoil or ejection stream)"):
-                "AUTHOR_EXPLICIT_DEMAND_EXTENSION",
             ("NLM", "momentum / impulse / conservation under an NLM chapter"):
                 "DEFER_UNLESS_EXPLICITLY_DEMANDED",
         }
@@ -92,6 +90,7 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
         for name in (
             "zero velocity with nonzero acceleration at a turning point",
             "accelerating observer / pseudo-force convention",
+            "momentum-transfer / rate-of-momentum force (recoil or ejection stream)",
         ):
             with self.subTest(micro=name):
                 row = rows[name]
