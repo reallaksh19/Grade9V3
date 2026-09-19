@@ -867,6 +867,29 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-NLM-CONTACT-CONSTRAINTS",
+          "title": "Bounded friction and connected-body constraints",
+          "grade": 9,
+          "chapter": "Force and Laws of Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "PHY-NEWTON-SECOND-LAW"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "Static friction supplies the tangential force required by a no-slip state only up to a limiting magnitude; the maximum is not the default value.",
+            "A common acceleration or string-length relation is justified by an active physical constraint, not by the mere presence of multiple bodies.",
+            "Uniform tension and fixed-length kinematics are consequences of an explicitly declared ideal string/pulley model and its geometry."
+          ],
+          "misconceptions": [
+            "Friction always equals a coefficient times the normal force.",
+            "Any connected bodies can be assigned the same acceleration.",
+            "Every rope/pulley arrangement has equal tension everywhere."
+          ]
+        },
+        {
           "gate_id": "PHY-WORK-ENERGY-GRADE9",
           "title": "Grade 9 work, kinetic energy and gravitational potential energy",
           "grade": 9,
@@ -3802,6 +3825,285 @@ window.GRADE9V3 = {
               "prerequisites": [
                 "CAP-NLM-FBD-BODY-OWNERSHIP"
               ]
+            },
+            {
+              "id": "MIC-PHY-NLM-FRICTION-QUANT",
+              "title": "Quantitative static and kinetic friction conditions",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The difficult decision is not substituting mu N; it is determining the required tangential force, the actual normal reaction, and whether the contact can remain static.",
+              "entry_assumptions": [
+                "Can determine friction direction from relative slip tendency.",
+                "Can write Newton-II equations for a chosen body."
+              ],
+              "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+              "teaching_path": [
+                {
+                  "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+                  "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+                  "output": "perpendicular force equation -> actual N >= 0"
+                },
+                {
+                  "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+                  "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+                  "output": "no-slip dynamics -> f_s = f_required"
+                },
+                {
+                  "action": "Compare |f_required| with mu_s N.",
+                  "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+                  "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+                },
+                {
+                  "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+                  "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+                  "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Friction always equals mu N.",
+                  "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+                  "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+                },
+                {
+                  "wrong_idea": "The normal force is always mg.",
+                  "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+                  "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A contact has known normal reaction N and coefficient mu_s. The no-slip force equation requires tangential friction f_required. State the test for whether static contact is possible, when equality with mu_s N is justified, and what changes once sliding is established.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Static contact is possible when |f_required| <= mu_s N. Equality |f_s| = mu_s N is justified only at impending slip. After relative sliding is established, use the kinetic model |f_k| = mu_k N with direction opposite the relative sliding.",
+                  "reasoning": [
+                    "Static friction supplies the required no-slip value rather than an automatic maximum.",
+                    "The limiting value mu_s N is a bound and becomes an equality only at the threshold of slipping.",
+                    "The kinetic model belongs to a different contact state: established relative sliding."
+                  ],
+                  "check": "If f_required = 0, the rule must allow f_s = 0 even when mu_s N is nonzero; that falsifies the unconditional f = mu N shortcut.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit compares a symbolic friction demand with a symbolic static bound and distinguishes contact states; no numerical force is computed."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FRICTION",
+                "CAP-NLM-SECOND-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+              "title": "Connected bodies and a justified common acceleration",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners must distinguish a kinematic constraint from a force interaction and must not cancel internal forces inside individual-body equations.",
+              "entry_assumptions": [
+                "Can draw one FBD per chosen body.",
+                "Can apply signed Newton II to one chosen body."
+              ],
+              "inferential_jump": "Bodies share an acceleration component only when a physical constraint keeps their relative separation fixed along that coordinate; the shared acceleration can link separate Newton-II equations, while internal partner forces cancel only if the bodies are deliberately treated as one system.",
+              "teaching_path": [
+                {
+                  "action": "Identify the connection/contact condition and state exactly which relative separation is fixed.",
+                  "why_valid": "A common acceleration is a kinematic consequence of a constraint, not a default property of nearby bodies.",
+                  "output": "fixed relative separation along chosen coordinate -> common constrained acceleration component"
+                },
+                {
+                  "action": "Choose one compatible sign convention for every body equation and assign the constrained acceleration component consistently.",
+                  "why_valid": "The same physical acceleration cannot change sign merely because the equation changed bodies.",
+                  "output": "same-sense coordinates -> a_A = a_B = a"
+                },
+                {
+                  "action": "Write one Newton-II force sum for each body, keeping every inter-body force on the body it acts on.",
+                  "why_valid": "The interaction forces are external to each individual body and therefore belong in its own equation.",
+                  "output": "body A: Sigma F_A = m_A a; body B: Sigma F_B = m_B a"
+                },
+                {
+                  "action": "If treating A+B as one system, add the two body equations and cancel only the internal A-on-B/B-on-A pair in that system sum.",
+                  "why_valid": "Internal partner forces cancel in the combined system equation because both members are included, not because either force is absent from a body FBD.",
+                  "output": "system: Sigma F_external = (m_A + m_B) a; internal pair absent only after equations are combined"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Any two touching or connected bodies automatically have the same acceleration.",
+                  "diagnostic_prompt": "If two blocks are touching but one loses contact, what keeps their accelerations equal after separation?",
+                  "repair": "Name the active constraint first. Equal acceleration is justified only while the relative-separation condition remains enforced."
+                },
+                {
+                  "wrong_idea": "The contact force between two bodies can be cancelled from each individual FBD because it is an internal force of the pair.",
+                  "diagnostic_prompt": "On body A alone, is the force from body B external to A?",
+                  "repair": "Yes. Keep it in A's equation. It cancels only after A and B are deliberately combined into one system equation."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two bodies are constrained to keep a fixed separation along one straight coordinate. State the acceleration relation, write the form of the two body equations, and explain when their interaction force can disappear from an equation.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "With same-sense coordinates the constraint gives a_A = a_B = a. Each body keeps the interaction force in its own Newton-II equation; the equal-and-opposite pair cancels only in a combined A+B system equation.",
+                  "reasoning": [
+                    "Fixed relative separation implies equal velocity and acceleration components along the constrained coordinate.",
+                    "Each individual body experiences the partner force as an external force.",
+                    "When both bodies are included in one system, the internal partner pair cancels in the summed equation."
+                  ],
+                  "check": "If the connection breaks, the acceleration equality must no longer be asserted automatically.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit states symbolic acceleration and force-sum structure for constrained bodies; no numerical acceleration or force is computed."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-SECOND-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+              "title": "Ideal-string tension belongs to each body-specific FBD",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Equal tension is a model consequence, not a property of every rope/pulley setup, and the two tension arrows act on different bodies.",
+              "entry_assumptions": [
+                "Can assign forces to the body they act on.",
+                "Can apply Newton II to a chosen body."
+              ],
+              "inferential_jump": "For one taut massless ideal string, with any redirection treated as frictionless and massless, the tension magnitude can be represented by one T throughout that same string; each body still receives its own tension force along the local string direction.",
+              "teaching_path": [
+                {
+                  "action": "State the idealization before using one tension symbol: taut inextensible massless string, with any pulley/redirection frictionless and massless for this bounded model.",
+                  "why_valid": "Uniform tension is a consequence of the ideal model and must not be silently transferred to a nonideal rope or pulley.",
+                  "output": "ideal single string model declared -> one tension magnitude T is admissible throughout that string"
+                },
+                {
+                  "action": "For each attached body, draw the string's pull along the local string direction away from the body.",
+                  "why_valid": "Tension is a force exerted by the string on that body and belongs on that body's FBD.",
+                  "output": "body A FBD contains string-on-A force of magnitude T; body B FBD contains string-on-B force of magnitude T"
+                },
+                {
+                  "action": "Use the same symbol T for those magnitudes only while the declared ideal assumptions hold.",
+                  "why_valid": "A massless string segment cannot sustain a nonzero net force in this idealized model, and a frictionless massless redirection does not create a tension-magnitude jump.",
+                  "output": "T_A = T_B = T under the declared ideal-string/redirection conditions"
+                },
+                {
+                  "action": "Check whether the problem introduces rope mass, elasticity, pulley friction, or rotational inertia; if it does, stop using equal tension unless a different model justifies it.",
+                  "why_valid": "Those changes alter the force transmission assumptions that supported one common T.",
+                  "output": "nonideal feature present -> equal-tension relation not licensed by this capability"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Tension forces at the two ends of a string cancel because they are equal and opposite.",
+                  "diagnostic_prompt": "Do the two end tensions act on the same chosen body?",
+                  "repair": "No. Put the tension force acting on each body in that body's own FBD. Equal magnitudes across the ideal string do not make them a cancelling pair on one body."
+                },
+                {
+                  "wrong_idea": "Every rope over every pulley has the same tension on both sides.",
+                  "diagnostic_prompt": "What model assumptions justify using one symbol T throughout the rope?",
+                  "repair": "State the ideal massless string and frictionless/massless redirection assumptions first. Without them, equal tension is not automatic."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two bodies are attached to the same taut ideal string, redirected only by a frictionless massless fixed pulley. State the tension relation and explain where the two tension forces appear.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Under the declared ideal model, both string segments have the same tension magnitude T. Each body has its own string-on-body tension force on its own FBD; the forces are not cancelled across separate body diagrams.",
+                  "reasoning": [
+                    "The ideal assumptions license one common tension magnitude throughout the same string.",
+                    "Each tension force acts on a different body and points along that body's local string segment.",
+                    "Equal magnitude does not mean the forces cancel in an individual-body equation."
+                  ],
+                  "check": "If the pulley is explicitly frictional or the rope has significant mass, this capability must refuse to assume equal tension.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit states the model-conditional symbolic equality of tension magnitudes and assigns the forces to their bodies; no numerical tension is computed."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW"
+              ]
+            },
+            {
+              "id": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+              "title": "One fixed-pulley string gives one length constraint",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must translate geometry into one fixed-length equation rather than memorize a pulley-count rule.",
+              "entry_assumptions": [
+                "Can identify a common-acceleration connection when separation is fixed.",
+                "Can use an ideal single-string tension model when forces are also being solved."
+              ],
+              "inferential_jump": "For one taut inextensible string over one fixed ideal pulley, the two changing straight segment lengths add to a constant; with coordinates measured away from the pulley this gives y_A + y_B = constant and therefore a_A + a_B = 0.",
+              "teaching_path": [
+                {
+                  "action": "Restrict the model to one taut inextensible string over one fixed ideal pulley and choose y_A and y_B positive away from the pulley along the two straight segments.",
+                  "why_valid": "The coordinate declaration determines the signs in the length relation and blocks accidental import of movable-pulley rules.",
+                  "output": "single fixed pulley; coordinates y_A,y_B measured away from pulley"
+                },
+                {
+                  "action": "Write the variable part of the string length as y_A + y_B and set its total equal to a constant.",
+                  "why_valid": "An inextensible string has fixed total length; the wrapped portion around a fixed pulley is constant in this bounded geometry.",
+                  "output": "y_A + y_B = L_free = constant"
+                },
+                {
+                  "action": "Differentiate the fixed-length relation at the kinematic level needed by the problem.",
+                  "why_valid": "A constant length has zero time derivative at each order.",
+                  "output": "v_A + v_B = 0 and a_A + a_B = 0"
+                },
+                {
+                  "action": "Translate the signed result back into motion: if A accelerates farther from the pulley, B accelerates toward it with equal magnitude.",
+                  "why_valid": "The two segment changes must cancel to preserve total string length.",
+                  "output": "|a_A| = |a_B| with opposite signs in the declared away-from-pulley coordinates"
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Every pulley problem has the same acceleration ratio.",
+                  "diagnostic_prompt": "What part of the string length changes in this exact geometry, and is any pulley itself moving?",
+                  "repair": "Write the string-length equation from the actual geometry. The equal-magnitude result here is only for one fixed pulley with two changing straight segments."
+                },
+                {
+                  "wrong_idea": "Bodies on opposite sides of a fixed pulley have the same signed acceleration.",
+                  "diagnostic_prompt": "If both coordinates are positive away from the pulley, can both segment lengths increase while total string length stays fixed?",
+                  "repair": "No. Their signed changes are opposite: a_A + a_B = 0 in these coordinates."
+                }
+              ],
+              "exit_task": {
+                "prompt": "One taut inextensible string passes over one fixed ideal pulley, with y_A and y_B measured away from the pulley along the two hanging segments. Write the length relation and its acceleration consequence.",
+                "source_ref": "SRC-AUTHOR-NLM",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The variable string length is y_A + y_B = constant, so a_A + a_B = 0. The two acceleration magnitudes are equal and their signs are opposite in the declared coordinates.",
+                  "reasoning": [
+                    "The fixed pulley contributes no changing geometric length in this bounded model.",
+                    "Because the string is inextensible, the sum of the two straight segment lengths is constant.",
+                    "Two time derivatives give the acceleration relation."
+                  ],
+                  "check": "If one pulley becomes movable, this two-segment relation must be rebuilt rather than reused.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit derives a symbolic fixed-length and acceleration relation for one fixed pulley; no numerical displacement or acceleration is computed."
+                }
+              },
+              "prerequisites": [
+                "CAP-NLM-CONNECTED-COMMON-ACCEL",
+                "CAP-NLM-IDEAL-STRING-TENSION"
+              ]
             }
           ],
           "relations": [
@@ -3871,6 +4173,60 @@ window.GRADE9V3 = {
                 "F_net and a refer to the same chosen body.",
                 "All signed components use one declared axis."
               ]
+            },
+            {
+              "id": "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+              "expression": "a_A = a_B",
+              "meaning": "When an active connection keeps the relative separation of bodies A and B fixed along one shared coordinate and both use the same positive sense, their acceleration components along that coordinate are equal.",
+              "conditions": [
+                "The connection/contact actively keeps the relevant relative separation fixed.",
+                "Both acceleration components use the same coordinate direction and sign convention.",
+                "The constraint has not gone slack, separated, or otherwise ceased to apply."
+              ]
+            },
+            {
+              "id": "REL-NLM-FIXED-PULLEY-STRING-LENGTH",
+              "expression": "y_A + y_B = L_free = constant; a_A + a_B = 0",
+              "meaning": "For one taut inextensible string over one fixed ideal pulley, with both coordinates measured away from the pulley along the two straight segments, the variable segment lengths sum to a constant and the signed accelerations sum to zero.",
+              "conditions": [
+                "There is one fixed pulley and one taut inextensible string.",
+                "Only the two declared straight segments change length; the wrapped/fixed portions are constant.",
+                "Both coordinates are measured away from the pulley along their local string segments.",
+                "The pulley itself does not translate."
+              ]
+            },
+            {
+              "id": "REL-NLM-IDEAL-STRING-TENSION",
+              "expression": "T_A = T_B = T",
+              "meaning": "For one taut massless ideal string, with any direction-changing pulley/support treated as frictionless and massless in this bounded model, the tension magnitude is uniform throughout that same string.",
+              "conditions": [
+                "The same taut string connects the stated segments.",
+                "The string is massless and inextensible in the ideal model.",
+                "Any pulley/redirection used here is frictionless and massless and only changes string direction.",
+                "No nonideal feature is introduced that would require different tension magnitudes."
+              ]
+            },
+            {
+              "id": "REL-NLM-KINETIC-FRICTION",
+              "expression": "|f_k| = mu_k N",
+              "meaning": "Once relative sliding at the contact is established, the bounded dry-sliding model uses kinetic-friction magnitude mu_k N, directed opposite the relative sliding.",
+              "conditions": [
+                "Relative sliding between the two surfaces is established.",
+                "N is obtained from the actual free-body dynamics.",
+                "The friction direction opposes the relative sliding at the contact.",
+                "The simple dry-sliding coefficient model is being used."
+              ]
+            },
+            {
+              "id": "REL-NLM-STATIC-FRICTION-BOUND",
+              "expression": "|f_s| <= mu_s N",
+              "meaning": "For a contact that remains static, the static-friction magnitude adjusts to the value required by the tangential dynamics up to the limiting value mu_s N; equality applies only at impending slip.",
+              "conditions": [
+                "The surfaces are in contact and have no relative sliding during the state being tested.",
+                "N is obtained from the actual free-body dynamics, not assumed to equal mg.",
+                "Static friction opposes the impending relative slip direction.",
+                "Equality |f_s| = mu_s N is used only at impending slip."
+              ]
             }
           ],
           "questions": [
@@ -3909,6 +4265,48 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-01",
+              "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+              "origin": "AUTHORED",
+              "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-COV-02",
+              "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
+              "origin": "AUTHORED",
+              "answer": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-COV-03",
+              "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+              "origin": "AUTHORED",
+              "answer": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-COV-04",
+              "stem": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+              "origin": "AUTHORED",
+              "answer": "The friction force on the box points to the right."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-COV-05",
+              "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+              "origin": "AUTHORED",
+              "answer": "The acceleration is +3 m/s^2."
+            },
+            {
+              "id": "Q-PHY-NLM-2A-COV-06",
+              "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+              "origin": "AUTHORED",
+              "answer": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies."
+            },
+            {
+              "id": "Q-PHY-NLM-PRACTICAL-12",
+              "stem": "Plan a trolley–pulley–hanging-mass experiment to verify Newton’s second law. Describe one controlled variation that tests the effect of net force at fixed system mass, what you measure, and what result would support F_net = m a.",
+              "origin": "AUTHORED",
+              "answer": "Keep the total moving mass approximately fixed while transferring masses between trolley and hanger so the driving force changes, measure acceleration for each trial, and test whether acceleration changes in direct proportion to the corrected net driving force."
             }
           ],
           "capabilities": [
@@ -3949,6 +4347,12 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+              "action": "Identify which bodies are constrained to share one acceleration component and write consistent body-specific or whole-system Newton-II equations.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-NLM-FBD-BODY-OWNERSHIP",
               "action": "Assign each force arrow to the body on which that force acts.",
               "provider": null,
@@ -3973,6 +4377,18 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-FRICTION-QUANT",
+              "action": "Decide whether static friction can supply the tangential force required by the chosen-body dynamics; if relative sliding is established, use the declared kinetic-friction model.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-NLM-IDEAL-STRING-TENSION",
+              "action": "Use one declared ideal-string model to assign tension forces and, where justified, one common tension magnitude throughout that same string.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-NLM-NET-ZERO-MOTION",
               "action": "Relate zero net force to unchanged velocity.",
               "provider": null,
@@ -3985,13 +4401,19 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+              "action": "Convert constant length of one taut inextensible string over one fixed ideal pulley into the corresponding displacement, velocity, or acceleration relation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-NLM-THIRD-LAW",
               "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
               "provider": null,
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 57,
+          "record_count": 79,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4003,7 +4425,7 @@ window.GRADE9V3 = {
             ],
             "atoms": 76,
             "questions": 7,
-            "obligations": 11,
+            "obligations": 15,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -5365,7 +5787,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 58,
+          "record_count": 59,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -7843,7 +8265,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 77,
+          "record_count": 78,
           "compile_preview": {
             "compilable": true,
             "supported_products": [

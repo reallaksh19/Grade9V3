@@ -42,10 +42,10 @@ class Terminal1PinnacleChapterOnlyGuard(unittest.TestCase):
             for micro in chapter["micro"]
         }
         guarded = {
-            ("NLM", "string tension / connected bodies"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
-            ("NLM", "pulley constraints / connected acceleration"):
-                "AUTHOR_ONLY_IF_CONFIRMED",
+            ("NLM", "momentum-transfer / rate-of-momentum force (recoil or ejection stream)"):
+                "AUTHOR_EXPLICIT_DEMAND_EXTENSION",
+            ("NLM", "momentum / impulse / conservation under an NLM chapter"):
+                "DEFER_UNLESS_EXPLICITLY_DEMANDED",
         }
         for key, action in guarded.items():
             with self.subTest(chapter=key[0], micro=key[1]):

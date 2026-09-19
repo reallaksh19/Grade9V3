@@ -600,6 +600,301 @@
       ]
     },
     {
+      "gate_id": "PHY-NLM-CONTACT-CONSTRAINTS",
+      "title": "Bounded friction and connected-body constraints",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Force and Laws of Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-NLM-STATIC-FRICTION-RESPONSIVE",
+          "statement": "Static friction supplies the tangential force required by a no-slip state only up to a limiting magnitude; the maximum is not the default value."
+        },
+        {
+          "concept_id": "CON-NLM-CONSTRAINT-BEFORE-EQUATION",
+          "statement": "A common acceleration or string-length relation is justified by an active physical constraint, not by the mere presence of multiple bodies."
+        },
+        {
+          "concept_id": "CON-NLM-IDEAL-STRING-MODEL",
+          "statement": "Uniform tension and fixed-length kinematics are consequences of an explicitly declared ideal string/pulley model and its geometry."
+        }
+      ],
+      "prerequisites": [
+        "PHY-NEWTON-SECOND-LAW"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-NLM-STATIC-FRICTION-BOUND",
+          "expression": "|f_s| <= mu_s N",
+          "meaning": "For a contact that remains static, the static-friction magnitude adjusts to the value required by the tangential dynamics up to the limiting value mu_s N; equality applies only at impending slip.",
+          "symbols": [
+            {
+              "symbol": "f_s",
+              "meaning": "Signed static friction force along the contact tangent",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "mu_s",
+              "meaning": "Coefficient of static friction for the contact model",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "N",
+              "meaning": "Normal contact-force magnitude obtained from the actual perpendicular dynamics",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            }
+          ],
+          "conditions": [
+            "The surfaces are in contact and have no relative sliding during the state being tested.",
+            "N is obtained from the actual free-body dynamics, not assumed to equal mg.",
+            "Static friction opposes the impending relative slip direction.",
+            "Equality |f_s| = mu_s N is used only at impending slip."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-KINETIC-FRICTION",
+          "expression": "|f_k| = mu_k N",
+          "meaning": "Once relative sliding at the contact is established, the bounded dry-sliding model uses kinetic-friction magnitude mu_k N, directed opposite the relative sliding.",
+          "symbols": [
+            {
+              "symbol": "f_k",
+              "meaning": "Signed kinetic friction force along the contact tangent",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "mu_k",
+              "meaning": "Coefficient of kinetic friction for the declared contact model",
+              "unit": "1",
+              "dimension": "1"
+            },
+            {
+              "symbol": "N",
+              "meaning": "Normal contact-force magnitude from the actual perpendicular dynamics",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            }
+          ],
+          "conditions": [
+            "Relative sliding between the two surfaces is established.",
+            "N is obtained from the actual free-body dynamics.",
+            "The friction direction opposes the relative sliding at the contact.",
+            "The simple dry-sliding coefficient model is being used."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+          "expression": "a_A = a_B",
+          "meaning": "When an active connection keeps the relative separation of bodies A and B fixed along one shared coordinate and both use the same positive sense, their acceleration components along that coordinate are equal.",
+          "symbols": [
+            {
+              "symbol": "a_A",
+              "meaning": "Acceleration component of body A along the declared shared coordinate",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_B",
+              "meaning": "Acceleration component of body B along the same positive coordinate sense",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The connection/contact actively keeps the relevant relative separation fixed.",
+            "Both acceleration components use the same coordinate direction and sign convention.",
+            "The constraint has not gone slack, separated, or otherwise ceased to apply."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-IDEAL-STRING-TENSION",
+          "expression": "T_A = T_B = T",
+          "meaning": "For one taut massless ideal string, with any direction-changing pulley/support treated as frictionless and massless in this bounded model, the tension magnitude is uniform throughout that same string.",
+          "symbols": [
+            {
+              "symbol": "T_A",
+              "meaning": "Tension magnitude in the string segment acting on body A",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "T_B",
+              "meaning": "Tension magnitude in the same string segment acting on body B",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "T",
+              "meaning": "Common ideal-string tension magnitude",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            }
+          ],
+          "conditions": [
+            "The same taut string connects the stated segments.",
+            "The string is massless and inextensible in the ideal model.",
+            "Any pulley/redirection used here is frictionless and massless and only changes string direction.",
+            "No nonideal feature is introduced that would require different tension magnitudes."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-FIXED-PULLEY-STRING-LENGTH",
+          "expression": "y_A + y_B = L_free = constant; a_A + a_B = 0",
+          "meaning": "For one taut inextensible string over one fixed ideal pulley, with both coordinates measured away from the pulley along the two straight segments, the variable segment lengths sum to a constant and the signed accelerations sum to zero.",
+          "symbols": [
+            {
+              "symbol": "y_A",
+              "meaning": "Straight string-segment length/coordinate from fixed pulley to body A, positive away from the pulley",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "y_B",
+              "meaning": "Straight string-segment length/coordinate from fixed pulley to body B, positive away from the pulley",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "L_free",
+              "meaning": "Constant total of the two variable straight segments",
+              "unit": "m",
+              "dimension": "L"
+            },
+            {
+              "symbol": "a_A",
+              "meaning": "Acceleration of A along positive y_A",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_B",
+              "meaning": "Acceleration of B along positive y_B",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "There is one fixed pulley and one taut inextensible string.",
+            "Only the two declared straight segments change length; the wrapped/fixed portions are constant.",
+            "Both coordinates are measured away from the pulley along their local string segments.",
+            "The pulley itself does not translate."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Choose body boundaries and coordinate directions before writing force or constraint equations.",
+        "Obtain the normal reaction from the actual perpendicular dynamics.",
+        "Use a static-friction equality only at impending slip; use the kinetic relation only after relative sliding is established.",
+        "Apply common-acceleration, equal-tension, and fixed-string-length relations only while their declared connection/model assumptions hold.",
+        "The fixed-pulley relation is restricted to one fixed pulley and one taut inextensible string with two changing straight segments."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-NLMCC-BODY",
+          "sequence": 1,
+          "action": "Choose the body or system boundary and declare coordinates.",
+          "why_valid": "Force ownership and acceleration signs depend on that choice."
+        },
+        {
+          "step_id": "RS-NLMCC-CONTACT",
+          "sequence": 2,
+          "action": "For friction, determine N and the no-slip friction requirement before selecting the static or kinetic relation.",
+          "why_valid": "The coefficient relation depends on the contact state and actual normal reaction.",
+          "depends_on": [
+            "RS-NLMCC-BODY"
+          ]
+        },
+        {
+          "step_id": "RS-NLMCC-CONSTRAINT",
+          "sequence": 3,
+          "action": "For connected bodies, state the active separation/string constraint before equating accelerations or tensions.",
+          "why_valid": "Constraint equations are consequences of the physical model, not generic multi-body shortcuts.",
+          "depends_on": [
+            "RS-NLMCC-BODY"
+          ]
+        },
+        {
+          "step_id": "RS-NLMCC-CHECK",
+          "sequence": 4,
+          "action": "Check that the chosen relation still holds at the stated boundary case.",
+          "why_valid": "Slip, separation, slack, nonideal pulleys, or changed geometry invalidate different parts of the model.",
+          "depends_on": [
+            "RS-NLMCC-CONTACT",
+            "RS-NLMCC-CONSTRAINT"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-NLMCC-FRICTION-MAX",
+          "wrong_idea": "Friction always equals a coefficient times the normal force.",
+          "counterexample": "A static contact with zero tangential demand has zero friction even though mu_s N is positive.",
+          "repair": "Solve the no-slip friction requirement first and compare it with the static limit."
+        },
+        {
+          "misconception_id": "MIS-NLMCC-ALL-CONNECTED-SAME-A",
+          "wrong_idea": "Any connected bodies can be assigned the same acceleration.",
+          "counterexample": "Opposite ends of one fixed-pulley string have opposite signed accelerations when both coordinates point away from the pulley.",
+          "repair": "Derive the kinematic relation from the active connection and coordinate convention."
+        },
+        {
+          "misconception_id": "MIS-NLMCC-ALL-ROPES-SAME-T",
+          "wrong_idea": "Every rope/pulley arrangement has equal tension everywhere.",
+          "counterexample": "A frictional pulley or massive rope can require different tensions.",
+          "repair": "State the ideal string/redirection assumptions before using one tension magnitude."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-NLMCC-FRICTION-STATE",
+          "title": "Decide static feasibility or sliding friction from a chosen-body FBD",
+          "hidden_invariants": [
+            "The normal reaction and required friction are solved before a coefficient equality is selected."
+          ]
+        },
+        {
+          "family_id": "FAM-NLMCC-CONNECTED",
+          "title": "Connected-body Newton-II equations with an explicit kinematic constraint",
+          "hidden_invariants": [
+            "Internal forces cancel only after the system boundary includes both interaction partners."
+          ]
+        },
+        {
+          "family_id": "FAM-NLMCC-FIXED-PULLEY",
+          "title": "One ideal fixed-pulley string solved from constant length",
+          "hidden_invariants": [
+            "The acceleration relation follows from the actual changing string segments."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 5,
+        "prerequisite_depth": 2,
+        "note": "The algebra is modest; the demanding steps are contact-state selection, system-boundary discipline, and deriving rather than memorizing constraints."
+      },
+      "badges": [
+        "FORCE-MOTION",
+        "JEE-PREPARATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-NLMCC-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the first declared relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
       "gate_id": "PHY-WORK-ENERGY-GRADE9",
       "title": "Grade 9 work, kinetic energy and gravitational potential energy",
       "curriculum": {

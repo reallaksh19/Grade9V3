@@ -74,7 +74,7 @@ class AgentPathStressRunner(unittest.TestCase):
         cases = runner.by_id(runner.load_suite())
         expectations = {
             "APSTRESS-G9-MOTION-70-DEFAULT": ["R2", "R4G", "R4", "R5"],
-            "APSTRESS-G9-NLM-70-PRACTICE": ["R3", "R5", "R6", "R7"],
+            "APSTRESS-G9-NLM-70-PRACTICE": ["R3", "R5", "R6", "R8", "R9", "R10", "R11", "R7"],
             "APSTRESS-G9-GRAV-60-TEACH": ["R3W"],
         }
         for case_id, expected_segment in expectations.items():

@@ -24,7 +24,7 @@ class Grade9ForceLawsScope(unittest.TestCase):
         )
 
     def test_all_matrix_rows_reuse_current_canonical_teaching(self):
-        self.assertEqual(len(self.matrix["rungs"]), 7)
+        self.assertEqual(len(self.matrix["rungs"]), 11)
         for rung in self.matrix["rungs"]:
             ref = rung.get("microtopic_ref")
             self.assertIn(ref, self.microtopics, rung["rung"])

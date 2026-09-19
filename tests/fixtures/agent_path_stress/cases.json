@@ -164,7 +164,7 @@
     },
     {
       "case_id": "APSTRESS-G9-NLM-70-PRACTICE",
-      "prompt": "Prepare CORE1A, CORE1B and CORE2A for Physics — Newton's first law and free-body diagrams. Student knowledge estimate: 70%. CORE2A purpose: PRACTICE. Use the percentage only for starting-rung selection, and do not invent a source basis if one was not supplied.",
+      "prompt": "Prepare CORE1A, CORE1B and CORE2A for Physics — Newton's first law and free-body diagrams. Student knowledge estimate: 70%. CORE2A purpose: PRACTICE. Use the percentage only for starting-rung selection, and do not invent a source basis if one was not supplied. Continue through the bounded owner-approved quantitative-friction, connected-body and ideal single-string preparation slice; keep pseudo-force non-default and do not import movable-pulley catalogues or momentum-transfer content.",
       "request": {
         "request_id": "APSTRESS-G9-NLM-70-PRACTICE",
         "subject": "Physics",
@@ -201,12 +201,20 @@
         "must_not": [
           "derive practice support from 70%",
           "invent source custody",
-          "ask again for learner entry"
+          "ask again for learner entry",
+          "set static friction equal to its maximum without testing the contact state",
+          "assume equal tension without the ideal-string model",
+          "reuse the fixed-pulley relation for movable or compound pulley geometry",
+          "pull momentum-transfer or collision content into this bounded slice"
         ],
         "selected_segment": [
           "R3",
           "R5",
           "R6",
+          "R8",
+          "R9",
+          "R10",
+          "R11",
           "R7"
         ]
       }

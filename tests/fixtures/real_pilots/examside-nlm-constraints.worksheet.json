@@ -1,0 +1,47 @@
+{
+  "worksheet_id": "EXAMSIDE-JEE-MAIN-NLM-CONSTRAINT-DEMAND-PILOT",
+  "subject": "Physics",
+  "source_note": "Owner-approved ExamSIDE JEE Main Laws of Motion page: https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion . This fixture stores concise representative demand-family mappings from the 2026-09-19 reconnaissance. It does not reproduce individual question text, claim Pinnacle-issued micro-scope, or create canonical question custody.",
+  "questions": [
+    {
+      "question_id": "EXAMSIDE-NLM-DEMAND-FRICTION-THRESHOLD",
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: determine whether static friction can satisfy a required force, use equality only at impending slip, and use a kinetic model only after sliding is established."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-DEMAND-CONNECTED-COMMON-ACCEL",
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: two connected/contacting bodies share a constrained acceleration and require body-specific or whole-system Newton-II equations."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-DEMAND-IDEAL-STRING-TENSION",
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: one ideal string transmits one tension magnitude while each tension force remains on the body it acts on."
+    },
+    {
+      "question_id": "EXAMSIDE-NLM-DEMAND-FIXED-PULLEY-CONSTRAINT",
+      "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+      "secondary_capability_refs": [
+        "CAP-NLM-IDEAL-STRING-TENSION",
+        "CAP-NLM-CONNECTED-COMMON-ACCEL"
+      ],
+      "mapping_basis": "AGENT_PROPOSAL",
+      "note": "Representative approved demand: derive the acceleration relation for one taut inextensible string over one fixed ideal pulley from constant string length."
+    }
+  ]
+}

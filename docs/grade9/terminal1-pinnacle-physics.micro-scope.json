@@ -459,40 +459,54 @@
         },
         {
           "micro": "two-body contact-force systems",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-CONNECTED-COMMON-ACCEL",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "action": "REUSE_IF_DEMANDED",
           "external_question_demand": "CONFIRMED_EXAMSIDE",
           "priority_if_confirmed": "HIGH"
         },
         {
           "micro": "string tension / connected bodies",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_READY",
+          "local_refs": [
+            "CAP-NLM-IDEAL-STRING-TENSION",
+            "CAP-NLM-CONNECTED-COMMON-ACCEL",
+            "CAP-NLM-SECOND-LAW"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "action": "REUSE_IF_DEMANDED",
           "priority_if_confirmed": "HIGH",
           "external_question_demand": "CONFIRMED_EXAMSIDE"
         },
         {
           "micro": "pulley constraints / connected acceleration",
-          "local_state": "LOCAL_GAP",
-          "local_refs": [],
+          "local_state": "LOCAL_PARTIAL",
+          "local_refs": [
+            "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+            "CAP-NLM-IDEAL-STRING-TENSION",
+            "CAP-NLM-CONNECTED-COMMON-ACCEL"
+          ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_ONLY_IF_CONFIRMED",
+          "action": "REUSE_BOUNDED_FIXED_PULLEY_IF_DEMANDED",
           "priority_if_confirmed": "HIGH",
-          "external_question_demand": "CONFIRMED_EXAMSIDE"
+          "external_question_demand": "CONFIRMED_EXAMSIDE",
+          "demand_note": "Local preparation now covers one taut inextensible string over one fixed ideal pulley. Movable/compound pulley geometry remains deliberately deferred."
         },
         {
           "micro": "coefficient-based static/kinetic friction calculations",
-          "local_state": "LOCAL_PARTIAL",
+          "local_state": "LOCAL_READY",
           "local_refs": [
             "CAP-NLM-FRICTION",
-            "CAP-NLM-SECOND-LAW"
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-FRICTION-QUANT"
           ],
           "school_micro_demand": "MICRO_TO_CONFIRM",
-          "action": "AUTHOR_OR_ENRICH_ONLY_IF_CONFIRMED",
+          "action": "REUSE_IF_DEMANDED",
           "external_question_demand": "CONFIRMED_EXAMSIDE",
           "priority_if_confirmed": "HIGH"
         },

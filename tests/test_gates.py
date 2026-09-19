@@ -321,6 +321,11 @@ def _nlm2_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-NEWTON-SECOND-LAW")
 
 
+@mutates("FAL-NLMCC-SYMBOL-NO-UNIT")
+def _nlmcc_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-NLM-CONTACT-CONSTRAINTS")
+
+
 @mutates("FAL-WEP9-SYMBOL-NO-UNIT")
 def _wep9_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-WORK-ENERGY-GRADE9")
