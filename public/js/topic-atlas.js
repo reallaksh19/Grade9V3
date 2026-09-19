@@ -489,13 +489,20 @@
       let semanticLeavesHtml = tpath.map((step, idx) => {
         const stepTarget = resolved.targets.find(t => t.rung === r.rung && t.repair_ref === step.id);
         const stepActivities = (r.activities || []).filter(act => activityMatchesStep(act, step.id));
-        const stepActivitiesHtml = stepActivities.map(act => `
-          <a href="${activityHref(act.locator)}" class="btn primary-phy"
-             style="font-size: 11px; padding: 4px 9px; margin-right: 6px; margin-top: 6px;"
-             title="Exact repair activity for ${step.id}">
-            🧪 ${act.title} ↗
-          </a>
-        `).join('');
+        const stepActivitiesHtml = stepActivities.map(act => {
+          const gcdr = act.support_route && act.support_route.kind === 'GCDR';
+          const label = gcdr ? 'Graphical breakdown' : 'Exact repair';
+          const status = gcdr && act.support_route.conformance_status
+            ? ` · ${act.support_route.conformance_status}`
+            : '';
+          return `
+            <a href="${activityHref(act.locator)}" class="btn primary-phy"
+               style="font-size: 11px; padding: 4px 9px; margin-right: 6px; margin-top: 6px;"
+               title="${label} for ${step.id}${status}">
+              🧪 ${label}: ${act.title} ↗
+            </a>
+          `;
+        }).join('');
         
         // Level 3 Dimensions
         const dimensions = ['CONCEPT', 'SETUP', 'EXECUTION', 'CARELESS', 'UNKNOWN'];
@@ -552,11 +559,18 @@
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
                 <span class="badge phy">Governed Activity Resource</span>
                 ${act.activity_kind ? `<span class="badge neutral">${act.activity_kind}</span>` : ''}
+                ${act.support_route ? `<span class="badge neutral">${act.support_route.conformance_status || 'GCDR'}</span>` : ''}
                 <strong style="color: #fff; font-size: 13px;">${act.title}</strong>
               </div>
               <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
                 ${act.section || 'Interactive explorer canonically registered in library records.'}${leafText}
               </p>
+              ${act.support_route ? `
+                <p style="font-size: 11px; color: var(--text-dim); margin-bottom: 8px;">
+                  Parallel graphical support route · recommended for:
+                  ${(act.support_route.recommended_when || []).join(', ')}
+                </p>
+              ` : ''}
               <a href="${activityHref(act.locator)}" class="btn primary-phy" style="font-size: 11px; padding: 4px 10px;">
                 Launch Activity ↗
               </a>
@@ -688,12 +702,15 @@
         ${resolved.targets.map((t, idx) => {
           const exactActivities = ((t.rung_obj && t.rung_obj.activities) || [])
             .filter(act => activityMatchesStep(act, t.repair_ref));
-          const exactActivityHtml = exactActivities.map(act => `
-            <a href="${activityHref(act.locator)}" class="btn primary-phy"
-               style="font-size: 11px; padding: 4px 9px; margin-top: 8px; margin-right: 6px;">
-              Open exact repair: ${act.title} ↗
-            </a>
-          `).join('');
+          const exactActivityHtml = exactActivities.map(act => {
+            const gcdr = act.support_route && act.support_route.kind === 'GCDR';
+            return `
+              <a href="${activityHref(act.locator)}" class="btn primary-phy"
+                 style="font-size: 11px; padding: 4px 9px; margin-top: 8px; margin-right: 6px;">
+                ${gcdr ? 'Open graphical breakdown' : 'Open exact repair'}: ${act.title} ↗
+              </a>
+            `;
+          }).join('');
           return `
           <div style="background: var(--bg-panel); border: 1px solid ${idx === 0 ? 'var(--accent)' : 'var(--border)'}; border-radius: 8px; padding: 14px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
