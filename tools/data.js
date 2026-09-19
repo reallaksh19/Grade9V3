@@ -5840,7 +5840,7 @@ window.GRADE9V3 = {
               "status": "CANDIDATE",
               "badge_reason": "Force size alone feels decisive until a strong perpendicular force is contrasted with the actual displacement.",
               "entry_assumptions": [
-                "Can identify the direction of a force on a chosen body and the direction of that body's displacement."
+                "Can identify one chosen body, its displacement over the stated interval, and the direction of a force acting on that same body."
               ],
               "inferential_jump": "Work depends on how a force points relative to the actual displacement: along the motion gives positive work, opposite gives negative work, and a perpendicular force gives zero work.",
               "teaching_path": [
@@ -6007,50 +6007,62 @@ window.GRADE9V3 = {
             },
             {
               "id": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
-              "title": "Mechanical energy is constant only when the account has no extra transfer",
+              "title": "Mechanical energy is constant only after the system and transfer account close",
               "badge": "HARD",
               "status": "CANDIDATE",
-              "badge_reason": "A familiar K-plus-U equality is easy to apply before checking whether friction or an outside agent changes the account.",
+              "badge_reason": "The familiar K+U equality is easy to apply before declaring the system or checking friction/external transfer, which confuses total-energy conservation with the narrower mechanical-energy shortcut.",
               "entry_assumptions": [
-                "Can decide which interactions belong in potential energy and which transfers must remain explicit."
+                "Can decide which interactions belong in potential energy and which transfers must remain explicit.",
+                "Can identify a chosen physical system and its initial/final states."
               ],
-              "inferential_jump": "The mechanical-energy account K plus U stays constant only when no frictional or outside transfer changes that account; otherwise the extra transfer must be included rather than hidden.",
+              "inferential_jump": "Energy conservation is broader than K+U conservation: after the system boundary and energy stores/transfers are declared, K+U may be treated as constant only when no non-conservative or unaccounted dissipative/external transfer changes that mechanical account.",
               "teaching_path": [
                 {
-                  "action": "Compare a smooth descent with a rough descent between the same endpoints, using the same object-plus-gravity energy account.",
-                  "why_valid": "The shared endpoints hold the gravitational change fixed while surface roughness changes an extra transfer.",
-                  "output": "smooth case: no frictional transfer.  rough case: frictional transfer present."
+                  "action": "Choose the physical system and initial/final states, then list which energy stores are inside the account and which transfers cross its boundary.",
+                  "why_valid": "The same physical interaction can appear as an internal store change or an external transfer depending on the declared system; declaring the boundary prevents omission and double counting.",
+                  "output": "explicit system boundary, K/U stores and crossing transfers"
                 },
                 {
-                  "action": "Track whether lost gravitational potential energy appears entirely as kinetic energy in each case.",
-                  "why_valid": "With no extra transfer the mechanical account can stay constant; friction redirects part of the energy outside that mechanical account.",
-                  "output": "smooth -> decrease in U matches increase in K.  rough -> increase in K is smaller because friction carries energy away from the mechanical account."
+                  "action": "Compare a smooth descent with a rough descent between the same endpoints using the same declared system and reference.",
+                  "why_valid": "Holding the states and account fixed isolates frictional/non-conservative transfer as the changed condition.",
+                  "output": "smooth case: no dissipative transfer in the mechanical account; rough case: dissipative transfer present"
                 },
                 {
-                  "action": "Before writing any K-plus-U equality, ask whether friction or an outside moving support transfers energy across the chosen account.",
-                  "why_valid": "The conservation decision must be made from the transfer inventory before the equality is used.",
-                  "output": "no extra transfer -> K + U may stay constant.  extra transfer present -> include it explicitly."
+                  "action": "Track K and U in both cases and mark an explicit transfer/non-mechanical channel in the rough case instead of forcing K+U to stay constant.",
+                  "why_valid": "Total energy can remain conserved while the selected mechanical stores decrease because energy is transferred to other stores or the environment.",
+                  "output": "smooth -> K+U can remain constant when conditions close; rough -> Δ(K+U) follows the non-conservative transfer"
+                },
+                {
+                  "action": "Before writing K_i + U_i = K_f + U_f, ask whether non-conservative work or dissipative/external transfer is zero for the chosen interval and account.",
+                  "why_valid": "The mechanical-energy conservation equation is a conditional simplification, not the general conservation law.",
+                  "output": "conservation shortcut used only after the zero-extra-transfer condition is established"
                 }
               ],
               "misconceptions": [
                 {
-                  "wrong_idea": "Mechanical energy is always conserved, so one may write initial K plus U equal to final K plus U even when friction or a moving support transfers energy.",
-                  "diagnostic_prompt": "A block slides down a rough ramp. If it starts from the same height as on a smooth ramp, must it reach the bottom with the same kinetic energy?",
-                  "repair": "Check for frictional or outside transfer first; use an unchanged K-plus-U account only when those extra transfers vanish, otherwise include them explicitly."
+                  "wrong_idea": "Because energy is conserved, K + U must be constant in every mechanical situation.",
+                  "diagnostic_prompt": "A block slides down a rough ramp. Does the law of conservation of energy by itself justify K_i + U_i = K_f + U_f?",
+                  "repair": "No. Declare the system and account for frictional/non-conservative transfer. Total energy conservation is broader than constancy of the selected mechanical stores."
+                },
+                {
+                  "wrong_idea": "When friction reduces K + U, energy has been destroyed.",
+                  "diagnostic_prompt": "A sliding block stops on a rough horizontal surface. If K decreases to zero, where can the energy go?",
+                  "repair": "Expand the account or mark the transfer to thermal/internal/environmental stores. Mechanical energy can decrease without violating total-energy conservation."
                 }
               ],
               "exit_task": {
-                "prompt": "A block descends from the same height on two tracks, one smooth and one rough. Without calculating a speed, decide whether the same unchanged K-plus-U account applies to both.",
+                "prompt": "A block descends from the same height on a smooth track and a rough track. State the system/account you are using, decide whether K_i + U_i = K_f + U_f is justified in each case, and explain where the 'missing' mechanical energy goes in the rough case.",
                 "source_ref": "SRC-AUTHOR-WEP",
                 "answer": {
                   "kind": "MODEL_RESPONSE",
-                  "summary": "It applies to the smooth case if no other transfer occurs, but not to the rough case; friction must be included in the energy account.",
+                  "summary": "For the smooth case, K+U may be constant if no other transfer changes the chosen mechanical account. For the rough case, friction/non-conservative transfer must be represented; the decrease in mechanical energy is transferred to other stores rather than destroyed.",
                   "reasoning": [
-                    "Both cases share the same endpoint height change.",
-                    "The rough track introduces an additional frictional transfer.",
-                    "That extra transfer prevents the mechanical K-plus-U account from remaining unchanged by itself."
+                    "Declare one physical system and use the same reference across the compared states.",
+                    "Mechanical-energy conservation is the special case with zero non-conservative/unaccounted transfer.",
+                    "Friction opens the K+U-only account, so an explicit transfer or expanded store inventory is needed.",
+                    "Total energy conservation does not require the selected mechanical stores to remain constant."
                   ],
-                  "check": "Remove the roughness while keeping the endpoints fixed; the extra frictional transfer should disappear and the mechanical account can close again.",
+                  "check": "Remove friction while keeping the same system/states: the extra transfer channel should vanish and the mechanical K+U account may close.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
                   "verification_status": "CHECKED_BY_AUTHOR"
@@ -6141,7 +6153,7 @@ window.GRADE9V3 = {
               "entry_assumptions": [
                 "Can classify work sign and decide whether extra frictional/outside transfer closes or opens the mechanical-energy account."
               ],
-              "inferential_jump": "Work, kinetic energy, gravitational potential-energy change, the work-energy theorem and mechanical-energy conservation are linked bookkeeping statements with explicit conditions, not interchangeable formulas.",
+              "inferential_jump": "Work, kinetic energy, near-Earth gravitational potential-energy change, work-energy and mechanical-energy conservation are linked bookkeeping statements with explicit body/system, frame/reference and model conditions; K+U conservation is only the zero-nonconservative-transfer special case.",
               "teaching_path": [
                 {
                   "action": "Choose the body/system, displacement direction, reference frame and height reference before calculating.",
@@ -6564,7 +6576,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "CAP-WEP-MECH-ENERGY-CONDITION",
-              "action": "Decide whether the mechanical-energy account can remain constant.",
+              "action": "Declare the physical system and decide whether K + U may be treated as constant or whether non-conservative/external transfer must remain explicit.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },

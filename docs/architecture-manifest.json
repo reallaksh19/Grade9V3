@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 144,
-  "relation_count": 198,
+  "component_count": 145,
+  "relation_count": 199,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 51,
+    "TEST": 52,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:d7eaa5ef82be295c90a6721ed1ff7d667b3d30f849a5caa0f4ca5e16d8c1c324",
+  "digest": "sha256:1709040c1d76176d9d881f8f9d6160246a10735d240b7bfbc631c7b844f3fd96",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -810,6 +810,13 @@
       "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
     },
     {
+      "path": "tests/test_grade9_work_energy_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2417,
+      "sha256": "6f13de494ecf062115266979f513b6457b3a5c738d38cbf7e4cc3b0c81b4288c"
+    },
+    {
       "path": "tests/test_high_likelihood_scenario_matrix_contract.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -995,8 +1002,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 441331,
-      "sha256": "47fb7df2e084cf98877b787ee403f19d0bf507a30101375e6cb44ceb42b7ff5d"
+      "bytes": 443106,
+      "sha256": "6c5eedc211ff54a4a4021f5ca08e372c3fff31a61ed2dd2f54ee26ec8ff02543"
     },
     {
       "path": "tools/index.html",
@@ -1720,6 +1727,11 @@
     },
     {
       "from": "tests/test_grade9_gravitation_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_work_energy_scope.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

@@ -18,8 +18,9 @@
         "work-energy theorem"
       ],
       "must_contain": [
-        "A force arrow and a directed path shown at several relative angles.",
-        "A zero-work case where force and displacement are perpendicular."
+        "One chosen body and displacement interval, with force and displacement directions compared for that same event.",
+        "A zero-work case where force and displacement are perpendicular.",
+        "A reminder that the simple constant-force relation is not a variable-force model."
       ],
       "controlled_variation": [
         {
@@ -102,21 +103,22 @@
         "non-conservative work"
       ],
       "must_contain": [
+        "An explicit physical system/boundary and initial/final states before any K+U conservation equation.",
         "A frictionless descent compared with an otherwise identical rough descent.",
-        "An explicit energy-account boundary and every transfer from friction or an outside agent before K + U is compared."
+        "A transfer/non-mechanical channel in the rough case showing that total energy conservation is broader than mechanical-energy conservation."
       ],
       "controlled_variation": [
         {
           "phase": 1,
-          "vary": "the starting height on a frictionless track",
-          "hold": "the same chosen energy account and no frictional or outside transfer",
-          "notice": "lost potential energy reappears as kinetic energy and K + U stays constant"
+          "vary": "non-conservative transfer from zero to nonzero",
+          "hold": "the same system, states and potential-energy reference",
+          "notice": "K+U is constant only in the zero-transfer case"
         },
         {
           "phase": 2,
-          "vary": "the surface from frictionless to rough",
-          "hold": "the endpoints and chosen energy account",
-          "notice": "K + U for the mechanical degrees of freedom decreases by the negative friction work"
+          "vary": "whether dissipated energy is shown in an expanded store/transfer channel",
+          "hold": "the same rough physical process",
+          "notice": "mechanical energy can decrease without total energy being destroyed"
         }
       ]
     },
@@ -223,9 +225,9 @@
     }
   ],
   "family": {
-    "invariant_demand": "Choose the system and actual path, identify work contributions and any legitimate potential-energy terms, decide whether mechanical-energy conservation applies, and use the resulting energy account or power relation without dropping signs.",
-    "difficult_move": "Deciding which interactions belong in potential energy and which must remain explicit work, because that decision determines whether K + U may be treated as conserved.",
-    "independent_check": "All energy terms must share units and signs, the final energy-account residual must close to zero, and any zero-work claim must agree with the force/displacement geometry.",
+    "invariant_demand": "Choose the object/system and states, identify signed work and relevant energy stores/transfers, declare frame/reference and model conditions, then use work-energy, mechanical-energy or power relations without double counting.",
+    "difficult_move": "Separating the general energy account from the conditional K+U shortcut: the learner must declare the system, identify transfers and references, and simplify to mechanical-energy conservation only when the account truly closes.",
+    "independent_check": "Work sign must match force/displacement geometry; all energy terms must share a consistent system/frame/reference; any K+U conservation claim must survive a non-conservative-transfer check; units and limiting cases must agree.",
     "support_ladder": [
       {
         "level": "high",
