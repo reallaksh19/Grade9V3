@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 152,
-  "relation_count": 204,
+  "component_count": 154,
+  "relation_count": 205,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 59,
+    "TEST": 61,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:fc7ec945141f4567e2f3ad1cdf122af7eb5106da800ed76a04feb2b45207f460",
+  "digest": "sha256:db3d2c2e2a904f182f492118c0082374f5cc7a7db054e2aecb163c999832b827",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -649,6 +649,13 @@
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
     },
     {
+      "path": "tests/fixtures/real_pilots/examside-vector-direction-unit.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1658,
+      "sha256": "43afe08eadd070caa9acf869d0a3d6d13680528ce480b5eeda5be19ecae5a891"
+    },
+    {
       "path": "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -792,8 +799,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16476,
-      "sha256": "cbe820388961ce6a24e767ea96dec5ec82d5089ea2892c5c2efce3d9084d475c"
+      "bytes": 16624,
+      "sha256": "98c5046d0b8336f251d9b9ea3178a85814b1ccb591ac589d26bd58e23b6ee855"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -850,6 +857,13 @@
       "role_description": "Executable checks",
       "bytes": 2242,
       "sha256": "9591db27e1ce43375602e86e4a22071ef69d3d3c5fc4f70f49b44d5f1ee5e657"
+    },
+    {
+      "path": "tests/test_grade9_vector_direction_unit.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2784,
+      "sha256": "0b3feb172054d4c52bad13dc342da8d0c7fc95971d4db46ba8496c24d926eebd"
     },
     {
       "path": "tests/test_grade9_work_energy_scope.py",
@@ -1016,8 +1030,8 @@
       "path": "tests/test_terminal1_pinnacle_micro_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4675,
-      "sha256": "ad791764aa822b2b42abeb2b2b85e70eebb8de4ac0db71877d15f1d73842b0e8"
+      "bytes": 5015,
+      "sha256": "b29812373cb13594f94b1cdc653e61750edb5053bd9b8f32e948ed5143cad005"
     },
     {
       "path": "tests/test_tools.py",
@@ -1051,8 +1065,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 498893,
-      "sha256": "6227238c48e35c6de85db660c85a75fe8347412752d52f698dbe7a249dfe9e1f"
+      "bytes": 516877,
+      "sha256": "21c32237f2448dfc79f488061611e3a0a8f69be40264728157f3e925bf1b7f6b"
     },
     {
       "path": "tools/index.html",
@@ -1801,6 +1815,11 @@
     },
     {
       "from": "tests/test_grade9_sound_scope.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_vector_direction_unit.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
