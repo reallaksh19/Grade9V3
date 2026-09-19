@@ -41,6 +41,7 @@ class AgentPathStressRunner(unittest.TestCase):
         cases = runner.by_id(runner.load_suite())
         expected = {
             "APSTRESS-G9-MOTION-70-DEFAULT",
+            "APSTRESS-G9-MOTION2D-70-DEFAULT",
             "APSTRESS-G9-NLM-70-PRACTICE",
             "APSTRESS-G9-GRAV-60-TEACH",
             "APSTRESS-G9-WEP-95-DERIVATION",
@@ -48,6 +49,26 @@ class AgentPathStressRunner(unittest.TestCase):
             "APSTRESS-G9-SIMPLE-MACHINES-90",
         }
         self.assertTrue(expected.issubset(cases))
+
+    def test_grade9_motion2d_question_demand_segment_is_frozen(self):
+        cases = runner.by_id(runner.load_suite())
+        report = runner.run_case(cases["APSTRESS-G9-MOTION2D-70-DEFAULT"])
+        self.assertEqual(report["status"], "PASS", report["differences"])
+        self.assertEqual(report["actual"]["entry"], "R2")
+        self.assertEqual(report["actual"]["selected_segment"], ["R2", "R3"])
+        self.assertEqual(
+            report["actual"]["prerequisite_checks"],
+            [
+                "CAP-VECTOR-VS-SCALAR",
+                "CAP-SIGNED-PAIR-BRIDGE",
+                "CAP-VECTOR-SIGNED-COMPONENT",
+                "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+                "CAP-KIN-DISTANCE-DISPLACEMENT",
+                "CAP-KIN-AVERAGE-RATES",
+                "CAP-KIN-MOTION-GRAPHS",
+                "CAP-KIN-CONSTANT-ACCELERATION",
+            ],
+        )
 
     def test_grade9_default_segments_exclude_retained_extensions(self):
         cases = runner.by_id(runner.load_suite())
