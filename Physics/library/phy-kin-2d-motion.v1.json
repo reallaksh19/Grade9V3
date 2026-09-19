@@ -62,7 +62,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/128",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner treats independent x- and y-component equations as if they may use unrelated clocks and still form one physical state.",
@@ -163,10 +163,12 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Time units and the x(t), y(t) coordinate units must be shared by both component histories and the reconstructed particle readout; no representation may apply an independent conversion.",
-              "reset_policy": "Reset must return both component clocks to the documented common initial instant, clear any ghost-state mismatch, and redraw the particle and both histories from that same state."
+              "reset_policy": "Reset must return both component clocks to the documented common initial instant, clear any ghost-state mismatch, and redraw the particle and both histories from that same state.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
               "last_audited": null,
               "audit_1_canonical_truth_scope": {
@@ -207,9 +209,14 @@
                 "runtime_smoke": "PENDING",
                 "accessibility_baseline": "PENDING"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "NOT_RUN",
+                "auditor": null,
+                "version": null
+              },
+              "audit_receipts": []
             }
           }
         }
@@ -255,7 +262,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/129",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner solves separate x- and y-times for what is actually one physical event such as impact, apex, or crossing a wall.",
@@ -356,10 +363,12 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "The event-time unit and the units used by every component function must agree, and any event marker must be recomputed from the same t_event rather than a separately stored display value.",
-              "reset_policy": "Reset must restore the default named event, recompute its event time, and resample both components from that one time instead of merely resetting visible selectors."
+              "reset_policy": "Reset must restore the default named event, recompute its event time, and resample both components from that one time instead of merely resetting visible selectors.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
               "last_audited": null,
               "audit_1_canonical_truth_scope": {
@@ -400,9 +409,14 @@
                 "runtime_smoke": "PENDING",
                 "accessibility_baseline": "PENDING"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "NOT_RUN",
+                "auditor": null,
+                "version": null
+              },
+              "audit_receipts": []
             }
           }
         }
@@ -448,7 +462,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/130",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner classifies an object as an ideal projectile because it was launched or follows a curved path, without checking post-release interactions.",
@@ -549,10 +563,12 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Force, mass, gravitational-field and acceleration quantities must use one declared unit system, with the same gravity magnitude and sign convention feeding both the interaction audit and acceleration readouts.",
-              "reset_policy": "Reset must restore the documented default interaction set and recompute model eligibility, force arrows, acceleration components, and equation visibility from that interaction state."
+              "reset_policy": "Reset must restore the documented default interaction set and recompute model eligibility, force arrows, acceleration components, and equation visibility from that interaction state.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
               "last_audited": null,
               "audit_1_canonical_truth_scope": {
@@ -593,9 +609,14 @@
                 "runtime_smoke": "PENDING",
                 "accessibility_baseline": "PENDING"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "NOT_RUN",
+                "auditor": null,
+                "version": null
+              },
+              "audit_receipts": []
             }
           }
         }
@@ -641,7 +662,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/131",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner interprets the highest point as a place where the projectile stops and gravity or acceleration becomes zero.",
@@ -743,10 +764,12 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "The same gravity value, time unit, coordinate scale, and velocity units must feed trajectory position, v_y evolution, speed magnitude and apex detection; no apex-only constant may diverge.",
-              "reset_policy": "Reset must restore the documented launch state and scrub time, then recompute position, velocity components, acceleration, speed, and apex indicator from the reset time."
+              "reset_policy": "Reset must restore the documented launch state and scrub time, then recompute position, velocity components, acceleration, speed, and apex indicator from the reset time.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
               "last_audited": null,
               "audit_1_canonical_truth_scope": {
@@ -787,9 +810,14 @@
                 "runtime_smoke": "PENDING",
                 "accessibility_baseline": "PENDING"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "NOT_RUN",
+                "auditor": null,
+                "version": null
+              },
+              "audit_receipts": []
             }
           }
         }
@@ -835,7 +863,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/132",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner concludes that returning to the same height means returning to the same velocity or complete motion state.",
@@ -936,10 +964,12 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Both paired events must share one coordinate and velocity unit system, and each speed magnitude must be recomputed from its displayed signed components rather than stored independently.",
-              "reset_policy": "Reset must restore the documented ascent event, recompute the matching descent event, and rebuild both component/vector readouts and the equal-speed comparison from the paired states."
+              "reset_policy": "Reset must restore the documented ascent event, recompute the matching descent event, and rebuild both component/vector readouts and the equal-speed comparison from the paired states.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
               "last_audited": null,
               "audit_1_canonical_truth_scope": {
@@ -980,9 +1010,14 @@
                 "runtime_smoke": "PENDING",
                 "accessibility_baseline": "PENDING"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "NOT_RUN",
+                "auditor": null,
+                "version": null
+              },
+              "audit_receipts": []
             }
           }
         }
@@ -1030,7 +1065,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/133",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner applies same-height projectile shortcuts or sets u_y=0 merely because the landing height differs from the launch height.",
@@ -1132,10 +1167,12 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Launch and landing heights, signed Δy, u_y, g, event time and horizontal range must use one declared unit/constant convention, with the same g feeding both the vertical event solver and trajectory.",
-              "reset_policy": "Reset must restore the documented launch and landing heights, recompute signed Δy and event time, and redraw the impact and range from that recomputed geometry."
+              "reset_policy": "Reset must restore the documented launch and landing heights, recompute signed Δy and event time, and redraw the impact and range from that recomputed geometry.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
               "last_audited": null,
               "audit_1_canonical_truth_scope": {
@@ -1176,9 +1213,14 @@
                 "runtime_smoke": "PENDING",
                 "accessibility_baseline": "PENDING"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "NOT_RUN",
+                "auditor": null,
+                "version": null
+              },
+              "audit_receipts": []
             }
           }
         }
