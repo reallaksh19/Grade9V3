@@ -1394,7 +1394,7 @@
         "statement": "The learner must convert a verbal direction description into signed x/y state without being handed the component representation.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
-          "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+          "K2D1-2"
         ]
       }
     },
@@ -1477,7 +1477,7 @@
         "statement": "The learner must decide component-by-component whether the constant-acceleration model is valid instead of being told that it applies.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
-          "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION"
+          "K2D2-1"
         ]
       }
     },
@@ -1566,7 +1566,7 @@
         "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
-          "MIC-PHY-KIN-PROJECTILE-MODEL"
+          "K2D3-5"
         ]
       }
     },
@@ -1623,13 +1623,13 @@
       ],
       "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
       "adaptation": {
-        "parent_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+        "parent_ref": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
         "changed_fields": [
           "stem",
           "conditions",
           "answer"
         ],
-        "reason": "Changes the post-release force model rather than merely changing numbers or context."
+        "reason": "Changes a gravity-only horizontal-launch practice item into a post-release force-model validity decision by keeping horizontal propulsion active."
       },
       "exposure": [
         {
@@ -1649,8 +1649,8 @@
         "dimension": "model_choice",
         "statement": "The learner must reject the familiar projectile specialization because one of its defining force/model conditions is explicitly broken.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
-          "MIC-PHY-KIN-PROJECTILE-MODEL"
+          "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+          "K2D3-1"
         ]
       }
     },
@@ -1712,13 +1712,13 @@
       ],
       "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
       "adaptation": {
-        "parent_ref": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+        "parent_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
         "changed_fields": [
           "stem",
           "conditions",
           "answer"
         ],
-        "reason": "Changes the requested output from landing time/range to a two-event state comparison at equal height."
+        "reason": "Changes a single apex-state calculation into a two-event equal-height state comparison requiring component invariants rather than event-time computation."
       },
       "exposure": [
         {
@@ -1742,8 +1742,8 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
-          "MIC-PHY-KIN-PROJECTILE-MODEL"
+          "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+          "K2D3-7"
         ]
       }
     }
