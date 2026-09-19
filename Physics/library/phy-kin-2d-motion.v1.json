@@ -755,7 +755,7 @@
           "action": "For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.",
           "why_valid": "Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.",
           "inputs": [],
-          "output": "vertical event time from the actual landing displacement and actual initial vertical component"
+          "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x"
         },
         {
           "id": "K2D3-7",
