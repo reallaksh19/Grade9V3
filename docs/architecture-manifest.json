@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:4d67c3931ce86cbe4cd47b17c2ad0491c78442c2c5188a11baf1a13de3dcfa11",
+  "digest": "sha256:86fcd96272c2d362d1d91fd677fa47a06890f638fb747adaad7af87521ab73fa",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -932,8 +932,8 @@
       "path": "tests/test_grade9_vector_decomposition_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7687,
-      "sha256": "76c38b800b6ebb14cfb17bf287fe67a569cefa742c5c6f567125055db959a497"
+      "bytes": 7919,
+      "sha256": "748a8d27e834f228867b033fcc59eef0470211b22c975af2858bd9a32a969157"
     },
     {
       "path": "tests/test_grade9_work_energy_scope.py",
@@ -1135,8 +1135,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 629847,
-      "sha256": "ceb82b743b1d24f9d94b1ce143ee4f0f871c751a5a096197286cb44127a6bf32"
+      "bytes": 629554,
+      "sha256": "d8a3b23f6c1a22ad92dbb8c1335dd49d3999ae1a9b75cd87a8e845a7dbf90d47"
     },
     {
       "path": "tools/index.html",
