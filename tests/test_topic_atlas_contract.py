@@ -106,7 +106,12 @@ class TopicAtlasContractTest(unittest.TestCase):
                 for step_ref in activity.get("teaching_step_refs", []):
                     by_step.setdefault(step_ref, set()).add(activity["id"])
                 if activity["id"].startswith("ACT-KIN-2D-"):
-                    self.assertEqual(activity["activity_kind"], "REPAIR_EXPLORER")
+                    self.assertEqual(activity["activity_kind"], "GRAPHICAL_COGNITIVE_DECONSTRUCTION")
+                    self.assertEqual(activity["support_route"]["kind"], "GCDR")
+                    self.assertEqual(activity["support_route"]["conformance_status"], "IMPLEMENTATION_PARTIAL")
+                    self.assertEqual(activity["support_route"]["auto_route_policy"], "RECOMMEND_ONLY")
+                    self.assertTrue(activity["support_route"]["recommended_when"])
+                    self.assertTrue(activity["support_route"]["learner_evidence_triggers"])
                     self.assertTrue(activity["locator"].startswith("public/physics/motion-2d/explorers/"))
                     self.assertTrue((REPO / activity["locator"]).exists())
 
