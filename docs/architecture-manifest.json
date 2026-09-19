@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 154,
-  "relation_count": 205,
+  "component_count": 156,
+  "relation_count": 206,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 61,
+    "TEST": 63,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:23e7bb961c81e8b04d6ac213cab30a2b6987b3fa35c139e1145c428232346a92",
+  "digest": "sha256:9c1e0fb2ac63eb1bac3edef8c2a53789018b7a5d858a1f24b69d4116626e1ade",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -631,8 +631,8 @@
       "path": "tests/fixtures/agent_path_stress/cases.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 24092,
-      "sha256": "5e38f3254b812a483d3c81cb1fcd44b1362bcab4fb2cdbe0ae7c79b0ce06d548"
+      "bytes": 24706,
+      "sha256": "e54e9b7515b1ec9e658aa9bc2a579e1b16859b7cb258a115af1a85e2407c87a9"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-motion-in-plane-core.worksheet.json",
@@ -647,6 +647,13 @@
       "role_description": "Executable checks",
       "bytes": 1996,
       "sha256": "692d858298101196cc3335746308817ae480f30dfa77964cc4b21f3cea25e850"
+    },
+    {
+      "path": "tests/fixtures/real_pilots/examside-nlm-constraints.worksheet.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2392,
+      "sha256": "ef8192e140f15a9e41d1d55ab99409dc48836ec21e5ba9d10e4baac713c7ca39"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-vector-algebra.worksheet.json",
@@ -715,8 +722,8 @@
       "path": "tests/test_agent_path_stress_runner.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3931,
-      "sha256": "b0dc08fcdda09c9c01b52dc58aab5e52a90f01cca9437b49d9fc6d3e6143dcaa"
+      "bytes": 3957,
+      "sha256": "966df0d10e672aeccf9bba803e45a5e076212c0a52b98dc7ba846eebad5833bc"
     },
     {
       "path": "tests/test_application_context_schema.py",
@@ -796,6 +803,13 @@
       "sha256": "9466a6b44392abc9896c8bc164a4ea59fadc6a7d3af30d39ed73efde9c9ae13e"
     },
     {
+      "path": "tests/test_g9_nlm_friction_connected.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9558,
+      "sha256": "1a739fbaed4f3f4a37396f90e09ab98771d2559d0381a5561e505255a1c30937"
+    },
+    {
       "path": "tests/test_g9_vector_direction_unit.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -806,8 +820,8 @@
       "path": "tests/test_gates.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 16634,
-      "sha256": "94334b672c6cd23e7735f2f7b095b79b480101147940c1a18fbf155d794aae86"
+      "bytes": 16771,
+      "sha256": "bfdad49d7f475fbd13dfd83172032980a87282d9f23d034365e25eac7419bff5"
     },
     {
       "path": "tests/test_grade10_optics_reflection_scope.py",
@@ -827,8 +841,8 @@
       "path": "tests/test_grade9_force_laws_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3396,
-      "sha256": "500223086fd4c1366428808b6fc3b3391e0c091b6705a0e4ba0404d8db2bf552"
+      "bytes": 3397,
+      "sha256": "0bc58069a8829975b19f710d4c34b1bc14601841c8a5478b8b9cb010e15c5f67"
     },
     {
       "path": "tests/test_grade9_gravitation_scope.py",
@@ -897,8 +911,8 @@
       "path": "tests/test_issue19_physics_content.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13467,
-      "sha256": "da27020e8f2aa0e9557186239d4496ee214a72fb883168d586e5958910d42ba3"
+      "bytes": 13514,
+      "sha256": "c2bc052f1f1d73a105f35b88cd90710b2eeff250df2d0ec52dddb04a83b2c5be"
     },
     {
       "path": "tests/test_library.py",
@@ -1065,8 +1079,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 520419,
-      "sha256": "444d680ad0fe3e04c444c530e3c2b4e88ffa2f56926ee48a2036b2b6f7ab0b5c"
+      "bytes": 550861,
+      "sha256": "d0fb0e5e7f8fbc865c4b708429eece7f99fa2e9fae5d54eaa5d6bd4330fd5e41"
     },
     {
       "path": "tools/index.html",
@@ -1775,6 +1789,11 @@
     },
     {
       "from": "tests/test_feedback.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_g9_nlm_friction_connected.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
