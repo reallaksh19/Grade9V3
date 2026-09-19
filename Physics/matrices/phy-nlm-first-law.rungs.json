@@ -149,6 +149,127 @@
       ]
     },
     {
+      "rung": "R8",
+      "ladder_position": 88,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+      "ceiling": [
+        "rolling resistance",
+        "drag law",
+        "adhesive contact"
+      ],
+      "must_contain": [
+        "A no-slip friction requirement compared against the static limit.",
+        "An explicit case where static friction is below its maximum.",
+        "A normal reaction obtained from the actual FBD rather than assumed equal to mg."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the applied tangential force below the slip threshold",
+          "hold": "the same contact, N and mu_s",
+          "notice": "static friction changes to match the required no-slip value while remaining below its limit"
+        },
+        {
+          "phase": 2,
+          "vary": "the contact state from impending slip to established sliding",
+          "hold": "the same surface pair and normal reaction",
+          "notice": "the governing relation changes from the static threshold to the kinetic model"
+        }
+      ]
+    },
+    {
+      "rung": "R9",
+      "ladder_position": 90,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+      "ceiling": [
+        "movable pulley ratio",
+        "wedge constraint",
+        "many-body chain formula"
+      ],
+      "must_contain": [
+        "A physical statement of the connection that fixes relative separation.",
+        "One signed Newton-II equation per body before any system-level cancellation.",
+        "A whole-system check that removes only internal partner forces."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "whether the connection/contact remains active",
+          "hold": "the same two bodies and external forces",
+          "notice": "the common-acceleration relation disappears when the constraint is lost"
+        },
+        {
+          "phase": 2,
+          "vary": "whether the bodies are solved separately or as one system",
+          "hold": "the same physical interaction",
+          "notice": "the internal force is present in body equations but cancels from the combined system sum"
+        }
+      ]
+    },
+    {
+      "rung": "R10",
+      "ladder_position": 92,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+      "ceiling": [
+        "massive rope model",
+        "pulley rotational inertia",
+        "elastic-string dynamics"
+      ],
+      "must_contain": [
+        "An explicit ideal-string/redirection model declaration before one common T is used.",
+        "Separate tension arrows on the body-specific FBDs.",
+        "A nonideal boundary where equal tension is refused."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which attached body is isolated",
+          "hold": "the same ideal string",
+          "notice": "the tension magnitude stays T while the force arrow belongs to the selected body and follows its local string direction"
+        },
+        {
+          "phase": 2,
+          "vary": "the pulley from ideal to explicitly frictional",
+          "hold": "the same two bodies and rope path",
+          "notice": "equal tension is no longer guaranteed by the bounded model"
+        }
+      ]
+    },
+    {
+      "rung": "R11",
+      "ladder_position": 93,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+      "ceiling": [
+        "movable pulley",
+        "compound pulley",
+        "pulley-count shortcut"
+      ],
+      "must_contain": [
+        "Coordinates declared along the two string segments.",
+        "The fixed-length equation y_A + y_B = constant.",
+        "The derived signed acceleration relation a_A + a_B = 0.",
+        "A boundary case that forces re-derivation when the pulley itself moves."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "which end moves farther from the fixed pulley",
+          "hold": "the same taut inextensible string and coordinate convention",
+          "notice": "the other straight segment shortens by the same amount"
+        },
+        {
+          "phase": 2,
+          "vary": "the pulley from fixed to movable",
+          "hold": "the string remains inextensible",
+          "notice": "the old two-segment length equation is no longer sufficient and must be rebuilt"
+        }
+      ]
+    },
+    {
       "rung": "R7",
       "ladder_position": 94,
       "provenance": "AUTHORED",
@@ -209,9 +330,9 @@
     }
   ],
   "family": {
-    "invariant_demand": "Choose the body and frame, identify only forces acting on that body, add them as directed quantities, and use the net force to decide or determine the body's acceleration.",
-    "difficult_move": "Choosing the body boundary correctly so interaction partners are not accidentally cancelled on the same free-body diagram.",
-    "independent_check": "Every force arrow must name an external agent acting on the chosen body, and the direction of the vector sum must agree with the stated acceleration.",
+    "invariant_demand": "Choose the body and frame, identify only forces acting on that body, add them as directed quantities, decide any contact/connection model explicitly, and use the resulting force and kinematic constraints to determine acceleration.",
+    "difficult_move": "Choosing the correct physical boundary and model before writing equations: body ownership for forces, contact state for friction, and only geometry-justified acceleration/tension constraints for connected bodies.",
+    "independent_check": "Every force arrow names an external agent acting on the chosen body; static friction satisfies its inequality, system-level cancellation respects the chosen boundary, and any string acceleration relation can be reconstructed from the declared fixed-length geometry.",
     "support_ladder": [
       {
         "level": "high",
@@ -245,6 +366,30 @@
       "changed_demand": "Two connected bodies must be analysed with one free-body diagram per body and the shared interaction linked across the equations.",
       "information_not_handed_over": "which equal-and-opposite forces belong to different equations",
       "repair_to": "R3"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A friction problem gives a coefficient but does not say whether the contact slips; the learner must test the static state before selecting an equality.",
+      "information_not_handed_over": "whether the contact is static, impending slip, or already sliding",
+      "repair_to": "R8"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Two bodies are linked but the problem does not state whether they should be solved separately or as one system.",
+      "information_not_handed_over": "which connection creates a shared acceleration and where internal-force cancellation is legitimate",
+      "repair_to": "R9"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A string/pulley problem omits any statement that the rope/pulley is ideal.",
+      "information_not_handed_over": "whether one common tension magnitude is licensed by the model",
+      "repair_to": "R10"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "A fixed-pulley sketch must be converted into a string-length equation before acceleration equations are written.",
+      "information_not_handed_over": "which straight string segments vary and what coordinate signs they use",
+      "repair_to": "R11"
     }
   ]
 }
