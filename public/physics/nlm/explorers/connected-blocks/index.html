@@ -668,7 +668,18 @@
       <button class="btn-transport primary" id="btn-play" onclick="togglePlay()">⏸ Pause</button>
       <button class="btn-transport" onclick="stepForward()">⏭ Step</button>
       <button class="btn-transport" onclick="resetSim()">↺ Reset</button>
-      <button class="btn-transport" id="btn-speed" onclick="cycleSpeed()">Speed: 1.0x</button>
+      <div class="speed-slider-wrap" style="display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 6px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+          ⏱️ Speed:
+        </span>
+        <input type="range" id="slider-speed" min="0.05" max="1.5" step="0.05" value="1.0" 
+               style="width: 85px; accent-color: var(--accent); cursor: pointer; height: 6px;" 
+               oninput="setSimSpeed(this.value)" 
+               title="Drag left to slow down animation (slow-motion)">
+        <span id="label-speed" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 36px;">1.00x</span>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(0.25)" title="Slow Motion (0.25x)">0.25x</button>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(1.0)" title="Normal Speed (1.0x)">1.0x</button>
+      </div>
     </div>
   </div>
 
@@ -1164,12 +1175,26 @@ function stepForward() {
   redrawCanvas();
 }
 
-function cycleSpeed() {
-  const speeds = [0.5, 1.0, 2.0];
-  const idx = speeds.indexOf(simSpeed);
-  simSpeed = speeds[(idx + 1) % speeds.length];
-  document.getElementById('btn-speed').textContent = 'Speed: ' + simSpeed.toFixed(1) + 'x';
+function setSimSpeed(val) {
+  simSpeed = Math.max(0.05, Math.min(2.0, parseFloat(val)));
+  const slider = document.getElementById('slider-speed');
+  const label = document.getElementById('label-speed');
+  if (slider) slider.value = simSpeed;
+  if (label) label.textContent = simSpeed.toFixed(2) + 'x';
+  try {
+    localStorage.setItem('grade9v3_sim_speed', simSpeed.toString());
+  } catch (e) {}
 }
+
+// Global Speed initialization from localStorage
+(function initGlobalSpeed() {
+  try {
+    const saved = localStorage.getItem('grade9v3_sim_speed');
+    if (saved) {
+      setSimSpeed(saved);
+    }
+  } catch (e) {}
+})();
 
 // -------------------------------------------------------------
 // SIMULATION UPDATE STEP
