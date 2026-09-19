@@ -2337,7 +2337,13 @@
         "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
         "Q-PHY-NLM-2A-CONNECTED-02",
         "Q-PHY-NLM-2A-IDEAL-STRING-03",
-        "Q-PHY-NLM-2A-FIXED-PULLEY-04"
+        "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+        "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+        "Q-PHY-NLM-2B-FRICTION-STATE-01",
+        "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
+        "Q-PHY-NLM-2B-STRING-MODEL-03",
+        "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
+        "Q-PHY-NLM-2B-FRAME-SELECTION-05"
       ]
     }
   ],
@@ -3004,6 +3010,537 @@
           "reveals": "METHOD"
         }
       ]
+    },
+    {
+      "id": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "OWNER_EXTENSION",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2A-FRAME-CHOICE-07",
+      "stem": "A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The roadside frame is treated as inertial.",
+        "The bus has nonzero rightward acceleration.",
+        "The object-shelf friction is negligible."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton's laws can be written in that non-inertial frame.",
+        "reasoning": [
+          "Changing observer does not create a new physical agent acting on the loose object.",
+          "The roadside observer can describe the object with the physical forces only.",
+          "The passenger's frame accelerates with the bus, so relative to that observer the object appears to shift backward.",
+          "A backward pseudo-force is added only in the accelerating-frame description if that convention is used."
+        ],
+        "check": "If the bus later moves at constant velocity, changing from roadside to bus observer does not by itself require a pseudo-force.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Ask first whether any new physical object began touching or attracting the loose object when the bus started accelerating.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Identify which observer is accelerating before deciding whether an extra convention is needed.",
+          "reveals": "METHOD"
+        }
+      ]
+    },
+    {
+      "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-FRICTION-STATE-01",
+      "stem": "A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate's acceleration or justify that it remains at rest.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Resolve the applied force into horizontal and vertical components.",
+        "The crate remains in contact with the floor.",
+        "Do not assume a friction equality before deciding the contact state."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| <= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration.",
+        "reasoning": [
+          "The upward component of P changes the normal reaction, so N is not automatically mg.",
+          "The coefficient data do not identify the contact state; test the static state first.",
+          "Compare the no-slip friction requirement with the static limit.",
+          "Only after the static state is impossible is the kinetic-friction model selected for the acceleration calculation."
+        ],
+        "check": "At P=0, the method must allow friction to be zero rather than mu_s mg.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Computes the actual normal reaction before any friction limit.",
+            "evidence_of": "Recognizes that friction limits depend on the contact force, not a memorized N=mg shortcut."
+          },
+          {
+            "criterion": "Tests the no-slip friction requirement against mu_s N before choosing a kinetic model.",
+            "evidence_of": "Can select the contact model rather than treating a supplied coefficient as an instruction to use equality."
+          },
+          {
+            "criterion": "Uses kinetic friction only after static feasibility fails.",
+            "evidence_of": "Keeps static and sliding contact states distinct."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ]
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The presence of mu_s and mu_k does not tell you which one to use. What contact state would you test first?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Before deciding the friction model, ask whether the vertical component of the pull changes the normal reaction.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must infer the contact state and choose the static-feasibility or kinetic-friction model instead of being told that the bodies are at impending slip or already sliding.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+          "MIC-PHY-NLM-FRICTION-QUANT"
+        ]
+      },
+      "repair_ref": "NLM8-2"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-CONNECTED-SYSTEM-02",
+      "stem": "Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The carts remain in contact.",
+        "The track is frictionless.",
+        "Take the direction of F as positive."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C's equation.",
+        "reasoning": [
+          "Maintained contact gives the carts one common acceleration along the track.",
+          "For the acceleration, the whole three-cart system removes internal contact forces from the summed equation.",
+          "For the requested B-on-C contact force, isolate C because that interaction is external to C.",
+          "Newton II on C gives N_BC = mF/(3m) = F/3."
+        ],
+        "check": "Cancelling B-on-C while solving cart C alone would leave C with no horizontal force but nonzero acceleration, which is inconsistent.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Chooses the whole train for the acceleration calculation.",
+            "evidence_of": "Can select a system boundary that removes irrelevant internal forces."
+          },
+          {
+            "criterion": "Switches to cart C for the requested contact force.",
+            "evidence_of": "Understands that a force can be internal to one chosen system and external to another."
+          },
+          {
+            "criterion": "Keeps the same common acceleration across both equations.",
+            "evidence_of": "Uses the active contact constraint consistently when changing system boundary."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-CONNECTED-02",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ]
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The most convenient system for finding acceleration need not be the same system needed for the requested contact force.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Ask whether the B-on-C force is internal or external for each system boundary you might choose.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must choose and change system boundaries across a multi-body solution, rather than being handed separate-body versus whole-system equations.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-CONNECTED-02",
+          "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"
+        ]
+      },
+      "repair_ref": "NLM9-4"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-STRING-MODEL-03",
+      "stem": "Two masses are connected by one rope over a fixed pulley. The pulley axle is explicitly stated to have appreciable friction. A proposed solution writes the same tension T on both sides of the pulley before doing any calculation. Decide whether that step is justified by the Grade9V3 ideal-string model and explain what can still be said without introducing a new pulley model.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The rope remains taut.",
+        "The pulley axle is not frictionless.",
+        "No quantitative nonideal-pulley relation is supplied."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice.",
+        "reasoning": [
+          "Tension forces still belong on the bodies they act on.",
+          "Uniform tension across a redirection was licensed only after declaring a frictionless, massless ideal pulley/string model.",
+          "Appreciable axle friction breaks that declared model condition.",
+          "Therefore equal tension cannot be imported; the correct bounded response is to stop rather than manufacture a nonideal relation."
+        ],
+        "check": "If the statement is changed back to a frictionless massless fixed pulley with a massless taut string, the equal-tension relation becomes licensed again.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Rejects one common tension because the ideal redirection condition is broken.",
+            "evidence_of": "Treats equal tension as model-conditional rather than universal."
+          },
+          {
+            "criterion": "Keeps a tension force on each mass's own FBD.",
+            "evidence_of": "Separates force ownership from equality of magnitudes."
+          },
+          {
+            "criterion": "Refuses to invent a quantitative nonideal-pulley relation.",
+            "evidence_of": "Respects the taught model boundary instead of solving an untaught problem under a transfer label."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-IDEAL-STRING-03",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ]
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "List the assumptions that allowed one tension symbol in the earlier ideal-string problem. Has every one of them survived here?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "A transfer task can ask you to reject a model; you do not have to replace it with an untaught one.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must decide whether the equal-tension ideal-string model is valid after the problem explicitly breaks an ideal-pulley assumption.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-IDEAL-STRING-03",
+          "MIC-PHY-NLM-IDEAL-STRING-TENSION"
+        ]
+      },
+      "repair_ref": "NLM10-4"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-PULLEY-REPRESENTATION-04",
+      "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The pulley is fixed.",
+        "Only the two vertical straight string segments change length.",
+        "Both coordinates are positive upward, toward the pulley."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude.",
+        "reasoning": [
+          "Translate the verbal geometry into the two changing string-segment lengths.",
+          "The chosen coordinates are upward, so each segment length is a constant offset minus its coordinate.",
+          "Inextensibility makes the sum of the segment lengths constant.",
+          "Differentiating the equivalent x_A + x_B = constant relation gives the signed velocity and acceleration constraints."
+        ],
+        "check": "If both masses accelerated upward in these coordinates, both vertical segments would shorten and the fixed total string length would be violated.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Builds the variable string length from the verbal geometry before writing an acceleration relation.",
+            "evidence_of": "Can translate a new representation into the taught fixed-length invariant."
+          },
+          {
+            "criterion": "Uses the declared upward coordinate signs consistently.",
+            "evidence_of": "Does not memorize a sign-free pulley ratio."
+          },
+          {
+            "criterion": "Derives a_A + a_B = 0 from the length relation.",
+            "evidence_of": "Connects geometry to kinematics rather than importing the answer."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+      "secondary_capability_refs": [
+        "CAP-NLM-IDEAL-STRING-TENSION"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ]
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Write the actual length of each vertical string segment in terms of its upward coordinate; do not start with an acceleration formula.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Once the total length is constant, differentiate the same signed coordinate relation rather than changing conventions midway.",
+          "reveals": "METHOD"
+        }
+      ],
+      "transfer": {
+        "dimension": "representation_translation",
+        "statement": "The learner must translate a verbal fixed-pulley geometry with a different coordinate convention into the string-length equation before obtaining the acceleration constraint.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+          "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT"
+        ]
+      },
+      "repair_ref": "NLM11-2"
+    },
+    {
+      "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
+        "examside:demand_source": "https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-2B-FRAME-SELECTION-05",
+      "stem": "A small bob hangs from the roof of a car that accelerates horizontally to the right. A student wants the bob to be at rest in the chosen coordinates while finding the string direction. Decide which observer description makes that possible, state the extra modelling term required there, and give an independent inertial-frame alternative without solving for a numerical angle.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The road is horizontal.",
+        "The car acceleration is constant and nonzero.",
+        "Air resistance is neglected."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction.",
+        "reasoning": [
+          "The requirement that the bob be at rest in the coordinates points to the car frame.",
+          "Because that observer frame accelerates, Newton's second law there needs the backward pseudo-force convention.",
+          "In the roadside inertial frame no pseudo-force is added; the bob has the car's horizontal acceleration.",
+          "The two descriptions are alternative models of the same physical situation and must agree on the observable string direction."
+        ],
+        "check": "If the car acceleration becomes zero, the pseudo-force term vanishes and both descriptions reduce to the ordinary hanging-bob equilibrium.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "rubric": [
+          {
+            "criterion": "Chooses the car frame only because the task requests the bob to be stationary in the chosen coordinates.",
+            "evidence_of": "Selects observer frame from the modelling goal rather than by habit."
+          },
+          {
+            "criterion": "Adds the pseudo-force specifically because the car frame accelerates.",
+            "evidence_of": "Distinguishes an observer convention from a new physical interaction."
+          },
+          {
+            "criterion": "States a valid roadside alternative with physical forces only and horizontal bob acceleration.",
+            "evidence_of": "Can cross-check two frame descriptions of one event."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW",
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+        "changed_fields": [
+          "stem",
+          "conditions",
+          "answer"
+        ]
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Which observer sees the bob stationary after the transient, and is that observer accelerating?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Changing the observer does not create a new physical agent; any extra term must be tied to the observer description itself.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "The learner must choose between an inertial roadside analysis and an accelerating-car analysis from the task's representation goal, instead of being told which frame to use.",
+        "builds_on": [
+          "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+          "MIC-PHY-NLM-FRAME-CHOICE"
+        ]
+      },
+      "repair_ref": "NLM4-3"
     }
   ],
   "teaching_routes": [
