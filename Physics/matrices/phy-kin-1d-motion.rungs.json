@@ -87,7 +87,8 @@
           "hold": "the same downward acceleration",
           "notice": "the time of the zero-velocity instant changes but the acceleration at that instant does not"
         }
-      ]
+      ],
+      "default_entry_eligible": false
     },
     {
       "rung": "R4G",

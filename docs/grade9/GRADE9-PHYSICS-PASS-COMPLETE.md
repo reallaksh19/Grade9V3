@@ -24,8 +24,19 @@ pull-request guardrails, closing the Grade-9-only authoring freeze.
 - vector material is prerequisite/question-demand only;
 - higher-grade/broader Physics matrices were not expanded for completeness.
 
-## Next workstream
+## Post-completion routing guard
 
-Do **not** mix Grade 10 into this PR. A later Grade-10 pass should begin from current `main`,
-repeat the donor-first copy/adapt procedure, and establish its own current-source scope before
-authoring.
+The authoring completion claim means the **ordinary Grade-9 route**, not every retained
+extension capability. Rungs retained only for explicit diagnostic/advanced/question demand
+are marked `default_entry_eligible: false`: generic learner profiles and rough owner estimates
+do not select them and default teaching segments do not append them. The canonical extension
+records remain available when an owner explicitly routes to that extension.
+
+This routing flag is operational only. It is not curriculum authority and does not replace the
+scope/source decisions in the topic audits.
+
+## Subsequent workstream
+
+Grade-10 discovery subsequently began from current `main` in PR #85 using the same donor-first,
+current-source-bounded method. This post-completion Grade-9 routing correction does not broaden
+Grade-9 content and should remain independent of Grade-10 production slices.

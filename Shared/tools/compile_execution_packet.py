@@ -69,14 +69,26 @@ def _role_snapshot(core: str, repo: Path) -> dict:
 
 
 def _segment(plan: dict) -> list[dict]:
-    entry = plan.get("learner_route", {}).get("entry")
+    route = plan.get("learner_route", {})
+    entry = route.get("entry")
     rows = sorted(plan.get("canonical_rungs", []), key=lambda row: row["position"])
     if not entry:
         return []
-    positions = {row["rung"]: row["position"] for row in rows}
+
+    requested = route.get("requested_entry") or entry
+    requested_row = next((row for row in rows if row["rung"] == requested), None)
+    explicit_nondefault = (
+        route.get("selected_by") == "OWNER_NAMED"
+        and requested_row is not None
+        and requested_row.get("default_entry_eligible", True) is False
+    )
+    segment_rows = rows if explicit_nondefault else [
+        row for row in rows if row.get("default_entry_eligible", True)
+    ]
+    positions = {row["rung"]: row["position"] for row in segment_rows}
     if entry not in positions:
         return []
-    return [row for row in rows if row["position"] >= positions[entry]]
+    return [row for row in segment_rows if row["position"] >= positions[entry]]
 
 
 def _input_blockers(plan: dict, core: str) -> list[str]:

@@ -167,7 +167,8 @@
           "notice": "the escape case requires a higher kinetic contribution because its limiting total energy is zero"
         }
       ],
-      "microtopic_ref": "MIC-PHY-GRAV-R4"
+      "microtopic_ref": "MIC-PHY-GRAV-R4",
+      "default_entry_eligible": false
     },
     {
       "rung": "R5",
@@ -198,7 +199,8 @@
           "notice": "the axial-vector arrow appears reversed to the viewer, while the physical angular-momentum direction is unchanged"
         }
       ],
-      "microtopic_ref": "MIC-PHY-GRAV-R5"
+      "microtopic_ref": "MIC-PHY-GRAV-R5",
+      "default_entry_eligible": false
     }
   ],
   "family": {

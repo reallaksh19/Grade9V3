@@ -204,7 +204,8 @@
           "notice": "the bus-frame account now needs an added backward pseudo-force"
         }
       ],
-      "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE"
+      "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+      "default_entry_eligible": false
     }
   ],
   "family": {

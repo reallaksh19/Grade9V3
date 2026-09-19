@@ -43,6 +43,8 @@ def _teaching_positions(index: dict) -> dict[str, list[dict]]:
     seen = set()
     for rows in index["locations"].values():
         for row in rows:
+            if row.get("default_entry_eligible", True) is False:
+                continue
             key = (
                 row.get("matrix_id"),
                 row.get("rung"),
