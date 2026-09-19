@@ -1400,10 +1400,10 @@
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit task is symbolic/qualitative and does not assert a computed numerical measurement."
+          "no_numeric_claim": "The exit compares a symbolic friction demand with a symbolic static bound and distinguishes contact states; no numerical force is computed."
         }
       },
-      "research_contribution": "Owner-approved ExamSIDE preparation demand is used only to justify this bounded learner action; the teaching construction is locally authored and does not claim Pinnacle micro-scope or external question custody.",
+      "research_contribution": "ExamSIDE friction-threshold demand justifies a separate quantitative contact-state decision while preserving the qualitative friction-direction capability as its prerequisite.",
       "prerequisite_refs": [
         "CAP-NLM-FRICTION",
         "CAP-NLM-SECOND-LAW"
@@ -1547,10 +1547,10 @@
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit task is symbolic/qualitative and does not assert a computed numerical measurement."
+          "no_numeric_claim": "The exit states symbolic acceleration and force-sum structure for constrained bodies; no numerical acceleration or force is computed."
         }
       },
-      "research_contribution": "Owner-approved ExamSIDE preparation demand is used only to justify this bounded learner action; the teaching construction is locally authored and does not claim Pinnacle micro-scope or external question custody.",
+      "research_contribution": "ExamSIDE contact and connected-body demand justifies a story-neutral fixed-separation/common-acceleration decision while preserving body-versus-system force ownership.",
       "prerequisite_refs": [
         "CAP-NLM-SECOND-LAW"
       ],
@@ -1691,10 +1691,10 @@
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit task is symbolic/qualitative and does not assert a computed numerical measurement."
+          "no_numeric_claim": "The exit states the model-conditional symbolic equality of tension magnitudes and assigns the forces to their bodies; no numerical tension is computed."
         }
       },
-      "research_contribution": "Owner-approved ExamSIDE preparation demand is used only to justify this bounded learner action; the teaching construction is locally authored and does not claim Pinnacle micro-scope or external question custody.",
+      "research_contribution": "ExamSIDE string and tension demand justifies an explicit ideal-string model decision with body-specific force ownership; no general rope or pulley equality is claimed.",
       "prerequisite_refs": [
         "CAP-NLM-FBD-BODY-OWNERSHIP",
         "CAP-NLM-SECOND-LAW"
@@ -1829,10 +1829,10 @@
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "no_numeric_claim": "The exit task is symbolic/qualitative and does not assert a computed numerical measurement."
+          "no_numeric_claim": "The exit derives a symbolic fixed-length and acceleration relation for one fixed pulley; no numerical displacement or acceleration is computed."
         }
       },
-      "research_contribution": "Owner-approved ExamSIDE preparation demand is used only to justify this bounded learner action; the teaching construction is locally authored and does not claim Pinnacle micro-scope or external question custody.",
+      "research_contribution": "ExamSIDE fixed-pulley demand justifies one bounded string-length reconstruction; movable and compound pulley geometries remain outside this rung.",
       "prerequisite_refs": [
         "CAP-NLM-CONNECTED-COMMON-ACCEL",
         "CAP-NLM-IDEAL-STRING-TENSION"
