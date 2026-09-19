@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:e7647b89cb6f408e9fb012164886bb1ade559f67f37863cb361f0138bbfecb86",
+  "digest": "sha256:23e7bb961c81e8b04d6ac213cab30a2b6987b3fa35c139e1145c428232346a92",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1065,8 +1065,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 520311,
-      "sha256": "a187aa6b10d44e7d6cfc491ceee657455c2d353b488a96233709f8098581dd9d"
+      "bytes": 520419,
+      "sha256": "444d680ad0fe3e04c444c530e3c2b4e88ffa2f56926ee48a2036b2b6f7ab0b5c"
     },
     {
       "path": "tools/index.html",

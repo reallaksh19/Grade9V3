@@ -6805,7 +6805,7 @@ window.GRADE9V3 = {
                 {
                   "action": "Place alpha in the previously identified quadrant and report the requested directed angle or verbal direction.",
                   "why_valid": "Quadrant placement restores the signs discarded by the positive ratio.",
-                  "output": "directed angle consistent with both component signs"
+                  "output": "quadrant I: theta=alpha; quadrant II: theta=180°-alpha; quadrant III: theta=180°+alpha; quadrant IV: theta=360°-alpha for standard 0°<=theta<360° reporting"
                 },
                 {
                   "action": "Check that the reported direction has the same x/y sign pattern as the original components.",
@@ -8694,7 +8694,7 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-PHY-VEC-DIRECTION-UNIT-AUTHORED",
           "status": "CANDIDATE",
-          "admitted": false
+          "admitted": true
         },
         {
           "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
