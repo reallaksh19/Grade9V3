@@ -62,7 +62,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/128",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner treats independent x- and y-component equations as if they may use unrelated clocks and still form one physical state.",
@@ -151,6 +151,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
+              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -196,7 +255,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/129",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner solves separate x- and y-times for what is actually one physical event such as impact, apex, or crossing a wall.",
@@ -285,6 +344,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
+              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -330,7 +448,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/130",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner classifies an object as an ideal projectile because it was launched or follows a curved path, without checking post-release interactions.",
@@ -419,6 +537,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
+              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -464,7 +641,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/131",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner interprets the highest point as a place where the projectile stops and gravity or acceleration becomes zero.",
@@ -554,6 +731,65 @@
               "boundary_stress": false,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
+              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -599,7 +835,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/132",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner concludes that returning to the same height means returning to the same velocity or complete motion state.",
@@ -688,6 +924,65 @@
               "boundary_stress": false,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
+              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -735,7 +1030,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/133",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner applies same-height projectile shortcuts or sets u_y=0 merely because the landing height differs from the launch height.",
@@ -825,6 +1120,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "One authoritative activity state must drive the physical scene, overlays, controls, equations, and derived readouts.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Any units and constants used by the activity must be explicit and shared by calculations, labels, and derived readouts.",
+              "reset_policy": "Reset must restore one documented initial state across every synchronized representation, not only the visible controls."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
