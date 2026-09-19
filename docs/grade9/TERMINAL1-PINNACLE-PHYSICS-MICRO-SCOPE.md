@@ -133,15 +133,14 @@ The accelerating-frame/pseudo-force capability remains a non-default extension.
 ### Demand to confirm before authoring
 
 - quantitative normal-reaction families beyond the existing FBD action;
-- inclined-plane dynamics;
+- inclined-plane dynamics — local fixed-plane preparation is now available with the vector-decomposition bridge; school micro-demand still requires confirmation;
 - two-body contact systems;
 - tension / connected bodies;
 - pulley constraints;
 - coefficient-based static/kinetic friction calculations;
 - momentum/impulse if the school's NLM chapter includes it.
 
-Connected systems and pulley constraints are local gaps, but **a gap is not automatically a
-school requirement**.
+The local preparation library now covers connected systems, fixed-pulley constraints, quantitative friction, and bounded fixed-incline modelling. Their **school micro-demand is still not inferred from the chapter title**. Remaining broader gaps are likewise not automatically school requirements.
 
 ## Practical priority once school micro-demand arrives
 

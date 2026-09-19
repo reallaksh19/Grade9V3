@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 167,
-  "relation_count": 221,
+  "component_count": 168,
+  "relation_count": 223,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 74,
+    "TEST": 75,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:6c451723bb9368b7dff3e7eb21bc56b33f4909d2d36c1da6498a1a970ec0ab1b",
+  "digest": "sha256:823da21509908b08000d2f41bd82b20883425cc0a8dc9fd7fecd3be41f0e6cc5",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -820,8 +820,8 @@
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 10006,
-      "sha256": "8831be2e38738979174aa498223d0fb3f35da238a53c22862e54f8c2b807b136"
+      "bytes": 10370,
+      "sha256": "fc7c0022aba1ccbe2ed7fe293908755d1fd15cd21bcef32f42bb07321a8c9339"
     },
     {
       "path": "tests/test_g9_nlm_examside_practice_acceptance.py",
@@ -925,8 +925,15 @@
       "path": "tests/test_grade9_nlm_friction_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8702,
-      "sha256": "df733f503be90ee83476e20075587341ebfd6f4dfb20716498576ac4f0cc2c37"
+      "bytes": 8728,
+      "sha256": "bc837d735437c1a7c72477b32ed432f9d8ca85bad16ee15f8eacf2f48f5dba9e"
+    },
+    {
+      "path": "tests/test_grade9_nlm_incline_agent_a_atlas.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9740,
+      "sha256": "3035bd19abfa0d66f0b01470cacb62edb49d56899880be413711779ee43d8c3c"
     },
     {
       "path": "tests/test_grade9_nlm_momentum_transfer_agent_a_atlas.py",
@@ -1156,8 +1163,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 649170,
-      "sha256": "ae4890d17c8ef015dc434e17094e1418c7cb6ddcc1edd2aba3174bdbd9c6daa0"
+      "bytes": 660027,
+      "sha256": "e5d5b9e8069a48a4b298a7e759cab0020bed91823a8925dda808285075cd6e27"
     },
     {
       "path": "tools/index.html",
@@ -1966,6 +1973,16 @@
     },
     {
       "from": "tests/test_grade9_nlm_friction_agent_a_atlas.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_incline_agent_a_atlas.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_nlm_incline_agent_a_atlas.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

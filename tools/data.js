@@ -3712,6 +3712,11 @@ window.GRADE9V3 = {
                   "action": "Switch the chosen body from cart to horse and rebuild the inventory from the ownership question.",
                   "why_valid": "A correct diagram changes when the chosen body changes even though the physical interaction is the same.",
                   "output": "switch body -> switch which contact-force arrow belongs in the diagram; partner arrows never cancel on one diagram."
+                },
+                {
+                  "action": "When a physical force is resolved into components for chosen axes, keep the body-force inventory unchanged: use the components as a representation of that one force in the equations, not as additional interaction forces alongside the original vector.",
+                  "why_valid": "Resolving a vector changes its coordinate representation, not the number of physical interactions acting on the body. Counting both the original force and its components double-counts the same interaction.",
+                  "output": "one physical force -> either original vector representation or its signed components in the chosen equations, never both as separate forces"
                 }
               ],
               "misconceptions": [
@@ -3719,6 +3724,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Equal and opposite partner forces cancel each other on one body's free-body diagram.",
                   "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
                   "repair": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen."
+                },
+                {
+                  "wrong_idea": "After resolving weight on an incline, mg, mg sin(theta) and mg cos(theta) are three separate forces on the block.",
+                  "diagnostic_prompt": "If gravity is one Earth-on-block interaction, did choosing tilted axes create two new physical agents?",
+                  "repair": "No. Weight remains one physical force. Its parallel/perpendicular components are the coordinate representation used in the chosen equations; do not add the original mg again to those component sums."
                 }
               ],
               "exit_task": {
@@ -3826,6 +3836,11 @@ window.GRADE9V3 = {
                   "action": "Return to an equal-opposite force case.",
                   "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
                   "output": "F_net = 0 -> a = 0 for m > 0."
+                },
+                {
+                  "action": "Choose axes that make the active constraint easy to express; for a fixed inclined contact, use parallel/perpendicular axes when helpful, resolve the physical forces into those axes, and write separate signed Newton-II equations.",
+                  "why_valid": "Newton II is coordinate-independent. Aligning one axis with the contact makes maintained contact explicit as a_perp=0 while leaving the tangential acceleration free to be nonzero.",
+                  "output": "contact-aligned model: Sigma F_parallel = m a_parallel; Sigma F_perp = m a_perp, with maintained fixed contact -> a_perp = 0"
                 }
               ],
               "misconceptions": [
@@ -3833,6 +3848,11 @@ window.GRADE9V3 = {
                   "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
                   "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
                   "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+                },
+                {
+                  "wrong_idea": "If a block on a fixed incline has zero acceleration perpendicular to the plane, its total acceleration must be zero.",
+                  "diagnostic_prompt": "Can a block remain in contact with a fixed plane while speeding up down the plane?",
+                  "repair": "Yes. Maintained contact sets only a_perp=0. The parallel component a_parallel is determined independently by the net force along the plane."
                 }
               ],
               "exit_task": {
@@ -4629,6 +4649,66 @@ window.GRADE9V3 = {
               "answer": "The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice."
             },
             {
+              "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+              "stem": "A block rests on a smooth fixed incline. A student draws three downward-related force arrows on the same free-body diagram: mg vertically downward, mg sin(theta) down the plane, and mg cos(theta) into the plane. Diagnose the diagram and state how the weight should be represented when writing plane-aligned equations.",
+              "origin": "AUTHORED",
+              "answer": "The diagram double-counts gravity. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+              "stem": "A block of mass m is on a smooth fixed plane that rises to the right at angle theta above the horizontal. A horizontal force P pushes the block to the right. Determine the normal reaction and the acceleration along the plane.",
+              "origin": "AUTHORED",
+              "answer": "Relative to plane-aligned axes, P has P cos(theta) up the plane and P sin(theta) into the plane. Thus N=mg cos(theta)+P sin(theta), and a_parallel=[P cos(theta)-mg sin(theta)]/m with uphill positive."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+              "stem": "A block is already sliding down a rough fixed plane inclined at angle theta. The coefficient of kinetic friction is mu_k. Derive its acceleration along the plane.",
+              "origin": "AUTHORED",
+              "answer": "N=mg cos(theta). Kinetic friction has magnitude mu_k mg cos(theta) and points up the plane, so the down-plane acceleration is a=g[sin(theta)-mu_k cos(theta)]."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
+              "stem": "A block of mass m is released from rest on a smooth fixed plane inclined at angle theta above the horizontal. Choose axes that make the contact constraint simple, determine the normal reaction, and find the block's acceleration along the plane.",
+              "origin": "AUTHORED",
+              "answer": "Using axes parallel/perpendicular to the plane, weight has components mg sin(theta) down the plane and mg cos(theta) into the plane. Maintained contact gives N=mg cos(theta), and the tangential equation gives acceleration g sin(theta) down the plane."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+              "stem": "A block rests on a rough fixed plane inclined at angle theta. The coefficient of static friction is mu_s. Determine the friction required for rest and derive the condition under which the static state is possible.",
+              "origin": "AUTHORED",
+              "answer": "For rest, N=mg cos(theta) and static friction must act up the plane with required magnitude mg sin(theta). Rest is feasible when mg sin(theta) <= mu_s mg cos(theta), equivalently tan(theta) <= mu_s."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2B-AXES-01",
+              "stem": "The same smooth fixed-incline problem is solved by two students. Student A uses axes parallel/perpendicular to the plane. Student B keeps horizontal/vertical laboratory axes. Decide whether both coordinate choices are physically valid, and explain why Student A's choice usually makes the contact constraint and acceleration easier to express.",
+              "origin": "AUTHORED",
+              "answer": "Both coordinate systems are valid if used consistently. Plane-aligned axes are usually simpler because maintained contact becomes a_perp=0 and the unknown acceleration has only a parallel component; horizontal/vertical axes require projecting both the normal force and the constrained acceleration."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
+              "stem": "A proposed plane-aligned solution writes the tangential force sum as mg + mg sin(theta) and the perpendicular force sum as N - mg - mg cos(theta). The solver says the component terms were added because the weight was resolved. Identify the modelling error and write the correct role of the weight in the two component equations.",
+              "origin": "AUTHORED",
+              "answer": "The solution double-counts the same weight vector. In plane-aligned equations, gravity contributes mg sin(theta) down the plane and mg cos(theta) into the plane; the unresolved mg is not added again. Thus the tangential gravity term is mg sin(theta), and the perpendicular equation uses N-mg cos(theta)=0 for maintained contact."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+              "stem": "A block is at rest on a rough incline. A controllable force P acts up the plane. In one trial P is slightly smaller than mg sin(theta); in another it is slightly larger than mg sin(theta), and in both trials the available static friction is sufficient to prevent motion. Determine the static-friction direction in each trial without assuming that friction always points uphill.",
+              "origin": "AUTHORED",
+              "answer": "When P<mg sin(theta), the no-friction tendency is down the plane, so static friction acts up the plane. When P>mg sin(theta), the no-friction tendency is up the plane, so static friction acts down the plane. At P=mg sin(theta), the required static friction is zero."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
+              "stem": "A block of mass m is held at rest on a rough fixed plane that rises to the right at angle theta. A horizontal force P pushes to the right. The coefficient of static friction is mu_s. Derive the condition on P and theta for the block to be able to remain at rest.",
+              "origin": "AUTHORED",
+              "answer": "With uphill positive, N=mg cos(theta)+P sin(theta). The static friction required by rest is f_required=mg sin(theta)-P cos(theta). Static equilibrium is feasible exactly when |mg sin(theta)-P cos(theta)| <= mu_s[mg cos(theta)+P sin(theta)]."
+            },
+            {
+              "id": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
+              "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t.",
+              "origin": "AUTHORED",
+              "answer": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2]."
+            },
+            {
               "id": "Q-PHY-NLM-PRACTICAL-12",
               "stem": "Plan a trolley–pulley–hanging-mass experiment to verify Newton’s second law. Describe one controlled variation that tests the effect of net force at fixed system mass, what you measure, and what result would support F_net = m a.",
               "origin": "AUTHORED",
@@ -4737,9 +4817,39 @@ window.GRADE9V3 = {
               "action": "Identify Newton-third-law force pairs as equal and opposite forces of the same interaction acting on different bodies.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-SIGNED-PAIR-BRIDGE",
+              "action": "Read signed coordinates on an axis and subtract two coordinate values, keeping the sign.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-TRIG-RATIO-BRIDGE",
+              "action": "Use sine and cosine ratios in a right triangle to obtain perpendicular leg magnitudes from a hypotenuse magnitude and an acute reference angle.",
+              "provider": "Mathematics",
+              "acceptance": "PROVIDER_REVIEW_REQUIRED"
+            },
+            {
+              "id": "CAP-VEC-ANGLE-DECOMPOSITION",
+              "action": "Convert a vector given by magnitude plus an angle relative to a declared perpendicular axis pair into the equivalent signed component representation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-SIGNED-COMPONENT",
+              "action": "Read and transform a vector's signed components against declared positive axes.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-VECTOR-VS-SCALAR",
+              "action": "Distinguish vector information from magnitude-only scalar information.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 100,
+          "record_count": 121,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4751,7 +4861,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 76,
-            "questions": 28,
+            "questions": 38,
             "obligations": 15,
             "authoring_requirements": [
               {
