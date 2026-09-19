@@ -41,22 +41,22 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
-      font-size: 13.5px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.45;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Top Nav Header */
+    /* TOP GLOBAL HEADER */
     .app-header {
       background: #0f172a;
       color: #ffffff;
-      padding: 10px 24px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -86,242 +86,320 @@
       flex-direction: column;
     }
     .header-main-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: -0.2px;
     }
     .header-subtitle {
-      font-size: 11.5px;
+      font-size: 11px;
       color: #94a3b8;
     }
 
-    /* Header Center Tabs */
-    .header-tabs {
+    /* TOP STEP PROGRESSION TRACK */
+    .step-track-nav {
       display: flex;
       align-items: center;
       gap: 4px;
-      background: #1e293b;
-      padding: 3px;
-      border-radius: 8px;
-      border: 1px solid #334155;
+      position: relative;
     }
-    .nav-tab {
+    .step-track-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
       background: transparent;
       border: none;
-      color: #cbd5e1;
-      padding: 5px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
+      color: #94a3b8;
       cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
       transition: all 0.15s ease;
       text-decoration: none;
-      white-space: nowrap;
     }
-    .nav-tab:hover {
-      color: #ffffff;
+    .step-track-item:hover {
+      color: #f1f5f9;
       background: rgba(255,255,255,0.06);
     }
-    .nav-tab.active {
+    .step-track-item.active {
+      color: #38bdf8;
+    }
+    .step-track-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #334155;
+      color: #cbd5e1;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .step-track-item.active .step-track-circle {
       background: #0284c7;
       color: #ffffff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+    .step-track-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      white-space: nowrap;
     }
 
-    /* Header Right Actions */
+    /* HEADER ACTIONS */
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
     .header-action-btn {
-      background: transparent;
+      background: #1e293b;
       border: 1px solid #334155;
       color: #cbd5e1;
-      padding: 5px 12px;
+      padding: 5px 10px;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
+      gap: 5px;
+      transition: all 0.15s;
     }
     .header-action-btn:hover {
-      background: #1e293b;
+      background: #334155;
       color: #ffffff;
-      border-color: #64748b;
     }
-    .back-hub-link {
+    .back-link {
       color: #38bdf8;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: 8px;
+      margin-left: 6px;
     }
-    .back-hub-link:hover {
+    .back-link:hover {
       text-decoration: underline;
     }
 
-    /* Main Dashboard Layout */
-    .dashboard-container {
-      max-width: 1440px;
-      margin: 16px auto;
-      padding: 0 18px;
-      width: 100%;
+    /* MAIN APP WORKSPACE WITH SIDEBAR */
+    .app-workspace {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
       flex: 1;
+      width: 100%;
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      gap: 16px;
     }
 
-    /* Generic Card Component */
-    .g9-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      padding: 16px;
+    /* LEFT SIDEBAR */
+    .app-sidebar {
+      width: 220px;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      position: relative;
-      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .g9-card:hover {
-      box-shadow: var(--shadow-md);
+    .sidebar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 12px 10px;
+      box-shadow: var(--shadow-sm);
     }
-    .g9-card-header {
+    .sidebar-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0 6px 8px 6px;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 6px;
+    }
+    .sidebar-nav-list {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .sidebar-item {
+      display: flex;
       align-items: flex-start;
       gap: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+      width: 100%;
     }
-    .g9-card-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .sidebar-item:hover {
+      background: #f8fafc;
+      border-color: #e2e8f0;
     }
-    .badge-num {
-      width: 22px;
-      height: 22px;
+    .sidebar-item.active {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+    .sidebar-num {
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 11.5px;
+      background: #e2e8f0;
+      color: #475569;
+      font-size: 10px;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-    }
-    .g9-card-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.2px;
-    }
-    .g9-card-desc {
-      font-size: 12px;
-      color: var(--text-muted);
       margin-top: 1px;
     }
-
-    /* TOP ROW: 3-column grid */
-    .grid-top-row {
-      display: grid;
-      grid-template-columns: 290px 1.45fr 330px;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    /* BOTTOM ROW: 4-column grid */
-    .grid-bottom-row {
-      display: grid;
-      grid-template-columns: 1.25fr 0.85fr 1.05fr 1.15fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    /* Responsive Breakpoints */
-    @media (max-width: 1280px) {
-      .grid-top-row {
-        grid-template-columns: 280px 1fr;
-      }
-      .grid-top-row .card-boundary {
-        grid-column: span 2;
-      }
-      .grid-bottom-row {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    @media (max-width: 860px) {
-      .grid-top-row {
-        grid-template-columns: 1fr;
-      }
-      .grid-top-row .card-boundary {
-        grid-column: span 1;
-      }
-      .grid-bottom-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Card 1: Configuration Controls */
-    .pill-group {
-      display: flex;
-      background: #f1f5f9;
-      padding: 3px;
-      border-radius: 6px;
-      border: 1px solid #e2e8f0;
-      width: 100%;
-    }
-    .btn-pill {
-      flex: 1;
-      border: none;
-      background: transparent;
-      color: #475569;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.15s ease;
-    }
-    .btn-pill.active {
+    .sidebar-item.active .sidebar-num {
       background: var(--primary);
       color: #ffffff;
-      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.3);
     }
-    .slider-row {
+    .sidebar-item-texts {
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-item-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      line-height: 1.25;
+    }
+    .sidebar-item.active .sidebar-item-title {
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+    .sidebar-item-desc {
+      font-size: 9.5px;
+      color: #94a3b8;
+      line-height: 1.2;
+    }
+
+    /* SIDEBAR BIG IDEA / KEY QUESTION CARD */
+    .sidebar-idea-card {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-radius: var(--radius);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .idea-card-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #b45309;
+    }
+    .idea-card-body {
+      font-size: 11px;
+      color: #78350f;
+      line-height: 1.4;
+    }
+
+    /* MAIN VIEW CONTENT AREA */
+    .main-view-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    /* GENERIC CARD STYLES */
+    .g9-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .banner-title-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .banner-num-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .banner-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+    }
+    .banner-subtitle {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* SLIDERS CONTROLS BAR */
+    .sliders-inline-bar {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+    .slider-field {
       display: flex;
       flex-direction: column;
       gap: 3px;
+      flex: 1;
+      min-width: 140px;
     }
-    .slider-top-label {
+    .slider-field-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: #334155;
     }
-    .slider-val-box {
-      background: #f8fafc;
+    .slider-field-val {
+      background: #ffffff;
       border: 1px solid #cbd5e1;
-      border-radius: 5px;
-      padding: 2px 8px;
+      border-radius: 4px;
+      padding: 1px 6px;
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
-      color: var(--text);
-      min-width: 48px;
+      min-width: 44px;
       text-align: right;
     }
     .custom-range {
@@ -329,483 +407,359 @@
       accent-color: var(--primary);
       cursor: pointer;
       height: 5px;
-      background: #e2e8f0;
-      border-radius: 3px;
     }
-    .slider-bounds {
+    .range-limits {
       display: flex;
       justify-content: space-between;
-      font-size: 10.5px;
-      color: var(--text-dim);
+      font-size: 9.5px;
+      color: #94a3b8;
       font-family: var(--font-mono);
     }
-    .accel-summary-badge {
+
+    /* SIDE-BY-SIDE DUAL COMPARISON BOXES (VIEW 2) */
+    .dual-models-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .push-box {
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+    .push-box.active-blue {
+      border-color: #93c5fd;
+      background: #fbfdff;
+    }
+    .push-box.active-orange {
+      border-color: #fed7aa;
+      background: #fffdfb;
+    }
+    .push-box-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .push-canvas-container {
+      width: 100%;
+      height: 125px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .results-pill-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11.5px;
+    }
+    .results-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .val-accel {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #15803d;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .val-force-blue {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #1d4ed8;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .val-force-orange {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #c2410c;
+      background: #fff7ed;
+      border: 1px solid #ffedd5;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* FULL WIDTH SUMMARY BANNER */
+    .highlight-summary-banner {
       background: var(--success-light);
       border: 1px solid var(--success-border);
       border-radius: var(--radius-sm);
-      padding: 8px 12px;
+      padding: 9px 14px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: #166534;
-      font-weight: 600;
-      margin-top: auto;
-    }
-    .accel-val-pill {
-      background: #ffffff;
-      border: 1px solid #86efac;
-      color: #15803d;
-      font-family: var(--font-mono);
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 13px;
-    }
-
-    /* Card 2: Physical Model & Stage */
-    .stage-canvas-container {
-      position: relative;
-      width: 100%;
-      height: 220px;
-      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #stageCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .stage-values-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .readout-box {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-    .readout-label {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-    .readout-math-box {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 15px;
-      font-weight: 700;
-    }
-    .readout-box.blue .readout-math-box {
-      color: var(--primary);
-    }
-    .readout-box.blue .readout-pill {
-      background: #ffffff;
-      border: 1px solid #93c5fd;
-      color: #1d4ed8;
-      font-family: var(--font-mono);
-      padding: 2px 10px;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 800;
-    }
-    .readout-box.green .readout-math-box {
-      color: #15803d;
-    }
-    .readout-box.green .readout-pill {
-      background: #ffffff;
-      border: 1px solid #86efac;
-      color: #15803d;
-      font-family: var(--font-mono);
-      padding: 2px 10px;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    /* Card 3: System Boundary View */
-    .system-select {
-      width: 100%;
-      padding: 6px 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      background: #ffffff;
-      color: var(--text);
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .boundary-diagram-wrap {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      height: 125px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    #boundaryCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .boundary-legend {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 11px;
-      color: #475569;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .legend-icon-ext {
-      width: 14px;
-      height: 2px;
-      background: var(--force-red);
-      position: relative;
-    }
-    .legend-icon-ext::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: -2px;
-      border-left: 4px solid var(--force-red);
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-    }
-    .legend-icon-int {
-      width: 14px;
-      height: 2px;
-      border-top: 2px dashed #3b82f6;
-    }
-    .legend-icon-boundary {
-      width: 14px;
-      height: 10px;
-      border: 1px dashed #f43f5e;
-      border-radius: 2px;
-      background: rgba(244, 63, 94, 0.05);
-    }
-    .boundary-callout {
-      background: #fff1f2;
-      border: 1px solid #ffe4e6;
-      border-radius: var(--radius-sm);
-      padding: 8px 12px;
-      font-size: 11.5px;
-      color: #9f1239;
-      line-height: 1.4;
-    }
-
-    /* Card 4: Free Body Diagrams */
-    .fbd-diagrams-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      padding: 10px;
-      min-height: 180px;
-    }
-    .fbd-sub-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .fbd-sub-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #334155;
-    }
-    .fbd-canvas-box {
-      width: 100%;
-      height: 140px;
-    }
-    .checkbox-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 11.5px;
-      color: #475569;
-      margin-top: 4px;
-    }
-    .checkbox-row label {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    /* Card 5: Microscopic Lens */
-    .micro-lens-wrap {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      height: 155px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-    #microCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .micro-info-card {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .micro-info-title {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #1e40af;
-    }
-    .micro-info-equation {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 800;
-      color: #1d4ed8;
-    }
-    .micro-info-desc {
-      font-size: 11px;
-      color: #3b82f6;
-      line-height: 1.35;
-    }
-
-    /* Card 6: Graph */
-    .graph-container {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      height: 175px;
-      position: relative;
-      cursor: crosshair;
-    }
-    #graphCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .graph-formula-box {
-      font-size: 12px;
-      color: #334155;
-      text-align: center;
-      padding: 4px;
-      font-family: var(--font-mono);
-      background: #f1f5f9;
-      border-radius: 4px;
-      border: 1px solid #e2e8f0;
-    }
-
-    /* Card 7: Challenges */
-    .challenge-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .challenge-step-dots {
-      display: flex;
-      gap: 4px;
-    }
-    .step-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #cbd5e1;
-      transition: all 0.2s;
-    }
-    .step-dot.active {
-      background: var(--primary);
-      width: 14px;
-      border-radius: 4px;
-    }
-    .challenge-question-text {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #1e293b;
-      line-height: 1.4;
-    }
-    .challenge-options-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .challenge-opt-btn {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #334155;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-align: left;
-      transition: all 0.15s;
-    }
-    .challenge-opt-btn:hover {
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-    }
-    .challenge-opt-btn.selected {
-      background: var(--primary-light);
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-    .challenge-opt-btn.correct {
-      background: var(--success-light);
-      border-color: #22c55e;
-      color: #15803d;
-    }
-    .challenge-opt-btn.wrong {
-      background: var(--danger-light);
-      border-color: #ef4444;
-      color: #b91c1c;
-    }
-    .opt-letter {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      background: #e2e8f0;
-      color: #475569;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-    }
-    .challenge-opt-btn.selected .opt-letter {
-      background: var(--primary);
-      color: #ffffff;
-    }
-    .challenge-btn-row {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
       gap: 8px;
-    }
-    .btn-action-primary {
-      background: var(--primary);
-      color: #ffffff;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .btn-action-primary:hover {
-      background: var(--primary-hover);
-    }
-    .btn-action-secondary {
-      background: #ffffff;
-      color: #475569;
-      border: 1px solid #cbd5e1;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .btn-action-secondary:hover {
-      background: #f1f5f9;
-      border-color: #94a3b8;
-    }
-    .challenge-hint-box {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: var(--radius-sm);
-      padding: 8px 10px;
-      font-size: 11px;
-      color: #166534;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      line-height: 1.35;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #15803d;
     }
 
-    /* Modal dialog */
-    .g9-modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+    /* THREE BOTTOM TILES ROW (VIEW 2) */
+    .bottom-tiles-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1.25fr 1.1fr;
+      gap: 14px;
     }
-    .g9-modal-overlay.active {
+
+    /* MICROSCOPIC VIEW CARD */
+    .micro-tile {
       display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .g9-modal-content {
-      background: #ffffff;
-      border-radius: var(--radius);
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
-      max-width: 580px;
-      width: 90%;
-      padding: 24px;
+    .micro-canvas-wrap {
+      width: 100%;
+      height: 120px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
       position: relative;
     }
-    .g9-modal-close {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: transparent;
-      border: none;
-      font-size: 20px;
-      color: #64748b;
-      cursor: pointer;
+
+    /* KEY TAKEAWAYS LIST */
+    .takeaways-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .takeaway-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 11.5px;
+      line-height: 1.35;
+      color: #334155;
+    }
+    .takeaway-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
-    /* Pulse animation for tab navigation jump */
-    @keyframes highlightPulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5); border-color: var(--primary); }
-      50% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.2); border-color: var(--primary); }
-      100% { box-shadow: var(--shadow-sm); border-color: var(--card-border); }
+    /* TRY IT YOURSELF QUIZ */
+    .quiz-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
     }
-    .highlight-card {
-      animation: highlightPulse 1.2s ease-out;
+    .quiz-opt-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 8px;
+      border-radius: 5px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.1s;
     }
+    .quiz-opt-btn:hover {
+      background: #f1f5f9;
+    }
+    .quiz-opt-btn.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+      color: #2563eb;
+    }
+    .opt-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #475569;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quiz-opt-btn.selected .opt-circle {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    /* RIGHT COLUMN CARDS (WHY & BAR CHART) */
+    .why-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .formula-dual-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .formula-mini-card {
+      padding: 8px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .formula-mini-card.blue {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+    }
+    .formula-mini-card.orange {
+      background: #fff7ed;
+      border: 1px solid #ffedd5;
+      color: #9a3412;
+    }
+
+    /* VIEW 3: SYSTEM BOUNDARY STYLES */
+    .boundary-scenario-grid {
+      display: grid;
+      grid-template-columns: 240px 1.4fr 290px;
+      gap: 14px;
+    }
+    .boundary-radio-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 8px 0;
+    }
+    .boundary-radio-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      background: #ffffff;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .boundary-radio-card:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+    .boundary-radio-card.active {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .boundary-thumb-canvas {
+      width: 100%;
+      height: 55px;
+      display: block;
+    }
+
+    /* FORCES TABLE */
+    .forces-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    .forces-table th {
+      text-align: left;
+      padding: 4px 6px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      color: #475569;
+      font-weight: 700;
+    }
+    .forces-table td {
+      padding: 5px 6px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+
+    /* FOOTER PERSISTENT BAR */
+    .app-footer {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.03);
+      position: sticky;
+      bottom: 0;
+      z-index: 1000;
+    }
+    .footer-btn {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .footer-btn.prev {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #475569;
+    }
+    .footer-btn.prev:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .footer-btn.next {
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      color: #ffffff;
+    }
+    .footer-btn.next:hover {
+      background: var(--primary-hover);
+    }
+    .footer-step-hint {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    /* UTILITY CLASSES */
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
 
-<!-- Header Navigation matching Mockup -->
+<!-- TOP GLOBAL NAVIGATION -->
 <header class="app-header">
   <div class="header-left">
     <div class="app-logo">
@@ -819,14 +773,35 @@
     </div>
   </div>
 
-  <nav class="header-tabs">
-    <button class="nav-tab active" data-target="explore" onclick="selectTab('explore')">Explore</button>
-    <button class="nav-tab" data-target="fbd" onclick="selectTab('fbd')">Free-Body Diagrams</button>
-    <button class="nav-tab" data-target="graphs" onclick="selectTab('graphs')">Graphs</button>
-    <button class="nav-tab" data-target="micro" onclick="selectTab('micro')">Microscopic View</button>
-    <button class="nav-tab" data-target="challenges" onclick="selectTab('challenges')">Challenges</button>
+  <!-- TOP STEP PROGRESSION TRACK (1..6) -->
+  <nav class="step-track-nav" id="topStepTrack">
+    <button class="step-track-item" data-step="1" onclick="goToStep(1)">
+      <span class="step-track-circle">1</span>
+      <span class="step-track-label">Setup</span>
+    </button>
+    <button class="step-track-item active" data-step="2" onclick="goToStep(2)">
+      <span class="step-track-circle">2</span>
+      <span class="step-track-label">Push Direction</span>
+    </button>
+    <button class="step-track-item" data-step="3" onclick="goToStep(3)">
+      <span class="step-track-circle">3</span>
+      <span class="step-track-label">System Boundary</span>
+    </button>
+    <button class="step-track-item" data-step="4" onclick="goToStep(4)">
+      <span class="step-track-circle">4</span>
+      <span class="step-track-label">Free-Body Diagrams</span>
+    </button>
+    <button class="step-track-item" data-step="5" onclick="goToStep(5)">
+      <span class="step-track-circle">5</span>
+      <span class="step-track-label">Graphs</span>
+    </button>
+    <button class="step-track-item" data-step="6" onclick="goToStep(6)">
+      <span class="step-track-circle">6</span>
+      <span class="step-track-label">Challenges</span>
+    </button>
   </nav>
 
+  <!-- ACTIONS -->
   <div class="header-actions">
     <button class="header-action-btn" onclick="openHelpModal()">
       <span>?</span>
@@ -836,1077 +811,835 @@
       <span>⚙️</span>
       <span>Settings</span>
     </button>
-    <a href="../../index.html" class="back-hub-link" title="Return to Physics Laws of Motion">
-      &larr; Hub
-    </a>
+    <a href="../../index.html" class="back-link" title="Return to Physics Laws of Motion">&larr; Hub</a>
   </div>
 </header>
 
-<!-- Main Dashboard Container -->
-<main class="dashboard-container" id="dashboardMain">
+<!-- MAIN APP WORKSPACE WITH SIDEBAR -->
+<div class="app-workspace">
 
-  <!-- TOP ROW: Configuration (1) | Physical Model (2) | System Boundary (3) -->
-  <div class="grid-top-row">
-
-    <!-- Card 1: Choose Configuration -->
-    <section class="g9-card card-config" id="section-config">
-      <div class="g9-card-header">
-        <div class="g9-card-title-wrap">
-          <span class="badge-num">1</span>
-          <span class="g9-card-title">Choose Configuration</span>
-        </div>
-      </div>
-
-      <!-- Mode selection pills -->
-      <div class="pill-group">
-        <button class="btn-pill active" id="btnMode2" onclick="setNumBlocks(2)">2 Blocks</button>
-        <button class="btn-pill" id="btnMode3" onclick="setNumBlocks(3)">3 Blocks</button>
-      </div>
-
-      <!-- Mass 1 Slider -->
-      <div class="slider-row">
-        <div class="slider-top-label">
-          <span>Block 1 mass <i>m</i><sub>1</sub> (kg)</span>
-          <input type="number" class="slider-val-box" id="numM1" min="0.5" max="10" step="0.5" value="2.0" oninput="setM1(this.value)">
-        </div>
-        <input type="range" class="custom-range" id="sliderM1" min="0.5" max="10" step="0.5" value="2.0" oninput="setM1(this.value)">
-        <div class="slider-bounds">
-          <span>0.5</span>
-          <span>10</span>
-        </div>
-      </div>
-
-      <!-- Mass 2 Slider -->
-      <div class="slider-row">
-        <div class="slider-top-label">
-          <span>Block 2 mass <i>m</i><sub>2</sub> (kg)</span>
-          <input type="number" class="slider-val-box" id="numM2" min="0.5" max="10" step="0.5" value="8.0" oninput="setM2(this.value)">
-        </div>
-        <input type="range" class="custom-range" id="sliderM2" min="0.5" max="10" step="0.5" value="8.0" oninput="setM2(this.value)">
-        <div class="slider-bounds">
-          <span>0.5</span>
-          <span>10</span>
-        </div>
-      </div>
-
-      <!-- Mass 3 Slider (Conditional) -->
-      <div class="slider-row" id="rowM3" style="display: none;">
-        <div class="slider-top-label">
-          <span>Block 3 mass <i>m</i><sub>3</sub> (kg)</span>
-          <input type="number" class="slider-val-box" id="numM3" min="0.5" max="10" step="0.5" value="5.0" oninput="setM3(this.value)">
-        </div>
-        <input type="range" class="custom-range" id="sliderM3" min="0.5" max="10" step="0.5" value="5.0" oninput="setM3(this.value)">
-        <div class="slider-bounds">
-          <span>0.5</span>
-          <span>10</span>
-        </div>
-      </div>
-
-      <!-- Applied Force Slider -->
-      <div class="slider-row">
-        <div class="slider-top-label">
-          <span>Applied Force <i>F</i> (N)</span>
-          <input type="number" class="slider-val-box" id="numF" min="0" max="80" step="1" value="50" oninput="setForce(this.value)">
-        </div>
-        <input type="range" class="custom-range" id="sliderF" min="0" max="80" step="1" value="50" oninput="setForce(this.value)">
-        <div class="slider-bounds">
-          <span>0</span>
-          <span>80</span>
-        </div>
-      </div>
-
-      <!-- Push Direction Toggle -->
-      <div class="slider-row">
-        <div class="slider-top-label">
-          <span>Push Direction</span>
-        </div>
-        <div class="pill-group">
-          <button class="btn-pill active" id="btnDirLeft" onclick="setDirection('left')">&larr; Left &rarr; Right</button>
-          <button class="btn-pill" id="btnDirRight" onclick="setDirection('right')">&rarr; Right &larr; Left</button>
-        </div>
-      </div>
-
-      <!-- Acceleration Formula Summary Badge -->
-      <div class="accel-summary-badge">
-        <span id="accelFormulaText">System acceleration <i>a</i> = <sup><i>F</i></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)</sub></span>
-        <span class="accel-val-pill" id="summaryAccelVal">5.00 m/s&sup2;</span>
-      </div>
-    </section>
-
-    <!-- Card 2: Physical Model -->
-    <section class="g9-card card-physical" id="section-physical">
-      <div class="g9-card-header">
-        <div>
-          <div class="g9-card-title-wrap">
-            <span class="badge-num">2</span>
-            <span class="g9-card-title">Physical Model</span>
+  <!-- LEFT SIDEBAR: "Explore the Ideas" (8 Items) -->
+  <aside class="app-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Explore the Ideas</div>
+      <div class="sidebar-nav-list" id="sidebarList">
+        <button class="sidebar-item" data-step="1" onclick="goToStep(1)">
+          <span class="sidebar-num">1</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Two-Block Model</span>
+            <span class="sidebar-item-desc">Define the system</span>
           </div>
-          <div class="g9-card-desc">Drag sliders or buttons to explore. Watch the contact force change.</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <label style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: #475569; cursor: pointer;">
-            <input type="checkbox" id="chkShowValues" checked onchange="toggleShowValues(this.checked)">
-            <span>Show values on blocks</span>
-          </label>
-          <button class="btn-action-secondary" onclick="resetSim()" style="padding: 4px 10px; font-size: 11.5px;">
-            &#8634; Reset
-          </button>
-        </div>
-      </div>
-
-      <!-- Physical Simulation Stage -->
-      <div class="stage-canvas-container">
-        <canvas id="stageCanvas"></canvas>
-      </div>
-
-      <!-- Live Readout Cards -->
-      <div class="stage-values-grid">
-        <div class="readout-box blue">
-          <span class="readout-label" id="contactForceLabel">Contact force at interface</span>
-          <div class="readout-math-box">
-            <span><i>N</i><sub>12</sub> =</span>
-            <span class="readout-pill" id="readoutN12">40.0 N</span>
+        </button>
+        <button class="sidebar-item active" data-step="2" onclick="goToStep(2)">
+          <span class="sidebar-num">2</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Push Direction</span>
+            <span class="sidebar-item-desc">Same a, different contact force</span>
           </div>
-        </div>
-        <div class="readout-box green">
-          <span class="readout-label">System acceleration</span>
-          <div class="readout-math-box">
-            <span><i>a</i> =</span>
-            <span class="readout-pill" id="readoutAccel">5.00 m/s&sup2;</span>
+        </button>
+        <button class="sidebar-item" data-step="3" onclick="goToStep(3)">
+          <span class="sidebar-num">3</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">System Boundary</span>
+            <span class="sidebar-item-desc">Internal vs external forces</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Card 3: System Boundary View -->
-    <section class="g9-card card-boundary" id="section-boundary">
-      <div class="g9-card-header">
-        <div>
-          <div class="g9-card-title-wrap">
-            <span class="badge-num">3</span>
-            <span class="g9-card-title">System Boundary View</span>
+        </button>
+        <button class="sidebar-item" data-step="4" onclick="goToStep(4)">
+          <span class="sidebar-num">4</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Free-Body Diagrams</span>
+            <span class="sidebar-item-desc">Individual blocks</span>
           </div>
-          <div class="g9-card-desc">Choose a system to see which forces are internal or external.</div>
-        </div>
-        <span style="cursor: pointer; color: #94a3b8;" onclick="alert('The boundary determines what is inside the system vs outside. Only external forces crossing the boundary can accelerate the chosen system. Internal forces cancel out!')" title="Click for info">ℹ️</span>
-      </div>
-
-      <select class="system-select" id="selectBoundary" onchange="setSystemBoundary(this.value)">
-        <option value="entire">Entire system (m₁ + m₂)</option>
-        <option value="b1">Block 1 only (m₁)</option>
-        <option value="b2">Block 2 only (m₂)</option>
-      </select>
-
-      <!-- Boundary Canvas Schematic -->
-      <div class="boundary-diagram-wrap">
-        <canvas id="boundaryCanvas"></canvas>
-      </div>
-
-      <!-- Legend -->
-      <div class="boundary-legend">
-        <div class="legend-item">
-          <span class="legend-icon-ext"></span>
-          <span>External force (included)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-icon-int"></span>
-          <span>Internal force (cancels)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-icon-boundary"></span>
-          <span>System boundary</span>
-        </div>
-      </div>
-
-      <!-- Boundary Pedagogy Note -->
-      <div class="boundary-callout" id="boundaryCalloutText">
-        For the entire system, internal contact forces cancel out (&Sigma;<i>F</i><sub>int</sub> = 0).
-      </div>
-    </section>
-
-  </div>
-
-  <!-- BOTTOM ROW: Free-Body Diagrams (4) | Microscopic Lens (5) | Graphs (6) | Challenges (7) -->
-  <div class="grid-bottom-row">
-
-    <!-- Card 4: Free-Body Diagrams (Isolated Blocks) -->
-    <section class="g9-card card-fbd" id="section-fbd">
-      <div class="g9-card-header">
-        <div class="g9-card-title-wrap">
-          <span class="badge-num">4</span>
-          <span class="g9-card-title">Free-Body Diagrams (Isolated Blocks)</span>
-        </div>
-        <select class="system-select" id="selectFbdView" style="width: 130px; padding: 3px 6px;" onchange="setFbdView(this.value)">
-          <option value="both">Show both blocks</option>
-          <option value="b1">Block 1 only</option>
-          <option value="b2">Block 2 only</option>
-        </select>
-      </div>
-
-      <!-- Side by side block FBDs -->
-      <div class="fbd-diagrams-grid" id="fbdDiagramsGrid">
-        <div class="fbd-sub-card" id="fbdSubCard1">
-          <span class="fbd-sub-title">Block 1 (<i>m</i><sub>1</sub>)</span>
-          <div class="fbd-canvas-box">
-            <canvas id="fbdCanvas1"></canvas>
+        </button>
+        <button class="sidebar-item" data-step="5" onclick="goToStep(5)">
+          <span class="sidebar-num">5</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Contact Force vs Mass</span>
+            <span class="sidebar-item-desc">Interactive graph</span>
           </div>
-        </div>
-        <div class="fbd-sub-card" id="fbdSubCard2">
-          <span class="fbd-sub-title">Block 2 (<i>m</i><sub>2</sub>)</span>
-          <div class="fbd-canvas-box">
-            <canvas id="fbdCanvas2"></canvas>
+        </button>
+        <button class="sidebar-item" data-step="6" onclick="goToStep(6)">
+          <span class="sidebar-num">6</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Microscopic View</span>
+            <span class="sidebar-item-desc">Newton's Third Law at the interface</span>
           </div>
-        </div>
-      </div>
-
-      <!-- FBD Display Toggles -->
-      <div class="checkbox-row">
-        <label>
-          <input type="checkbox" id="chkFbdNumeric" checked onchange="toggleFbdNumeric(this.checked)">
-          <span>Show numerical values</span>
-        </label>
-        <label>
-          <input type="checkbox" id="chkFbdWeightNormal" checked onchange="toggleFbdWeightNormal(this.checked)">
-          <span>Show weight and normal forces</span>
-        </label>
-        <label>
-          <input type="checkbox" id="chkFbdSeparate" onchange="toggleFbdSeparate(this.checked)">
-          <span>Separate blocks (no contact)</span>
-        </label>
-      </div>
-    </section>
-
-    <!-- Card 5: Microscopic Lens: The Interface -->
-    <section class="g9-card card-micro" id="section-micro">
-      <div class="g9-card-header">
-        <div class="g9-card-title-wrap">
-          <span class="badge-num">5</span>
-          <span class="g9-card-title">Microscopic Lens: The Interface</span>
-        </div>
-      </div>
-
-      <!-- Interface Split Visual -->
-      <div class="micro-lens-wrap">
-        <canvas id="microCanvas"></canvas>
-      </div>
-
-      <div class="micro-info-card">
-        <span class="micro-info-title">Newton's Third Law:</span>
-        <span class="micro-info-equation" id="microEquationText">|N&#8407;₁&rarr;₂| = |N&#8407;₂&rarr;₁| = 40.0 N</span>
-        <span class="micro-info-desc">Equal magnitude, opposite direction, acting on different objects.</span>
-      </div>
-    </section>
-
-    <!-- Card 6: Contact Force vs Mass Partitioning Graph -->
-    <section class="g9-card card-graphs" id="section-graphs">
-      <div class="g9-card-header">
-        <div class="g9-card-title-wrap">
-          <span class="badge-num">6</span>
-          <span class="g9-card-title">Contact Force vs Mass Partitioning</span>
-        </div>
-        <select class="system-select" id="selectGraphVar" style="width: 145px; padding: 3px 6px;" onchange="setGraphVar(this.value)">
-          <option value="m2">Vary m₂ (m₁ fixed)</option>
-          <option value="m1">Vary m₁ (m₂ fixed)</option>
-          <option value="F">Vary F (masses fixed)</option>
-        </select>
-      </div>
-
-      <!-- Interactive Canvas Plot -->
-      <div class="graph-container">
-        <canvas id="graphCanvas"></canvas>
-      </div>
-
-      <div class="graph-formula-box" id="graphFormulaText">
-        With m₁ = 2.0 kg and F = 50 N: &nbsp; N₁₂ = <sup>m₂</sup>&frasl;<sub>(m₁ + m₂)</sub> F
-      </div>
-    </section>
-
-    <!-- Card 7: Challenges -->
-    <section class="g9-card card-challenges" id="section-challenges">
-      <div class="g9-card-header">
-        <div class="g9-card-title-wrap">
-          <span class="badge-num">7</span>
-          <span class="g9-card-title">Challenges</span>
-        </div>
-        <div class="challenge-header" style="gap: 8px;">
-          <div class="challenge-step-dots">
-            <span class="step-dot active" id="dot1"></span>
-            <span class="step-dot" id="dot2"></span>
-            <span class="step-dot" id="dot3"></span>
+        </button>
+        <button class="sidebar-item" data-step="7" onclick="goToStep(7)">
+          <span class="sidebar-num">7</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Three-Block Train</span>
+            <span class="sidebar-item-desc">Extend the idea</span>
           </div>
-          <button class="btn-action-primary" id="btnNextChallenge" onclick="nextChallenge()" style="padding: 3px 8px; font-size: 11px;">
-            Next &rarr;
-          </button>
-        </div>
-      </div>
-
-      <div style="font-size: 11.5px; font-weight: 700; color: #475569;" id="challengeQuestionNum">
-        Question 1 of 3
-      </div>
-
-      <div class="challenge-question-text" id="challengeQuestionText">
-        A 50 N push accelerates two blocks (2 kg and 8 kg) to the right. What is the contact force between the blocks?
-      </div>
-
-      <div class="challenge-options-list" id="challengeOptionsList">
-        <!-- Options rendered dynamically -->
-      </div>
-
-      <div class="challenge-btn-row">
-        <button class="btn-action-secondary" onclick="checkChallengeAnswer()" style="width: 100%;">
-          Check Answer
+        </button>
+        <button class="sidebar-item" data-step="8" onclick="goToStep(8)">
+          <span class="sidebar-num">8</span>
+          <div class="sidebar-item-texts">
+            <span class="sidebar-item-title">Diagnostic Challenges</span>
+            <span class="sidebar-item-desc">Check your understanding</span>
+          </div>
         </button>
       </div>
+    </div>
 
-      <div class="challenge-hint-box" id="challengeHintBox">
+    <!-- SIDEBAR BIG IDEA / KEY QUESTION CARD -->
+    <div class="sidebar-idea-card" id="sidebarCalloutCard">
+      <div class="idea-card-header">
         <span>💡</span>
-        <span id="challengeHintText">Think: Which mass is the contact force responsible for accelerating?</span>
+        <span id="sidebarCalloutTitle">Big Idea</span>
+      </div>
+      <div class="idea-card-body" id="sidebarCalloutText">
+        Internal forces can be large, direction-dependent, and different from the applied force, even when the system acceleration is the same.
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEW CONTAINER (Dynamic Step Rendering) -->
+  <main class="main-view-area" id="mainViewArea">
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 2: PUSH DIRECTION REVERSAL (IMAGE 1 EXACT REPLICATION) -->
+    <!-- ========================================================================= -->
+    <section class="step-view" id="viewStep2">
+      <div style="display: grid; grid-template-columns: 1fr 310px; gap: 14px;">
+
+        <!-- Left Column: Banner, Sliders, Dual Box, Summary Banner, Bottom 3 Tiles -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+
+          <!-- Banner Card -->
+          <div class="g9-card" style="padding: 14px 16px;">
+            <div class="card-banner">
+              <div class="banner-title-wrap">
+                <span class="banner-num-circle">2</span>
+                <div>
+                  <h1 class="banner-title">Push Direction Reversal: Same Acceleration, Different Contact Force</h1>
+                  <p class="banner-subtitle">
+                    Use the same masses and applied force, and flip the push direction. Notice how the system acceleration stays the same, but the contact force changes.
+                  </p>
+                </div>
+              </div>
+              <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 6px 10px; text-align: right; font-size: 11px; color: #1e40af; min-width: 115px;">
+                <div style="font-weight: 700;">What do you notice?</div>
+                <div style="font-size: 10px; color: #3b82f6;">Try it, then read the explanation.</div>
+              </div>
+            </div>
+
+            <!-- Global Sliders Row -->
+            <div class="sliders-inline-bar">
+              <!-- Mass 1 -->
+              <div class="slider-field">
+                <div class="slider-field-top">
+                  <span>Block 1 mass <i>m</i><sub>1</sub> (kg)</span>
+                  <input type="number" class="slider-field-val" id="numM1_v2" min="0.5" max="20" step="0.5" value="2.0" oninput="syncM1(this.value)">
+                </div>
+                <input type="range" class="custom-range" id="sliderM1_v2" min="0.5" max="20" step="0.5" value="2.0" oninput="syncM1(this.value)">
+                <div class="range-limits"><span>0.5</span><span>20</span></div>
+              </div>
+
+              <!-- Mass 2 -->
+              <div class="slider-field">
+                <div class="slider-field-top">
+                  <span>Block 2 mass <i>m</i><sub>2</sub> (kg)</span>
+                  <input type="number" class="slider-field-val" id="numM2_v2" min="0.5" max="20" step="0.5" value="8.0" oninput="syncM2(this.value)">
+                </div>
+                <input type="range" class="custom-range" id="sliderM2_v2" min="0.5" max="20" step="0.5" value="8.0" oninput="syncM2(this.value)">
+                <div class="range-limits"><span>0.5</span><span>20</span></div>
+              </div>
+
+              <!-- Applied Force -->
+              <div class="slider-field">
+                <div class="slider-field-top">
+                  <span>Applied force <i>F</i> (N)</span>
+                  <input type="number" class="slider-field-val" id="numF_v2" min="0" max="100" step="1" value="50" oninput="syncF(this.value)">
+                </div>
+                <input type="range" class="custom-range" id="sliderF_v2" min="0" max="100" step="1" value="50" oninput="syncF(this.value)">
+                <div class="range-limits"><span>0</span><span>100</span></div>
+              </div>
+            </div>
+
+            <!-- Dual Side-by-Side Comparison Models -->
+            <div class="dual-models-grid">
+              <!-- Left to Right Box -->
+              <div class="push-box active-blue">
+                <div class="push-box-header">
+                  <span style="color: #2563eb;">&#9673;</span>
+                  <span>Push Left to Right (on <i>m</i><sub>1</sub>)</span>
+                </div>
+                <div class="push-canvas-container">
+                  <canvas id="canvasPushLeft"></canvas>
+                </div>
+                <div class="results-pill-row">
+                  <div style="font-size: 10.5px; font-weight: 700; color: #64748b; text-transform: uppercase;">Results</div>
+                  <div class="results-row">
+                    <span>System acceleration</span>
+                    <span class="val-accel" id="accelLeft"><i>a</i> = 5.00 m/s&sup2;</span>
+                  </div>
+                  <div class="results-row">
+                    <span>Contact force (on block 2)</span>
+                    <span class="val-force-blue" id="n12Left"><i>N</i><sub>12</sub> = 40.0 N</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right to Left Box -->
+              <div class="push-box active-orange">
+                <div class="push-box-header">
+                  <span style="color: #ea580c;">&#9673;</span>
+                  <span>Push Right to Left (on <i>m</i><sub>2</sub>)</span>
+                </div>
+                <div class="push-canvas-container">
+                  <canvas id="canvasPushRight"></canvas>
+                </div>
+                <div class="results-pill-row">
+                  <div style="font-size: 10.5px; font-weight: 700; color: #64748b; text-transform: uppercase;">Results</div>
+                  <div class="results-row">
+                    <span>System acceleration</span>
+                    <span class="val-accel" id="accelRight"><i>a</i> = 5.00 m/s&sup2;</span>
+                  </div>
+                  <div class="results-row">
+                    <span>Contact force (on block 1)</span>
+                    <span class="val-force-orange" id="n12Right"><i>N</i><sub>12</sub> = 10.0 N</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Width Green Highlight Summary Banner -->
+            <div class="highlight-summary-banner">
+              <span>&#10004;</span>
+              <span id="highlightBannerText">The system acceleration is the same (5.00 m/s&sup2;), but the contact force is different (40.0 N vs 10.0 N).</span>
+            </div>
+
+          </div>
+
+          <!-- Bottom 3 Tiles (Microscopic Lens, Key Takeaways, Try It Yourself) -->
+          <div class="bottom-tiles-row">
+            <!-- Tile 1: Microscopic View -->
+            <div class="g9-card micro-tile">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700;">
+                <span>🔍</span>
+                <span>Microscopic View: The Interface</span>
+              </div>
+              <div class="micro-canvas-wrap">
+                <canvas id="canvasMicroTile"></canvas>
+              </div>
+              <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 6px; padding: 6px 8px; font-size: 10.5px;">
+                <div style="font-weight: 700; color: #b45309;">Newton's Third Law</div>
+                <div style="font-family: var(--font-mono); font-weight: 800; color: #92400e; margin: 2px 0;" id="microEqTile">|N&#8407;₁&rarr;₂| = |N&#8407;₂&rarr;₁|</div>
+                <div style="color: #78350f; font-size: 10px; line-height: 1.25;">Equal in magnitude, opposite in direction, acting on different objects (so they do not cancel on a single block).</div>
+              </div>
+            </div>
+
+            <!-- Tile 2: Key Takeaways -->
+            <div class="g9-card">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700;">
+                <span>📑</span>
+                <span>Key Takeaways</span>
+              </div>
+              <div class="takeaways-list">
+                <div class="takeaway-item">
+                  <span class="takeaway-num">1</span>
+                  <span><i>N</i><sub>12</sub> is not equal to the applied force <i>F</i>.</span>
+                </div>
+                <div class="takeaway-item">
+                  <span class="takeaway-num">2</span>
+                  <span>The contact force depends on which mass must be accelerated.</span>
+                </div>
+                <div class="takeaway-item">
+                  <span class="takeaway-num">3</span>
+                  <span>Reversing the push direction changes the contact force, even though the system acceleration is the same.</span>
+                </div>
+                <div class="takeaway-item">
+                  <span class="takeaway-num">4</span>
+                  <span>Action-reaction pairs act on different objects and only cancel when both objects are in the system.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tile 3: Try It Yourself Quiz -->
+            <div class="g9-card">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700;">
+                <span>✏️</span>
+                <span>Try It Yourself</span>
+              </div>
+              <div style="font-size: 11px; color: #475569; line-height: 1.35;">
+                Set <i>m</i><sub>1</sub> = 5 kg, <i>m</i><sub>2</sub> = 5 kg, and <i>F</i> = 60 N. What is the contact force when pushing on <i>m</i><sub>1</sub>?
+              </div>
+              <div class="quiz-options-list" id="tryQuizList">
+                <button class="quiz-opt-btn" onclick="selectTryOpt('A')"><span class="opt-circle">A</span><span>60 N</span></button>
+                <button class="quiz-opt-btn selected" onclick="selectTryOpt('B')"><span class="opt-circle">B</span><span>30 N</span></button>
+                <button class="quiz-opt-btn" onclick="selectTryOpt('C')"><span class="opt-circle">C</span><span>15 N</span></button>
+                <button class="quiz-opt-btn" onclick="selectTryOpt('D')"><span class="opt-circle">D</span><span>0 N</span></button>
+              </div>
+              <button class="header-action-btn" style="width: 100%; justify-content: center; background: #ffffff; color: #1e3a8a; border-color: #bfdbfe; font-weight: 700; margin-top: 4px;" onclick="checkTryQuiz()">
+                Check Answer
+              </button>
+              <div id="tryQuizFeedback" style="font-size: 10.5px; display: none;"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Column: "Why Does This Happen?" & Bar Chart -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+
+          <div class="why-card">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #1e3a8a;">
+              <span>🧭</span>
+              <span>Why Does This Happen?</span>
+            </div>
+            <div style="font-size: 11.5px; color: #475569; line-height: 1.4;">
+              The contact force at the interface must accelerate the mass on the <em>far side</em> of the interface.
+            </div>
+
+            <div style="text-align: center; font-family: var(--font-mono); font-size: 12.5px; font-weight: 700; color: #0f172a; padding: 4px 0;">
+              <i>a</i> = <sup><i>F</i></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)</sub> &nbsp; <span style="font-size: 10.5px; color: #64748b; font-weight: normal;">(same in both cases)</span>
+            </div>
+
+            <div class="formula-dual-box">
+              <div class="formula-mini-card blue">
+                <span style="font-weight: 700;">Push on <i>m</i><sub>1</sub>:</span>
+                <span style="font-family: var(--font-mono); font-weight: 800;"><i>N</i><sub>12</sub> = <i>m</i><sub>2</sub><i>a</i></span>
+                <span style="font-family: var(--font-mono);">= <sup><i>m</i><sub>2</sub></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)</sub> <i>F</i></span>
+              </div>
+              <div class="formula-mini-card orange">
+                <span style="font-weight: 700;">Push on <i>m</i><sub>2</sub>:</span>
+                <span style="font-family: var(--font-mono); font-weight: 800;"><i>N</i><sub>12</sub> = <i>m</i><sub>1</sub><i>a</i></span>
+                <span style="font-family: var(--font-mono);">= <sup><i>m</i><sub>1</sub></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)</sub> <i>F</i></span>
+              </div>
+            </div>
+
+            <!-- Bar Chart Comparison -->
+            <div style="font-size: 12px; font-weight: 700; color: #334155; margin-top: 4px;">
+              Interface Force Comparison
+            </div>
+            <div style="height: 140px; position: relative;">
+              <canvas id="canvasBarComparison"></canvas>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
-  </div>
+    <!-- ========================================================================= -->
+    <!-- VIEW 3: SYSTEM BOUNDARY VIEW (IMAGE 2 EXACT REPLICATION) -->
+    <!-- ========================================================================= -->
+    <section class="step-view hidden" id="viewStep3">
+      <!-- Banner -->
+      <div class="g9-card" style="padding: 14px 16px;">
+        <div class="card-banner">
+          <div class="banner-title-wrap">
+            <span class="banner-num-circle">3</span>
+            <div>
+              <h1 class="banner-title">System Boundary: Internal vs External Forces</h1>
+              <p class="banner-subtitle">
+                Choose a system and see which forces act on it. Internal contact forces cancel out within the system.
+              </p>
+            </div>
+          </div>
+        </div>
 
-</main>
+        <div class="boundary-scenario-grid">
 
-<!-- Help Modal Dialog -->
-<div class="g9-modal-overlay" id="helpModal" onclick="if(event.target===this)closeHelpModal()">
-  <div class="g9-modal-content">
-    <button class="g9-modal-close" onclick="closeHelpModal()">&times;</button>
-    <h3 style="font-size: 17px; margin-bottom: 8px; color: var(--text);">⚡ Governing Physical Model Invariants</h3>
-    <div style="font-size: 13px; color: #334155; line-height: 1.6; display: flex; flex-direction: column; gap: 10px;">
-      <p>
-        <strong>1. Common Acceleration ($a = F / M_{\text{tot}}$)</strong>: Since the blocks remain in unbroken contact and cannot interpenetrate, both blocks share the exact same acceleration.
-      </p>
-      <p>
-        <strong>2. Contact Force ($N_{12} = m_2 a < F$)</strong>: Block 1 requires force $m_1 a$ just to accelerate its own mass. Only the remainder is transmitted through the interface to accelerate Block 2!
-      </p>
-      <p>
-        <strong>3. Newton's Third Law ($\vec{N}_{1\to 2} = -\vec{N}_{2\to 1}$)</strong>: The contact force on Block 2 is equal in magnitude and opposite in direction to the contact force on Block 1. They act on <em>different bodies</em> and never cancel on a single body.
-      </p>
-      <p>
-        <strong>4. Push Reversal Asymmetry</strong>: Pushing from the light side onto the heavy side creates high interface stress ($40\text{ N}$). Reversing the push direction so the heavy side pushes the light side drops interface stress to just $10\text{ N}$ (a 75% reduction!) with zero change in acceleration.
-      </p>
+          <!-- Left Column: Scenario Sliders -->
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="font-size: 12px; font-weight: 700; color: #334155;">Set the Scenario</div>
+
+            <div class="slider-field">
+              <div class="slider-field-top">
+                <span>Block 1 mass <i>m</i><sub>1</sub> (kg)</span>
+                <input type="number" class="slider-field-val" id="numM1_v3" min="0.5" max="20" step="0.5" value="2.0" oninput="syncM1(this.value)">
+              </div>
+              <input type="range" class="custom-range" id="sliderM1_v3" min="0.5" max="20" step="0.5" value="2.0" oninput="syncM1(this.value)">
+              <div class="range-limits"><span>0.5</span><span>20</span></div>
+            </div>
+
+            <div class="slider-field">
+              <div class="slider-field-top">
+                <span>Block 2 mass <i>m</i><sub>2</sub> (kg)</span>
+                <input type="number" class="slider-field-val" id="numM2_v3" min="0.5" max="20" step="0.5" value="8.0" oninput="syncM2(this.value)">
+              </div>
+              <input type="range" class="custom-range" id="sliderM2_v3" min="0.5" max="20" step="0.5" value="8.0" oninput="syncM2(this.value)">
+              <div class="range-limits"><span>0.5</span><span>20</span></div>
+            </div>
+
+            <div class="slider-field">
+              <div class="slider-field-top">
+                <span>Applied force <i>F</i> (N)</span>
+                <input type="number" class="slider-field-val" id="numF_v3" min="0" max="100" step="1" value="50" oninput="syncF(this.value)">
+              </div>
+              <input type="range" class="custom-range" id="sliderF_v3" min="0" max="100" step="1" value="50" oninput="syncF(this.value)">
+              <div class="range-limits"><span>0</span><span>100</span></div>
+            </div>
+
+            <div class="slider-field">
+              <div class="slider-field-top"><span>Push direction</span></div>
+              <div style="display: flex; gap: 4px;">
+                <button class="header-action-btn" id="btnDirLeft_v3" style="flex: 1; justify-content: center; background: #2563eb; color: #fff;" onclick="setBoundaryDir('left')">&larr; Left to Right</button>
+                <button class="header-action-btn" id="btnDirRight_v3" style="flex: 1; justify-content: center; background: #f1f5f9; color: #475569;" onclick="setBoundaryDir('right')">&rarr; Right to Left</button>
+              </div>
+            </div>
+
+            <!-- Summary Accel Badge -->
+            <div class="accel-summary-badge" style="margin-top: 6px;">
+              <span>System acceleration <i>a</i> = <sup><i>F</i></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)</sub></span>
+              <span class="accel-val-pill" id="boundaryAccelPill">5.00 m/s&sup2;</span>
+            </div>
+          </div>
+
+          <!-- Center Column: Physical Stage & Choose Boundary Radios & FBD Diagram -->
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="font-size: 12px; font-weight: 700; color: #334155;">Physical Model (Push Left to Right)</div>
+            <div class="push-canvas-container" style="height: 140px;">
+              <canvas id="canvasBoundaryStage"></canvas>
+            </div>
+
+            <!-- Choose a System Boundary Radio Cards -->
+            <div style="margin-top: 4px;">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: #334155;">
+                <span>ℹ️</span>
+                <span>Choose a System Boundary</span>
+              </div>
+              <div style="font-size: 11px; color: #64748b;">Select a system to see which forces are external and which are internal.</div>
+
+              <div class="boundary-radio-cards">
+                <div class="boundary-radio-card" id="cardBoundB1" onclick="selectSystemBoundary('b1')">
+                  <div style="display: flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600;">
+                    <input type="radio" name="boundRadio" id="radB1">
+                    <label for="radB1">Block 1 only</label>
+                  </div>
+                  <canvas class="boundary-thumb-canvas" id="canvasThumbB1"></canvas>
+                </div>
+
+                <div class="boundary-radio-card" id="cardBoundB2" onclick="selectSystemBoundary('b2')">
+                  <div style="display: flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600;">
+                    <input type="radio" name="boundRadio" id="radB2">
+                    <label for="radB2">Block 2 only</label>
+                  </div>
+                  <canvas class="boundary-thumb-canvas" id="canvasThumbB2"></canvas>
+                </div>
+
+                <div class="boundary-radio-card active" id="cardBoundBoth" onclick="selectSystemBoundary('both')">
+                  <div style="display: flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600;">
+                    <input type="radio" name="boundRadio" id="radBoth" checked>
+                    <label for="radBoth">Both blocks (1 + 2)</label>
+                  </div>
+                  <canvas class="boundary-thumb-canvas" id="canvasThumbBoth"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Free-Body Diagram for Selected System & Compare Table -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px;">
+              <!-- FBD Card -->
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
+                <div style="font-size: 11.5px; font-weight: 700; color: #334155; margin-bottom: 6px;">Free-Body Diagram for the Selected System</div>
+                <div style="height: 110px;">
+                  <canvas id="canvasBoundaryFbd"></canvas>
+                </div>
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 5px 8px; font-size: 10.5px; color: #166534; margin-top: 6px;" id="boundFbdNote">
+                  The internal contact forces between the blocks cancel out because they are equal in magnitude and opposite in direction.
+                </div>
+              </div>
+
+              <!-- Compare Table -->
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-size: 11.5px; font-weight: 700; color: #334155;">Compare with Other Systems</span>
+                </div>
+                <table class="forces-table">
+                  <thead>
+                    <tr><th>System</th><th>&Sigma;<i>F</i><sub>x</sub> equation</th><th>Acceleration</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Block 1 only</td><td><i>F</i> &minus; <i>N</i><sub>12</sub> = <i>m</i><sub>1</sub><i>a</i></td><td class="val-accel">5.00 m/s&sup2;</td></tr>
+                    <tr><td>Block 2 only</td><td><i>N</i><sub>12</sub> = <i>m</i><sub>2</sub><i>a</i></td><td class="val-accel">5.00 m/s&sup2;</td></tr>
+                    <tr style="font-weight: 700; background: #eff6ff;"><td>Both blocks</td><td><i>F</i> = (<i>m</i><sub>1</sub>+<i>m</i><sub>2</sub>)<i>a</i></td><td class="val-accel">5.00 m/s&sup2;</td></tr>
+                  </tbody>
+                </table>
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 5px 8px; font-size: 10px; color: #166534; margin-top: auto;">
+                  &#10004; The acceleration is the same for all choices of system boundary, but the forces that appear in the equation change.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Remember, Current Selection, Forces Table, Equation of Motion, Quick Check -->
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Remember Card -->
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; font-size: 11px;">
+              <div style="font-weight: 700; color: #1e40af; display: flex; align-items: center; gap: 4px;">
+                <span>ℹ️</span><span>Remember</span>
+              </div>
+              <div style="color: #1e3a8a; line-height: 1.35; margin-top: 2px;">
+                Forces between objects inside the system are internal and cancel out in &Sigma;<i>F</i>. Only external forces appear in the system's equation of motion.
+              </div>
+            </div>
+
+            <!-- Current Selection Diagram -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px;">
+              <div style="font-size: 11.5px; font-weight: 700; color: #334155;">Current Selection</div>
+              <div style="font-size: 11px; color: #2563eb; font-weight: 700;" id="currentSelectionLabel">System: Both blocks (1 + 2)</div>
+              <div style="height: 70px; margin-top: 4px;">
+                <canvas id="canvasCurrentSelectionMini"></canvas>
+              </div>
+            </div>
+
+            <!-- Forces on the System Table -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px;">
+              <div style="font-size: 11.5px; font-weight: 700; color: #334155; margin-bottom: 4px;">Forces on the System</div>
+              <table class="forces-table" id="tableForcesSystem">
+                <thead><tr><th>Force</th><th>Type</th><th>Included?</th></tr></thead>
+                <tbody id="tableForcesBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Equation of Motion -->
+            <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 6px; padding: 8px 10px; text-align: center;">
+              <div style="font-size: 11px; font-weight: 700; color: #92400e;">Equation of Motion (System)</div>
+              <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 800; color: #78350f; margin-top: 2px;" id="eqMotionFormula">&Sigma;<i>F</i><sub>x</sub> = <i>F</i> = (<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)<i>a</i></div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: #92400e;" id="eqMotionCalc"><i>a</i> = 50 / (2.0 + 8.0) = 5.00 m/s&sup2;</div>
+            </div>
+
+            <!-- Quick Check Card -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
+              <div style="display: flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 700; color: #334155;">
+                <span>❓</span><span>Quick Check</span>
+              </div>
+              <div style="font-size: 11px; color: #475569; margin-top: 3px;">
+                When the system is both blocks (1 + 2), what is the net horizontal force due to the contact force between the blocks?
+              </div>
+              <div class="quiz-options-list" id="quickCheckList">
+                <button class="quiz-opt-btn" onclick="selectQuickOpt('A')"><span class="opt-circle">A</span><span>50 N (to the right)</span></button>
+                <button class="quiz-opt-btn" onclick="selectQuickOpt('B')"><span class="opt-circle">B</span><span>40 N (to the right)</span></button>
+                <button class="quiz-opt-btn selected" onclick="selectQuickOpt('C')"><span class="opt-circle">C</span><span>0 N</span></button>
+                <button class="quiz-opt-btn" onclick="selectQuickOpt('D')"><span class="opt-circle">D</span><span>10 N (to the right)</span></button>
+              </div>
+              <button class="header-action-btn" style="width: 100%; justify-content: center; background: #2563eb; color: #ffffff; font-weight: 700; margin-top: 6px;" onclick="checkQuickCheck()">
+                Check Answer
+              </button>
+              <div id="quickCheckFeedback" style="font-size: 10.5px; display: none; margin-top: 4px;"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEWS 1, 4, 5, 6, 7, 8 (OTHER MODULES) -->
+    <!-- ========================================================================= -->
+    <section class="step-view hidden" id="viewStepOther">
+      <div class="g9-card" style="padding: 24px; text-align: center;">
+        <h2 id="otherViewTitle" style="font-size: 18px; color: #1e3a8a;">Module View</h2>
+        <p id="otherViewDesc" style="color: #64748b; margin-top: 6px;">Detailed curriculum exploration container.</p>
+        <div style="margin-top: 20px;">
+          <button class="footer-btn next" onclick="goToStep(2)" style="margin: 0 auto;">
+            Go to Push Direction Reversal &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BOTTOM PERSISTENT FOOTER BAR -->
+<footer class="app-footer">
+  <button class="footer-btn prev" id="btnPrevFooter" onclick="stepNav(-1)">
+    <span>&larr; Previous</span>
+  </button>
+  <span class="footer-step-hint" id="footerStepHint">1. Two-Block Model &nbsp;&middot;&nbsp; 3. System Boundary</span>
+  <button class="footer-btn next" id="btnNextFooter" onclick="stepNav(1)">
+    <span>Next &rarr;</span>
+  </button>
+</footer>
+
+<!-- HELP MODAL -->
+<div id="helpModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); z-index:99999; align-items:center; justify-content:center;">
+  <div style="background:#fff; border-radius:12px; max-width:550px; width:90%; padding:24px; position:relative; box-shadow:0 20px 25px -5px rgba(0,0,0,0.2);">
+    <button onclick="closeHelpModal()" style="position:absolute; top:12px; right:14px; border:none; background:transparent; font-size:20px; cursor:pointer;">&times;</button>
+    <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">⚡ Physical Model Invariants</h3>
+    <div style="font-size:12.5px; color:#334155; line-height:1.5; display:flex; flex-direction:column; gap:8px;">
+      <p><strong>1. Same Acceleration:</strong> In unbroken contact, <i>a</i> = <i>F</i> / (<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>).</p>
+      <p><strong>2. Contact Force:</strong> The contact force only has to accelerate the mass on the <em>other side</em> of the interface.</p>
+      <p><strong>3. Newton's Third Law:</strong> Action and reaction forces act on different bodies and never cancel on a single body.</p>
+      <p><strong>4. System Boundaries:</strong> Internal contact forces cancel out when both blocks are included in the boundary.</p>
     </div>
   </div>
 </div>
 
-<!-- Core Explorer Logic -->
 <script>
 (function() {
   'use strict';
 
-  // --- STATE ---
+  // GLOBAL STATE
   const state = {
-    numBlocks: 2,
+    step: 2, // Default to Step 2 (Push Direction Reversal)
     m1: 2.0,
     m2: 8.0,
     m3: 5.0,
     F: 50.0,
-    direction: 'left', // 'left' = push onto block 1 moving right; 'right' = push onto block 2 moving left
-    showValues: true,
-    boundary: 'entire',
-    fbdView: 'both',
-    fbdNumeric: true,
-    fbdWeightNormal: true,
-    fbdSeparate: false,
-    graphVar: 'm2',
-    currentChallenge: 1,
-    selectedOption: 'B',
-    // Animation
-    animOffset: 0,
-    animSpeed: 0.5
+    boundaryChoice: 'both', // 'b1', 'b2', 'both'
+    boundaryDir: 'left',
+    tryOpt: 'B',
+    quickOpt: 'C'
   };
 
-  // --- CHALLENGES DATA ---
-  const challenges = [
-    {
-      id: 1,
-      question: "A 50 N push accelerates two blocks (2 kg and 8 kg) to the right. What is the contact force between the blocks?",
-      options: [
-        { letter: 'A', text: '50 N' },
-        { letter: 'B', text: '40 N' },
-        { letter: 'C', text: '10 N' },
-        { letter: 'D', text: '80 N' }
-      ],
-      correct: 'B',
-      hint: "Think: Which mass is the contact force responsible for accelerating?",
-      explanation: "✅ CORRECT! Block 2 has mass 8 kg and acceleration a = 50/(2+8) = 5 m/s². The contact force N₁₂ = m₂ a = 8 kg × 5 m/s² = 40 N."
-    },
-    {
-      id: 2,
-      question: "If the 50 N push is reversed to push from the RIGHT onto the 8 kg block, what is the new contact force between the blocks?",
-      options: [
-        { letter: 'A', text: '40 N' },
-        { letter: 'B', text: '10 N' },
-        { letter: 'C', text: '50 N' },
-        { letter: 'D', text: '25 N' }
-      ],
-      correct: 'B',
-      hint: "When pushing from the right, the contact force only has to accelerate Block 1 (2 kg)!",
-      explanation: "✅ CORRECT! When pushing from the right, N'₁₂ = m₁ a = 2 kg × 5 m/s² = 10 N. Interface stress drops by 75%!"
-    },
-    {
-      id: 3,
-      question: "Do the action and reaction contact forces between Block 1 and Block 2 cancel each other out on Block 1?",
-      options: [
-        { letter: 'A', text: 'Yes, because they are equal and opposite.' },
-        { letter: 'B', text: 'No, because they act on different bodies and never appear on the same isolated diagram.' },
-        { letter: 'C', text: 'Yes, only if the blocks move at constant speed.' },
-        { letter: 'D', text: 'It depends on the rail friction.' }
-      ],
-      correct: 'B',
-      hint: "Review body ownership: On which body does N₁₂ act, and on which does N₂₁ act?",
-      explanation: "✅ CORRECT! Third Law partner forces act on DIFFERENT objects: N₁₂ acts on Block 2, while N₂₁ acts on Block 1. They never cancel on one body."
-    }
+  const stepsMeta = [
+    { id: 1, name: "Two-Block Model", desc: "Define the system" },
+    { id: 2, name: "Push Direction", desc: "Same a, different contact force" },
+    { id: 3, name: "System Boundary", desc: "Internal vs external forces" },
+    { id: 4, name: "Free-Body Diagrams", desc: "Individual blocks" },
+    { id: 5, name: "Contact Force vs Mass", desc: "Interactive graph" },
+    { id: 6, name: "Microscopic View", desc: "Newton's Third Law at interface" },
+    { id: 7, name: "Three-Block Train", desc: "Extend the idea" },
+    { id: 8, name: "Diagnostic Challenges", desc: "Check your understanding" }
   ];
 
-  // --- PHYSICS ENGINE ---
   function computePhysics() {
-    const mTotal = state.numBlocks === 2 ? (state.m1 + state.m2) : (state.m1 + state.m2 + state.m3);
-    const a = mTotal > 0 ? (state.F / mTotal) : 0;
-    let n12 = 0;
-    let n23 = 0;
-
-    if (state.numBlocks === 2) {
-      if (state.direction === 'left') {
-        n12 = state.m2 * a;
-      } else {
-        n12 = state.m1 * a;
-      }
-    } else {
-      if (state.direction === 'left') {
-        n12 = (state.m2 + state.m3) * a;
-        n23 = state.m3 * a;
-      } else {
-        n23 = (state.m1 + state.m2) * a;
-        n12 = state.m1 * a;
-      }
-    }
-    return { mTotal, a, n12, n23 };
+    const a = state.F / (state.m1 + state.m2);
+    const n12_pushLeft = state.m2 * a;
+    const n12_pushRight = state.m1 * a;
+    return { a, n12_pushLeft, n12_pushRight };
   }
 
-  // --- UI UPDATE ROUTINE ---
+  // NAVIGATION ROUTINES
+  window.goToStep = function(stepNum) {
+    state.step = Math.max(1, Math.min(8, stepNum));
+
+    // Update Top Step Track
+    document.querySelectorAll('.step-track-item').forEach(el => {
+      const s = parseInt(el.dataset.step);
+      el.classList.toggle('active', s === state.step);
+    });
+
+    // Update Sidebar
+    document.querySelectorAll('.sidebar-item').forEach(el => {
+      const s = parseInt(el.dataset.step);
+      el.classList.toggle('active', s === state.step);
+    });
+
+    // Update Callout in Sidebar
+    const cardTitle = document.getElementById('sidebarCalloutTitle');
+    const cardText = document.getElementById('sidebarCalloutText');
+    if (state.step === 2) {
+      cardTitle.textContent = "Big Idea";
+      cardText.textContent = "Internal forces can be large, direction-dependent, and different from the applied force, even when the system acceleration is the same.";
+    } else if (state.step === 3) {
+      cardTitle.textContent = "Key Question";
+      cardText.textContent = "Which forces are internal and which are external depends on the system boundary you choose.";
+    } else {
+      cardTitle.textContent = "Takeaway";
+      cardText.textContent = "Newton's Laws establish common acceleration while Third-Law partner forces preserve momentum balance.";
+    }
+
+    // Toggle Views
+    document.getElementById('viewStep2').classList.toggle('hidden', state.step !== 2);
+    document.getElementById('viewStep3').classList.toggle('hidden', state.step !== 3);
+    document.getElementById('viewStepOther').classList.toggle('hidden', state.step === 2 || state.step === 3);
+
+    if (state.step !== 2 && state.step !== 3) {
+      const meta = stepsMeta.find(s => s.id === state.step);
+      document.getElementById('otherViewTitle').textContent = meta.name;
+      document.getElementById('otherViewDesc').textContent = meta.desc;
+    }
+
+    // Update Footer Bar
+    const prevMeta = stepsMeta.find(s => s.id === state.step - 1);
+    const nextMeta = stepsMeta.find(s => s.id === state.step + 1);
+    document.getElementById('footerStepHint').innerHTML =
+      (prevMeta ? ('&larr; ' + prevMeta.id + '. ' + prevMeta.name) : '') +
+      (prevMeta && nextMeta ? ' &nbsp;&middot;&nbsp; ' : '') +
+      (nextMeta ? (nextMeta.id + '. ' + nextMeta.name + ' &rarr;') : '');
+
+    updateUI();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  window.stepNav = function(dir) {
+    goToStep(state.step + dir);
+  };
+
+  // SYNC SLIDERS ACROSS VIEWS
+  window.syncM1 = function(val) {
+    state.m1 = Math.max(0.5, Math.min(20, parseFloat(val) || 2.0));
+    ['sliderM1_v2', 'sliderM1_v3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = state.m1; });
+    ['numM1_v2', 'numM1_v3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = state.m1.toFixed(1); });
+    updateUI();
+  };
+
+  window.syncM2 = function(val) {
+    state.m2 = Math.max(0.5, Math.min(20, parseFloat(val) || 8.0));
+    ['sliderM2_v2', 'sliderM2_v3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = state.m2; });
+    ['numM2_v2', 'numM2_v3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = state.m2.toFixed(1); });
+    updateUI();
+  };
+
+  window.syncF = function(val) {
+    state.F = Math.max(0, Math.min(100, parseFloat(val) || 50));
+    ['sliderF_v2', 'sliderF_v3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = state.F; });
+    ['numF_v2', 'numF_v3'].forEach(id => { const el = document.getElementById(id); if (el) el.value = Math.round(state.F); });
+    updateUI();
+  };
+
+  window.setBoundaryDir = function(dir) {
+    state.boundaryDir = dir;
+    document.getElementById('btnDirLeft_v3').style.background = dir === 'left' ? '#2563eb' : '#f1f5f9';
+    document.getElementById('btnDirLeft_v3').style.color = dir === 'left' ? '#ffffff' : '#475569';
+    document.getElementById('btnDirRight_v3').style.background = dir === 'right' ? '#2563eb' : '#f1f5f9';
+    document.getElementById('btnDirRight_v3').style.color = dir === 'right' ? '#ffffff' : '#475569';
+    updateUI();
+  };
+
+  window.selectSystemBoundary = function(choice) {
+    state.boundaryChoice = choice;
+    document.getElementById('cardBoundB1').classList.toggle('active', choice === 'b1');
+    document.getElementById('cardBoundB2').classList.toggle('active', choice === 'b2');
+    document.getElementById('cardBoundBoth').classList.toggle('active', choice === 'both');
+    document.getElementById('radB1').checked = choice === 'b1';
+    document.getElementById('radB2').checked = choice === 'b2';
+    document.getElementById('radBoth').checked = choice === 'both';
+    updateUI();
+  };
+
+  // QUIZZES
+  window.selectTryOpt = function(opt) {
+    state.tryOpt = opt;
+    document.querySelectorAll('#tryQuizList .quiz-opt-btn').forEach((btn, idx) => {
+      const ltr = ['A', 'B', 'C', 'D'][idx];
+      btn.classList.toggle('selected', ltr === opt);
+    });
+  };
+
+  window.checkTryQuiz = function() {
+    const fb = document.getElementById('tryQuizFeedback');
+    fb.style.display = 'block';
+    if (state.tryOpt === 'B') {
+      fb.innerHTML = '<span style="color:#15803d; font-weight:700;">✅ Correct!</span> <i>N</i><sub>12</sub> = <sup>5</sup>&frasl;<sub>(5+5)</sub> &times; 60 = 30 N.';
+    } else {
+      fb.innerHTML = '<span style="color:#b91c1c; font-weight:700;">❌ Incorrect.</span> The contact force only accelerates m₂ (5 kg). a = 60/10 = 6 m/s² &rarr; N = 5 &times; 6 = 30 N.';
+    }
+  };
+
+  window.selectQuickOpt = function(opt) {
+    state.quickOpt = opt;
+    document.querySelectorAll('#quickCheckList .quiz-opt-btn').forEach((btn, idx) => {
+      const ltr = ['A', 'B', 'C', 'D'][idx];
+      btn.classList.toggle('selected', ltr === opt);
+    });
+  };
+
+  window.checkQuickCheck = function() {
+    const fb = document.getElementById('quickCheckFeedback');
+    fb.style.display = 'block';
+    if (state.quickOpt === 'C') {
+      fb.innerHTML = '<span style="color:#15803d; font-weight:700;">✅ Correct!</span> Internal action-reaction forces equal 40 N in opposite directions, yielding net 0 N on the combined system.';
+    } else {
+      fb.innerHTML = '<span style="color:#b91c1c; font-weight:700;">❌ Incorrect.</span> By Newton\'s 3rd Law, N₁₂ = -N₂₁, so they cancel out completely inside the system boundary.';
+    }
+  };
+
+  // MAIN UPDATE
   function updateUI() {
     const phys = computePhysics();
 
-    // 1. Text Readouts
-    const accelStr = phys.a.toFixed(2) + ' m/s²';
-    const n12Str = phys.n12.toFixed(1) + ' N';
+    // 1. Step 2 Values
+    const aStr = phys.a.toFixed(2) + ' m/s²';
+    const nlStr = phys.n12_pushLeft.toFixed(1) + ' N';
+    const nrStr = phys.n12_pushRight.toFixed(1) + ' N';
 
-    document.getElementById('summaryAccelVal').textContent = accelStr;
-    document.getElementById('readoutAccel').textContent = accelStr;
-    document.getElementById('readoutN12').textContent = n12Str;
+    const elAL = document.getElementById('accelLeft'); if (elAL) elAL.innerHTML = '<i>a</i> = ' + aStr;
+    const elAR = document.getElementById('accelRight'); if (elAR) elAR.innerHTML = '<i>a</i> = ' + aStr;
+    const elNL = document.getElementById('n12Left'); if (elNL) elNL.innerHTML = '<i>N</i><sub>12</sub> = ' + nlStr;
+    const elNR = document.getElementById('n12Right'); if (elNR) elNR.innerHTML = '<i>N</i><sub>12</sub> = ' + nrStr;
 
-    // Formula badges
-    if (state.numBlocks === 2) {
-      document.getElementById('accelFormulaText').innerHTML =
-        'System acceleration <i>a</i> = <sup><i>F</i></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)</sub>';
-      document.getElementById('graphFormulaText').innerHTML =
-        'With m₁ = ' + state.m1.toFixed(1) + ' kg and F = ' + state.F.toFixed(0) + ' N: &nbsp; N₁₂ = <sup>m₂</sup>&frasl;<sub>(m₁ + m₂)</sub> F';
-    } else {
-      document.getElementById('accelFormulaText').innerHTML =
-        'System acceleration <i>a</i> = <sup><i>F</i></sup>&frasl;<sub>(<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub> + <i>m</i><sub>3</sub>)</sub>';
-      document.getElementById('graphFormulaText').innerHTML =
-        'With m₁ = ' + state.m1.toFixed(1) + ', m₃ = ' + state.m3.toFixed(1) + ' kg: &nbsp; N₁₂ = <sup>(m₂+m₃)</sup>&frasl;<sub>(m₁+m₂+m₃)</sub> F';
+    const elBanner = document.getElementById('highlightBannerText');
+    if (elBanner) {
+      elBanner.textContent = 'The system acceleration is the same (' + aStr + '), but the contact force is different (' + nlStr + ' vs ' + nrStr + ').';
     }
 
-    // Microscopic lens text
-    document.getElementById('microEquationText').innerHTML =
-      '|N&#8407;₁&rarr;₂| = |N&#8407;₂&rarr;₁| = ' + n12Str;
+    // Microscopic title
+    const elMicro = document.getElementById('microEqTile');
+    if (elMicro) elMicro.innerHTML = '|N&#8407;₁&rarr;₂| = |N&#8407;₂&rarr;₁| = ' + nlStr;
 
-    // Boundary Callout Text
-    updateBoundaryCallout(phys);
+    // 2. Step 3 Boundary Values
+    const elBoundPill = document.getElementById('boundaryAccelPill');
+    if (elBoundPill) elBoundPill.textContent = aStr;
 
-    // Redraw all canvases
-    drawStageCanvas(phys);
-    drawBoundaryCanvas(phys);
-    drawFbdCanvases(phys);
-    drawMicroCanvas(phys);
-    drawGraphCanvas(phys);
+    const elBoundCalc = document.getElementById('eqMotionCalc');
+    if (elBoundCalc) {
+      elBoundCalc.innerHTML = '<i>a</i> = ' + state.F.toFixed(0) + ' / (' + state.m1.toFixed(1) + ' + ' + state.m2.toFixed(1) + ') = ' + aStr;
+    }
+
+    updateBoundaryTable(phys);
+
+    // 3. Redraw Canvases
+    drawPushLeftCanvas(phys);
+    drawPushRightCanvas(phys);
+    drawBarChart(phys);
+    drawMicroTile(phys);
+
+    drawBoundaryStage(phys);
+    drawBoundaryThumbs();
+    drawBoundaryFbd(phys);
+    drawCurrentSelectionMini();
   }
 
-  function updateBoundaryCallout(phys) {
-    const callout = document.getElementById('boundaryCalloutText');
-    if (state.boundary === 'entire') {
-      callout.innerHTML = 'For the entire system, internal contact forces cancel out (&Sigma;<i>F</i><sub>int</sub> = 0). External push <i>F</i> = <i>M</i><sub>tot</sub> <i>a</i> = ' + state.F.toFixed(0) + ' N.';
-    } else if (state.boundary === 'b1') {
-      if (state.direction === 'left') {
-        callout.innerHTML = 'For Block 1 alone: External forces are push <i>F</i> and contact <i>N</i><sub>21</sub>. &Sigma;<i>F</i> = <i>F</i> &minus; <i>N</i><sub>21</sub> = ' + state.F.toFixed(0) + ' &minus; ' + phys.n12.toFixed(1) + ' = ' + (state.m1 * phys.a).toFixed(1) + ' N = <i>m</i><sub>1</sub><i>a</i>.';
-      } else {
-        callout.innerHTML = 'For Block 1 alone: External contact force is <i>N</i><sub>12</sub>. &Sigma;<i>F</i> = <i>N</i><sub>12</sub> = ' + phys.n12.toFixed(1) + ' N = <i>m</i><sub>1</sub><i>a</i>.';
-      }
-    } else if (state.boundary === 'b2') {
-      if (state.direction === 'left') {
-        callout.innerHTML = 'For Block 2 alone: Contact force <i>N</i><sub>12</sub> is EXTERNAL to this boundary! &Sigma;<i>F</i> = <i>N</i><sub>12</sub> = ' + phys.n12.toFixed(1) + ' N = <i>m</i><sub>2</sub><i>a</i>.';
-      } else {
-        callout.innerHTML = 'For Block 2 alone: External forces are push <i>F</i> and contact <i>N</i><sub>12</sub>. &Sigma;<i>F</i> = <i>F</i> &minus; <i>N</i><sub>12</sub> = ' + (state.m2 * phys.a).toFixed(1) + ' N = <i>m</i><sub>2</sub><i>a</i>.';
-      }
-    }
-  }
+  function updateBoundaryTable(phys) {
+    const tbody = document.getElementById('tableForcesBody');
+    if (!tbody) return;
 
-  // --- CANVAS 1: PHYSICAL MODEL STAGE ---
-  function drawStageCanvas(phys) {
-    const canvas = document.getElementById('stageCanvas');
-    const ctx = setupCanvas(canvas);
-    if (!ctx) return;
+    if (state.boundaryChoice === 'both') {
+      document.getElementById('currentSelectionLabel').textContent = 'System: Both blocks (1 + 2)';
+      document.getElementById('eqMotionFormula').innerHTML = '&Sigma;<i>F</i><sub>x</sub> = <i>F</i> = (<i>m</i><sub>1</sub> + <i>m</i><sub>2</sub>)<i>a</i>';
+      document.getElementById('boundFbdNote').textContent = 'The internal contact forces between the blocks cancel out because they are equal in magnitude and opposite in direction.';
 
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
+      tbody.innerHTML = `
+        <tr><td>Applied force <i>F</i></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+        <tr><td>Contact force <i>N</i><sub>12</sub></td><td>Internal</td><td style="color:#b91c1c; font-weight:700;">&#10006; No (cancels)</td></tr>
+        <tr><td>Contact force <i>N</i><sub>21</sub></td><td>Internal</td><td style="color:#b91c1c; font-weight:700;">&#10006; No (cancels)</td></tr>
+        <tr><td>Weight (<i>m</i><sub>1</sub>+<i>m</i><sub>2</sub>)<i>g</i></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+        <tr><td>Normal force from rail</td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+      `;
+    } else if (state.boundaryChoice === 'b1') {
+      document.getElementById('currentSelectionLabel').textContent = 'System: Block 1 only (m₁)';
+      document.getElementById('eqMotionFormula').innerHTML = '&Sigma;<i>F</i><sub>x</sub> = <i>F</i> &minus; <i>N</i><sub>21</sub> = <i>m</i><sub>1</sub><i>a</i>';
+      document.getElementById('boundFbdNote').textContent = 'For Block 1 alone, the contact force N₂₁ is an EXTERNAL resisting force exerted by Block 2.';
 
-    const railY = h - 60;
+      tbody.innerHTML = `
+        <tr><td>Applied force <i>F</i></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+        <tr><td>Contact force <i>N</i><sub>21</sub></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes (opposes F)</td></tr>
+        <tr><td>Weight <i>m</i><sub>1</sub><i>g</i></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+        <tr><td>Normal force <i>N</i><sub>1</sub></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+      `;
+    } else if (state.boundaryChoice === 'b2') {
+      document.getElementById('currentSelectionLabel').textContent = 'System: Block 2 only (m₂)';
+      document.getElementById('eqMotionFormula').innerHTML = '&Sigma;<i>F</i><sub>x</sub> = <i>N</i><sub>12</sub> = <i>m</i><sub>2</sub><i>a</i>';
+      document.getElementById('boundFbdNote').textContent = 'For Block 2 alone, the contact force N₁₂ is the ONLY horizontal force driving its acceleration!';
 
-    // 1. Draw Support Legs & Rail Track
-    ctx.fillStyle = '#64748b';
-    // Legs
-    for (let x = 60; x < w - 40; x += 140) {
-      ctx.fillRect(x, railY + 8, 12, 35);
-      // Foot
-      ctx.fillRect(x - 6, railY + 40, 24, 6);
-    }
-    // Rail beam
-    const railGrad = ctx.createLinearGradient(0, railY, 0, railY + 10);
-    railGrad.addColorStop(0, '#cbd5e1');
-    railGrad.addColorStop(0.5, '#e2e8f0');
-    railGrad.addColorStop(1, '#94a3b8');
-    ctx.fillStyle = railGrad;
-    ctx.fillRect(20, railY, w - 40, 8);
-    ctx.strokeStyle = '#475569';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(20, railY, w - 40, 8);
-
-    // 2. Block positions and sizes
-    const baseW = 85;
-    const b1W = baseW + (state.m1 - 2) * 5;
-    const b2W = baseW + (state.m2 - 2) * 5;
-    const b3W = state.numBlocks === 3 ? (baseW + (state.m3 - 2) * 5) : 0;
-    const blockH = 70;
-
-    const startX = state.direction === 'left' ? 240 : (w - 240 - b1W - b2W - b3W);
-    const b1X = state.direction === 'left' ? startX : (startX + b2W + b3W);
-    const b2X = state.direction === 'left' ? (startX + b1W) : (startX + b3W);
-    const b3X = state.direction === 'left' ? (startX + b1W + b2W) : startX;
-
-    // 3. Hydraulic Pusher
-    drawHydraulicPusher(ctx, railY, state.direction, startX, b1W, b2W, b3W);
-
-    // 4. Draw Block 1 (Blue)
-    drawSingleBlock(ctx, b1X, railY - blockH, b1W, blockH, '#3b82f6', '#1d4ed8', '1', state.m1, state.showValues);
-
-    // 5. Draw Block 2 (Orange)
-    drawSingleBlock(ctx, b2X, railY - blockH, b2W, blockH, '#f97316', '#c2410c', '2', state.m2, state.showValues);
-
-    // 6. Draw Block 3 (Green) if active
-    if (state.numBlocks === 3) {
-      drawSingleBlock(ctx, b3X, railY - blockH, b3W, blockH, '#10b981', '#047857', '3', state.m3, state.showValues);
-    }
-
-    // 7. Force Arrow F
-    ctx.save();
-    ctx.fillStyle = '#ef4444';
-    ctx.strokeStyle = '#ef4444';
-    ctx.lineWidth = 3;
-    const arrowY = railY - blockH / 2;
-    if (state.direction === 'left') {
-      const arrowStartX = b1X - 80;
-      const arrowEndX = b1X - 6;
-      drawArrow(ctx, arrowStartX, arrowY, arrowEndX, arrowY, 10);
-      ctx.font = 'bold 13px var(--font-sans)';
-      ctx.textAlign = 'center';
-      ctx.fillText('F = ' + state.F.toFixed(0) + ' N', (arrowStartX + arrowEndX) / 2, arrowY - 10);
-    } else {
-      const arrowStartX = (state.numBlocks === 3 ? b1X + b1W : b2X + b2W) + 80;
-      const arrowEndX = (state.numBlocks === 3 ? b1X + b1W : b2X + b2W) + 6;
-      drawArrow(ctx, arrowStartX, arrowY, arrowEndX, arrowY, 10);
-      ctx.font = 'bold 13px var(--font-sans)';
-      ctx.textAlign = 'center';
-      ctx.fillText('F = ' + state.F.toFixed(0) + ' N', (arrowStartX + arrowEndX) / 2, arrowY - 10);
-    }
-    ctx.restore();
-  }
-
-  function drawHydraulicPusher(ctx, railY, direction, startX, b1W, b2W, b3W) {
-    ctx.save();
-    const h = 55;
-    const y = railY - h - 5;
-    if (direction === 'left') {
-      const bodyW = 90;
-      const bodyX = 25;
-      // Cylinder body
-      const grad = ctx.createLinearGradient(0, y, 0, y + h);
-      grad.addColorStop(0, '#94a3b8');
-      grad.addColorStop(0.3, '#f1f5f9');
-      grad.addColorStop(0.7, '#64748b');
-      grad.addColorStop(1, '#334155');
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      roundRect(ctx, bodyX, y, bodyW, h, 6);
-      ctx.fill();
-      ctx.strokeStyle = '#475569';
-      ctx.stroke();
-
-      // Shaft
-      const shaftY = y + 14;
-      const shaftH = 26;
-      const shaftLen = (startX - 85) - (bodyX + bodyW);
-      const shaftGrad = ctx.createLinearGradient(0, shaftY, 0, shaftY + shaftH);
-      shaftGrad.addColorStop(0, '#38bdf8');
-      shaftGrad.addColorStop(0.5, '#bae6fd');
-      shaftGrad.addColorStop(1, '#0284c7');
-      ctx.fillStyle = shaftGrad;
-      ctx.fillRect(bodyX + bodyW, shaftY, Math.max(30, shaftLen), shaftH);
-
-      // Head
-      ctx.fillStyle = '#0369a1';
-      ctx.fillRect(bodyX + bodyW + Math.max(30, shaftLen), y + 8, 10, h - 16);
-
-      // Label
-      ctx.fillStyle = '#334155';
-      ctx.font = '600 11px var(--font-sans)';
-      ctx.textAlign = 'center';
-      ctx.fillText('Hydraulic pusher', bodyX + bodyW / 2, y - 8);
-    } else {
-      const bodyW = 90;
-      const bodyX = ctx.canvas.width - 25 - bodyW;
-      const grad = ctx.createLinearGradient(0, y, 0, y + h);
-      grad.addColorStop(0, '#94a3b8');
-      grad.addColorStop(0.3, '#f1f5f9');
-      grad.addColorStop(0.7, '#64748b');
-      grad.addColorStop(1, '#334155');
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      roundRect(ctx, bodyX, y, bodyW, h, 6);
-      ctx.fill();
-      ctx.strokeStyle = '#475569';
-      ctx.stroke();
-
-      // Shaft
-      const shaftY = y + 14;
-      const shaftH = 26;
-      const shaftGrad = ctx.createLinearGradient(0, shaftY, 0, shaftY + shaftH);
-      shaftGrad.addColorStop(0, '#38bdf8');
-      shaftGrad.addColorStop(0.5, '#bae6fd');
-      shaftGrad.addColorStop(1, '#0284c7');
-      ctx.fillStyle = shaftGrad;
-      ctx.fillRect(bodyX - 50, shaftY, 50, shaftH);
-
-      // Label
-      ctx.fillStyle = '#334155';
-      ctx.font = '600 11px var(--font-sans)';
-      ctx.textAlign = 'center';
-      ctx.fillText('Hydraulic pusher', bodyX + bodyW / 2, y - 8);
-    }
-    ctx.restore();
-  }
-
-  function drawSingleBlock(ctx, x, y, w, h, c1, c2, label, mass, showValues) {
-    ctx.save();
-    // Drop shadow
-    ctx.shadowColor = 'rgba(0,0,0,0.18)';
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetY = 4;
-
-    // Beveled Gradient Block
-    const grad = ctx.createLinearGradient(x, y, x, y + h);
-    grad.addColorStop(0, c1);
-    grad.addColorStop(0.2, c1);
-    grad.addColorStop(1, c2);
-    ctx.fillStyle = grad;
-    ctx.beginPath();
-    roundRect(ctx, x, y, w, h, 8);
-    ctx.fill();
-
-    // Subtle glossy highlight on top edge
-    ctx.shadowColor = 'transparent';
-    ctx.fillStyle = 'rgba(255,255,255,0.25)';
-    ctx.beginPath();
-    roundRect(ctx, x + 3, y + 2, w - 6, 8, 4);
-    ctx.fill();
-
-    // Border
-    ctx.strokeStyle = 'rgba(0,0,0,0.2)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Caster Wheels
-    ctx.fillStyle = '#334155';
-    ctx.beginPath();
-    ctx.arc(x + 16, y + h + 3, 5, 0, Math.PI * 2);
-    ctx.arc(x + w - 16, y + h + 3, 5, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Labels
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'center';
-    if (showValues) {
-      ctx.font = '600 11px var(--font-sans)';
-      ctx.fillText('m' + (label === '1' ? '₁' : (label === '2' ? '₂' : '₃')) + ' = ' + mass.toFixed(1) + ' kg', x + w / 2, y + 22);
-    }
-    ctx.font = 'bold 26px var(--font-sans)';
-    ctx.fillText(label, x + w / 2, y + h - (showValues ? 14 : 24));
-
-    ctx.restore();
-  }
-
-  // --- CANVAS 2: SYSTEM BOUNDARY ---
-  function drawBoundaryCanvas(phys) {
-    const canvas = document.getElementById('boundaryCanvas');
-    const ctx = setupCanvas(canvas);
-    if (!ctx) return;
-
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    const cy = h / 2;
-    const b1W = 60;
-    const b2W = 75;
-    const blockH = 45;
-    const b1X = w / 2 - (b1W + b2W) / 2;
-    const b2X = b1X + b1W;
-    const by = cy - blockH / 2;
-
-    // Draw Blocks
-    ctx.fillStyle = '#93c5fd';
-    ctx.strokeStyle = '#3b82f6';
-    ctx.fillRect(b1X, by, b1W, blockH);
-    ctx.strokeRect(b1X, by, b1W, blockH);
-
-    ctx.fillStyle = '#fed7aa';
-    ctx.strokeStyle = '#f97316';
-    ctx.fillRect(b2X, by, b2W, blockH);
-    ctx.strokeRect(b2X, by, b2W, blockH);
-
-    ctx.font = 'bold 15px var(--font-sans)';
-    ctx.fillStyle = '#1e3a8a';
-    ctx.textAlign = 'center';
-    ctx.fillText('1', b1X + b1W / 2, by + blockH / 2 + 5);
-
-    ctx.fillStyle = '#7c2d12';
-    ctx.fillText('2', b2X + b2W / 2, by + blockH / 2 + 5);
-
-    // External Push F
-    ctx.save();
-    ctx.strokeStyle = '#ef4444';
-    ctx.fillStyle = '#ef4444';
-    ctx.lineWidth = 2.5;
-    drawArrow(ctx, b1X - 35, cy, b1X - 4, cy, 7);
-    ctx.font = 'bold 12px var(--font-sans)';
-    ctx.fillText('F', b1X - 22, cy - 8);
-    ctx.restore();
-
-    // Internal contact forces if single block chosen
-    if (state.boundary === 'b1' || state.boundary === 'b2') {
-      ctx.save();
-      ctx.strokeStyle = '#3b82f6';
-      ctx.fillStyle = '#3b82f6';
-      ctx.lineWidth = 2;
-      drawArrow(ctx, b2X, cy, b2X + 25, cy, 6);
-      ctx.font = '10px var(--font-mono)';
-      ctx.fillText('N₁₂', b2X + 12, cy - 6);
-      ctx.restore();
-    }
-
-    // System Boundary Box
-    ctx.save();
-    ctx.setLineDash([5, 4]);
-    ctx.strokeStyle = '#f43f5e';
-    ctx.lineWidth = 2;
-
-    if (state.boundary === 'entire') {
-      ctx.fillStyle = 'rgba(244, 63, 94, 0.05)';
-      ctx.strokeRect(b1X - 8, by - 8, b1W + b2W + 16, blockH + 16);
-      ctx.fillRect(b1X - 8, by - 8, b1W + b2W + 16, blockH + 16);
-    } else if (state.boundary === 'b1') {
-      ctx.fillStyle = 'rgba(244, 63, 94, 0.05)';
-      ctx.strokeRect(b1X - 6, by - 6, b1W + 12, blockH + 12);
-      ctx.fillRect(b1X - 6, by - 6, b1W + 12, blockH + 12);
-    } else if (state.boundary === 'b2') {
-      ctx.fillStyle = 'rgba(244, 63, 94, 0.05)';
-      ctx.strokeRect(b2X - 6, by - 6, b2W + 12, blockH + 12);
-      ctx.fillRect(b2X - 6, by - 6, b2W + 12, blockH + 12);
-    }
-    ctx.restore();
-  }
-
-  // --- CANVAS 3: FREE BODY DIAGRAMS ---
-  function drawFbdCanvases(phys) {
-    const c1 = document.getElementById('fbdCanvas1');
-    const c2 = document.getElementById('fbdCanvas2');
-    const ctx1 = setupCanvas(c1);
-    const ctx2 = setupCanvas(c2);
-    if (!ctx1 || !ctx2) return;
-
-    drawSingleFbd(ctx1, 1, state.m1, '#3b82f6', '#1d4ed8', phys);
-    drawSingleFbd(ctx2, 2, state.m2, '#f97316', '#c2410c', phys);
-  }
-
-  function drawSingleFbd(ctx, blockNum, mass, c1, c2, phys) {
-    const w = ctx.canvas.width;
-    const h = ctx.canvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    const cx = w / 2;
-    const cy = h / 2;
-    const sz = 44;
-
-    // Block
-    ctx.fillStyle = c1;
-    ctx.strokeStyle = c2;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    roundRect(ctx, cx - sz/2, cy - sz/2, sz, sz, 4);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 16px var(--font-sans)';
-    ctx.textAlign = 'center';
-    ctx.fillText(blockNum, cx, cy + 6);
-
-    // Floor line
-    ctx.strokeStyle = '#cbd5e1';
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(cx - sz, cy + sz/2 + 2);
-    ctx.lineTo(cx + sz, cy + sz/2 + 2);
-    ctx.stroke();
-
-    // Normal & Weight
-    if (state.fbdWeightNormal) {
-      ctx.strokeStyle = '#64748b';
-      ctx.fillStyle = '#64748b';
-      ctx.lineWidth = 2;
-      // Normal N
-      drawArrow(ctx, cx, cy - sz/2, cx, cy - sz/2 - 35, 6);
-      ctx.font = '10.5px var(--font-sans)';
-      ctx.fillText('N', cx + 10, cy - sz/2 - 20);
-
-      // Weight mg
-      drawArrow(ctx, cx, cy + sz/2, cx, cy + sz/2 + 35, 6);
-      ctx.fillText('mg', cx + 12, cy + sz/2 + 26);
-    }
-
-    // Horizontal forces
-    if (blockNum === 1) {
-      // Push F to right
-      ctx.strokeStyle = '#ef4444';
-      ctx.fillStyle = '#ef4444';
-      ctx.lineWidth = 2.5;
-      drawArrow(ctx, cx + sz/2, cy, cx + sz/2 + 45, cy, 7);
-      ctx.font = 'bold 11px var(--font-sans)';
-      const fLabel = state.fbdNumeric ? ('F=' + state.F.toFixed(0) + 'N') : 'F';
-      ctx.fillText(fLabel, cx + sz/2 + 25, cy - 7);
-
-      // Contact N21 to left
-      ctx.strokeStyle = '#3b82f6';
-      ctx.fillStyle = '#3b82f6';
-      ctx.lineWidth = 2.5;
-      drawArrow(ctx, cx - sz/2, cy, cx - sz/2 - 40, cy, 7);
-      const n21Label = state.fbdNumeric ? ('N₂₁=' + phys.n12.toFixed(1) + 'N') : 'N₂₁';
-      ctx.fillText(n21Label, cx - sz/2 - 20, cy - 7);
-    } else {
-      // Block 2: Contact N12 to right
-      ctx.strokeStyle = '#3b82f6';
-      ctx.fillStyle = '#3b82f6';
-      ctx.lineWidth = 2.5;
-      drawArrow(ctx, cx - sz/2 - 35, cy, cx - sz/2 - 2, cy, 7);
-      ctx.font = 'bold 11px var(--font-sans)';
-      const n12Label = state.fbdNumeric ? ('N₁₂=' + phys.n12.toFixed(1) + 'N') : 'N₁₂';
-      ctx.fillText(n12Label, cx - sz/2 - 18, cy - 7);
+      tbody.innerHTML = `
+        <tr><td>Applied force <i>F</i></td><td>External</td><td style="color:#64748b;">&#10006; No (acts on Block 1)</td></tr>
+        <tr><td>Contact force <i>N</i><sub>12</sub></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes (drives m₂)</td></tr>
+        <tr><td>Weight <i>m</i><sub>2</sub><i>g</i></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+        <tr><td>Normal force <i>N</i><sub>2</sub></td><td>External</td><td style="color:#15803d; font-weight:700;">&#10004; Yes</td></tr>
+      `;
     }
   }
 
-  // --- CANVAS 4: MICROSCOPIC LENS ---
-  function drawMicroCanvas(phys) {
-    const canvas = document.getElementById('microCanvas');
-    const ctx = setupCanvas(canvas);
-    if (!ctx) return;
-
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    const midX = w / 2;
-
-    // Left region: Blue Block 1
-    const grad1 = ctx.createLinearGradient(0, 0, midX, 0);
-    grad1.addColorStop(0, '#60a5fa');
-    grad1.addColorStop(1, '#2563eb');
-    ctx.fillStyle = grad1;
-    ctx.fillRect(0, 0, midX, h);
-
-    // Right region: Orange Block 2
-    const grad2 = ctx.createLinearGradient(midX, 0, w, 0);
-    grad2.addColorStop(0, '#f97316');
-    grad2.addColorStop(1, '#fdba74');
-    ctx.fillStyle = grad2;
-    ctx.fillRect(midX, 0, w - midX, h);
-
-    // Labels
-    ctx.font = 'bold 12px var(--font-sans)';
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'left';
-    ctx.fillText('Block 1', 14, 22);
-    ctx.textAlign = 'right';
-    ctx.fillText('Block 2', w - 14, 22);
-
-    // Center interface line
-    ctx.strokeStyle = 'rgba(0,0,0,0.25)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(midX, 0);
-    ctx.lineTo(midX, h);
-    ctx.stroke();
-
-    // Equal and opposite partner vectors
-    const cy = h / 2 + 10;
-    ctx.save();
-    // N2->1 pointing left on Block 1
-    ctx.strokeStyle = '#1e3a8a';
-    ctx.fillStyle = '#1e3a8a';
-    ctx.lineWidth = 3.5;
-    drawArrow(ctx, midX - 6, cy, midX - 60, cy, 9);
-
-    ctx.font = 'bold 14px var(--font-sans)';
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'center';
-    ctx.fillText('N&#8407;₂&rarr;₁', midX - 35, cy + 22);
-
-    // N1->2 pointing right on Block 2
-    ctx.strokeStyle = '#1e3a8a';
-    ctx.fillStyle = '#1e3a8a';
-    drawArrow(ctx, midX + 6, cy, midX + 60, cy, 9);
-    ctx.fillText('N&#8407;₁&rarr;₂', midX + 35, cy + 22);
-    ctx.restore();
-  }
-
-  // --- CANVAS 5: INTERACTIVE GRAPH ---
-  function drawGraphCanvas(phys) {
-    const canvas = document.getElementById('graphCanvas');
-    const ctx = setupCanvas(canvas);
-    if (!ctx) return;
-
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    const padL = 40;
-    const padR = 15;
-    const padT = 20;
-    const padB = 28;
-    const pw = w - padL - padR;
-    const ph = h - padT - padB;
-
-    // Axes
-    ctx.strokeStyle = '#cbd5e1';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(padL, padT);
-    ctx.lineTo(padL, h - padB);
-    ctx.lineTo(w - padR, h - padB);
-    ctx.stroke();
-
-    // Y Axis Labels
-    ctx.fillStyle = '#64748b';
-    ctx.font = '10px var(--font-mono)';
-    ctx.textAlign = 'right';
-    for (let f = 0; f <= 80; f += 20) {
-      const y = (h - padB) - (f / 80) * ph;
-      ctx.fillText(f, padL - 6, y + 3);
-      ctx.strokeStyle = '#f1f5f9';
-      ctx.beginPath();
-      ctx.moveTo(padL, y);
-      ctx.lineTo(w - padR, y);
-      ctx.stroke();
-    }
-    // Y Title
-    ctx.save();
-    ctx.translate(12, h / 2);
-    ctx.rotate(-Math.PI / 2);
-    ctx.textAlign = 'center';
-    ctx.font = 'bold 11px var(--font-sans)';
-    ctx.fillText('N₁₂ (N)', 0, 0);
-    ctx.restore();
-
-    // X Axis Labels
-    ctx.textAlign = 'center';
-    for (let m = 0; m <= 10; m += 2) {
-      const x = padL + (m / 10) * pw;
-      ctx.fillText(m, x, h - padB + 14);
-      ctx.strokeStyle = '#f1f5f9';
-      ctx.beginPath();
-      ctx.moveTo(x, padT);
-      ctx.lineTo(x, h - padB);
-      ctx.stroke();
-    }
-    // X Title
-    ctx.font = 'bold 11px var(--font-sans)';
-    ctx.fillText('m₂ (kg)', padL + pw / 2, h - 2);
-
-    // Plot Curve: N12 vs m2
-    ctx.strokeStyle = '#2563eb';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    for (let px = 0; px <= pw; px += 2) {
-      const m2Val = (px / pw) * 10;
-      const n12Val = (m2Val / (state.m1 + m2Val)) * state.F;
-      const py = (h - padB) - (n12Val / 80) * ph;
-      if (px === 0) ctx.moveTo(padL + px, py);
-      else ctx.lineTo(padL + px, py);
-    }
-    ctx.stroke();
-
-    // Current operating point
-    const currX = padL + (state.m2 / 10) * pw;
-    const currY = (h - padB) - (phys.n12 / 80) * ph;
-
-    // Guideline
-    ctx.setLineDash([3, 3]);
-    ctx.strokeStyle = '#3b82f6';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(currX, h - padB);
-    ctx.lineTo(currX, currY);
-    ctx.lineTo(padL, currY);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Marker Dot
-    ctx.fillStyle = '#2563eb';
-    ctx.beginPath();
-    ctx.arc(currX, currY, 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // Tooltip box
-    ctx.fillStyle = '#ffffff';
-    ctx.strokeStyle = '#93c5fd';
-    ctx.lineWidth = 1;
-    const boxW = 82;
-    const boxH = 34;
-    const boxX = Math.min(w - padR - boxW, currX - 10);
-    const boxY = Math.max(padT + 4, currY - 42);
-    roundRect(ctx, boxX, boxY, boxW, boxH, 4);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = '#1e3a8a';
-    ctx.font = 'bold 10px var(--font-mono)';
-    ctx.textAlign = 'left';
-    ctx.fillText('m₂ = ' + state.m2.toFixed(1) + ' kg', boxX + 6, boxY + 14);
-    ctx.fillText('N₁₂ = ' + phys.n12.toFixed(1) + ' N', boxX + 6, boxY + 28);
-  }
-
-  // --- CANVAS SETUP UTILITIES ---
+  // --- CANVAS DRAWING ROUTINES ---
   function setupCanvas(canvas) {
     if (!canvas) return null;
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return null;
-
     if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
@@ -1915,6 +1648,419 @@
     ctx.resetTransform && ctx.resetTransform();
     ctx.scale(dpr, dpr);
     return ctx;
+  }
+
+  function drawPushLeftCanvas(phys) {
+    const ctx = setupCanvas(document.getElementById('canvasPushLeft'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const railY = h - 25;
+    drawMiniRail(ctx, w, railY);
+
+    const b1W = 55;
+    const b2W = 75;
+    const bH = 45;
+    const b1X = w / 2 - 40;
+    const b2X = b1X + b1W;
+    const bY = railY - bH;
+
+    // Pusher Left
+    drawMiniPusher(ctx, 15, bY + 6, b1X - 35, 30, 'left');
+    drawArrow(ctx, b1X - 40, bY + bH/2, b1X - 4, bY + bH/2, '#ef4444', 6);
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.textAlign = 'center';
+    ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b1X - 22, bY + 8);
+
+    // Block 1 Blue
+    drawStyledBlock(ctx, b1X, bY, b1W, bH, '#3b82f6', '#1d4ed8', '1', state.m1);
+    // Block 2 Orange
+    drawStyledBlock(ctx, b2X, bY, b2W, bH, '#f97316', '#c2410c', '2', state.m2);
+  }
+
+  function drawPushRightCanvas(phys) {
+    const ctx = setupCanvas(document.getElementById('canvasPushRight'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const railY = h - 25;
+    drawMiniRail(ctx, w, railY);
+
+    const b1W = 55;
+    const b2W = 75;
+    const bH = 45;
+    const b1X = w / 2 - 70;
+    const b2X = b1X + b1W;
+    const bY = railY - bH;
+
+    // Pusher Right
+    drawMiniPusher(ctx, w - 15, bY + 6, b2X + b2W + 35, 30, 'right');
+    drawArrow(ctx, b2X + b2W + 40, bY + bH/2, b2X + b2W + 4, bY + bH/2, '#ef4444', 6);
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.textAlign = 'center';
+    ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b2X + b2W + 22, bY + 8);
+
+    // Block 1 Blue
+    drawStyledBlock(ctx, b1X, bY, b1W, bH, '#3b82f6', '#1d4ed8', '1', state.m1);
+    // Block 2 Orange
+    drawStyledBlock(ctx, b2X, bY, b2W, bH, '#f97316', '#c2410c', '2', state.m2);
+  }
+
+  function drawMiniRail(ctx, w, railY) {
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillRect(10, railY, w - 20, 4);
+    for (let x = 30; x < w - 20; x += 60) {
+      ctx.fillRect(x, railY + 4, 6, 12);
+      ctx.fillRect(x - 3, railY + 16, 12, 3);
+    }
+  }
+
+  function drawMiniPusher(ctx, baseX, y, armX, h, dir) {
+    ctx.save();
+    ctx.fillStyle = '#64748b';
+    if (dir === 'left') {
+      ctx.fillRect(baseX, y, 20, h);
+      ctx.fillStyle = '#0284c7';
+      ctx.fillRect(baseX + 20, y + h/2 - 5, armX - (baseX + 20), 10);
+      ctx.fillStyle = '#0369a1';
+      ctx.fillRect(armX, y + 2, 6, h - 4);
+    } else {
+      ctx.fillRect(baseX - 20, y, 20, h);
+      ctx.fillStyle = '#0284c7';
+      ctx.fillRect(armX, y + h/2 - 5, (baseX - 20) - armX, 10);
+      ctx.fillStyle = '#0369a1';
+      ctx.fillRect(armX - 6, y + 2, 6, h - 4);
+    }
+    ctx.restore();
+  }
+
+  function drawStyledBlock(ctx, x, y, w, h, c1, c2, label, mass) {
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,0.12)';
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetY = 2;
+
+    const grad = ctx.createLinearGradient(x, y, x, y + h);
+    grad.addColorStop(0, c1);
+    grad.addColorStop(1, c2);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    roundRect(ctx, x, y, w, h, 6);
+    ctx.fill();
+
+    ctx.shadowColor = 'transparent';
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.beginPath();
+    roundRect(ctx, x + 2, y + 2, w - 4, 6, 3);
+    ctx.fill();
+
+    // Wheels
+    ctx.fillStyle = '#334155';
+    ctx.beginPath();
+    ctx.arc(x + 12, y + h + 2, 3, 0, Math.PI * 2);
+    ctx.arc(x + w - 12, y + h + 2, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.font = '600 9px var(--font-sans)';
+    ctx.fillText('m' + (label === '1' ? '₁' : '₂') + ' = ' + mass.toFixed(1) + ' kg', x + w/2, y + 14);
+    ctx.font = 'bold 20px var(--font-sans)';
+    ctx.fillText(label, x + w/2, y + h - 8);
+    ctx.restore();
+  }
+
+  function drawBarChart(phys) {
+    const ctx = setupCanvas(document.getElementById('canvasBarComparison'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const padL = 35;
+    const padB = 25;
+    const padT = 15;
+    const ch = h - padB - padT;
+
+    // Y Axis
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, h - padB);
+    ctx.lineTo(w - 15, h - padB);
+    ctx.stroke();
+
+    ctx.fillStyle = '#64748b';
+    ctx.font = '9px var(--font-mono)';
+    ctx.textAlign = 'right';
+    for (let f = 0; f <= 60; f += 20) {
+      const y = (h - padB) - (f / 60) * ch;
+      ctx.fillText(f, padL - 4, y + 3);
+      ctx.strokeStyle = '#f1f5f9';
+      ctx.beginPath();
+      ctx.moveTo(padL, y);
+      ctx.lineTo(w - 15, y);
+      ctx.stroke();
+    }
+
+    // Bars
+    const barW = 32;
+    const x1 = padL + 30;
+    const x2 = padL + 105;
+
+    const maxVal = Math.max(60, state.F);
+    const h1 = (phys.n12_pushLeft / maxVal) * ch;
+    const h2 = (phys.n12_pushRight / maxVal) * ch;
+
+    // Blue Bar
+    ctx.fillStyle = '#3b82f6';
+    ctx.fillRect(x1, (h - padB) - h1, barW, h1);
+    ctx.fillStyle = '#1e3a8a';
+    ctx.font = 'bold 10px var(--font-mono)';
+    ctx.textAlign = 'center';
+    ctx.fillText(phys.n12_pushLeft.toFixed(1) + ' N', x1 + barW/2, (h - padB) - h1 - 4);
+    ctx.fillStyle = '#475569';
+    ctx.font = '10px var(--font-sans)';
+    ctx.fillText('Push on m₁', x1 + barW/2, h - 8);
+
+    // Orange Bar
+    ctx.fillStyle = '#f97316';
+    ctx.fillRect(x2, (h - padB) - h2, barW, h2);
+    ctx.fillStyle = '#7c2d12';
+    ctx.font = 'bold 10px var(--font-mono)';
+    ctx.textAlign = 'center';
+    ctx.fillText(phys.n12_pushRight.toFixed(1) + ' N', x2 + barW/2, (h - padB) - h2 - 4);
+    ctx.fillStyle = '#475569';
+    ctx.font = '10px var(--font-sans)';
+    ctx.fillText('Push on m₂', x2 + barW/2, h - 8);
+  }
+
+  function drawMicroTile(phys) {
+    const ctx = setupCanvas(document.getElementById('canvasMicroTile'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const mid = w / 2;
+    ctx.fillStyle = '#60a5fa';
+    ctx.fillRect(0, 0, mid, h);
+    ctx.fillStyle = '#fb923c';
+    ctx.fillRect(mid, 0, w - mid, h);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.textAlign = 'left';
+    ctx.fillText('Block 1 (m₁)', 10, 18);
+    ctx.textAlign = 'right';
+    ctx.fillText('Block 2 (m₂)', w - 10, 18);
+
+    // Line
+    ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(mid, 0); ctx.lineTo(mid, h); ctx.stroke();
+
+    // Arrows
+    drawArrow(ctx, mid - 4, h/2 + 6, mid - 38, h/2 + 6, '#1e3a8a', 6);
+    drawArrow(ctx, mid + 4, h/2 + 6, mid + 38, h/2 + 6, '#1e3a8a', 6);
+
+    ctx.fillStyle = '#1e3a8a';
+    ctx.font = 'bold 12px var(--font-sans)';
+    ctx.textAlign = 'center';
+    ctx.fillText('N&#8407;₂&rarr;₁', mid - 20, h/2 + 25);
+    ctx.fillText('N&#8407;₁&rarr;₂', mid + 20, h/2 + 25);
+  }
+
+  function drawBoundaryStage(phys) {
+    const ctx = setupCanvas(document.getElementById('canvasBoundaryStage'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const railY = h - 30;
+    drawMiniRail(ctx, w, railY);
+
+    const b1W = 65;
+    const b2W = 85;
+    const bH = 55;
+    const b1X = w / 2 - 60;
+    const b2X = b1X + b1W;
+    const bY = railY - bH;
+
+    drawMiniPusher(ctx, 30, bY + 10, b1X - 45, 35, 'left');
+    drawArrow(ctx, b1X - 50, bY + bH/2, b1X - 6, bY + bH/2, '#ef4444', 7);
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 12px var(--font-sans)';
+    ctx.textAlign = 'center';
+    ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b1X - 26, bY + 10);
+
+    drawStyledBlock(ctx, b1X, bY, b1W, bH, '#3b82f6', '#1d4ed8', '1', state.m1);
+    drawStyledBlock(ctx, b2X, bY, b2W, bH, '#f97316', '#c2410c', '2', state.m2);
+  }
+
+  function drawBoundaryThumbs() {
+    ['canvasThumbB1', 'canvasThumbB2', 'canvasThumbBoth'].forEach((id, idx) => {
+      const ctx = setupCanvas(document.getElementById(id));
+      if (!ctx) return;
+      const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+      const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+      ctx.clearRect(0, 0, w, h);
+
+      const b1W = 28;
+      const b2W = 36;
+      const bH = 26;
+      const y = h/2 - bH/2;
+      const b1X = w/2 - (b1W + b2W)/2;
+      const b2X = b1X + b1W;
+
+      ctx.fillStyle = '#93c5fd';
+      ctx.fillRect(b1X, y, b1W, bH);
+      ctx.fillStyle = '#fed7aa';
+      ctx.fillRect(b2X, y, b2W, bH);
+
+      ctx.fillStyle = '#1e3a8a';
+      ctx.font = 'bold 10px var(--font-sans)';
+      ctx.textAlign = 'center';
+      ctx.fillText('1', b1X + b1W/2, y + bH/2 + 4);
+      ctx.fillStyle = '#7c2d12';
+      ctx.fillText('2', b2X + b2W/2, y + bH/2 + 4);
+
+      // Pusher
+      ctx.fillStyle = '#0284c7';
+      ctx.fillRect(b1X - 12, y + 8, 12, 10);
+
+      // Boundary line
+      ctx.save();
+      ctx.setLineDash([3, 2]);
+      ctx.strokeStyle = '#f43f5e';
+      ctx.lineWidth = 1.5;
+      if (idx === 0) ctx.strokeRect(b1X - 2, y - 2, b1W + 4, bH + 4);
+      else if (idx === 1) ctx.strokeRect(b2X - 2, y - 2, b2W + 4, bH + 4);
+      else ctx.strokeRect(b1X - 3, y - 3, b1W + b2W + 6, bH + 6);
+      ctx.restore();
+    });
+  }
+
+  function drawBoundaryFbd(phys) {
+    const ctx = setupCanvas(document.getElementById('canvasBoundaryFbd'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const cx = w / 2;
+    const cy = h / 2;
+    const b1W = 38;
+    const b2W = 48;
+    const bH = 34;
+    const b1X = cx - (b1W + b2W)/2;
+    const b2X = b1X + b1W;
+    const by = cy - bH/2;
+
+    if (state.boundaryChoice === 'both') {
+      ctx.fillStyle = '#93c5fd'; ctx.fillRect(b1X, by, b1W, bH);
+      ctx.fillStyle = '#fed7aa'; ctx.fillRect(b2X, by, b2W, bH);
+      ctx.fillStyle = '#1e3a8a'; ctx.font = 'bold 12px var(--font-sans)'; ctx.textAlign = 'center';
+      ctx.fillText('1', b1X + b1W/2, by + bH/2 + 4);
+      ctx.fillStyle = '#7c2d12'; ctx.fillText('2', b2X + b2W/2, by + bH/2 + 4);
+
+      // Dashed boundary box
+      ctx.save();
+      ctx.setLineDash([4, 3]);
+      ctx.strokeStyle = '#f43f5e';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(b1X - 5, by - 5, b1W + b2W + 10, bH + 10);
+      ctx.restore();
+
+      // External F
+      drawArrow(ctx, b1X - 35, cy, b1X - 6, cy, '#ef4444', 6);
+      ctx.fillStyle = '#ef4444'; ctx.font = 'bold 10px var(--font-sans)';
+      ctx.fillText('F = 50 N', b1X - 20, cy - 8);
+
+      // Normal and Weight
+      drawArrow(ctx, cx, by - 5, cx, by - 30, '#64748b', 5);
+      ctx.fillStyle = '#64748b'; ctx.fillText('N', cx + 8, by - 16);
+      drawArrow(ctx, cx, by + bH + 5, cx, by + bH + 30, '#64748b', 5);
+      ctx.fillText('(m₁+m₂)g', cx + 24, by + bH + 20);
+    } else if (state.boundaryChoice === 'b1') {
+      ctx.fillStyle = '#93c5fd'; ctx.fillRect(cx - b1W/2, by, b1W, bH);
+      ctx.fillStyle = '#1e3a8a'; ctx.font = 'bold 12px var(--font-sans)'; ctx.textAlign = 'center';
+      ctx.fillText('1', cx, by + bH/2 + 4);
+
+      ctx.save();
+      ctx.setLineDash([4, 3]); ctx.strokeStyle = '#f43f5e'; ctx.lineWidth = 2;
+      ctx.strokeRect(cx - b1W/2 - 4, by - 4, b1W + 8, bH + 8);
+      ctx.restore();
+
+      // F to right, N21 to left
+      drawArrow(ctx, cx - b1W/2 - 30, cy, cx - b1W/2 - 4, cy, '#ef4444', 6);
+      ctx.fillStyle = '#ef4444'; ctx.font = 'bold 10px var(--font-sans)';
+      ctx.fillText('F', cx - b1W/2 - 16, cy - 8);
+
+      drawArrow(ctx, cx + b1W/2 + 25, cy, cx + b1W/2 + 4, cy, '#3b82f6', 6);
+      ctx.fillStyle = '#1d4ed8'; ctx.fillText('N₂₁', cx + b1W/2 + 16, cy - 8);
+    } else if (state.boundaryChoice === 'b2') {
+      ctx.fillStyle = '#fed7aa'; ctx.fillRect(cx - b2W/2, by, b2W, bH);
+      ctx.fillStyle = '#7c2d12'; ctx.font = 'bold 12px var(--font-sans)'; ctx.textAlign = 'center';
+      ctx.fillText('2', cx, by + bH/2 + 4);
+
+      ctx.save();
+      ctx.setLineDash([4, 3]); ctx.strokeStyle = '#f43f5e'; ctx.lineWidth = 2;
+      ctx.strokeRect(cx - b2W/2 - 4, by - 4, b2W + 8, bH + 8);
+      ctx.restore();
+
+      // N12 to right
+      drawArrow(ctx, cx - b2W/2 - 25, cy, cx - b2W/2 - 4, cy, '#3b82f6', 6);
+      ctx.fillStyle = '#1d4ed8'; ctx.font = 'bold 10px var(--font-sans)';
+      ctx.fillText('N₁₂', cx - b2W/2 - 14, cy - 8);
+    }
+  }
+
+  function drawCurrentSelectionMini() {
+    const ctx = setupCanvas(document.getElementById('canvasCurrentSelectionMini'));
+    if (!ctx) return;
+    const w = ctx.canvas.width / (window.devicePixelRatio || 1);
+    const h = ctx.canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const b1W = 45;
+    const b2W = 55;
+    const bH = 30;
+    const y = h/2 - bH/2;
+    const b1X = w/2 - (b1W + b2W)/2 + 10;
+    const b2X = b1X + b1W;
+
+    ctx.fillStyle = '#93c5fd'; ctx.fillRect(b1X, y, b1W, bH);
+    ctx.fillStyle = '#fed7aa'; ctx.fillRect(b2X, y, b2W, bH);
+
+    ctx.fillStyle = '#1e3a8a'; ctx.font = 'bold 11px var(--font-sans)'; ctx.textAlign = 'center';
+    ctx.fillText('1', b1X + b1W/2, y + bH/2 + 4);
+    ctx.fillStyle = '#7c2d12'; ctx.fillText('2', b2X + b2W/2, y + bH/2 + 4);
+
+    // External F arrow
+    drawArrow(ctx, b1X - 25, h/2, b1X - 3, h/2, '#ef4444', 5);
+    ctx.fillStyle = '#ef4444'; ctx.font = 'bold 9px var(--font-sans)';
+    ctx.fillText('F', b1X - 14, h/2 - 6);
+
+    // Dashed Boundary
+    ctx.save();
+    ctx.setLineDash([3, 2]);
+    ctx.strokeStyle = '#f43f5e';
+    ctx.lineWidth = 1.5;
+    if (state.boundaryChoice === 'both') ctx.strokeRect(b1X - 4, y - 4, b1W + b2W + 8, bH + 8);
+    else if (state.boundaryChoice === 'b1') ctx.strokeRect(b1X - 3, y - 3, b1W + 6, bH + 6);
+    else if (state.boundaryChoice === 'b2') ctx.strokeRect(b2X - 3, y - 3, b2W + 6, bH + 6);
+    ctx.restore();
   }
 
   function roundRect(ctx, x, y, width, height, radius) {
@@ -1931,10 +2077,14 @@
     ctx.closePath();
   }
 
-  function drawArrow(ctx, fromx, fromy, tox, toy, headlen) {
+  function drawArrow(ctx, fromx, fromy, tox, toy, color, headlen) {
     const dx = tox - fromx;
     const dy = toy - fromy;
     const angle = Math.atan2(dy, dx);
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.moveTo(fromx, fromy);
     ctx.lineTo(tox, toy);
@@ -1946,226 +2096,20 @@
     ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
     ctx.closePath();
     ctx.fill();
+    ctx.restore();
   }
 
-  // --- INTERACTION CONTROLS ---
-  window.setNumBlocks = function(n) {
-    state.numBlocks = n;
-    document.getElementById('btnMode2').classList.toggle('active', n === 2);
-    document.getElementById('btnMode3').classList.toggle('active', n === 3);
-    document.getElementById('rowM3').style.display = n === 3 ? 'flex' : 'none';
-    updateUI();
-  };
-
-  window.setM1 = function(val) {
-    state.m1 = Math.max(0.5, Math.min(10, parseFloat(val) || 2.0));
-    document.getElementById('sliderM1').value = state.m1;
-    document.getElementById('numM1').value = state.m1.toFixed(1);
-    updateUI();
-  };
-
-  window.setM2 = function(val) {
-    state.m2 = Math.max(0.5, Math.min(10, parseFloat(val) || 8.0));
-    document.getElementById('sliderM2').value = state.m2;
-    document.getElementById('numM2').value = state.m2.toFixed(1);
-    updateUI();
-  };
-
-  window.setM3 = function(val) {
-    state.m3 = Math.max(0.5, Math.min(10, parseFloat(val) || 5.0));
-    document.getElementById('sliderM3').value = state.m3;
-    document.getElementById('numM3').value = state.m3.toFixed(1);
-    updateUI();
-  };
-
-  window.setForce = function(val) {
-    state.F = Math.max(0, Math.min(80, parseFloat(val) || 50));
-    document.getElementById('sliderF').value = state.F;
-    document.getElementById('numF').value = Math.round(state.F);
-    updateUI();
-  };
-
-  window.setDirection = function(dir) {
-    state.direction = dir;
-    document.getElementById('btnDirLeft').classList.toggle('active', dir === 'left');
-    document.getElementById('btnDirRight').classList.toggle('active', dir === 'right');
-    updateUI();
-  };
-
-  window.toggleShowValues = function(checked) {
-    state.showValues = checked;
-    updateUI();
-  };
-
-  window.resetSim = function() {
-    state.m1 = 2.0;
-    state.m2 = 8.0;
-    state.F = 50.0;
-    state.direction = 'left';
-    state.boundary = 'entire';
-    document.getElementById('sliderM1').value = 2.0;
-    document.getElementById('numM1').value = '2.0';
-    document.getElementById('sliderM2').value = 8.0;
-    document.getElementById('numM2').value = '8.0';
-    document.getElementById('sliderF').value = 50;
-    document.getElementById('numF').value = '50';
-    document.getElementById('btnDirLeft').classList.add('active');
-    document.getElementById('btnDirRight').classList.remove('active');
-    document.getElementById('selectBoundary').value = 'entire';
-    updateUI();
-  };
-
-  window.setSystemBoundary = function(val) {
-    state.boundary = val;
-    updateUI();
-  };
-
-  window.setFbdView = function(val) {
-    state.fbdView = val;
-    document.getElementById('fbdSubCard1').style.display = (val === 'both' || val === 'b1') ? 'flex' : 'none';
-    document.getElementById('fbdSubCard2').style.display = (val === 'both' || val === 'b2') ? 'flex' : 'none';
-    updateUI();
-  };
-
-  window.toggleFbdNumeric = function(checked) {
-    state.fbdNumeric = checked;
-    updateUI();
-  };
-
-  window.toggleFbdWeightNormal = function(checked) {
-    state.fbdWeightNormal = checked;
-    updateUI();
-  };
-
-  window.toggleFbdSeparate = function(checked) {
-    state.fbdSeparate = checked;
-    updateUI();
-  };
-
-  window.setGraphVar = function(val) {
-    state.graphVar = val;
-    updateUI();
-  };
-
-  // --- TAB NAVIGATION ---
-  window.selectTab = function(target) {
-    document.querySelectorAll('.nav-tab').forEach(t => {
-      t.classList.toggle('active', t.dataset.target === target);
-    });
-    if (target === 'explore') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (target === 'fbd') {
-      scrollToAndHighlight('section-fbd');
-    } else if (target === 'graphs') {
-      scrollToAndHighlight('section-graphs');
-    } else if (target === 'micro') {
-      scrollToAndHighlight('section-micro');
-    } else if (target === 'challenges') {
-      scrollToAndHighlight('section-challenges');
-    }
-  };
-
-  function scrollToAndHighlight(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    el.classList.add('highlight-card');
-    setTimeout(() => el.classList.remove('highlight-card'), 1400);
-  }
-
-  // --- CHALLENGES ---
-  function renderChallenge() {
-    const ch = challenges.find(c => c.id === state.currentChallenge) || challenges[0];
-    document.getElementById('challengeQuestionNum').textContent = 'Question ' + ch.id + ' of ' + challenges.length;
-    document.getElementById('challengeQuestionText').textContent = ch.question;
-    document.getElementById('challengeHintText').textContent = ch.hint;
-
-    const list = document.getElementById('challengeOptionsList');
-    list.innerHTML = '';
-    ch.options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'challenge-opt-btn' + (state.selectedOption === opt.letter ? ' selected' : '');
-      btn.innerHTML = '<span class="opt-letter">' + opt.letter + '</span><span>' + opt.text + '</span>';
-      btn.onclick = () => {
-        state.selectedOption = opt.letter;
-        renderChallenge();
-      };
-      list.appendChild(btn);
-    });
-
-    // Update dots
-    for (let i = 1; i <= 3; i++) {
-      const dot = document.getElementById('dot' + i);
-      if (dot) dot.classList.toggle('active', i === ch.id);
-    }
-  }
-
-  window.checkChallengeAnswer = function() {
-    const ch = challenges.find(c => c.id === state.currentChallenge) || challenges[0];
-    const hintBox = document.getElementById('challengeHintBox');
-    const hintText = document.getElementById('challengeHintText');
-
-    if (state.selectedOption === ch.correct) {
-      hintBox.style.background = 'var(--success-light)';
-      hintBox.style.borderColor = '#86efac';
-      hintBox.style.color = '#15803d';
-      hintText.innerHTML = ch.explanation;
-    } else {
-      hintBox.style.background = 'var(--danger-light)';
-      hintBox.style.borderColor = '#fca5a5';
-      hintBox.style.color = '#b91c1c';
-      hintText.innerHTML = '❌ Incorrect. ' + ch.hint;
-    }
-  };
-
-  window.nextChallenge = function() {
-    state.currentChallenge = (state.currentChallenge % challenges.length) + 1;
-    state.selectedOption = 'B';
-    const hintBox = document.getElementById('challengeHintBox');
-    hintBox.style.background = '#f0fdf4';
-    hintBox.style.borderColor = '#bbf7d0';
-    hintBox.style.color = '#166534';
-    renderChallenge();
-  };
-
-  // --- MODAL ---
+  // MODAL
   window.openHelpModal = function() {
-    document.getElementById('helpModal').classList.add('active');
+    document.getElementById('helpModal').style.display = 'flex';
   };
   window.closeHelpModal = function() {
-    document.getElementById('helpModal').classList.remove('active');
+    document.getElementById('helpModal').style.display = 'none';
   };
 
-  // --- GRAPH INTERACTION (DRAGGING) ---
-  const graphCanvas = document.getElementById('graphCanvas');
-  let isDraggingGraph = false;
-
-  function handleGraphScrub(e) {
-    const rect = graphCanvas.getBoundingClientRect();
-    const padL = 40;
-    const padR = 15;
-    const pw = rect.width - padL - padR;
-    const clientX = e.clientX - rect.left;
-    const relX = Math.max(0, Math.min(pw, clientX - padL));
-    const newM2 = Math.round(((relX / pw) * 10) * 2) / 2; // snap to 0.5
-    setM2(newM2);
-  }
-
-  graphCanvas.addEventListener('mousedown', (e) => {
-    isDraggingGraph = true;
-    handleGraphScrub(e);
-  });
-  window.addEventListener('mousemove', (e) => {
-    if (isDraggingGraph) handleGraphScrub(e);
-  });
-  window.addEventListener('mouseup', () => {
-    isDraggingGraph = false;
-  });
-
-  // --- INITIALIZATION ---
+  // INITIALIZATION
   window.addEventListener('DOMContentLoaded', () => {
-    renderChallenge();
-    updateUI();
+    goToStep(2); // Start on Step 2 matching Image 1
   });
 
   window.addEventListener('resize', () => {
