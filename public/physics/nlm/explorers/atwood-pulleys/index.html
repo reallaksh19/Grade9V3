@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NLM Explorer 2 · Atwood Machine & Pulley String Constraints</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" crossorigin="anonymous">
   <style>
     :root {
       --bg: #0d1117;
@@ -61,55 +60,69 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 3px 10px;
+      gap: 5px;
+      padding: 3px 8px;
       border-radius: 12px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      font-family: var(--font-mono);
-      font-variant-numeric: tabular-nums;
       text-transform: uppercase;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
     }
-    .badge.atwood { background: #16243b; border: 1px solid #388bfd; color: #58a6ff; }
-    .badge.movable { background: #2f1d42; border: 1px solid #bc8cff; color: #d2a8ff; }
-    .badge.neutral { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); }
+    .badge.atwood {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+    .badge.neutral {
+      background: rgba(148, 163, 184, 0.12);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
 
     .container {
-      max-width: 1360px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 20px 24px;
     }
 
     .breadcrumb {
       display: flex;
+      align-items: center;
       gap: 8px;
       font-size: 12px;
       color: var(--text-muted);
       margin-bottom: 16px;
-      align-items: center;
     }
     .breadcrumb a {
-      color: var(--text-muted);
+      color: var(--accent);
       text-decoration: none;
-      transition: color 0.15s;
     }
-    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
 
-    /* Invariant banner */
+    /* Governing Invariants Card */
     .invariant-card {
       background: rgba(56, 139, 253, 0.08);
       border: 1px solid rgba(56, 139, 253, 0.3);
       border-left: 4px solid var(--accent);
       border-radius: 6px;
-      padding: 12px 18px;
+      padding: 14px 18px;
       margin-bottom: 20px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       font-size: 13px;
     }
     .invariant-card strong { color: var(--accent); }
+    .inv-item {
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .inv-num {
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 18px;
+    }
 
     /* Preset & Transport Toolbar */
     .toolbar-strip {
@@ -144,7 +157,7 @@
       color: var(--text);
       font-size: 12px;
       font-weight: 600;
-      padding: 5px 12px;
+      padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -236,7 +249,7 @@
       border-radius: 6px;
       overflow: hidden;
       margin-bottom: 16px;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
     }
     canvas {
       display: block;
@@ -252,7 +265,7 @@
       display: flex;
       gap: 12px;
       z-index: 5;
-      background: rgba(13, 17, 23, 0.85);
+      background: rgba(13, 17, 23, 0.88);
       border: 1px solid var(--border);
       padding: 4px 10px;
       border-radius: 6px;
@@ -279,10 +292,10 @@
       z-index: 5;
     }
     .btn-pill {
-      background: rgba(13, 17, 23, 0.85);
+      background: rgba(13, 17, 23, 0.88);
       border: 1px solid var(--border);
       color: var(--text-dim);
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 12px;
       font-size: 11px;
       font-weight: 600;
@@ -408,17 +421,18 @@
     }
     .graph-tooltip {
       position: absolute;
-      background: rgba(13, 17, 23, 0.94);
+      background: rgba(13, 17, 23, 0.95);
       border: 1px solid var(--border-accent);
       color: var(--text);
-      padding: 6px 10px;
-      border-radius: 4px;
+      padding: 8px 12px;
+      border-radius: 6px;
       font-family: var(--font-mono);
       font-size: 11px;
       pointer-events: none;
       display: none;
       z-index: 10;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+      line-height: 1.4;
     }
 
     /* Info Cards on Right */
@@ -572,13 +586,29 @@
     <span style="color: var(--text); font-weight: 600;">Atwood &amp; Pulley Constraints</span>
   </div>
 
-  <!-- Invariant summary card -->
+  <!-- Invariant summary card with clean semantic math -->
   <div class="invariant-card">
-    <div><strong>⚡ Governing Model Invariants &amp; String Constraint Pedagogy:</strong></div>
-    <div>
-      1. <strong>String Tension is NOT Weight</strong>: For two masses m<sub>1</sub> &lt; m<sub>2</sub> over an ideal pulley, tension is the harmonic mean: T = 2 m<sub>1</sub> m<sub>2</sub> g / (m<sub>1</sub> + m<sub>2</sub>). Notice that m<sub>1</sub> g &lt; T &lt; m<sub>2</sub> g. The heavier mass accelerates downward because m<sub>2</sub> g &gt; T; the lighter mass accelerates upward because T &gt; m<sub>1</sub> g!<br>
-      2. <strong>Kinematic Inextensibility Invariant</strong>: Total rope length L = y<sub>1</sub> + y<sub>2</sub> + &pi; R = const &rArr; d&sup2;y<sub>1</sub>/dt&sup2; + d&sup2;y<sub>2</sub>/dt&sup2; = 0 &rArr; a<sub>1</sub> = -a<sub>2</sub>. The bodies share identical acceleration magnitude: a = (m<sub>2</sub> - m<sub>1</sub>) g / (m<sub>1</sub> + m<sub>2</sub>).<br>
-      3. <strong>Movable Pulley Kinematic Ratio</strong>: In a movable pulley, pulling the rope by &Delta;y moves the load by only &Delta;y / 2 &rArr; a<sub>pull</sub> = 2 a<sub>load</sub>. Tension is halved (T = &frac12; W), doubling the mechanical advantage while doubling the displacement required!
+    <div style="font-weight: 700; color: #fff; font-size: 14px;">⚡ Governing Model Invariants &amp; String Constraint Pedagogy:</div>
+    <div class="inv-item">
+      <div class="inv-num">1.</div>
+      <div>
+        <strong>String Tension is NOT Weight</strong>: For two masses m<sub>1</sub> &lt; m<sub>2</sub> over an ideal pulley, tension is the harmonic mean:
+        <code style="color: var(--tension-color); font-weight: bold; background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 4px;">T = 2 m₁ m₂ g / (m₁ + m₂)</code>.
+        Notice that <code>m₁g &lt; T &lt; m₂g</code>. The heavier mass accelerates downward because <code>m₂g &gt; T</code>; the lighter mass accelerates upward because <code>T &gt; m₁g</code>!
+      </div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-num">2.</div>
+      <div>
+        <strong>Kinematic Inextensibility Invariant</strong>: Total rope length <code>L = y₁ + y₂ + πR = const</code> &rArr; <code>d²y₁/dt² + d²y₂/dt² = 0</code> &rArr; <code>a₁ = -a₂</code>. The bodies share identical acceleration magnitude:
+        <code style="color: var(--accel-color); font-weight: bold; background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 4px;">a = (m₂ - m₁) g / (m₁ + m₂)</code>.
+      </div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-num">3.</div>
+      <div>
+        <strong>Movable Pulley Kinematic Ratio</strong>: In a 2:1 movable pulley system, pulling the effort rope by &Delta;y lifts the load by only <code>&Delta;y / 2</code> &rArr; <code>a<sub>pull</sub> = 2 a<sub>load</sub></code>. Tension is halved (<code>T = ½ W<sub>load</sub></code> in static equilibrium), doubling mechanical advantage while doubling required rope travel!
+      </div>
     </div>
   </div>
 
@@ -587,16 +617,16 @@
     <div class="preset-group">
       <span class="preset-label">Lab Experiments:</span>
       <button class="btn-preset active" id="btn-preset-1" onclick="applyPreset(1)">
-        ① Balanced Equilibrium (m<sub>1</sub> = m<sub>2</sub> = 5 kg)
+        ① Balanced Equilibrium (m₁ = m₂ = 5 kg)
       </button>
       <button class="btn-preset" id="btn-preset-2" onclick="applyPreset(2)">
-        ② Extreme Free-Fall Asymmetry (m<sub>1</sub> = 1 kg, m<sub>2</sub> = 9 kg)
+        ② Extreme Free-Fall (m₁ = 1 kg, m₂ = 9 kg)
       </button>
       <button class="btn-preset" id="btn-preset-3" onclick="applyPreset(3)">
-        ③ The Non-Average Tension Trap (m<sub>1</sub> = 2 kg, m<sub>2</sub> = 6 kg)
+        ③ Non-Average Tension Trap (m₁ = 2 kg, m₂ = 6 kg)
       </button>
       <button class="btn-preset" id="btn-preset-4" onclick="applyPreset(4)">
-        ④ Movable Pulley 2:1 Constraint (a<sub>1</sub> = 2 a<sub>2</sub>)
+        ④ Movable Pulley 2:1 Constraint (a<sub>pull</sub> = 2 a<sub>load</sub>)
       </button>
     </div>
 
@@ -622,7 +652,7 @@
 
       <!-- Canvas Stage with Overlaid Toggles -->
       <div class="stage-wrapper">
-        <canvas id="simCanvas" width="740" height="420"></canvas>
+        <canvas id="simCanvas" width="740" height="440"></canvas>
 
         <div class="mode-pills">
           <button class="btn-pill active" id="mode-atwood" onclick="switchMode('ATWOOD')">Classic Atwood</button>
@@ -646,7 +676,7 @@
       <div class="controls-grid">
         <div class="control-card">
           <div class="control-top">
-            <span>Mass 1 (m<sub>1</sub> - Left)</span>
+            <span id="label-m1">Mass 1 (m₁ - Left)</span>
             <span class="control-val" id="val-m1" style="color: var(--mass1-color);">5.0 kg</span>
           </div>
           <input type="range" id="slider-m1" min="0.5" max="15.0" step="0.5" value="5.0">
@@ -654,7 +684,7 @@
 
         <div class="control-card">
           <div class="control-top">
-            <span>Mass 2 (m<sub>2</sub> - Right)</span>
+            <span id="label-m2">Mass 2 (m₂ - Right)</span>
             <span class="control-val" id="val-m2" style="color: var(--mass2-color);">5.0 kg</span>
           </div>
           <input type="range" id="slider-m2" min="0.5" max="15.0" step="0.5" value="5.0">
@@ -663,7 +693,7 @@
         <div class="control-card">
           <div class="control-top">
             <span>Gravity (g)</span>
-            <span class="control-val" id="val-g">10.0 m/s&sup2;</span>
+            <span class="control-val" id="val-g">10.0 m/s²</span>
           </div>
           <input type="range" id="slider-g" min="1.6" max="25.0" step="0.2" value="10.0">
         </div>
@@ -673,18 +703,18 @@
       <div class="status-matrix">
         <div class="stat-cell">
           <span class="stat-cell-label">Acceleration (a)</span>
-          <span class="stat-cell-value" id="stat-a" style="color: var(--accel-color);">0.00 m/s&sup2;</span>
+          <span class="stat-cell-value" id="stat-a" style="color: var(--accel-color);">0.00 m/s²</span>
         </div>
         <div class="stat-cell">
           <span class="stat-cell-label">String Tension (T)</span>
           <span class="stat-cell-value" id="stat-t" style="color: var(--tension-color);">50.0 N</span>
         </div>
         <div class="stat-cell">
-          <span class="stat-cell-label">Weight W<sub>1</sub> (m<sub>1</sub>g)</span>
+          <span class="stat-cell-label">Weight W₁ (m₁g)</span>
           <span class="stat-cell-value" id="stat-w1">50.0 N</span>
         </div>
         <div class="stat-cell">
-          <span class="stat-cell-label">Weight W<sub>2</sub> (m<sub>2</sub>g)</span>
+          <span class="stat-cell-label">Weight W₂ (m₂g)</span>
           <span class="stat-cell-value" id="stat-w2">50.0 N</span>
         </div>
         <div class="stat-cell">
@@ -704,15 +734,15 @@
       <!-- Live Newton's Second Law Equations HUD -->
       <div class="equations-hud">
         <div class="eq-col">
-          <span class="eq-title">Body 1 Equation of Motion</span>
+          <span class="eq-title" id="title-eq1">Body 1 Equation of Motion</span>
           <div class="eq-body" id="eq-body1-text">
-            T - m<sub>1</sub>g = 50.0N - 50.0N = 0.0N &rarr; a<sub>1</sub> = 0.00 m/s&sup2; (Up)
+            T - m₁g = 50.0N - 50.0N = 0.0N &rarr; a₁ = 0.00 m/s² (Up)
           </div>
         </div>
         <div class="eq-col">
-          <span class="eq-title">Body 2 Equation of Motion</span>
+          <span class="eq-title" id="title-eq2">Body 2 Equation of Motion</span>
           <div class="eq-body" id="eq-body2-text">
-            m<sub>2</sub>g - T = 50.0N - 50.0N = 0.0N &rarr; a<sub>2</sub> = 0.00 m/s&sup2; (Down)
+            m₂g - T = 50.0N - 50.0N = 0.0N &rarr; a₂ = 0.00 m/s² (Down)
           </div>
         </div>
       </div>
@@ -728,31 +758,31 @@
       </div>
 
       <div class="graph-wrapper" id="graphContainer">
-        <canvas id="graphCanvas" width="540" height="380"></canvas>
+        <canvas id="graphCanvas" width="540" height="390"></canvas>
         <div id="graphTooltip" class="graph-tooltip"></div>
       </div>
 
       <div style="font-size: 11px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
-        <span>💡 <em>Drag horizontally on the curve to scrub Mass Ratio (m<sub>2</sub> / m<sub>1</sub>)!</em></span>
+        <span>💡 <em>Drag horizontally anywhere on the plot to scrub Mass Ratio (m₂ / m₁)!</em></span>
         <span style="font-family: var(--font-mono);">Ratio: 0.1 &ndash; 5.0</span>
       </div>
 
       <div class="info-card">
         <h4>⚖️ The Tension-Weight Asymmetry Proof</h4>
         <p>
-          Students often guess that string tension is the arithmetic average: (m<sub>1</sub> + m<sub>2</sub>)g / 2. This is physically impossible!
+          Students often guess that string tension is the arithmetic average: <code>(m₁ + m₂)g / 2</code>. This is physically impossible!
         </p>
         <p style="margin-top: 6px;">
-          • If T equaled the average weight, the net accelerating force on both bodies would be identical, but their masses are different, violating a<sub>1</sub> = a<sub>2</sub>.<br>
-          • <strong>The Harmonic Mean Invariant</strong>: T = 2 m<sub>1</sub> m<sub>2</sub> g / (m<sub>1</sub> + m<sub>2</sub>). Notice that T is strictly <em>between</em> m<sub>1</sub>g and m<sub>2</sub>g.<br>
-          • When m<sub>2</sub> &gt; m<sub>1</sub>, m<sub>2</sub>g &gt; T causes body 2 to accelerate downward, while T &gt; m<sub>1</sub>g pulls body 1 upward with equal acceleration.
+          • If T equaled the average weight, the net accelerating force on both bodies would be identical, but their masses are different, violating <code>a₁ = a₂</code>.<br>
+          • <strong>The Harmonic Mean Invariant</strong>: <code>T = 2 m₁ m₂ g / (m₁ + m₂)</code>. Notice that T is strictly <em>between</em> m₁g and m₂g.<br>
+          • When m₂ &gt; m₁, <code>m₂g &gt; T</code> causes body 2 to accelerate downward, while <code>T &gt; m₁g</code> pulls body 1 upward with equal acceleration.
         </p>
       </div>
 
       <div class="info-card" style="border-left: 3px solid var(--tension-color);">
         <h4 style="color: var(--tension-color);">⛓️ The Free-Fall Asymptotic Limit</h4>
         <p>
-          As m<sub>1</sub> &rarr; 0 (e.g., m<sub>1</sub> = 0.1 kg while m<sub>2</sub> = 10 kg), the system approaches free fall: a &rarr; g. However, tension does <strong>NOT</strong> approach m<sub>2</sub>g = 100 N; it vanishes towards T &rarr; 2 m<sub>1</sub> g &approx; 2 N! The heavy mass drops almost unhindered.
+          As m₁ &rarr; 0 (e.g., m₁ = 0.1 kg while m₂ = 10 kg), the system approaches free fall: <code>a &rarr; g</code>. However, tension does <strong>NOT</strong> approach m₂g = 100 N; it vanishes towards <code>T &rarr; 2 m₁ g &approx; 2 N</code>! The heavy mass drops almost unhindered.
         </p>
       </div>
     </div>
@@ -778,7 +808,7 @@
         <span class="badge neutral">Diagnostic 2.1</span>
       </div>
       <div class="q-stem">
-        In an ideal Atwood machine with g = 10 m/s&sup2;, m<sub>1</sub> = 2 kg and m<sub>2</sub> = 8 kg. What is the tension in the connecting string while the masses are in motion?
+        In an ideal Atwood machine with g = 10 m/s², m₁ = 2 kg and m₂ = 8 kg. What is the tension in the connecting string while the masses are in motion?
       </div>
       <div class="options-grid">
         <label class="opt-label">
@@ -805,7 +835,7 @@
       <div class="solution-panel" id="q1-solution">
         <div id="q1-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
         <div>
-          <strong>Explorer Explanation:</strong> The arithmetic average (50 N) is a classic trap! If T were 50 N, then the 2 kg mass would accelerate at (50 - 20)/2 = 15 m/s&sup2;, while the 8 kg mass would accelerate at (80 - 50)/8 = 3.75 m/s&sup2;, violating the string length constraint! String inextensibility requires both bodies to have the same acceleration magnitude: a = (8 - 2)/(8 + 2) &times; 10 = 6 m/s&sup2;. The tension is T = m<sub>1</sub>(g + a) = 2(10 + 6) = 32 N (Option C).
+          <strong>Explorer Explanation:</strong> The arithmetic average (50 N) is a classic trap! If T were 50 N, then the 2 kg mass would accelerate at (50 - 20)/2 = 15 m/s², while the 8 kg mass would accelerate at (80 - 50)/8 = 3.75 m/s², violating the string length constraint! String inextensibility requires both bodies to have the same acceleration magnitude: a = (8 - 2)/(8 + 2) &times; 10 = 6 m/s². The tension is T = m₁(g + a) = 2(10 + 6) = 32 N (Option C).
         </div>
       </div>
     </div>
@@ -817,7 +847,7 @@
         <span class="badge neutral">Diagnostic 2.2</span>
       </div>
       <div class="q-stem">
-        A 10 kg mass m<sub>2</sub> is connected over an ideal pulley to an extremely light 0.1 kg mass m<sub>1</sub> (g = 10 m/s&sup2;). As m<sub>2</sub> accelerates downward, what is the approximate string tension?
+        A 10 kg mass m₂ is connected over an ideal pulley to an extremely light 0.1 kg mass m₁ (g = 10 m/s²). As m₂ accelerates downward, what is the approximate string tension?
       </div>
       <div class="options-grid">
         <label class="opt-label">
@@ -826,7 +856,7 @@
         </label>
         <label class="opt-label">
           <input type="radio" name="q2_opt" value="B">
-          <span><strong>B.</strong> Approximately 2 N, because T &rarr; 2 m<sub>1</sub> g as m<sub>1</sub> / m<sub>2</sub> &rarr; 0.</span>
+          <span><strong>B.</strong> Approximately 2 N, because T &rarr; 2 m₁ g as m₁ / m₂ &rarr; 0.</span>
         </label>
         <label class="opt-label">
           <input type="radio" name="q2_opt" value="C">
@@ -844,7 +874,7 @@
       <div class="solution-panel" id="q2-solution">
         <div id="q2-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
         <div>
-          <strong>Explorer Explanation:</strong> When m<sub>1</sub> &ll; m<sub>2</sub>, the system accelerates at almost free-fall: a = (10 - 0.1)/(10.1) &times; 10 &approx; 9.8 m/s&sup2;. Because m<sub>2</sub> is almost in free fall, its apparent contact resistance is tiny! The tension is T = 2(0.1)(10)(10)/(10.1) &approx; 1.98 N &approx; 2 N. Notice that T is capped by 2 m<sub>1</sub> g, NOT by m<sub>2</sub> g!
+          <strong>Explorer Explanation:</strong> When m₁ &ll; m₂, the system accelerates at almost free-fall: a = (10 - 0.1)/(10.1) &times; 10 &approx; 9.8 m/s². Because m₂ is almost in free fall, its apparent contact resistance is tiny! The tension is T = 2(0.1)(10)(10)/(10.1) &approx; 1.98 N &approx; 2 N. Notice that T is capped by 2 m₁ g, NOT by m₂ g!
         </div>
       </div>
     </div>
@@ -896,15 +926,16 @@
 // PHYSICAL SYSTEM STATE
 // -------------------------------------------------------------
 let simMode = 'ATWOOD'; // 'ATWOOD' or 'MOVABLE'
-let m1 = 5.0; // kg (Left)
-let m2 = 5.0; // kg (Right)
+let m1 = 5.0; // kg (Left in Atwood / Movable load)
+let m2 = 5.0; // kg (Right in Atwood / Effort)
 let g = 10.0; // m/s^2
 
-let y1 = 200; // px (height of m1)
-let y2 = 200; // px (height of m2)
+let y1 = 220; // px (height of m1)
+let y2 = 220; // px (height of m2)
 let vel = 0;  // m/s
 let accel = 0;// m/s^2
-let pulleyAngle = 0; // rad
+let pulleyAngle = 0; // rad (for fixed pulley)
+let movPulleyAngle = 0; // rad (for movable pulley)
 
 let isRunning = true;
 let simSpeed = 1.0;
@@ -915,6 +946,8 @@ const sliderM1 = document.getElementById('slider-m1');
 const sliderM2 = document.getElementById('slider-m2');
 const sliderG = document.getElementById('slider-g');
 
+const labelM1 = document.getElementById('label-m1');
+const labelM2 = document.getElementById('label-m2');
 const valM1 = document.getElementById('val-m1');
 const valM2 = document.getElementById('val-m2');
 const valG = document.getElementById('val-g');
@@ -928,6 +961,8 @@ const statFnet2 = document.getElementById('stat-fnet2');
 const statV = document.getElementById('stat-v');
 
 const motionBadge = document.getElementById('motion-badge');
+const titleEq1 = document.getElementById('title-eq1');
+const titleEq2 = document.getElementById('title-eq2');
 const eqBody1Text = document.getElementById('eq-body1-text');
 const eqBody2Text = document.getElementById('eq-body2-text');
 
@@ -973,6 +1008,19 @@ function switchMode(mode) {
   simMode = mode;
   document.getElementById('mode-atwood').className = (mode === 'ATWOOD') ? 'btn-pill active' : 'btn-pill';
   document.getElementById('mode-movable').className = (mode === 'MOVABLE') ? 'btn-pill active' : 'btn-pill';
+  
+  if (mode === 'MOVABLE') {
+    labelM1.innerHTML = 'Load Mass (m₁ - Movable)';
+    labelM2.innerHTML = 'Effort Mass (m₂ - Pull)';
+    titleEq1.textContent = 'Movable Load Equation (2T - m₁g = m₁ a₁)';
+    titleEq2.textContent = 'Effort Equation (m₂g - T = m₂ a₂)';
+  } else {
+    labelM1.innerHTML = 'Mass 1 (m₁ - Left)';
+    labelM2.innerHTML = 'Mass 2 (m₂ - Right)';
+    titleEq1.textContent = 'Body 1 Equation of Motion';
+    titleEq2.textContent = 'Body 2 Equation of Motion';
+  }
+
   resetSim();
 }
 
@@ -981,6 +1029,8 @@ function switchMode(mode) {
 // -------------------------------------------------------------
 function getPhysics() {
   let a = 0;
+  let a1 = 0;
+  let a2 = 0;
   let T = 0;
   const w1 = m1 * g;
   const w2 = m2 * g;
@@ -989,22 +1039,30 @@ function getPhysics() {
     // Invariant: a = (m2 - m1) g / (m1 + m2)
     const totalMass = m1 + m2;
     a = totalMass > 0 ? ((m2 - m1) / totalMass) * g : 0;
+    a1 = a;
+    a2 = a;
     // Invariant: T = 2 m1 m2 g / (m1 + m2)
     T = totalMass > 0 ? (2 * m1 * m2 * g) / totalMass : 0;
   } else {
-    // Movable Pulley Mode (m1 is pull/handle, m2 is load on movable pulley)
-    // 2 T - m2 g = m2 a_load; m1 g - T = m1 a_pull; a_pull = 2 a_load
-    // T = (m1 m2 g + 4 m1 m1 g ...) -> standard constraint solution:
-    // a_load = (2 m1 - m2) g / (4 m1 + m2)
-    const denom = 4 * m1 + m2;
-    a = denom > 0 ? ((2 * m1 - m2) / denom) * g : 0;
-    T = m1 * (g - 2 * a);
+    // Movable Pulley Mode (m1 is load supported by 2 strands, m2 is effort)
+    // String constraint: a2 = 2 * a1  (effort accelerates 2x faster than load)
+    // Equations of motion:
+    // 2T - m1 g = m1 a1
+    // m2 g - T = m2 a2 = 2 m2 a1
+    // Multiply 2nd by 2: 2 m2 g - 2T = 4 m2 a1
+    // Add: (2 m2 - m1) g = (m1 + 4 m2) a1
+    const denom = m1 + 4 * m2;
+    a1 = denom > 0 ? ((2 * m2 - m1) / denom) * g : 0;
+    a2 = 2 * a1;
+    a = a2; // reference effort acceleration
+    T = m2 * (g - a2);
+    if (T < 0) T = 0;
   }
 
   const fnet1 = Math.abs(T - w1);
   const fnet2 = Math.abs(w2 - T);
 
-  return { a, T, w1, w2, fnet1, fnet2 };
+  return { a, a1, a2, T, w1, w2, fnet1, fnet2 };
 }
 
 // -------------------------------------------------------------
@@ -1028,12 +1086,12 @@ function applyPreset(num) {
   } else if (num === 3) { // Non-average trap
     switchMode('ATWOOD');
     sliderM1.value = 2.0;
-    sliderM2.value = 8.0;
+    sliderM2.value = 6.0;
     sliderG.value = 10.0;
   } else if (num === 4) { // Movable pulley
     switchMode('MOVABLE');
-    sliderM1.value = 4.0;
-    sliderM2.value = 6.0;
+    sliderM1.value = 8.0;
+    sliderM2.value = 5.0;
     sliderG.value = 10.0;
   }
   syncSliders();
@@ -1051,11 +1109,17 @@ function togglePlay() {
 }
 
 function resetSim() {
-  y1 = 200;
-  y2 = 200;
+  if (simMode === 'ATWOOD') {
+    y1 = 220;
+    y2 = 220;
+  } else {
+    y1 = 240; // movable load starts mid-low
+    y2 = 180; // effort starts mid-high
+  }
   vel = 0;
   accel = 0;
   pulleyAngle = 0;
+  movPulleyAngle = 0;
   redrawCanvas();
 }
 
@@ -1079,23 +1143,43 @@ function updateSimulationState(dt, p) {
   accel = p.a;
   vel += accel * dt;
 
-  const dy = vel * dt * 35; // scaling for canvas (px)
-  y1 -= dy; // If body 2 drops (+dy), body 1 rises (-dy)
-  y2 += dy;
+  const dy = vel * dt * 32; // scaling for canvas (px)
+  
+  if (simMode === 'ATWOOD') {
+    y1 -= dy; // If m2 drops (+dy), m1 rises (-dy)
+    y2 += dy;
+    pulleyAngle += (dy / 30);
 
-  // Rotation of pulley
-  pulleyAngle += (dy / 30);
+    // Collision limits
+    if (y1 < 100 || y2 > 370) {
+      if (y1 < 100) { y1 = 100; y2 = 340; }
+      if (y2 > 370) { y2 = 370; y1 = 70; }
+      vel = 0;
+    }
+    if (y2 < 100 || y1 > 370) {
+      if (y2 < 100) { y2 = 100; y1 = 340; }
+      if (y1 > 370) { y1 = 370; y2 = 70; }
+      vel = 0;
+    }
+  } else {
+    // MOVABLE PULLEY: dy is effort displacement (m2)
+    // Movable pulley (m1) moves by dy / 2 in opposite direction
+    y2 += dy;
+    y1 -= dy * 0.5;
 
-  // Collision limits with pulley (top = 100) and ground (bottom = 350)
-  if (y1 < 90 || y2 > 350) {
-    if (y1 < 90) { y1 = 90; y2 = 310; }
-    if (y2 > 350) { y2 = 350; y1 = 50; }
-    vel = 0;
-  }
-  if (y2 < 90 || y1 > 350) {
-    if (y2 < 90) { y2 = 90; y1 = 310; }
-    if (y1 > 350) { y1 = 350; y2 = 50; }
-    vel = 0;
+    pulleyAngle += (dy / 25);
+    movPulleyAngle -= (dy * 0.5 / 25);
+
+    if (y1 < 120 || y2 > 375) {
+      if (y1 < 120) { y1 = 120; y2 = 360; }
+      if (y2 > 375) { y2 = 375; y1 = 130; }
+      vel = 0;
+    }
+    if (y2 < 110 || y1 > 360) {
+      if (y2 < 110) { y2 = 110; y1 = 350; }
+      if (y1 > 360) { y1 = 360; y2 = 120; }
+      vel = 0;
+    }
   }
 }
 
@@ -1112,139 +1196,302 @@ function renderSimStage(p) {
   const isDyno = chkDynamometer.checked;
 
   const centerX = w / 2;
-  const pulleyRadius = 38;
-  const pulleyY = 65;
 
-  const leftX = centerX - pulleyRadius;
-  const rightX = centerX + pulleyRadius;
-
-  // 1. Ceiling Mount Support
-  simCtx.fillStyle = '#1e293b';
-  simCtx.fillRect(centerX - 50, 0, 100, 16);
-  simCtx.strokeStyle = '#475569';
-  simCtx.lineWidth = 2;
-  simCtx.strokeRect(centerX - 50, 0, 100, 16);
-
-  // Ceiling hatching
-  simCtx.strokeStyle = '#334155';
-  for (let x = centerX - 45; x <= centerX + 45; x += 10) {
-    simCtx.beginPath();
-    simCtx.moveTo(x, 16);
-    simCtx.lineTo(x - 6, 0);
-    simCtx.stroke();
-  }
-
-  // Bracket hanging down to pulley center
-  simCtx.strokeStyle = '#94a3b8';
-  simCtx.lineWidth = 4;
-  simCtx.beginPath();
-  simCtx.moveTo(centerX, 16);
-  simCtx.lineTo(centerX, pulleyY);
-  simCtx.stroke();
-
-  // 2. Continuous Rope with Tension Heat-Color
-  // Rope Color depends on tension relative to 100 N
+  // Tension heat-color mapping (Sky-Blue -> Orange -> Vibrant Crimson)
   const tensionRatio = Math.min(1.0, p.T / 100);
-  const ropeColor = `rgb(${Math.floor(56 + tensionRatio * 184)}, ${Math.floor(139 - tensionRatio * 50)}, ${Math.floor(253 - tensionRatio * 200)})`;
+  const ropeColor = `rgb(${Math.floor(56 + tensionRatio * 199)}, ${Math.floor(139 - tensionRatio * 50)}, ${Math.floor(253 - tensionRatio * 190)})`;
 
-  simCtx.strokeStyle = ropeColor;
-  simCtx.lineWidth = 3;
+  if (simMode === 'ATWOOD') {
+    // ---------------------------------------------------------
+    // CLASSIC ATWOOD SETUP (Wide laboratory frame with dual drops)
+    // ---------------------------------------------------------
+    const pulleyRadius = 65;
+    const pulleyY = 70;
+    const leftX = centerX - pulleyRadius;   // 305 px
+    const rightX = centerX + pulleyRadius; // 435 px
 
-  // Left vertical segment
-  simCtx.beginPath();
-  simCtx.moveTo(leftX, y1);
-  simCtx.lineTo(leftX, pulleyY);
-  simCtx.stroke();
+    // 1. Ceiling Mount
+    simCtx.fillStyle = '#1e293b';
+    simCtx.fillRect(centerX - 100, 0, 200, 18);
+    simCtx.strokeStyle = '#475569';
+    simCtx.lineWidth = 2;
+    simCtx.strokeRect(centerX - 100, 0, 200, 18);
 
-  // Pulley arc over the top
-  simCtx.beginPath();
-  simCtx.arc(centerX, pulleyY, pulleyRadius, Math.PI, 0, false);
-  simCtx.stroke();
+    // Ceiling hatching
+    simCtx.strokeStyle = '#334155';
+    for (let x = centerX - 95; x <= centerX + 95; x += 12) {
+      simCtx.beginPath();
+      simCtx.moveTo(x, 18);
+      simCtx.lineTo(x - 8, 0);
+      simCtx.stroke();
+    }
 
-  // Right vertical segment
-  simCtx.beginPath();
-  simCtx.moveTo(rightX, pulleyY);
-  simCtx.lineTo(rightX, y2);
-  simCtx.stroke();
-
-  // 3. Rotating Pulley (Wheel with spokes and rim)
-  simCtx.fillStyle = '#1e293b';
-  simCtx.beginPath();
-  simCtx.arc(centerX, pulleyY, pulleyRadius - 2, 0, Math.PI * 2);
-  simCtx.fill();
-
-  simCtx.strokeStyle = '#64748b';
-  simCtx.lineWidth = 3;
-  simCtx.beginPath();
-  simCtx.arc(centerX, pulleyY, pulleyRadius, 0, Math.PI * 2);
-  simCtx.stroke();
-
-  // Spokes
-  simCtx.strokeStyle = '#475569';
-  simCtx.lineWidth = 2;
-  const numSpokes = 6;
-  for (let s = 0; s < numSpokes; s++) {
-    const angle = pulleyAngle + (s * Math.PI * 2 / numSpokes);
+    // Heavy vertical steel hanger
+    simCtx.strokeStyle = '#94a3b8';
+    simCtx.lineWidth = 6;
     simCtx.beginPath();
-    simCtx.moveTo(centerX, pulleyY);
-    simCtx.lineTo(centerX + Math.cos(angle) * (pulleyRadius - 4), pulleyY + Math.sin(angle) * (pulleyRadius - 4));
+    simCtx.moveTo(centerX, 18);
+    simCtx.lineTo(centerX, pulleyY);
     simCtx.stroke();
-  }
 
-  // Pulley Hub Axel
-  simCtx.fillStyle = '#f8fafc';
-  simCtx.beginPath();
-  simCtx.arc(centerX, pulleyY, 5, 0, Math.PI * 2);
-  simCtx.fill();
+    // 2. Rope
+    simCtx.strokeStyle = ropeColor;
+    simCtx.lineWidth = 3.5;
+    simCtx.shadowColor = ropeColor;
+    simCtx.shadowBlur = Math.min(10, p.T * 0.1);
 
-  // 4. Inline Spring Dynamometers (Tension Scales)
-  if (isDyno && !isFbdOnly) {
-    drawDynamometer(simCtx, leftX, (pulleyY + y1) / 2, p.T);
-    drawDynamometer(simCtx, rightX, (pulleyY + y2) / 2, p.T);
-  }
+    // Left segment
+    simCtx.beginPath();
+    simCtx.moveTo(leftX, y1);
+    simCtx.lineTo(leftX, pulleyY);
+    simCtx.stroke();
 
-  // 5. Height Rulers
-  if (isRuler && !isFbdOnly) {
-    drawHeightRuler(simCtx, leftX - 45, 90, 350, y1, 'y1');
-    drawHeightRuler(simCtx, rightX + 45, 90, 350, y2, 'y2');
-  }
+    // Pulley top arc
+    simCtx.beginPath();
+    simCtx.arc(centerX, pulleyY, pulleyRadius, Math.PI, 0, false);
+    simCtx.stroke();
 
-  // 6. Hanging Masses (m1 and m2)
-  const size1 = Math.max(34, Math.min(65, 30 + m1 * 2.5));
-  const size2 = Math.max(34, Math.min(65, 30 + m2 * 2.5));
+    // Right segment
+    simCtx.beginPath();
+    simCtx.moveTo(rightX, pulleyY);
+    simCtx.lineTo(rightX, y2);
+    simCtx.stroke();
 
-  drawMassBlock(simCtx, leftX, y1, size1, size1 * 0.9, m1, '#388bfd', 'm1', isFbdOnly);
-  drawMassBlock(simCtx, rightX, y2, size2, size2 * 0.9, m2, '#bc8cff', 'm2', isFbdOnly);
+    simCtx.shadowBlur = 0; // reset glow
 
-  // 7. Free Body Diagram Force Vectors
-  const scale = 1.3; // px per N
+    // 3. Rotating Main Pulley
+    drawPulleyWheel(simCtx, centerX, pulleyY, pulleyRadius, pulleyAngle);
 
-  // Body 1 Vectors (Tension Up, Weight Down)
-  drawVectorArrow(simCtx, leftX, y1, leftX, y1 - p.T * scale, '#f0883e', 'T = ' + p.T.toFixed(1) + 'N');
-  drawVectorArrow(simCtx, leftX, y1, leftX, y1 + p.w1 * scale, '#94a3b8', 'W1 = ' + p.w1.toFixed(0) + 'N');
+    // 4. Inline Spring Dynamometers
+    if (isDyno && !isFbdOnly) {
+      drawSpringDynamometer(simCtx, leftX, (pulleyY + y1) / 2, p.T, 'left');
+      drawSpringDynamometer(simCtx, rightX, (pulleyY + y2) / 2, p.T, 'right');
+    }
 
-  // Acceleration arrow for Body 1
-  if (Math.abs(p.a) > 0.05) {
-    const aDir1 = (p.a > 0) ? -1 : 1; // if p.a > 0, m2 drops, m1 rises (upward -1)
-    drawVectorArrow(simCtx, leftX - size1 / 2 - 14, y1, leftX - size1 / 2 - 14, y1 + aDir1 * Math.abs(p.a) * 8,
-      '#56d364', 'a = ' + Math.abs(p.a).toFixed(2) + 'm/s²');
-  }
+    // 5. Height Rulers
+    if (isRuler && !isFbdOnly) {
+      drawHeightRuler(simCtx, leftX - 70, 90, 370, y1, 'left');
+      drawHeightRuler(simCtx, rightX + 70, 90, 370, y2, 'right');
+    }
 
-  // Body 2 Vectors (Tension Up, Weight Down)
-  drawVectorArrow(simCtx, rightX, y2, rightX, y2 - p.T * scale, '#f0883e', 'T = ' + p.T.toFixed(1) + 'N');
-  drawVectorArrow(simCtx, rightX, y2, rightX, y2 + p.w2 * scale, '#94a3b8', 'W2 = ' + p.w2.toFixed(0) + 'N');
+    // 6. Masses
+    const size1 = Math.max(38, Math.min(68, 32 + m1 * 2.5));
+    const size2 = Math.max(38, Math.min(68, 32 + m2 * 2.5));
 
-  // Acceleration arrow for Body 2
-  if (Math.abs(p.a) > 0.05) {
-    const aDir2 = (p.a > 0) ? 1 : -1; // if p.a > 0, m2 drops (downward +1)
-    drawVectorArrow(simCtx, rightX + size2 / 2 + 14, y2, rightX + size2 / 2 + 14, y2 + aDir2 * Math.abs(p.a) * 8,
-      '#56d364', 'a = ' + Math.abs(p.a).toFixed(2) + 'm/s²');
+    drawMassBlock(simCtx, leftX, y1, size1, size1 * 0.9, m1, '#388bfd', 'm₁', isFbdOnly);
+    drawMassBlock(simCtx, rightX, y2, size2, size2 * 0.9, m2, '#bc8cff', 'm₂', isFbdOnly);
+
+    // 7. Force Vectors (FBD)
+    const scale = 1.25; // px per N
+
+    // Body 1 Vectors
+    drawVectorArrow(simCtx, leftX, y1 - size1 / 2, leftX, y1 - size1 / 2 - p.T * scale, '#f0883e', 'T=' + p.T.toFixed(1) + 'N', 'left');
+    drawVectorArrow(simCtx, leftX, y1 + size1 / 2, leftX, y1 + size1 / 2 + p.w1 * scale, '#94a3b8', 'W₁=' + p.w1.toFixed(0) + 'N', 'left');
+
+    if (Math.abs(p.a) > 0.05) {
+      const aDir1 = (p.a > 0) ? -1 : 1;
+      drawVectorArrow(simCtx, leftX - size1 / 2 - 20, y1, leftX - size1 / 2 - 20, y1 + aDir1 * Math.abs(p.a) * 8,
+        '#56d364', 'a₁=' + Math.abs(p.a).toFixed(2) + 'm/s²', 'left');
+    }
+
+    // Body 2 Vectors
+    drawVectorArrow(simCtx, rightX, y2 - size2 / 2, rightX, y2 - size2 / 2 - p.T * scale, '#f0883e', 'T=' + p.T.toFixed(1) + 'N', 'right');
+    drawVectorArrow(simCtx, rightX, y2 + size2 / 2, rightX, y2 + size2 / 2 + p.w2 * scale, '#94a3b8', 'W₂=' + p.w2.toFixed(0) + 'N', 'right');
+
+    if (Math.abs(p.a) > 0.05) {
+      const aDir2 = (p.a > 0) ? 1 : -1;
+      drawVectorArrow(simCtx, rightX + size2 / 2 + 20, y2, rightX + size2 / 2 + 20, y2 + aDir2 * Math.abs(p.a) * 8,
+        '#56d364', 'a₂=' + Math.abs(p.a).toFixed(2) + 'm/s²', 'right');
+    }
+
+  } else {
+    // ---------------------------------------------------------
+    // MOVABLE PULLEY (2:1 MECHANICAL ADVANTAGE)
+    // ---------------------------------------------------------
+    const anchorX = centerX - 120; // 250 px
+    const movRadius = 32;
+    const movX = centerX - 120 + movRadius; // 282 px
+    const fixedRadius = 32;
+    const fixedX = centerX + 90; // 460 px
+    const fixedY = 60;
+    const pullX = fixedX + fixedRadius; // 492 px
+
+    // Movable pulley position is y1
+    const movY = y1;
+
+    // 1. Ceiling Mount Support across both anchors
+    simCtx.fillStyle = '#1e293b';
+    simCtx.fillRect(centerX - 160, 0, 340, 18);
+    simCtx.strokeStyle = '#475569';
+    simCtx.lineWidth = 2;
+    simCtx.strokeRect(centerX - 160, 0, 340, 18);
+
+    // Ceiling hatching
+    simCtx.strokeStyle = '#334155';
+    for (let x = centerX - 155; x <= centerX + 175; x += 14) {
+      simCtx.beginPath();
+      simCtx.moveTo(x, 18);
+      simCtx.lineTo(x - 8, 0);
+      simCtx.stroke();
+    }
+
+    // Left fixed anchor eyelet
+    simCtx.fillStyle = '#94a3b8';
+    simCtx.beginPath();
+    simCtx.arc(anchorX, 24, 6, 0, Math.PI * 2);
+    simCtx.fill();
+    simCtx.strokeStyle = '#475569';
+    simCtx.lineWidth = 2;
+    simCtx.stroke();
+
+    // Bracket hanging fixed pulley
+    simCtx.strokeStyle = '#94a3b8';
+    simCtx.lineWidth = 5;
+    simCtx.beginPath();
+    simCtx.moveTo(fixedX, 18);
+    simCtx.lineTo(fixedX, fixedY);
+    simCtx.stroke();
+
+    // 2. Continuous Rope Path
+    simCtx.strokeStyle = ropeColor;
+    simCtx.lineWidth = 3.5;
+    simCtx.shadowColor = ropeColor;
+    simCtx.shadowBlur = Math.min(10, p.T * 0.1);
+
+    // Segment 1: Ceiling anchor down to left edge of movable pulley
+    simCtx.beginPath();
+    simCtx.moveTo(anchorX, 24);
+    simCtx.lineTo(anchorX, movY);
+    simCtx.stroke();
+
+    // Segment 2: Under the movable pulley
+    simCtx.beginPath();
+    simCtx.arc(movX, movY, movRadius, Math.PI, 0, true);
+    simCtx.stroke();
+
+    // Segment 3: From right edge of movable pulley up to left edge of fixed pulley
+    const movRightX = movX + movRadius;
+    const fixedLeftX = fixedX - fixedRadius;
+    simCtx.beginPath();
+    simCtx.moveTo(movRightX, movY);
+    simCtx.lineTo(fixedLeftX, fixedY);
+    simCtx.stroke();
+
+    // Segment 4: Over top of fixed pulley
+    simCtx.beginPath();
+    simCtx.arc(fixedX, fixedY, fixedRadius, Math.PI, 0, false);
+    simCtx.stroke();
+
+    // Segment 5: Down to effort mass (m2)
+    simCtx.beginPath();
+    simCtx.moveTo(pullX, fixedY);
+    simCtx.lineTo(pullX, y2);
+    simCtx.stroke();
+
+    simCtx.shadowBlur = 0; // reset glow
+
+    // 3. Draw Pulleys
+    drawPulleyWheel(simCtx, fixedX, fixedY, fixedRadius, pulleyAngle);
+    drawPulleyWheel(simCtx, movX, movY, movRadius, movPulleyAngle);
+
+    // Movable Pulley Hook Down to Load Block (m1)
+    const loadHangerY = movY + movRadius;
+    simCtx.strokeStyle = '#cbd5e1';
+    simCtx.lineWidth = 3;
+    simCtx.beginPath();
+    simCtx.moveTo(movX, loadHangerY);
+    simCtx.lineTo(movX, movY + movRadius + 20);
+    simCtx.stroke();
+
+    // 4. Inline Dynamometers
+    if (isDyno && !isFbdOnly) {
+      drawSpringDynamometer(simCtx, anchorX, (24 + movY) / 2, p.T, 'left');
+      drawSpringDynamometer(simCtx, pullX, (fixedY + y2) / 2, p.T, 'right');
+    }
+
+    // 5. Height Rulers
+    if (isRuler && !isFbdOnly) {
+      drawHeightRuler(simCtx, anchorX - 50, 90, 370, movY, 'left');
+      drawHeightRuler(simCtx, pullX + 50, 90, 370, y2, 'right');
+    }
+
+    // 6. Masses
+    const size1 = Math.max(40, Math.min(70, 34 + m1 * 2.5));
+    const size2 = Math.max(36, Math.min(65, 30 + m2 * 2.5));
+
+    const block1Y = movY + movRadius + 20 + size1 / 2;
+    drawMassBlock(simCtx, movX, block1Y, size1, size1 * 0.85, m1, '#388bfd', 'Load (m₁)', isFbdOnly);
+    drawMassBlock(simCtx, pullX, y2, size2, size2 * 0.85, m2, '#bc8cff', 'Effort (m₂)', isFbdOnly);
+
+    // 7. Force Vectors (FBD)
+    const scale = 1.25;
+
+    // Load Block Vectors: Two upward tensions (2T) and Weight (m1*g)
+    drawVectorArrow(simCtx, movX - 10, movY, movX - 10, movY - p.T * scale, '#f0883e', 'T', 'left');
+    drawVectorArrow(simCtx, movX + 10, movY, movX + 10, movY - p.T * scale, '#f0883e', 'T', 'right');
+    drawVectorArrow(simCtx, movX, block1Y + size1 / 2, movX, block1Y + size1 / 2 + p.w1 * scale, '#94a3b8', 'W₁=' + p.w1.toFixed(0) + 'N', 'left');
+
+    if (Math.abs(p.a1) > 0.05) {
+      const aDir1 = (p.a1 > 0) ? -1 : 1;
+      drawVectorArrow(simCtx, movX - size1 / 2 - 20, block1Y, movX - size1 / 2 - 20, block1Y + aDir1 * Math.abs(p.a1) * 8,
+        '#56d364', 'a_load=' + Math.abs(p.a1).toFixed(2) + 'm/s²', 'left');
+    }
+
+    // Effort Block Vectors: Tension Up, Weight Down
+    drawVectorArrow(simCtx, pullX, y2 - size2 / 2, pullX, y2 - size2 / 2 - p.T * scale, '#f0883e', 'T=' + p.T.toFixed(1) + 'N', 'right');
+    drawVectorArrow(simCtx, pullX, y2 + size2 / 2, pullX, y2 + size2 / 2 + p.w2 * scale, '#94a3b8', 'W₂=' + p.w2.toFixed(0) + 'N', 'right');
+
+    if (Math.abs(p.a2) > 0.05) {
+      const aDir2 = (p.a2 > 0) ? 1 : -1;
+      drawVectorArrow(simCtx, pullX + size2 / 2 + 20, y2, pullX + size2 / 2 + 20, y2 + aDir2 * Math.abs(p.a2) * 8,
+        '#56d364', 'a_pull=' + Math.abs(p.a2).toFixed(2) + 'm/s²', 'right');
+    }
   }
 }
 
 // -------------------------------------------------------------
-// DRAWING HELPERS: BLOCKS, DYNAMOMETER, RULERS
+// DRAWING HELPERS: PULLEY, BLOCKS, DYNAMOMETER, RULERS
 // -------------------------------------------------------------
+function drawPulleyWheel(ctx, cx, cy, radius, angle) {
+  // Pulley Outer Rim
+  ctx.fillStyle = '#1e293b';
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  // Brass inner bevel
+  ctx.strokeStyle = '#d97706';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius - 3, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Spokes
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2.5;
+  const numSpokes = 6;
+  for (let s = 0; s < numSpokes; s++) {
+    const spAngle = angle + (s * Math.PI * 2 / numSpokes);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(spAngle) * (radius - 5), cy + Math.sin(spAngle) * (radius - 5));
+    ctx.stroke();
+  }
+
+  // Heavy Center Hub
+  ctx.fillStyle = '#e2e8f0';
+  ctx.beginPath();
+  ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#0f172a';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
 function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly) {
   const topX = cx - w / 2;
   const topY = cy - h / 2;
@@ -1258,16 +1505,16 @@ function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly)
     ctx.fillStyle = grad;
     ctx.fillRect(topX, topY, w, h);
 
-    // Bevel
+    // Colored Accent Border
     ctx.strokeStyle = themeColor;
     ctx.lineWidth = 2.5;
     ctx.strokeRect(topX, topY, w, h);
 
-    // Eyelet ring at top
-    ctx.strokeStyle = '#94a3b8';
-    ctx.lineWidth = 2;
+    // Eyelet ring at top for rope attachment
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.arc(cx, topY, 4, 0, Math.PI * 2);
+    ctx.arc(cx, topY, 4.5, 0, Math.PI * 2);
     ctx.stroke();
 
     // Mass Label
@@ -1284,7 +1531,7 @@ function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly)
     // Point-particle circle
     ctx.fillStyle = themeColor;
     ctx.beginPath();
-    ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 7.5, 0, Math.PI * 2);
     ctx.fill();
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 2;
@@ -1293,43 +1540,69 @@ function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly)
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 11px monospace';
     ctx.textAlign = 'center';
-    ctx.fillText(`${label} = ${massVal.toFixed(1)}kg`, cx, topY - 10);
+    ctx.fillText(`${label} (${massVal.toFixed(1)}kg)`, cx, topY - 10);
   }
 }
 
-function drawDynamometer(ctx, x, y, tensionVal) {
-  const gaugeW = 20;
-  const gaugeH = 34;
+function drawSpringDynamometer(ctx, x, y, tensionVal, side) {
+  const tubeW = 16;
+  const tubeH = 44;
 
-  ctx.fillStyle = '#0f172a';
-  ctx.fillRect(x - gaugeW / 2, y - gaugeH / 2, gaugeW, gaugeH);
+  // Outer transparent acrylic cylinder
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.fillRect(x - tubeW / 2, y - tubeH / 2, tubeW, tubeH);
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x - tubeW / 2, y - tubeH / 2, tubeW, tubeH);
+
+  // Brass caps at top and bottom
+  ctx.fillStyle = '#b45309';
+  ctx.fillRect(x - tubeW / 2 - 1, y - tubeH / 2 - 3, tubeW + 2, 4);
+  ctx.fillRect(x - tubeW / 2 - 1, y + tubeH / 2 - 1, tubeW + 2, 4);
+
+  // Internal Spring Coil: stretches with tension
+  const springStretch = Math.min(26, Math.max(8, 8 + (tensionVal / 100) * 18));
   ctx.strokeStyle = '#f0883e';
   ctx.lineWidth = 1.5;
-  ctx.strokeRect(x - gaugeW / 2, y - gaugeH / 2, gaugeW, gaugeH);
-
-  // Gauge dial ticks
-  ctx.strokeStyle = '#64748b';
-  for (let dy = -10; dy <= 10; dy += 5) {
-    ctx.beginPath();
-    ctx.moveTo(x - 5, y + dy);
-    ctx.lineTo(x + 5, y + dy);
-    ctx.stroke();
+  ctx.beginPath();
+  const startY = y - tubeH / 2 + 5;
+  ctx.moveTo(x, startY);
+  const coils = 6;
+  const step = springStretch / coils;
+  for (let i = 0; i < coils; i++) {
+    const cy_sub = startY + i * step;
+    ctx.lineTo(x + (i % 2 === 0 ? 4 : -4), cy_sub + step * 0.5);
+    ctx.lineTo(x, cy_sub + step);
   }
+  ctx.stroke();
 
-  // Tension text badge next to it
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-  ctx.fillRect(x + 14, y - 8, 48, 16);
+  // Indicator Needle
+  const needleY = startY + springStretch;
+  ctx.fillStyle = '#ef4444';
+  ctx.beginPath();
+  ctx.arc(x, needleY, 2.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Clean, non-overlapping floating badge with tension value
+  const badgeW = 54;
+  const badgeH = 18;
+  const badgeX = (side === 'left') ? (x - tubeW / 2 - badgeW - 8) : (x + tubeW / 2 + 8);
+  const badgeY = y - badgeH / 2;
+
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+  ctx.fillRect(badgeX, badgeY, badgeW, badgeH);
   ctx.strokeStyle = '#f0883e';
   ctx.lineWidth = 1;
-  ctx.strokeRect(x + 14, y - 8, 48, 16);
+  ctx.strokeRect(badgeX, badgeY, badgeW, badgeH);
 
   ctx.fillStyle = '#f0883e';
   ctx.font = 'bold 10px monospace';
   ctx.textAlign = 'center';
-  ctx.fillText(tensionVal.toFixed(1) + 'N', x + 38, y + 4);
+  ctx.fillText(tensionVal.toFixed(1) + ' N', badgeX + badgeW / 2, badgeY + 12);
 }
 
-function drawHeightRuler(ctx, rx, minY, maxY, curY, label) {
+function drawHeightRuler(ctx, rx, minY, maxY, curY, side) {
+  // Vertical ruler backbone
   ctx.strokeStyle = '#334155';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
@@ -1337,30 +1610,43 @@ function drawHeightRuler(ctx, rx, minY, maxY, curY, label) {
   ctx.lineTo(rx, maxY);
   ctx.stroke();
 
-  // Tick marks
+  // Tick marks pointing towards the apparatus
+  const tickDir = (side === 'left') ? 1 : -1;
   for (let y = minY; y <= maxY; y += 20) {
     ctx.beginPath();
-    ctx.moveTo(rx - 3, y);
-    ctx.lineTo(rx + 3, y);
+    ctx.moveTo(rx, y);
+    ctx.lineTo(rx + tickDir * 5, y);
     ctx.stroke();
   }
 
-  // Marker for current position
+  // Pointer Triangle at current height
   ctx.fillStyle = '#58a6ff';
   ctx.beginPath();
-  ctx.moveTo(rx + 6, curY);
-  ctx.lineTo(rx + 12, curY - 4);
-  ctx.lineTo(rx + 12, curY + 4);
+  if (side === 'left') {
+    ctx.moveTo(rx + 6, curY);
+    ctx.lineTo(rx + 13, curY - 4);
+    ctx.lineTo(rx + 13, curY + 4);
+  } else {
+    ctx.moveTo(rx - 6, curY);
+    ctx.lineTo(rx - 13, curY - 4);
+    ctx.lineTo(rx - 13, curY + 4);
+  }
   ctx.closePath();
   ctx.fill();
 
-  ctx.font = '9px monospace';
+  // Ruler height text: placed AWAY from apparatus so it never collides with mass blocks
+  ctx.font = 'bold 10px monospace';
   ctx.fillStyle = '#94a3b8';
-  ctx.textAlign = 'right';
-  ctx.fillText(((350 - curY) / 25).toFixed(1) + 'm', rx - 6, curY + 3);
+  if (side === 'left') {
+    ctx.textAlign = 'right';
+    ctx.fillText(((370 - curY) / 25).toFixed(1) + ' m', rx - 8, curY + 3);
+  } else {
+    ctx.textAlign = 'left';
+    ctx.fillText(((370 - curY) / 25).toFixed(1) + ' m', rx + 8, curY + 3);
+  }
 }
 
-function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label) {
+function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label, side) {
   const headLen = 7;
   const angle = Math.atan2(toY - fromY, toX - fromX);
   const len = Math.hypot(toX - fromX, toY - fromY);
@@ -1376,6 +1662,7 @@ function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label) {
   ctx.lineTo(toX, toY);
   ctx.stroke();
 
+  // Arrowhead
   ctx.beginPath();
   ctx.moveTo(toX, toY);
   ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
@@ -1385,34 +1672,41 @@ function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label) {
   if (label) {
     ctx.font = 'bold 11px monospace';
     ctx.fillStyle = color;
-    ctx.textAlign = 'left';
-    ctx.fillText(label, toX + 8, toY + 3);
+    if (side === 'left') {
+      ctx.textAlign = 'right';
+      ctx.fillText(label, toX - 8, toY + 4);
+    } else {
+      ctx.textAlign = 'left';
+      ctx.fillText(label, toX + 8, toY + 4);
+    }
   }
 }
 
 // -------------------------------------------------------------
-// RENDERING: INTERACTIVE DRAGGABLE PHASE-SPACE GRAPH
+// RENDERING: INTERACTIVE DRAGGABLE PHASE-SPACE GRAPH (DUAL-AXIS)
 // -------------------------------------------------------------
 function renderGraph(p) {
   const w = graphCanvas.width;
   const h = graphCanvas.height;
   graphCtx.clearRect(0, 0, w, h);
 
-  const padLeft = 46;
-  const padBottom = 38;
-  const padTop = 24;
-  const padRight = 24;
+  const padLeft = 52;
+  const padBottom = 42;
+  const padTop = 42;
+  const padRight = 50;
 
   const plotW = w - padLeft - padRight;
   const plotH = h - padBottom - padTop;
 
   const maxRatio = 5.0; // m2 / m1 ratio on X axis
-  const maxAxisY = 120; // Tension / Accel scale on Y axis
+  const maxTensionY = 120; // Tension scale (0 - 120 N) on Left Y axis
+  const maxAccelY = 10;   // Accel scale (0 - 10 m/s^2) on Right Y axis
 
   const toScreenX = (ratio) => padLeft + (ratio / maxRatio) * plotW;
-  const toScreenY = (val) => (h - padBottom) - (val / maxAxisY) * plotH;
+  const toScreenYTension = (val) => (h - padBottom) - (val / maxTensionY) * plotH;
+  const toScreenYAccel = (val) => (h - padBottom) - (val / maxAccelY) * plotH;
 
-  // 1. Grid
+  // 1. Grid Lines
   graphCtx.strokeStyle = '#1e293b';
   graphCtx.lineWidth = 1;
   for (let r = 1; r <= 5; r += 1) {
@@ -1424,19 +1718,29 @@ function renderGraph(p) {
     graphCtx.fillStyle = '#64748b';
     graphCtx.font = '10px monospace';
     graphCtx.textAlign = 'center';
-    graphCtx.fillText(r + ':1', sx, h - padBottom + 14);
+    graphCtx.fillText(r + ':1', sx, h - padBottom + 16);
   }
 
-  for (let y = 20; y <= maxAxisY; y += 20) {
-    const sy = toScreenY(y);
+  for (let t = 20; t <= maxTensionY; t += 20) {
+    const sy = toScreenYTension(t);
     graphCtx.beginPath();
     graphCtx.moveTo(padLeft, sy);
     graphCtx.lineTo(w - padRight, sy);
     graphCtx.stroke();
-    graphCtx.fillStyle = '#64748b';
+    // Left axis tick label (Tension)
+    graphCtx.fillStyle = '#f0883e';
     graphCtx.font = '10px monospace';
     graphCtx.textAlign = 'right';
-    graphCtx.fillText(y, padLeft - 6, sy + 4);
+    graphCtx.fillText(t, padLeft - 6, sy + 4);
+  }
+
+  // Right axis tick labels (Acceleration)
+  for (let a = 2; a <= maxAccelY; a += 2) {
+    const sy = toScreenYAccel(a);
+    graphCtx.fillStyle = '#56d364';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'left';
+    graphCtx.fillText(a + 'm/s²', w - padRight + 6, sy + 4);
   }
 
   // 2. Axes
@@ -1446,15 +1750,22 @@ function renderGraph(p) {
   graphCtx.moveTo(padLeft, padTop);
   graphCtx.lineTo(padLeft, h - padBottom);
   graphCtx.lineTo(w - padRight, h - padBottom);
+  graphCtx.lineTo(w - padRight, padTop);
   graphCtx.stroke();
 
-  // Axis Labels
-  graphCtx.fillStyle = '#94a3b8';
+  // Axis Titles
+  graphCtx.fillStyle = '#f0883e';
   graphCtx.font = 'bold 11px monospace';
+  graphCtx.textAlign = 'left';
+  graphCtx.fillText('— T (N)', padLeft, padTop - 14);
+
+  graphCtx.fillStyle = '#56d364';
   graphCtx.textAlign = 'right';
-  graphCtx.fillText('T (N)', padLeft - 6, padTop - 6);
+  graphCtx.fillText('— a (m/s²)', w - padRight, padTop - 14);
+
+  graphCtx.fillStyle = '#94a3b8';
   graphCtx.textAlign = 'center';
-  graphCtx.fillText('Mass Ratio α = m2 / m1', padLeft + plotW / 2, h - 8);
+  graphCtx.fillText('Mass Ratio α = m₂ / m₁', padLeft + plotW / 2, h - 10);
 
   // 3. Draw Tension Curve: T(α) = 2 m1 (α m1) g / (m1 + α m1) = 2 m1 g (α / (1 + α))
   graphCtx.strokeStyle = '#f0883e';
@@ -1463,7 +1774,7 @@ function renderGraph(p) {
   for (let r = 0; r <= maxRatio; r += 0.05) {
     const curT = (2 * m1 * (r * m1) * g) / (m1 + r * m1 || 1);
     const sx = toScreenX(r);
-    const sy = toScreenY(curT);
+    const sy = toScreenYTension(curT);
     if (r === 0) graphCtx.moveTo(sx, sy);
     else graphCtx.lineTo(sx, sy);
   }
@@ -1471,28 +1782,31 @@ function renderGraph(p) {
 
   // Asymptotic Limit T -> 2 m1 g
   const tLimit = 2 * m1 * g;
-  graphCtx.strokeStyle = 'rgba(240, 136, 62, 0.4)';
-  graphCtx.lineWidth = 1.5;
-  graphCtx.setLineDash([4, 4]);
-  graphCtx.beginPath();
-  graphCtx.moveTo(padLeft, toScreenY(tLimit));
-  graphCtx.lineTo(w - padRight, toScreenY(tLimit));
-  graphCtx.stroke();
-  graphCtx.setLineDash([]);
+  if (tLimit <= maxTensionY + 20) {
+    const limitY = toScreenYTension(tLimit);
+    graphCtx.strokeStyle = 'rgba(240, 136, 62, 0.45)';
+    graphCtx.lineWidth = 1.5;
+    graphCtx.setLineDash([4, 4]);
+    graphCtx.beginPath();
+    graphCtx.moveTo(padLeft, limitY);
+    graphCtx.lineTo(w - padRight, limitY);
+    graphCtx.stroke();
+    graphCtx.setLineDash([]);
 
-  graphCtx.fillStyle = '#f0883e';
-  graphCtx.font = '10px monospace';
-  graphCtx.textAlign = 'right';
-  graphCtx.fillText('Limit 2m1g = ' + tLimit.toFixed(0) + 'N', w - padRight - 6, toScreenY(tLimit) - 6);
+    graphCtx.fillStyle = '#f0883e';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'right';
+    graphCtx.fillText('Limit 2m₁g = ' + tLimit.toFixed(0) + 'N', w - padRight - 8, limitY - 5);
+  }
 
   // 4. Draw Acceleration Curve: a(α) = (α - 1)/(α + 1) * g
   graphCtx.strokeStyle = '#56d364';
   graphCtx.lineWidth = 2.5;
   graphCtx.beginPath();
   for (let r = 0; r <= maxRatio; r += 0.05) {
-    const curA = Math.max(0, ((r - 1) / (r + 1)) * g) * 5; // scaled 5x for visibility on N axis
+    const curA = Math.max(0, ((r - 1) / (r + 1)) * g);
     const sx = toScreenX(r);
-    const sy = toScreenY(curA);
+    const sy = toScreenYAccel(curA);
     if (r === 0) graphCtx.moveTo(sx, sy);
     else graphCtx.lineTo(sx, sy);
   }
@@ -1501,28 +1815,30 @@ function renderGraph(p) {
   // 5. Current Operating Point Marker
   const currentRatio = m1 > 0 ? m2 / m1 : 1.0;
   const curX = toScreenX(Math.min(maxRatio, currentRatio));
-  const curY = toScreenY(p.T);
+  const curY = toScreenYTension(p.T);
 
   // Pulsing glow
-  graphCtx.fillStyle = 'rgba(240, 136, 62, 0.3)';
+  graphCtx.fillStyle = 'rgba(240, 136, 62, 0.35)';
   graphCtx.beginPath();
-  graphCtx.arc(curX, curY, 10, 0, Math.PI * 2);
+  graphCtx.arc(curX, curY, 11, 0, Math.PI * 2);
   graphCtx.fill();
 
-  // White center disc
+  // Center disc
   graphCtx.fillStyle = '#ffffff';
   graphCtx.beginPath();
   graphCtx.arc(curX, curY, 6, 0, Math.PI * 2);
   graphCtx.fill();
-  graphCtx.strokeStyle = '#000000';
-  graphCtx.lineWidth = 2;
-  graphCtx.stroke();
+  ctx = graphCtx;
+  ctx.strokeStyle = '#000000';
+  ctx.lineWidth = 2;
+  ctx.stroke();
 
   // Text tag
-  graphCtx.font = 'bold 10px monospace';
+  graphCtx.font = 'bold 11px monospace';
   graphCtx.fillStyle = '#f0883e';
-  graphCtx.textAlign = 'left';
-  graphCtx.fillText(` T = ${p.T.toFixed(1)}N`, curX + 8, curY - 4);
+  graphCtx.textAlign = (curX > w - padRight - 70) ? 'right' : 'left';
+  const tagOffset = (curX > w - padRight - 70) ? -10 : 10;
+  graphCtx.fillText(`T = ${p.T.toFixed(1)}N`, curX + tagOffset, curY - 5);
 }
 
 // -------------------------------------------------------------
@@ -1535,8 +1851,8 @@ function handleGraphInteraction(e) {
   const mouseX = e.clientX - rect.left;
   const mouseY = e.clientY - rect.top;
 
-  const padLeft = 46;
-  const padRight = 24;
+  const padLeft = 52;
+  const padRight = 50;
   const plotW = graphCanvas.width - padLeft - padRight;
   const maxRatio = 5.0;
 
@@ -1551,9 +1867,9 @@ function handleGraphInteraction(e) {
   // Tooltip
   const pPhys = getPhysics();
   graphTooltip.style.display = 'block';
-  graphTooltip.style.left = (mouseX + 12) + 'px';
-  graphTooltip.style.top = (mouseY - 24) + 'px';
-  graphTooltip.innerHTML = `<strong>Ratio = ${newRatio.toFixed(2)}</strong><br>T = ${pPhys.T.toFixed(1)} N | a = ${Math.abs(pPhys.a).toFixed(2)} m/s²`;
+  graphTooltip.style.left = (mouseX + 14) + 'px';
+  graphTooltip.style.top = (mouseY - 26) + 'px';
+  graphTooltip.innerHTML = `<strong>Ratio α = ${newRatio.toFixed(2)}</strong><br>Tension T = ${pPhys.T.toFixed(1)} N<br>Accel a = ${Math.abs(pPhys.a).toFixed(2)} m/s²`;
 }
 
 graphCanvas.addEventListener('mousedown', (e) => {
@@ -1593,17 +1909,33 @@ function redrawCanvas() {
   if (Math.abs(p.a) < 0.01) {
     motionBadge.className = 'badge neutral';
     motionBadge.textContent = 'Balanced Equilibrium (a = 0)';
-  } else if (p.a > 0) {
-    motionBadge.className = 'badge atwood';
-    motionBadge.textContent = `Accelerating: m2 Down / m1 Up (${p.a.toFixed(2)} m/s²)`;
+  } else if (simMode === 'ATWOOD') {
+    if (p.a > 0) {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Accelerating: m₂ Down / m₁ Up (${p.a.toFixed(2)} m/s²)`;
+    } else {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Accelerating: m₁ Down / m₂ Up (${Math.abs(p.a).toFixed(2)} m/s²)`;
+    }
   } else {
-    motionBadge.className = 'badge atwood';
-    motionBadge.textContent = `Accelerating: m1 Down / m2 Up (${Math.abs(p.a).toFixed(2)} m/s²)`;
+    // MOVABLE
+    if (p.a1 > 0) {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Effort Drops (${p.a2.toFixed(2)} m/s²) → Load Rises (${p.a1.toFixed(2)} m/s²)`;
+    } else {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Load Drops (${Math.abs(p.a1).toFixed(2)} m/s²) → Effort Rises (${Math.abs(p.a2).toFixed(2)} m/s²)`;
+    }
   }
 
   // Update Equations HUD
-  eqBody1Text.textContent = `T - m1g = ${p.T.toFixed(1)}N - ${p.w1.toFixed(0)}N = ${(p.T - p.w1).toFixed(1)}N → a1 = ${((p.T - p.w1)/m1).toFixed(2)} m/s² (Up)`;
-  eqBody2Text.textContent = `m2g - T = ${p.w2.toFixed(0)}N - ${p.T.toFixed(1)}N = ${(p.w2 - p.T).toFixed(1)}N → a2 = ${((p.w2 - p.T)/m2).toFixed(2)} m/s² (Down)`;
+  if (simMode === 'ATWOOD') {
+    eqBody1Text.textContent = `T - m₁g = ${p.T.toFixed(1)}N - ${p.w1.toFixed(0)}N = ${(p.T - p.w1).toFixed(1)}N → a₁ = ${((p.T - p.w1)/m1).toFixed(2)} m/s² (Up)`;
+    eqBody2Text.textContent = `m₂g - T = ${p.w2.toFixed(0)}N - ${p.T.toFixed(1)}N = ${(p.w2 - p.T).toFixed(1)}N → a₂ = ${((p.w2 - p.T)/m2).toFixed(2)} m/s² (Down)`;
+  } else {
+    eqBody1Text.textContent = `2T - m₁g = ${(2*p.T).toFixed(1)}N - ${p.w1.toFixed(0)}N = ${(2*p.T - p.w1).toFixed(1)}N → a_load = ${p.a1.toFixed(2)} m/s²`;
+    eqBody2Text.textContent = `m₂g - T = ${p.w2.toFixed(0)}N - ${p.T.toFixed(1)}N = ${(p.w2 - p.T).toFixed(1)}N → a_effort = ${p.a2.toFixed(2)} m/s²`;
+  }
 
   renderSimStage(p);
   renderGraph(p);
@@ -1663,7 +1995,7 @@ function checkQ2() {
 
   if (sel && sel.value === 'B') {
     sol.className = 'solution-panel active correct';
-    fb.innerHTML = '✅ CORRECT! Tension approaches 2 m1 g (~2 N), limited by the lighter mass.';
+    fb.innerHTML = '✅ CORRECT! Tension approaches 2 m₁ g (~2 N), limited by the lighter mass.';
     fb.style.color = 'var(--success-color)';
   } else {
     sol.className = 'solution-panel active wrong';
