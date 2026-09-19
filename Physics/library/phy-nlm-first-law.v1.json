@@ -2333,7 +2333,11 @@
         "Q-PHY-NLM-2A-COV-04",
         "Q-PHY-NLM-2A-COV-05",
         "Q-PHY-NLM-2A-COV-06",
-        "Q-PHY-NLM-PRACTICAL-12"
+        "Q-PHY-NLM-PRACTICAL-12",
+        "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+        "Q-PHY-NLM-2A-CONNECTED-02",
+        "Q-PHY-NLM-2A-IDEAL-STRING-03",
+        "Q-PHY-NLM-2A-FIXED-PULLEY-04"
       ]
     }
   ],
