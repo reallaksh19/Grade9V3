@@ -16,7 +16,7 @@
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:2133f575912c82790901c7a0882759e3eb216c7a5b38ecc836ffe5603fc4f7f9",
+  "digest": "sha256:eca81ab3450a3fcf56b492d14d70e169dd5084f92ea961b7b40fac49156ce6a3",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -624,8 +624,8 @@
       "path": "Shared/tools/worksheet_study_plan.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 17162,
-      "sha256": "398965f0f5ca57a42334915cf5c62cb05ba936b544656e89437da55b300eb3ba"
+      "bytes": 23553,
+      "sha256": "af5af8cbfc9e1150e850225a5c79a168b433791dbeeba4c796ca09c7dd3446f9"
     },
     {
       "path": "tests/fixtures/agent_path_stress/cases.json",
@@ -1107,8 +1107,8 @@
       "path": "tests/test_worksheet_study_plan.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 10584,
-      "sha256": "6166fd7df2c25d8c85723409a1b91460c967cb2a32c5cbf586527da92f356b92"
+      "bytes": 13213,
+      "sha256": "3d0563b1e08a91fb25deaa42497d1df9ca81ebbb6d83ac0b70a249a2eac4303f"
     },
     {
       "path": "tools/app.css",

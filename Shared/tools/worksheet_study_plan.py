@@ -54,8 +54,65 @@ def _lesson(location: dict, index: dict) -> dict:
         "ladder_position": location.get("ladder_position"),
         "microtopic_ref": microtopic_ref,
         "microtopic_title": title,
+        "intrinsic_difficulty": microtopic.get("intrinsic_badge"),
+        "difficulty_reason": microtopic.get("badge_reason"),
         "label": label,
     }
+
+
+def _matrix_views(subject: str, index: dict, matrix_ids: list[str],
+                  start_decisions: list[dict], repo: Path) -> list[dict]:
+    """Project canonical matrices into the view without copying them into learner state."""
+    wanted = set(matrix_ids)
+    decisions = {row["matrix_id"]: row for row in start_decisions}
+    boards: dict[str, dict] = {}
+    root = repo / subject / "matrices"
+    if root.is_dir():
+        for path in sorted(root.glob("*.rungs.json")):
+            board = load(path)
+            matrix_id = board.get("matrix_id")
+            if matrix_id in wanted:
+                boards[matrix_id] = board
+
+    views = []
+    for matrix_id in matrix_ids:
+        board = boards.get(matrix_id)
+        if board is None:
+            continue
+        rungs = []
+        for rung in sorted(
+            board.get("rungs", []),
+            key=lambda row: (
+                int(row.get("ladder_position") or 0),
+                str(row.get("rung") or ""),
+            ),
+        ):
+            microtopic_ref = rung.get("microtopic_ref")
+            microtopic = index["microtopics"].get(microtopic_ref, {})
+            capability_ref = microtopic.get("primary_capability_ref")
+            capability = index["capabilities"].get(capability_ref, {})
+            rungs.append({
+                "rung": rung.get("rung"),
+                "ladder_position": rung.get("ladder_position"),
+                "capability_ref": capability_ref,
+                "microtopic_ref": microtopic_ref,
+                "what_the_learner_owns": microtopic.get("title"),
+                "intrinsic_difficulty": microtopic.get("intrinsic_badge"),
+                "difficulty_reason": microtopic.get("badge_reason"),
+                "prerequisite_refs": list(capability.get("prerequisite_refs") or []),
+                "default_entry_eligible": rung.get("default_entry_eligible", True),
+            })
+        views.append({
+            "matrix_id": matrix_id,
+            "bucket_id": board.get("bucket_id"),
+            "topic": board.get("topic"),
+            "subtopic": board.get("subtopic"),
+            "axis_note": board.get("axis_note"),
+            "family_invariant": (board.get("family") or {}).get("invariant_demand"),
+            "owner_start_decision": decisions.get(matrix_id),
+            "rungs": rungs,
+        })
+    return views
 
 
 def _profile_state(profile: dict | None, capability_ref: str,
@@ -192,6 +249,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "worksheet_id": mapping.get("worksheet_id"),
             "subject": subject,
             "profile_id": profile.get("profile_id"),
+            "canonical_matrices": [],
             "questions": [],
             "route": [],
             "start_decisions": started.get("start_decisions", []),
@@ -240,6 +298,16 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             and primary["lessons"][0].get("microtopic_title")
             else (primary.get("action") if primary else "Unmapped capability")
         )
+        primary_difficulty = (
+            primary["lessons"][0].get("intrinsic_difficulty")
+            if primary and primary.get("lessons")
+            else None
+        )
+        difficulty_source = (
+            primary["lessons"][0].get("microtopic_ref")
+            if primary and primary.get("lessons")
+            else None
+        )
         lesson_labels = [
             lesson["label"]
             for cap in capability_rows
@@ -259,6 +327,8 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "secondary_capability_refs": list(declared.get("secondary_capability_refs") or []),
             "core_lesson": " + ".join(lesson_labels) if lesson_labels else "UNRESOLVED",
             "what_is_being_learned": primary_lesson,
+            "intrinsic_difficulty": primary_difficulty,
+            "difficulty_source": difficulty_source,
             "learner_state": question_state,
             "why_extra_attention": attention,
             "capabilities": capability_rows,
@@ -277,6 +347,26 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "action_reason": reason,
             "lessons": locations,
         })
+
+    relevant_matrix_ids = []
+    for question in question_rows:
+        for capability in question.get("capabilities", []):
+            for lesson in capability.get("lessons", []):
+                matrix_id = lesson.get("matrix_id")
+                if matrix_id and matrix_id not in relevant_matrix_ids:
+                    relevant_matrix_ids.append(matrix_id)
+    for row in route_rows:
+        for lesson in row.get("lessons", []):
+            matrix_id = lesson.get("matrix_id")
+            if matrix_id and matrix_id not in relevant_matrix_ids:
+                relevant_matrix_ids.append(matrix_id)
+    canonical_matrices = _matrix_views(
+        subject,
+        index,
+        relevant_matrix_ids,
+        started.get("start_decisions", []),
+        repo,
+    )
 
     findings = list(started.get("findings", []))
     warnings = list(started.get("warnings", []))
@@ -301,6 +391,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         "worksheet_id": mapping.get("worksheet_id"),
         "subject": subject,
         "profile_id": profile.get("profile_id") if profile else None,
+        "canonical_matrices": canonical_matrices,
         "questions": question_rows,
         "route": route_rows,
         "start_decisions": started.get("start_decisions", []),
@@ -313,7 +404,9 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         "passed": valid,
         "rules": [
             "Worksheet mappings describe demand; canonical subject records remain academic truth.",
+            "Within a matrix, learner-facing order comes from ladder_position; rung identifiers are labels.",
             "Cross-matrix study order comes only from capability prerequisites.",
+            "Intrinsic difficulty is read from the canonical microtopic and is not a learner score.",
             "Owner estimates choose a local starting attempt and never create mastery evidence.",
             "Observed learner state overrides owner estimates but never mutates subject content.",
             "External-provider prerequisites remain explicit bridge actions; they are not "
@@ -333,10 +426,58 @@ def readable(report: dict) -> str:
         f'  subject: {report.get("subject")}',
         f'  profile: {report.get("profile_id") or "none"}',
         "",
+    ]
+
+    if report.get("start_decisions"):
+        out += ["## Rough starting estimates", ""]
+        for row in report["start_decisions"]:
+            out += [
+                f'- **{_md(row.get("subtopic") or row.get("matrix_id"))}: '
+                f'{_md(row.get("knowledge_percentage"))}%** — starting-point routing only; '
+                f'selected {_md(row.get("selected_rung"))} at position '
+                f'{_md(row.get("selected_position"))}. This does not create DEMONSTRATED.'
+            ]
+        out += [""]
+
+    for matrix in report.get("canonical_matrices", []):
+        out += [
+            f'## Canonical matrix — {_md(matrix.get("subtopic") or matrix.get("matrix_id"))}',
+            "",
+        ]
+        if matrix.get("family_invariant"):
+            out += [
+                f'**Family invariant:** {_md(matrix["family_invariant"])}',
+                "",
+            ]
+        out += [
+            "Order is the existing ladder_position; rung identifiers are labels, not sequence numbers.",
+            "",
+            "| Rung | Position | Existing capability | What the learner owns | Difficulty (source) | Prerequisites | Default? |",
+            "|---|---:|---|---|---|---|---|",
+        ]
+        for rung in matrix.get("rungs", []):
+            prerequisites = ", ".join(rung.get("prerequisite_refs") or []) or "—"
+            difficulty = rung.get("intrinsic_difficulty") or "UNSPECIFIED"
+            if rung.get("microtopic_ref"):
+                difficulty += f' — {rung["microtopic_ref"]}'
+            out.append(
+                "| " + " | ".join([
+                    _md(rung.get("rung")),
+                    _md(rung.get("ladder_position")),
+                    _md(rung.get("capability_ref") or "UNRESOLVED"),
+                    _md(rung.get("what_the_learner_owns") or "UNRESOLVED"),
+                    _md(difficulty),
+                    _md(prerequisites),
+                    "Yes" if rung.get("default_entry_eligible", True) else "No",
+                ]) + " |"
+            )
+        out += [""]
+
+    out += [
         "## Question -> study map",
         "",
-        "| Question | Core (1) lesson | What is being learned | Learner state | Why extra attention? |",
-        "|---|---|---|---|---|",
+        "| Question | Core lesson | What is being learned | Difficulty (source) | Learner state | Why extra attention? |",
+        "|---|---|---|---|---|---|",
     ]
     for row in report.get("questions", []):
         out.append(
@@ -344,6 +485,13 @@ def readable(report: dict) -> str:
                 _md(row["question_id"]),
                 _md(row["core_lesson"]),
                 _md(row["what_is_being_learned"]),
+                _md(
+                    (row.get("intrinsic_difficulty") or "UNSPECIFIED")
+                    + (
+                        f' — {row["difficulty_source"]}'
+                        if row.get("difficulty_source") else ""
+                    )
+                ),
                 _md(row["learner_state"]),
                 _md(row["why_extra_attention"]),
             ]) + " |"
@@ -351,7 +499,7 @@ def readable(report: dict) -> str:
 
     out += [
         "",
-        "## Ordered study route",
+        "## Learner route — Ordered study route",
         "",
         "| # | Action | Capability | Lesson | State | Why |",
         "|---:|---|---|---|---|---|",
