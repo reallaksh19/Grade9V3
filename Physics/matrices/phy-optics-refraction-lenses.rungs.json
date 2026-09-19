@@ -1,0 +1,253 @@
+{
+  "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+  "subject": "Physics",
+  "bucket_id": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+  "topic": "Light - Reflection and Refraction",
+  "subtopic": "Refraction and spherical lenses",
+  "axis_note": "ladder_position is a curriculum coordinate. It is never a learner estimate, and Core1A/Core1B may not consult one.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 10,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "refractive-index arithmetic",
+        "glass slab",
+        "lens formula"
+      ],
+      "must_contain": [
+        "normal and both media named before angles"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary second-medium index",
+          "hold": "hold interface and incident direction",
+          "notice": "notice bend moves toward/away normal"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-REFRACTION-LAWS"
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 20,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "glass slab",
+        "lens formula",
+        "lens power"
+      ],
+      "must_contain": [
+        "one medium order preserved across index, angle and speed ratios"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary ordered medium pair",
+          "hold": "hold one incidence geometry",
+          "notice": "notice index and speed ratios invert together"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-REFRACTIVE-INDEX"
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 30,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "lens formula",
+        "human eye",
+        "prism dispersion"
+      ],
+      "must_contain": [
+        "two normals and all i/r/e angle references shown"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary incidence angle",
+          "hold": "hold slab material and parallel faces",
+          "notice": "notice emergent direction remains parallel while lateral shift changes"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-GLASS-SLAB-TRACE"
+    },
+    {
+      "rung": "R4",
+      "ladder_position": 40,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "lens formula",
+        "lens power",
+        "human-eye correction"
+      ],
+      "must_contain": [
+        "two independent principal rays agree on one image point"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary object position",
+          "hold": "hold same lens and focal geometry",
+          "notice": "notice image nature, orientation and size change systematically"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION"
+    },
+    {
+      "rung": "R5",
+      "ladder_position": 50,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "lens equation arithmetic",
+        "magnification arithmetic",
+        "power"
+      ],
+      "must_contain": [
+        "optical centre and positive directions declared before signs"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary image side",
+          "hold": "hold coordinate convention",
+          "notice": "notice sign follows coordinate location, not image label"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-LENS-SIGN-CONVENTION"
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 65,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "formula derivation",
+        "thick-lens optics",
+        "human eye"
+      ],
+      "must_contain": [
+        "signed u/v/f from one diagram and a ray-diagram cross-check"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary object distance in paraxial model",
+          "hold": "hold focal length and sign convention",
+          "notice": "notice equation image region tracks ray construction"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-LENS-EQUATION"
+    },
+    {
+      "rung": "R7",
+      "ladder_position": 75,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "lens power",
+        "brightness formulae",
+        "human-eye correction"
+      ],
+      "must_contain": [
+        "m = v/u and h_i/h_o interpreted for same image"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary object position",
+          "hold": "hold lens and object height",
+          "notice": "notice sign and magnitude track orientation and relative size"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-LENS-MAGNIFICATION"
+    },
+    {
+      "rung": "R8",
+      "ladder_position": 85,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "human-eye prescriptions",
+        "lens combinations",
+        "optical instruments"
+      ],
+      "must_contain": [
+        "f converted to metres and sign retained before reciprocal"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary focal-length magnitude/sign",
+          "hold": "hold unit convention",
+          "notice": "notice |P| changes inversely and sign tracks converging/diverging action"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-LENS-POWER"
+    },
+    {
+      "rung": "R9",
+      "ladder_position": 95,
+      "provenance": "AUTHORED",
+      "ceiling": [
+        "human-eye optics",
+        "prism dispersion",
+        "advanced metrology"
+      ],
+      "must_contain": [
+        "safe distant object, sharp screen image, O-to-screen measurement and repeat check"
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "vary object distance from far to farther",
+          "hold": "hold same convex lens",
+          "notice": "notice measured image distance approaches a stable focal-length estimate"
+        }
+      ],
+      "microtopic_ref": "MIC-OPT-CONVEX-LENS-FOCAL-PRACTICAL"
+    }
+  ],
+  "family": {
+    "invariant_demand": "Translate normal-referenced refraction into an ordered medium/index model, build a consistent thin-lens ray picture and signed coordinate state, then connect image geometry to lens equation, magnification, power and the required practical interpretations.",
+    "difficult_move": "Keeping medium order, principal-ray geometry and Cartesian signs consistent before substituting into any formula.",
+    "independent_check": "Refraction direction, lens ray construction, signed formula result, magnification sign and practical observations must make compatible predictions.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "Normals, medium order, optical centre, focal points and positive coordinate directions are started."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The interface/lens geometry is labelled, but the learner chooses ratios, rays and signs."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the physical optical setup and requested quantity or practical outcome are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Use a thick lens or large-angle rays and decide whether the thin-lens paraxial formula remains adequate.",
+      "information_not_handed_over": "whether the thin/paraxial approximation is satisfied",
+      "repair_to": "R6"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "Convert between a lens ray diagram and signed u, v, f and m without changing the physical prediction.",
+      "information_not_handed_over": "the coordinate signs implied by O, +x and +h",
+      "repair_to": "R5"
+    },
+    {
+      "dimension": "practical_interpretation",
+      "changed_demand": "Explain why the emergent ray from a parallel glass slab can be parallel to the incident ray without being collinear.",
+      "information_not_handed_over": "the second refraction restores direction but finite thickness permits lateral displacement",
+      "repair_to": "R3"
+    },
+    {
+      "dimension": "measurement",
+      "changed_demand": "Explain why a distant-object convex-lens focal-length measurement is approximate and how to improve it.",
+      "information_not_handed_over": "the role of finite object distance, alignment and repeated readings",
+      "repair_to": "R9"
+    }
+  ]
+}

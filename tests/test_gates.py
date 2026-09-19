@@ -276,6 +276,10 @@ def _machine_ma_symbol_no_unit(data):
 def _opt_mirror_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-OPTICS-MIRRORS-GRADE10")
 
+@mutates("FAL-OPT-LENS-SYMBOL-NO-UNIT")
+def _opt_lens_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-OPTICS-REFRACTION-LENSES-GRADE10")
+
 
 @mutates("FAL-EQ-SYMBOL-NO-DOMAIN")
 def _eq_symbol_no_domain(data):
