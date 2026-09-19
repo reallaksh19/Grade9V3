@@ -4690,7 +4690,7 @@ window.GRADE9V3 = {
                 {
                   "action": "For Ax nonzero, compute theta_ref=atan(|Ay/Ax|).",
                   "why_valid": "The absolute ratio gives the acute/reference angle of the component triangle.",
-                  "output": "reference angle"
+                  "output": "theta_ref = atan(|Ay/Ax|), an acute/reference angle before quadrant placement."
                 },
                 {
                   "action": "Place theta_ref in the quadrant from the original signs; handle Ax=0 as a vertical direction directly.",
@@ -4716,7 +4716,11 @@ window.GRADE9V3 = {
                 "answer": {
                   "kind": "MODEL_RESPONSE",
                   "summary": "The vector is in quadrant II. Use atan(4/3) as a reference angle and place that reference in quadrant II.",
-                  "reasoning": "Ax<0 and Ay>0 fix quadrant II.",
+                  "reasoning": [
+                    "Ax<0 and Ay>0 fix quadrant II.",
+                    "Use |Ay/Ax|=4/3 to obtain an acute/reference angle.",
+                    "Place that reference angle in quadrant II rather than reporting the principal calculator value alone."
+                  ],
                   "check": "A quadrant-II direction must reproduce negative x and positive y components.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
@@ -4738,7 +4742,7 @@ window.GRADE9V3 = {
               "status": "CANDIDATE",
               "badge_reason": "This is representation translation, not a new physical model, but sign loss in compact notation is a common execution failure.",
               "entry_assumptions": [
-                "Can read signed x/y components against declared axes."
+                "Can interpret an ordered component pair (Ax,Ay) in already-declared x/y axes."
               ],
               "inferential_jump": "The coefficients of i-hat and j-hat are exactly the signed x/y components; notation changes, the physical vector does not.",
               "teaching_path": [
@@ -8673,7 +8677,7 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-PHY-PINNACLE-VECTOR-DIRECTION-UNIT",
           "status": "CANDIDATE",
-          "admitted": false
+          "admitted": true
         },
         {
           "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
