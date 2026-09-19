@@ -193,7 +193,7 @@ class Grade9Motion1DVerticalGravityAgentAAtlas(unittest.TestCase):
         q = self.questions["Q-PHY-KIN-VERT-2A-RETURN-03"]
         self.assertIn("displacement is 0", q["answer"]["summary"])
         self.assertIn("distance is 2H=u^2/g", q["answer"]["summary"])
-        self.assertIn("v=-u", q["answer"]["summary"])
+        self.assertIn("v=u-gt=-u", q["answer"]["summary"])
 
     def test_velocity_time_transfer_preserves_slope_through_apex(self):
         q = self.questions["Q-PHY-KIN-VERT-2B-VT-GRAPH-05"]
