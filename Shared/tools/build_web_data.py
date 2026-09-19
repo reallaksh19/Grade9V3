@@ -18,6 +18,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 OUT = REPO / "tools" / "data.js"
+PUBLIC_OUT = REPO / "public" / "data" / "data.js"
 
 from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket  # noqa: E402
@@ -59,8 +60,9 @@ def bucket_view(records: dict, bucket_id: str) -> dict:
             "status": row.get("status"), "badge_reason": row.get("badge_reason"),
             "entry_assumptions": row.get("entry_assumptions", []),
             "inferential_jump": row.get("inferential_jump"),
-            "teaching_path": [{"action": s["action"], "why_valid": s["why_valid"],
-                               "output": s.get("output")} for s in row.get("teaching_path", [])],
+            "teaching_path": [{"id": s.get("id"), "action": s["action"], "why_valid": s["why_valid"],
+                               "role": s.get("role"), "output": s.get("output"),
+                               "inputs": s.get("inputs", [])} for s in row.get("teaching_path", [])],
             "misconceptions": row.get("misconceptions", []),
             "exit_task": row.get("exit_task"),
             "prerequisites": row.get("prerequisite_refs", []),
@@ -98,12 +100,107 @@ def compile_preview(records: dict, bucket_id: str, subject: str) -> dict:
             "authoring_requirements": compiled["authoring_requirements"]}
 
 
+def matrix_summary(subject: str, records: dict) -> list[dict]:
+    rows = []
+    for path in sorted((REPO / subject / "matrices").glob("*.rungs.json")):
+        board = load(path)
+        rungs = []
+        for r in board.get("rungs", []):
+            mid = r.get("microtopic_ref")
+            m = records.get(mid, {}) if mid else {}
+            cap_id = m.get("primary_capability_ref")
+            cap = records.get(cap_id, {}) if cap_id else {}
+
+            cap_questions = []
+            if cap_id:
+                for q in records.values():
+                    if q.get("_collection") == "questions" and q.get("primary_capability_ref") == cap_id:
+                        ans = q.get("answer")
+                        summary = ans.get("summary") if isinstance(ans, dict) else ans
+                        cap_questions.append({
+                            "id": q["id"],
+                            "stem": q.get("stem"),
+                            "answer": summary,
+                            "origin": q.get("origin"),
+                            "family_ref": q.get("family_ref"),
+                            "repair_ref": q.get("repair_ref")
+                        })
+
+            activities = []
+            if cap_id:
+                for res in records.values():
+                    if res.get("_collection") == "resources" and "ACTIVITY" in res.get("role", []):
+                        if cap_id in res.get("supports_claims", []):
+                            activities.append({
+                                "id": res["id"],
+                                "title": res["title"],
+                                "locator": res["locator"],
+                                "section": res.get("section"),
+                                "supports_claims": res.get("supports_claims", [])
+                            })
+
+            tpath = []
+            for idx, s in enumerate(m.get("teaching_path", [])):
+                tpath.append({
+                    "id": s.get("id", f"{r['rung']}.{idx}"),
+                    "role": s.get("role", "TRANSFORM"),
+                    "action": s.get("action", ""),
+                    "why_valid": s.get("why_valid", ""),
+                    "output": s.get("output"),
+                    "inputs": s.get("inputs", [])
+                })
+
+            rungs.append({
+                "rung": r["rung"],
+                "ladder_position": r["ladder_position"],
+                "default_entry_eligible": r.get("default_entry_eligible", True),
+                "microtopic_ref": mid,
+                "ceiling": r.get("ceiling", []),
+                "must_contain": r.get("must_contain", []),
+                "controlled_variation": r.get("controlled_variation", []),
+                "microtopic": {
+                    "id": mid,
+                    "title": m.get("title"),
+                    "intrinsic_badge": m.get("intrinsic_badge"),
+                    "badge_reason": m.get("badge_reason"),
+                    "entry_assumptions": m.get("entry_assumptions", []),
+                    "inferential_jump": m.get("inferential_jump"),
+                    "misconceptions": m.get("misconceptions", []),
+                    "exit_task": m.get("exit_task"),
+                    "elicitation": m.get("elicitation"),
+                    "prerequisite_refs": m.get("prerequisite_refs", []),
+                    "teaching_path": tpath
+                } if m else None,
+                "capability": {
+                    "id": cap_id,
+                    "action": cap.get("action"),
+                    "success_criterion": cap.get("success_criterion"),
+                    "prerequisite_refs": cap.get("prerequisite_refs", []),
+                    "acceptance_status": cap.get("acceptance_status")
+                } if cap else None,
+                "questions": cap_questions,
+                "activities": activities
+            })
+
+        rows.append({
+            "matrix_id": board["matrix_id"],
+            "subject": board.get("subject", subject),
+            "bucket_id": board.get("bucket_id"),
+            "topic": board.get("topic"),
+            "subtopic": board.get("subtopic"),
+            "axis_note": board.get("axis_note"),
+            "family": board.get("family", {}),
+            "rungs": rungs
+        })
+    return rows
+
+
 def build() -> dict:
     payload = {"generated_by": "Shared/tools/build_web_data.py", "subjects": {}}
     for subject in subjects():
         packages = [load(p) for p in sorted((REPO / subject / "library").glob("*.json"))]
         entry = {"contract": {}, "gates": gate_summary(subject), "buckets": [],
-                 "packages": [], "library_available": bool(packages)}
+                 "matrices": [], "packages": [], "library_available": bool(packages)}
         contract = load(REPO / subject / "adapter" / "CoreContracts.json")
         entry["contract"] = {
             "learner_products": contract["learner_products"],
@@ -119,10 +216,13 @@ def build() -> dict:
             entry["packages"] = [{"package_id": p["package_id"], "status": p["status"],
                                   "admitted": check(p)["admitted"]} for p in packages]
             records = build_index(packages)
+            entry["matrices"] = matrix_summary(subject, records)
             for bucket_id in sorted(r for r, v in records.items() if v["_collection"] == "buckets"):
                 view = bucket_view(records, bucket_id)
                 view["compile_preview"] = compile_preview(records, bucket_id, subject)
                 entry["buckets"].append(view)
+        else:
+            entry["matrices"] = matrix_summary(subject, {})
         payload["subjects"][subject] = entry
     return payload
 
@@ -136,8 +236,11 @@ def render(payload: dict) -> str:
 def write() -> dict:
     """Regenerate the page data file. Silent, so other tools can depend on it."""
     payload = build()
+    text = render(payload)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(render(payload), encoding="utf-8")
+    OUT.write_text(text, encoding="utf-8", newline="\n")
+    PUBLIC_OUT.parent.mkdir(parents=True, exist_ok=True)
+    PUBLIC_OUT.write_text(text, encoding="utf-8", newline="\n")
     return payload
 
 

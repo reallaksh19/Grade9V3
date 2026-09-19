@@ -67,6 +67,40 @@
       ],
       "selection_reason": "Owner-approved ExamSIDE NLM reconnaissance repeatedly exposes quantitative friction thresholds and connected-body/string constraints. The source is used to justify preparation demand, not to define curriculum or canonical questions.",
       "fallback": []
+    },
+    {
+      "id": "ACT-NLM-FRICTION-THRESHOLD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Static-to-Kinetic Friction Threshold Explorer",
+      "origin": "AUTHORED",
+      "locator": "public/physics/nlm/explorers/friction-threshold/index.html",
+      "edition": "1.0.0",
+      "section": "Interactive FBD, normal force angle variation and dynamic threshold",
+      "last_checked": "2026-09-19",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created interactive cognitive model.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "ACTIVITY"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FRICTION",
+        "CAP-NLM-FRICTION-QUANT"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION",
+        "ADVANCED"
+      ],
+      "selection_reason": "Interactive physical simulation with real-time FBD vectors and dynamic normal force from angled pull.",
+      "fallback": []
     }
   ],
   "buckets": [

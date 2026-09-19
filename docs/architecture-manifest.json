@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 162,
-  "relation_count": 212,
+  "component_count": 163,
+  "relation_count": 214,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 28,
-    "TEST": 69,
+    "TEST": 70,
     "TOOLING": 40,
     "WEB": 6
   },
-  "digest": "sha256:2133f575912c82790901c7a0882759e3eb216c7a5b38ecc836ffe5603fc4f7f9",
+  "digest": "sha256:70c9ec9b68fe7ce247a3ac55cbc35f9db27d937c65dee35cd7524c34ec70b2d8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -379,15 +379,15 @@
       "path": "Shared/tools/build_manifest.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8185,
-      "sha256": "c79f0c2d6918870d1bd1c71539d2b310834d7f4ad0d41116ef59d1bdad750df4"
+      "bytes": 8205,
+      "sha256": "43cabea8ea10412f21b70ddf831f2d5f8b0fe5d25e2ad7df6383dc9eb121c825"
     },
     {
       "path": "Shared/tools/build_web_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 7595,
-      "sha256": "81982a37d6e7d4959338444ccb7c01a60d61d2e906065ea3ab28db50721ec0fe"
+      "bytes": 12348,
+      "sha256": "3de33316f7ec7de7481adf08ae909e421c3e2359c68b2ae465883a58f8346339"
     },
     {
       "path": "Shared/tools/capability_audit.py",
@@ -1097,6 +1097,13 @@
       "sha256": "98096d19d3c437b8d479f1dc52330e1d715d2be5e4e203f9d84916d4e97a1d63"
     },
     {
+      "path": "tests/test_topic_atlas_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6126,
+      "sha256": "fe543afd4fd397fc2cc343fb5b4b48cc3686b7148c1ef08969bd1249e35f2a88"
+    },
+    {
       "path": "tests/test_vector_foundations_modernization.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1121,8 +1128,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 612515,
-      "sha256": "593869551314ea1a9a71490bc5a051ca639b611e667a3f0b7bfe15b8ab5d9040"
+      "bytes": 1657978,
+      "sha256": "c977b2ae516c72cc509f432d39cd70328cea0d4a93f5faad20f216991585077f"
     },
     {
       "path": "tools/index.html",
@@ -2197,6 +2204,16 @@
     {
       "from": "tests/test_tools.py",
       "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_topic_atlas_contract.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_topic_atlas_contract.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {

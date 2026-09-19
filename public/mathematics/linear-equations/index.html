@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NLM Topic Atlas · Laws of Motion (Data-Driven Canonical Orchestration)</title>
+  <title>Linear Equations Topic Atlas · Mathematics (Data-Driven Canonical Orchestration)</title>
   <link rel="stylesheet" href="../../css/site.css">
   <style>
     :root {
@@ -13,14 +13,14 @@
       --bg-card-hover: #292f38;
       --border: #444c56;
       --border-muted: #30363d;
-      --border-hover: #58a6ff;
-      --border-accent: #388bfd;
+      --border-hover: #c084fc;
+      --border-accent: #a855f7;
       --text: #f0f6fc;
       --text-secondary: #c9d1d9;
       --text-muted: #919bb0;
       --text-dim: #9aa4b2;
-      --accent: #58a6ff;
-      --accent-glow: rgba(56, 139, 253, 0.20);
+      --accent: #c084fc;
+      --accent-glow: rgba(192, 132, 252, 0.20);
       --chip-ok-bg: #132b1e;
       --chip-ok-border: #3fb950;
       --chip-ok-text: #56d364;
@@ -47,7 +47,6 @@
       padding: 0 0 80px 0;
     }
 
-    /* Top Sticky Header */
     header.atlas-header {
       background: rgba(22, 27, 34, 0.95);
       border-bottom: 1px solid var(--border);
@@ -80,7 +79,6 @@
       font-size: 13px;
     }
 
-    /* Quick jump nav */
     nav.jump-nav {
       display: flex;
       gap: 8px;
@@ -94,12 +92,12 @@
       font-weight: 600;
       padding: 5px 10px;
       border-radius: 6px;
-      background: rgba(88, 166, 255, 0.08);
-      border: 1px solid rgba(88, 166, 255, 0.25);
+      background: rgba(192, 132, 252, 0.08);
+      border: 1px solid rgba(192, 132, 252, 0.25);
       transition: all 0.15s ease;
     }
     nav.jump-nav a:hover {
-      background: rgba(88, 166, 255, 0.20);
+      background: rgba(192, 132, 252, 0.20);
       border-color: var(--accent);
     }
 
@@ -109,9 +107,8 @@
       padding: 24px 20px;
     }
 
-    /* Input Drawer (GAP-WEB-002, GAP-WEB-003) */
     .input-drawer-panel {
-      background: linear-gradient(180deg, #161f2e 0%, #161b22 100%);
+      background: linear-gradient(180deg, #20172e 0%, #161b22 100%);
       border: 1px solid var(--border-accent);
       border-radius: 10px;
       padding: 20px;
@@ -137,7 +134,6 @@
       gap: 8px;
     }
 
-    /* Summary Strip Panel */
     .summary-panel {
       background: var(--bg-panel);
       border: 1px solid var(--border);
@@ -174,7 +170,6 @@
       color: var(--text-muted);
     }
 
-    /* Progression Lane */
     .progression-container {
       background: var(--bg-panel);
       border: 1px solid var(--border);
@@ -192,9 +187,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--accent);
     }
-    .lane-heading.default { color: #58a6ff; }
-    .lane-heading.non-default { color: #d2a8ff; }
 
     .cluster-wrapper {
       display: flex;
@@ -264,28 +258,6 @@
       text-overflow: ellipsis;
     }
 
-    .non-default-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-    .extension-box {
-      background: var(--bg);
-      border: 1px solid rgba(163, 113, 247, 0.5);
-      border-radius: 8px;
-      padding: 16px;
-      position: relative;
-    }
-    .extension-box::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; bottom: 0; width: 4px;
-      background: var(--chip-purple-border);
-      border-radius: 8px 0 0 8px;
-    }
-
-    /* Rung Cards Details */
     .rungs-list {
       display: flex;
       flex-direction: column;
@@ -301,9 +273,6 @@
     details.rung-card[open] {
       border-color: var(--border-accent);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-    details.rung-card.non-default[open] {
-      border-color: var(--chip-purple-border);
     }
     summary.rung-summary {
       padding: 16px 20px;
@@ -442,7 +411,6 @@
       color: var(--accent);
     }
 
-    /* Active Highlight States */
     .rung-node.has-gap {
       border-color: var(--chip-hold-border) !important;
       background: rgba(218, 54, 51, 0.12) !important;
@@ -459,7 +427,7 @@
       box-shadow: 0 0 8px rgba(210, 153, 34, 0.2) !important;
     }
     .rung-node.is-quick-check {
-      border: 1px dashed #38bdf8 !important;
+      border: 1px dashed #c084fc !important;
     }
   </style>
 </head>
@@ -468,8 +436,8 @@
 <header class="atlas-header">
   <div class="header-title-group">
     <div class="header-title">
-      <span id="atlasTopicTitle">Topic Atlas</span>
-      <span class="badge purple">Canonical Projection</span>
+      <span id="atlasTopicTitle">Linear Equations Atlas</span>
+      <span class="badge math">Mathematics Proof Case</span>
     </div>
     <div class="header-subtitle" id="atlasSubtopicSubtitle">Loading canonical data...</div>
   </div>
@@ -488,24 +456,24 @@
   <div class="breadcrumb" style="display: flex; gap: 8px; font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
     <a href="../../index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
     <span>/</span>
-    <a href="../index.html" style="color: var(--text-muted); text-decoration: none;">Physics</a>
+    <a href="../index.html" style="color: var(--text-muted); text-decoration: none;">Mathematics</a>
     <span>/</span>
-    <span style="color: var(--text); font-weight: 600;">Laws of Motion</span>
+    <span style="color: var(--text); font-weight: 600;">Linear Equations</span>
   </div>
 
-  <!-- Section: Input Drawer (GAP-WEB-002, GAP-WEB-003, GAP-WEB-004, GAP-WEB-012) -->
+  <!-- Section: Input Drawer (GAP-WEB-002, GAP-WEB-003) -->
   <section id="input-drawer">
     <div class="input-drawer-panel">
       <div class="drawer-header">
         <div class="drawer-title">
           <span>🎯</span>
-          <span>Learner Diagnostic Input Drawer</span>
-          <span class="badge ok">Optional &amp; Non-Blocking</span>
+          <span>Mathematics Diagnostic Input Drawer</span>
+          <span class="badge math">Cross-Subject Generic Engine</span>
         </div>
         <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
           <span id="storageStatusBadge" class="badge neutral">💾 LocalStorage Synced</span>
           <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; user-select: none;">
-            <input type="checkbox" id="overlayToggle" checked onchange="window.ATLAS.toggleOverlay(this.checked)" style="accent-color: #38bdf8;">
+            <input type="checkbox" id="overlayToggle" checked onchange="window.ATLAS.toggleOverlay(this.checked)" style="accent-color: #c084fc;">
             <span>Show Overlay</span>
           </label>
         </div>
@@ -522,26 +490,23 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <input type="number" min="0" max="100" placeholder="none" id="knowledgeInput"
-                   style="width: 70px; font-size: 18px; font-weight: 800; font-family: var(--font-mono); background: var(--bg); border: 1px solid var(--border); color: #38bdf8; border-radius: 4px; text-align: right; padding: 2px 6px;"
+                   style="width: 70px; font-size: 18px; font-weight: 800; font-family: var(--font-mono); background: var(--bg); border: 1px solid var(--border); color: #c084fc; border-radius: 4px; text-align: right; padding: 2px 6px;"
                    oninput="window.ATLAS.setKnowledgeInput(this.value)">
-            <span style="font-size: 16px; font-weight: 700; color: #38bdf8;">%</span>
+            <span style="font-size: 16px; font-weight: 700; color: #c084fc;">%</span>
           </div>
         </div>
-        <input type="range" min="0" max="100" value="50" id="knowledgeSlider" style="width: 100%; accent-color: #38bdf8;" oninput="window.ATLAS.setKnowledgeSlider(this.value)">
+        <input type="range" min="0" max="100" value="50" id="knowledgeSlider" style="width: 100%; accent-color: #c084fc;" oninput="window.ATLAS.setKnowledgeSlider(this.value)">
         <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim); margin-top: 4px; font-family: var(--font-mono);">
           <span>None / 0%</span>
-          <span>45% (R2 Threshold)</span>
-          <span>78% (Friction R5)</span>
-          <span>100% (Default Lane Cap)</span>
+          <span>20% (R1 Constraint)</span>
+          <span>60% (R2 Equivalent Ops)</span>
+          <span>100% (R3 Exact Solution)</span>
         </div>
       </div>
 
       <!-- Diagnostic Import & Actions -->
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button type="button" class="btn primary-phy" onclick="window.ATLAS.loadDemoPreset()" title="Load exact snapshot scenario from Issue #118">
-            📥 Load Demo Scenario (45% Gap)
-          </button>
           <button type="button" class="btn outline" onclick="document.getElementById('fileImportInput').click()" title="Import external scanned gap table">
             📂 Import Diagnostic Gap Table
           </button>
@@ -561,7 +526,7 @@
         </div>
       </div>
 
-      <!-- Visible Validation Report Box (GAP-WEB-012) -->
+      <!-- Validation Report Box -->
       <div id="importValidationReport" style="display: none; margin-top: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px;"></div>
     </div>
   </section>
@@ -571,12 +536,12 @@
     <div class="summary-panel">
       <div class="stat-card">
         <div class="stat-label">Governed Topic &amp; Matrix</div>
-        <div class="stat-value">Laws of Motion</div>
-        <div class="stat-detail"><code>MATRIX-PHY-NLM-FIRST-LAW</code></div>
+        <div class="stat-value">Linear equations</div>
+        <div class="stat-detail"><code>MATRIX-MATH-LINEAR-EQUATIONS</code></div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Rungs &amp; Capabilities</div>
-        <div class="stat-value" id="statRungCount">11 Rungs</div>
+        <div class="stat-value" id="statRungCount">3 Rungs</div>
         <div class="stat-detail">Canonical matrix rungs from DB</div>
       </div>
       <div class="stat-card">
@@ -586,13 +551,13 @@
       </div>
       <div class="stat-card">
         <div class="stat-label">Practice &amp; Transfer Items</div>
-        <div class="stat-value" id="statQuestionCount">18 Items</div>
-        <div class="stat-detail">Core2A Practice &amp; Core2B Transfer items</div>
+        <div class="stat-value" id="statQuestionCount">Canonical Items</div>
+        <div class="stat-detail">Core2A Practice &amp; Transfer items</div>
       </div>
     </div>
   </section>
 
-  <!-- Section: Need Map (GAP-WEB-010) -->
+  <!-- Section: Need Map -->
   <section id="need-map">
     <div id="needMapContainer"></div>
   </section>
@@ -612,14 +577,14 @@
   <section id="rungs">
     <div class="section-title">
       <span>Rung Cards &amp; Multi-Resolution Semantic Leaves</span>
-      <span class="count">Level 1 Rungs &rarr; Level 2 Leaves &rarr; Level 3 Dimensions</span>
+      <span class="count">Level 1 Rungs &rarr; Level 2 Leaves (ME-1, ME-2, ME-3) &rarr; Level 3 Dimensions</span>
     </div>
     <div class="rungs-list" id="rungCardsContainer">
       <div style="color: var(--text-muted); font-size: 13px;">Loading canonical rungs and semantic leaves...</div>
     </div>
   </section>
 
-  <!-- Section: Core Request Builder & Planner Preview (GAP-WEB-013..016) -->
+  <!-- Section: Core Request Builder & Planner Preview -->
   <section id="core-builder">
     <div id="coreBuilderContainer"></div>
   </section>
@@ -627,16 +592,14 @@
 </div>
 
 <footer style="max-width: 1280px; margin: 40px auto 0 auto; padding: 20px; text-align: center; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border);">
-  Grade9V3 Repository &middot; Data-Driven Topic Atlas &middot; Governed by <code>Physics/matrices/phy-nlm-first-law.rungs.json</code>
+  Grade9V3 Repository &middot; Data-Driven Mathematics Topic Atlas &middot; Governed by <code>Mathematics/matrices/linear-equations.rungs.json</code>
 </footer>
 
-<!-- Canonical Projected Database Global -->
 <script src="../../data/data.js"></script>
-<!-- Generic Topic Atlas Engine (Issue #118) -->
 <script src="../../js/topic-atlas.js"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-    window.ATLAS.init('MATRIX-PHY-NLM-FIRST-LAW');
+    window.ATLAS.init('MATRIX-MATH-LINEAR-EQUATIONS');
   });
 </script>
 

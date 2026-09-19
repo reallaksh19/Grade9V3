@@ -15,7 +15,7 @@
       "method": "External Scanned Sheet / Topic Atlas Self-Assessment",
       "observed": "Correctly separated steady motion from changing velocity.",
       "evidence_kind": "PRIOR_DIAGNOSTIC",
-      "provenance": "LIVE_LEARNER"
+      "provenance": "HISTORICAL_IMPORT"
     },
     {
       "observation_id": "OBS-NLM-002",
@@ -27,7 +27,7 @@
       "method": "External Scanned Sheet / Diagnostic Quiz",
       "observed": "Student answered that net zero force implies no forces are acting on the body.",
       "evidence_kind": "PRIOR_DIAGNOSTIC",
-      "provenance": "LIVE_LEARNER"
+      "provenance": "HISTORICAL_IMPORT"
     },
     {
       "observation_id": "OBS-NLM-003",
@@ -39,7 +39,7 @@
       "method": "External Scanned Sheet / Explorer Diagnostic",
       "observed": "Substituted mu_s * N directly without checking whether applied pull exceeds threshold.",
       "evidence_kind": "PRIOR_DIAGNOSTIC",
-      "provenance": "LIVE_LEARNER"
+      "provenance": "HISTORICAL_IMPORT"
     }
   ]
 }
