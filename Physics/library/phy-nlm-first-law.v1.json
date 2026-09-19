@@ -4096,13 +4096,13 @@
       ],
       "family_ref": "FAM-PHY-NLM-PRACTICE",
       "adaptation": {
-        "parent_ref": "Q-PHY-NLM-2A-CONNECTED-02",
+        "parent_ref": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
         "changed_fields": [
           "stem",
           "conditions",
           "answer"
         ],
-        "reason": "Builds from the existing connected-body common-acceleration exercise by adding a rough interface whose required contact friction must be tested against a static limit."
+        "reason": "Changes an already-sliding single-body friction calculation into a no-slip two-body contact where the required friction must be derived first and only then tested against the static limit."
       },
       "exposure": [
         {
@@ -4125,7 +4125,7 @@
         "dimension": "reasoning_steps",
         "statement": "The learner must rebuild the no-slip force account after the applied force moves to the other body, rather than copying the friction equation from the earlier stacked-block threshold item.",
         "builds_on": [
-          "Q-PHY-NLM-2A-CONNECTED-02",
+          "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
           "MIC-PHY-NLM-FRICTION-QUANT"
         ]
       },
